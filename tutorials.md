@@ -18,16 +18,40 @@
 https://caniuse.com/
 ```
 
-## 3.vue 生命周期
-
-- 最好理解的场景是列表页面，根据生命周期在dom渲染完成后再去请求http api，不然会出现元素undefined错误，因为http是异步请求，有可能在dom还未渲染时，数据已经返回
-- 在vue里生命周期 其实就是回调函数
-
-## 4.web component
+## 3.web component
 
 - Alex Russell在2011年的Fronteers大会上首次提出Web组件。
 - vue 是2014提出第一版，但是我们实际使用最多的还是2.0版本，大概是2016年
-- 对比可以发现vue 有一些web component的影子,看代码例子
+- 对比可以发现vue有一些web component的影子,看代码例子
+```
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>web component test</title>
+    </head>
+    <body>
+        <user-card></user-card>
+        <template id="userCardTemplate">
+            <img src="https://semantic-ui.com/images/avatar2/large/kristy.png">
+            <div>
+                <p>User name</p>
+            </div>
+        </template>
+        <script>
+            console.log(200)
+            class UserCard extends HTMLElement {
+                constructor(){
+                    super()
+                    let templateEle = document.getElementById("userCardTemplate")
+                    let content = templateEle.content.cloneNode(true)
+                    this.appendChild(content)
+                }
+            }
+            window.customElements.define('user-card',UserCard)
+        </script>
+    </body>
+</html>
+```
 - vue api 网站 选项/dom  vm.$slots
 
 ## 5.闭包(Closure) 立即执行(IIFE)
@@ -61,6 +85,11 @@ for for-in for-of foreach对比效率
 简单尝试渐进性的使用方式，目的是了解vue的原理和面试的知识储备
 
 ## 9.npx 使用 不需要全局装vue 但初学者不建议
+
+## 3.vue 生命周期
+
+- 最好理解的场景是列表页面，根据生命周期在dom渲染完成后再去请求http api，不然会出现元素undefined错误，因为http是异步请求，有可能在dom还未渲染时，数据已经返回
+- 在vue里生命周期暴露出来的方法如(beforeCreate created beforeMount mounted beforeupdate updated beforedestroy destroyed),这里在术语上是hook钩子函数，其实可以简单理解为callback回调函数
 
 ## 10.router histroy build 和 dev
 
