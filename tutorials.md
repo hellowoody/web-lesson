@@ -116,6 +116,88 @@ createElement 第一个参数是必填的，可以是String | Object | Function
 createElement 第二个参数是选填的，一个与模板中属性对应的数据对象 常用的有class | style | attrs | domProps | on
 createElement 第三个参数是选填的，代表子级虚拟节点 (VNodes)，由 `createElement()` 构建而成，正常来讲接收的是一个字符串或者一个数组，一般数组用的是比较多的
 
+- vue 组件
+
+```
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"></meta>
+		<meta content="width=device-width,initial-scale=1" name="viewport">
+		<title>vue</title>
+		<script src="vue.js"></script>
+		<style>
+			[v-cloak] {
+				display:none
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app" v-cloak>	
+			<count></count>
+			<count></count>
+		</div>
+		<template id="count-comp">
+			<div>
+				<h2>{{count}}</h2>
+				<button @click="increment">+</button>
+				<button @click="decrement">-</button>
+				<hello></hello>
+			</div>
+		</template>
+		<template id="hello-comp">
+			<div>
+				<h2>你好</h2>
+				<div>{{content}}</div>
+			</div>
+		</template>
+	</body>
+</html>
+<script>
+
+//全局组件
+Vue.component("hello",{
+	template:"#hello-comp",
+	data:function(){
+		return {
+			content:"我是全局组件的内容"
+		}
+	}
+    // render(h){
+	// 	return h('div',null,[
+	// 		h('h2',"你好"),
+	// 		h('div',this.content)
+	// 	])
+	// }
+})
+
+const app = new Vue({
+	el:"#app",
+	//局部组件
+	components:{
+		"count":{
+			template:"#count-comp",
+			data(){
+				return {
+					count:0
+				}
+			},
+			methods:{
+				increment(){
+					this.count++
+				},
+				decrement(){
+					this.count--
+				}
+			}
+		}
+	}
+})
+</script>
+
+```
+
 ## 4.对比Commonjs，Amd,Es6，ts
 
 为什么现在会有这么多模块化和模块化规范？
@@ -226,6 +308,94 @@ function makeFunc() {
 
 var myFunc = makeFunc();
 myFunc();
+```
+例子
+```
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"></meta>
+		<meta content="width=device-width,initial-scale=1" name="viewport">
+		<title>闭包</title>
+	</head>
+	<body>
+		<button>按钮1</button>
+		<button>按钮2</button>
+		<button>按钮3</button>
+	</body>
+</html>
+<script>
+    //闭包
+    // function C() {
+    //     var count = 0 ;
+    // }
+    // console.log(count)
+
+    // function C(){
+    //     var count = 0
+    //     return {
+    //         count
+    //     }
+    // }
+    // var Cc = C()
+    // console.log(Cc.count)
+
+    // function C() {
+    //     var count = 0 ;
+    //     var res = function (){
+    //         count++
+    //         console.log(count)
+    //     }
+    //     return res
+    // }
+    // var Cc = C()
+    // Cc()
+    // Cc()
+
+    //块级作用域
+    // es5里 js里只有函数有块级作用域
+    // if (1==1) {
+    //     var test01_var = 10
+    // }
+    // console.log(test01_var)
+    // function test01(){
+    //     var test01_var = 10
+    // }
+    // console.log(test01_var)
+
+    //进阶
+    // var btns = document.getElementsByTagName("button")
+    // for(var i = 0 ; i < btns.length ; i++){
+    //     btns[i].addEventListener('click',function(){
+    //         console.log("这是第",i,"按钮");
+    //     })
+    // }
+
+    // for(let i = 0 ; i < btns.length ; i++){
+    //     btns[i].addEventListener('click',function(){
+    //         console.log("这是第",i,"按钮");
+    //     })
+    // }
+
+    // for(var i = 0 ; i < btns.length ; i++){
+    //     (function(i){
+    //         btns[i].addEventListener('click',function(){
+    //             console.log("这是第",i,"按钮");
+    //         })
+    //     })(i)
+    // }
+
+    // for(let i = 0 ; i < btns.length ; i++){
+    //     (function(i){
+    //         btns[i].addEventListener('click',function(){
+    //             console.log("这是第",i,"按钮");
+    //         })
+    //     })(i)
+    // }
+
+</script>
+
 ```
 
 ## 6.属性访问，“键（key）”访问
@@ -367,7 +537,42 @@ for for-in for-of foreach对比效率
 
 简单尝试渐进性的使用方式，目的是了解vue的原理和面试的知识储备
 
-## 14.npx 使用 不需要全局装vue 但初学者不建议
+```
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"></meta>
+		<meta content="width=device-width,initial-scale=1" name="viewport">
+		<title>vue</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+		<style>
+			[v-cloak] {
+				display:none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app" v-cloak>
+            {{ message }}
+        </div>
+	</body>
+</html>
+<script>
+	let App
+	setTimeout(() => {
+		App = new Vue({
+			el:"#app",
+			data:{
+				message:"hello woody"
+			}
+		});
+	}, 1000);
+</script>
+
+```
+
+## 14.npx使用,不需要全局装vue,但初学者不建议
 
 ## 15.vue 生命周期
 
@@ -384,9 +589,30 @@ for for-in for-of foreach对比效率
 - vetur
 - vue-peek
 
-## 18.nodejs express 优势 为什么要学这个
+## 18.nodejs，express优势，为什么要学这个
 
 - 因为js可以使用回调函数函数，这样的话，在只请求无需cpu（逻辑计算）的接口场景中，nodejs可以发挥巨大优势。可以接口“无限的”的请求。
 - 那为什么传统后端语法没有这个优势呢，拿java，golang举例，一般情况是一个请求对应后台一个全生命周期，直到后台response后才算完成，为了解决并发问题会使用“信号量”，“load balancer负载均衡”解决，其实就是用队列和多线程解决，但是多线程会收到内存大小的限制
 
-## 19.哈希表，hashmap
+## 19.哈希表，hashmap （面试）
+
+hash（散列、杂凑）函数，是将任意长度的数据映射到有限长度的域上。直观解释起来，就是对一串数据m进行杂糅，输出另一段固定长度的数据h，作为这段数据的特征（指纹）。
+
+哈希表是除了数组之外，最常见的数据结构，几乎所有的语言都会有数组和哈希表这两种集合元素，有的语言将数组实现成列表，有的语言将哈希表称作结构体或者字典，但是它们是两种设计集合元素的思路，数组用于表示元素的序列，而哈希表示的是键值对之间映射关系，只是不同语言的叫法和实现稍微有些不同。
+
+ES6中的Map是新增的一种数据结构。它类似对象，但是对象的键只能是字符串，Map的键不限定是字符串，Map的键可以是一个
+对象，可以是布尔值等。Map提供"值-值"的对应关系，是一种Hash结构，但实际上ES6又比传统Hash多了一些特性。
+
+理想状态下的hash要求哈希函数输出范围大于输入范围，但是由于键的数量会远远大于映射的范围，所以在实际使用时，这个理想的结果是不可能实现的。
+现实状态是，输入范围基本都大于输出范围。
+解决方式：开放寻址法和拉链法（不过多介绍）
+无论哪种方式，hash的性能都受装载因子影响
+拿拉链法举例，装载因子越大，哈希的读写性能就越差，当哈希表的装载因子较大时就会触发哈希的扩容，创建更多的桶来存储哈希中的元素，保证性能不会出现严重的下降。如果有 1000 个桶的哈希表存储了 10000 个键值对，它的性能是保存 1000 个键值对的 1/10，但是仍然比在链表中直接读写好 1000 倍。
+
+## 20.NaN !== NaN 为true
+
+NaN 是一个非常特殊的值，它从来不会等于另一个 NaN 值（也就是，它从来不等于它自己）。实际上，它是唯一一个不具有反射性的值。所以，NaN !== NaN。
+
+## leetcode刷题
+
+## 可视化的简单算法
