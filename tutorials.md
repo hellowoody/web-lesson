@@ -125,7 +125,7 @@ createElement 第三个参数是选填的，代表子级虚拟节点 (VNodes)，
 ```
 var message = 100
 function foo(){
-    console.log(messsage)
+    console.log(message)
 }
 
 function bar(){
@@ -208,12 +208,25 @@ app.foo()
     | ES2016 (ES7) - 2016 | 每年做一次更新。由此，这个版本被更名为ES 2015，且每年都 |
     | ES2017 (ES8) - 2017 | 需要更新，并命名为当前年的后缀。|
 
-## 5.闭包(Closure) 立即执行(IIFE)
+## 5.闭包(Closure) 立即执行(IIFE-Immediately-invoked Function Expression) （面试）
 
 - 只有func有块级作用域，例如if for是没有块级作用域
 - 在es5 或是说 es6之前，大家使用闭包来避免只有func有块级作用域的带来的bug
 - es6 之后 也可以使用 const let 解决，这样比起闭包简单，也易于理解
-- 闭包和iief 容易被混淆，IIEF核心是闭包，一般我们说的闭包其实是IIFE
+- 闭包和IIFE 容易被混淆，IIFE核心是闭包，一般我们说的闭包其实是IIFE
+
+```
+function makeFunc() {
+    var name = "Mozilla";
+    function displayName() {
+        alert(name);
+    }
+    return displayName;
+}
+
+var myFunc = makeFunc();
+myFunc();
+```
 
 ## 6.属性访问，“键（key）”访问
 
@@ -328,7 +341,7 @@ console.log(foo.prototype)
 ```
 
 
-## 11.原型链
+## 11.原型链（面试）
 
 ```
 //构造函数
@@ -342,14 +355,13 @@ let foo = new Foo()
 //同时Foo原型对象的construtor 就是Foo的构造函数
 ```
 
-
-## 12.for loop 几种形式
+## 12.for loop 几种形式（面试）
 
 for for-in for-of foreach对比效率
 - for 最快
 - for-in 最慢
 - for-of 写的最舒服
-- foreach 特定场景时只能用它,效率也可以
+- foreach 特定场景时只能用它,效率也可以。好处：省略下标，在链表状态下效率会高一点
 
 ## 13.渐进式使用 为了了解原理和面试
 
@@ -377,3 +389,4 @@ for for-in for-of foreach对比效率
 - 因为js可以使用回调函数函数，这样的话，在只请求无需cpu（逻辑计算）的接口场景中，nodejs可以发挥巨大优势。可以接口“无限的”的请求。
 - 那为什么传统后端语法没有这个优势呢，拿java，golang举例，一般情况是一个请求对应后台一个全生命周期，直到后台response后才算完成，为了解决并发问题会使用“信号量”，“load balancer负载均衡”解决，其实就是用队列和多线程解决，但是多线程会收到内存大小的限制
 
+## 19.哈希表，hashmap
