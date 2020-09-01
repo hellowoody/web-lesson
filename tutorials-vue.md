@@ -118,8 +118,10 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter)
 
 const routes = [
-  {path:'/',redirect:{path:'xxx'}},
-  {path:'/abc',redirect:{path:'xxx'}},
+  {path:'/',component:A},
+  {path:'/b',component:B},
+  {path:'/c',component:C},
+  {path:'/d',component:D},
 ]
 
 const router = new VueRouter({
@@ -127,7 +129,7 @@ const router = new VueRouter({
 })
 
 new Vue({
-  router,
+  router,  
   render: h => h(App)
 }).$mount('#app')
 
@@ -136,9 +138,11 @@ new Vue({
 - 使用
 
 ```
-<router-link to="/">xxx</router-link>
-<router-link to="/abc">abc</router-link>
-<router-view></router-view>
+    <router-link to="/">a</router-link>
+    <router-link to="/b">b</router-link>
+    <router-link to="/c">c</router-link>
+    <router-link to="/d">d</router-link>
+    <router-view></router-view>
 ```
 
 
