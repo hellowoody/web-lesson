@@ -1,13 +1,25 @@
 <template>
-    <div class="tab-bar-item">
-        <div style="font-size:19px;margin-bottom:6px;" class="iconfont icon-home"></div>
-        <div style="font-size:14px">首页</div>
+    <div class="tab-bar-item" >
+        <slot name="icon">
+            <div :class="icon" style="font-size:19px;"></div>
+        </slot>
+        <div style="font-size:14px;margin-top:6px;">{{name}}</div>
     </div>
 </template>
 
 <script>
 export default {
     name:'TabBarItem',
+    props:{
+        name:{
+            type:String,
+            default:"我的"
+        },
+        icon:{
+            type:String,
+            default:'iconfont icon-orderselect',
+        },
+    },
 }
 </script>
 
