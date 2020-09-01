@@ -69,12 +69,39 @@ new Vue({
 </style>
 ```
 
-
 ## 6.PC端网页中字体支持的最小像素是多少？（面试）
 
 最小像素12px
 
-## 3.vue-router
+## 7.创建tabbar组件
+
+- fixed定位，并设置宽高
+
+```
+  position: fixed;
+  bottom:0px;
+  left:0px;
+  right:0px;
+  height:58px;
+  box-shadow: 0px 0px 8px #E3E3E3;
+```
+
+- flex布局,并设置居中
+
+```
+  display: flex;
+  align-items: center;
+```
+
+## 8.如何用vue语法糖导入组件路径
+
+```
+<script>
+import TabBar from '@/components/tabbar/TabBar.vue'
+</script>
+```
+
+## vue-router
 
 ```
 //版本 vue-router 3.4.3
