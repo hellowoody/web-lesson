@@ -101,7 +101,7 @@ import TabBar from '@/components/tabbar/TabBar.vue'
 </script>
 ```
 
-## vue-router
+## 9.vue-router
 
 - 安装
 

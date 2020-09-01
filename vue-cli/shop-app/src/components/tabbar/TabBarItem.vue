@@ -22,7 +22,8 @@ export default {
         activeColor:{
             type:String,
             default:'#B620E0'
-        }
+        },
+        path:String,
     },
     data(){
         return {
@@ -31,12 +32,14 @@ export default {
     },
     methods:{
         doAcitve(){
-            this.isActive = !this.isActive
+            if (this.$route.path != this.path) {
+                this.$router.replace({path:this.path})
+            }
         }
     },
     computed:{
         activeStyle(){
-            return this.isActive ? {color:'#B620E0'} : null
+            return this.$route.path.indexOf(this.path) > -1 ? {color:'#B620E0'} : null
         }
     }
 }

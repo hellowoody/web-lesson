@@ -1,27 +1,27 @@
 <template>
   <div id="app">
-    <router-link to="/">a</router-link>
+    <!-- <router-link to="/">a</router-link>
     <br>
     <router-link to="/b">b</router-link>
      <br>
     <router-link to="/c">c</router-link>
      <br>
-    <router-link to="/d">d</router-link>
+    <router-link to="/d">d</router-link> -->
     <router-view></router-view>
 
     <tab-bar>
-        <tab-bar-item name="首页">
+        <tab-bar-item name="首页" path="/home">
           <div slot="icon">
             <div class="iconfont icon-home" :style="{fontSize:'19px'}"></div>
           </div>
         </tab-bar-item>
-        <tab-bar-item name="产品">
+        <tab-bar-item name="产品" path="/product">
           <div slot="icon">
             <div class="iconfont icon-product" :style="{fontSize:'19px'}"></div>
           </div>
         </tab-bar-item>
-        <tab-bar-item name="订单" />
-        <tab-bar-item name="我的">
+        <tab-bar-item name="订单" path="/order"/>
+        <tab-bar-item name="我的" path="/account">
            <div slot="icon">
               <div class="iconfont icon-caidaniconwodehui" :style="{fontSize:'19px'}"></div>
           </div>

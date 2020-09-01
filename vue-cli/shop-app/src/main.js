@@ -1,19 +1,20 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router';
-import A from '@/components/tabs/A'
-import B from '@/components/tabs/B'
-import C from '@/components/tabs/C'
-import D from '@/components/tabs/D';
+import Home from '@/components/tabs/Home';
+import Product from '@/components/tabs/Product';
+import Order from '@/components/tabs/Order';
+import Account from '@/components/tabs/Account';
 Vue.config.productionTip = false
 
-Vue.use(VueRouter)
+Vue.use(VueRouter) 
 
 const routes = [
-  {path:'/',component:A},
-  {path:'/b',component:B},
-  {path:'/c',component:C},
-  {path:'/d',component:D},
+  {path:'/',component:Home},
+  {path:'/home',component:Home},
+  {path:'/product',component:Product},
+  {path:'/order',component:Order},
+  {path:'/account',component:Account},
 ]
 
 const router = new VueRouter({
