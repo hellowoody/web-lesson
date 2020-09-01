@@ -1,5 +1,14 @@
 <template>
   <div id="app">
+    <router-link to="/">a</router-link>
+    <br>
+    <router-link to="/b">b</router-link>
+     <br>
+    <router-link to="/c">c</router-link>
+     <br>
+    <router-link to="/d">d</router-link>
+    <router-view></router-view>
+
     <tab-bar>
         <tab-bar-item name="首页">
           <div slot="icon">
