@@ -103,9 +103,42 @@ import TabBar from '@/components/tabbar/TabBar.vue'
 
 ## vue-router
 
+- 安装
+
 ```
 //版本 vue-router 3.4.3
 npm i --save vue-router
+```
+- 引用
+
+```
+
+import VueRouter from 'vue-router';
+
+Vue.use(VueRouter)
+
+const routes = [
+  {path:'/',redirect:{path:'xxx'}},
+  {path:'/abc',redirect:{path:'xxx'}},
+]
+
+const router = new VueRouter({
+    routes
+})
+
+new Vue({
+  router,
+  render: h => h(App)
+}).$mount('#app')
+
+```
+
+- 使用
+
+```
+<router-link to="/">xxx</router-link>
+<router-link to="/abc">abc</router-link>
+<router-view></router-view>
 ```
 
 
