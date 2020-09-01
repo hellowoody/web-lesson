@@ -1,5 +1,5 @@
 <template>
-    <div class="tab-bar-item" >
+    <div @click="doAcitve" class="tab-bar-item" :style="activeStyle">
         <slot name="icon">
             <div :class="icon" style="font-size:19px;"></div>
         </slot>
@@ -19,7 +19,26 @@ export default {
             type:String,
             default:'iconfont icon-orderselect',
         },
+        activeColor:{
+            type:String,
+            default:'#B620E0'
+        }
     },
+    data(){
+        return {
+            isActive:false
+        }
+    },
+    methods:{
+        doAcitve(){
+            this.isActive = !this.isActive
+        }
+    },
+    computed:{
+        activeStyle(){
+            return this.isActive ? {color:'#B620E0'} : null
+        }
+    }
 }
 </script>
 
