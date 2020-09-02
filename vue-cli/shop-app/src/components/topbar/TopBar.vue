@@ -4,7 +4,11 @@
             <slot name="left"></slot>
         </div>
         <div class="middle">
-             <slot name="middle"></slot>
+             <slot name="middle">
+                <a-input ref="searchinput"  size="large" placeholder="请输入查询内容">
+                    <a-icon slot="prefix" type="search" />
+                </a-input>
+             </slot>
         </div>
         <div class="right">
             <slot name="right"></slot>
@@ -19,7 +23,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .top-bar {
     background-color:#fff;
     height:60px;
@@ -28,6 +32,16 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 0px 18px 0px 18px;
+}
+
+.middle {
+    width:80%;
+}
+
+.ant-input {
+    background-color : rgb(172 172 172 / 0.1) !important;
+    border: none !important;
+    border-radius: 8px !important;
 }
 
 </style>
