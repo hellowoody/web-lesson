@@ -30,11 +30,4 @@ export default {
     padding: 0px 18px 0px 18px;
 }
 
-.left {
-    font-size: 24px;
-}
-
-.right {
-    font-size: 24px !important;
-}
 </style>

@@ -1,7 +1,9 @@
 <template>
     <div>
         <top-bar>
-            <div slot="middle">中间的搜索框</div>
+            <div slot="middle">
+                <a-input prefix="￥" suffix="RMB" />
+            </div>
             <div slot="right" class="iconfont icon-gouwuchezhengpin" style="font-size: 24px"></div>
         </top-bar>
         <div>this is A Page</div>
