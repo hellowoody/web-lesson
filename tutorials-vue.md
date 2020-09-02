@@ -265,6 +265,25 @@ import './antd'
 <style>
 ```
 
+## 14.修改路由策略，使用子路由
+
+- 目的是一级页面现实底部选项卡，二级页面以及之后的页面“隐藏”底部选项卡
+
+```
+const routes = [
+  {path:'/',redirect:{path:"/main/home"}},
+  {path:'/main',component:Main,children:[
+    {path:'home',component:Home},
+    {path:'product',component:Product},
+    {path:'order',component:Order},
+    {path:'account',component:Account},
+  ]},
+  {path:'/cart',name:'cart',component:Cart},
+]
+```
+
+- 需要注意的是，子路由中的path是不需要写斜杠'/'前缀的
+
 
 
 
