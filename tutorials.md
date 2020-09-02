@@ -525,6 +525,8 @@ let foo = new Foo()
 //同时Foo原型对象的construtor 就是Foo的构造函数
 ```
 
+![image](https://raw.githubusercontent.com/hellowoody/web-lesson/master/%E5%8E%9F%E5%9E%8B/%E5%8E%9F%E5%9E%8B%E9%93%BE.png)
+
 ## 12.for loop 几种形式（面试）
 
 for for-in for-of foreach对比效率
