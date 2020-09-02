@@ -150,4 +150,48 @@ new Vue({
     <router-view></router-view>
 ```
 
+10. 封装路由
+
+- 在src下创建一个router文件夹
+- 在router文件夹下创建一个index.js，router/index.js
+- 将原先我们在main.js里所写的有关router的代码复制过来，同时需要注意还需要导入vue
+
+```
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Home from '@/components/tabs/Home';
+import Product from '@/components/tabs/Product';
+import Order from '@/components/tabs/Order';
+import Account from '@/components/tabs/Account';
+
+
+Vue.use(VueRouter) 
+
+const routes = [
+  {path:'/',redirect:{path:"/home"}},
+  {path:'/home',component:Home},
+  {path:'/product',component:Product},
+  {path:'/order',component:Order},
+  {path:'/account',component:Account},
+]
+
+const router = new VueRouter({
+  routes
+})
+
+export default router
+
+```
+- 还需注意index.js需要导出，导出需要使用es6语法：export default router
+- 最后在main.js中导入router/index.js,并将导入的模块（router），放置vue对象中
+
+```
+import router from './router'
+
+new Vue({
+  router, // important 重要！
+  render: h => h(App),
+}).$mount('#app')
+
+```
 
