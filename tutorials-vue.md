@@ -198,6 +198,73 @@ new Vue({
 
 - 在src根目录下创建topbar文件夹,同时在文件夹下创一个TopBar.vue
 - 利用学过的插槽slot，去实现本次的组件
-- 根据原型，需要
+- 根据原型，需要本组件内容放置左， 中，右三个插槽
+  ```
+  <div>
+    <slot name="left"></slot>
+    <slot name="middle"></slot>
+    <slot name="right"></slot>
+  </div>
+  ```
+- 再利用css当中的flex布局，将三个slot设计一下
+
+```
+.top-bar {
+    background-color:#fff;
+    height:60px;
+    box-shadow: 0px 1px 2px rgba(40,40,40,0.2);
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 18px 0px 18px;
+}
+```
+
+- 应该再middle的slot，写上默认的内容，默认的内容就是input
+
+## 12。引用阿里的Ant-D 第三方原型库
+
+- 安装antd 如果npm慢，官网推荐cnpm
+- 安装封装路由方式，去封装和加载antd
+- 创建antd文件，再src根目录,创建antd/index.js
+- 在index.js
+
+```
+import Vue from 'vue'
+import { 
+    Input ,
+    Icon
+}  from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.css';
+
+Vue.use(Input)
+Vue.use(Icon)
+
+```
+- 需要main.js 导入进来
+
+```
+
+import './antd'
+
+```
+
+## 13.如何antd组件
+
+- 推荐，一定要看官网
+- 根据官网的input的例子，直接把代码考到我们项目
+- 定制化修改第三方库的样式，一般都是在浏览器用开发者找到渲染后的标签的样式名，进行修改
+```
+//style 是全局的 而不是 scoped
+<style> 
+.ant-input {
+    background-color : rgb(172 172 172 / 0.1) !important;
+    border: none !important;
+    border-radius: 8px !important;
+}
+<style>
+```
+
+
 
 
