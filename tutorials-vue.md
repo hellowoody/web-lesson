@@ -285,5 +285,13 @@ const routes = [
 - 需要注意的是，子路由中的path是不需要写斜杠'/'前缀的
 
 
+## 15.实现一个跳转事件
 
+```
+    methods:{
+        goto(path){
+            this.$router.push({path})  //{path} 相当于 {path:path}
+        }
+    }
+```
 
