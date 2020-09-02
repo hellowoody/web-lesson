@@ -150,7 +150,7 @@ new Vue({
     <router-view></router-view>
 ```
 
-10. 封装路由
+## 10. 封装路由
 
 - 在src下创建一个router文件夹
 - 在router文件夹下创建一个index.js，router/index.js
