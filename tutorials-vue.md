@@ -116,6 +116,11 @@ npm i --save vue-router
 import VueRouter from 'vue-router';
 
 Vue.use(VueRouter)
+// vue.prototype.$router = xxx
+// vue.prototype.$route = xxx
+// this.$router --全局路由
+// this.$route  --当前路由栈最新的那个路由
+
 
 const routes = [
   {path:'/',component:A},
