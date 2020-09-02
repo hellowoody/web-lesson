@@ -47,5 +47,4 @@ export default {
 @import "./assets/css/commom.css";
 @import "./assets/icon/iconfont.css";
 
-
 </style>

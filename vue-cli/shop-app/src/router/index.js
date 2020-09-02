@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '@/components/tabs/Home';
-import Product from '@/components/tabs/Product';
-import Order from '@/components/tabs/Order';
-import Account from '@/components/tabs/Account';
+import Home from '@/components/pages/tabs/Home';
+import Product from '@/components/pages/tabs/Product';
+import Order from '@/components/pages/tabs/Order';
+import Account from '@/components/pages/tabs/Account';
+import Cart from '@/components/pages/Cart.vue';
 
 
 Vue.use(VueRouter) 
@@ -14,6 +15,7 @@ const routes = [
   {path:'/product',component:Product},
   {path:'/order',component:Order},
   {path:'/account',component:Account},
+  {path:'/cart',component:Cart},
 ]
 
 const router = new VueRouter({

@@ -1,7 +1,7 @@
 <template>
     <div>
         <top-bar>
-            <div slot="right" class="iconfont icon-gouwuchezhengpin" style="font-size: 24px"></div>
+            <div slot="right" @click="goto('/cart')" class="iconfont icon-gouwuchezhengpin" style="font-size: 24px"></div>
         </top-bar>
         <div>this is A Page</div>
     </div>
@@ -14,6 +14,11 @@ export default {
     name:'A',
     components:{
         TopBar,
+    },
+    methods:{
+        goto(path){
+            this.$router.push({path})
+        }
     }
 }
 </script>
