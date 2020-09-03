@@ -6,7 +6,7 @@
         <div class="middle">
              <slot name="middle">
                 <a-input ref="searchinput"  size="large" @focus="focusFunc" placeholder="请输入查询内容">
-                    <a-icon slot="prefix" type="search" />
+                    <a-icon slot="prefix" type="edit" />
                 </a-input>
              </slot>
         </div>
