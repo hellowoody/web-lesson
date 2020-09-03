@@ -21,11 +21,11 @@ export default {
         },
         search(){
             this.$router.push({path:'/search'})
-        }
+        },
     }
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

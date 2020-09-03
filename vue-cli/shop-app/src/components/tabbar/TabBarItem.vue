@@ -3,7 +3,7 @@
         <slot name="icon">
             <div :class="icon" style="font-size:19px;"></div>
         </slot>
-        <div style="font-size:14px;margin-top:6px;">{{name}}</div>
+        <div style="font-size:14px;">{{name}}</div>
     </div>
 </template>
 

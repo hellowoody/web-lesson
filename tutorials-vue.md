@@ -295,3 +295,169 @@ const routes = [
     }
 ```
 
+## 16.父组件向子组件传递一个回调函数(注意：不是$emit)
+
+- 父组件，在调用子组件时向子组件传递一个focusFunc
+
+```
+<top-bar :focusFunc="search" >
+</top-bar>
+```
+
+- 子组件
+
+```
+
+<a-input ref="searchinput"  size="large" @focus="focusFunc" placeholder="请输入查询内容"></a-input>
+
+export default {
+    props:{
+        focusFunc:{
+            type:Function,
+            default:function(){}
+        },
+    },
+}
+
+```
+
+## 17.封装localStoreage函数
+
+- 在项目src目录下创建kits文件夹
+- 在kits文件夹下创建LocalStorage.js（/src/kits/LocalStorage.js）
+- 注意使用ES6语法导出
+- 注意localStorage默认只支持字符串格式的存储和输出
+
+```
+
+export const getArray = (key)=>{
+    let val = localStorage.getItem(key)
+    return val === null ? [] : val.split(',')
+}
+
+export const setArray = (key,val)=>{
+    let arr = getArray(key)
+    arr.push(val)
+    localStorage.setItem(key,arr.toString())
+}
+
+```
+
+## 18.使用vue内置transition实现滑动跳转效果
+
+- 是实际开发中动画效果的跳转过渡一般都是框架实现，并且实现过程比较复杂，这里用一个简单的例子展现如何手动实现此效果
+- 在App.vue文件中,添加transition设置
+
+template
+```
+<transition :name="transitionName" >
+  <router-view></router-view>
+</transition>
+```
+
+style
+
+```
+.fold-left-enter-active {
+    animation-name: fold-left-in;
+    animation-duration: .3s;
+  }
+  .fold-left-leave-active {
+    animation-name: fold-left-out;
+    animation-duration: .3s;
+  }
+  @keyframes fold-left-in {
+    0% {
+      -webkit-transform: translate3d(100%, 0, 0);
+      transform: translate3d(100%, 0, 0);
+      /* visibility: visible; */
+    }
+    /*50% {
+      transform: translate3d(50%, 0, 0);
+    }*/
+    100% {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  @keyframes fold-left-out {
+    0% {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+    /*50% {
+      transform: translate3d(-50%, 0 , 0);
+    }*/
+    100% {
+      -webkit-transform: translate3d(-100%, 0, 0);
+      transform: translate3d(-100%, 0, 0);
+      /* visibility: hidden; */
+    }
+  }
+  .fold-right-enter-active {
+    animation-name: fold-right-in;
+    animation-duration: .3s;
+  }
+  .fold-right-leave-active {
+    animation-name: fold-right-out;
+    animation-duration: .3s;
+  }
+  @keyframes fold-right-in{
+    0% {
+      width: 100%;
+      -webkit-transform: translate3d(-100%, 0, 0);
+      transform: translate3d(-100%, 0, 0);
+      /* visibility: visible; */
+    }
+    /*50% {
+      transform: translate3d(50%, 0, 0);
+    }*/
+    100% {
+      width: 100%;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  @keyframes fold-right-out  {
+    0% {
+      width: 100%;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+    /*50% {
+      transform: translate3d(-50%, 0 , 0);
+    }*/
+    100% {
+      width: 100%;
+      -webkit-transform: translate3d(100%, 0, 0);
+      transform: translate3d(100%, 0, 0);
+      /* visibility: hidden; */
+    }
+  }
+
+```
+
+script
+
+```
+watch:{
+    '$route' (to, from) {
+      //此时假设从index页面跳转到pointList页面
+      // console.log(to); // "/pointList"
+      // console.log(from); // “/index”
+
+      if ((to.path == "/search" && from.path == "/main/home") || (to.path == "/main/home" && from.path == "/search")) {
+        const routeDeep = ['/main/home', '/search'];
+        const toDepth = routeDeep.indexOf(to.path)
+        const fromDepth = routeDeep.indexOf(from.path)
+        if (fromDepth >= 0 ){
+          this.transitionName = toDepth > fromDepth ? 'fold-left' : 'fold-right'
+        }
+      }else{
+          this.transitionName = ""
+      }
+    }
+},
+```
+
+
