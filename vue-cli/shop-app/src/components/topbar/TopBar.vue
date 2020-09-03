@@ -5,7 +5,7 @@
         </div>
         <div class="middle">
              <slot name="middle">
-                <a-input ref="searchinput"  size="large" placeholder="请输入查询内容">
+                <a-input ref="searchinput"  size="large" @focus="focusFunc" placeholder="请输入查询内容">
                     <a-icon slot="prefix" type="search" />
                 </a-input>
              </slot>
@@ -19,7 +19,14 @@
 <script>
 export default {
     name:'TopBar',
-
+    props:{
+        focusFunc:{
+            type:Function,
+            default:function(){}
+        },
+    },
+    methods:{
+    }
 }
 </script>
 

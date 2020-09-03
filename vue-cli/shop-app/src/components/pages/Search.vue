@@ -2,7 +2,6 @@
     <div>
         <top-bar>
             <div @click="back" slot="left" class="iconfont icon-back1" style="font-size:24px" ></div>
-            <div slot="middle" style="font-weight:bold;font-size: 16px;">购物车</div>
         </top-bar>
     </div>
 </template>
@@ -11,7 +10,7 @@
 import TopBar from '@/components/topbar/TopBar'
 
 export default {
-    name:"Cart",
+    name:"Search",
     components:{
         TopBar
     },
