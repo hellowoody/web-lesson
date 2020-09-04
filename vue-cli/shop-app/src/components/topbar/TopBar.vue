@@ -5,7 +5,7 @@
         </div>
         <div class="middle">
              <slot name="middle">
-                <a-input ref="searchinput"  size="large" @focus="focusFunc" placeholder="请输入查询内容">
+                <a-input ref="searchinput" v-model="searchContent"  size="large" @focus="focusFunc" placeholder="请输入查询内容">
                     <a-icon slot="prefix" type="edit" />
                 </a-input>
              </slot>
@@ -25,7 +25,18 @@ export default {
             default:function(){}
         },
     },
+    data(){
+        return {
+            searchContent:""
+        }
+    },
     methods:{
+    },
+    // $emit("searchInputHandle",this.searchContent)
+    watch:{
+        searchContent:function(newVal){
+            this.$emit("searchInputChangeHandle",newVal)
+        }
     }
 }
 </script>
