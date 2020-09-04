@@ -342,7 +342,7 @@ export const setArray = (key,val)=>{
 }
 
 ```
-## 18.如何用原型的方式装载antd的某些组件
+## 18.如何用【prototype-原型】的方式装载antd的某些组件
 
 ```
 import { 
