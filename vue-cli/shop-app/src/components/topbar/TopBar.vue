@@ -24,10 +24,11 @@ export default {
             type:Function,
             default:function(){}
         },
+        searchInput:String
     },
     data(){
         return {
-            searchContent:"",
+            searchContent:this.searchInput,
             timeout:null,
         }
     },
@@ -37,7 +38,6 @@ export default {
         searchContent:function(newVal){
             clearTimeout(this.timeout)
             this.timeout = setTimeout(()=>{
-                console.log(newVal)
                 this.$emit("searchInputChangeHandle",newVal)
             },500)
         }

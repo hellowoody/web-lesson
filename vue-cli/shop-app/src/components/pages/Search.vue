@@ -6,7 +6,10 @@
         </top-bar> 
         <my-content>
             <div class="history-search">
-                <div style="color:rgb(0 0 0 / 0.5);font-size:16px;font-weight:bold;">最近搜索</div>
+                <div style="display:flex;justify-content:space-between">
+                    <div style="color:rgb(0 0 0 / 0.5);font-size:16px;font-weight:bold;">最近搜索</div>
+                    <div style="color:rgb(182, 32, 224);font-size:14px;" @click="clearSearchHistory">清空</div>
+                </div>
                 <div class="history-search-content">
                     <div class="history-search-item" v-for="(item,index) in historySearch" :key="index+item">{{item}}</div>
                 </div>
@@ -18,7 +21,7 @@
 <script>
 import TopBar from '@/components/topbar/TopBar'
 import MyContent from '@/components/content/MyContent'
-import {setArray,getArray} from '@/kits/LocalStorage'
+import {setArray,getArray,clearArray} from '@/kits/LocalStorage'
 
 export default {
     name:"Search",
@@ -39,13 +42,22 @@ export default {
         search(){
             if (this.searchInput !== "") {
                 setArray("historySearch",this.searchInput)
-                this.$router.push({path:"/searchresult"})
+                this.$router.push({
+                    name:"searchresult",
+                    params:{
+                        content:this.searchInput
+                    }
+                })  //router 传值
             }else{
                 this.$message.info('请输入要查询的东西');
             }
         },
         searchInputChange(content){
             this.searchInput = content
+        },
+        clearSearchHistory(){
+            clearArray("historySearch")
+            this.historySearch=[]
         }
     }
 }

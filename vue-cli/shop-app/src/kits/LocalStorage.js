@@ -10,3 +10,7 @@ export const setArray = (key,val)=>{
     arr.push(val)
     localStorage.setItem(key,arr.toString())
 }
+
+export const clearArray = (key)=>{
+    localStorage.removeItem(key)
+}

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <top-bar @searchInputChangeHandle="searchInputChange" >
+        <top-bar @searchInputChangeHandle="searchInputChange" :searchInput="searchInput">
             <div @click="back" slot="left" class="iconfont icon-back1" style="font-size:24px" ></div>
             <div @click="search" slot="right" class="iconfont icon-search" style="font-size:24px" ></div>
         </top-bar> 
@@ -21,7 +21,7 @@ export default {
     name:"Search",
     data(){
         return {
-            searchInput:"",
+            searchInput:this.$route.params.content,
             historySearch:getArray("historySearch"),  //本项目的获取localstorage时，是线性获取，或者说不是异步获取
          }
     },
