@@ -9,17 +9,7 @@
             <div style="margin-top:16px;">
                 <a-list :grid="{ gutter: 16, column: 2 }" :data-source="data">
                     <a-list-item slot="renderItem" slot-scope="item">
-                        <div class="product-card">
-                            <div class="product-img"></div>
-                            <div class="product-desc">
-                                <div style="color:rgb(0 0 0 / 0.5)">
-                                    {{item.name}}
-                                </div>
-                                <div style="color:#FA6400;">
-                                    {{item.price}}
-                                </div>
-                            </div>
-                        </div>
+                        <product-card :product="item"></product-card>
                     </a-list-item>
                 </a-list>
             </div>
@@ -30,6 +20,7 @@
 <script>
 import TopBar from '@/components/topbar/TopBar'
 import MyContent from '@/components/content/MyContent'
+import ProductCard from '@/components/product/ProductCard'
 import {setArray,getArray} from '@/kits/LocalStorage'
 
 let data = [
@@ -68,13 +59,14 @@ export default {
     data(){
         return {
             data,
-            searchInput:this.$route.params.content,
+            searchInput:this.$route.params.content,   //Vue
             historySearch:getArray("historySearch"),  //本项目的获取localstorage时，是线性获取，或者说不是异步获取
          }
     },
     components:{
         TopBar,
-        MyContent
+        MyContent,
+        ProductCard
     },
     methods:{
         back(){
@@ -109,24 +101,4 @@ export default {
     margin-right: 5px;
 }
 
-.product-card {
-    background-color: #fff;
-    height:178px;
-    width:147px;
-    border-radius: 15px;
-}
-
-.product-img {
-    background-color: #e5e5e5;
-    height: 107px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-}
-
-.product-desc {
-    padding:12px;
-    display:flex;
-    flex-direction: column;
-    font-size:14px
-}
 </style>
