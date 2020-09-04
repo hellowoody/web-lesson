@@ -342,8 +342,56 @@ export const setArray = (key,val)=>{
 }
 
 ```
+## 18.如何用原型的方式装载antd的某些组件
 
-## 18.使用vue内置transition实现滑动跳转效果
+```
+import { 
+    message,
+}  from 'ant-design-vue';
+
+// message.config 是配置全局属性，可以配置也可以不配置
+message.config({
+    top: `70px`,
+    duration: 2,
+    maxCount: 3,
+});
+
+Vue.prototype.$message = message;
+```
+## 19.如何使用$emit方式,从子组件向父组件传值
+
+- 在父组件中声明需要被子组件调用的方法
+
+```
+data(){
+      return {
+          searchInput:"",  //如果有业务场景实际需求的话，可以声明属性，以便在方法中使用
+        }
+  },
+methods:{
+        searchInputChange(content){
+            this.searchInput = content
+        }
+    }
+```
+
+- 在父组件中调用子组件标签时,将刚才声明的方法进行绑定
+
+```
+<template>
+    <div>
+        <top-bar @searchInputChangeHandle="searchInputChange" >
+        </top-bar>
+    </div>
+```
+
+- 在子组件中如何调用刚才绑定的方法
+
+```
+this.$emit("searchInputChangeHandle",newVal)
+```
+
+## 20.使用vue内置transition实现滑动跳转效果
 
 - 是实际开发中动画效果的跳转过渡一般都是框架实现，并且实现过程比较复杂，这里用一个简单的例子展现如何手动实现此效果
 - 在App.vue文件中,添加transition设置
