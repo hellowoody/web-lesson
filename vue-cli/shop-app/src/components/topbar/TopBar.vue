@@ -27,15 +27,19 @@ export default {
     },
     data(){
         return {
-            searchContent:""
+            searchContent:"",
+            timeout:null,
         }
     },
     methods:{
     },
-    // $emit("searchInputHandle",this.searchContent)
     watch:{
         searchContent:function(newVal){
-            this.$emit("searchInputChangeHandle",newVal)
+            clearTimeout(this.timeout)
+            this.timeout = setTimeout(()=>{
+                console.log(newVal)
+                this.$emit("searchInputChangeHandle",newVal)
+            },500)
         }
     }
 }

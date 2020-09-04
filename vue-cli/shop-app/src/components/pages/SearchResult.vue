@@ -5,12 +5,9 @@
             <div @click="search" slot="right" class="iconfont icon-search" style="font-size:24px" ></div>
         </top-bar> 
         <my-content>
-            <div class="history-search">
-                <div style="color:rgb(0 0 0 / 0.5);font-size:16px;font-weight:bold;">最近搜索</div>
-                <div class="history-search-content">
-                    <div class="history-search-item" v-for="(item,index) in historySearch" :key="index+item">{{item}}</div>
-                </div>
-            </div>
+            this is result page
+
+            {{searchInput}}
         </my-content>
     </div>
 </template>
@@ -37,7 +34,7 @@ export default {
             this.$router.go(-1)
         },
         search(){
-            if (this.searchInput !== "") {
+             if (this.searchInput !== "") {
                 setArray("historySearch",this.searchInput)
                 this.$router.push({path:"/searchresult"})
             }else{
