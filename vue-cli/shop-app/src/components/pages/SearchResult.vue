@@ -81,12 +81,7 @@ export default {
             this.$router.go(-1)
         },
         search(){
-             if (this.searchInput !== "") {
-                setArray("historySearch",this.searchInput)
-                this.$router.push({path:"/searchresult"})
-            }else{
-                this.$message.info('请输入要查询的东西');
-            }
+            this.data = this.data.filter((item)=>(item.name.indexOf(this.searchInput) > -1))
         },
         searchInputChange(content){
             this.searchInput = content
