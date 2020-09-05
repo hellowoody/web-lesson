@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>test01</title>
+    </head>
+    <body>
+       <h1>hello</h1> 
+    </body>
+</html>
+
+<script>
+//javascript 编译型
+
+//闭包
+// function closer(){
+//     function foo(){
+//     }
+// }
+// var commonobj = {};
+// //IIFE
+// (function(obj){
+//     console.log(obj)
+//     function foo(){
+//         console.log(100)
+//     }
+//     obj = {
+//         foo
+//     }
+//     return obj
+// })(commonobj)
+// commonobj.foo()
+
+//4 种 loop
+// 1 for     最快  10
+
+// 2 for of       20
+// 4 forEach       20
+
+
+// 3 for in  最慢 排序 不推荐
+
+
+
+
+// let arr = ['a','b','c']
+// for (let a of arr){
+//     console.log(a)
+// }
+
+// for (let a in arr){
+//     console.log(a)
+// }
+
+// let res = arr.forEach((val,index)=>{ console.log(index,val) })
+let count = []
+const NUM = 10000000;
+for (let i=0 ; i< NUM; i++) {
+    count.push(i);
+}
+
+let date1 = new Date()
+for (let i= 0 ; i<count.length; i++) {}
+let date2 = new Date() - date1
+console.log(date2)
+
+let date3 = new Date()
+for (let i of count){}
+let date4 = new Date() -date3
+console.log(date4)
+
+let date5 = new Date()
+for (let i in count){}
+let date6 = new Date() -date5
+console.log(date6)
+
+let date7 = new Date()
+count.forEach(()=>{})
+let date8 = new Date() -date7
+console.log(date8)
+
+
+
+</script>

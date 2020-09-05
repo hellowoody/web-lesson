@@ -1,0 +1,118 @@
+<html>
+    <head></head>
+    <body>
+
+    </body>
+</html>
+<script>
+// var message = 100
+// function foo(){
+//     console.log(message)
+// }
+
+// function bar(){
+
+// }
+// var message=200
+// foo()
+
+// var app = {
+//     foo:function(){console.log(100)},
+//     bar:function(){}
+// }
+// app.foo = function(){
+//     console.log(200)
+// }
+// app.foo()
+
+// var app = (function(){
+//     var message = 100 //私有
+//     var foo = function(){
+//         console.log(message)
+//     }
+//     return {
+//         foo:foo
+//     }
+// })()
+// app.message = 200
+// app.foo()
+
+// (function(window){
+//     var message = 100 //私有
+//     var foo = function(){
+//         console.log(message)
+//     }
+//     window.$ = {foo} //模仿jquery写法
+// })(window)
+// $.message = 200
+// $.foo()
+
+// class Foo {
+//     message = 100
+// }
+// console.log(new Foo().message)
+
+// let data = {
+//     a:1,
+//     b:2
+// }
+   
+// const setValByKeyFromData = function(key,val){
+//     data = {
+//     ...data,
+//     [key]:val
+//     }
+// }
+// console.log(data)
+// setValByKeyFromData('a',10)
+// console.log(data)
+
+// class Polygon {
+//   constructor() {
+//     this.name = 'Polygon';
+//   }
+// }
+// const poly1 = new Polygon();
+
+// console.log(poly1.name);
+// console.log(poly1.__proto__)
+// console.log(poly1.__proto__.constructor)
+
+// function foo(){}
+// console.log(foo.prototype)
+// var a= {a:1}
+// console.log(a.prototype)
+
+// var anotherObject = {
+// 	a: 2
+// };
+// // 创建一个链接到 `anotherObject` 的对象
+// // var myObject = Object.create( anotherObject );
+// var myObject = Object.create( anotherObject );
+
+// var arr = [
+//     {'a':1},
+//     {'b':2},
+//     {'c':3}
+// ]
+// for(let item of arr ){
+//     console.log(item)
+// }
+// for(let key in arr){
+//     console.log(key)
+// }
+// arr.forEach((item,key)=>{
+//     console.log(item,key)
+// })
+
+function makeFunc() {
+    var name = "Mozilla";
+    function displayName() {
+        alert(name);
+    }
+    return displayName;
+}
+
+var myFunc = makeFunc();
+myFunc();
+</script>
