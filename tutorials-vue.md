@@ -391,7 +391,72 @@ methods:{
 this.$emit("searchInputChangeHandle",newVal)
 ```
 
-## 20.使用vue内置transition实现滑动跳转效果
+## 20.使用better-scroll实现横向滚动
+
+- 源码链接：https://github.com/ustbhuangyi/better-scroll
+- 安装
+    ```
+    npm install better-scroll --save
+    ```
+- 导入
+  ```
+  <script>
+  import BScroll from 'better-scroll'
+  </script>
+  ```
+- 使用
+
+  ```
+  <template>
+    <div class="wrapper" ref="wrapper" >
+        <ul class="list" ref="list">
+            <div v-for="item in 5" :key="item" style="flex-shrink: 0;margin-right: 12px;width:119px;height:90px;border-radius:15px;background-color:#E5E5E5"></div>
+        </ul>
+    </div>
+  </template>
+
+  <script>
+    mounted() {
+      this.$nextTick(() => { // 使用 this.$nextTick 为了确保组件已经渲染完毕
+        let itemWidth = 138 // 这里是设置列表每一项的宽度
+        let margin = 0
+        // width是整个列表的宽度
+        let width = (itemWidth + margin) * 5 - margin
+        // console.log(width)
+        this.$refs.list.style.width = width + 'px' // 设置.list的宽度的宽度
+        this.$nextTick(() => {
+            if (!this.picScroll) {
+                this.picScroll = new BScroll(this.$refs.wrapper, {
+                    scrollX: true,
+                    eventPassthrough: 'vertical' // 忽略竖直方向的滚动
+                })
+            } else {
+                this.picScroll.refresh()
+            }
+        })
+      })
+    }
+  </script>
+
+  <style scoped>
+    .wrapper {
+      overflow: hidden;
+      white-space: nowrap; /*当子元素超过父元素宽度的时候，不会折行*/
+      margin-left: 24px;
+      margin-top:12px;
+    }
+
+    .wrapper .list {
+        display: flex;
+        padding:0px;
+    }
+  </style>
+  ```
+
+
+
+
+## 21.使用vue内置transition实现滑动跳转效果
 
 - 是实际开发中动画效果的跳转过渡一般都是框架实现，并且实现过程比较复杂，这里用一个简单的例子展现如何手动实现此效果
 - 在App.vue文件中,添加transition设置
