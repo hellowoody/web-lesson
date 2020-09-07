@@ -1,5 +1,6 @@
 <!-- 
-    编写一个方法，实现判断当前日期是否当月第3个周三
+    编写一个方法，实现判断当前日期是否当月第1个周1
+    编写一个方法，实现判断当前日期是否本月最后一次出现的周1
  -->
 
 <html>
@@ -25,6 +26,28 @@
                 如果减去一周的时间（7天）一周，得到的日期还大于0,以此类推，去计算出一共有几（c）个周三 
                 如果 c > 4 
         */
+        // new 构造一个Date()
+        const dayOfweek = 1
+        const countOfMonth = 1
+        let t   // t.__proto__ 这时没有
+        t = new Date() // t.__proto__ 获取最新的/上一层的原型Date.prototypes
+        console.log(t.getDay())   // day of week   1 2 3 4 5 6 0
+        console.log(t.getDate())  // day of month
+        if (t.getDay() === dayOfweek) {
+            /*
+            for(;;) 快
+            for in  慢  json Object
+            for(let t of jsonObject)  
+            forEach 
+            */
+            let count = 0
+            for(let i = t.getDay();i>0;i = i-7){
+                count++
+            }    
+            if (count === countOfMonth) {
+                result = true
+            }
+        }
         if (result) {
             document.getElementById("res").textContent="符合规则"
         }else{
