@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"></meta>
+		<meta content="width=device-width,initial-scale=1" name="viewport">
+		<title>闭包</title>
+	</head>
+	<body>
+		<button>按钮1</button>
+		<button>按钮2</button>
+		<button>按钮3</button>
+	</body>
+</html>
+<script>
+
+    //let es6  
+    //babel es6 -> es5
+     
+        //进阶
+        var btns = document.getElementsByTagName("button")
+
+        // for(let i = 0 ; i < btns.length ; i++){
+        //     btns[i].addEventListener('click',function(){
+        //             console.log("这是第",i,"按钮");
+        //         })
+        // }
+
+        // 实参 argument args
+        // 形餐 paramter param p
+
+            for(var i = 0 ; i < btns.length ; i++){
+                (function (aa){
+                    btns[aa].addEventListener('click',function(){
+                        console.log("这是第",aa,"按钮");
+                    })
+                })(i)
+            }
+
+    
+        // for(let i = 0 ; i < btns.length ; i++){
+        //     btns[i].addEventListener('click',function(){
+        //         console.log("这是第",i,"按钮");
+        //     })
+        // }
+    
+        // for(var i = 0 ; i < btns.length ; i++){
+        //     (function(i){
+        //         btns[i].addEventListener('click',function(){
+        //             console.log("这是第",i,"按钮");
+        //         })
+        //     })(i)
+        // }
+    
+        // for(let i = 0 ; i < btns.length ; i++){
+        //     (function(i){
+        //         btns[i].addEventListener('click',function(){
+        //             console.log("这是第",i,"按钮");
+        //         })
+        //     })(i)
+        // }
+    
+    </script>
+    
