@@ -39,7 +39,7 @@ export default {
 @import "./assets/css/commom.css";
 @import "./assets/icon/iconfont.css";
 
-.fold-left-enter-active {
+  .fold-left-enter-active {
     animation-name: fold-left-in;
     animation-duration: .3s;
   }
