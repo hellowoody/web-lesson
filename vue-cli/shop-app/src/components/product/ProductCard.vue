@@ -24,8 +24,8 @@ export default {
 <style scoped>
 .product-card {
     background-color: #fff;
-    height:178px;
-    width:147px;
+    height:167px;
+    width:138px;
     border-radius: 15px;
 }
 
