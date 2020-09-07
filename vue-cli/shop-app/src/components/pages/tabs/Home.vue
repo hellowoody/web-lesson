@@ -62,27 +62,27 @@ export default {
             this.$router.push({path:'/search'})
         },
         onChange(a, b, c) {
-            console.log(a, b, c);
+            // console.log(a, b, c);
         },
     },
     mounted() {
         this.$nextTick(() => { // 使用 this.$nextTick 为了确保组件已经渲染完毕
-        let itemWidth = 138 // 这里是设置列表每一项的宽度
-        let margin = 0
-        // width是整个列表的宽度
-        let width = (itemWidth + margin) * 5 - margin
-        // console.log(width)
-        this.$refs.list.style.width = width + 'px' // 设置.list的宽度的宽度
-        this.$nextTick(() => {
-            if (!this.picScroll) {
-                this.picScroll = new BScroll(this.$refs.wrapper, {
-                    scrollX: true,
-                    eventPassthrough: 'vertical' // 忽略竖直方向的滚动
-                })
-            } else {
-                this.picScroll.refresh()
-            }
-        })
+            let itemWidth = 138 // 这里是设置列表每一项的宽度
+            let margin = 0
+            // width是整个列表的宽度
+            let width = (itemWidth + margin) * 5 - margin
+            // console.log(width)
+            this.$refs.list.style.width = width + 'px' // 设置.list的宽度的宽度
+            this.$nextTick(() => {
+                if (!this.picScroll) {
+                    this.picScroll = new BScroll(this.$refs.wrapper, {
+                        scrollX: true,
+                        eventPassthrough: 'vertical' // 忽略竖直方向的滚动
+                    })
+                } else {
+                    this.picScroll.refresh()
+                }
+            })
         })
     }
 }
