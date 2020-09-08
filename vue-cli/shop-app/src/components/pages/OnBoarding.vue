@@ -18,8 +18,8 @@
             </div>
         </a-carousel>
         <footer-bar style="background-color:unset;box-shadow:unset">
-            <footer-bar-button slot="left" name="注册"></footer-bar-button>
-            <footer-bar-button slot="right" style="background-color:#D8D8D8" name="登录"></footer-bar-button>
+            <footer-bar-button @funcHandle="goto('/register')" slot="left" name="注册"></footer-bar-button>
+            <footer-bar-button @funcHandle="goto('/login')" slot="right" style="background-color:#D8D8D8" name="登录"></footer-bar-button>
         </footer-bar>
     </div>
 </template>
@@ -33,6 +33,11 @@ export default {
     components:{
         FooterBar,
         FooterBarButton
+    },
+    methods:{
+        goto(path){
+            this.$router.push({path})
+        }
     }
 }
 </script>

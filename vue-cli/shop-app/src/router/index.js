@@ -9,6 +9,8 @@ import Cart from '@/components/pages/Cart.vue';
 import Search from '@/components/pages/Search.vue';
 import SearchResult from '@/components/pages/SearchResult.vue';
 import OnBoarding from '@/components/pages/OnBoarding.vue';
+import Login from '@/components/pages/Login.vue';
+import Register from '@/components/pages/Register.vue';
 
 Vue.use(VueRouter) 
 
@@ -20,6 +22,9 @@ const routes = [
     {path:'order',component:Order},
     {path:'account',component:Account},
   ]},
+  {path:'/onboarding',name:"onboarding",component:OnBoarding},
+  {path:'/login',name:"login",component:Login},
+  {path:'/register',name:"register",component:Register},
   {path:'/onboarding',name:"onboarding",component:OnBoarding},
   {path:'/cart',name:'cart',component:Cart},
   {path:'/search',name:'search',component:Search},
