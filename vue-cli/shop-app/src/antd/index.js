@@ -8,7 +8,8 @@ import {
     Avatar,
     Skeleton,
     Button,
-    FormModel
+    FormModel,
+    Modal,
 }  from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 
@@ -20,6 +21,7 @@ Vue.use(Avatar)
 Vue.use(Skeleton)
 Vue.use(Button)
 Vue.use(FormModel)
+Vue.use(Modal)
 
 message.config({
     top: `70px`,
@@ -27,3 +29,4 @@ message.config({
     maxCount: 3,
   });
 Vue.prototype.$message = message;
+Vue.prototype.Modal = Modal;

@@ -15,6 +15,15 @@
                 <a slot="actions"><a-icon type="right" style="color:#8C8C8C;" /></a>
             </a-list-item>
         </a-list>
+        <a-modal
+            title="Title"
+            :visible="visible"
+            :confirm-loading="confirmLoading"
+            @ok="handleOk"
+            @cancel="handleCancel"
+        >
+        <p>{{ ModalText }}</p>
+        </a-modal>
     </div>
 </template>
 
@@ -59,7 +68,10 @@ export default {
     name:"Account",
     data(){
         return {
-            menus
+            menus,
+            ModalText: 'Content of the modal',
+            visible: false,
+            confirmLoading: false,
         }
     },
     created(){
@@ -68,12 +80,28 @@ export default {
             //this.menu = res.data
     },
     methods:{
+        hideModal() {
+            this.visible = false;
+        },
         goto(path){
             if (path === "/onboarding") {
-                this.$router.replace({path})  //{path} 相当于 {"path":path}
+                this.visible = true;
+                // this.$router.replace({path})  //{path} 相当于 {"path":path}
             }else{
                 this.$router.push({path})  //{path} 相当于 {"path":path}
             }
+        },
+        handleOk(e) {
+            this.ModalText = 'The modal will be closed after two seconds';
+            this.confirmLoading = true;
+            setTimeout(() => {
+                this.visible = false;
+                this.confirmLoading = false;
+            }, 2000);
+        },
+        handleCancel(e) {
+            console.log('Clicked cancel button');
+            this.visible = false;
         },
     },
     components:{

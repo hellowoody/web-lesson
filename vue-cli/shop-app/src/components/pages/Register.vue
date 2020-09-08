@@ -34,12 +34,24 @@
 <script>
 import TopBar from '@/components/topbar/TopBar'
 import MyContent from '@/components/content/MyContent'
-
+const key="loadingkey"
 export default {
   data() {
     let validateMail = (rule, value, callback)=>{
         if (value === '') {
             callback(new Error("请输入邮箱"))
+        }else{
+            callback()
+        }
+    }
+
+    let validatePwd = (rule, value, callback)=>{
+        if (value === '') {
+            callback(new Error("不能为空"))
+        }else if(value.length <= 3 ){
+            callback(new Error("密码长度太短"))
+        }else if(value.indexOf(" ") >= 0){
+            callback(new Error("密码格式不正确"))
         }else{
             callback()
         }
@@ -57,7 +69,9 @@ export default {
             { validator: validateMail, trigger: 'blur' },
             {type:'email',message:"请输入合法的邮箱地址",trigger:"blur"}
         ],
-        pwd:[]
+        pwd:[
+            { validator: validatePwd, trigger: 'blur' },
+        ]
       }
     };
   },
@@ -73,9 +87,17 @@ export default {
         this.$router.replace({path:"/login"})
     },
     sub(formName){
-
         this.$refs[formName].validate((valid) => {
            console.log(valid)
+           this.$message.loading({ content: 'Loading...', key });
+            setTimeout(() => {
+                if (valid){
+                    this.$message.success({ content: '注册成功!', key, duration: 2 });
+                    this.login()
+                }else{
+                    this.$message.error({ content: '注册失败!', key, duration: 2 });
+                }
+            }, 1000)
         });
     }
   },
