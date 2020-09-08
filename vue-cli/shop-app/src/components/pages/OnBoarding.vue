@@ -6,15 +6,15 @@
         <a-carousel>
             <div>
                 <h3>最新的产品</h3>
-                <a-skeleton size="small" style="margin-right:24px;margin-left:24px;"/>
+                <a-skeleton size="small" style="margin-right:24px;margin-left:24px;" active/>
             </div>
             <div>
                 <h3>最低的价格</h3>
-                <a-skeleton size="small" style="margin-right:24px;margin-left:24px;"/>
+                <a-skeleton size="small" style="margin-right:24px;margin-left:24px;" active/>
             </div>
             <div>
                 <h3>最快的物流</h3>
-                <a-skeleton size="small" style="margin-right:24px;margin-left:24px;"/>
+                <a-skeleton size="small" style="margin-right:24px;margin-left:24px;" active/>
             </div>
         </a-carousel>
         <footer-bar style="background-color:unset;box-shadow:unset">

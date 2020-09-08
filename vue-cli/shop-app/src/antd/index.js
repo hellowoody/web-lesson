@@ -7,7 +7,8 @@ import {
     Carousel,
     Avatar,
     Skeleton,
-    Button
+    Button,
+    FormModel
 }  from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 
@@ -18,6 +19,7 @@ Vue.use(Carousel)
 Vue.use(Avatar)
 Vue.use(Skeleton)
 Vue.use(Button)
+Vue.use(FormModel)
 
 message.config({
     top: `70px`,
