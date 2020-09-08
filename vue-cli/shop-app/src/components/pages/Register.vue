@@ -12,18 +12,18 @@
                     <div @click="login" style="color:#B620E0;margin-left:8px;font-weight:normal;">登录</div>
                 </div>
             </div>
-            <a-form-model layout="vertical" :model="form" style="overflow-y:auto">
-                <a-form-model-item label="用户昵称" >
+            <a-form-model ref="registerform" :rules="rules" layout="vertical" :model="form" style="overflow-y:auto">
+                <a-form-model-item label="用户昵称" prop="username">
                     <a-input v-model="form.username" placeholder="请输入您的用户昵称" />
                 </a-form-model-item>
-                <a-form-model-item label="邮箱">
+                <a-form-model-item label="邮箱" prop="mail">
                     <a-input v-model="form.mail" type="email" placeholder="请输入您的邮箱" />
                 </a-form-model-item>
-                <a-form-model-item label="密码">
+                <a-form-model-item label="密码" prop="pwd">
                     <a-input v-model="form.pwd" type="password" placeholder="请输入您的密码" />
                 </a-form-model-item>
                 <a-form-model-item >
-                    <a-button @click="register" block style="margin-top:24px;border:none;box-shadow: 0px 0px 8px #E3E3E3;">
+                    <a-button @click="sub('registerform')" block style="margin-top:24px;border:none;box-shadow: 0px 0px 8px #E3E3E3;">
                         注册
                     </a-button>
                 </a-form-model-item>
@@ -37,12 +37,28 @@ import MyContent from '@/components/content/MyContent'
 
 export default {
   data() {
+    let validateMail = (rule, value, callback)=>{
+        if (value === '') {
+            callback(new Error("请输入邮箱"))
+        }else{
+            callback()
+        }
+    }
+
     return {
       form: {
         username:"",
         mail:"",
         pwd:""
       },
+      rules:{
+        username:[{required:true,message:"请输入用户昵称",trigger:"blur"}],
+        mail:[
+            { validator: validateMail, trigger: 'blur' },
+            {type:'email',message:"请输入合法的邮箱地址",trigger:"blur"}
+        ],
+        pwd:[]
+      }
     };
   },
   components:{
@@ -56,13 +72,11 @@ export default {
     login(){
         this.$router.replace({path:"/login"})
     },
-    register(){
+    sub(formName){
 
-        /*
-        this.form
-        http.post(url,this.form)
-        goto("/main/home")
-        */
+        this.$refs[formName].validate((valid) => {
+           console.log(valid)
+        });
     }
   },
 };
