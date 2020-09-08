@@ -8,6 +8,7 @@ import Account from '@/components/pages/tabs/Account';
 import Cart from '@/components/pages/Cart.vue';
 import Search from '@/components/pages/Search.vue';
 import SearchResult from '@/components/pages/SearchResult.vue';
+import OnBoarding from '@/components/pages/OnBoarding.vue';
 
 Vue.use(VueRouter) 
 
@@ -19,6 +20,7 @@ const routes = [
     {path:'order',component:Order},
     {path:'account',component:Account},
   ]},
+  {path:'/onboarding',name:"onboarding",component:OnBoarding},
   {path:'/cart',name:'cart',component:Cart},
   {path:'/search',name:'search',component:Search},
   {path:'/searchresult',name:'searchresult',component:SearchResult},
