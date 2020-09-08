@@ -5,7 +5,9 @@ import {
     message,
     List,
     Carousel,
-    Avatar
+    Avatar,
+    Skeleton,
+    Button
 }  from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 
@@ -14,6 +16,8 @@ Vue.use(Icon)
 Vue.use(List)
 Vue.use(Carousel)
 Vue.use(Avatar)
+Vue.use(Skeleton)
+Vue.use(Button)
 
 message.config({
     top: `70px`,
