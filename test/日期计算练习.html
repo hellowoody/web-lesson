@@ -1,6 +1,6 @@
 <!-- 
     编写一个方法，实现判断当前日期是否当月第1个周1
-    编写一个方法，实现判断当前日期是否本月最后一次出现的周1
+    编写一个方法，实现判断当前日期是否本月最后一次出现的周3
  -->
 
 <html>
@@ -10,6 +10,7 @@
     </head>
     <body>
         <button onclick="ifValid()">开始校验</button>
+        <button onclick="ifValidLast()">开始校验last</button>
         <span id="res"></span>
     </body>
 </html>
@@ -45,6 +46,29 @@
                 count++
             }    
             if (count === countOfMonth) {
+                result = true
+            }
+        }
+        if (result) {
+            document.getElementById("res").textContent="符合规则"
+        }else{
+            document.getElementById("res").textContent="不符合规则"
+        }
+       
+    }
+
+    function ifValidLast(){
+        console.log("in ifValidLast")
+        let result = false
+
+        const dayOfweek = 3
+
+        let t   // t.__proto__ 这时没有
+        t = new Date() // t.__proto__ 获取最新的/上一层的原型Date.prototypes
+        let m = t.getMonth()
+        if (t.getDay() === dayOfweek) {
+            t.setDate(t.getDate()+30)
+            if (t.getMonth() > m){
                 result = true
             }
         }
