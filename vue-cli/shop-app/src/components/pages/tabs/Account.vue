@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import {clearCache} from '@/kits/LocalStorage'
 
 const menus = [
     {
@@ -77,7 +78,6 @@ export default {
         goto(path){
             if (path === "/onboarding") {
                 this.showConfirm(path)
-                // this.$router.replace({path})  //{path} 相当于 {"path":path}
             }else{
                 this.$router.push({path})  //{path} 相当于 {"path":path}
             }
@@ -105,6 +105,7 @@ export default {
                 cancelText:"取消",
                 onOk() {    
                     console.log('OK');
+                    clearCache()
                     t.$router.replace({path})
                 },
                 onCancel() {

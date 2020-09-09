@@ -21,7 +21,7 @@
 <script>
 import TopBar from '@/components/topbar/TopBar'
 import MyContent from '@/components/content/MyContent'
-import {setArray,getArray,clearArray} from '@/kits/LocalStorage'
+import {setArray,getArray,clearItem} from '@/kits/LocalStorage'
 
 export default {
     name:"Search",
@@ -56,7 +56,7 @@ export default {
             this.searchInput = content
         },
         clearSearchHistory(){
-            clearArray("historySearch")
+            clearItem("historySearch")
             this.historySearch=[]
         }
     }

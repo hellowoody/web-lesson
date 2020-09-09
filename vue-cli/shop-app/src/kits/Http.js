@@ -13,8 +13,24 @@ export const Http = (api,param)=>{
         setTimeout(()=>{
             let r = Math.random()
             if(r>0.1 && r<0.9){
-                resData.code = "ok"
-                resData.msg = "注册成功"
+                switch(api) {
+                    case "/register":
+                        resData.code = "ok"
+                        resData.msg = "注册成功"
+                        break;
+                    case "/login":
+                        resData.code = "ok"
+                        resData.msg = "登录成功"
+                        resData.data = {
+                            token : "123456",
+                            user:{
+                                userid:"abc@mail.com",
+                                username:"张三"
+                            }
+                        }
+                        break;
+                    default:
+                } 
                 resolve(resData)
             }else{
                 resData.code = "fail"

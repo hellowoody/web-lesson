@@ -27,7 +27,8 @@
 <script>
 import TopBar from '@/components/topbar/TopBar'
 import MyContent from '@/components/content/MyContent.vue'
-
+import {Http} from '@/kits/Http'
+import {setCacheVal} from '@/kits/LocalStorage'
 
 export default {
     name:"Login",
@@ -55,15 +56,20 @@ export default {
             this.$router.go(-1)
         },
         sub(formName){
-            this.$refs[formName].validate( valid =>{
-                console.log(valid)
+            this.$refs[formName].validate(async valid =>{
                 if(valid){
                     const key="loadingkey"
                     this.$message.loading({content:"加载中...",key})
-                    setTimeout(()=>{
-                        this.$message.success({content:"登录成功",key,duration:2})
+                    let res = await Http("/login",this.form)
+                    try {
+                        setCacheVal("token",res.data.token)
+                        setCacheVal("userid",res.data.user.userid)
+                        setCacheVal("username",res.data.user.username)
+                        this.$message.success({content:res.msg,key,duration:2})
                         this.$router.replace({path:"/main/home"})
-                    },2000)
+                    } catch (e) {
+                        this.$message.error({content:e,key,duration:2})
+                    }
                 }else{
                     return false
                 }

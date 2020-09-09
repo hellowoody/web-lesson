@@ -11,6 +11,18 @@ export const setArray = (key,val)=>{
     localStorage.setItem(key,arr.toString())
 }
 
-export const clearArray = (key)=>{
+export const clearItem = (key)=>{
     localStorage.removeItem(key)
+}
+
+export const setCacheVal = (key,val)=>{
+    localStorage.setItem(key,val)
+}
+
+export const getCacheVal = (key)=>{
+    return localStorage.getItem(key)
+}
+
+export const clearCache = ()=>{
+    localStorage.clear()
 }
