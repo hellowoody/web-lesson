@@ -3,13 +3,12 @@ const baseUrl = "http://127.0.0.1:8080/api"
 let resData = {
     "code":"",
     "msg":"",
-
     "data":{}
 }
-// import axiox from "axiox";
 
 export const Http = (api,param)=>{
-    // let url = baseUrl+api
+    let url = baseUrl+api
+    console.log(url,param)
     return new Promise((resolve,reject)=>{
         setTimeout(()=>{
             let r = Math.random()

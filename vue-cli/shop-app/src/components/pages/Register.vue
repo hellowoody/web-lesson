@@ -89,25 +89,18 @@ export default {
         this.$router.replace({path:"/login"})
     },
     sub(formName){
-        this.$refs[formName].validate((valid) => {
-           console.log(valid)
+        this.$refs[formName].validate(async (valid) => {
            if(valid){
                 this.$message.loading({ content: 'Loading...', key });
-                setTimeout(() => {
-                    Http("/register",this.form).then((data)=>{
-                        console.log(data)
-                        this.$message.success({ content: data.msg, key, duration: 2 });
-                        this.login()
-                    }).catch((e)=>{
-                        console.log(e)
-                        this.$message.error({ content: e, key, duration: 2 });
-                    })
-
-                    // this.$message.success({ content: '注册成功!', key, duration: 2 });
-                    // this.login()
-                    
-                    // this.$message.error({ content: '注册失败!', key, duration: 2 });
-                }, 1000)
+                let res = await Http("/register",this.form)
+                try {
+                    console.log(res)
+                    this.$message.success({ content: res.msg, key, duration: 2 });
+                    this.login()
+                } catch (e) {
+                    console.log(e)
+                    this.$message.error({ content: e, key, duration: 2 });
+                }
            }
         });
     }
