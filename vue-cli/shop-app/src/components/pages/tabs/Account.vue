@@ -15,15 +15,6 @@
                 <a slot="actions"><a-icon type="right" style="color:#8C8C8C;" /></a>
             </a-list-item>
         </a-list>
-        <a-modal
-            title="Title"
-            :visible="visible"
-            :confirm-loading="confirmLoading"
-            @ok="handleOk"
-            @cancel="handleCancel"
-        >
-        <p>{{ ModalText }}</p>
-        </a-modal>
     </div>
 </template>
 
@@ -85,11 +76,14 @@ export default {
         },
         goto(path){
             if (path === "/onboarding") {
-                this.visible = true;
+                this.showConfirm(path)
                 // this.$router.replace({path})  //{path} 相当于 {"path":path}
             }else{
                 this.$router.push({path})  //{path} 相当于 {"path":path}
             }
+        },
+        test(){
+            console.log(2000)
         },
         handleOk(e) {
             this.ModalText = 'The modal will be closed after two seconds';
@@ -102,6 +96,20 @@ export default {
         handleCancel(e) {
             console.log('Clicked cancel button');
             this.visible = false;
+        },
+        showConfirm(path) {
+            let t = this
+            this.$confirm({
+                title: '你是否确认退出登录?',
+                okText:"确认",
+                cancelText:"取消",
+                onOk() {    
+                    console.log('OK');
+                    t.$router.replace({path})
+                },
+                onCancel() {
+                },
+            })
         },
     },
     components:{
