@@ -34,6 +34,8 @@
 <script>
 import TopBar from '@/components/topbar/TopBar'
 import MyContent from '@/components/content/MyContent'
+import {Http} from '@/kits/Http'
+
 const key="loadingkey"
 export default {
   data() {
@@ -89,15 +91,24 @@ export default {
     sub(formName){
         this.$refs[formName].validate((valid) => {
            console.log(valid)
-           this.$message.loading({ content: 'Loading...', key });
-            setTimeout(() => {
-                if (valid){
-                    this.$message.success({ content: '注册成功!', key, duration: 2 });
-                    this.login()
-                }else{
-                    this.$message.error({ content: '注册失败!', key, duration: 2 });
-                }
-            }, 1000)
+           if(valid){
+                this.$message.loading({ content: 'Loading...', key });
+                setTimeout(() => {
+                    Http("/register",this.form).then((data)=>{
+                        console.log(data)
+                        this.$message.success({ content: data.msg, key, duration: 2 });
+                        this.login()
+                    }).catch((e)=>{
+                        console.log(e)
+                        this.$message.error({ content: e, key, duration: 2 });
+                    })
+
+                    // this.$message.success({ content: '注册成功!', key, duration: 2 });
+                    // this.login()
+                    
+                    // this.$message.error({ content: '注册失败!', key, duration: 2 });
+                }, 1000)
+           }
         });
     }
   },

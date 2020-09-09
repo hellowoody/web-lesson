@@ -12,7 +12,7 @@
             :data-source="menus" >
             <a-list-item style="border:none" slot="renderItem" slot-scope="item">
                 <div @click="goto(item.path)">{{item.name}}</div>
-                <a slot="actions"><a-icon type="right" style="color:#8C8C8C;" /></a>
+                <a slot="actions" @click="goto(item.path)"><a-icon type="right" style="color:#8C8C8C;" /></a>
             </a-list-item>
         </a-list>
     </div>
