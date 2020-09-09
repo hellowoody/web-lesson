@@ -7,7 +7,10 @@
         <button onclick="hardAsyncfn()">复杂的异步事件</button>
         <button onclick="simpleAsyncPromisefn()">promise的异步事件</button>
         <button onclick="errAsyncPromisefn()">失败的promise的异步事件</button>
-
+        <button onclick="asyncPromisefn()">“完美”的promise的异步事件</button>
+        <button onclick="allAsyncPromisefn()">“并发”的promise的异步事件</button>
+        <button onclick="raceAsyncPromisefn()">“竞争”的promise的异步事件</button>
+        <button onclick="awaitAsyncPromisefn()">await的promise的异步事件</button>
     </body>
 </html>
 
@@ -22,13 +25,13 @@ function simpleAsyncfn(){
 //回调地狱
 function hardAsyncfn(){
     setTimeout(()=>{
+        console.log("i am in")
         setTimeout(()=>{
+            console.log("i am in1")
             setTimeout(()=>{
                 console.log("i am in2")
             },1000)
-            console.log("i am in1")
         },1000)
-        console.log("i am in")
     },1000)
 }
 
@@ -50,7 +53,96 @@ function simpleAsyncPromisefn(){
 
 
 function errAsyncPromisefn(){
-    
+    const p = new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            reject(new Error())
+        },1000)
+    })
+
+    // p.catch((e)=>{
+    //     console.log(e)
+    // })
+
+    p.then(()=>{},(e)=>{
+        console.log(e)
+    })
 }
+let p
+function asyncPromisefn(){
+    p = new Promise((resolve,reject)=>{
+        let r = Math.random();
+        setTimeout(()=>{
+            if(r > 0.5) {
+                resolve("aaa")
+            }else{
+                resolve("bbb")
+                // reject(new Error())
+            }
+        },1000)
+    })
+    
+    // p.then(()=>{
+    //     console.log("成功了")
+    // }).catch((e)=>{
+    //     console.log(e)
+    // })
+
+    p.then(()=>{
+        console.log("第一次成功")
+        return new Promise((resolve)=>{
+            setTimeout(()=>{
+                console.log("第二层回调")
+                resolve("ok")
+            },2000)
+        })
+    })
+    .then((res)=>{
+        console.log(res,"aaa")
+    })
+    .catch((e)=>{
+        console.log(e)
+    })
+}
+
+function allAsyncPromisefn(){
+    const p1 = Promise.resolve(3)
+    const p2 = 42
+    const p3 = new Promise((resolve,reject)=>{
+        setTimeout(resolve,2000,'foo')
+    })
+
+    Promise.all([p1,p2,p3]).then((values)=>{
+        console.log(values)
+    })
+}
+
+function raceAsyncPromisefn(){
+    const p1 = Promise.resolve(3)   
+    const p2 = 42
+    const p3 = new Promise((resolve,reject)=>{
+        setTimeout(resolve,2000,'foo')
+    })
+
+    Promise.race([p2,p2,p3]).then((values)=>{
+        console.log(values)
+    })
+}
+
+
+async function awaitAsyncPromisefn(){
+
+    let p = function(){
+        return new Promise((resolve,reject)=>{
+            setTimeout(()=>resolve("abc"),2000)
+        })
+    }
+
+    // p().then(data=>console.log(data))
+    
+    let res = await p()
+    console.log(100)
+    console.log(res)
+}
+
 
 </script>
