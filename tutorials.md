@@ -719,7 +719,7 @@ Promise.prototype.then(onFulfilled, onRejected);
 
 ## 25.递归算法
 
-递归两个要素
+- 递归两个要素
   - 递归边界
   - 递归的逻辑——递归"公式"
 
