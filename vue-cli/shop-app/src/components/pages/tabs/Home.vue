@@ -11,7 +11,7 @@
                 <div><h3>4</h3></div>
             </a-carousel>
             <div class="title">
-                <div class="title-left">新产品</div>    
+                <div class="title-left">新产品 {{$store.state.name  }}</div>    
                 <div class="title-right">查看全部</div>    
             </div> 
             <div class="product-card-list">
@@ -52,7 +52,6 @@ export default {
         ProductCard
     },
     created:()=>{
-
     },
     methods:{
         goto(path){
