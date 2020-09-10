@@ -573,4 +573,207 @@ watch:{
 },
 ```
 
+## 22.封装http异步操作(一)
+
+```
+//利用promise 实现异步操作
+const baseUrl = "http://127.0.0.1:8080/api"
+
+let resData = {
+    "code":"",
+    "msg":"",
+    "data":{}
+}
+
+export const Http = (api,param)=>{
+    let url = baseUrl+api
+    console.log(url,param)
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            let r = Math.random()
+            if(r>0.1 && r<0.9){
+                switch(api) {
+                    case "/register":
+                        resData.code = "ok"
+                        resData.msg = "注册成功"
+                        break;
+                    case "/login":
+                        resData.code = "ok"
+                        resData.msg = "登录成功"
+                        resData.data = {
+                            token : "123456",
+                            user:{
+                                userid:"abc@mail.com",
+                                username:"张三"
+                            }
+                        }
+                        break;
+                    default:
+                } 
+                resolve(resData)
+            }else{
+                resData.code = "fail"
+                resData.msg = "该邮箱已被注册"
+                reject(resData.msg)
+            }
+        },1000)
+    })
+}
+```
+如何使用
+
+```
+<script>
+
+import {Http} from '@/kits/Http'
+
+export default {
+    name:"Login",
+    methods:{
+        async sub(formName){
+            let res = await Http("/login",this.form)
+            try {
+                //成功的代码逻辑
+                this.$router.replace({path:"/main/home"})
+            } catch (e) {
+                //失败的代码逻辑
+            }
+        }
+    }
+}
+</script>
+```
+
+## 23.vuex
+
+- 安装
+  ```
+  npm install vuex --save
+  ```
+- 引用和装载
+  ```
+  //在src下创建store文件夹
+  //创建/src/store/index.js 文件
+  import Vue from 'vue';
+  import Vuex from 'vuex';
+
+  Vue.use(Vuex)
+
+  const store = new Vuex.Store({})
+
+  export default store
+  ```
+
+  ```
+  import store from './store'
+
+  new Vue({
+    store,
+    render: h => h(App),
+  }).$mount('#app')
+  ```
+
+- state:声明全局变量
+  ```
+  const store = new Vuex.Store({
+    state:{
+        count: 10,
+    },
+  })
+  ```
+- 使用全局变量
+  ```
+  //一旦在state这个属性里声明，那么这个属性就能在整个项目里任何地方(*.vue)使用
+  $store.state.count
+  //or
+  this.$store.state.count
+  ```
+- mutations:修改全局变量(同步修改)
+
+  ```
+  const store = new Vuex.Store({
+      state:{
+          count: 0,
+      },
+      //同步修改
+      mutations:{
+          increase(state){
+              state.count++
+          },
+          decrease(state){
+              state.count--
+          }
+      },
+  })
+  ```
+  还可以传参数
+
+  ```
+  mutations:{
+      updateCount(state,val){
+          state.count = val
+      },
+  },
+  ```
+
+  如何调用
+
+  ```
+  this.$store.commit("updateCount")
+  //or
+  this.$store.commit("updateCount",参数)
+  ```
+
+- actions:修改全局变量(异步修改)
+
+  ```
+    const store = new Vuex.Store({
+      state:{
+          count: 0,
+      },
+      //同步修改
+      mutations:{
+          updateCount(state,val){
+              state.count = val
+          },
+      },
+      actions:{
+          updateCountAsync (context,obj) {
+            setTimeout(() => {
+              context.commit('updateCount',obj.newVal)
+            }, 1000)
+          }
+      }
+  })
+  ```
+  如何调用
+
+  ```
+  this.$store.dispatch('updateCountAsync', {
+    newVal: 10
+  })
+  ```
+
+  - getters:全局变量的计算属性
+
+  ```
+  const store = new Vuex.Store({
+      state:{
+          count:10
+      },
+
+      getters:{
+          squareCount:(state)=>{
+              return state.count * state.count
+          }
+      }
+  })
+  ```
+  如何调用
+
+  ```
+  <template>
+    <div>{{$store.getters.squareCount}}</div>
+  </template>
+  ```
 
