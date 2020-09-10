@@ -140,8 +140,13 @@ async function awaitAsyncPromisefn(){
     // p().then(data=>console.log(data))
     
     let res = await p()
-    console.log(100)
-    console.log(res)
+    
+    try {
+        console.log(100)
+        console.log(res)
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 
