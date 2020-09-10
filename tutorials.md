@@ -717,4 +717,48 @@ Promise.prototype.then(onFulfilled, onRejected);
 
 ## 24.leetcode刷题
 
-## 25.可视化的简单算法
+## 25.递归算法
+
+递归两个要素
+  - 递归边界
+  - 递归的逻辑——递归"公式"
+
+- fibonacci斐波纳切数列求和  F(0)=F(1)=1,F(n)=F(n-1)+F(n-2)
+
+```
+function fibonacci(n) {
+  if (n===0 || n===1){
+    return n
+  }
+  return fibonacci(n-1)+fibonacci(n-2)
+}
+```
+
+- 阶乘 F(n) = n*F(n-1) | F(0) = 1
+
+```
+function f(n){
+  if(n<1){
+    return 1
+  }else{
+    return n * f(n-1)
+  }
+}
+```
+
+- 数组求和 F(a1,a2,a3,a4,a5,...) = a1 + F(a2,a3,a4,a5,...)
+
+```
+function sum(arr){
+  if(arr.length == 0){
+    return 0
+  }else if(arr.length == 1){
+    return arr[0]
+  }else{
+    return arr[0] + sum(arr.slice(1))
+  }
+}
+```
+
+
+## 可视化的简单算法
