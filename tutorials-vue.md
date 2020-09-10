@@ -754,7 +754,7 @@ export default {
   })
   ```
 
-  - getters:全局变量的计算属性
+- getters:全局变量的计算属性
 
   ```
   const store = new Vuex.Store({
