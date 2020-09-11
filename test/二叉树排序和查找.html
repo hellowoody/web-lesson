@@ -7,6 +7,7 @@
 	</head>
 	<body>
         <button onclick="setup()">开始构造二叉树</button>
+        <button onclick="sort()">排序</button>
 
     </body>
 </html>
@@ -14,6 +15,8 @@
 <script>
 // tree
 // node
+// 10 5 20 100 1 2 6
+// 1 2 5 6 10 20 100
 
 let t
 
@@ -28,6 +31,10 @@ Tree.prototype.Add = function(v){
     }else{
         this.root.Add(n)
     }
+}
+
+Tree.prototype.Sort = function(){
+    this.root.Sort()
 }
 
 function Node(n){
@@ -46,16 +53,27 @@ Node.prototype.Add = function(n){
     }
     if(this.val < n.val){
         if (this.right != null){
-            this.right.Add(n)
+                this.right.Add(n)
         }else{
             this.right = n
         }
-        
     }
 }
 
-// 10 5 20 100 1 2 6
-// 1 2 5 6 10 20 100
+Node.prototype.Sort = function(){
+    
+    if(this.left != null) {
+        this.left.Sort()
+    }
+
+    console.log(this.val)
+
+    if(this.right != null){
+        this.right.Sort()
+    }
+
+}
+
 function setup(){
     t = new Tree()
     t.Add(10)  
@@ -66,6 +84,11 @@ function setup(){
     t.Add(2)  
     t.Add(6)  
     console.log(t)
+}
+
+function sort(){
+    t.Sort()
+
 }
 
 </script>
