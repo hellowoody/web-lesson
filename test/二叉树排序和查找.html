@@ -8,6 +8,8 @@
 	<body>
         <button onclick="setup()">开始构造二叉树</button>
         <button onclick="sort()">排序</button>
+        <br>
+        <input id="inputid" value=""/><button onclick="search()">查找目标值</button>
 
     </body>
 </html>
@@ -34,7 +36,13 @@ Tree.prototype.Add = function(v){
     }
 }
 
-Tree.prototype.search = function(target){
+Tree.prototype.Search = function(target){
+    let res = this.root.Search(target)
+    if (res != ""){
+        return "found target : "+res
+    }else{
+        return "not found "
+    }
     
 }
 
@@ -78,6 +86,29 @@ Node.prototype.Sort = function(tt){
 
 }
 
+// 二分法
+Node.prototype.Search = function(target){
+    let res
+    if(this.val < target){
+        if (this.right != null){
+            return this.right.Search(target)
+        }else{
+            return ""
+        }
+    }
+    if(this.val === target){
+        res = this.val
+    }
+    if(this.val > target){
+        if (this.left != null){
+            return  this.left.Search(target)
+        }else{
+            return ""
+        }
+    }
+    return res
+}
+
 function setup(){
     t = new Tree()
     for(let i = 0 ; i< 10 ;i++){
@@ -91,6 +122,14 @@ function setup(){
 function sort(){
     t.Sort()
     console.log(t.sortArr)
+}
+
+function search(){
+    let target = document.getElementById("inputid").value
+    // console.log(target)
+    let res = t.Search(parseInt(target))
+    // let res = t.Search(target)
+    console.log(res)
 }
 
 </script>
