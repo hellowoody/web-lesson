@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"></meta>
+		<meta content="width=device-width,initial-scale=1" name="viewport">
+		<title>二叉树排序和查找</title>
+	</head>
+	<body>
+        <button onclick="setup()">开始构造二叉树</button>
+
+    </body>
+</html>
+
+<script>
+// tree
+// node
+
+let t
+
+function Tree(n){
+    this.root = n
+}
+
+Tree.prototype.Add = function(v){
+    let n = new Node(v)
+    if (this.root == null){
+        this.root = n
+    }else{
+        this.root.Add(n)
+    }
+}
+
+function Node(n){
+    this.val = n
+    this.left = null
+    this.right = null   
+}
+
+Node.prototype.Add = function(n){
+    if(this.val > n.val){
+        if (this.left != null){
+            this.left.Add(n)
+        }else{
+            this.left = n
+        }
+    }
+    if(this.val < n.val){
+        if (this.right != null){
+            this.right.Add(n)
+        }else{
+            this.right = n
+        }
+        
+    }
+}
+
+// 10 5 20 100 1 2 6
+// 1 2 5 6 10 20 100
+function setup(){
+    t = new Tree()
+    t.Add(10)  
+    t.Add(5)    
+    t.Add(20)  
+    t.Add(100)
+    t.Add(1)  
+    t.Add(2)  
+    t.Add(6)  
+    console.log(t)
+}
+
+</script>
