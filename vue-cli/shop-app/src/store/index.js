@@ -17,11 +17,15 @@ const store = new Vuex.Store({
         pushCart(state,item){
             state.cartData.push(item)
         },
-        increaseCart(state,index){
-            state.cartData[index].count += 1
+        increaseCart(state,index){  
+            if(state.cartData[index].count < 99){
+                state.cartData[index].count += 1
+            }
         },
         decreaseCart(state,index){
-            state.cartData[index].count -= 1
+            if(state.cartData[index].count > 0){
+                state.cartData[index].count -= 1
+            }
         }
     },
     //异步修改

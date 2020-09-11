@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"></meta>
+		<meta content="width=device-width,initial-scale=1" name="viewport">
+		<title>递归练习</title>
+	</head>
+	<body>
+	</body>
+</html>
+
+<script>
+//递归练习 
+
+//1.fibonacci 
+// 1 1 2 3 5 8 13 21 。。。
+// F(n) = F(n-1) + F(n-2)
+// F(0) = F(1) = 1  
+
+//场景一 n = 1 fi(1) = 1
+//场景二 n = 3 fi(3) =3
+//场景三 n = 100 
+function fi(n){
+    if (n === 0 || n === 1){
+        return 1
+    }
+    //return 2+1 =3
+    // fi(1) + fi(0) =2
+    return fi(n-1)+fi(n-2)
+}
+
+// 2.阶乘
+// [1 2 3 4 5 6 7]
+// 1 2 6 24 120
+
+// F(n) = n * F(n-1) 
+// F(0) = 1
+
+function f(n){
+    if(n <1 ){
+        return 1
+    }
+    return n*f(n-1)
+}
+
+// 3.数据求和
+// F(a1,a2,a3,...) = a1 + F(a2,a3,...)
+// 数组的长度
+let arr = [10,2,3,4,100,90,28]
+function sum(arr){
+    if(arr.length === 0){
+        return 0
+    }else if(arr.length === 1){
+        return arr[0]
+    }else{
+        return arr[0] + sum(arr.slice(1))
+    }
+}
+
+console.log(arr.reduce(function(acc,item){
+    return acc+item
+},0))
+
+</script>
