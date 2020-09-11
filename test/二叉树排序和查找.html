@@ -22,6 +22,7 @@ let t
 
 function Tree(n){
     this.root = n
+    this.sortArr = []
 }
 
 Tree.prototype.Add = function(v){
@@ -33,8 +34,12 @@ Tree.prototype.Add = function(v){
     }
 }
 
+Tree.prototype.search = function(target){
+    
+}
+
 Tree.prototype.Sort = function(){
-    this.root.Sort()
+    this.root.Sort(this)
 }
 
 function Node(n){
@@ -60,35 +65,32 @@ Node.prototype.Add = function(n){
     }
 }
 
-Node.prototype.Sort = function(){
+Node.prototype.Sort = function(tt){
     
     if(this.left != null) {
-        this.left.Sort()
+        this.left.Sort(tt)
     }
-
-    console.log(this.val)
-
-    if(this.right != null){
-        this.right.Sort()
+    // console.log(this.val)
+    tt.sortArr.push(this.val)
+        if(this.right != null){
+        this.right.Sort(tt)
     }
 
 }
 
 function setup(){
     t = new Tree()
-    t.Add(10)  
-    t.Add(5)    
-    t.Add(20)  
-    t.Add(100)
-    t.Add(1)  
-    t.Add(2)  
-    t.Add(6)  
+    for(let i = 0 ; i< 10 ;i++){
+        let r = Math.floor(Math.random() * 100);
+        console.log(r)
+        t.Add(r)
+    }
     console.log(t)
 }
 
 function sort(){
     t.Sort()
-
+    console.log(t.sortArr)
 }
 
 </script>
