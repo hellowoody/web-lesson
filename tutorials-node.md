@@ -214,7 +214,7 @@ node --use_strict hello-world.js
   ```
 
   - pipe
-  
+
   pipe()把一个文件流和另一个文件流串起来，这样源文件的所有数据就自动写入到目标文件里了，所以，这实际上是一个复制文件的程序：
 
   ```
@@ -227,6 +227,18 @@ node --use_strict hello-world.js
 
   rs.pipe(ws);
   ```
+  注：默认情况下，当Readable流的数据读取完毕，end事件触发后，将自动关闭Writable流。如果我们不希望自动关闭Writable流，需要传入参数：
+  ```
+  readable.pipe(writable, { end: false });
+  ```
+- http 
+  要开发HTTP服务器程序，从头处理TCP连接(第四层)，解析HTTP(第七层)是不现实的。这些工作实际上已经由Node.js自带的http模块完成了。应用程序并不直接和HTTP协议打交道，而是操作http模块提供的request和response对象。
+  ![image](https://static.oschina.net/uploads/img/201805/19212614_AGK8.png)
+  
+  request对象封装了HTTP请求，我们调用request对象的属性和方法就可以拿到所有HTTP请求的信息；
+
+  response对象封装了HTTP响应，我们操作response对象的方法，就可以把HTTP响应返回给浏览器。
+  
 
 ## 11.搭建标准Node开发环境
 
