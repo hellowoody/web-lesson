@@ -91,9 +91,142 @@ node --use_strict hello-world.js
   });
   ```
 
-  - fs 文件系统模块，负责读写文件
+- fs 文件系统模块，负责读写文件
 
   Node.js内置的fs模块，和所有其它JavaScript模块不同的是，fs模块同时提供了异步和同步的方法。
+  - 异步读文件
+  异步读取时，传入的回调函数接收两个参数，当正常读取时，err参数为null，data参数为读取到的String。当读取发生错误时，err参数代表一个错误对象，data为undefined。这也是Node.js标准的回调函数：第一个参数代表错误信息，第二个参数代表结果。后面我们还会经常编写这种回调函数。
+  ```
+  'use strict'
+
+  let fs = require('fs');
+
+  fs.readFile('file.txt','utf-8',(err,data)=>{
+      if(err){
+          console.log(err)
+      }else{
+          console.log(data)
+      }
+  })
+
+  ```
+  - 同步读文件
+  除了标准的异步读取模式外，fs也提供相应的同步读取函数。同步读取的函数和异步函数相比，多了一个Sync后缀，并且不接收回调函数，函数直接返回结果。
+  ```
+  'use strict';
+
+  var fs = require('fs');
+
+  var data = fs.readFileSync('file.txt', 'utf-8');
+  console.log(data);
+  ```
+
+  - 异步方式写文件
+  ```
+  'use strict';
+
+  var fs = require('fs');
+
+  var data = 'Hello, Node.js';
+  fs.writeFile('output.txt', data, function (err) {
+      if (err) {
+          console.log(err);
+      } else {
+          console.log('ok.');
+      }
+  });
+  ```
+  - 同步方式写文件
+  ```
+  'use strict'
+
+  let fs = require("fs")
+
+  let data = "穿主流装喝骨头汤带斧头帮的楚留香"
+
+  fs.writeFileSync("output1.txt",data)
+  ```
+
+  - stat 能告诉我们文件或目录的详细信息
+
+  ```
+  'use strict'
+
+  let fs = require("fs")
+
+  fs.stat('file.txt',(err,stat)=>{
+      if (err){
+          console.log(err)
+      }else{
+          console.log(stat.isFile()) //是否是文件
+          console.log(stat.isDirectory()) //是否是目录
+          if (stat.isFile()){
+              console.log(stat.size)       // 文件大小
+              console.log(stat.birthtime)  // 创建时间
+              console.log(stat.mtime)      // 修改时间
+          }
+      }
+  })
+  ```
+
+  ```
+  let fs = require("fs")
+
+  let stat = fs.statSync("file.txt")
+
+  console.log(stat)
+  ```
+- stream 是Node.js提供的又一个仅在服务区端可用的模块，目的是支持“流”这种数据结构
+
+  - 读取
+
+  ```
+  'use strict'
+  let fs = require("fs")
+
+  let rs = fs.createReadStream("file.txt",'utf-8')
+
+  rs.on('data',chunk =>{
+      console.log('DATA:')
+      console.log(chunk)
+  })
+
+  rs.on('end',()=>{
+      console.log("read end")
+  })
+
+  rs.on('error',err =>{
+      console.log('err:',err)
+  })
+  ```
+  - 写入
+  ```
+  let fs = require('fs')
+
+  let ws1 = fs.createWriteStream('output2.txt','utf-8')
+
+  ws1.write('我是\n')
+  ws1.write('穿主流装')
+  ws1.write('喝骨头汤')
+  ws1.write('带斧头帮')
+  ws1.write('的楚留香')
+  ws1.end()
+  ```
+
+  - pipe
+  
+  pipe()把一个文件流和另一个文件流串起来，这样源文件的所有数据就自动写入到目标文件里了，所以，这实际上是一个复制文件的程序：
+
+  ```
+  'use strict';
+
+  let fs = require('fs');
+
+  let rs = fs.createReadStream('file.txt');
+  let ws = fs.createWriteStream('output5.txt');
+
+  rs.pipe(ws);
+  ```
 
 ## 11.搭建标准Node开发环境
 
