@@ -233,12 +233,83 @@ node --use_strict hello-world.js
   ```
 - http 
   要开发HTTP服务器程序，从头处理TCP连接(第四层)，解析HTTP(第七层)是不现实的。这些工作实际上已经由Node.js自带的http模块完成了。应用程序并不直接和HTTP协议打交道，而是操作http模块提供的request和response对象。
+  
   ![image](https://static.oschina.net/uploads/img/201805/19212614_AGK8.png)
   
   request对象封装了HTTP请求，我们调用request对象的属性和方法就可以拿到所有HTTP请求的信息；
 
   response对象封装了HTTP响应，我们操作response对象的方法，就可以把HTTP响应返回给浏览器。
-  
+
+  - 用Node.js实现一个HTTP服务器程序非常简单。我们来实现一个最简单的Web程序hello.js，它对于所有请求，都返回Hello world!
+
+  ```
+  'use strict';
+
+  // 导入http模块:
+  let http = require('http');
+
+  // 创建http server，并传入回调函数:
+  let server = http.createServer(function (request, response) {
+      // 回调函数接收request和response对象,
+      // 获得HTTP请求的method和url:
+      console.log(request.method + ': ' + request.url);
+      // 将HTTP响应200写入response, 同时设置Content-Type: text/html:
+      response.writeHead(200, {'Content-Type': 'text/html'});
+      // 将HTTP响应的HTML内容写入response:
+      response.end('<h1>Hello world!</h1>');
+  });
+
+  // 让服务器监听8080端口:
+  server.listen(8080);
+
+  console.log('Server is running at http://127.0.0.1:8080/');
+  ```
+
+  - 文件服务器
+
+  ```
+  'use strict';
+
+  var
+      fs = require('fs'),
+      url = require('url'),
+      path = require('path'),
+      http = require('http');
+
+  // 从命令行参数获取root目录，默认是当前目录:
+  var root = path.resolve(process.argv[2] || '.');
+
+  console.log('Static root dir: ' + root);
+
+  // 创建服务器:
+  var server = http.createServer(function (request, response) {
+      // 获得URL的path，类似 '/css/xxx.css':
+      var pathname = url.parse(request.url).pathname;
+      // 获得对应的本地文件路径，类似 '/static/css/xxx.css':
+      var filepath = path.join(root, pathname);
+      // 获取文件状态:
+      fs.stat(filepath, function (err, stats) {
+          if (!err && stats.isFile()) {
+              // 没有出错并且文件存在:
+              console.log('200 ' + request.url);
+              // 发送200响应:
+              response.writeHead(200);
+              // 将文件流导向response:
+              fs.createReadStream(filepath).pipe(response);
+          } else {
+              // 出错了或者文件不存在:
+              console.log('404 ' + request.url);
+              // 发送404响应:
+              response.writeHead(404);
+              response.end('404 Not Found');
+          }
+      });
+  });
+
+  server.listen(8080);
+
+  console.log('Server is running at http://127.0.0.1:8080/');
+  ``` 
 
 ## 11.搭建标准Node开发环境
 
@@ -253,6 +324,8 @@ node --use_strict hello-world.js
   - 使用方式很简单
     - 先在index.js(可以是任何文件)需要设置断点那行点一下左侧行号的位置，可以看到有一个红点出现说明设置断点成功
     - 然后点击上方菜单【run】或是【启动】中的“启动调试”
+- 测试/单元测试
+  一般推荐使用mocha
 
 ## 12.模块
 
@@ -288,7 +361,7 @@ node --use_strict hello-world.js
   ```
 
 
-## 2.如何创建一个静态发布服务
+## 13.如何创建一个静态发布服务
 
 ```
 mkdir express-staticweb
@@ -317,7 +390,7 @@ app.listen(3000,function(){
 })
 ```
 
-## 3.在node项目里使用Typescript
+## 14.在node项目里使用Typescript
 
 - 安装typescript和node的typescript的解释器
 
@@ -351,8 +424,13 @@ npx tsc --init
 
 ```
 
-## 4.使用node标准库创建一个http server
+- 编译ts -> js
 
+  ```
+  npx tsc
+  ```
+
+## 15.在ts语法下，使用node标准库创建一个http server
 
 ```
 
@@ -370,6 +448,69 @@ http.createServer((req,resp)=>{
 }).listen(3000)
 
 ```
+
+## 16.使用express,ts搭建一个最终的开发环境
+
+- 创建express-app文件夹
+
+- 进入express-app文件夹，执行项目初始化命令
+  ```
+  npm init
+  or
+  npm init -y
+  ```
+- 安装epxress，typescript,以及其他相关库
+  ```
+  npm i --save express
+  npm i --save-dev typescript @types/node @types/express nodemon ts-node
+  ```
+- 创建ts配置文件，可参考上面的14小结
+- 创建src文件夹,以及./src/index.ts
+  ```
+  import express from 'express';
+
+  const app = express()
+
+  app.listen(3000,function(){
+      console.log("static web server listening port 3000... ")
+  })
+  ```
+- 修改package.json文件
+  ```
+  "main": "./build/index.js",
+  "scripts": {
+    "start": "npm run build:live",
+    "build": "tsc -p .",
+    "build:live": "nodemon --watch src/**/*.ts --exec ts-node src/index.ts"
+  },
+  ```
+- 增加debug配置文件，可参考第11小结
+  .vscode/launch.json
+  ```
+  "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "express-app",
+            "runtimeArgs": [
+                "-r",
+                "ts-node/register"
+            ],
+            "args": [
+                "${workspaceFolder}/src/index.ts",
+            ],
+        }
+    ]
+  ```
+- 启动项目 支持热部署
+  ```
+  npm start
+  ```
+- 编译打包项目
+  ```
+  npm run build
+  ```
+  
 
 
 
