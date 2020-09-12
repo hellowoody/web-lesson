@@ -1,6 +1,12 @@
 # node 学习
 
-## 1.如何创建一个静态发布服务
+## 1.nodejs，express优势，为什么要学这个
+
+- 因为js可以使用回调函数函数，这样的话，在只请求无需cpu（逻辑计算）的接口场景中，nodejs可以发挥巨大优势。可以接口“无限的”的请求。
+- 那为什么传统后端语法没有这个优势呢，拿java，golang举例，一般情况是一个请求对应后台一个全生命周期，直到后台response后才算完成，为了解决并发问题会使用“信号量”，“load balancer负载均衡”解决，其实就是用队列和多线程解决，但是多线程会收到内存大小的限制
+
+
+## 2.如何创建一个静态发布服务
 
 ```
 mkdir express-staticweb
@@ -29,7 +35,7 @@ app.listen(3000,function(){
 })
 ```
 
-## 2.在node项目里使用Typescript
+## 3.在node项目里使用Typescript
 
 - 安装typescript和node的typescript的解释器
 
@@ -63,7 +69,7 @@ npx tsc --init
 
 ```
 
-## 3.使用node标准库创建一个http server
+## 4.使用node标准库创建一个http server
 
 
 ```

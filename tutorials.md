@@ -588,22 +588,7 @@ for for-in for-of foreach对比效率
 - 最好理解的场景是列表页面，根据生命周期在dom渲染完成后再去请求http api，不然会出现元素undefined错误，因为http是异步请求，有可能在dom还未渲染时，数据已经返回
 - 在vue里生命周期暴露出来的方法如(beforeCreate created beforeMount mounted beforeupdate updated beforedestroy destroyed),这里在术语上是hook钩子函数，其实可以简单理解为callback回调函数
 
-## 17.router histroy build 和 dev
-
-- 不建议使用vue-router 的histroy-mode 形式，因为这种方式一般是为了后端渲染的，如果是nginx发布的话，需要单独配置
-- histroy-mode模式 在dev开发时是没有问题的，但打包build之后问题就显现出来。
-
-## 18.vscode插件
-
-- vetur
-- vue-peek
-
-## 19.nodejs，express优势，为什么要学这个
-
-- 因为js可以使用回调函数函数，这样的话，在只请求无需cpu（逻辑计算）的接口场景中，nodejs可以发挥巨大优势。可以接口“无限的”的请求。
-- 那为什么传统后端语法没有这个优势呢，拿java，golang举例，一般情况是一个请求对应后台一个全生命周期，直到后台response后才算完成，为了解决并发问题会使用“信号量”，“load balancer负载均衡”解决，其实就是用队列和多线程解决，但是多线程会收到内存大小的限制
-
-## 20.哈希表，hashmap （面试）
+## 17.哈希表，hashmap （面试）
 
 hash（散列、杂凑）函数，是将任意长度的数据映射到有限长度的域上。直观解释起来，就是对一串数据m进行杂糅，输出另一段固定长度的数据h，作为这段数据的特征（指纹）。
 
@@ -618,11 +603,11 @@ ES6中的Map是新增的一种数据结构。它类似对象，但是对象的�
 无论哪种方式，hash的性能都受装载因子影响
 拿拉链法举例，装载因子越大，哈希的读写性能就越差，当哈希表的装载因子较大时就会触发哈希的扩容，创建更多的桶来存储哈希中的元素，保证性能不会出现严重的下降。如果有 1000 个桶的哈希表存储了 10000 个键值对，它的性能是保存 1000 个键值对的 1/10，但是仍然比在链表中直接读写好 1000 倍。
 
-## 21.NaN !== NaN 为true (面试)
+## 18.NaN !== NaN 为true (面试)
 
 NaN 是一个非常特殊的值，它从来不会等于另一个 NaN 值（也就是，它从来不等于它自己）。实际上，它是唯一一个不具有反射性的值。所以，NaN !== NaN。
 
-## 22.IP地址
+## 19.IP地址
 
 - ip地址分类
 
@@ -679,7 +664,7 @@ IP地址一共分为5类，即A～E，它们分类的依据是其net-id所占的
   ::1         localhost
   ::1     ip6-localhost ip6-loopback
   ```
-## 23.Promise
+## 20.Promise
 
 Promise 对象用于表示一个异步操作的最终完成 (或失败), 及其结果值.
 Promise构造函数接受一个函数作为参数，该函数的两个参数分别是resolve和reject。它们是两个函数，由JavaScript引擎提供，不用自己部署。
@@ -715,9 +700,7 @@ then()方法用于指定当前实例状态发生改变时的回调函数。它�
 Promise.prototype.then(onFulfilled, onRejected);
 ```
 
-## 24.leetcode刷题
-
-## 25.递归算法
+## 21.递归算法
 
 - 递归两个要素
   - 递归边界
@@ -760,5 +743,6 @@ function sum(arr){
 }
 ```
 
+## leetcode刷题
 
 ## 可视化的简单算法

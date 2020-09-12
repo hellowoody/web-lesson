@@ -8,7 +8,12 @@ npm -v   //6.14.7
 npx vue -V  //@vue/cli 4.5.2
 ```
 
-## 2.创建一个单页面vue项目
+## 2.vscode插件
+
+- vetur
+- vue-peek
+
+## 3.创建一个单页面vue项目
 
 ```
 vue create shop-app
@@ -39,7 +44,7 @@ new Vue({
 }).$mount('#app')
 ```
 
-## 3.vue后缀的文件中，样式style的scoped问题
+## 4.vue后缀的文件中，样式style的scoped问题
 
 ```
 <style></style> // 在style标签里设置的样式是全局的
@@ -47,7 +52,7 @@ new Vue({
 <style scoped></style> // 在style标签里设置的样式是只在本文件的组件内生效
 ```
 
-## 4.如何引用css文件
+## 5.如何引用css文件
 
 一般css文件会放在assets（静态资源）文件下面
 
@@ -57,7 +62,7 @@ new Vue({
 </style>
 ```
 
-## 5.引用iconfont
+## 6.引用iconfont
 
 - 登陆iconfont网站，选择需要的图片
 - 点击“下载代码”
@@ -69,11 +74,11 @@ new Vue({
 </style>
 ```
 
-## 6.PC端网页中字体支持的最小像素是多少？（面试）
+## 7.PC端网页中字体支持的最小像素是多少？（面试）
 
 最小像素12px
 
-## 7.创建tabbar组件
+## 8.创建tabbar组件
 
 - fixed定位，并设置宽高
 
@@ -93,7 +98,7 @@ new Vue({
   align-items: center;
 ```
 
-## 8.如何用vue语法糖导入组件路径
+## 9.如何用vue语法糖导入组件路径
 
 ```
 <script>
@@ -101,7 +106,7 @@ import TabBar from '@/components/tabbar/TabBar.vue'
 </script>
 ```
 
-## 9.vue-router
+## 10.vue-router
 
 - 安装
 
@@ -150,7 +155,7 @@ new Vue({
     <router-view></router-view>
 ```
 
-## 10. 封装路由
+## 11. 封装路由
 
 - 在src下创建一个router文件夹
 - 在router文件夹下创建一个index.js，router/index.js
@@ -194,7 +199,13 @@ new Vue({
 }).$mount('#app')
 
 ```
-## 11.如何实现顶部组件TopBar
+
+## 12.router histroy build 和 dev
+
+- 不建议使用vue-router 的histroy-mode 形式，因为这种方式一般是为了后端渲染的，如果是nginx发布的话，需要单独配置
+- histroy-mode模式 在dev开发时是没有问题的，但打包build之后问题就显现出来。
+
+## 13.如何实现顶部组件TopBar
 
 - 在src根目录下创建topbar文件夹,同时在文件夹下创一个TopBar.vue
 - 利用学过的插槽slot，去实现本次的组件
@@ -222,7 +233,7 @@ new Vue({
 
 - 应该再middle的slot，写上默认的内容，默认的内容就是input
 
-## 12.引用阿里的Ant-D 第三方原型库
+## 14.引用阿里的Ant-D 第三方原型库
 
 - 安装antd 如果npm慢，官网推荐cnpm
 - 安装封装路由方式，去封装和加载antd
@@ -249,7 +260,7 @@ import './antd'
 
 ```
 
-## 13.如何antd组件
+## 15.如何antd组件
 
 - 推荐，一定要看官网
 - 根据官网的input的例子，直接把代码考到我们项目
@@ -265,7 +276,7 @@ import './antd'
 <style>
 ```
 
-## 14.修改路由策略，使用子路由
+## 16.修改路由策略，使用子路由
 
 - 目的是一级页面现实底部选项卡，二级页面以及之后的页面“隐藏”底部选项卡
 
@@ -285,7 +296,7 @@ const routes = [
 - 需要注意的是，子路由中的path是不需要写斜杠'/'前缀的
 
 
-## 15.实现一个跳转事件
+## 17.实现一个跳转事件
 
 ```
     methods:{
@@ -295,7 +306,7 @@ const routes = [
     }
 ```
 
-## 16.父组件向子组件传递一个回调函数(注意：不是$emit)
+## 18.父组件向子组件传递一个回调函数(注意：不是$emit)
 
 - 父组件，在调用子组件时向子组件传递一个focusFunc
 
@@ -321,7 +332,7 @@ export default {
 
 ```
 
-## 17.封装localStoreage函数
+## 19.封装localStoreage函数
 
 - 在项目src目录下创建kits文件夹
 - 在kits文件夹下创建LocalStorage.js（/src/kits/LocalStorage.js）
@@ -342,7 +353,7 @@ export const setArray = (key,val)=>{
 }
 
 ```
-## 18.如何用【prototype-原型】的方式装载antd的某些组件
+## 20.如何用【prototype-原型】的方式装载antd的某些组件
 
 ```
 import { 
@@ -358,7 +369,7 @@ message.config({
 
 Vue.prototype.$message = message;
 ```
-## 19.如何使用$emit方式,从子组件向父组件传值
+## 21.如何使用$emit方式,从子组件向父组件传值
 
 - 在父组件中声明需要被子组件调用的方法
 
@@ -391,7 +402,7 @@ methods:{
 this.$emit("searchInputChangeHandle",newVal)
 ```
 
-## 20.使用better-scroll实现横向滚动
+## 22.使用better-scroll实现横向滚动
 
 - 源码链接：https://github.com/ustbhuangyi/better-scroll
 - 安装
@@ -456,7 +467,7 @@ this.$emit("searchInputChangeHandle",newVal)
 
 
 
-## 21.使用vue内置transition实现滑动跳转效果
+## 23.使用vue内置transition实现滑动跳转效果
 
 - 是实际开发中动画效果的跳转过渡一般都是框架实现，并且实现过程比较复杂，这里用一个简单的例子展现如何手动实现此效果
 - 在App.vue文件中,添加transition设置
@@ -573,7 +584,7 @@ watch:{
 },
 ```
 
-## 22.封装http异步操作(一)
+## 24.封装http异步操作(一)
 
 ```
 //利用promise 实现异步操作
@@ -644,7 +655,7 @@ export default {
 </script>
 ```
 
-## 23.vuex
+## 25.vuex
 
 - 安装
   ```
