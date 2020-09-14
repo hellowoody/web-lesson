@@ -511,6 +511,15 @@ http.createServer((req,resp)=>{
   npm run build
   ```
   
+## 17.typescript
+
+- 网址
+  ```
+  https://www.typescriptlang.org/zh/ //官网网址 推荐
+
+  https://www.tslang.cn/   //翻译网址
+  ```
+
 
 
 
