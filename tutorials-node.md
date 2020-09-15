@@ -583,4 +583,23 @@ http.createServer((req,resp)=>{
     https://www.apollographql.com/docs/apollo-server/
   ```
 
+## 19.安装chrome的插件Talend
+
+- 网址
+
+  ```
+  https://chrome.google.com/webstore/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm?hl=zh-CN // 官网
+
+  //如果官网无法访问，可以在百度中进行搜索，下面是两个链接，当然也可以自行搜索下载
+  
+  https://huajiakeji.com/web-development/2020-03/3129.html
+
+  https://www.mscto.com/mobile/564848.html
+  ```
+
+- Talend是什么？
+
+  - Talend API Tester使调用、发现和测试HTTP和restapi变得容易。
+  - 可视化地与REST、SOAP和HTTP api交互
+  - 比postman更好用，更轻量级
 
