@@ -558,7 +558,7 @@ http.createServer((req,resp)=>{
   });
   ```
 
-  - 静态文件
+- 静态文件
 
   ```
   app.use(express.static('public'));
