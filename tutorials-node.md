@@ -520,6 +520,51 @@ http.createServer((req,resp)=>{
   https://www.tslang.cn/   //翻译网址
   ```
 
+## 18.express
+
+- 官方文档
+
+  ```
+  https://expressjs.com/zh-cn/starter
+  ```
+
+- hello world
+
+    ```
+    const express = require('express')
+    const app = express()
+    const port = 3000
+
+    app.get('/', (req, res) => {
+      res.send('Hello World!')
+    })
+
+    app.listen(port, () => {
+      console.log(`Example app listening at http://localhost:${port}`)
+    })
+    ```
+- 路由
+
+  - get
+  ```
+  app.get('/', function (req, res) {
+    res.send('Hello World!');
+  });
+  ```
+  - post
+  ```
+  app.post('/', function (req, res) {
+    res.send('Got a POST request');
+  });
+  ```
+
+- 静态文件
+
+  ```
+  app.use(express.static('public'));
+  //or
+  app.use('/static', express.static('public'));
+  ```
 
 
 
