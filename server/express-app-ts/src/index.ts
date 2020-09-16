@@ -32,10 +32,17 @@ app.get("/api",(req,resp)=>{
 })
 
 app.post("/api/login",cors(corsOptions),(req,resp)=>{
-   console.log("接收到了")
-   console.log(req.body)
+    console.log(req.body)
+    /**
+     userid password
+
+     userid 去数据库查询 查看是否存在这个用户
+        存在: 拿到数据库中存储的密码，然和发送来的参数中的密码进行比较
+            相同: 需要把用户的一些完整信息和token(身份认证)返回给前台
+            不相同: 直接返回前端 并发送消息“密码错误”
+        不存在：直接返回前端 并发送消息“无此用户/请注册”
+    */
     resp.send({msg:"接收到了"})
-//    resp.json({msg:"接收到了"})
 })
 
 app.post("/api/register",(req,resp)=>{
