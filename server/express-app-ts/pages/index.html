@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>api 测试页面</title>
+        <script src="jquery.min.js"></script>
+    </head>
+    <body>
+        <button onclick="login()">登陆</button>
+        <button onclick="register()">注册</button>
+    </body>
+</html>
+
+<script>
+    const baseurl = "http://127.0.0.1:3000/api"
+
+    function myFetch(p,apiname,success_callback){
+        $.ajax({
+            type:'POST',
+            url:baseurl+apiname,
+            data:"",
+            dataType:"json",
+            contentType:"application/json",
+            // contentType:"application/x-www-form-urlencoded",
+            success:(data,status,config)=>{
+                console.log(data)
+                if(typeof(success_callback) === 'function'){
+                    success_callback(data)
+                }
+            },
+            error:(data,err)=>{
+                console.log(err)
+            }
+        })
+    }
+
+    function login(){
+        console.log("test login")
+        /*
+        1.xhrxmlhttp
+        2.ajax refence jquery
+        3.fetch
+        4.axios
+        */
+        // fetch("http://127.0.0.1:3000/api/login",{
+        //     body:JSON.stringify({id:1,pwd:2}),
+        //     method:'POST',
+        //     headers:{
+        //         'Accept':'application/json',
+        //         'Content-type':'application/json',
+        //     }
+        // })
+        // .then(res => res.json())
+        // .then(res => console.log(res))
+        let p = {
+            id:1,
+            pwd:2
+        }
+        myFetch(p,"/login")
+    }
+
+    function register(){
+        let p = {
+            mail:"test@mail.com",
+            id:1,
+            pwd:2
+        }
+        myFetch(p,"/register")
+    }
+</script>
