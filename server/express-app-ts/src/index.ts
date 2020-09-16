@@ -1,4 +1,5 @@
 import express from 'express'
+import bodyParser from 'body-parser'
 import cors from 'cors'
 
 const app = express()
@@ -7,13 +8,17 @@ const app = express()
 //     resp.header("Access-Control-Alow-Orgin","*")
 //     next()
 // })
+
 const corsOptions = {
     "orgin":"*",
     "method":"GET,POST",
-    "optionsSuccessStatus":200
+    "optionsSuccessStatus":200,
+    // 'allowedHeaders': ['Content-Type']
 }
 
-app.use(cors(corsOptions))
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json())
+// app.use(cors(corsOptions))
 
 app.use("/html",express.static("./pages"))
 
@@ -26,20 +31,16 @@ app.get("/api",(req,resp)=>{
     resp.send("hello api")
 })
 
-app.post("/api/login",(req,resp)=>{
-    /*
-    1.获取参数
-    2.解析参数
-    3.进行业务逻辑
-    4.返回给前端
-    */
+app.post("/api/login",cors(corsOptions),(req,resp)=>{
    console.log("接收到了")
-//    resp.send(JSON.stringify({msg:"接收到了"}))
+   console.log(req.body)
     resp.send({msg:"接收到了"})
 //    resp.json({msg:"接收到了"})
 })
 
 app.post("/api/register",(req,resp)=>{
+    console.log(req.body)
+    console.log(req.body.mail)
     resp.send({msg:"注册成功"})
 })
 

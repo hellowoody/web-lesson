@@ -743,6 +743,16 @@ function sum(arr){
 }
 ```
 
+## http post 4种提交方式
+
+- application/x-www-form-urlencoded
+  这应该是最常见的 POST 提交数据的方式了。浏览器的原生 <form> 表单，如果不设置 enctype 属性，那么最终就会以 application/x-www-form-urlencoded 方式提交数据。
+- multipart/form-data
+  一个常见的 POST 数据提交的方式。我们使用表单上传文件时，必须让 <form> 表单的 enctype 等于 multipart/form-data。
+- application/json
+  application/json 这个 Content-Type 作为响应头大家肯定不陌生。实际上，现在越来越多的人把它作为请求头，用来告诉服务端消息主体是序列化后的 JSON 字符串。
+- text/xml
+
 ## leetcode刷题
 
 ## 可视化的简单算法
