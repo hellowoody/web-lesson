@@ -603,3 +603,14 @@ http.createServer((req,resp)=>{
   - 可视化地与REST、SOAP和HTTP api交互
   - 比postman更好用，更轻量级
 
+## 20.参数如何解析
+
+  ```
+  npm i --save body-parser
+  ```
+
+## 21.跨域
+
+  ```
+  npm i --save cors
+  ```  
