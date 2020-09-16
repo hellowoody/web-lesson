@@ -35,7 +35,6 @@ app.get("/api",(req,resp)=>{
 
 app.post("/api/login",async (req,resp)=>{
     let p = req.body
-    console.log(p)
     let res = await FindFrist("select * from user where id = ? ",[p.id])
     /**
      userid password
