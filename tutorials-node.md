@@ -605,13 +605,72 @@ http.createServer((req,resp)=>{
 
 ## 20.参数如何解析
 
+- 安装库
   ```
   npm i --save body-parser
+  npm i --save @types/body-parser
+  ```
+- 使用
+  ```
+  import bodyParser from 'body-parser'
+
+  app.use(bodyParser.urlencoded({extended:false}))
+  app.use(bodyParser.json())
+
+  app.post("api的名称",(req,resp)=>{
+    console.log(req.body)
+    resp.send({msg:"接收到了"})
+  })
+
   ```
 
-## 21.跨域
+## 21.如何解决跨域
 
+- 安装库  
   ```
   npm i --save cors
   npm i --save-dev @types/cors
-  ```  
+  ``` 
+- 使用
+  ```
+  import cors from 'cors'
+
+  //声明配置文件
+  const corsOptions = {
+    "orgin":"*",
+    "method":"GET,POST",
+    "optionsSuccessStatus":200,
+  }
+   
+  app.use(cors(corsOptions)) //全局设置
+
+  // 单独设置
+  app.post("api的名称",cors(corsOptions),(req,resp)=>{
+    console.log(req.body)
+    resp.send({msg:"接收到了"})
+  }) 
+
+  //注：全局设置和单独设置不能同时使用
+
+  ```
+
+## 22.前端如何请求
+
+  ```
+  $.ajax({
+      type:'POST',
+      url:baseurl+apiname,
+      data:p,  //重点 p是json对象而不是序列化后的字符串，这点需要注意
+      dataType:"json",
+      contentType:"application/x-www-form-urlencoded",  //重点
+      success:(data,status,config)=>{
+          console.log(data)
+          if(typeof(success_callback) === 'function'){
+              success_callback(data)
+          }
+      },
+      error:(data,err)=>{
+          console.log(err)
+      }
+  })
+  ```

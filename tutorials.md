@@ -743,7 +743,7 @@ function sum(arr){
 }
 ```
 
-## http post 4种提交方式
+## 22.http post 4种提交方式
 
 - application/x-www-form-urlencoded
   这应该是最常见的 POST 提交数据的方式了。浏览器的原生 <form> 表单，如果不设置 enctype 属性，那么最终就会以 application/x-www-form-urlencoded 方式提交数据。
@@ -751,7 +751,33 @@ function sum(arr){
   一个常见的 POST 数据提交的方式。我们使用表单上传文件时，必须让 <form> 表单的 enctype 等于 multipart/form-data。
 - application/json
   application/json 这个 Content-Type 作为响应头大家肯定不陌生。实际上，现在越来越多的人把它作为请求头，用来告诉服务端消息主体是序列化后的 JSON 字符串。
-- text/xml
+- text/plain or text/xml
+
+## 23.区分简单请求
+
+- 某些请求不会触发 CORS 预检请求，这样的请求被称为简单请求，若请求满足所有下述条件，则该请求可以被视为简单请求.
+
+- 使用下列方法之一
+  - GET
+  - HEAD
+  - POST
+
+- Fetch 规范定义了对 CORS 安全的首部字段集合,不得人为设置该集合之外的其他首部字段，该集合为
+  - ACCEPT（用于告知客户端可以处理的内容类型）
+  - Accept-Language（用于告知客户端可以处理的自然语言）
+  - Content-Language（用于说明访问者希望采用的语言或语言组合）
+  - Content-Type (请求体的类型说明，并且该字段有额外限制）
+  - DPR（用于告知客户端当前设备的像素比率）
+  - Save-Data
+  - Viewport-Width
+  - Width
+
+- Content-Type 的值被限定为以下三种之一
+  - text/plain（普通文本）
+  - multipart/form-data
+  - application/x-www-form-urlencoded
+
+- 满足上述条件的都被视为简单请求
 
 ## leetcode刷题
 
