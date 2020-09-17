@@ -566,23 +566,6 @@ http.createServer((req,resp)=>{
   app.use('/static', express.static('public'));
   ```
 
-- GraphQL
-
-  - 官网
-
-  ```
-  https://graphql.org/
-
-  https://graphql.cn/code/#javascript 
-  ```
-
-  - apollo-server
-  ```
-    https://github.com/apollographql/apollo-server
-
-    https://www.apollographql.com/docs/apollo-server/
-  ```
-
 ## 19.安装chrome的插件Talend
 
 - 网址
@@ -674,3 +657,108 @@ http.createServer((req,resp)=>{
       }
   })
   ```
+
+  - 23.GraphQL
+
+  - 官网
+
+  ```
+    https://graphql.org/
+
+    https://graphql.cn/code/#javascript 
+  ```
+
+  - apollo-server
+
+  ```
+    https://github.com/apollographql/apollo-server
+
+    https://www.apollographql.com/docs/apollo-server/
+  ```
+
+  - 安装
+
+  ```
+  npm install --save graphql apollo-server-express
+
+  npm install --save-dev @types/graphql
+  ```
+
+  - 简单例子
+
+  创建一个简单graphql例子
+
+  ```
+  import {graphql,buildSchema} from 'graphql'
+
+  //声明grapql的架构图/概要（“模板”/“视图”）
+  const schema = buildSchema(`
+      type Query {
+          hello : String
+      }
+  `)
+
+  //解析器
+  const root = {
+      hello: ()=> 'hello woody'
+  }
+
+  graphql(
+      schema,
+      '{hello}',  //请求的模板数据
+      root
+  ).then((resp)=>{
+      console.log(resp)
+  })
+  ```
+
+  - 搭配apollo-server
+
+    - 导入模块（包）
+    
+    ```
+    import {ApolloServer,gql} from 'apollo-server-express'
+    ```
+
+    - 声明schema“架构图/概要”
+
+    ```
+    const typeDefs = gql `
+        type Query {
+            hello : String,
+        }
+    `
+    ```
+
+    - 声明解析器
+
+    ```
+    const resolvers = {
+        Query:{
+            hello: ()=>"hello woody",
+        }
+    }
+    ```
+
+    - 创建graphql server
+
+    ```
+    const server = new ApolloServer({
+        typeDefs,   // schema“架构图/概要”
+        resolvers,  // 解析器
+        playground:true,  //true-启动自带的图形化服务 false-不启动自带的图形化服务
+    })
+    ```
+
+    - 将graphql server“嵌入”到express中
+
+    注：graphql server启动有很多种方式，这里推荐其中一种
+
+    ```
+    const app = express()
+
+    server.applyMiddleware({
+        app,
+        path:"/gql"  //访问自带的图形化服务的路径
+    })
+    ```
