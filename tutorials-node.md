@@ -687,6 +687,7 @@ http.createServer((req,resp)=>{
   - 简单例子
 
   创建一个简单graphql例子
+  创建一个文件test-graphql.ts
 
   ```
   import {graphql,buildSchema} from 'graphql'
