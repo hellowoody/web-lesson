@@ -74,10 +74,33 @@ app.post("/api/login",async (req,resp)=>{
     }
 })
 
-app.post("/api/register",(req,resp)=>{
-    console.log(req.body)
-    console.log(req.body.mail)
-    resp.send({msg:"注册成功"})
+app.post("/api/register",async (req,resp)=>{
+    let p = req.body
+    try {
+        let res = await Do("insert into user values (?,?,?) ",[p.mail,p.username,p.pwd])
+        let jsonObj = JSON.parse(JSON.stringify(res))
+        if (jsonObj.affectedRows === 1) {
+            resp.json({
+                code:1,
+                msg:"注册成功",
+                data:""
+            })
+        }else{
+            resp.json({
+                code:2,
+                msg:"注册失败(未知原因)",
+                data:""
+            })
+        }
+    } catch (error) {
+        resp.json({
+            code:3,
+            msg:"注册失败",
+            data:{
+                error
+            }
+        })
+    }
 })
 
 
