@@ -103,5 +103,25 @@ app.post("/api/register",async (req,resp)=>{
     }
 })
 
+app.post("/api/goods",async (req,resp)=>{
+    let p = req.body
+    try {
+        let res = await Do("select * from goods where type = ? and name like '%"+p.name+"%' and gooddesc like '%"+p.desc+"%' ",[p.type])
+        resp.json({
+            code:1,
+            msg:"",
+            data:res
+        })
+    } catch (error) {
+        resp.json({
+            code:3,
+            msg:"失败",
+            data:{
+                error
+            }
+        })
+    }
+    
+})
 
 app.listen(3000,()=>console.log("express-app-ts listening port 3000,you can visit url : http://127.0.0.1:3000 "))
