@@ -2,7 +2,6 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import {server as gql_server} from './graphql'
-import http from 'http'
 import {router} from './router';
 const config = require("../config");
 
@@ -33,10 +32,7 @@ app.use("/html",express.static("./pages"))
 
 router(app)
 
-const http_server = http.createServer(app)
-
 export {
-    http_server,
     app,
     gql_server
 }
