@@ -1,16 +1,38 @@
 import {ApolloServer,gql} from 'apollo-server-express'
+import * as gr from './graphqlResolvers'
+
 const config = require("../config");
 
 const typeDefs = gql `
     type Query {
         hello : String,
-        name:String
+        good(id:Int!) : Good
+        goods(count:Int!,name:String,desc:String) : [Good]
+    }
+    
+    type Good {
+        id:Int,
+        name:String,
+        price:Float,
+        gooddesc:String,
+        type:Dict,
+    }
+
+    type Dict {
+        id:String,
+        dictid:String,
+        name:String,
+        sort:Int
     }
 `
 const resolvers = {
     Query:{
         hello:()=>"hello woody",
-        name: ()=>"zhang"
+        good:gr.good,
+        goods:gr.goods,
+    },
+    Good:{
+        type:gr.goodtype,
     }
 }
 
