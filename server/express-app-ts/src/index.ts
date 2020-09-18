@@ -1,11 +1,9 @@
-import {app,gql_server} from './server';
-import {router} from './router';
+import {http_server,gql_server} from './server';
 
 const config = require("../config");
 
-router(app)
 
-app.listen(config.port,()=>console.log(`
+http_server.listen(config.port,()=>console.log(`
 ***********************************************************************
     express-app-ts start listen port:${config.port};                       
                                                                            

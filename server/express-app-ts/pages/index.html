@@ -7,11 +7,13 @@
     <body>
         <button onclick="login()">登陆</button>
         <button onclick="register()">注册</button>
+        <button onclick="goods()">商品查询普通方法</button>
+        <button onclick="goodsByGql()">商品查询gql</button>
     </body>
 </html>
 
 <script>
-    const baseurl = "http://127.0.0.1:3000/api"
+    const baseurl = "http://127.0.0.1:3000"
 
     function myFetch(p,apiname,success_callback){
         $.ajax({
@@ -56,11 +58,49 @@
             pwd:"000000"
         }
         
-        myFetch(p,"/login")
+        myFetch(p,"/api/login")
     }
 
     function register(){
         let p = {"mail":"zhao@mail.com","username":"兆先生","pwd":"000000"}
-        myFetch(p,"/register")
+        myFetch(p,"/api/register")
+    }
+
+    function goods(){
+        let p = {
+            "type":"03",
+            "name":"",
+            "desc":"7"
+            }
+        myFetch(p,"/api/goods")
+    }
+
+    function goodsByGql(){
+        let p = {
+            query:`
+                {
+                    goods(count:5,name:"1",desc:"2代"){
+                            name
+                        id
+                        price
+                        gooddesc 
+                                type {
+                            name
+                            }
+                    }
+                    good(id:1) {
+                        name
+                        id
+                        price
+                        gooddesc
+                        type {
+                        dictid
+                        name
+                        }
+                    }
+                }
+            `
+        }
+        myFetch(p,"/gql")
     }
 </script>
