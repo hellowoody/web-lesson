@@ -1,32 +1,14 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
-import {ApolloServer,gql} from 'apollo-server-express'
-
-const typeDefs = gql `
-    type Query {
-        hello : String,
-        name:String
-    }
-`
-const resolvers = {
-    Query:{
-        hello:()=>"hello woody",
-        name: ()=>"zhang"
-    }
-}
-
-const gql_server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    playground:true 
-})
+import {server as gql_server} from './graphql'
+const config = require("../config");
 
 const app = express()
 
 gql_server.applyMiddleware({
     app,
-    path:"/gql"
+    path:config.gql_url
 })
 
 // app.use('*',(req,resp,next)=>{
