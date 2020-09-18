@@ -1,10 +1,11 @@
 import {createConnection} from 'mysql';
+const config = require("../config");
 
 export const connection = createConnection({
-    host : "127.0.0.1",
-    user : "root",
-    password : "12345678",
-    database : "shop-app"
+    host : config.db_host,
+    user : config.db_user,
+    password : config.db_password,
+    database : config.db_database
 })
 
 export const Do = (sql:any,params?:any) => {
