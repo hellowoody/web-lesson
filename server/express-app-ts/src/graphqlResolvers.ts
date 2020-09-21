@@ -21,9 +21,13 @@ export const goodtype = async (parent:any,args:any,context:any,info:any)=>{
 
 export const goods = async (parent:any,args:any,context:any,info:any)=>{
     try {
-        let name = args.name ? args.name : ""
-        let desc = args.desc ? args.desc : ""
-        let res = await Do("select * from goods where name like '%"+name+"%' and gooddesc like '%"+desc+"%' limit ? ",[args.count])
+
+        let sql = "select * from goods where 1=1 ";
+        sql += args.type ? " and type = '"+args.type+"' " : "" ;
+        sql += args.name ? " and name like '%"+args.name+"%' " : "";
+        sql += args.desc ? " and gooddesc like '%"+args.desc+"%' " : "";
+        sql += " limit ? " ;
+        let res = await Do(sql,[args.count])
         return res
     } catch (e) {
         return e

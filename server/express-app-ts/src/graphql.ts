@@ -7,7 +7,7 @@ const typeDefs = gql `
     type Query {
         hello : String,
         good(id:Int!) : Good
-        goods(count:Int!,name:String,desc:String) : [Good]
+        goods(count:Int!,type:String,name:String,desc:String) : [Good]
     }
     
     type Good {
