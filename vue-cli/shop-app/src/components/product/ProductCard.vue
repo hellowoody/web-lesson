@@ -38,6 +38,7 @@ export default {
     height:167px;
     width:138px;
     border-radius: 15px;
+    box-shadow: 0px 1px 8px #e3e3e3;
 }
 
 .product-img {

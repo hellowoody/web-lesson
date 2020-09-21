@@ -11,7 +11,7 @@
                 <div><h3>4</h3></div>
             </a-carousel>
             <div class="title">
-                <div class="title-left">篮球类</div>    
+                <div class="title-left">篮球鞋</div>    
                 <div class="title-right">查看全部</div>    
             </div> 
             <div class="product-card-list">
@@ -64,12 +64,22 @@ export default {
                 }
             `
         }
-        let res = await HttpGql(gql)
-        this.goods = res.data.goods.map((item)=>{
-            item.imgpath =  ImgUrl +item.imgpath
-            return item
-        })
-        console.log(this.goods)
+       try {
+            let res = await HttpGql(gql)
+            this.goods = res.data.goods.map((item)=>{
+                item.imgpath =  ImgUrl +item.imgpath
+                return item
+            })
+            console.log(this.goods)
+       } catch (error) {
+           for(let item of [1,2,3,4,5]){
+               this.goods.push({
+                   id:item,
+                   name:"产品名称",
+                   price:0
+               })
+           }
+       }    
     },
     methods:{
         goto(path){
