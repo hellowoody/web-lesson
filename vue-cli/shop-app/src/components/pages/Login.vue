@@ -10,8 +10,8 @@
                 <div class="title-extend">请输入邮箱和密码登录你的账号</div>
             </div>
             <a-form-model ref="loginForm" :rules="rules" layout="vertical" style="overflow-y:auto" :model="form">
-                <a-form-model-item label="邮箱" prop="mail">
-                    <a-input size="large" v-model="form.mail" placeholder="请输入邮箱" />
+                <a-form-model-item label="邮箱" prop="id">
+                    <a-input size="large" v-model="form.id" placeholder="请输入邮箱" />
                 </a-form-model-item>
                 <a-form-model-item label="密码" prop="pwd">
                     <a-input size="large" v-model="form.pwd" type="password" placeholder="请输入密码" />
@@ -35,11 +35,11 @@ export default {
     data(){
         return {
             form:{
-                mail:"",
+                id:"",
                 pwd:""
             },
             rules:{
-                mail:[
+                id:[
                     {required:true,message:"请输入邮箱",trigger:"blur"},
                     {type:'email',message:"请输入合法的邮箱地址",trigger:"blur"}
                 ],
@@ -62,11 +62,15 @@ export default {
                     this.$message.loading({content:"加载中...",key})
                     let res = await Http("/login",this.form)
                     try {
-                        setCacheVal("token",res.data.token)
-                        setCacheVal("userid",res.data.user.userid)
-                        setCacheVal("username",res.data.user.username)
-                        this.$message.success({content:res.msg,key,duration:2})
-                        this.$router.replace({path:"/main/home"})
+                        if(res.code === 1){
+                            setCacheVal("token",res.data.token)
+                            setCacheVal("userid",res.data.userId)
+                            setCacheVal("username",res.data.userName)
+                            this.$message.success({content:res.msg,key,duration:2})
+                            this.$router.replace({path:"/main/home"})
+                        }else{
+                            this.$message.error({content:res.msg,key,duration:2})
+                        }
                     } catch (e) {
                         this.$message.error({content:e,key,duration:2})
                     }

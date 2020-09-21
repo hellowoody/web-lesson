@@ -788,3 +788,68 @@ export default {
   </template>
   ```
 
+## 26.网络请求方式
+
+  - XMLHttpRequest
+
+  ```
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", '/server', true);
+
+  //发送合适的请求头信息
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  xhr.onload = function () { 
+      // 请求结束后,在此处写处理代码 
+  };
+  xhr.send("foo=bar&lorem=ipsum"); 
+  ```
+  - ajax (JQuery)
+
+  ```
+  $.ajax({
+      type:'POST',
+      url:baseurl+apiname,
+      data:p,
+      dataType:"json",
+      // contentType:"application/json",
+      contentType:"application/x-www-form-urlencoded",
+      success:(data,status,config)=>{
+          console.log(data)
+          if(typeof(success_callback) === 'function'){
+              success_callback(data)
+          }
+      },
+      error:(data,err)=>{
+          console.log(err)
+      }
+  })
+
+  ```
+
+  - fetch
+
+  ```
+  fetch("http://127.0.0.1:3000/api/login",{
+    body:JSON.stringify({id:1,pwd:2}),
+    method:'POST',
+    headers:{
+      'Accept':'application/json',
+      'Content-type':'application/json',
+    }
+  })
+  ```  
+ 
+  - axios (最终解决方案)
+
+    - 网址
+
+      ```
+      https://github.com/axios/axios
+      ```
+
+    - 安装
+
+      ```
+      npm install axios --save
+      ```
