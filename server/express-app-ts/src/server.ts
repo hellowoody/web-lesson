@@ -19,8 +19,8 @@ const corsOptions = {
     // 'allowedHeaders': ['Content-Type']
 }
 
-app.use(bodyParser.urlencoded({extended:false}))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:false}))  //x-www-form-urlencoded
+app.use(bodyParser.json())  //application/json
 app.use(cors(corsOptions))
 
 gql_server.applyMiddleware({
