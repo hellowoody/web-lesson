@@ -11,11 +11,11 @@
                 <div><h3>4</h3></div>
             </a-carousel>
             <div class="title">
-                <div class="title-left">新产品 {{$store.state.name  }}</div>    
+                <div class="title-left">篮球类</div>    
                 <div class="title-right">查看全部</div>    
             </div> 
             <div class="product-card-list">
-                <product-card style="flex-shrink: 0;margin-right:12px;" v-for="item in 6" :product="productData" :key="item" />
+                <product-card style="flex-shrink: 0;margin-right:12px;" v-for="item in goods" :product="item" :key="item.id" />
             </div>
             <div class="title">
                 <div class="title-left">类别</div>    
@@ -35,15 +35,13 @@ import TopBar from '@/components/topbar/TopBar'
 import MyContent from '@/components/content/MyContent'
 import ProductCard from '@/components/product/ProductCard'
 import BScroll from 'better-scroll'
+import {HttpGql,ImgUrl} from '@/kits/Http'
 
 export default {
-    name:'A',
+    name:'Home',
     data(){
         return {
-            productData : {
-                name:"Iphone x 64",
-                price:"¥ 10000"
-            }
+            goods:[]
         }
     },
     components:{
@@ -51,7 +49,27 @@ export default {
         MyContent,
         ProductCard
     },
-    created:()=>{
+    async created(){
+        let goodtype = "03"
+        let gql = {
+            query:`
+                {
+                    goods(count:5,type:"${goodtype}"){
+                        name
+                        id
+                        price
+                        gooddesc 
+                        imgpath
+                    }
+                }
+            `
+        }
+        let res = await HttpGql(gql)
+        this.goods = res.data.goods.map((item)=>{
+            item.imgpath =  ImgUrl +item.imgpath
+            return item
+        })
+        console.log(this.goods)
     },
     methods:{
         goto(path){

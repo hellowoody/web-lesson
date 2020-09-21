@@ -16,6 +16,7 @@ const typeDefs = gql `
         price:Float,
         gooddesc:String,
         type:Dict,
+        imgpath:String,
     }
 
     type Dict {

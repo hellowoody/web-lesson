@@ -1,12 +1,12 @@
 <template>
     <div class="product-card">
-        <div class="product-img"></div>
+        <div class="product-img" :style="imgStyle"></div>
         <div class="product-desc">
             <div style="color:rgb(0 0 0 / 0.5)">
                 {{product.name}}
             </div>
             <div style="color:#FA6400;">
-                {{product.price}}
+                {{price}}
             </div>
         </div>
     </div>
@@ -17,6 +17,17 @@ export default {
     name:"ProductCard",
     props:{
         product:Object
+    },
+    computed:{
+        price(){
+            return "¥ "+this.product.price
+        },
+        imgStyle(){
+            return {
+                backgroundImage: `url(${this.product.imgpath})`,
+                backgroundSize: 'cover'
+            }
+        }
     }
 }
 </script>
