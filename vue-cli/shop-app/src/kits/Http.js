@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-// const baseUrl = "http://127.0.0.1:8080/api"
-
 const instance = axios.create({
-    baseURL:"http://127.0.0.1:3000/api",
+    baseURL:"http://127.0.0.1:3000",
     timeout:10000, //超时时间
     headers:{
         // 'Content-Type':'application/x-www-form-urlencoded'
@@ -25,16 +23,9 @@ instance.interceptors.response.use( resp => {
     }
 })
 
-let resData = {
-    "code":"",
-    "msg":"",
-    "data":{}
-}
-
 export const Http = (api,param)=>{
-    console.log(api,param)
     return new Promise((resolve,reject)=>{
-        instance.post(api,param)
+        instance.post("/api"+api,param)
             .then(res => {
                 resolve(res.data)
             })
@@ -43,6 +34,24 @@ export const Http = (api,param)=>{
             })
     })
 }
+
+export const HttpGql = (param)=>{
+    return new Promise((resolve,reject)=>{
+        instance.post("/gql",param)
+            .then(res => {
+                resolve(res.data)
+            })
+            .catch(e => {
+                reject(e)
+            })
+    })
+}
+
+// let resData = {
+//     "code":"",
+//     "msg":"",
+//     "data":{}
+// }
 
 // export const Http = (api,param)=>{
 //     let url = baseUrl+api

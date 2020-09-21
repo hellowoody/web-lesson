@@ -94,9 +94,12 @@ export default {
                 this.$message.loading({ content: 'Loading...', key });
                 let res = await Http("/register",this.form)
                 try {
-                    console.log(res)
-                    this.$message.success({ content: res.msg, key, duration: 2 });
-                    this.login()
+                    if(res.code === 1){
+                        this.$message.success({ content: res.msg, key, duration: 2 });
+                        this.login()
+                    }else{
+                         this.$message.error({ content: res.msg, key, duration: 2 });
+                    }
                 } catch (e) {
                     console.log(e)
                     this.$message.error({ content: e, key, duration: 2 });
