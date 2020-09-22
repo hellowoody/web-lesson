@@ -15,7 +15,14 @@
                 <div class="title-right">查看全部</div>    
             </div> 
             <div class="product-card-list">
-                <product-card style="flex-shrink: 0;margin-right:12px;" v-for="item in goods" :product="item" :key="item.id" />
+                <product-card style="flex-shrink: 0;margin-right:12px;" v-for="item in goods03" :product="item" :key="item.id" />
+            </div>
+            <div class="title">
+                <div class="title-left">潮服</div>    
+                <div class="title-right">查看全部</div>    
+            </div> 
+            <div class="product-card-list">
+                <product-card style="flex-shrink: 0;margin-right:12px;" v-for="item in goods06" :product="item" :key="item.id" />
             </div>
             <div class="title">
                 <div class="title-left">类别</div>    
@@ -36,12 +43,13 @@ import MyContent from '@/components/content/MyContent'
 import ProductCard from '@/components/product/ProductCard'
 import BScroll from 'better-scroll'
 import {HttpGql,ImgUrl} from '@/kits/Http'
-
+import {ref} from 'vue'
 export default {
     name:'Home',
     data(){
         return {
-            goods:[]
+            goods03:[],
+            goods06:[],
         }
     },
     components:{
@@ -49,37 +57,16 @@ export default {
         MyContent,
         ProductCard
     },
-    async created(){
-        let goodtype = "03"
-        let gql = {
-            query:`
-                {
-                    goods(count:5,type:"${goodtype}"){
-                        name
-                        id
-                        price
-                        gooddesc 
-                        imgpath
-                    }
-                }
-            `
-        }
-       try {
-            let res = await HttpGql(gql)
-            this.goods = res.data.goods.map((item)=>{
-                item.imgpath =  ImgUrl +item.imgpath
-                return item
-            })
-            console.log(this.goods)
-       } catch (error) {
-           for(let item of [1,2,3,4,5]){
-               this.goods.push({
-                   id:item,
-                   name:"产品名称",
-                   price:0
-               })
-           }
-       }    
+    /*
+        beforecreate  
+        1.data
+        2.methods
+        setup //3.0语法
+        created       
+    */
+    created(){
+        this.initGoodType("03") 
+        this.initGoodType("06")
     },
     methods:{
         goto(path){
@@ -91,6 +78,46 @@ export default {
         onChange(a, b, c) {
             // console.log(a, b, c);
         },
+        async initGoodType(goodtype){
+            let gql = {
+                query:`
+                        {
+                            goods(count:5,type:"${goodtype}"){
+                                name
+                                id
+                                price
+                                gooddesc 
+                                imgpath
+                            }
+                        }
+                    `
+                }
+            try {
+                    let res = await HttpGql(gql)
+                    switch (goodtype) {
+                        case "03":
+                            this.goods03 = res.data.goods.map((item)=>{
+                                item.imgpath =  ImgUrl +item.imgpath
+                                return item
+                            })
+                            break
+                        case "06":
+                            this.goods06 = res.data.goods.map((item)=>{
+                                item.imgpath =  ImgUrl +item.imgpath
+                                return item
+                            })
+                            break
+                    }
+            } catch (error) {
+                for(let item of [1,2,3,4,5]){
+                    this.goods03.push({
+                        id:item,
+                        name:"产品名称",
+                        price:0
+                    })
+                }
+            } 
+        }
     },
     mounted() {
         this.$nextTick(() => { // 使用 this.$nextTick 为了确保组件已经渲染完毕
