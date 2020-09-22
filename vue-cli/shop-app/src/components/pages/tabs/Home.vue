@@ -62,10 +62,10 @@ export default {
     computed:{
         imgStyle(){
             return (url)=>{
-                  return {
+                return url && url !== "" ? {
                     backgroundImage: `url(${url})`,
                     backgroundSize: 'cover'
-                }
+                } : ""
             }
         }
     },
@@ -117,6 +117,7 @@ export default {
                         name:"产品名称",
                         price:0
                     })
+                    this.homeImgs.push("")
                 }
                 this.categorys.push({
                     name:"商品类别",

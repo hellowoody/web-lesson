@@ -23,10 +23,10 @@ export default {
             return "¥ "+this.product.price
         },
         imgStyle(){
-            return {
+            return this.product.imgpath && this.product.imgpath!=="" ? {
                 backgroundImage: `url(${this.product.imgpath})`,
                 backgroundSize: 'cover'
-            }
+            } : ""
         }
     }
 }
