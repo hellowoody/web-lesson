@@ -11,7 +11,7 @@
  Target Server Version : 80018
  File Encoding         : 65001
 
- Date: 21/09/2020 08:56:45
+ Date: 22/09/2020 09:10:48
 */
 
 SET NAMES utf8mb4;
@@ -56,6 +56,7 @@ INSERT INTO `dict_son` VALUES ('02', 'goods_type', 'sony ps5 游戏机', 4);
 INSERT INTO `dict_son` VALUES ('03', 'goods_type', '篮球鞋', 1);
 INSERT INTO `dict_son` VALUES ('04', 'goods_type', '登山鞋', 2);
 INSERT INTO `dict_son` VALUES ('05', 'goods_type', '任天堂switch主机', 5);
+INSERT INTO `dict_son` VALUES ('06', 'goods_type', '潮服', 6);
 COMMIT;
 
 -- ----------------------------
@@ -97,11 +98,12 @@ INSERT INTO `goods` VALUES (17, '乔17', 1016.00, 516, '第17代jordan篮球鞋'
 INSERT INTO `goods` VALUES (18, '乔18', 1017.00, 517, '第18代jordan篮球鞋', '03', 'shoe11.png');
 INSERT INTO `goods` VALUES (19, '乔19', 1018.00, 518, '第19代jordan篮球鞋', '03', 'shoe06.png');
 INSERT INTO `goods` VALUES (20, '乔20', 1019.00, 519, '第20代jordan篮球鞋', '03', 'shoe07.png');
-INSERT INTO `goods` VALUES (21, '乔21', 1020.00, 520, '第21代jordan篮球鞋', '03', 'shoe08.png');
-INSERT INTO `goods` VALUES (22, '乔22', 1021.00, 521, '第22代jordan篮球鞋', '03', 'shoe09.png');
-INSERT INTO `goods` VALUES (23, '乔23', 1022.00, 522, '第23代jordan篮球鞋', '03', 'shoe10.png');
-INSERT INTO `goods` VALUES (24, '乔24', 1023.00, 523, '第24代jordan篮球鞋', '03', 'shoe11.png');
-INSERT INTO `goods` VALUES (25, '乔25', 1024.00, 524, '第25代jordan篮球鞋', '03', 'shoe06.png');
+INSERT INTO `goods` VALUES (21, '夏季牛仔上衣', 100.00, 1000, '夏季牛仔上衣', '06', 'c01.png');
+INSERT INTO `goods` VALUES (22, '淡淡的黄色运动卫衣', 200.00, 1000, '淡淡的黄色运动卫衣', '06', 'c02.png');
+INSERT INTO `goods` VALUES (23, '牛仔夹克', 300.00, 800, '牛仔夹克', '06', 'c03.png');
+INSERT INTO `goods` VALUES (24, '秋季大衣', 400.00, 800, '秋季大衣', '06', 'c04.png');
+INSERT INTO `goods` VALUES (25, '秋季毛衣', 400.00, 800, '秋季毛衣', '06', 'c05.png');
+INSERT INTO `goods` VALUES (26, '女款牛仔夹克', 500.00, 900, '女款牛仔夹克', '06', 'c06.png');
 COMMIT;
 
 -- ----------------------------
@@ -120,6 +122,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `user` VALUES ('li@mail.com', '李先生', '000000');
+INSERT INTO `user` VALUES ('newzhang@mail.com', '正式用户1', '000000');
 INSERT INTO `user` VALUES ('zhang@mail.com', '张三', '000000');
 INSERT INTO `user` VALUES ('zhao1@mail.com', '兆先生', '000000');
 INSERT INTO `user` VALUES ('zhao@mail.com', '兆先生', '000000');
