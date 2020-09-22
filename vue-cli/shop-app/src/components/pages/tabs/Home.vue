@@ -5,10 +5,7 @@
         </top-bar>
         <my-content>
             <a-carousel :after-change="onChange">
-                <div :style="imgStyle"><h3>1</h3></div>
-                <div><h3>2</h3></div>
-                <div><h3>3</h3></div>
-                <div><h3>4</h3></div>
+                <div v-for="(item,index) in homeImgs" :style="imgStyle(item)" :key="item"><h3>{{index + 1}}</h3></div>
             </a-carousel>
             <div v-for="c in categorys" :key="c.id">
                 <div class="title">
@@ -44,6 +41,7 @@ export default {
     data(){
         return {
             categorys:[],
+            homeImgs:[]
         }
     },
     components:{
@@ -63,10 +61,11 @@ export default {
     },
     computed:{
         imgStyle(){
-            let url = "http://localhost:3000/imgs/home01.png"
-            return {
-                backgroundImage: `url(${url})`,
-                backgroundSize: 'cover'
+            return (url)=>{
+                  return {
+                    backgroundImage: `url(${url})`,
+                    backgroundSize: 'cover'
+                }
             }
         }
     },
@@ -85,6 +84,7 @@ export default {
             let gql = {
                 query:`
                         {
+                            homeImgs
                             categorys(type:${t}) {
                                 id
                                 dictid
@@ -108,6 +108,7 @@ export default {
                     })
                 }
                 this.categorys = res.data.categorys
+                this.homeImgs = res.data.homeImgs
             } catch (error) {
                 let goods = []
                 for(let item of [1,2,3,4,5]){

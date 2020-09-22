@@ -6,5 +6,6 @@ module.exports = {
     db_password : "12345678",
     db_database : "shop-app",
     gql_url:"/gql",
-    gql_playground:true
+    gql_playground:true,
+    static_imgs_url:"/imgs"
 }

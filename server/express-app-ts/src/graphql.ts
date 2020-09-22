@@ -3,41 +3,13 @@ import * as gr from './graphqlResolvers'
 
 const config = require("../config");
 
-/*
-
-[
-    {
-        category:{
-            id:"03",
-            name:"鞋"
-        },
-        goods:[
-            {},
-            {},
-            {},
-        ]
-    },
-    {
-        category:{
-            id:"06",
-            name:"衣服"
-        },
-        goods:[
-            {},
-            {},
-            {},
-        ]
-    },
-]
-
-*/
-
 const typeDefs = gql `
     type Query {
         hello : String,
         good(id:Int!) : Good
         goods(count:Int!,type:String,name:String,desc:String) : [Good]
         categorys(type:[String]!) : [Category]
+        homeImgs:[String]
     }
     
     type Good {
@@ -70,6 +42,14 @@ const resolvers = {
         good:gr.good,
         goods:gr.goods,
         categorys:gr.categorys,
+        homeImgs:()=>{
+            let url = config.url + ":" + config.port + config.static_imgs_url
+            return [
+                url + "/home01.png",
+                url + "/home02.png",
+                url + "/home03.png",
+            ]
+        }
     },
     Good:{
         type:gr.goodtype,
