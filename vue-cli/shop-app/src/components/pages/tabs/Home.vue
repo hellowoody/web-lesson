@@ -10,24 +10,15 @@
                 <div><h3>3</h3></div>
                 <div><h3>4</h3></div>
             </a-carousel>
-            <div class="title">
-                <div class="title-left">篮球鞋</div>    
-                <div class="title-right">查看全部</div>    
-            </div> 
-            <div class="product-card-list">
-                <product-card style="flex-shrink: 0;margin-right:12px;" v-for="item in goods03" :product="item" :key="item.id" />
+            <div v-for="c in categorys" :key="c.id">
+                <div class="title">
+                    <div class="title-left">{{c.name}}</div>    
+                    <div class="title-right">查看全部</div>    
+                </div> 
+                <div class="product-card-list">
+                    <product-card style="flex-shrink: 0;margin-right:12px;" v-for="item in c.goods" :product="item" :key="item.id" />
+                </div>
             </div>
-            <div class="title">
-                <div class="title-left">潮服</div>    
-                <div class="title-right">查看全部</div>    
-            </div> 
-            <div class="product-card-list">
-                <product-card style="flex-shrink: 0;margin-right:12px;" v-for="item in goods06" :product="item" :key="item.id" />
-            </div>
-            <div class="title">
-                <div class="title-left">类别</div>    
-                <div class="title-right">查看全部</div>    
-            </div> 
             <div class="wrapper" ref="wrapper" >
                 <ul class="list" ref="list">
                     <div v-for="item in 5" :key="item" style="flex-shrink: 0;margin-right: 12px;width:119px;height:90px;border-radius:15px;background-color:#E5E5E5"></div>
@@ -48,8 +39,7 @@ export default {
     name:'Home',
     data(){
         return {
-            goods03:[],
-            goods06:[],
+            categorys:[],
         }
     },
     components:{
@@ -78,7 +68,7 @@ export default {
             // console.log(a, b, c);
         },
         async initData(){
-            let t = ["03","06"]
+            let t = '["03","06"]'
             let gql = {
                 query:`
                         {
@@ -97,11 +87,15 @@ export default {
                     `
                 }
             try {
-                    let res = await HttpGql(gql)
-                    res.data.goods.map((item)=>{
+                let res = await HttpGql(gql)
+                console.log(res)
+                for(let c of res.data.categorys){
+                    c.goods = c.goods.map((item)=>{
                         item.imgpath =  ImgUrl +item.imgpath
                         return item
                     })
+                }
+                this.categorys = res.data.categorys
             } catch (error) {
                 for(let item of [1,2,3,4,5]){
                     this.goods03.push({
