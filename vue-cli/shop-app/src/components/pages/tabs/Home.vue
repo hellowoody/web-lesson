@@ -65,8 +65,7 @@ export default {
         created       
     */
     created(){
-        this.initGoodType("03") 
-        this.initGoodType("06")
+        this.initData() 
     },
     methods:{
         goto(path){
@@ -78,36 +77,31 @@ export default {
         onChange(a, b, c) {
             // console.log(a, b, c);
         },
-        async initGoodType(goodtype){
+        async initData(){
+            let t = ["03","06"]
             let gql = {
                 query:`
                         {
-                            goods(count:5,type:"${goodtype}"){
-                                name
+                            categorys(type:${t}) {
                                 id
-                                price
-                                gooddesc 
-                                imgpath
+                                dictid
+                                name
+                                goods(count:5){
+                                    id
+                                    name
+                                    price
+                                    imgpath
+                                }
                             }
                         }
                     `
                 }
             try {
                     let res = await HttpGql(gql)
-                    switch (goodtype) {
-                        case "03":
-                            this.goods03 = res.data.goods.map((item)=>{
-                                item.imgpath =  ImgUrl +item.imgpath
-                                return item
-                            })
-                            break
-                        case "06":
-                            this.goods06 = res.data.goods.map((item)=>{
-                                item.imgpath =  ImgUrl +item.imgpath
-                                return item
-                            })
-                            break
-                    }
+                    res.data.goods.map((item)=>{
+                        item.imgpath =  ImgUrl +item.imgpath
+                        return item
+                    })
             } catch (error) {
                 for(let item of [1,2,3,4,5]){
                     this.goods03.push({

@@ -20,6 +20,8 @@ export const goodtype = async (parent:any,args:any,context:any,info:any)=>{
 }
 
 export const goods = async (parent:any,args:any,context:any,info:any)=>{
+    console.log(1000,parent)
+    console.log(2000,args)
     try {
 
         let sql = "select * from goods where 1=1 ";
@@ -28,6 +30,25 @@ export const goods = async (parent:any,args:any,context:any,info:any)=>{
         sql += args.desc ? " and gooddesc like '%"+args.desc+"%' " : "";
         sql += " limit ? " ;
         let res = await Do(sql,[args.count])
+        return res
+    } catch (e) {
+        return e
+    }
+}
+
+export const categorys = async (parent:any,args:any,context:any,info:any)=>{
+    try {
+        let sql = "select * from dict_son where id in (?) ";
+        let res = await Do(sql,[args.type])
+        return res
+    } catch (e) {
+        return e
+    }
+}
+
+export const goodsCategory = async (parent:any,args:any,context:any,info:any)=>{
+    try {
+        let res = await Do("select * from goods where type = ? limit ? ",[parent.id,args.count])
         return res
     } catch (e) {
         return e
