@@ -5,7 +5,7 @@
         </top-bar>
         <my-content>
             <a-carousel :after-change="onChange">
-                <div><h3>1</h3></div>
+                <div :style="imgStyle"><h3>1</h3></div>
                 <div><h3>2</h3></div>
                 <div><h3>3</h3></div>
                 <div><h3>4</h3></div>
@@ -18,6 +18,10 @@
                 <div class="product-card-list">
                     <product-card style="flex-shrink: 0;margin-right:12px;" v-for="item in c.goods" :product="item" :key="item.id" />
                 </div>
+            </div>
+            <div class="title">
+                <div class="title-left">类别</div>    
+                <div class="title-right">产看全部</div>    
             </div>
             <div class="wrapper" ref="wrapper" >
                 <ul class="list" ref="list">
@@ -34,7 +38,7 @@ import MyContent from '@/components/content/MyContent'
 import ProductCard from '@/components/product/ProductCard'
 import BScroll from 'better-scroll'
 import {HttpGql,ImgUrl} from '@/kits/Http'
-import {ref} from 'vue'
+
 export default {
     name:'Home',
     data(){
@@ -56,6 +60,15 @@ export default {
     */
     created(){
         this.initData() 
+    },
+    computed:{
+        imgStyle(){
+            let url = "http://localhost:3000/imgs/home01.png"
+            return {
+                backgroundImage: `url(${url})`,
+                backgroundSize: 'cover'
+            }
+        }
     },
     methods:{
         goto(path){
@@ -88,7 +101,6 @@ export default {
                 }
             try {
                 let res = await HttpGql(gql)
-                console.log(res)
                 for(let c of res.data.categorys){
                     c.goods = c.goods.map((item)=>{
                         item.imgpath =  ImgUrl +item.imgpath
@@ -97,13 +109,18 @@ export default {
                 }
                 this.categorys = res.data.categorys
             } catch (error) {
+                let goods = []
                 for(let item of [1,2,3,4,5]){
-                    this.goods03.push({
+                    goods.push({
                         id:item,
                         name:"产品名称",
                         price:0
                     })
                 }
+                this.categorys.push({
+                    name:"商品类别",
+                    goods
+                })
             } 
         }
     },
