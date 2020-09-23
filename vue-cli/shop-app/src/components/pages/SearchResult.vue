@@ -22,44 +22,15 @@ import TopBar from '@/components/topbar/TopBar'
 import MyContent from '@/components/content/MyContent'
 import ProductCard from '@/components/product/ProductCard'
 import {setArray,getArray} from '@/kits/LocalStorage'
-
-let data = [
-    {
-        name:"乔1",
-        price:"¥ 1000"
-    },
-    {
-        name:"乔2",
-        price:"¥ 2000"
-    },
-    {
-        name:"乔3",
-        price:"¥ 3000"
-    },
-    {
-        name:"乔5",
-        price:"¥ 4000"
-    },
-    {
-        name:"乔6",
-        price:"¥ 5000"
-    },
-    {
-        name:"乔11",
-        price:"¥ 6000"
-    },
-    {
-        name:"乔12",
-        price:"¥ 7000"
-    },
-]
+import {HttpGql} from '@/kits/Http'
 
 export default {
     name:"Search",
     data(){
         return {
-            data,
-            searchInput:this.$route.params.content,   //Vue
+            data:[],
+            // searchInput:this.$route.params.content,   //Vue
+            searchInput:"",   //Vue
             historySearch:getArray("historySearch"),  //本项目的获取localstorage时，是线性获取，或者说不是异步获取
          }
     },
@@ -68,12 +39,37 @@ export default {
         MyContent,
         ProductCard
     },
+    created(){
+        //拿到上一个页面的参数
+        //进行搜索
+        this.searchInput = this.$route.params.content
+        this.search()
+    },
     methods:{
         back(){
             this.$router.go(-1)
         },
-        search(){
-            this.data = this.data.filter((item)=>(item.name.indexOf(this.searchInput) > -1))
+        //async 异步
+        //sync  同步
+        async search(){
+            // this.data = this.data.filter((item)=>(item.name.indexOf(this.searchInput) > -1))
+            let pageCount = 5
+            let p = {
+                query:`
+                    {
+                        goods(count:${pageCount},name:"${this.searchInput}",desc:"${this.searchInput}"){
+                            id
+                            name
+                            price
+                            count
+                            gooddesc
+                            imgpath
+                        }
+                    }
+                `
+            }
+            let res = await HttpGql(p)
+            this.data = res.data.goods
         },
         searchInputChange(content){
             this.searchInput = content

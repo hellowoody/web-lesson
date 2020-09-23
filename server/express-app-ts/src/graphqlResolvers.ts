@@ -20,10 +20,7 @@ export const goodtype = async (parent:any,args:any,context:any,info:any)=>{
 }
 
 export const goods = async (parent:any,args:any,context:any,info:any)=>{
-    console.log(1000,parent)
-    console.log(2000,args)
     try {
-
         let sql = "select * from goods where 1=1 ";
         sql += args.type ? " and type = '"+args.type+"' " : "" ;
         sql += args.name ? " and name like '%"+args.name+"%' " : "";

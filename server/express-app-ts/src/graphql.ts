@@ -19,6 +19,7 @@ const typeDefs = gql `
         gooddesc:String,
         type:Dict,
         imgpath:String,
+        count:Int
     }
 
     type Dict {
