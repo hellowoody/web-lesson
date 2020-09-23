@@ -13,8 +13,17 @@ export const getArray = (key)=>{
 
 export const setArray = (key,val)=>{
     let arr = getArray(key)
-    arr.push(val)
-    localStorage.setItem(key,arr.toString())
+    let ifinsert = true
+    for(let v of arr){
+        if (v === val) {
+            ifinsert = false
+            break
+        }
+    }
+    if (ifinsert) {
+        arr.push(val)
+        localStorage.setItem(key,arr.toString())
+    }
 }
 
 export const clearItem = (key)=>{

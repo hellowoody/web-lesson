@@ -22,7 +22,7 @@ import TopBar from '@/components/topbar/TopBar'
 import MyContent from '@/components/content/MyContent'
 import ProductCard from '@/components/product/ProductCard'
 import {setArray,getArray} from '@/kits/LocalStorage'
-import {HttpGql} from '@/kits/Http'
+import {HttpGql,ImgUrl} from '@/kits/Http'
 
 export default {
     name:"Search",
@@ -68,8 +68,15 @@ export default {
                     }
                 `
             }
-            let res = await HttpGql(p)
-            this.data = res.data.goods
+            try {
+                let res = await HttpGql(p)
+                this.data = res.data.goods.map((item)=>{
+                    item.imgpath = ImgUrl + item.imgpath
+                    return item
+                })
+            } catch (e) {
+                
+            }
         },
         searchInputChange(content){
             this.searchInput = content
