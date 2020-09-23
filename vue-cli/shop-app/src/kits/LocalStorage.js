@@ -13,14 +13,7 @@ export const getArray = (key)=>{
 
 export const setArray = (key,val)=>{
     let arr = getArray(key)
-    let ifinsert = true
-    for(let v of arr){
-        if (v === val) {
-            ifinsert = false
-            break
-        }
-    }
-    if (ifinsert) {
+    if (arr.indexOf(val) < 0) {
         arr.push(val)
         localStorage.setItem(key,arr.toString())
     }

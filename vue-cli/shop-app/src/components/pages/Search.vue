@@ -11,7 +11,7 @@
                     <div style="color:rgb(182, 32, 224);font-size:14px;" @click="clearSearchHistory">清空</div>
                 </div>
                 <div class="history-search-content">
-                    <div class="history-search-item" v-for="(item,index) in historySearch" :key="index+item">{{item}}</div>
+                    <div @click="searchByHistory(item)" class="history-search-item" v-for="(item,index) in historySearch" :key="index+item">{{item}}</div>
                 </div>
             </div>
         </my-content>
@@ -51,6 +51,14 @@ export default {
             }else{
                 this.$message.info('请输入要查询的东西');
             }
+        },
+        searchByHistory(content){
+            this.$router.push({
+                name:"searchresult",
+                params:{
+                    content
+                }
+            })
         },
         searchInputChange(content){
             this.searchInput = content
