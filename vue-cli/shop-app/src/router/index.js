@@ -11,6 +11,7 @@ import SearchResult from '@/components/pages/SearchResult.vue';
 import OnBoarding from '@/components/pages/OnBoarding.vue';
 import Login from '@/components/pages/Login.vue';
 import Register from '@/components/pages/Register.vue';
+import GoodsCategory from '@/components/pages/GoodsCategory.vue';
 
 Vue.use(VueRouter) 
 
@@ -29,6 +30,7 @@ const routes = [
   {path:'/cart',name:'cart',component:Cart},
   {path:'/search',name:'search',component:Search},
   {path:'/searchresult',name:'searchresult',component:SearchResult},
+  {path:'/goodscategory',name:'goodscategory',component:GoodsCategory},
 ]
 
 const router = new VueRouter({
