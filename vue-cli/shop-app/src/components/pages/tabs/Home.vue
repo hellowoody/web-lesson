@@ -10,7 +10,7 @@
             <div v-for="c in categorys" :key="c.id">
                 <div class="title">
                     <div class="title-left">{{c.name}}</div>    
-                    <div class="title-right" @click="goto('/goodscategory')">查看全部</div>    
+                    <div class="title-right" @click="goto('goodscategory',c.id)">查看全部</div>    
                 </div> 
                 <div class="product-card-list">
                     <product-card style="flex-shrink: 0;margin-right:12px;" v-for="item in c.goods" :product="item" :key="item.id" />
@@ -70,8 +70,13 @@ export default {
         }
     },
     methods:{
-        goto(path){
-            this.$router.push({path})
+        goto(name,content){
+            this.$router.push({
+                name,
+                params:{
+                    content
+                }
+            })
         },
         search(){
             this.$router.push({path:'/search'})
