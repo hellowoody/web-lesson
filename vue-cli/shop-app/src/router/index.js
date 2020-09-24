@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Main from '@/components/pages/Main';
 import Home from '@/components/pages/tabs/Home';
-import Product from '@/components/pages/tabs/Product';
+import Category from '@/components/pages/tabs/Category';
 import Order from '@/components/pages/tabs/Order';
 import Account from '@/components/pages/tabs/Account';
 import Cart from '@/components/pages/Cart.vue';
@@ -19,7 +19,7 @@ const routes = [
   {path:'/',redirect:{path:"/main/home"}},
   {path:'/main',component:Main,children:[
     {path:'home',component:Home},
-    {path:'product',component:Product},
+    {path:'category',component:Category},
     {path:'order',component:Order},
     {path:'account',component:Account},
   ]},
