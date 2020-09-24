@@ -1,6 +1,6 @@
 <template>
     <div>
-        <top-bar @searchInputChangeHandle="searchInputChange" :searchInput="searchInput">
+        <top-bar @searchInputChangeHandle="searchInputChange" >
             <div slot="left" style="font-size:24px;" class="iconfont icon-back1" @click="back"></div>
             <div slot="right" style="font-size:24px;" class="iconfont icon-search" @click="search"></div>
         </top-bar>
@@ -26,7 +26,8 @@ export default {
     data(){
         return {
             searchInput:"",
-            goods:[]
+            goods:[],
+            type:""
         }
     },
     components:{
@@ -35,17 +36,18 @@ export default {
         ProductCard,
     },
     created(){
-        this.search(this.$route.params.content)
+        this.type = this.$route.params.content
+        this.search()
     },
     methods:{
         back(){
             this.$router.go(-1)
         },
-        search(type){
+        search(){
             let p = {
                 query:`
                     {
-                        goods (count:5,type:"${type}") {
+                        goods (count:5,type:"${this.type}",name:"${this.searchInput}") {
                             id
                             name
                             price
