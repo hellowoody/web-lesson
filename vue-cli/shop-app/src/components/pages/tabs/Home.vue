@@ -1,7 +1,7 @@
 <template>
     <div>
         <top-bar :focusFunc="search" >
-            <div slot="right" @click="goto('/cart')" class="iconfont icon-gouwuchezhengpin" style="font-size: 24px"></div>
+            <div slot="right" @click="goto('cart')" class="iconfont icon-gouwuchezhengpin" style="font-size: 24px"></div>
         </top-bar>
         <my-content>
             <a-carousel :after-change="onChange">
@@ -71,12 +71,12 @@ export default {
     },
     methods:{
         goto(name,content){
-            this.$router.push({
+            content ? this.$router.push({
                 name,
                 params:{
                     content
                 }
-            })
+            }) : this.$router.push({name})
         },
         search(){
             this.$router.push({path:'/search'})

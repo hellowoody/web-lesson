@@ -3,7 +3,7 @@
         <my-content>
             <div class="title">商品类别</div>
             <div class="card-list">
-                <div v-for="item in categorys" :key="item.id" class="card" :style="cardStyle(item)">
+                <div v-for="item in categorys" :key="item.id" class="card" :style="cardStyle(item)" @click="goto('goodscategory',{content:item.id})">
                     <div :class="item.logo"></div>
                     <div class="card-right" :style="cardRightStyle(item )">{{item.name}}</div>
                 </div>
@@ -55,6 +55,14 @@ export default {
     },
     components:{
         MyContent,
+    },
+    methods:{
+        goto(name,params){
+            params ? this.$router.push({
+                name,
+                params,
+            }) : this.$router.push({name})
+        }
     },
     computed:{
         cardStyle(){
