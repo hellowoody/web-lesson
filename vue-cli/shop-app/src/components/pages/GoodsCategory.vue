@@ -37,13 +37,13 @@ export default {
     },
     created(){
         this.type = this.$route.params.content
-        this.search()
+        this.searchData()
     },
     methods:{
         back(){
             this.$router.go(-1)
         },
-        search(){
+        searchData(){
             let p = {
                 query:`
                     {
@@ -62,6 +62,13 @@ export default {
                     return item
                 })
             })
+        },
+        search(){
+            if(this.searchInput !== ""){
+                this.searchData()
+            }else{
+                this.$message.info("请输入要查询的东西")
+            }
         },
         searchInputChange(content){
             this.searchInput = content
