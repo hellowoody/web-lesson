@@ -17,12 +17,13 @@
                 </div>
             </div>
             <div class="title">
-                <div class="title-left">类别</div>    
-                <div class="title-right">产看全部</div>    
+                <div class="title-left">更多内容</div>    
             </div>
             <div class="wrapper" ref="wrapper" >
                 <ul class="list" ref="list">
-                    <div v-for="item in 5" :key="item" style="flex-shrink: 0;margin-right: 12px;width:119px;height:90px;border-radius:15px;background-color:#E5E5E5"></div>
+                    <div v-for="item in moreContent" :key="item.name" class="more-content" :style="moreContentStyle(item)">
+                        <div style="opacity:0.8">{{item.name}}</div>
+                    </div>
                 </ul>
             </div>
         </my-content>
@@ -36,12 +37,36 @@ import ProductCard from '@/components/product/ProductCard'
 import BScroll from 'better-scroll'
 import {HttpGql,ImgUrl} from '@/kits/Http'
 
+let moreContent = [
+    {
+        name:"爆款",
+        backgroundColor:"#F9BEAD",
+        fontColor:"#D84933",
+    },
+    {
+        name:"特价",
+        backgroundColor:"#FBD96D",
+        fontColor:"#B68700",
+    },
+    {
+        name:"二手",
+        backgroundColor:"#DFF8EA",
+        fontColor:"#07A565",
+    },
+    {
+        name:"拼一拼",
+        backgroundColor:"#B1EAFD",
+        fontColor:"#155162",
+    },
+]
+
 export default {
     name:'Home',
     data(){
         return {
             categorys:[],
-            homeImgs:[]
+            homeImgs:[],
+            moreContent,
         }
     },
     components:{
@@ -66,6 +91,14 @@ export default {
                     backgroundImage: `url(${url})`,
                     backgroundSize: 'cover'
                 } : ""
+            }
+        },
+        moreContentStyle(){
+            return (obj)=>{
+                return {
+                    backgroundColor:obj.backgroundColor,
+                    color:obj.fontColor,
+                }
             }
         }
     },
@@ -171,8 +204,8 @@ export default {
 .wrapper {
     overflow: hidden;
     white-space: nowrap; /*当子元素超过父元素宽度的时候，不会折行*/
-    margin-left: 24px;
     margin-top:12px;
+    touch-action: none;
 }
 
 .wrapper .list {
@@ -201,6 +234,20 @@ export default {
     font-size: 12px;
     color:#B620E0;
     align-self: flex-end;
+}
+
+.more-content {
+    flex-shrink: 0;
+    margin-right: 12px;
+    width:119px;
+    height:90px;
+    border-radius:15px;
+    background-color:#E5E5E5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 19px;
+    font-weight: bold;
 }
 
 /* 隐藏滚动进度条 */
