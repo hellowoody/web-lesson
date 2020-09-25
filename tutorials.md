@@ -779,6 +779,63 @@ function sum(arr){
 
 - 满足上述条件的都被视为简单请求
 
+## 24.单例范式-Singleton
+
+  在面向对象语言中，调用一个类的方法之前，必须先将这个类实例化，才能调用类方法。
+
+  单例模式能使得我们不需要每次都需要实例化一次，因为我们使用的对象都是同一个对象。
+
+  单例模式：只允许实例化一次的对象类。
+
+  -简单模式
+  
+  ```
+  let Singleton = function(name){
+      this.name = name
+      this.instance = null
+  }
+
+  Singleton.getInstance = (name)=>{
+      if (this.instance) {
+          return this.instance
+      }else{
+          this.instance = new Singleton(name)
+          return this.instance
+      }
+  }
+
+  let i1 = Singleton.getInstance("张三")
+  let i2 = Singleton.getInstance("李四")
+
+  console.log("i1 getInstance : ",i1.name)
+  console.log("i2 getInstance : ",i2.name)
+  console.log(i1 === i2)
+  ```
+
+  - 常规模式
+
+  ```
+  let SessionSingleton = (()=>{
+      let instance = null
+      return function(name){
+          if (instance) {
+              return instance
+          }else{
+              this.name = name
+              instance = this
+              return instance
+          }  
+      }
+  })()
+
+  let ss1 = new SessionSingleton("zhangsan")
+  let ss2 = new SessionSingleton("lisi")
+
+  console.log(ss1 === ss2)
+  console.log(ss1.name)
+  console.log(ss2.name)
+  ```
+
 ## leetcode刷题
 
 ## 可视化的简单算法
