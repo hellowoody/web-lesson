@@ -23,8 +23,10 @@ export const goods = async (parent:any,args:any,context:any,info:any)=>{
     try {
         let sql = "select * from goods where 1=1 ";
         sql += args.type ? " and type = '"+args.type+"' " : "" ;
-        sql += args.name ? " and name like '%"+args.name+"%' " : "";
-        sql += args.desc ? " and gooddesc like '%"+args.desc+"%' " : "";
+        sql += " and ( 1=1  "
+        sql += args.name ? " and  name like '%"+args.name+"%' " : "";
+        sql += args.desc ? " or gooddesc like '%"+args.desc+"%'  " : "";
+        sql += " ) "
         sql += " limit ? " ;
         let res = await Do(sql,[args.count])
         return res

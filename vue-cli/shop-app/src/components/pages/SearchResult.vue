@@ -53,7 +53,7 @@ export default {
         //sync  同步
         async search(){
             // this.data = this.data.filter((item)=>(item.name.indexOf(this.searchInput) > -1))
-            let pageCount = 5
+            let pageCount = 8
             let p = {
                 query:`
                     {
