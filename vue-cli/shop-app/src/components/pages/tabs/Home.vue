@@ -3,7 +3,7 @@
         <top-bar :focusFunc="search" >
             <div slot="right" @click="goto('cart')" class="iconfont icon-gouwuchezhengpin" style="font-size: 24px"></div>
         </top-bar>
-        <my-content>
+        <my-content :refreshFunc="refresh">
             <a-carousel :after-change="onChange">
                 <div v-for="(item,index) in homeImgs" :style="imgStyle(item)" :key="item"><h3>{{index + 1}}</h3></div>
             </a-carousel>
@@ -103,6 +103,11 @@ export default {
         }
     },
     methods:{
+        refresh(){
+            return new Promise((resolve,reject)=>{
+                setTimeout(()=>resolve(),3000)
+            })
+        },
         goto(name,content){
             content ? this.$router.push({
                 name,

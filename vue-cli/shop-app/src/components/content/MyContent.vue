@@ -8,6 +8,9 @@
 <script>
 export default {
     name:"MyContent",
+    props:{
+        refreshFunc:Function
+    },
     data(){
         return {
             loading : false,
@@ -48,7 +51,7 @@ export default {
 
         })
 
-        content.addEventListener("touchend",()=>{
+        content.addEventListener("touchend",(e)=>{
             if(this.distance === 0){
                 e.preventDefault()
                 return 
@@ -59,9 +62,9 @@ export default {
             }
             if(this.distance > 0){
                 this.loading = true
-                setTimeout(()=>{
+                this.refreshFunc().then(()=>{
                     this.loading = false
-                },2000)
+                })
             }
         })
     }
