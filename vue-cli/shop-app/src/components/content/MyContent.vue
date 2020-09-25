@@ -16,8 +16,8 @@ export default {
         }
     },
     mounted(){
-        // document.getElementById("content")  这种方式应该也可以
         const content = this.$refs.content
+        // const content = document.getElementById("content") // 这种方式不可以，应为vue中的dom元素是v-dom 虚拟dom元素，所以没办法增加监听事件
         content.addEventListener("touchstart",(e)=>{
             if(this.loading){
                 e.preventDefault(); //阻止冒泡事件
