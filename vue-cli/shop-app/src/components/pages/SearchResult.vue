@@ -4,7 +4,7 @@
             <div @click="back" slot="left" class="iconfont icon-back1" style="font-size:24px" ></div>
             <div @click="search" slot="right" class="iconfont icon-search" style="font-size:24px" ></div>
         </top-bar> 
-        <my-content>
+        <my-content :refreshFunc="refresh" pull>
             <div style="color:rgb(0 0 0 / 0.5);font-size:15px;font-weight: bold;">有{{data.length}}个商品符合要求</div>
             <div style="margin-top:16px;">
                 <a-list :grid="{ gutter: 16, column: 2 }" :data-source="data">
@@ -49,6 +49,9 @@ export default {
         back(){
             this.$router.go(-1)
         },
+        refresh(){
+            return this.search()
+        },
         //async 异步
         //sync  同步
         async search(){
@@ -74,8 +77,9 @@ export default {
                     item.imgpath = ImgUrl + item.imgpath
                     return item
                 })
+                return true
             } catch (e) {
-                
+                return false
             }
         },
         searchInputChange(content){
