@@ -4,7 +4,7 @@
             <div slot="left" style="font-size:24px;" class="iconfont icon-back1" @click="back"></div>
             <div slot="right" style="font-size:24px;" class="iconfont icon-search" @click="search"></div>
         </top-bar>
-        <my-content>
+        <my-content :refreshFunc="refresh" pull>
             <div>搜索结果</div>
             <a-list :grid="{ gutter: 16, column: 2 }" :data-source="goods" style="margin-top:16px">
                 <a-list-item slot="renderItem" slot-scope="item">
@@ -43,6 +43,9 @@ export default {
         back(){
             this.$router.go(-1)
         },
+        refresh(){
+            return this.searchData()
+        },
         searchData(){
             let p = {
                 query:`
@@ -56,11 +59,14 @@ export default {
                     }
                 `
             }
-            HttpGql(p).then((res)=>{
+            return HttpGql(p).then((res)=>{
                 this.goods = res.data.goods.map((item)=>{
                     item.imgpath = ImgUrl + item.imgpath
                     return item
                 })
+                return true
+            }).catch(()=>{
+                return false
             })
         },
         search(){
