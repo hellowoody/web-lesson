@@ -1,6 +1,7 @@
 <template>
     <div ref="content" class="my-content">
-        <div v-if="loading" class="loading" >下拉刷新</div>
+        <div v-if="loading" class="loading" :style="loadingStyle"><span class="iconfont icon-Loading my-loading"></span>正在加载</div>
+        <div v-else class="loading" :style="loadingStyle">{{msg}}</div>
         <slot></slot>
     </div>
 </template>
@@ -15,7 +16,16 @@ export default {
         return {
             loading : false,
             touchstart : 0, // 手指触摸屏幕的起点
-            distance : 0.   // 手指滑动的距离
+            distance : 0,   // 手指滑动的距离
+            msg:"",
+            tmpheight:0
+        }
+    },
+    computed:{
+        loadingStyle(){
+            return {
+                marginBottom:this.tmpheight+"px"
+            }
         }
     },
     mounted(){
@@ -46,8 +56,10 @@ export default {
                 this.distance = touch.clientY - this.touchstart
                 if (this.distance > 0) {
                     e.preventDefault()
-                    if (this.distance < 80 ){
+                    if (this.distance < 35 ){
+                         this.tmpheight = this.distance
                          content.style.transform = "translate3D(0px,"+this.distance+"px,0px)"
+                         this.msg = "下拉刷新"
                     }
                 }
             }
@@ -68,6 +80,8 @@ export default {
                 this.refreshFunc().then(()=>{
                     this.loading = false
                     content.style.transform = "translate3D(0px,0px,0px)"
+                    this.msg = ""
+                    this.tmpheight = 0
                 })
             }
         })
@@ -90,9 +104,24 @@ export default {
 .loading {
     display:flex;
     justify-content: center;
-    align-items: center;
     color: rgb(0 0 0 / 0.5);
     font-size:16px;
+}
+
+@keyframes rotation{
+    from {-webkit-transform: rotate(0deg);}
+    to {-webkit-transform: rotate(360deg);}
+}
+
+.my-loading {
+    color : #B620E0;
+    font-size:16px;
+    margin-right: 6px;
+    transform: rotate(360deg);
+    animation: rotation 3s linear infinite;
+    -moz-animation: rotation 3s linear infinite;
+    -webkit-animation: rotation 3s linear infinite;
+    -o-animation: rotation 3s linear infinite;
 }
 
 </style>

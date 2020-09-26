@@ -62,6 +62,13 @@
       "unicode_decimal": 59262
     },
     {
+      "icon_id": "2778399",
+      "name": "Loading",
+      "font_class": "Loading",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
       "icon_id": "7448499",
       "name": "衣服",
       "font_class": "yifu",
