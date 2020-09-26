@@ -1,6 +1,6 @@
 <template>
     <div ref="content" class="my-content">
-        <div v-if="loading" class="loading" :style="loadingStyle"><span class="iconfont icon-Loading my-loading"></span>正在加载</div>
+        <div v-if="loading" class="loading" :style="loadingStyle"><span class="iconfont icon-Loading my-loading"></span>{{resMsg}}</div>
         <div v-else class="loading" :style="loadingStyle">{{msg}}</div>
         <slot></slot>
     </div>
@@ -10,13 +10,18 @@
 export default {
     name:"MyContent",
     props:{
-        refreshFunc:Function
+        pull:Boolean,
+        refreshFunc:{
+            type:Function,
+            default:function(){}
+        }
     },
     data(){
         return {
             loading : false,
             touchstart : 0, // 手指触摸屏幕的起点
             distance : 0,   // 手指滑动的距离
+            resMsg:"正在加载",
             msg:"",
             tmpheight:0
         }
@@ -29,62 +34,67 @@ export default {
         }
     },
     mounted(){
-        const content = this.$refs.content
-        // const content = document.getElementById("content") // 这种方式不可以，应为vue中的dom元素是v-dom 虚拟dom元素，所以没办法增加监听事件
-        content.addEventListener("touchstart",(e)=>{
-            if(this.loading){
-                e.preventDefault(); //阻止冒泡事件
-                return 
-            }
-            // 获取手指第一此触碰屏幕所在的位置
-            this.touchstart = e.targetTouches[0].clientY
-        })
+        if(this.pull){
+            const content = this.$refs.content
+            // const content = document.getElementById("content") // 这种方式不可以，应为vue中的dom元素是v-dom 虚拟dom元素，所以没办法增加监听事件
+            content.addEventListener("touchstart",(e)=>{
+                if(this.loading){
+                    e.preventDefault(); //阻止冒泡事件
+                    return 
+                }
+                // 获取手指第一此触碰屏幕所在的位置
+                this.touchstart = e.targetTouches[0].clientY
+            })
 
-        content.addEventListener("touchmove",(e)=>{
-            if (this.touchstart <= 0){
-                e.preventDefault(); //阻止冒泡事件
-                return
-            }
-            if(this.loading){
-                e.preventDefault()
-                return
-            }
-            const touch = e.targetTouches[0]
-            const scrollTop = content.scrollTop
-
-            if(scrollTop === 0){
-                this.distance = touch.clientY - this.touchstart
-                if (this.distance > 0) {
+            content.addEventListener("touchmove",(e)=>{
+                if (this.touchstart <= 0){
+                    return
+                }
+                if(this.loading){
                     e.preventDefault()
-                    if (this.distance < 35 ){
-                         this.tmpheight = this.distance
-                         content.style.transform = "translate3D(0px,"+this.distance+"px,0px)"
-                         this.msg = "下拉刷新"
+                    e.stopPropagation()
+                    return
+                }
+                const touch = e.targetTouches[0]
+                const scrollTop = content.scrollTop
+
+                if(scrollTop === 0){
+                    this.distance = touch.clientY - this.touchstart
+                    if (this.distance > 0) {
+                        e.preventDefault()
+                        if (this.distance < 35 ){
+                            this.tmpheight = this.distance
+                            content.style.transform = "translate3D(0px,"+this.distance+"px,0px)"
+                            this.msg = "下拉刷新"
+                        }
                     }
                 }
-            }
 
-        })
+            })
 
-        content.addEventListener("touchend",(e)=>{
-            if(this.distance === 0){
-                e.preventDefault()
-                return 
-            }
-            if(this.loading){
-                e.preventDefault()
-                return
-            }
-            if(this.distance > 0){
-                this.loading = true
-                this.refreshFunc().then(()=>{
-                    this.loading = false
-                    content.style.transform = "translate3D(0px,0px,0px)"
-                    this.msg = ""
-                    this.tmpheight = 0
-                })
-            }
-        })
+            content.addEventListener("touchend",(e)=>{
+                if(this.distance === 0){
+                    return 
+                }
+                if(this.loading){
+                    e.preventDefault()
+                    e.stopPropagation()
+                    return
+                }
+                if(this.distance > 0){
+                    this.loading = true
+                    this.refreshFunc().then((res)=>{
+                        res ? "" : this.resMsg = "获取数据失败"
+                        setTimeout(()=>{
+                            this.loading = false
+                            content.style.transform = "translate3D(0px,0px,0px)"
+                            this.msg = ""
+                            this.tmpheight = 0
+                        },800)
+                    })
+                }
+            })
+        }
     }
 }
 </script>
@@ -109,7 +119,7 @@ export default {
 }
 
 @keyframes rotation{
-    from {-webkit-transform: rotate(0deg);}
+    from  {-webkit-transform: rotate(0deg);}
     to {-webkit-transform: rotate(360deg);}
 }
 

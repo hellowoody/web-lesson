@@ -3,7 +3,7 @@
         <top-bar :focusFunc="search" >
             <div slot="right" @click="goto('cart')" class="iconfont icon-gouwuchezhengpin" style="font-size: 24px"></div>
         </top-bar>
-        <my-content :refreshFunc="refresh">
+        <my-content :refreshFunc="refresh" pull>
             <a-carousel :after-change="onChange">
                 <div v-for="(item,index) in homeImgs" :style="imgStyle(item)" :key="item"><h3>{{index + 1}}</h3></div>
             </a-carousel>
@@ -104,9 +104,7 @@ export default {
     },
     methods:{
         refresh(){
-            return new Promise((resolve,reject)=>{
-                setTimeout(()=>resolve(),2000)
-            })
+            return this.initData()
         },
         goto(name,content){
             content ? this.$router.push({
@@ -152,6 +150,7 @@ export default {
                 }
                 this.categorys = res.data.categorys
                 this.homeImgs = res.data.homeImgs
+                return true
             } catch (error) {
                 let goods = []
                 for(let item of [1,2,3,4,5]){
@@ -166,6 +165,7 @@ export default {
                     name:"商品类别",
                     goods
                 })
+                return false
             } 
         }
     },

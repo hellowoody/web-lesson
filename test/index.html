@@ -1,10 +1,31 @@
 <html>
     <head></head>
     <body>
-
+<div onclick="test3()"> 333
+    <div onclick="test2()"> 222
+    <div id="div1" >111</div>
+    </div>
+</div>
     </body>
 </html>
 <script>
+
+document.getElementById("div1").addEventListener("click",(e)=>{
+
+    console.log(1000)
+    e.preventDefault()
+    return 
+})
+
+
+
+function test2(){
+    console.log(2000)
+}
+function test3(){
+    console.log(3000)
+}
+
 // var message = 100
 // function foo(){
 //     console.log(message)
