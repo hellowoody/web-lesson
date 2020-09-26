@@ -3,21 +3,19 @@
     <body>
 <div onclick="test3()"> 333
     <div onclick="test2()"> 222
-    <div id="div1" >111</div>
+        <a href="http://baidu.com">jump <div onclick="test()" >111</div> </a>
+    
     </div>
 </div>
     </body>
 </html>
 <script>
 
-document.getElementById("div1").addEventListener("click",(e)=>{
-
+function test(){
+    // window.event.preventDefault()  // 阻止默认事件
+    // window.event.stopPropagation()    //阻止冒泡事件
     console.log(1000)
-    e.preventDefault()
-    return 
-})
-
-
+}
 
 function test2(){
     console.log(2000)
@@ -126,14 +124,14 @@ function test3(){
 //     console.log(item,key)
 // })
 
-function makeFunc() {
-    var name = "Mozilla";
-    function displayName() {
-        alert(name);
-    }
-    return displayName;
-}
+// function makeFunc() {
+//     var name = "Mozilla";
+//     function displayName() {
+//         alert(name);
+//     }
+//     return displayName;
+// }
 
-var myFunc = makeFunc();
-myFunc();
+// var myFunc = makeFunc();
+// myFunc();
 </script>

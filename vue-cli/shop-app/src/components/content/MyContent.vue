@@ -39,7 +39,8 @@ export default {
             // const content = document.getElementById("content") // 这种方式不可以，应为vue中的dom元素是v-dom 虚拟dom元素，所以没办法增加监听事件
             content.addEventListener("touchstart",(e)=>{
                 if(this.loading){
-                    e.preventDefault(); //阻止冒泡事件
+                    e.preventDefault();  //阻止默认事件
+                    e.stopPropagation()  //阻止冒泡事件
                     return 
                 }
                 // 获取手指第一此触碰屏幕所在的位置
@@ -51,8 +52,8 @@ export default {
                     return
                 }
                 if(this.loading){
-                    e.preventDefault()
-                    e.stopPropagation()
+                    e.preventDefault();  //阻止默认事件
+                    e.stopPropagation()  //阻止冒泡事件
                     return
                 }
                 const touch = e.targetTouches[0]
@@ -77,8 +78,8 @@ export default {
                     return 
                 }
                 if(this.loading){
-                    e.preventDefault()
-                    e.stopPropagation()
+                    e.preventDefault();  //阻止默认事件
+                    e.stopPropagation()  //阻止冒泡事件
                     return
                 }
                 if(this.distance > 0){
@@ -90,6 +91,7 @@ export default {
                             content.style.transform = "translate3D(0px,0px,0px)"
                             this.msg = ""
                             this.tmpheight = 0
+                            this.distance = 0
                         },800)
                     })
                 }
