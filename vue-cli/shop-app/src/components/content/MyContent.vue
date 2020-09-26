@@ -1,7 +1,6 @@
 <template>
     <div ref="content" class="my-content">
-        <div ref="refreshdiv" v-show="loading" class="loading" >下拉刷新</div>
-        <!-- v-if ｜ v-show    -->
+        <div v-if="loading" class="loading" >下拉刷新</div>
         <slot></slot>
     </div>
 </template>
@@ -21,8 +20,6 @@ export default {
     },
     mounted(){
         const content = this.$refs.content
-        const refreshdiv = this.$refs.refreshdiv
-        console.log(refreshdiv)
         // const content = document.getElementById("content") // 这种方式不可以，应为vue中的dom元素是v-dom 虚拟dom元素，所以没办法增加监听事件
         content.addEventListener("touchstart",(e)=>{
             if(this.loading){
@@ -49,7 +46,9 @@ export default {
                 this.distance = touch.clientY - this.touchstart
                 if (this.distance > 0) {
                     e.preventDefault()
-                    refreshdiv.style.height = this.distance + 'px'
+                    if (this.distance < 80 ){
+                         content.style.transform = "translate3D(0px,"+this.distance+"px,0px)"
+                    }
                 }
             }
 
@@ -68,6 +67,7 @@ export default {
                 this.loading = true
                 this.refreshFunc().then(()=>{
                     this.loading = false
+                    content.style.transform = "translate3D(0px,0px,0px)"
                 })
             }
         })
@@ -82,6 +82,9 @@ export default {
     height: 100vh;
     overflow-x:hidden; /* 防止横向滚动条 */
     margin-bottom: 55px;
+    transition: 300ms;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .loading {

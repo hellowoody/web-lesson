@@ -105,7 +105,7 @@ export default {
     methods:{
         refresh(){
             return new Promise((resolve,reject)=>{
-                setTimeout(()=>resolve(),3000)
+                setTimeout(()=>resolve(),2000)
             })
         },
         goto(name,content){
