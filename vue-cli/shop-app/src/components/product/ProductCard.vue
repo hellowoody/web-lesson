@@ -1,5 +1,5 @@
 <template>
-    <div class="product-card">
+    <div @click="goto" class="product-card">
         <div class="product-img" :style="imgStyle"></div>
         <div class="product-desc">
             <div style="color:rgb(0 0 0 / 0.5)">
@@ -17,6 +17,13 @@ export default {
     name:"ProductCard",
     props:{
         product:Object
+    },
+    methods:{
+        goto(){
+            this.$router.push({
+                name:'gooddetail'
+            })
+        }
     },
     computed:{
         price(){
