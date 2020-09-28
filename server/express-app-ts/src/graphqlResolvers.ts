@@ -27,8 +27,8 @@ export const goods = async (parent:any,args:any,context:any,info:any)=>{
         sql += args.name ? " and  name like '%"+args.name+"%' " : "";
         sql += args.desc ? " or gooddesc like '%"+args.desc+"%'  " : "";
         sql += " ) "
-        sql += " limit ? " ;
-        let res = await Do(sql,[args.count])
+        sql += " limit ?,?" ;
+        let res = await Do(sql,[args.start,args.count])
         return res
     } catch (e) {
         return e

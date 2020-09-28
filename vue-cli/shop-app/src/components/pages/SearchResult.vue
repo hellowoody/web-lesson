@@ -35,6 +35,7 @@ export default {
     name:"Search",
     data(){
         return {
+            start:0,
             data:[],
             // searchInput:this.$route.params.content,   //Vue
             busy: false,
@@ -51,7 +52,7 @@ export default {
         //拿到上一个页面的参数
         //进行搜索
         this.searchInput = this.$route.params.content
-        this.search()
+        // this.search()
     },
     methods:{
         back(){
@@ -68,7 +69,7 @@ export default {
             let p = {
                 query:`
                     {
-                        goods(count:${pageCount},name:"${this.searchInput}",desc:"${this.searchInput}"){
+                        goods(start:${this.start},count:${pageCount},name:"${this.searchInput}",desc:"${this.searchInput}"){
                             id
                             name
                             price
@@ -81,10 +82,11 @@ export default {
             }
             try {
                 let res = await HttpGql(p)
-                this.data = res.data.goods.map((item)=>{
+                this.data = this.data.concat(res.data.goods.map((item)=>{
                     item.imgpath = ImgUrl + item.imgpath
                     return item
-                })
+                }))
+                this.start += pageCount
                 return true
             } catch (e) {
                 return false
@@ -94,7 +96,8 @@ export default {
             this.searchInput = content
         },
         handleInfiniteOnLoad(){
-            console.log(1000)
+           console.log(1000)
+           this.search()
         }
     }
 }
