@@ -30,9 +30,7 @@ const routes = [
   {path:'/onboarding',name:"onboarding",component:OnBoarding},
   {path:'/cart',name:'cart',component:Cart},
   {path:'/search',name:'search',component:Search},
-  {path:'/searchresult',name:'searchresult',component:SearchResult,meta:{
-    keepAlive:true //此组件需要被缓存
-  }},
+  {path:'/searchresult',name:'searchresult',component:SearchResult},
   {path:'/goodscategory',name:'goodscategory',component:GoodsCategory},
   {path:'/gooddetail',name:'gooddetail',component:GoodDetail},
 ]

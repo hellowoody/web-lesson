@@ -11,6 +11,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state:{
         cartData: [],
+        searchInput:""
     },
     //同步修改
     mutations:{
@@ -26,6 +27,9 @@ const store = new Vuex.Store({
             if(state.cartData[index].count > 0){
                 state.cartData[index].count -= 1
             }
+        },
+        setSearchInput(state,newVal){
+            state.searchInput = newVal
         }
     },
     //异步修改

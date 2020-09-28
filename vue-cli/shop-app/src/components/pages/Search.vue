@@ -42,22 +42,18 @@ export default {
         search(){
             if (this.searchInput !== "") {
                 setArray("historySearch",this.searchInput)
+                this.$store.commit("setSearchInput",this.searchInput)
                 this.$router.push({
                     name:"searchresult",
-                    params:{
-                        content:this.searchInput
-                    }
                 })  //router 传值
             }else{
                 this.$message.info('请输入要查询的东西');
             }
         },
         searchByHistory(content){
+            this.$store.commit("setSearchInput",content)
             this.$router.push({
                 name:"searchresult",
-                params:{
-                    content
-                }
             })
         },
         searchInputChange(content){

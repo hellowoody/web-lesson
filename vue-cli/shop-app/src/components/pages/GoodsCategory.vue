@@ -85,6 +85,8 @@ export default {
         },
         search(){
             if(this.searchInput !== ""){
+                this.goods = []
+                this.start = 0
                 this.searchData()
             }else{
                 this.$message.info("请输入要查询的东西")

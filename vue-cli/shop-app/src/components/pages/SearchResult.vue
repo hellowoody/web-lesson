@@ -51,7 +51,8 @@ export default {
     created(){
         //拿到上一个页面的参数
         //进行搜索
-        this.searchInput = this.$route.params.content
+        // this.searchInput = this.$route.params.content
+        this.searchInput = this.$store.state.searchInput
         // this.search()
     },
     methods:{
@@ -95,6 +96,8 @@ export default {
             }
         },
         searchInputChange(content){
+            this.start = 0
+            this.data = []
             this.searchInput = content
         },
         handleInfiniteOnLoad(){
