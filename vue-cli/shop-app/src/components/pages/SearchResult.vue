@@ -59,6 +59,8 @@ export default {
             this.$router.go(-1)
         },
         refresh(){
+            this.start = 0
+            this.data = []
             return this.search()
         },
         //async 异步

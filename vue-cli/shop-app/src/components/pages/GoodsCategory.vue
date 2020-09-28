@@ -6,11 +6,17 @@
         </top-bar>
         <my-content :refreshFunc="refresh" pull>
             <div>搜索结果</div>
-            <a-list :grid="{ gutter: 16, column: 2 }" :data-source="goods" style="margin-top:16px">
-                <a-list-item slot="renderItem" slot-scope="item">
-                    <product-card :product="item"></product-card>
-                </a-list-item>
-            </a-list>
+            <div
+                v-infinite-scroll="onload"
+                :infinite-scroll-disabled="busy"
+                :infinite-scroll-distance="10"
+            >
+                <a-list :grid="{ gutter: 16, column: 2 }" :data-source="goods" style="margin-top:16px">
+                    <a-list-item slot="renderItem" slot-scope="item">
+                        <product-card :product="item"></product-card>
+                    </a-list-item>
+                </a-list>
+            </div>
         </my-content>
     </div>
 </template>
@@ -20,14 +26,18 @@ import TopBar from '@/components/topbar/TopBar'
 import MyContent from '@/components/content/MyContent'
 import ProductCard from '@/components/product/ProductCard'
 import {HttpGql,ImgUrl} from '@/kits/Http'
+import infiniteScroll from 'vue-infinite-scroll';
 
 export default {
+    directives: { infiniteScroll },
     name:"GoodsCategory",
     data(){
         return {
             searchInput:"",
             goods:[],
-            type:""
+            type:"",
+            start:0,
+            busy:false,
         }
     },
     components:{
@@ -37,20 +47,23 @@ export default {
     },
     created(){
         this.type = this.$route.params.content
-        this.searchData()
+        // this.searchData()
     },
     methods:{
         back(){
             this.$router.go(-1)
         },
         refresh(){
+            this.start = 0
+            this.goods = []
             return this.searchData()
         },
         searchData(){
+            let count = 8
             let p = {
                 query:`
                     {
-                        goods (count:5,type:"${this.type}",name:"${this.searchInput}") {
+                        goods (start:${this.start},count:${count},type:"${this.type}",name:"${this.searchInput}") {
                             id
                             name
                             price
@@ -60,10 +73,11 @@ export default {
                 `
             }
             return HttpGql(p).then((res)=>{
-                this.goods = res.data.goods.map((item)=>{
+                this.goods = this.goods.concat(res.data.goods.map((item)=>{
                     item.imgpath = ImgUrl + item.imgpath
                     return item
-                })
+                }))
+                this.start += count
                 return true
             }).catch(()=>{
                 return false
@@ -78,6 +92,9 @@ export default {
         },
         searchInputChange(content){
             this.searchInput = content
+        },
+        onload(){
+            this.searchData()
         }
     }
 }
