@@ -6,7 +6,12 @@
         </top-bar> 
         <my-content :refreshFunc="refresh" pull>
             <div style="color:rgb(0 0 0 / 0.5);font-size:15px;font-weight: bold;">有{{data.length}}个商品符合要求</div>
-            <div style="margin-top:16px;">
+            <div 
+                style="margin-top:16px;"
+                v-infinite-scroll="handleInfiniteOnLoad" 
+                :infinite-scroll-disabled="busy"
+                :infinite-scroll-distance="10"
+            >
                 <a-list :grid="{ gutter: 16, column: 2 }" :data-source="data">
                     <a-list-item slot="renderItem" slot-scope="item">
                         <product-card :product="item"></product-card>
@@ -23,13 +28,16 @@ import MyContent from '@/components/content/MyContent'
 import ProductCard from '@/components/product/ProductCard'
 import {setArray,getArray} from '@/kits/LocalStorage'
 import {HttpGql,ImgUrl} from '@/kits/Http'
+import infiniteScroll from 'vue-infinite-scroll';
 
 export default {
+    directives: { infiniteScroll },
     name:"Search",
     data(){
         return {
             data:[],
             // searchInput:this.$route.params.content,   //Vue
+            busy: false,
             searchInput:"",   //Vue
             historySearch:getArray("historySearch"),  //本项目的获取localstorage时，是线性获取，或者说不是异步获取
          }
@@ -84,6 +92,9 @@ export default {
         },
         searchInputChange(content){
             this.searchInput = content
+        },
+        handleInfiniteOnLoad(){
+            console.log(1000)
         }
     }
 }
