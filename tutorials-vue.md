@@ -912,3 +912,40 @@ export default {
       }
 
       ```
+
+## 27.vue-router如何设置缓存
+
+  - 需要在router路由配置文件中，将需要缓存的某一个路由或某几个路由增加keep-alive属性
+
+  ```
+  //router/index.js
+  const routes = [
+    {path:'/',redirect:{path:"/main/home"}},
+    {path:'/main',component:Main,children:[
+      {path:'home',component:Home},
+      {path:'category',component:Category},
+      {path:'order',component:Order},
+      {path:'account',component:Account},
+    ]},
+    {path:'/onboarding',name:"onboarding",component:OnBoarding},
+    {path:'/login',name:"login",component:Login},
+    {path:'/register',name:"register",component:Register},
+    {path:'/onboarding',name:"onboarding",component:OnBoarding},
+    {path:'/cart',name:'cart',component:Cart},
+    {path:'/search',name:'search',component:Search},
+    {path:'/searchresult',name:'searchresult',component:SearchResult,meta:{keepAlive:true}},
+    {path:'/goodscategory',name:'goodscategory',component:GoodsCategory},
+    {path:'/gooddetail',name:'gooddetail',component:GoodDetail},
+  ]
+  ```
+  - 在声明路由时，对keepAlive为true的路由增加控制
+
+  ```
+  // App.vue
+  <template>
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive"></router-view>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"></router-view>
+  </template>
+  ```
