@@ -11,7 +11,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state:{
         cartData: [],
-        searchInput:""
+        searchInput:"",
+        goodCategory:""
     },
     //同步修改
     mutations:{
@@ -30,6 +31,9 @@ const store = new Vuex.Store({
         },
         setSearchInput(state,newVal){
             state.searchInput = newVal
+        },
+        setGoodCategory(state,newVal){
+            state.goodCategory = newVal
         }
     },
     //异步修改

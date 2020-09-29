@@ -1,6 +1,7 @@
 
 import {Do,FindFrist} from './mysql'
 
+
 export const good = async (parent:any,args:any,context:any,info:any)=>{
     try {
         let res = await FindFrist("select * from goods where id = ? ",[args.id])

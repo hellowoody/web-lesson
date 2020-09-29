@@ -46,7 +46,8 @@ export default {
         ProductCard,
     },
     created(){
-        this.type = this.$route.params.content
+        this.type = this.$store.state.goodCategory
+        // this.type = this.$route.params.content
         // this.searchData()
     },
     methods:{
