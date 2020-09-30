@@ -1,7 +1,7 @@
 /**
- call 
- apply
- bind 
+ call(newthis,p1,p2)
+ apply(newthis,[p1,p2])
+ bind()(p1,p2)
  */
 
  global.name = "123"
@@ -11,7 +11,8 @@ var obj = {
     name:"里面的名字",
     fn:function(a,b){
         console.log(a,b,"======",this.name)
-    }
+    },
+    fn2:fn,
 }
 
 var obj2 = {
@@ -27,8 +28,8 @@ var obj3 = {
 
 // obj.fn()
 
-// var a = obj.fn
-// a()
+var a = obj.fn2
+a()  //
 
 // call
 
