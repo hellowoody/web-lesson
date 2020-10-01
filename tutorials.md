@@ -1246,5 +1246,164 @@ function sum(arr){
 
 ## 28.冒泡算法-bubble sort
 
+  ```
+  let arr = [31,5,12,22,1,7,9]
+
+  /*
+  冒泡排序的核心：跟我紧挨着的后面那个元素比较大小
+  */
+
+  for (let j = arr.length ;j > 1  ; j--) {
+      for (let i = 0 ; i< j -1 ;i++) {
+          if (arr[i] > arr[i+1]) {
+              let tmp = arr[i+1]
+              arr[i+1] = arr[i]
+              arr[i] = tmp
+          }
+      }
+  }
+
+
+  console.log(arr)
+  ```
+
 ## 29.二叉树算法-binary tree
+
+  ```
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8"></meta>
+      <meta content="width=device-width,initial-scale=1" name="viewport">
+      <title>二叉树排序和查找</title>
+    </head>
+    <body>
+          <button onclick="setup()">开始构造二叉树</button>
+          <button onclick="sort()">排序</button>
+          <br>
+          <input id="inputid" value=""/><button onclick="search()">查找目标值</button>
+
+      </body>
+  </html>
+
+  <script>
+  // tree
+  // node
+  // 10 5 20 100 1 2 6
+  // 1 2 5 6 10 20 100
+
+  let t
+
+  function Tree(n){
+      this.root = n
+      this.sortArr = []
+  }
+
+  Tree.prototype.Add = function(v){
+      let n = new Node(v)
+      if (this.root == null){
+          this.root = n
+      }else{
+          this.root.Add(n)
+      }
+  }
+
+  Tree.prototype.Search = function(target){
+      let res = this.root.Search(target)
+      if (res != ""){
+          return "found target : "+res
+      }else{
+          return "not found "
+      }
+      
+  }
+
+  Tree.prototype.Sort = function(){
+      this.root.Sort(this)
+  }
+
+  function Node(n){
+      this.val = n
+      this.left = null
+      this.right = null   
+  }
+
+  Node.prototype.Add = function(n){
+      if(this.val > n.val){
+          if (this.left != null){
+              this.left.Add(n)
+          }else{
+              this.left = n
+          }
+      }
+      if(this.val < n.val){
+          if (this.right != null){
+                  this.right.Add(n)
+          }else{
+              this.right = n
+          }
+      }
+  }
+
+  Node.prototype.Sort = function(tt){
+      
+      if(this.left != null) {
+          this.left.Sort(tt)
+      }
+      // console.log(this.val)
+      tt.sortArr.push(this.val)
+          if(this.right != null){
+          this.right.Sort(tt)
+      }
+
+  }
+
+  // 二分法
+  Node.prototype.Search = function(target){
+      let res
+      if(this.val < target){
+          if (this.right != null){
+              return this.right.Search(target)
+          }else{
+              return ""
+          }
+      }
+      if(this.val === target){
+          res = this.val
+      }
+      if(this.val > target){
+          if (this.left != null){
+              return  this.left.Search(target)
+          }else{
+              return ""
+          }
+      }
+      return res
+  }
+
+  function setup(){
+      t = new Tree()
+      for(let i = 0 ; i< 10 ;i++){
+          let r = Math.floor(Math.random() * 100);
+          console.log(r)
+          t.Add(r)
+      }
+      console.log(t)
+  }
+
+  function sort(){
+      t.Sort()
+      console.log(t.sortArr)
+  }
+
+  function search(){
+      let target = document.getElementById("inputid").value
+      // console.log(target)
+      let res = t.Search(parseInt(target))
+      // let res = t.Search(target)
+      console.log(res)
+  }
+
+  </script>
+  ```
 
