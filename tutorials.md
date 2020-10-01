@@ -836,6 +836,13 @@ function sum(arr){
   console.log(ss2.name)
   ```
 
-## leetcode刷题
+## 25.赋值，浅拷贝，深拷贝区别
 
-## 可视化的简单算法
+## 26.js如何改变this指向-call apply bind用法
+
+## 27.Event Loop
+
+## 28.冒泡算法-bubble sort
+
+## 29.二叉树算法-binary tree
+

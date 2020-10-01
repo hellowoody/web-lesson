@@ -1,17 +1,17 @@
-// var i = 0
+var i = 0
 
-//     setTimeout(function () {
-//         console.log(i);
-//     }, 0.00001);
-// i = 1
-//     setTimeout(function () {
-//         console.log(i);
-//     }, 0.1);
-// i = 2
-//      setTimeout(function () {
-//         console.log(i);
-//     }, 1);
-// i = 3
+    setTimeout(function () {
+        console.log(i);
+    }, 1000);
+i = 1
+    setTimeout(function () {
+        console.log(i);
+    }, 1000);
+i = 2
+     setTimeout(function () {
+        console.log(i);
+    }, 1000);
+i = 3
 
 // event loop 
 
