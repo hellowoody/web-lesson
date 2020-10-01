@@ -963,6 +963,136 @@ function sum(arr){
 
 ## 26.js如何改变this指向-call apply bind用法
 
+  - 在ES5语法中，如何判断this的指向问题
+
+    在ES5中，始终坚持一个原理："this永远指向最后调用它的那个对象！"
+
+    看一下下面的例子
+
+    ```
+    let name = "外面的名字"
+
+    var obj = {
+        name:"里面的名字",
+        fn:function(){
+            console.log(this.name)
+        },
+    }
+
+    obj.fn()  // 打印 里面的名字
+
+    ```
+
+    ```
+    let name = "外面的名字"
+
+    var obj = {
+        fn:function(){
+            console.log(this.name)
+        },
+    }
+
+    obj.fn()  // 打印 undefined
+
+    ```
+
+    ```
+    let name = "外面的名字"
+
+    var obj = {
+        name:"里面的名字",
+        fn:function(){
+            console.log(this.name)
+        },
+    }
+
+    var a = obj.fn
+    a.fn()  // 打印 外面的名字
+
+    ```
+
+    ```
+    let name = "外面的名字"
+
+    function f1(){
+        var name = "里面的名字"
+        innerFn()
+        function innerFn(){
+            console.log(this.name)
+        }
+    }
+    
+    f1()  // 外面的名字
+    ```
+
+  - 在ES5语法中,js可以使用call，apply，bind改变this的指向。
+
+    看一下下面这个例子
+
+    ```
+    let name = "外面的名字"
+
+    var obj = {
+        name:"里面的名字",
+        fn:function(){
+            console.log(this.name)
+        },
+    }
+
+    var obj2 = {
+        name:"new name"
+    }
+
+    obj.fn.call(ob2)      //打印 new name
+    obj.fn.apply(obj2)    //打印 new name
+    obj.fn.bind(obj2)()   //打印 new name
+    ```
+  
+  - call apply bind 如何传参
+
+    ```
+    var name = "外面的名字"
+
+    var obj = {
+        name:"里面的名字",
+        fn:function(a,b){
+            console.log(a,b,"<=>",this.name)
+        },
+    }
+
+    var obj2 = {
+        name:"new name"
+    }
+
+    obj.fn.call(ob2,1,2)      //打印 1 2 <=> new name
+    obj.fn.apply(obj2,[3,4])    //打印 3 4 <=> new name
+    obj.fn.bind(obj2)(5,6)   //打印 5 6 <=> new name
+
+    ```
+  
+  - ES5，ES6(箭头函数)语法混合（面试）
+
+    ```
+
+    let fn1 = {
+        name:"fn1 name",
+        print:function (){
+            return ()=>console.log(this.name)
+        }
+    }
+
+    let fn2 = {
+        name: "fn2 name"
+    }
+
+    fn1.print()() //  fn1 name
+
+    fn1.print().apply(fn2) // fn1 name  因为call apply bind 对箭头函数无效！
+
+    fn1.print.apply(fn2)() //  fn2 name
+
+    ```
+    
 ## 27.Event Loop
 
 ## 28.冒泡算法-bubble sort

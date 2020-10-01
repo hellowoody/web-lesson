@@ -12,7 +12,6 @@ var obj = {
     fn:function(a,b){
         console.log(a,b,"======",this.name)
     },
-    fn2:fn,
 }
 
 var obj2 = {
@@ -28,7 +27,7 @@ var obj3 = {
 
 // obj.fn()
 
-var a = obj.fn2
+var a = obj.fn
 a()  //
 
 // call
@@ -68,3 +67,15 @@ fn1.print.apply(fn2)() //  fn2 name
 // fn1.print.apply()
 // fn1.print.bind()()
 
+
+let name = 0
+
+function f1(){
+    var name = "ccc"
+    innerFn()
+    function innerFn(){
+        console.log(this.name)
+    }
+}
+
+f1()
