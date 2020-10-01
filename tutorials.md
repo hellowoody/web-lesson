@@ -840,126 +840,126 @@ function sum(arr){
 
   - 对象类型
 
-  简单的认为js中对象可以分为基本对象，引用对象（js中在不同纬度上说，对象类型有“很多种”）
-  基本类型指的是string，number，boolean等类似的类型，基本类型可以将赋值和拷贝的认为是一种操作，同时基本类型没有浅拷贝和深拷贝的区别。
-  那么下面我们所说的赋值，浅拷贝和深拷贝都是针对的引用类型（如object，array等）
+    简单的认为js中对象可以分为基本对象，引用对象（js中在不同纬度上说，对象类型有“很多种”）
+    基本类型指的是string，number，boolean等类似的类型，基本类型可以将赋值和拷贝的认为是一种操作，同时基本类型没有浅拷贝和深拷贝的区别。
+    那么下面我们所说的赋值，浅拷贝和深拷贝都是针对的引用类型（如object，array等）
 
   - 赋值
   
-  如果一个对象是引用对象，那么它的赋值，可以理解为他的值为指针，指向某一块内存地址。把它赋值给另一个变量b,则b的值也指向同一块内存地址。所以无论修改其中哪一个变量的属性，另一个变量的值也会更改。
+    如果一个对象是引用对象，那么它的赋值，可以理解为他的值为指针，指向某一块内存地址。把它赋值给另一个变量b,则b的值也指向同一块内存地址。所以无论修改其中哪一个变量的属性，另一个变量的值也会更改。
 
-  ```
-  let a = {
-      age:10
-  }
+    ```
+    let a = {
+        age:10
+    }
 
-  console.log(a.age) // 10
+    console.log(a.age) // 10
 
-  let b = a
+    let b = a
 
-  b.age = 20
+    b.age = 20
 
-  console.log(a.age) // 20
-  console.log(b.age) // 20
-  ```
+    console.log(a.age) // 20
+    console.log(b.age) // 20
+    ```
 
   - 拷贝
 
-  首先要理解赋值和拷贝语意的不同，拷贝可以理解为电影或mp3之类的拷贝，也就是说当一部电影从电脑中拷贝到外置硬盘中时，之后无论在外置硬盘中是修改还是删除，都不会影响电脑中的电影文件，这种操作才叫拷贝。
-  所以上述赋值的例子，明显不符合拷贝的要求。那么如何编写js代码，能使刚才的代码例子变为拷贝呢？
+    首先要理解赋值和拷贝语意的不同，拷贝可以理解为电影或mp3之类的拷贝，也就是说当一部电影从电脑中拷贝到外置硬盘中时，之后无论在外置硬盘中是修改还是删除，都不会影响电脑中的电影文件，这种操作才叫拷贝。
+    所以上述赋值的例子，明显不符合拷贝的要求。那么如何编写js代码，能使刚才的代码例子变为拷贝呢？
 
-  ```
-  let a = {
-      age : 10
-  }
+    ```
+    let a = {
+        age : 10
+    }
 
-  let b = {}  //声明一个空对象
-  b["age"] = a["age"] //然后将a中的属性赋值给b
+    let b = {}  //声明一个空对象
+    b["age"] = a["age"] //然后将a中的属性赋值给b
 
-  console.log(b) //10
+    console.log(b) //10
 
-  b.age = 200
-  a.age = 30
-  console.log("a:",a) //30
-  console.log("b:",b) //200
-  ```
+    b.age = 200
+    a.age = 30
+    console.log("a:",a) //30
+    console.log("b:",b) //200
+    ```
 
-  刚刚的代码例子中，b["age"] = a["age"]是将a中的属性赋值给b，因为age是基本类型number类型，所以赋值和拷贝一样。
+    刚刚的代码例子中，b["age"] = a["age"]是将a中的属性赋值给b，因为age是基本类型number类型，所以赋值和拷贝一样。
 
-  当一个对象是一个object类型，并且这个对象中有引用类型的属性，那么它就是涉及到浅拷贝和深拷贝的概念了。
+    当一个对象是一个object类型，并且这个对象中有引用类型的属性，那么它就是涉及到浅拷贝和深拷贝的概念了。
 
   - 浅拷贝
 
-  浅拷贝一般有两种方法
+    浅拷贝一般有两种方法
 
     - 循环方法
 
-    ```
-    let a = {
-        name:"hello",
-        age:10,
-        friends:[
-            "zhang",
-            "li",
-            "wang"
-        ]
-    }
+      ```
+      let a = {
+          name:"hello",
+          age:10,
+          friends:[
+              "zhang",
+              "li",
+              "wang"
+          ]
+      }
 
-    let b = {}
+      let b = {}
 
 
-    for(let key in a) {
-        b[key] = a[key]
-    }
+      for(let key in a) {
+          b[key] = a[key]
+      }
 
-    console.log(b)
-    b.name= "你好"
-    b.age = 100
+      console.log(b)
+      b.name= "你好"
+      b.age = 100
 
-    b.friends[1] = "zhao"
-    console.log(a)
-    ```
+      b.friends[1] = "zhao"
+      console.log(a)
+      ```
 
     - object.assign
 
-    ```
-    let a = {
-        name:"hello",
-        age:10,
-        friends:[
-            "zhang",
-            "li",
-            "wang"
-        ]
-    }
+      ```
+      let a = {
+          name:"hello",
+          age:10,
+          friends:[
+              "zhang",
+              "li",
+              "wang"
+          ]
+      }
 
-    Object.assign(b,a)
-    b.name= "你好"
-    b.age = 100
-    b.friends[1] = "zhao"
+      Object.assign(b,a)
+      b.name= "你好"
+      b.age = 100
+      b.friends[1] = "zhao"
 
-    console.log(a)
-    console.log(b)
-    ```
+      console.log(a)
+      console.log(b)
+      ```
 
   - 深拷贝
 
-  JS的原生不支持深拷贝
+    JS的原生不支持深拷贝
 
-  深拷贝可以简单认为就是用递归的方法进行浅拷贝。
+    深拷贝可以简单认为就是用递归的方法进行浅拷贝。
 
-  除了递归的方法之外，可以用JSON.parse(JSON.stringify())进行深拷贝
+    除了递归的方法之外，可以用JSON.parse(JSON.stringify())进行深拷贝
 
-  ```
-  let obj = {         
-      reg : /^asd$/,
-      fun: function(){},
-      syb:Symbol('foo'),
-      asd:'asd'
-  }; 
-  let cp = JSON.parse(JSON.stringify(obj));
-  console.log(cp);
-  ```
+    ```
+    let obj = {         
+        reg : /^asd$/,
+        fun: function(){},
+        syb:Symbol('foo'),
+        asd:'asd'
+    }; 
+    let cp = JSON.parse(JSON.stringify(obj));
+    console.log(cp);
+    ```
 
 ## 26.js如何改变this指向-call apply bind用法
 
