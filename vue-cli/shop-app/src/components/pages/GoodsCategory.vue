@@ -68,6 +68,9 @@ export default {
                             id
                             name
                             price
+                            type {
+                                id
+                            }
                             imgpath
                         }
                     }

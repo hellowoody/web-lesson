@@ -6,13 +6,13 @@
         </top-bar>
         <my-content>
             <a-carousel style="width:100%">
-                <div class="bg-div"><a-icon class="bg-icon" type="heart" /><a-icon class="bg-icon" type="share-alt" /></div>
+                <div class="bg-div" :style="imgStyle"><a-icon class="bg-icon" type="heart" /><a-icon class="bg-icon" type="share-alt" /></div>
                 <div><h3>2</h3></div>
                 <div><h3>3</h3></div>
             </a-carousel>
             <div style="margin-top:30px;padding-left:5px">
-                <div class="goodtitle">goodtitle - gooddesc</div>
-                <div class="goodprice">¥ 1000.00</div>
+                <div class="goodtitle">{{product.name}} - {{product.gooddesc}}</div>
+                <div class="goodprice">¥ {{product.price}}</div>
                 <div style="color:rgb( 0 0 0 / 0.5);font-size:14px;font-weight:bold;margin-top:38px;">相近商品</div>
                 <div class="related-goods">
                     <product-card class="related-goods-item" v-for="(item,index) in products" :key="index" :product="item"></product-card>
@@ -32,20 +32,14 @@ import FooterBar from '@/components/footerbar/FooterBar'
 import FooterBarButton from '@/components/footerbar/FooterBarButton'
 import MyContent from '@/components/content/MyContent'
 import ProductCard from '@/components/product/ProductCard'
-import {HttpGql} from '@/kits/Http'
+import {HttpGql,ImgUrl} from '@/kits/Http'
 
-let products = [
-   {},
-   {},
-   {},
-   {},
-   {},
-]
 export default {
     name:"GoodDetail",
     data(){
         return {
-            products
+            product:{},
+            products:[]
         }
     },
     components:{
@@ -57,6 +51,14 @@ export default {
     },
     created(){
         this.initData()
+    },
+    computed:{
+        imgStyle(){
+            return this.product.imgpath ? {
+                backgroundImage:`url(${ImgUrl+this.product.imgpath})`,
+                backgroundSize:"contain",
+            } : ""
+        }
     },
     methods:{
         back(){
@@ -82,12 +84,20 @@ export default {
                             name
                             price
                             imgpath
+                            type {
+                                id
+                            }
                         }
                     }	
                 `
             }
             let res = await HttpGql(p)
-            console.log(res)
+            this.product = res.data.good
+            this.products = res.data.goods.map((item)=>{
+                item.imgpath = ImgUrl + item.imgpath
+                return item
+            })
+            // console.log(res)
         },
         addCart(){
             console.log("addcart")
@@ -111,10 +121,11 @@ export default {
 .bg-div {
     display:flex !important;
     justify-content: flex-end;
-    margin-top:12px;
+    height:160px;
 }
 
 .bg-icon {
+    margin-top:12px;
     margin-right:20px;
     font-size:18px;
     color:#8C8C8C

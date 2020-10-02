@@ -20,13 +20,20 @@ export default {
     },
     methods:{
         goto(){
-            this.$store.commit("setSelectedGood",{
-                id:this.product.id,
-                type:this.product.type.id,
-            })
-            this.$router.push({
-                name:'gooddetail'
-            })
+            if (this.$route.name === "gooddetail") {
+                this.$store.commit("setGoodCategory",this.product.type.id)
+                this.$router.push({
+                    name:"goodscategory",
+                })
+            }else{
+                this.$store.commit("setSelectedGood",{
+                    id:this.product.id,
+                    type:this.product.type.id,
+                })
+                this.$router.push({
+                    name:'gooddetail'
+                })
+            }
         }
     },
     computed:{

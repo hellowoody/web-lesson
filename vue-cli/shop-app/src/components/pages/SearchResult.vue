@@ -79,6 +79,9 @@ export default {
                             count
                             gooddesc
                             imgpath
+                            type {
+                                id
+                            }
                         }
                     }
                 `
@@ -101,7 +104,6 @@ export default {
             this.searchInput = content
         },
         handleInfiniteOnLoad(){
-           console.log(1000)
            this.search()
         }
     }
