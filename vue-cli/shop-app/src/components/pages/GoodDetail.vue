@@ -32,6 +32,8 @@ import FooterBar from '@/components/footerbar/FooterBar'
 import FooterBarButton from '@/components/footerbar/FooterBarButton'
 import MyContent from '@/components/content/MyContent'
 import ProductCard from '@/components/product/ProductCard'
+import {HttpGql} from '@/kits/Http'
+
 let products = [
    {},
    {},
@@ -54,11 +56,38 @@ export default {
         ProductCard
     },
     created(){
-        console.log(this.$store.state.selectedGood)
+        this.initData()
     },
     methods:{
         back(){
             this.$router.go(-1)
+        },
+        async initData(){
+            const p = {
+                query:`
+                    {
+                        good (id:${this.$store.state.selectedGood.id}){
+                            id
+                            name
+                            gooddesc
+                            price
+                            imgpath
+                            type {
+                            id
+                            name
+                            }
+                        }
+                        goods (start:0,count:5,type:"${this.$store.state.selectedGood.type}") {
+                            id
+                            name
+                            price
+                            imgpath
+                        }
+                    }	
+                `
+            }
+            let res = await HttpGql(p)
+            console.log(res)
         },
         addCart(){
             console.log("addcart")
