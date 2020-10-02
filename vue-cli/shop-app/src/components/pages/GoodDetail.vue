@@ -53,6 +53,9 @@ export default {
         MyContent,
         ProductCard
     },
+    created(){
+        console.log(this.$store.state.selectedGood)
+    },
     methods:{
         back(){
             this.$router.go(-1)

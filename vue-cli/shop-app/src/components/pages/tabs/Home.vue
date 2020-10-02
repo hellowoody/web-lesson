@@ -137,6 +137,9 @@ export default {
                                 goods(count:5){
                                     id
                                     name
+                                    type {
+                                        id
+                                    }
                                     price
                                     imgpath
                                 }

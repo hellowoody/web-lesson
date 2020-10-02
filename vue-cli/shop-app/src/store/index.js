@@ -12,7 +12,11 @@ const store = new Vuex.Store({
     state:{
         cartData: [],
         searchInput:"",
-        goodCategory:""
+        goodCategory:"",
+        selectedGood:{
+            id:"",
+            type:"",
+        }
     },
     //同步修改
     mutations:{
@@ -34,6 +38,9 @@ const store = new Vuex.Store({
         },
         setGoodCategory(state,newVal){
             state.goodCategory = newVal
+        },
+        setSelectedGood(state,item){
+            state.selectedGood = item
         }
     },
     //异步修改
