@@ -34,6 +34,14 @@ export default {
                     name:'gooddetail'
                 })
             }
+
+            // this.$store.commit("setSelectedGood",{
+            //     id:this.product.id,
+            //     type:this.product.type.id,
+            // })
+            // this.$router.push({
+            //     path:'/gooddetail/'+this.product.id
+            // })
         }
     },
     computed:{

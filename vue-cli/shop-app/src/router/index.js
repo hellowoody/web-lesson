@@ -33,6 +33,7 @@ const routes = [
   {path:'/searchresult',name:'searchresult',component:SearchResult},
   {path:'/goodscategory',name:'goodscategory',component:GoodsCategory},
   {path:'/gooddetail',name:'gooddetail',component:GoodDetail},
+  // {path:'/gooddetail/:id',name:'gooddetail',component:GoodDetail},
 ]
 
 const router = new VueRouter({

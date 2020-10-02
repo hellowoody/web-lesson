@@ -60,6 +60,11 @@ export default {
             } : ""
         }
     },
+    // watch:{
+    //     '$route' (to,from){
+    //         this.initData()
+    //     }
+    // },
     methods:{
         back(){
             this.$router.go(-1)
