@@ -60,20 +60,25 @@ export default {
             } : ""
         }
     },
-    // watch:{
-    //     '$route' (to,from){
-    //         this.initData()
-    //     }
-    // },
+    watch:{
+        '$route' (to,from){
+            this.initData()
+        }
+    },
     methods:{
         back(){
+            this.$store.commit("popSelectedGoods")
             this.$router.go(-1)
         },
         async initData(){
+            const id = this.$store.state.selectedGoods && this.$store.state.selectedGoods.length > 0 ? this.$store.state.selectedGoods[this.$store.state.selectedGoods.length-1].id : ""
+            const type = this.$store.state.selectedGoods && this.$store.state.selectedGoods.length > 0 ? this.$store.state.selectedGoods[this.$store.state.selectedGoods.length-1].type : ""
+            // const id = this.$store.state.selectedGood.id
+            // const type = this.$store.state.selectedGood.type
             const p = {
                 query:`
                     {
-                        good (id:${this.$store.state.selectedGood.id}){
+                        good (id:${id}){
                             id
                             name
                             gooddesc
@@ -84,7 +89,7 @@ export default {
                             name
                             }
                         }
-                        goods (start:0,count:5,type:"${this.$store.state.selectedGood.type}") {
+                        goods (start:0,count:5,type:"${type}") {
                             id
                             name
                             price
@@ -98,7 +103,9 @@ export default {
             }
             let res = await HttpGql(p)
             this.product = res.data.good
-            this.products = res.data.goods.map((item)=>{
+            this.products = res.data.goods.filter((item)=>{
+                return item.id != id
+            }).map((item)=>{
                 item.imgpath = ImgUrl + item.imgpath
                 return item
             })

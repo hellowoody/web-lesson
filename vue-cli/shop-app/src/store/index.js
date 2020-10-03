@@ -16,7 +16,8 @@ const store = new Vuex.Store({
         selectedGood:{
             id:"",
             type:"",
-        }
+        },
+        selectedGoods:[]
     },
     //同步修改
     mutations:{
@@ -41,7 +42,13 @@ const store = new Vuex.Store({
         },
         setSelectedGood(state,item){
             state.selectedGood = item
-        }
+        },
+        addSelectedGoods(state,item){
+            state.selectedGoods.push(item)
+        },
+        popSelectedGoods(state){
+            state.selectedGoods.pop()
+        },
     },
     //异步修改
     actions:{

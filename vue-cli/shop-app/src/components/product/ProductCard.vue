@@ -20,28 +20,28 @@ export default {
     },
     methods:{
         goto(){
-            if (this.$route.name === "gooddetail") {
-                this.$store.commit("setGoodCategory",this.product.type.id)
-                this.$router.push({
-                    name:"goodscategory",
-                })
-            }else{
-                this.$store.commit("setSelectedGood",{
-                    id:this.product.id,
-                    type:this.product.type.id,
-                })
-                this.$router.push({
-                    name:'gooddetail'
-                })
-            }
+            // if (this.$route.name === "gooddetail") {
+            //     this.$store.commit("setGoodCategory",this.product.type.id)
+            //     this.$router.push({
+            //         name:"goodscategory",
+            //     })
+            // }else{
+            //     this.$store.commit("setSelectedGood",{
+            //         id:this.product.id,
+            //         type:this.product.type.id,
+            //     })
+            //     this.$router.push({
+            //         name:'gooddetail'
+            //     })
+            // }
 
-            // this.$store.commit("setSelectedGood",{
-            //     id:this.product.id,
-            //     type:this.product.type.id,
-            // })
-            // this.$router.push({
-            //     path:'/gooddetail/'+this.product.id
-            // })
+            this.$store.commit("addSelectedGoods",{
+                id:this.product.id,
+                type:this.product.type.id,
+            })
+            this.$router.push({
+                path:'/gooddetail/'+this.product.id
+            })
         }
     },
     computed:{
