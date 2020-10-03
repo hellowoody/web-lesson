@@ -17,6 +17,9 @@
                 <div class="related-goods">
                     <product-card class="related-goods-item" v-for="(item,index) in products" :key="index" :product="item"></product-card>
                 </div>
+                <div style="margin-top:30px;margin-bottom:30px;font-size:14px;color:rgb(0 0 0 / 0.5 )">评论</div>
+                <a-skeleton :paragraph="{ rows:3 }" avatar active />
+                <a-skeleton :paragraph="{ rows:3 }" avatar active />
             </div>
         </my-content>
         <footer-bar>
