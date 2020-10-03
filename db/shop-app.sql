@@ -11,7 +11,7 @@
  Target Server Version : 80018
  File Encoding         : 65001
 
- Date: 24/09/2020 15:24:54
+ Date: 03/10/2020 10:11:45
 */
 
 SET NAMES utf8mb4;
@@ -125,5 +125,19 @@ INSERT INTO `user` VALUES ('zhang@mail.com', '张三', '000000');
 INSERT INTO `user` VALUES ('zhao1@mail.com', '兆先生', '000000');
 INSERT INTO `user` VALUES ('zhao@mail.com', '兆先生', '000000');
 COMMIT;
+
+-- ----------------------------
+-- Table structure for user_actions
+-- ----------------------------
+DROP TABLE IF EXISTS `user_actions`;
+CREATE TABLE `user_actions` (
+  `userid` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `goodid` int(11) NOT NULL,
+  `type` int(2) NOT NULL COMMENT '1-浏览 2-购物车',
+  `num` int(11) DEFAULT NULL COMMENT '放进购物车的数量',
+  `visitedcount` int(11) DEFAULT NULL COMMENT '浏览次数',
+  `sysdate` datetime DEFAULT NULL,
+  PRIMARY KEY (`userid`,`goodid`,`type`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 SET FOREIGN_KEY_CHECKS = 1;
