@@ -5,6 +5,7 @@ module.exports = {
     db_user : "root",
     db_password : "12345678",
     db_database : "shop-app",
+    db_limit : 10,
     gql_url:"/gql",
     gql_playground:true,
     static_imgs_url:"/imgs"

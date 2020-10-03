@@ -1,3 +1,4 @@
+import { text } from 'body-parser'
 import { O_NOFOLLOW } from 'constants'
 import crypto from 'crypto'
 import {Do,FindFrist} from './mysql'
@@ -117,3 +118,9 @@ export const visitedgood = async (req:any,resp:any)=>{
         data:{}
     })
 }
+
+// const aa = ()=>{
+//     let a = Do("")
+//     let b = Do("")
+//     DoTx(a,b)
+// }

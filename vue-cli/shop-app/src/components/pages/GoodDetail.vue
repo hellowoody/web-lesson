@@ -56,7 +56,7 @@ export default {
     created(){
         this.initData()
         if(getCacheVal("token") && getCacheVal("token").length > 0 ){
-            this.visitedGood(getCacheVal("userId"),this.$store.state.selectedGoods[this.$store.state.selectedGoods.length-1].id)
+            this.visitedGood(getCacheVal("userid"),this.$store.state.selectedGoods[this.$store.state.selectedGoods.length-1].id)
         }
     },
     computed:{
@@ -71,7 +71,7 @@ export default {
         '$route' (to,from){
             this.initData()
             if(getCacheVal("token") && getCacheVal("token").length > 0 ){
-                this.visitedGood(getCacheVal("userId"),this.$store.state.selectedGoods[this.$store.state.selectedGoods.length-1].id)
+                this.visitedGood(getCacheVal("userid"),this.$store.state.selectedGoods[this.$store.state.selectedGoods.length-1].id)
             }
         }
     },
