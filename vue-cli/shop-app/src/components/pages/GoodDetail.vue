@@ -35,7 +35,8 @@ import FooterBar from '@/components/footerbar/FooterBar'
 import FooterBarButton from '@/components/footerbar/FooterBarButton'
 import MyContent from '@/components/content/MyContent'
 import ProductCard from '@/components/product/ProductCard'
-import {HttpGql,ImgUrl} from '@/kits/Http'
+import {Http,HttpGql,ImgUrl} from '@/kits/Http'
+import {getCacheVal} from '@/kits/LocalStorage'
 
 export default {
     name:"GoodDetail",
@@ -54,6 +55,9 @@ export default {
     },
     created(){
         this.initData()
+        if(getCacheVal("token") && getCacheVal("token").length > 0 ){
+            this.visitedGood(getCacheVal("userId"),this.$store.state.selectedGoods[this.$store.state.selectedGoods.length-1].id)
+        }
     },
     computed:{
         imgStyle(){
@@ -66,12 +70,21 @@ export default {
     watch:{
         '$route' (to,from){
             this.initData()
+            if(getCacheVal("token") && getCacheVal("token").length > 0 ){
+                this.visitedGood(getCacheVal("userId"),this.$store.state.selectedGoods[this.$store.state.selectedGoods.length-1].id)
+            }
         }
     },
     methods:{
         back(){
             this.$store.commit("popSelectedGoods")
             this.$router.go(-1)
+        },
+        visitedGood(userid,goodid){
+            Http("/visitedgood",{
+                userid,
+                goodid
+            })
         },
         async initData(){
             const id = this.$store.state.selectedGoods && this.$store.state.selectedGoods.length > 0 ? this.$store.state.selectedGoods[this.$store.state.selectedGoods.length-1].id : ""
