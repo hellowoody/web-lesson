@@ -1,3 +1,4 @@
+import { O_NOFOLLOW } from 'constants'
 import crypto from 'crypto'
 import {Do,FindFrist} from './mysql'
 
@@ -98,4 +99,21 @@ export const goods = async (req:any,resp:any)=>{
         })
     }
     
+}
+
+export const visitedgood = async (req:any,resp:any)=>{
+    const p = req.body
+    const res = await FindFrist("select * from user_actions where userid =? and goodid =? and type = 1 ",[p.userid,p.goodid])
+    let jsonObj = JSON.parse(JSON.stringify(res))
+    if (jsonObj && jsonObj.visitedcount) {
+        let visitedcount = jsonObj.visitedcount + 1
+        Do("update user_actions set visitedcount = ? where userid =? and goodid =? and type = 1  ",[visitedcount,p.userid,p.goodid])
+    }else{
+        Do("insert into user_actions (userid,goodid,type,visitedcount,sysdate) values (?,?,?,?,(select now())) ",[p.userid,p.goodid,1,1])
+    }
+    resp.json({
+        code:1,
+        msg:"成功",
+        data:{}
+    })
 }
