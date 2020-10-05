@@ -152,8 +152,7 @@ export const testmainlist = async (req:any,resp:any)=>{
                 conn,
                 sql:"insert into test_main values (?,?) ",
                 params:[id,p.main]
-            }).then((res)=>{
-
+            }).then(()=>{
                 let arr :any[]= []
                 for (let item of p.list) {
                     arr.push(DoNoConn({
