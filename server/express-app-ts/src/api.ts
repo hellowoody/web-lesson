@@ -1,7 +1,5 @@
-import { text } from 'body-parser'
-import { O_NOFOLLOW } from 'constants'
 import crypto from 'crypto'
-import {Do,FindFrist} from './mysql'
+import {Do,DoNoConn,DoTx,FindFrist} from './mysql'
 
 export const rootApi = (req:any,resp:any)=>{
     console.log(req.query.a)
@@ -105,7 +103,7 @@ export const goods = async (req:any,resp:any)=>{
 export const visitedgood = async (req:any,resp:any)=>{
     const p = req.body
     const res = await FindFrist("select * from user_actions where userid =? and goodid =? and type = 1 ",[p.userid,p.goodid])
-    let jsonObj = JSON.parse(JSON.stringify(res))
+    let jsonObj = JSON.parse(JSON.stringify(res))  // 深拷贝  JSON.parse()  JSON.stringify()
     if (jsonObj && jsonObj.visitedcount) {
         let visitedcount = jsonObj.visitedcount + 1
         Do("update user_actions set visitedcount = ? where userid =? and goodid =? and type = 1  ",[visitedcount,p.userid,p.goodid])
@@ -119,8 +117,57 @@ export const visitedgood = async (req:any,resp:any)=>{
     })
 }
 
-// const aa = ()=>{
-//     let a = Do("")
-//     let b = Do("")
-//     DoTx(a,b)
-// }
+export const test2main = async (req:any,resp:any)=>{
+
+    const p = req.body
+
+    try {
+        let res = await DoTx((conn)=>{
+            let a = DoNoConn({
+                conn,
+                sql:"insert into test_main1 values (?,?) " , 
+                params:[p.table1.id,p.table1.name]
+            })
+            let b = DoNoConn({
+                conn,
+                sql:"insert into test_main2 values (?,?) ",
+                params:[p.table2.id,p.table2.name]
+            })
+            return [a,b]
+        })
+        resp.json(res)
+    } catch (e) {
+        resp.json(e)
+    }
+}
+
+export const testmainlist = async (req:any,resp:any)=>{
+    const p = req.body
+
+    try {
+        let res = await DoTx((conn)=>{
+            let md5 = crypto.createHash('md5')
+            let id = md5.update(p.main).digest('hex');
+            let a = DoNoConn({
+                conn,
+                sql:"insert into test_main values (?,?) ",
+                params:[id,p.main]
+            }).then((res)=>{
+
+                let arr :any[]= []
+                for (let item of p.list) {
+                    arr.push(DoNoConn({
+                        conn,
+                        sql:"insert into test_main_list values (?,?,?) ",
+                        params:[item.id,id,item.name]
+                    }))
+                }
+                return Promise.all(arr)
+            })
+            return [a]
+        })
+        resp.json(res)
+    } catch (e) {
+        resp.json(e)
+    }
+}

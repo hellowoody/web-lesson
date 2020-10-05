@@ -1,4 +1,4 @@
-import {createConnection,createPool} from 'mysql';
+import {createConnection,createPool,PoolConnection} from 'mysql';
 const config = require("../config");
 
 const configDb = {
@@ -22,6 +22,16 @@ const pool = createPool(configDb)
 //     database : config.db_database
 // })
 
+interface TxCallback {
+    (conn:PoolConnection) : Promise<any>[]
+}
+
+interface NoConnOptions {
+    conn : PoolConnection,
+    sql : any,
+    params? : any
+}
+
 export const Do = (sql:any,params?:any) => {
     return new Promise((resolve,reject)=>{
         pool.getConnection((err,connection)=>{
@@ -38,7 +48,20 @@ export const Do = (sql:any,params?:any) => {
     })
 }
 
-export const FindFrist = (sql:any,params?:any)=>{
+export const DoNoConn = ({conn,sql,params} : NoConnOptions) => {
+    return new Promise((resolve,reject)=>{
+        conn.query(sql,params,(err,rows)=>{
+            if (err) {
+                reject(err)
+            }else{
+                resolve(rows)
+            }
+        })
+    })
+
+}
+
+export const FindFrist = (sql:any,params?:any) =>{
     return new Promise((resolve,reject)=>{
         pool.getConnection((err,connection)=>{
             if (err) reject(err)
@@ -54,22 +77,31 @@ export const FindFrist = (sql:any,params?:any)=>{
     })
 }
 
-// export const DoTx = (...p : Promise<any>[])=>{
-//     return new Promise((resolve,reject)=>{
-//         connection.beginTransaction(err => {
-//             if (err) { reject(err) }
-  
-//             Promise.all(p)
-//             .then(()=>{
-//                 connection.commit(function(err) {
-//                     resolve()
-//                 })
-//             })
-//             .catch((error)=>{
-//                 return connection.rollback(function() {
-//                     reject(error)
-//                 });
-//             })
-//         }) 
-//     })
-// }
+export const DoTx = (callback : TxCallback)=>{
+    return new Promise((resolve,reject)=>{
+        pool.getConnection((err,connection)=>{
+            if (err) reject(err)
+            connection.beginTransaction(err => {
+                if (err) { reject(err) }
+                const p = callback(connection)
+                Promise.all(p)
+                .then(()=>{
+                    connection.commit(function(err) {
+                        if (err) {
+                            connection.rollback(()=>console.log("*** this db action rollback! ***"));
+                            reject(err)
+                        }
+                        resolve({
+                            code:1
+                        })
+                        connection.release()
+                    })
+                })
+                .catch((error)=>{
+                    connection.rollback(()=>console.log("*** this db action rollback! ***"));
+                    reject(error)
+                })
+            }) 
+        })
+    })
+}
