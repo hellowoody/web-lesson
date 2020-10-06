@@ -64,9 +64,20 @@ export const user = async (parent:any,args:any,context:any,info:any)=>{
     }
 }
 
+const userVisitedGoods = "select b.*,a.visitedcount from user_actions a,goods b where a.goodid = b.id and a.userid = ? and a.type = 1  order by a.sysdate desc limit ?,? ";
+
 export const visitedGoods = async (parent:any,args:any,context:any,info:any)=>{
     try {
-        let res = await Do("select b.*,a.visitedcount from user_actions a,goods b where a.goodid = b.id and a.userid = ? and a.type = 1  order by a.sysdate desc limit ?,? ",[parent.id,args.start,args.count])
+        let res = await Do(userVisitedGoods,[parent.id,args.start,args.count])
+        return res
+    } catch (e) {
+        return e
+    }
+}
+
+export const userVisited = async (parent:any,args:any,context:any,info:any) => {
+    try {
+        let res = await Do(userVisitedGoods,[args.userId,args.start,args.count]);
         return res
     } catch (e) {
         return e

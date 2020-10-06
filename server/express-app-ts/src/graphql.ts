@@ -11,6 +11,7 @@ const typeDefs = gql `
         categorys(type:[String]!) : [Category]
         homeImgs:[String]
         user(id:String!) : User
+        userVisited(userId:String!,start:Int!,count:Int!) : [Good]
     }
     
     type Good {
@@ -60,6 +61,7 @@ const resolvers = {
             ]
         },
         user:gr.user,
+        userVisited:gr.userVisited,
     },
     Good:{
         type:gr.goodtype,
