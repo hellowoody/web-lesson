@@ -8,6 +8,7 @@ const typeDefs = gql `
         hello : String,
         good(id:Int!) : Good
         goods(start:Int!,count:Int!,type:String,name:String,desc:String) : [Good]
+        goodpop(count:Int!): [Good]
         categorys(type:[String]!) : [Category]
         homeImgs:[String]
         user(id:String!) : User
@@ -62,6 +63,7 @@ const resolvers = {
         },
         user:gr.user,
         userVisited:gr.userVisited,
+        goodpop:gr.goodpop,
     },
     Good:{
         type:gr.goodtype,
