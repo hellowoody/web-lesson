@@ -11,7 +11,7 @@
  Target Server Version : 80018
  File Encoding         : 65001
 
- Date: 05/10/2020 15:27:23
+ Date: 06/10/2020 10:18:09
 */
 
 SET NAMES utf8mb4;
@@ -118,8 +118,8 @@ CREATE TABLE `test_main` (
 -- Records of test_main
 -- ----------------------------
 BEGIN;
+INSERT INTO `test_main` VALUES ('522ca16bef931935d8adc0aadb164a9e', '第2次测试事务');
 INSERT INTO `test_main` VALUES ('8d05cfc4aaf4bc9b84441e90be906f23', '第1次测试事务');
-INSERT INTO `test_main` VALUES ('cbd15ea759b2031c088b8f9181cfc424', '第4次测试事务');
 COMMIT;
 
 -- ----------------------------
@@ -136,14 +136,8 @@ CREATE TABLE `test_main1` (
 -- Records of test_main1
 -- ----------------------------
 BEGIN;
-INSERT INTO `test_main1` VALUES (1, 'a');
-INSERT INTO `test_main1` VALUES (3, 'a');
-INSERT INTO `test_main1` VALUES (5, 'a');
-INSERT INTO `test_main1` VALUES (7, 'a');
-INSERT INTO `test_main1` VALUES (9, 'a');
-INSERT INTO `test_main1` VALUES (11, 'a');
-INSERT INTO `test_main1` VALUES (13, 't1');
-INSERT INTO `test_main1` VALUES (15, 't1');
+INSERT INTO `test_main1` VALUES (1, 't1');
+INSERT INTO `test_main1` VALUES (3, 't1');
 COMMIT;
 
 -- ----------------------------
@@ -160,12 +154,8 @@ CREATE TABLE `test_main2` (
 -- Records of test_main2
 -- ----------------------------
 BEGIN;
-INSERT INTO `test_main2` VALUES (2, 'b');
-INSERT INTO `test_main2` VALUES (4, 'b');
-INSERT INTO `test_main2` VALUES (6, 'b');
-INSERT INTO `test_main2` VALUES (8, 'b');
-INSERT INTO `test_main2` VALUES (10, 't2');
-INSERT INTO `test_main2` VALUES (12, 't2');
+INSERT INTO `test_main2` VALUES (2, 't2');
+INSERT INTO `test_main2` VALUES (4, 't2');
 COMMIT;
 
 -- ----------------------------
@@ -183,9 +173,11 @@ CREATE TABLE `test_main_list` (
 -- Records of test_main_list
 -- ----------------------------
 BEGIN;
-INSERT INTO `test_main_list` VALUES (1, 'cbd15ea759b2031c088b8f9181cfc424', '商品一');
+INSERT INTO `test_main_list` VALUES (1, '522ca16bef931935d8adc0aadb164a9e', '商品一');
+INSERT INTO `test_main_list` VALUES (1, '8d05cfc4aaf4bc9b84441e90be906f23', '商品一');
+INSERT INTO `test_main_list` VALUES (2, '522ca16bef931935d8adc0aadb164a9e', '商品二');
 INSERT INTO `test_main_list` VALUES (2, '8d05cfc4aaf4bc9b84441e90be906f23', '商品二');
-INSERT INTO `test_main_list` VALUES (2, 'cbd15ea759b2031c088b8f9181cfc424', '商品二');
+INSERT INTO `test_main_list` VALUES (3, '522ca16bef931935d8adc0aadb164a9e', '商品三');
 COMMIT;
 
 -- ----------------------------
@@ -228,6 +220,8 @@ CREATE TABLE `user_actions` (
 -- Records of user_actions
 -- ----------------------------
 BEGIN;
+INSERT INTO `user_actions` VALUES ('10', 11, 1, NULL, 1, '2020-10-06 09:12:48');
+INSERT INTO `user_actions` VALUES ('li@mail.com', 1, 1, NULL, 2, '2020-10-06 10:11:33');
 INSERT INTO `user_actions` VALUES ('li@mail.com', 22, 1, NULL, 1, '2020-10-05 09:44:16');
 INSERT INTO `user_actions` VALUES ('li@mail.com', 25, 1, NULL, 2, '2020-10-05 09:44:01');
 INSERT INTO `user_actions` VALUES ('zhang@mail.com', 1, 1, NULL, 6, '2020-10-03 14:14:13');
