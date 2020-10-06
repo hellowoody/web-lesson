@@ -77,7 +77,7 @@ export const visitedGoods = async (parent:any,args:any,context:any,info:any)=>{
 
 export const userVisited = async (parent:any,args:any,context:any,info:any) => {
     try {
-        let res = await Do(userVisitedGoods,[args.userId,args.start,args.count]);
+        let res = await Do(userVisitedGoods,[args.userid,args.start,args.count]);
         return res
     } catch (e) {
         return e

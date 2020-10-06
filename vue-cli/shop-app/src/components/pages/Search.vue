@@ -5,7 +5,7 @@
             <div @click="search" slot="right" class="iconfont icon-search" style="font-size:24px" ></div>
         </top-bar> 
         <my-content>
-            <div class="history-search">
+            <div ref="aaa" class="history-search">
                 <div style="display:flex;justify-content:space-between">
                     <div style="color:rgb(0 0 0 / 0.5);font-size:16px;font-weight:bold;">最近搜索</div>
                     <div style="color:rgb(182, 32, 224);font-size:14px;" @click="clearSearchHistory">清空</div>
@@ -17,7 +17,7 @@
             <div style="margin-top:100px;">
                 <div class="visited-good-title">最近浏览的商品</div>
                 <h-scroll >
-                    <product-card style="flex-shrink:0;margin-right:12px;"  v-for="(item,index) in goods" :key="index" :product="item"/>
+                    <product-card style="flex-shrink:0;margin-right:12px;"  v-for="item in goods" :key="item.id" :product="item"/>
                 </h-scroll>
             </div>
         </my-content>
@@ -27,27 +27,10 @@
 <script>
 import TopBar from '@/components/topbar/TopBar'
 import MyContent from '@/components/content/MyContent'
-import {setArray,getArray,clearItem} from '@/kits/LocalStorage'
 import ProductCard from '@/components/product/ProductCard'
 import HScroll from '@/components/scroll/HScroll'
-
-const goods = [
-    {
-        imgpath:""
-    },
-    {
-        imgpath:""
-    },
-    {
-        imgpath:""
-    },
-    {
-        imgpath:""
-    },
-    {
-        imgpath:""
-    },
-]
+import {getCacheVal,setArray,getArray,clearItem} from '@/kits/LocalStorage'
+import { HttpGql,ImgUrl } from '@/kits/Http' 
 
 export default {
     name:"Search",
@@ -55,7 +38,7 @@ export default {
         return {
             searchInput:"",
             historySearch:getArray("historySearch"),  //本项目的获取localstorage时，是线性获取，或者说不是异步获取,
-            goods,
+            goods:[],
          }
     },
     components:{
@@ -63,6 +46,11 @@ export default {
         MyContent,
         ProductCard,
         HScroll
+    },
+    created(){
+        if(getCacheVal("token") && getCacheVal("token").length > 0 ){
+            this.initData()
+        }
     },
     methods:{
         back(){
@@ -91,6 +79,32 @@ export default {
         clearSearchHistory(){
             clearItem("historySearch")
             this.historySearch=[]
+        },
+        async initData(){
+            let p = {
+                query:`
+                    {
+                        userVisited(userid:"${getCacheVal("userid")}",start:0,count:5){
+                            id
+                            name
+                            price
+                            type {
+                                id
+                            }
+                            imgpath
+                        }
+                    }	
+                `
+            }
+            try {
+                let res = await HttpGql(p)
+                this.goods = res.data.userVisited.map((item)=>{
+                    item.imgpath = ImgUrl + item.imgpath
+                    return item
+                })
+            } catch (e) {
+                
+            }
         }
     }
 }
