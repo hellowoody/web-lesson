@@ -34,6 +34,41 @@
       "unicode_decimal": 58894
     },
     {
+      "icon_id": "651413",
+      "name": "none",
+      "font_class": "101",
+      "unicode": "e646",
+      "unicode_decimal": 58950
+    },
+    {
+      "icon_id": "651414",
+      "name": "none",
+      "font_class": "201",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "651415",
+      "name": "none",
+      "font_class": "301",
+      "unicode": "e648",
+      "unicode_decimal": 58952
+    },
+    {
+      "icon_id": "651416",
+      "name": "none",
+      "font_class": "401",
+      "unicode": "e649",
+      "unicode_decimal": 58953
+    },
+    {
+      "icon_id": "651417",
+      "name": "none",
+      "font_class": "501",
+      "unicode": "e64b",
+      "unicode_decimal": 58955
+    },
+    {
       "icon_id": "812011",
       "name": "input",
       "font_class": "input",
@@ -72,8 +107,8 @@
       "icon_id": "7448499",
       "name": "衣服",
       "font_class": "yifu",
-      "unicode": "e646",
-      "unicode_decimal": 58950
+      "unicode": "e64c",
+      "unicode_decimal": 58956
     },
     {
       "icon_id": "10026290",

@@ -20,6 +20,17 @@
                     <product-card style="flex-shrink:0;margin-right:12px;"  v-for="item in goods" :key="item.id" :product="item"/>
                 </h-scroll>
             </div>
+            <div style="margin-top:42px;">
+                <div class="visited-good-title">近期最流行的商品</div>
+                <div v-for="item in goodpop" :key="item.id" class="pop-good">
+                    <div class="iconfont icon-101 pop-good-left" ></div>
+                    <div class="pop-good-middle">
+                        <div>{{item.name}}</div>
+                        <div>{{item.gooddesc}}</div>
+                    </div>
+                    <img :src="item.imgpath" class="pop-good-right">
+                </div>
+            </div>
         </my-content>
     </div>
 </template>
@@ -39,6 +50,7 @@ export default {
             searchInput:"",
             historySearch:getArray("historySearch"),  //本项目的获取localstorage时，是线性获取，或者说不是异步获取,
             goods:[],
+            goodpop:[]
          }
     },
     components:{
@@ -49,7 +61,9 @@ export default {
     },
     created(){
         if(getCacheVal("token") && getCacheVal("token").length > 0 ){
-            this.initData()
+            this.initData(true)
+        }else{
+            this.initData(false)
         }
     },
     methods:{
@@ -80,10 +94,18 @@ export default {
             clearItem("historySearch")
             this.historySearch=[]
         },
-        async initData(){
-            let p = {
+        async initData(ifLogin){
+            let p = ifLogin ? {
                 query:`
                     {
+                        goodpop(count:5){
+                            id
+                            name
+                            price
+                            imgpath
+                            gooddesc
+                            visitedcount
+                        }
                         userVisited(userid:"${getCacheVal("userid")}",start:0,count:5){
                             id
                             name
@@ -95,10 +117,27 @@ export default {
                         }
                     }	
                 `
+            } : {
+                query:`
+                    {
+                        goodpop(count:5){
+                            id
+                            name
+                            price
+                            imgpath
+                            gooddesc
+                            visitedcount
+                        }
+                    }
+                `
             }
             try {
                 let res = await HttpGql(p)
                 this.goods = res.data.userVisited.map((item)=>{
+                    item.imgpath = ImgUrl + item.imgpath
+                    return item
+                })
+                this.goodpop = res.data.goodpop.map((item)=>{
                     item.imgpath = ImgUrl + item.imgpath
                     return item
                 })
@@ -134,6 +173,30 @@ export default {
     color:rgb(0 0 0 /0.5);
     font-weight: bold;
 
+}
+
+.pop-good {
+    display:flex;
+    justify-content: space-between;
+    margin-top:20px;
+}
+
+.pop-good-left {
+    font-size: 32px;
+    align-items: center;
+    display: flex;
+    color: #B620E0;
+}
+
+.pop-good-middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.pop-good-right {
+    width:50px;
+    height:50px
 }
 
 </style>
