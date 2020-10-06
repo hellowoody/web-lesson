@@ -14,9 +14,9 @@
                 <div class="goodtitle">{{product.name}} - {{product.gooddesc}}</div>
                 <div class="goodprice">¥ {{product.price}}</div>
                 <div style="color:rgb( 0 0 0 / 0.5);font-size:14px;font-weight:bold;margin-top:38px;">相近商品</div>
-                <div class="related-goods">
+                <h-scroll>
                     <product-card class="related-goods-item" v-for="(item,index) in products" :key="index" :product="item"></product-card>
-                </div>
+                </h-scroll >
                 <div style="margin-top:30px;margin-bottom:30px;font-size:14px;color:rgb(0 0 0 / 0.5 )">评论</div>
                 <a-skeleton :paragraph="{ rows:3 }" avatar active />
                 <a-skeleton :paragraph="{ rows:3 }" avatar active />
@@ -35,6 +35,7 @@ import FooterBar from '@/components/footerbar/FooterBar'
 import FooterBarButton from '@/components/footerbar/FooterBarButton'
 import MyContent from '@/components/content/MyContent'
 import ProductCard from '@/components/product/ProductCard'
+import HScroll from '@/components/scroll/HScroll'
 import {Http,HttpGql,ImgUrl} from '@/kits/Http'
 import {getCacheVal} from '@/kits/LocalStorage'
 
@@ -51,7 +52,8 @@ export default {
         FooterBar,
         FooterBarButton,
         MyContent,
-        ProductCard
+        ProductCard,
+        HScroll
     },
     created(){
         this.initData()
@@ -170,12 +172,6 @@ export default {
     font-weight: bold;
     color:#FA6400;
     margin-top:15px;
-}
-
-.related-goods{
-    display:flex;
-    overflow: auto;
-    margin-top:18px;
 }
 
 .related-goods-item {

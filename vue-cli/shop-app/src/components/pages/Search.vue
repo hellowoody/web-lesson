@@ -16,9 +16,9 @@
             </div>
             <div style="margin-top:100px;">
                 <div class="visited-good-title">最近浏览的商品</div>
-                <div class="visited-good-list">
+                <h-scroll >
                     <product-card style="flex-shrink:0;margin-right:12px;"  v-for="(item,index) in goods" :key="index" :product="item"/>
-                </div>
+                </h-scroll>
             </div>
         </my-content>
     </div>
@@ -29,6 +29,7 @@ import TopBar from '@/components/topbar/TopBar'
 import MyContent from '@/components/content/MyContent'
 import {setArray,getArray,clearItem} from '@/kits/LocalStorage'
 import ProductCard from '@/components/product/ProductCard'
+import HScroll from '@/components/scroll/HScroll'
 
 const goods = [
     {
@@ -61,6 +62,7 @@ export default {
         TopBar,
         MyContent,
         ProductCard,
+        HScroll
     },
     methods:{
         back(){
@@ -118,12 +120,6 @@ export default {
     color:rgb(0 0 0 /0.5);
     font-weight: bold;
 
-}
-
-.visited-good-list {
-    margin-top:18px;
-    display:flex;
-    overflow-x: auto;
 }
 
 </style>

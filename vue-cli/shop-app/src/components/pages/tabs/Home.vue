@@ -12,9 +12,9 @@
                     <div class="title-left">{{c.name}}</div>    
                     <div class="title-right" @click="gotoGoodsCategory(c.id)">查看全部</div>    
                 </div> 
-                <div class="product-card-list">
+                <h-scroll>
                     <product-card style="flex-shrink: 0;margin-right:12px;" v-for="item in c.goods" :product="item" :key="item.id" />
-                </div>
+                </h-scroll>
             </div>
             <div class="title">
                 <div class="title-left">更多内容</div>    
@@ -34,6 +34,7 @@
 import TopBar from '@/components/topbar/TopBar'
 import MyContent from '@/components/content/MyContent'
 import ProductCard from '@/components/product/ProductCard'
+import HScroll from '@/components/scroll/HScroll'
 import BScroll from 'better-scroll'
 import {HttpGql,ImgUrl} from '@/kits/Http'
 
@@ -72,7 +73,8 @@ export default {
     components:{
         TopBar,
         MyContent,
-        ProductCard
+        ProductCard,
+        HScroll
     },
     /*
         beforecreate  
@@ -224,11 +226,6 @@ export default {
     display: flex;
     padding:0px;
 }
-.product-card-list {
-    display: flex;
-    overflow-x: auto;
-    margin-top:16px;
-}
 
 .title {
     display: flex;
@@ -262,8 +259,5 @@ export default {
     font-weight: bold;
 }
 
-/* 隐藏滚动进度条 */
-::-webkit-scrollbar {
-    display: none;
-}
+
 </style>
