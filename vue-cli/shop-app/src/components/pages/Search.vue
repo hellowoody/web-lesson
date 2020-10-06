@@ -14,6 +14,12 @@
                     <div @click="searchByHistory(item)" class="history-search-item" v-for="(item,index) in historySearch" :key="index+item">{{item}}</div>
                 </div>
             </div>
+            <div style="margin-top:100px;">
+                <div class="visited-good-title">最近浏览的商品</div>
+                <div class="visited-good-list">
+                    <product-card style="flex-shrink:0;margin-right:12px;"  v-for="(item,index) in goods" :key="index" :product="item"/>
+                </div>
+            </div>
         </my-content>
     </div>
 </template>
@@ -22,18 +28,39 @@
 import TopBar from '@/components/topbar/TopBar'
 import MyContent from '@/components/content/MyContent'
 import {setArray,getArray,clearItem} from '@/kits/LocalStorage'
+import ProductCard from '@/components/product/ProductCard'
+
+const goods = [
+    {
+        imgpath:""
+    },
+    {
+        imgpath:""
+    },
+    {
+        imgpath:""
+    },
+    {
+        imgpath:""
+    },
+    {
+        imgpath:""
+    },
+]
 
 export default {
     name:"Search",
     data(){
         return {
             searchInput:"",
-            historySearch:getArray("historySearch"),  //本项目的获取localstorage时，是线性获取，或者说不是异步获取
+            historySearch:getArray("historySearch"),  //本项目的获取localstorage时，是线性获取，或者说不是异步获取,
+            goods,
          }
     },
     components:{
         TopBar,
-        MyContent
+        MyContent,
+        ProductCard,
     },
     methods:{
         back(){
@@ -85,4 +112,18 @@ export default {
     margin-top: 8px;
     margin-right: 5px;
 }
+
+.visited-good-title {
+    font-size:14px;
+    color:rgb(0 0 0 /0.5);
+    font-weight: bold;
+
+}
+
+.visited-good-list {
+    margin-top:18px;
+    display:flex;
+    overflow-x: auto;
+}
+
 </style>
