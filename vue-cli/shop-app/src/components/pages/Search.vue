@@ -23,10 +23,12 @@
             <div style="margin-top:42px;">
                 <div class="visited-good-title">近期最流行的商品</div>
                 <div v-for="item in goodpop" :key="item.id" class="pop-good">
-                    <div class="iconfont icon-101 pop-good-left" ></div>
-                    <div class="pop-good-middle">
-                        <div>{{item.name}}</div>
-                        <div>{{item.gooddesc}}</div>
+                    <div class="pop-good-left">
+                        <div class="pop-good-sort" :class="item.sortClass"></div>
+                        <div class="pop-good-detail">
+                            <div style="font-weight:bold">{{item.name}}</div>
+                            <div style="font-size: 13px;">{{item.gooddesc}}</div>
+                        </div>
                     </div>
                     <img :src="item.imgpath" class="pop-good-right">
                 </div>
@@ -50,7 +52,7 @@ export default {
             searchInput:"",
             historySearch:getArray("historySearch"),  //本项目的获取localstorage时，是线性获取，或者说不是异步获取,
             goods:[],
-            goodpop:[]
+            goodpop:[],
          }
     },
     components:{
@@ -137,8 +139,9 @@ export default {
                     item.imgpath = ImgUrl + item.imgpath
                     return item
                 })
-                this.goodpop = res.data.goodpop.map((item)=>{
+                this.goodpop = res.data.goodpop.map((item,index)=>{
                     item.imgpath = ImgUrl + item.imgpath
+                    item.sortClass = "iconfont icon-"+ (index+1) +"01"
                     return item
                 })
             } catch (e) {
@@ -178,25 +181,36 @@ export default {
 .pop-good {
     display:flex;
     justify-content: space-between;
-    margin-top:20px;
+    margin-top:16px;
+    background-color: #fff;
+    box-shadow: 3px 1px 8px #e3e3e3;
+    border-radius: 12px;
+    padding: 6px;
+    color:rgb(0 0 0 /0.5);
 }
 
 .pop-good-left {
+    display:flex;
+}
+
+.pop-good-sort {
     font-size: 32px;
     align-items: center;
     display: flex;
-    color: #B620E0;
+    color: #F7B500;
 }
 
-.pop-good-middle {
+.pop-good-detail {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    margin-left:16px;
 }
 
 .pop-good-right {
     width:50px;
-    height:50px
+    height:50px;
+    object-fit: cover;
 }
 
 </style>
