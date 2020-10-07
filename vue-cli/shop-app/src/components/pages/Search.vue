@@ -22,16 +22,7 @@
             </div>
             <div style="margin-top:42px;">
                 <div class="visited-good-title">近期最流行的商品</div>
-                <div v-for="item in goodpop" :key="item.id" class="pop-good">
-                    <div class="pop-good-left">
-                        <div class="pop-good-sort" :class="item.sortClass"></div>
-                        <div class="pop-good-detail">
-                            <div style="font-weight:bold">{{item.name}}</div>
-                            <div style="font-size: 13px;">{{item.gooddesc}}</div>
-                        </div>
-                    </div>
-                    <img :src="item.imgpath" class="pop-good-right">
-                </div>
+                <product-pop v-for="item in goodpop" :product="item" :key="item.id"/>
             </div>
         </my-content>
     </div>
@@ -41,6 +32,7 @@
 import TopBar from '@/components/topbar/TopBar'
 import MyContent from '@/components/content/MyContent'
 import ProductCard from '@/components/product/ProductCard'
+import ProductPop from '@/components/product/ProductPop'
 import HScroll from '@/components/scroll/HScroll'
 import {getCacheVal,setArray,getArray,clearItem} from '@/kits/LocalStorage'
 import { HttpGql,ImgUrl } from '@/kits/Http' 
@@ -59,7 +51,8 @@ export default {
         TopBar,
         MyContent,
         ProductCard,
-        HScroll
+        HScroll,
+        ProductPop
     },
     created(){
         if(getCacheVal("token") && getCacheVal("token").length > 0 ){
@@ -107,6 +100,9 @@ export default {
                             imgpath
                             gooddesc
                             visitedcount
+                            type {
+                                id
+                            }
                         }
                         userVisited(userid:"${getCacheVal("userid")}",start:0,count:5){
                             id
@@ -129,6 +125,9 @@ export default {
                             imgpath
                             gooddesc
                             visitedcount
+                            type {
+                                id
+                            }
                         }
                     }
                 `
@@ -178,39 +177,5 @@ export default {
 
 }
 
-.pop-good {
-    display:flex;
-    justify-content: space-between;
-    margin-top:16px;
-    background-color: #fff;
-    box-shadow: 3px 1px 8px #e3e3e3;
-    border-radius: 12px;
-    padding: 6px;
-    color:rgb(0 0 0 /0.5);
-}
-
-.pop-good-left {
-    display:flex;
-}
-
-.pop-good-sort {
-    font-size: 32px;
-    align-items: center;
-    display: flex;
-    color: #F7B500;
-}
-
-.pop-good-detail {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin-left:16px;
-}
-
-.pop-good-right {
-    width:50px;
-    height:50px;
-    object-fit: cover;
-}
 
 </style>

@@ -87,7 +87,7 @@ export const userVisited = async (parent:any,args:any,context:any,info:any) => {
 export const goodpop = async (parent:any,args:any,context:any,info:any) => {
     try {
         let sql = `
-            select b.id,b.name,b.price,b.imgpath,b.gooddesc,sum(a.visitedcount) visitedcount
+            select b.id,b.name,b.price,b.imgpath,b.gooddesc,sum(a.visitedcount) visitedcount,b.type
             from user_actions a , goods b 
             where a.goodid = b.id GROUP BY b.id,b.name,b.price,b.imgpath,b.gooddesc 
             order by sum(a.visitedcount) desc
