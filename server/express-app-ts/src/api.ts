@@ -117,15 +117,16 @@ export const visitedgood = async (req:any,resp:any)=>{
     })
 }
 
-export const goodaddcart = async (req:any,resp:any) => {
+export const goodaddcart = (req:any,resp:any) => {
     let p = req.body
+
     DoTx((conn)=>{
         const a = DoNoConn({
             conn,
             sql:"delete from user_actions where userid= ? and goodid=? and type = 2 ",
             params:[p.userid,p.goodid],
         }).then(()=>{
-            DoNoConn({
+            return DoNoConn({
                 conn,
                 sql:"insert into user_actions (userid,goodid,type,num,sysdate) values (?,?,?,?,(select now())) ",
                 params:[p.userid,p.goodid,2,p.num]
@@ -133,6 +134,7 @@ export const goodaddcart = async (req:any,resp:any) => {
         })
         return [a]
     })
+    
     resp.json({
         code:1,
         msg:"添加成功",
