@@ -39,29 +39,29 @@ export default {
         }
     },
     created(){
-        if(this.$store.state.cartData.length < 1 ){
-            let arr = [
-                {
-                    name:"switch游戏主机",
-                    count:1,
-                    price:3000
-                },
-                {
-                    name:"PS4游戏主机",
-                    count:1,
-                    price:2000
-                },
-                {
-                    name:"对马岛之魂",
-                    count:1,
-                    price:300
-                },
+        // if(this.$store.state.cartData.length < 1 ){
+        //     let arr = [
+        //         {
+        //             name:"switch游戏主机",
+        //             countbuy:1,
+        //             price:3000
+        //         },
+        //         {
+        //             name:"PS4游戏主机",
+        //             countbuy:1,
+        //             price:2000
+        //         },
+        //         {
+        //             name:"对马岛之魂",
+        //             countbuy:1,
+        //             price:300
+        //         },
      
-            ]
-            for (let item of arr){
-                this.$store.commit("pushCart",item)
-            }
-        }
+        //     ]
+        //     for (let item of arr){
+        //         this.$store.commit("pushCart",item)
+        //     }
+        // }
     }
 }
 </script>

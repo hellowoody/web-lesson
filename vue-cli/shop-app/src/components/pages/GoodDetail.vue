@@ -3,6 +3,7 @@
         <top-bar>
             <div slot="left" style="font-size:24px;" class="iconfont icon-back1" @click="back"></div>
             <div slot="middle">商品详情</div>
+            <div slot="right" @click="goto('cart')" class="iconfont icon-gouwuchezhengpin" style="font-size: 24px"></div>
         </top-bar>
         <my-content>
             <a-carousel style="width:100%">
@@ -78,6 +79,9 @@ export default {
         }
     },
     methods:{
+        goto(name){
+            this.$router.push({name})
+        },
         back(){
             this.$store.commit("popSelectedGoods")
             this.$router.go(-1)
@@ -130,7 +134,13 @@ export default {
             // console.log(res)
         },
         addCart(){
-            console.log("addcart")
+            // this.product.countbuy = 1
+            // this.$store.commit("pushCart",Object.assign({},this.product))
+
+            this.$store.commit("pushCart",{
+                ...this.product,
+                countbuy:1
+            })
         },
         order(){
             console.log("order")

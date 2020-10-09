@@ -10,7 +10,7 @@
             </div>
             <div style="display:flex">
                 <div class="btn" @click="decrease">-</div>
-                <div style="margin:1px 10px 0px 10px">{{product.count}}</div>
+                <div style="margin:1px 10px 0px 10px">{{product.countbuy}}</div>
                 <div class="btn" @click="increase">+</div>
             </div>
         </div>
@@ -34,7 +34,7 @@ export default {
     },
     computed:{
         showPrice(){
-            return "¥ " + this.product.price * this.product.count   
+            return "¥ " + this.product.price * this.product.countbuy   
         }
     }
 }

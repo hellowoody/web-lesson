@@ -22,16 +22,18 @@ const store = new Vuex.Store({
     //同步修改
     mutations:{
         pushCart(state,item){
+            console.log(item)
             state.cartData.push(item)
         },
         increaseCart(state,index){  
-            if(state.cartData[index].count < 99){
-                state.cartData[index].count += 1
+            console.log(state.cartData)
+            if(state.cartData[index].countbuy < 99){
+                state.cartData[index].countbuy += 1
             }
         },
         decreaseCart(state,index){
-            if(state.cartData[index].count > 0){
-                state.cartData[index].count -= 1
+            if(state.cartData[index].countbuy > 0){
+                state.cartData[index].countbuy -= 1
             }
         },
         setSearchInput(state,newVal){
@@ -57,7 +59,7 @@ const store = new Vuex.Store({
     getters:{
         cartTotalPrice:(state)=>{
             let total = 0
-            return "¥ " + state.cartData.reduce((acc,item)=>(acc+item.price*item.count),total)
+            return "¥ " + state.cartData.reduce((acc,item)=>(acc+item.price*item.countbuy),total)
         }
     }
 })
