@@ -23,6 +23,46 @@
                 "items": []
               },
               "bodyType": "Text",
+              "textBody": "{\n  \"userid\":\"10\",\n  \"goodid\":\"11\",\n  \"num\":-60000\n}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "127.0.0.1:3000",
+              "path": "/api/goodaddcart"
+            },
+            "id": "59588686-aa30-4c2a-ba30-f7ec5bea3e88",
+            "name": "/api/goodaddcart",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
               "textBody": "{\n  \"type\":\"03\",\n  \"name\":\"\",\n  \"desc\":\"7\"\n}"
             },
             "uri": {
@@ -143,7 +183,7 @@
                 "items": []
               },
               "bodyType": "Text",
-              "textBody": "{\n  \"table1\":{\n    \"id\":17,\n    \"name\":\"t1\"\n  },\n  \"table2\":{\n    \"id\":12,\n    \"name\":\"t2\"\n  }\n}"
+              "textBody": "{\n  \"table1\":{\n    \"id\":3,\n    \"name\":\"t1\"\n  },\n  \"table2\":{\n    \"id\":4,\n    \"name\":\"t2\"\n  }\n}"
             },
             "uri": {
               "query": {
@@ -183,7 +223,7 @@
                 "items": []
               },
               "bodyType": "Text",
-              "textBody": "{\n    \"main\":\"第6次测试事务\",\n    \"list\":[\n        {\n            \"id\":1,\n            \"name\":\"商品一aaaaaaaaaaaaaaaaaaaaa\"\n        },\n        {\n            \"id\":2,\n            \"name\":\"商品二\"\n        }\n    ]\n}"
+              "textBody": "{\n    \"main\":\"第2次测试事务\",\n    \"list\":[\n        {\n            \"id\":1,\n            \"name\":\"商品一\"\n        },\n        {\n            \"id\":2,\n            \"name\":\"商品二\"\n        },\n      {\n            \"id\":3,\n            \"name\":\"商品三\"\n        }\n    ]\n}"
             },
             "uri": {
               "query": {
