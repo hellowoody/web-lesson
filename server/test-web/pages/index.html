@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"></meta>
+		<meta content="width=device-width,initial-scale=1" name="viewport">
+		<title>测试父页面和子页面传值问题</title>
+	</head>
+	<body>
+		<button onclick="opennewwin()">打开聊天系统 </button>
+		<button onclick="showuser()">显示用户信息</button>
+	</body>
+</html>
+<script>
+
+var user = {
+	name:"张三"
+}
+
+function opennewwin (){
+    window.app = {
+		name:"测试父页面和子页面传值问题",
+		callback:function(newval){
+			updateUser(newval)
+		}
+	}
+    window.open("chat.html","_blank")
+}
+
+function showuser(){
+	console.log(user)
+}
+
+function updateUser(val){
+user.name = val
+}
+</script>
