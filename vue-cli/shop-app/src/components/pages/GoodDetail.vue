@@ -25,7 +25,7 @@
         </my-content>
         <footer-bar>
             <FooterBarButton slot="left" name="加入购物车" style="border:none" @funcHandle="addCart" />
-            <FooterBarButton slot="right" name="购买" style="border:none;background-color:#d8d8d8" @funcHandle="order" />
+            <FooterBarButton slot="right" name="马上购买" style="border:none;background-color:#d8d8d8" @funcHandle="order" />
         </footer-bar>
     </div>
 </template>
@@ -134,9 +134,6 @@ export default {
             // console.log(res)
         },
         addCart(){
-            // this.product.countbuy = 1
-            // this.$store.commit("pushCart",Object.assign({},this.product))
-
             this.$store.dispatch("pushCart",{
                 ...this.product,
                 countbuy:1
@@ -144,7 +141,9 @@ export default {
             this.$message.success("添加成功")
         },
         order(){
-            console.log("order")
+            this.product.countbuy = 1
+            this.$store.dispatch("pushCart",Object.assign({},this.product))
+            this.goto("cart")
         }
     }
 }

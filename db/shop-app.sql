@@ -11,7 +11,7 @@
  Target Server Version : 80018
  File Encoding         : 65001
 
- Date: 06/10/2020 10:18:09
+ Date: 10/10/2020 11:22:29
 */
 
 SET NAMES utf8mb4;
@@ -105,6 +105,35 @@ INSERT INTO `goods` VALUES (26, '夏季牛仔上衣', 500.00, 900, '女款牛仔
 COMMIT;
 
 -- ----------------------------
+-- Table structure for order
+-- ----------------------------
+DROP TABLE IF EXISTS `order`;
+CREATE TABLE `order` (
+  `id` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `userid` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `sysdate` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Table structure for order_list
+-- ----------------------------
+DROP TABLE IF EXISTS `order_list`;
+CREATE TABLE `order_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `orderid` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `goodid` int(11) DEFAULT NULL,
+  `countbuy` int(255) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `gooddesc` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
+  `type` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `imgpath` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`,`orderid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
 -- Table structure for test_main
 -- ----------------------------
 DROP TABLE IF EXISTS `test_main`;
@@ -118,6 +147,7 @@ CREATE TABLE `test_main` (
 -- Records of test_main
 -- ----------------------------
 BEGIN;
+INSERT INTO `test_main` VALUES ('1', NULL);
 INSERT INTO `test_main` VALUES ('522ca16bef931935d8adc0aadb164a9e', '第2次测试事务');
 INSERT INTO `test_main` VALUES ('8d05cfc4aaf4bc9b84441e90be906f23', '第1次测试事务');
 COMMIT;
@@ -224,11 +254,15 @@ INSERT INTO `user_actions` VALUES ('10', 11, 1, NULL, 1, '2020-10-06 09:12:48');
 INSERT INTO `user_actions` VALUES ('li@mail.com', 1, 1, NULL, 2, '2020-10-06 10:11:33');
 INSERT INTO `user_actions` VALUES ('li@mail.com', 22, 1, NULL, 1, '2020-10-05 09:44:16');
 INSERT INTO `user_actions` VALUES ('li@mail.com', 25, 1, NULL, 2, '2020-10-05 09:44:01');
-INSERT INTO `user_actions` VALUES ('zhang@mail.com', 1, 1, NULL, 6, '2020-10-03 14:14:13');
-INSERT INTO `user_actions` VALUES ('zhang@mail.com', 3, 1, NULL, 2, '2020-10-03 14:18:07');
-INSERT INTO `user_actions` VALUES ('zhang@mail.com', 21, 1, NULL, 4, '2020-10-03 14:14:27');
-INSERT INTO `user_actions` VALUES ('zhang@mail.com', 22, 1, NULL, 1, '2020-10-03 14:18:39');
-INSERT INTO `user_actions` VALUES ('zhang@mail.com', 23, 1, NULL, 2, '2020-10-03 14:18:38');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 1, 1, NULL, 62, '2020-10-03 14:14:13');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 1, 2, 38, NULL, '2020-10-10 11:07:30');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 2, 1, NULL, 3, '2020-10-10 10:10:49');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 2, 2, 2, NULL, '2020-10-10 10:45:05');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 3, 1, NULL, 8, '2020-10-03 14:18:07');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 21, 1, NULL, 25, '2020-10-03 14:14:27');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 21, 2, 2, NULL, '2020-10-10 10:45:04');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 22, 1, NULL, 4, '2020-10-03 14:18:39');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 23, 1, NULL, 6, '2020-10-03 14:18:38');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
