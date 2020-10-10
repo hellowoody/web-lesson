@@ -137,7 +137,7 @@ export default {
             // this.product.countbuy = 1
             // this.$store.commit("pushCart",Object.assign({},this.product))
 
-            this.$store.commit("pushCart",{
+            this.$store.dispatch("pushCart",{
                 ...this.product,
                 countbuy:1
             })

@@ -5,6 +5,8 @@
 */
 import Vue from 'vue';
 import Vuex from 'vuex';
+import {Http} from '@/kits/Http';
+import {getCacheVal} from '@/kits/LocalStorage'
 
 Vue.use(Vuex)
 
@@ -65,7 +67,12 @@ const store = new Vuex.Store({
     },
     //异步修改
     actions:{
-
+        pushCart(context,item){
+            context.commit("pushCart",item)
+            let cartitem = context.state.cartData.filter((t)=>(t.id === item.id))
+            doCart(item.id,cartitem.length >0 ? cartitem[0].countbuy : 0)
+        },
+        
     },
     getters:{
         cartTotalPrice:(state)=>{
@@ -74,5 +81,13 @@ const store = new Vuex.Store({
         }
     }
 })
+
+const doCart = (goodid,num) => {
+    Http("/goodaddcart",{
+        userid:getCacheVal("userid"),
+        goodid,
+        num,
+    })
+}
 
 export default store
