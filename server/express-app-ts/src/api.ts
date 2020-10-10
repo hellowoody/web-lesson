@@ -149,18 +149,21 @@ export const createorder = async (req:any,resp:any) => {
         let date = new Date()
         let id = md5.update(date.getUTCMilliseconds().toString()).digest('hex');
         await DoTx((conn)=>{
-            const t = DoNoConn({
+            return [DoNoConn({
                 conn,
                 sql:"insert into `order` values (?,?,?,(select now())) ",
                 params:[id,p.userid,1]
-            })
-            // .then(()=>{
-            //     return DoNoConn({
-            //         conn,
-            //         sql:""
-            //     })
-            // })
-            return [t]
+            }).then(()=>{
+                let arr : Promise<any>[]= []
+                for(let t of p.orderlist){
+                    arr.push(DoNoConn({
+                        conn,
+                        sql:"insert into order_list (orderid,goodid,countbuy,name,gooddesc,price,type,imgpath) values (?,?,?,?,?,?,?,?) ",
+                        params:[id,t.id,t.countbuy,t.name,t.googdesc,t.price,t.type,t.imgpath]
+                    }))
+                }
+                return Promise.all(arr)
+            })]
         })
         resp.json({
             code:1,
