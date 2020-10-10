@@ -13,6 +13,7 @@ const typeDefs = gql `
         homeImgs:[String]
         user(id:String!) : User
         userVisited(userid:String!,start:Int!,count:Int!) : [Good]
+        userCart(userid:String!) : [Good]
     }
     
     type Good {
@@ -23,7 +24,8 @@ const typeDefs = gql `
         type:Dict,
         imgpath:String,
         count:Int,
-        visitedcount:Int
+        visitedcount:Int,
+        countbuy:Int
     }
 
     type Dict {
@@ -63,6 +65,7 @@ const resolvers = {
         },
         user:gr.user,
         userVisited:gr.userVisited,
+        userCart:gr.userCart,
         goodpop:gr.goodpop,
     },
     Good:{

@@ -84,6 +84,16 @@ export const userVisited = async (parent:any,args:any,context:any,info:any) => {
     }
 }
 
+export const userCart = async (parent:any,args:any,context:any,info:any) => {
+    try {
+        const sql = "select b.*,a.num as countbuy from user_actions a,goods b where a.goodid = b.id and a.userid = ? and a.type = 2  order by a.sysdate desc ";
+        let res = await Do(sql,[args.userid]);
+        return res
+    } catch (e) {
+        return e
+    }
+}
+
 export const goodpop = async (parent:any,args:any,context:any,info:any) => {
     try {
         let sql = `

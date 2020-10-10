@@ -38,31 +38,6 @@ export default {
             this.$router.go(-1)
         }
     },
-    created(){
-        // if(this.$store.state.cartData.length < 1 ){
-        //     let arr = [
-        //         {
-        //             name:"switch游戏主机",
-        //             countbuy:1,
-        //             price:3000
-        //         },
-        //         {
-        //             name:"PS4游戏主机",
-        //             countbuy:1,
-        //             price:2000
-        //         },
-        //         {
-        //             name:"对马岛之魂",
-        //             countbuy:1,
-        //             price:300
-        //         },
-     
-        //     ]
-        //     for (let item of arr){
-        //         this.$store.commit("pushCart",item)
-        //     }
-        // }
-    }
 }
 </script>
 

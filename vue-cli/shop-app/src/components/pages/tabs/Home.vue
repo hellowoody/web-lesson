@@ -37,6 +37,7 @@ import ProductCard from '@/components/product/ProductCard'
 import HScroll from '@/components/scroll/HScroll'
 import BScroll from 'better-scroll'
 import {HttpGql,ImgUrl} from '@/kits/Http'
+import {getCacheVal} from '@/kits/LocalStorage'
 
 let moreContent = [
     {
@@ -128,27 +129,59 @@ export default {
         },
         async initData(){
             let t = '["03","06"]'
-            let gql = {
-                query:`
-                        {
-                            homeImgs
-                            categorys(type:${t}) {
-                                id
-                                dictid
-                                name
-                                goods(count:5){
+            let gql = ""
+            if(getCacheVal("token") && getCacheVal("token").length > 0 ){
+                gql = {
+                    query:`
+                            {
+                                homeImgs
+                                categorys(type:${t}) {
+                                    id
+                                    dictid
+                                    name
+                                    goods(count:5){
+                                        id
+                                        name
+                                        type {
+                                            id
+                                        }
+                                        price
+                                        imgpath
+                                    }
+                                }
+                                userCart(userid:"${getCacheVal('userid')}"){
                                     id
                                     name
-                                    type {
-                                        id
-                                    }
-                                    price
-                                    imgpath
+                                    imgpath,
+                                    price,
+                                    countbuy
                                 }
                             }
-                        }
-                    `
-                }
+                        `
+                    }
+            }else{
+                gql = {
+                    query:`
+                            {
+                                homeImgs
+                                categorys(type:${t}) {
+                                    id
+                                    dictid
+                                    name
+                                    goods(count:5){
+                                        id
+                                        name
+                                        type {
+                                            id
+                                        }
+                                        price
+                                        imgpath
+                                    }
+                                }
+                            }
+                        `
+                    }
+            }
             try {
                 let res = await HttpGql(gql)
                 for(let c of res.data.categorys){
@@ -159,6 +192,7 @@ export default {
                 }
                 this.categorys = res.data.categorys
                 this.homeImgs = res.data.homeImgs
+                this.$store.commit("initCart",res.data.userCart ? res.data.userCart : [])
                 return true
             } catch (error) {
                 let goods = []

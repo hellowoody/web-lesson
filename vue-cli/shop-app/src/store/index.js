@@ -23,6 +23,9 @@ const store = new Vuex.Store({
     },
     //同步修改
     mutations:{
+        initCart(state,data){
+            state.cartData = data
+        },
         pushCart(state,item){
             let index = -1
             for(let i = 0; i < state.cartData.length ;i++){
