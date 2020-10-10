@@ -26,10 +26,10 @@ export default {
     },
     methods:{
         increase(){
-            this.$store.commit("increaseCart",this.index)
+            this.$store.dispatch("increaseCart",this.index)
         },
         decrease(){
-            this.$store.commit("decreaseCart",this.index)
+            this.$store.dispatch("decreaseCart",this.index)
         }
     },
     computed:{

@@ -72,7 +72,16 @@ const store = new Vuex.Store({
             let cartitem = context.state.cartData.filter((t)=>(t.id === item.id))
             doCart(item.id,cartitem.length >0 ? cartitem[0].countbuy : 0)
         },
-        
+        increaseCart(context,index){
+            context.commit("increaseCart",index)
+            let cartitem = context.state.cartData[index]
+            doCart(cartitem.id,cartitem.countbuy)
+        },
+        decreaseCart(context,index){
+            context.commit("decreaseCart",index)
+            let cartitem = context.state.cartData[index]
+            doCart(cartitem.id,cartitem.countbuy)
+        },
     },
     getters:{
         cartTotalPrice:(state)=>{
