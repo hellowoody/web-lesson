@@ -192,7 +192,10 @@ export default {
                 }
                 this.categorys = res.data.categorys
                 this.homeImgs = res.data.homeImgs
-                this.$store.commit("initCart",res.data.userCart ? res.data.userCart : [])
+                this.$store.commit("initCart",res.data.userCart ? res.data.userCart.map((item)=>{
+                    item.imgpath = ImgUrl + item.imgpath
+                    return item
+                }) : [])
                 return true
             } catch (error) {
                 let goods = []

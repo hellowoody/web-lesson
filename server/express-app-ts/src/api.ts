@@ -142,6 +142,40 @@ export const goodaddcart = (req:any,resp:any) => {
     })
 }
 
+export const createorder = async (req:any,resp:any) => {
+    const p = req.body
+    try {
+        let md5 = crypto.createHash('md5')
+        let date = new Date()
+        let id = md5.update(date.getUTCMilliseconds().toString()).digest('hex');
+        await DoTx((conn)=>{
+            const t = DoNoConn({
+                conn,
+                sql:"insert into `order` values (?,?,?,(select now())) ",
+                params:[id,p.userid,1]
+            })
+            // .then(()=>{
+            //     return DoNoConn({
+            //         conn,
+            //         sql:""
+            //     })
+            // })
+            return [t]
+        })
+        resp.json({
+            code:1,
+            msg:"创建成功",
+            data:{}
+        })
+    } catch (e) {
+        resp.json({
+            code:2,
+            msg:"创建订单失败",
+            data:{}
+        })
+    }
+}
+
 
 export const test2main = async (req:any,resp:any)=>{
 

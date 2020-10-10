@@ -110,7 +110,7 @@ export const DoTx = (callback : TxCallback)=>{
             }else{
                 connection.beginTransaction(err => {
                     if (err) { 
-                        reject(err) 
+                        reject(err)
                     }else{
                         const p = callback(connection)
                         Promise.all(p)
@@ -118,6 +118,7 @@ export const DoTx = (callback : TxCallback)=>{
                                 connection.commit(function(err) {
                                     if (err) {
                                         connection.rollback(()=>console.log("*** this db action rollback! ***"));
+                                        console.error(err)
                                         reject(err)
                                     }else{
                                         resolve({
@@ -129,6 +130,7 @@ export const DoTx = (callback : TxCallback)=>{
                             })
                             .catch((error)=>{
                                 connection.rollback(()=>console.log("*** this db action rollback! ***"));
+                                console.error(error)
                                 reject(error)
                             })
                     }

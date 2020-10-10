@@ -1,6 +1,6 @@
 <template>
     <div class="product-edit">
-        <div class="pic"></div>
+        <div class="pic" :style="ImgStyle"></div>
         <div class="wrapper-right">
             <div style="font-size:14px;color:rgb(0 0 0 / 0.5);font-weight:bold;">
                 {{product.name}}
@@ -35,6 +35,12 @@ export default {
     computed:{
         showPrice(){
             return "¥ " + this.product.price * this.product.countbuy   
+        },
+        ImgStyle(){
+            return {
+                "background-image":'url('+this.product.imgpath+')',
+                "background-size":"cover",
+            }
         }
     }
 }
@@ -55,6 +61,7 @@ export default {
     height:75px;
     width:75px;
     border-radius: 10px;
+    box-shadow: 0px 1px 6px rgb(40 40 40 / 0.2);;
 }
 
 .wrapper-right {
