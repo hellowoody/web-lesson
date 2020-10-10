@@ -9,7 +9,6 @@
 		<button onclick="printBindData()">打印绑定后的值</button>
         <input id="inputid" onchange="useState(this)"><button onclick="setBindData('你好')">赋新的值</button>
         <div id="showdiv"></div>
-
 	</body>
 </html>
 
@@ -29,6 +28,10 @@ let obj_bind = mybind(obj)
 
 console.log(obj_bind)
 
+let org = {
+    name
+}
+
 function mybind(target){
     return new Proxy(target,{
         get(obj,prop){
@@ -40,7 +43,7 @@ function mybind(target){
             // console.log(obj,prop,value)
             obj[prop] = value
             document.getElementById("showdiv").innerText = obj[prop] 
-        }
+        },
     })
 }
 

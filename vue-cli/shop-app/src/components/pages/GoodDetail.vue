@@ -141,6 +141,7 @@ export default {
                 ...this.product,
                 countbuy:1
             })
+            this.$message.success("添加成功")
         },
         order(){
             console.log("order")

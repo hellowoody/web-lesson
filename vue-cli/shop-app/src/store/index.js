@@ -22,11 +22,22 @@ const store = new Vuex.Store({
     //同步修改
     mutations:{
         pushCart(state,item){
-            console.log(item)
-            state.cartData.push(item)
+            let index = -1
+            for(let i = 0; i < state.cartData.length ;i++){
+                if(state.cartData[i].id === item.id){
+                    index = i
+                    break
+                }
+            }
+            if(index > -1){
+                //this.commit("increaseCart",index)  也可以
+                store.commit("increaseCart",index)
+            }else{
+                state.cartData.push(item)
+            }
+            
         },
         increaseCart(state,index){  
-            console.log(state.cartData)
             if(state.cartData[index].countbuy < 99){
                 state.cartData[index].countbuy += 1
             }
