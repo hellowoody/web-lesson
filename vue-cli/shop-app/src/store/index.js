@@ -71,6 +71,9 @@ const store = new Vuex.Store({
             if(state.cartData[index].countbuy === 0){
                 state.cartData.splice(index,1)
             }
+        },
+        resetCart(state){
+            state.cartData = []
         }
     },
     //异步修改
@@ -91,6 +94,24 @@ const store = new Vuex.Store({
             doCart(cartitem.id,cartitem.countbuy)
             context.commit("removeCart",index)
         },
+        async order(context){
+            const p = {
+                userid:getCacheVal("userid"),
+                orderlist:context.state.cartData
+            }
+            try {
+                let res = await Http("/createorder",p)
+                if (res.code === 1) {
+                    await Http("/resetcart",{
+                        userid:getCacheVal("userid")
+                    })
+                    context.commit('resetCart')
+                    return res
+                }
+            } catch (e) {
+                return e
+            }
+        }
     },
     getters:{
         cartTotalPrice:(state)=>{

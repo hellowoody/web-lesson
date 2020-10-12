@@ -12,7 +12,7 @@
                 <div style="color:rgb(0 0 0 /0.5);font-size:12px;font-weight:bold">总价</div>
                 <div style="color:#FA6400;font-size:16px;font-weight:bold">{{$store.getters.cartTotalPrice}}</div>
             </div>
-            <footer-bar-button slot="right" style="background-color:#D8D8D8" name="购买"></footer-bar-button>
+            <footer-bar-button slot="right" style="background-color:#2F69F8;color:#fff" name="购买" @funcHandle="order"></footer-bar-button>
         </footer-bar>
     </div>
 </template>
@@ -36,6 +36,15 @@ export default {
     methods:{
         back(){
             this.$router.go(-1)
+        },
+        async order(){
+            let res = await this.$store.dispatch("order")
+            if(res.code === 1){
+                this.$message.success(res.msg)
+            }else{
+                this.$message.error(res.msg)
+            }
+            
         }
     },
 }

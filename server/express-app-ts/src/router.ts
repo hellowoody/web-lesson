@@ -19,6 +19,8 @@ export const router = (app : Express)=>{
 
     app.post("/api/createorder",api.createorder)
 
+    app.post("/api/resetcart",api.resetcart)
+
     app.post("/api/test2main",api.test2main)
 
     app.post("/api/testmainlist",api.testmainlist)

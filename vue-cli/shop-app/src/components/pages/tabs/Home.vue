@@ -151,10 +151,14 @@ export default {
                                 }
                                 userCart(userid:"${getCacheVal('userid')}"){
                                     id
-                                    name
+                                    name,
+                                    gooddesc,
                                     imgpath,
                                     price,
-                                    countbuy
+                                    countbuy,
+                                    type {
+                                        id
+                                    }
                                 }
                             }
                         `

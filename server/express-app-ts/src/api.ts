@@ -161,7 +161,7 @@ export const createorder = async (req:any,resp:any) => {
                     arr.push(DoNoConn({
                         conn,
                         sql:"insert into order_list (orderid,goodid,countbuy,name,gooddesc,price,type,imgpath) values (?,?,?,?,?,?,?,?) ",
-                        params:[id,t.id,t.countbuy,t.name,t.googdesc,t.price,t.type,t.imgpath]
+                        params:[id,t.id,t.countbuy,t.name,t.gooddesc,t.price,t.type.id,t.imgpath]
                     }))
                 }
                 return Promise.all(arr)
@@ -179,6 +179,27 @@ export const createorder = async (req:any,resp:any) => {
             data:{}
         })
     }
+}
+
+export const resetcart = async (req:any,resp:any)=>{
+    let p = req.body
+    try {
+        let res = await Do("delete from user_actions where userid= ? and type = 2 ",[p.userid])
+        resp.json({
+            code:1,
+            msg:"操作成功",
+            data:res
+        })
+    } catch (error) {
+        resp.json({
+            code:3,
+            msg:"操作失败",
+            data:{
+                error
+            }
+        })
+    }
+    
 }
 
 
