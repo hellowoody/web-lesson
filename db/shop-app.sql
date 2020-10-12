@@ -11,7 +11,7 @@
  Target Server Version : 80018
  File Encoding         : 65001
 
- Date: 10/10/2020 11:22:29
+ Date: 12/10/2020 17:26:31
 */
 
 SET NAMES utf8mb4;
@@ -33,6 +33,7 @@ CREATE TABLE `dict` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `dict` VALUES ('goods_type', '商品类型', '1');
+INSERT INTO `dict` VALUES ('order_status', '订单状态', '1');
 COMMIT;
 
 -- ----------------------------
@@ -55,6 +56,14 @@ INSERT INTO `dict_son` VALUES ('01', 'goods_type', '游戏主机', 3);
 INSERT INTO `dict_son` VALUES ('02', 'goods_type', '游戏大作', 2);
 INSERT INTO `dict_son` VALUES ('03', 'goods_type', '鞋类', 1);
 INSERT INTO `dict_son` VALUES ('06', 'goods_type', '潮服', 6);
+INSERT INTO `dict_son` VALUES ('1', 'order_status', '等待发货', 1);
+INSERT INTO `dict_son` VALUES ('2', 'order_status', '删除', 2);
+INSERT INTO `dict_son` VALUES ('3', 'order_status', '关闭交易', 3);
+INSERT INTO `dict_son` VALUES ('4', 'order_status', '运输中', 4);
+INSERT INTO `dict_son` VALUES ('5', 'order_status', '等待买家确认', 5);
+INSERT INTO `dict_son` VALUES ('6', 'order_status', '完成交易', 6);
+INSERT INTO `dict_son` VALUES ('7', 'order_status', '退货中', 7);
+INSERT INTO `dict_son` VALUES ('8', 'order_status', '退货成功', 8);
 COMMIT;
 
 -- ----------------------------
@@ -67,7 +76,7 @@ CREATE TABLE `goods` (
   `price` decimal(10,2) DEFAULT NULL,
   `count` int(11) DEFAULT NULL,
   `gooddesc` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `type` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `type` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `imgpath` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -109,12 +118,20 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
-  `id` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `id` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `userid` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  `sysdate` datetime DEFAULT NULL,
+  `status` varchar(2) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '1-等待发货；2-删除；3-关闭交易；4-运输中；5-等待买家确认；6；交易完成；7-退货中，8-退货成功',
+  `sysdate` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of order
+-- ----------------------------
+BEGIN;
+INSERT INTO `order` VALUES ('7cbbc409ec990f19c78c75bd1e06f215', 'zhang@mail.com', '1', '2020-10-12 14:16:16');
+INSERT INTO `order` VALUES ('d045c59a90d7587d8d671b5f5aec4e7c', 'zhang@mail.com', '1', '2020-10-12 14:20:53');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for order_list
@@ -122,16 +139,29 @@ CREATE TABLE `order` (
 DROP TABLE IF EXISTS `order_list`;
 CREATE TABLE `order_list` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `orderid` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `orderid` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `goodid` int(11) DEFAULT NULL,
   `countbuy` int(255) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `gooddesc` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `price` decimal(10,2) DEFAULT NULL,
-  `type` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `type` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `imgpath` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`,`orderid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of order_list
+-- ----------------------------
+BEGIN;
+INSERT INTO `order_list` VALUES (17, '7cbbc409ec990f19c78c75bd1e06f215', 1, 10, '乔1', NULL, 1000.00, '03', 'http://127.0.0.1:3000/imgs/shoe06.png');
+INSERT INTO `order_list` VALUES (18, '7cbbc409ec990f19c78c75bd1e06f215', 22, 1, '黄色运动卫衣', NULL, 200.00, '06', 'http://127.0.0.1:3000/imgs/c02.png');
+INSERT INTO `order_list` VALUES (19, '7cbbc409ec990f19c78c75bd1e06f215', 3, 1, '乔3', NULL, 1002.00, '03', 'http://127.0.0.1:3000/imgs/shoe08.png');
+INSERT INTO `order_list` VALUES (20, '7cbbc409ec990f19c78c75bd1e06f215', 23, 1, '牛仔夹克', NULL, 300.00, '06', 'http://127.0.0.1:3000/imgs/c03.png');
+INSERT INTO `order_list` VALUES (21, '7cbbc409ec990f19c78c75bd1e06f215', 25, 3, '女款牛仔夹克', NULL, 400.00, '06', 'http://127.0.0.1:3000/imgs/c06.png');
+INSERT INTO `order_list` VALUES (22, 'd045c59a90d7587d8d671b5f5aec4e7c', 21, 3, '秋季毛衣', '夏季牛仔上衣1', 100.00, '06', 'c05.png');
+INSERT INTO `order_list` VALUES (23, 'd045c59a90d7587d8d671b5f5aec4e7c', 23, 2, '牛仔夹克', '牛仔夹克1', 300.00, '06', 'c03.png');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for test_main
@@ -254,15 +284,14 @@ INSERT INTO `user_actions` VALUES ('10', 11, 1, NULL, 1, '2020-10-06 09:12:48');
 INSERT INTO `user_actions` VALUES ('li@mail.com', 1, 1, NULL, 2, '2020-10-06 10:11:33');
 INSERT INTO `user_actions` VALUES ('li@mail.com', 22, 1, NULL, 1, '2020-10-05 09:44:16');
 INSERT INTO `user_actions` VALUES ('li@mail.com', 25, 1, NULL, 2, '2020-10-05 09:44:01');
-INSERT INTO `user_actions` VALUES ('zhang@mail.com', 1, 1, NULL, 62, '2020-10-03 14:14:13');
-INSERT INTO `user_actions` VALUES ('zhang@mail.com', 1, 2, 38, NULL, '2020-10-10 11:07:30');
-INSERT INTO `user_actions` VALUES ('zhang@mail.com', 2, 1, NULL, 3, '2020-10-10 10:10:49');
-INSERT INTO `user_actions` VALUES ('zhang@mail.com', 2, 2, 2, NULL, '2020-10-10 10:45:05');
-INSERT INTO `user_actions` VALUES ('zhang@mail.com', 3, 1, NULL, 8, '2020-10-03 14:18:07');
-INSERT INTO `user_actions` VALUES ('zhang@mail.com', 21, 1, NULL, 25, '2020-10-03 14:14:27');
-INSERT INTO `user_actions` VALUES ('zhang@mail.com', 21, 2, 2, NULL, '2020-10-10 10:45:04');
-INSERT INTO `user_actions` VALUES ('zhang@mail.com', 22, 1, NULL, 4, '2020-10-03 14:18:39');
-INSERT INTO `user_actions` VALUES ('zhang@mail.com', 23, 1, NULL, 6, '2020-10-03 14:18:38');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 1, 1, NULL, 70, '2020-10-03 14:14:13');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 2, 1, NULL, 5, '2020-10-10 10:10:49');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 3, 1, NULL, 9, '2020-10-03 14:18:07');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 21, 1, NULL, 30, '2020-10-03 14:14:27');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 22, 1, NULL, 7, '2020-10-03 14:18:39');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 23, 1, NULL, 10, '2020-10-03 14:18:38');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 24, 1, NULL, 2, '2020-10-12 10:13:41');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 25, 1, NULL, 2, '2020-10-12 10:13:44');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
