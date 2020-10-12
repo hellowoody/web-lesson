@@ -147,7 +147,7 @@ export const createorder = async (req:any,resp:any) => {
     try {
         let md5 = crypto.createHash('md5')
         let date = new Date()
-        let id = md5.update(date.getUTCMilliseconds().toString()).digest('hex');
+        let id = md5.update(date.getUTCMilliseconds().toString()).digest('hex'); 
         await DoTx((conn)=>{
             return [DoNoConn({
                 conn,

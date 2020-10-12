@@ -10,6 +10,7 @@ import {
     Button,
     FormModel,
     Modal,
+    Popconfirm,
 }  from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 
@@ -22,6 +23,7 @@ Vue.use(Skeleton)
 Vue.use(Button)
 Vue.use(FormModel)
 Vue.use(Modal)
+Vue.use(Popconfirm)
 
 message.config({
     top: `70px`,

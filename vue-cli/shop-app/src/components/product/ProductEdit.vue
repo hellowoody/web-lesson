@@ -9,7 +9,15 @@
                 {{showPrice}}
             </div>
             <div style="display:flex">
-                <div class="btn" @click="decrease">-</div>
+                <a-popconfirm
+                    title="Are you sure delete this task?"
+                    ok-text="Yes"
+                    cancel-text="No"
+                    @confirm="confirm"
+                    @cancel="cancel"
+                >
+                    <div class="btn" @click="decrease">-</div>
+                </a-popconfirm>
                 <div style="margin:1px 10px 0px 10px">{{product.countbuy}}</div>
                 <div class="btn" @click="increase">+</div>
             </div>
@@ -30,7 +38,15 @@ export default {
         },
         decrease(){
             this.$store.dispatch("decreaseCart",this.index)
-        }
+        },
+        confirm(e) {
+            console.log(e);
+            this.$message.success('Click on Yes');
+        },
+        cancel(e) {
+            console.log(e);
+            this.$message.error('Click on No');
+        },
     },
     computed:{
         showPrice(){
