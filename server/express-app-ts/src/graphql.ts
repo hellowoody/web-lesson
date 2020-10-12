@@ -14,6 +14,7 @@ const typeDefs = gql `
         user(id:String!) : User
         userVisited(userid:String!,start:Int!,count:Int!) : [Good]
         userCart(userid:String!) : [Good]
+        userOrder(userid:String!,start:Int!,count:Int!) : [Order]
     }
     
     type Good {
@@ -48,6 +49,14 @@ const typeDefs = gql `
         visitedGoods(start:Int!,count:Int!):[Good]
     }
 
+    type Order {
+        id:String,
+        price:Float,
+        goodcount:Int,
+        orderdate:String,
+        status:Dict
+    }
+
 `
 const resolvers = {
     Query:{
@@ -66,6 +75,7 @@ const resolvers = {
         user:gr.user,
         userVisited:gr.userVisited,
         userCart:gr.userCart,
+        userOrder:gr.userOrder,
         goodpop:gr.goodpop,
     },
     Good:{
@@ -76,6 +86,11 @@ const resolvers = {
     },
     User:{
         visitedGoods:gr.visitedGoods
+    },
+    Order:{
+        price:gr.sumPrice,
+        goodcount:gr.countGood,
+        status:gr.orderStatus
     }
 }
 

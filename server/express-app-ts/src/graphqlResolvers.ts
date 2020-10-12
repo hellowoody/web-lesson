@@ -109,3 +109,36 @@ export const goodpop = async (parent:any,args:any,context:any,info:any) => {
         return e
     }
 }
+
+export const userOrder = async (parent:any,args:any,context:any,info:any) => {
+    try {
+        let res = await Do("select id,status, sysdate orderdate from `order` where userid = ? order by sysdate desc limit ? , ? ",[args.userid,args.start,args.count])
+        return res
+    } catch (e) {
+        return e
+    }
+}
+
+export const orderStatus = async (parent:any,args:any,context:any,info:any) => {
+
+}
+
+export const sumPrice = async (parent:any,args:any,context:any,info:any) => {
+    try {
+        let res  = await FindFrist("select sum(price) price from order_list where orderid = ? ",[parent.id])
+        let jsonObj = JSON.parse(JSON.stringify(res))
+        return jsonObj.price
+    } catch (e) {
+        return e
+    }
+}
+
+export const countGood = async (parent:any,args:any,context:any,info:any) => {
+    try {
+        let res  = await FindFrist("select count(1) goodcount from order_list where orderid = ? ",[parent.id])
+        let jsonObj = JSON.parse(JSON.stringify(res))
+        return jsonObj.goodcount
+    } catch (e) {
+        return e
+    }
+}
