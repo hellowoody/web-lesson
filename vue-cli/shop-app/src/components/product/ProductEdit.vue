@@ -10,14 +10,15 @@
             </div>
             <div style="display:flex">
                 <a-popconfirm
-                    title="Are you sure delete this task?"
-                    ok-text="Yes"
-                    cancel-text="No"
+                    v-if="product.countbuy <= 1"
+                    title="是否从购物车移除该商品?"
+                    ok-text="移除"
+                    cancel-text="取消"
                     @confirm="confirm"
-                    @cancel="cancel"
                 >
-                    <div class="btn" @click="decrease">-</div>
+                    <div class="btn">-</div>
                 </a-popconfirm>
+                <div v-else class="btn" @click="decrease">-</div>
                 <div style="margin:1px 10px 0px 10px">{{product.countbuy}}</div>
                 <div class="btn" @click="increase">+</div>
             </div>
@@ -40,12 +41,8 @@ export default {
             this.$store.dispatch("decreaseCart",this.index)
         },
         confirm(e) {
-            console.log(e);
-            this.$message.success('Click on Yes');
-        },
-        cancel(e) {
-            console.log(e);
-            this.$message.error('Click on No');
+            this.decrease()
+            this.$message.success('移除成功');
         },
     },
     computed:{

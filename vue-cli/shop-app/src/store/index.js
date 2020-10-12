@@ -67,6 +67,11 @@ const store = new Vuex.Store({
         popSelectedGoods(state){
             state.selectedGoods.pop()
         },
+        removeCart(state,index){
+            if(state.cartData[index].countbuy === 0){
+                state.cartData.splice(index,1)
+            }
+        }
     },
     //异步修改
     actions:{
@@ -84,6 +89,7 @@ const store = new Vuex.Store({
             context.commit("decreaseCart",index)
             let cartitem = context.state.cartData[index]
             doCart(cartitem.id,cartitem.countbuy)
+            context.commit("removeCart",index)
         },
     },
     getters:{
