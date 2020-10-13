@@ -121,7 +121,12 @@ export const userOrder = async (parent:any,args:any,context:any,info:any) => {
 }
 
 export const orderStatus = async (parent:any,args:any,context:any,info:any) => {
-
+    try {
+        let res = await FindFrist("select * from dict_son where id = ? ",[parent.status])
+        return res
+    } catch (e) {
+        return e
+    }
 }
 
 export const sumPrice = async (parent:any,args:any,context:any,info:any) => {
