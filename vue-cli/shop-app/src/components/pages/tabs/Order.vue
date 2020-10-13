@@ -3,17 +3,27 @@
         <div class="title">
             订单信息
         </div>
-        <a-list size="large" style="margin-top:24px;" :data-source="listData">
-            <a-list-item slot="renderItem" slot-scope="item">
+        <a-list size="large" style="margin-top:24px;" :data-source="listData" >
+            <a-list-item slot="renderItem" slot-scope="item" @click="goto('orderdetail',{order:item})">
                 <div class="order">
-                    <div>
-                        <div>{{item.id}}</div>
+                    <div class="frist-row">
                         <div>{{item.status.name}}</div>
                     </div>
-                    <div>
-                        <div>{{item.count}}</div>
-                        <div>{{item.price}}</div>
+                    <div class="row">
+                        <div>订单:</div>
+                        <div>{{item.id}}</div>
+                    </div>
+                    <div class="row">
+                        <div>创建订单时间:</div>
                         <div>{{item.orderdate}}</div>
+                    </div>
+                    <div class="row">
+                        <div>购买了几种商品:</div>
+                        <div>{{item.goodcount}} 种</div>
+                    </div>
+                    <div class="row">
+                        <div>订单总价:</div>
+                        <div>¥ {{item.price}}</div>
                     </div>
                 </div>
             </a-list-item>
@@ -42,6 +52,9 @@ export default {
         this.getData()
     },
     methods:{
+        goto(name,params){
+            this.$router.push({name,params})
+        },
         async getData(){
             try {
                 const p = {
@@ -54,6 +67,14 @@ export default {
                                 goodcount
                                 status {
                                  name
+                                }
+                                goodList {
+                                    id
+                                    name
+                                    price
+                                    imgpath
+                                    gooddesc
+                                    countbuy
                                 }
                             }
                         }
@@ -86,6 +107,27 @@ export default {
 .order {
     display:flex;
     flex-direction: column;
+    width:100%;
+    background-color: #fff;
+    box-shadow: 0px 1px 8px #e3e3e3;
+    border-radius: 12px;
+    padding:8px;
 }
+
+.row {
+    display:flex;
+    justify-content: space-between;
+    margin-top:8px;
+    font-size: 13px;
+}
+
+.frist-row {
+    display:flex;
+    justify-content: flex-end;
+    font-size: 15px;
+    color:rgb(250, 100, 0);
+    margin-top:8px;
+}
+
 
 </style>

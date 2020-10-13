@@ -152,3 +152,12 @@ export const countGood = async (parent:any,args:any,context:any,info:any) => {
 export const formatOrderdate = (parent:any,args:any,context:any,info:any)=>{
     return moment(parent.orderdate).format("yyyy-MM-DD HH:mm:ss")
 }
+
+export const goodList = async (parent:any,args:any,context:any,info:any)=>{
+    try {
+        let res = await Do("select * from order_list where orderid = ? ",[parent.id])
+        return res
+    } catch (e) {
+        return e
+    }
+}

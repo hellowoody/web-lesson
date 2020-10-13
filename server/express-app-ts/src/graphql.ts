@@ -55,6 +55,7 @@ const typeDefs = gql `
         goodcount:Int,
         orderdate:String,
         status:Dict
+        goodList:[Good]
     }
 
 `
@@ -91,7 +92,8 @@ const resolvers = {
         orderdate:gr.formatOrderdate,
         price:gr.sumPrice,
         goodcount:gr.countGood,
-        status:gr.orderStatus
+        status:gr.orderStatus,
+        goodList:gr.goodList
     }
 }
 

@@ -1,18 +1,19 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Main from '@/components/pages/Main';
-import Home from '@/components/pages/tabs/Home';
-import Category from '@/components/pages/tabs/Category';
-import Order from '@/components/pages/tabs/Order';
-import Account from '@/components/pages/tabs/Account';
-import Cart from '@/components/pages/Cart.vue';
-import Search from '@/components/pages/Search.vue';
-import SearchResult from '@/components/pages/SearchResult.vue';
-import OnBoarding from '@/components/pages/OnBoarding.vue';
-import Login from '@/components/pages/Login.vue';
-import Register from '@/components/pages/Register.vue';
-import GoodsCategory from '@/components/pages/GoodsCategory.vue';
-import GoodDetail from '@/components/pages/GoodDetail.vue';
+const Main = ()=> import("@/components/pages/Main")
+const Home = ()=> import("@/components/pages/tabs/Home")
+const Category = ()=> import("@/components/pages/tabs/Category")
+const Order = ()=> import("@/components/pages/tabs/Order")
+const Account = ()=> import("@/components/pages/tabs/Account")
+const Cart = ()=> import("@/components/pages/Cart")
+const Search = ()=> import("@/components/pages/Search")
+const SearchResult = ()=> import("@/components/pages/SearchResult")
+const OnBoarding = ()=> import("@/components/pages/OnBoarding")
+const Login = ()=> import("@/components/pages/Login")
+const Register = ()=> import("@/components/pages/Register")
+const GoodsCategory = ()=> import("@/components/pages/GoodsCategory")
+const GoodDetail = ()=> import("@/components/pages/GoodDetail")
+const OrderDetail = ()=> import("@/components/pages/OrderDetail")
 
 Vue.use(VueRouter) 
 
@@ -34,6 +35,7 @@ const routes = [
   {path:'/goodscategory',name:'goodscategory',component:GoodsCategory},
   // {path:'/gooddetail',name:'gooddetail',component:GoodDetail},
   {path:'/gooddetail/:id',name:'gooddetail',component:GoodDetail},
+  {path:'/orderdetail',name:'orderdetail',component:OrderDetail},
 ]
 
 const router = new VueRouter({
