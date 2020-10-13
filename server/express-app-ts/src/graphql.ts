@@ -88,6 +88,7 @@ const resolvers = {
         visitedGoods:gr.visitedGoods
     },
     Order:{
+        orderdate:gr.formatOrderdate,
         price:gr.sumPrice,
         goodcount:gr.countGood,
         status:gr.orderStatus

@@ -1,6 +1,6 @@
 
 import {Do,FindFrist} from './mysql'
-
+import moment from 'moment'
 
 export const good = async (parent:any,args:any,context:any,info:any)=>{
     try {
@@ -112,6 +112,7 @@ export const goodpop = async (parent:any,args:any,context:any,info:any) => {
 
 export const userOrder = async (parent:any,args:any,context:any,info:any) => {
     try {
+        // let res = await Do("select id,status, DATE_FORMAT(sysdate,'%Y-%m-%d %T') orderdate from `order` where userid = ? order by sysdate desc limit ? , ? ",[args.userid,args.start,args.count])
         let res = await Do("select id,status, sysdate orderdate from `order` where userid = ? order by sysdate desc limit ? , ? ",[args.userid,args.start,args.count])
         return res
     } catch (e) {
@@ -141,4 +142,8 @@ export const countGood = async (parent:any,args:any,context:any,info:any) => {
     } catch (e) {
         return e
     }
+}
+
+export const formatOrderdate = (parent:any,args:any,context:any,info:any)=>{
+    return moment(parent.orderdate).format("yyyy-MM-DD HH:mm:ss")
 }
