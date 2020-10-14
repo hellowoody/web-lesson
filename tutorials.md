@@ -1418,4 +1418,115 @@ function sum(arr){
     - scrollHeight同scrollTop属性一样，只有DOM元素才有，window/document没有。
     - 不同的是scrollHeight是只读，不可设置。
     - 此外还有scrollLeft，scrollWidth，道理是一样的。
+
+## 31.Proxy
+
+  - 定义
+    Proxy 对象用于定义基本操作的自定义行为（如属性查找、赋值、枚举、函数调用等）
+  - 语法
+    ```
+    /*
+    参数：
+    target  : 要使用 Proxy 包装的目标对象（可以是任何类型的对象，包括原生数组，函数，甚至另一个代理）。
+    handler : 一个通常以函数作为属性的对象，各属性中的函数分别定义了在执行各种操作时代理 p 的行为。
+    */
+    const p = new Proxy(target, handler)
+    ```
+  - 使用proxy可以自定义set，get方法
+
+    ```
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8"></meta>
+        <meta content="width=device-width,initial-scale=1" name="viewport">
+        <title>proxy 代理demo</title>
+      </head>
+      <body>
+            <input id="inputid" ><button onclick="p()">将左侧的内容用proxy代理</button>
+            <br/>
+            <button onclick="get()">获取被代理的值</button>
+            <br/>
+            <input id="newval" ><button onclick="set()">将左侧的内容设置为新值</button>
+      </body>
+    </html>
+    <script>
+    function proxyObj(target){
+        return new Proxy(target,{
+            get(obj,prop){
+                console.log(obj,prop) //每次获取属性 进行一次打印
+                return obj[prop]
+            },
+            set(obj, prop, value){
+                console.log("this is set method")
+                // console.log(obj,prop,value)
+                obj[prop] = value
+                return
+            },
+        })
+    }
+    let obj = {}
+    let obj_proxy
+    function p(){
+        obj.value = document.getElementById("inputid").value  // 注意proxy 只能代理object类型
+        obj_proxy = proxyObj(obj)
+        console.log("代理成功")
+    }
+
+    function get(){
+        console.log(obj_proxy.value)
+    }
+
+    function set(){
+        obj_proxy.value = document.getElementById("newval").value
+    }
+
+    </script>
+    ```
     
+  - 使用proxy实现双向绑定
+
+    ```
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8"></meta>
+        <meta content="width=device-width,initial-scale=1" name="viewport">
+        <title>proxy 双向绑定</title>
+      </head>
+      <body>
+            <input id="inputid" oninput="onHandle(this)">
+            <br/>
+            <div id="showdiv"></div>
+      </body>
+    </html>
+    <script>
+    function proxyObj(target){
+        return new Proxy(target,{
+            get(obj,prop){
+                return obj[prop]
+            },
+            set(obj, prop, value){
+                obj[prop] = value
+                document.getElementById("showdiv").innerText = obj[prop] 
+                return
+            },
+        })
+    }
+
+    let obj = {
+        value:"hello world"
+    }
+
+    let obj_proxy = proxyObj(obj)
+
+    ;(function(){
+        document.getElementById("showdiv").innerText = obj_proxy.value
+    })()
+
+    function onHandle(e){
+        obj_proxy.value = e.value
+    }
+
+    </script>
+    ```
