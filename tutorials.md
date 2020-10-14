@@ -1755,7 +1755,7 @@ function sum(arr){
 
 ## 34.发布-订阅范式和观察者范式的区别
 
-  ![image](https://miro.medium.com/max/512/1*NcicKEqwUaI8VEc-Ejk6Dg.jpeg)
+  ![image](https://raw.githubusercontent.com/hellowoody/web-lesson/master/%E5%8E%9F%E5%9E%8B/subpubvsobserver.jpeg)
 
   - 发布订阅者模式与观察者模式类似，但是两者并不完全相同，发布订阅者模式与观察者相比多了一个中间层的调度中心，用来对发布者发布的信息进行处理再发布到订阅者
 
