@@ -74,7 +74,7 @@ export default {
     height:75px;
     width:75px;
     border-radius: 10px;
-    box-shadow: 0px 1px 6px rgb(40 40 40 / 0.2);;
+    box-shadow: 0px 1px 6px rgb(40 40 40 / 0.2);
 }
 
 .wrapper-right {
