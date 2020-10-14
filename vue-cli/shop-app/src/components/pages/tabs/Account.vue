@@ -40,7 +40,7 @@ const menus = [
     },
     {
         name:"绑定卡片",
-        path:""
+        path:"/testscroll"
     },
     {
         name:"收藏夹",

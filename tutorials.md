@@ -1407,3 +1407,15 @@ function sum(arr){
   </script>
   ```
 
+## 30.scrollTop
+
+  - 有些情况下,“元素中内容”的高度会超过“元素本身”的高度, scrollTop指的是“元素中的内容”超出“元素上边界”的那部分的高度。
+    一个元素的 scrollTop 值是这个元素的内容顶部（卷起来的）到它的视口可见内容（的顶部）的距离的度量。当一个元素的内容没有产生垂直方向的滚动条，那么它的 scrollTop 值为0。
+  - 通过js代码来读取，写入scrollTop的值
+    注意：scrollTop的使用方式是element.scrollTop，而不是element.style.scrollTop
+  - scrollHeight
+    - 元素滚动条内的内容高度。
+    - scrollHeight同scrollTop属性一样，只有DOM元素才有，window/document没有。
+    - 不同的是scrollHeight是只读，不可设置。
+    - 此外还有scrollLeft，scrollWidth，道理是一样的。
+    

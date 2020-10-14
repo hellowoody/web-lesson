@@ -14,6 +14,7 @@ const Register = ()=> import("@/components/pages/Register")
 const GoodsCategory = ()=> import("@/components/pages/GoodsCategory")
 const GoodDetail = ()=> import("@/components/pages/GoodDetail")
 const OrderDetail = ()=> import("@/components/pages/OrderDetail")
+const TestScroll = ()=> import("@/components/pages/TestScroll")
 
 Vue.use(VueRouter) 
 
@@ -36,6 +37,7 @@ const routes = [
   // {path:'/gooddetail',name:'gooddetail',component:GoodDetail},
   {path:'/gooddetail/:id',name:'gooddetail',component:GoodDetail},
   {path:'/orderdetail',name:'orderdetail',component:OrderDetail},
+  {path:'/testscroll',name:'testscroll',component:TestScroll},
 ]
 
 const router = new VueRouter({
