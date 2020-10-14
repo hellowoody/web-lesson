@@ -6,7 +6,7 @@
       </top-bar>
       <my-content>
           <a-list :data-source="order.goodList">
-              <a-list-item slot="renderItem" slot-scope="item" :key="item.id">
+              <a-list-item slot="renderItem" slot-scope="item" :key="item.id" @click="gotoGoodDetail(item)">
                   <div class="order">
                       <div class="pic" :style="ImgStyle(item.imgpath)"></div>
                       <div class="content">
@@ -49,8 +49,8 @@ export default {
         FooterBarButton,
     },
     created(){
-        this.order = this.$route.params.order
-        console.log(this.order.goodList)
+        this.order = this.$store.state.selectedOrder
+        // console.log(this.order.goodList)
     },
     computed:{
         ImgStyle(){
@@ -65,6 +65,15 @@ export default {
     methods:{
         back(){
             this.$router.go(-1)
+        },
+        gotoGoodDetail(item){
+            this.$store.commit("addSelectedGoods",{
+                id:item.id,
+                type:item.type.id,
+            })
+            this.$router.push({
+                path:"/gooddetail/"+item.id,
+            })
         },
     }
 }

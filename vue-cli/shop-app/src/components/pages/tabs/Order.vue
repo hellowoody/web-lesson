@@ -4,7 +4,7 @@
             订单信息
         </div>
         <a-list size="large" style="margin-top:24px;" :data-source="listData" >
-            <a-list-item slot="renderItem" slot-scope="item" @click="goto('orderdetail',{order:item})">
+            <a-list-item slot="renderItem" slot-scope="item" @click="goto('orderdetail',item)">
                 <div class="order">
                     <div class="frist-row">
                         <div>{{item.status.name}}</div>
@@ -52,8 +52,9 @@ export default {
         this.getData()
     },
     methods:{
-        goto(name,params){
-            this.$router.push({name,params})
+        goto(name,item){
+            this.$store.commit("setSelectedOrder",item)
+            this.$router.push({name})
         },
         async getData(){
             try {
@@ -67,12 +68,15 @@ export default {
                                 goodcount
                                 status {
                                  name
-                                }
+                                },
                                 goodList {
                                     id
                                     name
                                     price
                                     imgpath
+                                    type {
+                                        id
+                                    }
                                     gooddesc
                                     countbuy
                                 }

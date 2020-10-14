@@ -19,7 +19,8 @@ const store = new Vuex.Store({
             id:"",
             type:"",
         },
-        selectedGoods:[]
+        selectedGoods:[],
+        selectedOrder:{}
     },
     //同步修改
     mutations:{
@@ -74,6 +75,9 @@ const store = new Vuex.Store({
         },
         resetCart(state){
             state.cartData = []
+        },
+        setSelectedOrder(state,item){
+            state.selectedOrder = item
         }
     },
     //异步修改

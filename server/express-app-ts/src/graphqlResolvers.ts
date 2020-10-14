@@ -131,7 +131,7 @@ export const orderStatus = async (parent:any,args:any,context:any,info:any) => {
 
 export const sumPrice = async (parent:any,args:any,context:any,info:any) => {
     try {
-        let res  = await FindFrist("select sum(price) price from order_list where orderid = ? ",[parent.id])
+        let res  = await FindFrist("select sum(price*countbuy) price from order_list where orderid = ? ",[parent.id])
         let jsonObj = JSON.parse(JSON.stringify(res))
         return jsonObj.price
     } catch (e) {
@@ -155,7 +155,7 @@ export const formatOrderdate = (parent:any,args:any,context:any,info:any)=>{
 
 export const goodList = async (parent:any,args:any,context:any,info:any)=>{
     try {
-        let res = await Do("select * from order_list where orderid = ? ",[parent.id])
+        let res = await Do("select id as orderid, goodid as id,countbuy,name,gooddesc,price,type,imgpath from order_list where orderid = ? ",[parent.id])
         return res
     } catch (e) {
         return e
