@@ -1530,3 +1530,240 @@ function sum(arr){
 
     </script>
     ```
+
+## 32.发布-订阅范式
+
+  - 范式定义
+
+    发布-订阅是一种消息范式，包含消息的发送者（称为发布者）和接收者（称为订阅者），以及处理消息的调度器
+    发布者不会将消息直接发送给特定订阅者。而是由消息调度器处理发送，调度器将消息分为不同的类别进行发送。
+    同样的，订阅者可以表达对一个或多个类别的兴趣，只接收感兴趣的消息。
+
+  - 简单实现
+    ```
+    /*
+    发布订阅模式 简单场景
+    模仿js中listener 事件监听
+    */
+
+    function myEvent(){
+        const cache = {}
+
+        const on = (name,callback)=>{
+            cache[name] = callback
+        }
+
+        const trigger = (name)=> {
+            cache[name]()
+        }
+
+        return {
+            on,
+            trigger
+        }
+    }
+
+    let e = myEvent()
+
+    e.on("clickEvent",()=>console.log("点击事件被触发"))
+
+    e.trigger("clickEvent")
+    ```
+  
+  - 复杂实现
+
+    ```
+    /*
+        订阅-发布模式
+    */
+
+
+    function pubSub(){
+        const subscribers = {}  //调用中心
+
+        const subscribe = (eventName,callback)=>{
+            if(!Array.isArray(subscribers[eventName])) {
+                subscribers[eventName] = []
+            }
+            subscribers[eventName].push(callback)
+        }
+
+        const publish = (eventName,data) => {
+            if(!Array.isArray(subscribers[eventName])) return
+
+            subscribers[eventName].forEach((fn)=>{
+                fn(data)
+            })
+        }
+
+        return {
+            subscribe,
+            publish
+        }
+    }
+
+    function zhang(msg){
+      console.log("老张! "+msg) 
+    }
+
+    function li(msg){
+      console.log("老李! "+msg) 
+    }
+
+    const ps = pubSub()
+
+    ps.subscribe("new-paper",zhang)
+    ps.subscribe("new-paper",li)
+    ps.subscribe("tv-show",zhang)
+
+    ps.publish("new-paper","报纸来了")
+    ps.publish("tv-show","节目开始了")
+
+    ```
+
+  - 拟真现实场景实现
+
+    ```
+    /*
+        订阅-发布模式
+    */
+
+    function dispatcher(){
+        const subscribers = {}  //调用中心
+
+        const subscribe = (eventName,name)=>{
+            if(!Array.isArray(subscribers[eventName])) {
+                subscribers[eventName] = []
+            }
+            subscribers[eventName].push(name)
+        }
+
+        const publish = (eventName,callback) => {
+            if(!Array.isArray(subscribers[eventName])) return
+
+            subscribers[eventName].forEach((item)=>{
+                callback(item)
+            })
+        }
+
+        return {
+            subscribe,
+            publish
+        }
+    }
+
+    function publisher(name,d){
+        this.name = name
+        this.dispatcher = d
+
+        const publish = (eventName,callback)=>{
+            this.dispatcher.publish(eventName,callback)
+        }
+
+        return {
+            publish
+        }
+    }
+
+    function subscriber(name,d){
+        this.name = name
+        this.dispatcher = d
+        const subscribe = (eventName)=>{
+            this.dispatcher.subscribe(eventName,name)
+        }
+        return {
+            subscribe
+        }
+    }
+
+    let d = new dispatcher()
+
+    let sub1 = new subscriber("老张",d)
+    let sub2 = new subscriber("老王",d)
+
+    sub1.subscribe("新闻")
+    sub1.subscribe("足球")
+    sub1.subscribe("电影")
+    sub2.subscribe("电影")
+
+    let pub1 = new publisher("发布者1",d)
+    let pub2 = new publisher("发布者2",d)
+
+    pub1.publish("新闻",(name)=>console.log(name+"!,"+"天津新闻"))
+    pub1.publish("足球",(name)=>console.log(name+"!,"+"C罗感染"))
+    pub1.publish("电影",(name)=>console.log(name+"!,"+"春节档信息"))
+    pub2.publish("电影",(name)=>console.log(name+"!,"+"周末影讯"))
+    ```
+
+## 33.观察者范式
+
+  - 定义
+
+    观察者模式是一种软件设计模式，在该模式中，称为主题的对象会维护其依赖项的列表（称为观察者），并通常通过调用其方法之一来自动通知状态更改。
+
+  - 代码实现
+
+    ```
+    /*
+        观察者范式 
+        观察者（observer） - 主题（subject）
+    */
+
+    //观察者
+    function Observer(name){
+        this.name = name  //观察者名称
+    }
+
+    //注意prototype 的方法不能是arrow function 也就是箭头函数，因为箭头函数不绑定this
+    Observer.prototype.update = function(obj) {
+        console.log("观察者："+this.name + ",发现订阅的内容（subject）更新："+obj)   
+    }
+
+    //主题
+
+    function Subject(){
+        this.observers = []
+    }
+
+    Subject.prototype.add = function(observer){
+        this.observers.push(observer)
+    }
+
+    Subject.prototype.remove = function(observer){
+        this.observers = this.observers.filter(item=>item.name != observer.name)
+    }
+
+    Subject.prototype.notify = function(data){
+        this.observers.forEach(observer=>{
+            observer.update(data)
+        })
+    }
+
+    let ob1 = new Observer("张先生")
+    let ob2 = new Observer("李先生")
+    let ob3 = new Observer("赵先生")
+
+    let subject = new Subject()
+
+    subject.add(ob1)
+    subject.add(ob2)
+    subject.add(ob3)
+
+    subject.notify("新节目")
+
+    ```
+
+## 34.发布-订阅范式和观察者范式的区别
+
+  ![image](https://miro.medium.com/max/512/1*NcicKEqwUaI8VEc-Ejk6Dg.jpeg)
+
+  - 发布订阅者模式与观察者模式类似，但是两者并不完全相同，发布订阅者模式与观察者相比多了一个中间层的调度中心，用来对发布者发布的信息进行处理再发布到订阅者
+
+  - 在观察者模式中，观察者知道主题。 主题维护观察者的记录。 而在发布者－订阅者中，发布者和订阅者不需要彼此了解。 他们只是在消息队列或代理的帮助下进行通信。
+
+  - 在发布者－订阅者模式中，组件与观察者模式相对松散耦合。
+
+  - 观察者模式主要是同步实现的，即事件发生时，主题会调用其所有观察者的适当方法。 发布者-订阅者模式主要是异步实现的（使用消息队列）。
+
+  - 观察者模式需要在单个应用程序地址空间中实现。 另一方面，发布者-订阅者模式更多地是跨应用程序模式。
+
