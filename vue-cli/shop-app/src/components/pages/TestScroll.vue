@@ -29,6 +29,8 @@ export default {
   data(){
     return {
       activeCategoryIndex:0,
+      distance:0,
+      scrollFlag:false,
       categorys:[
         "类别1",
         "类别2",
@@ -110,6 +112,17 @@ export default {
   components:{
     TopBar,
   },
+  mounted(){
+    let el = this.$refs.right
+    el.addEventListener('scroll',()=>{
+      let index = Math.floor(el.scrollTop/600) //除法得到结果 向下取整
+      // let index = Math.ceil(el.scrollTop/600)    //除法得到结果 向上取整
+      
+      if(!this.scrollFlag){
+        this.activeCategoryIndex = index
+      }
+    })
+  },
   methods:{
     back(){
       this.$router.go(-1)
@@ -120,7 +133,30 @@ export default {
     },
     selectedHandle(index){
       this.activeCategoryIndex = index
-    }
+
+      let el = this.$refs.right
+      let final_distance = 600*index
+      const step = 150
+      this.scrollFlag = true
+      const scrollAnimation = ()=>{
+        setTimeout(()=>{
+          if(this.distance < final_distance){
+            this.distance += step
+            el.scrollTop = this.distance
+            scrollAnimation()
+          }else{
+            if(this.distance > final_distance){
+              this.distance -= step
+              el.scrollTop = this.distance
+              scrollAnimation()
+            }else{
+              this.scrollFlag = false
+            }
+          }
+        },100)
+      }
+      scrollAnimation()
+    },
   }
 }
 </script>
