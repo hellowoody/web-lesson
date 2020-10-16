@@ -1,5 +1,6 @@
 /*
 发布-订阅范式  publish-subscribe pattern
+
 1.发布者
 2.订阅者
 3.消息分发器（调度中心）
