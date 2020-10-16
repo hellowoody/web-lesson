@@ -1540,6 +1540,9 @@ function sum(arr){
     同样的，订阅者可以表达对一个或多个类别的兴趣，只接收感兴趣的消息。
 
   - 简单实现
+
+    ![image](https://raw.githubusercontent.com/hellowoody/web-lesson/master/%E5%8E%9F%E5%9E%8B/pub-sub1.png)
+
     ```
     /*
     发布订阅模式 简单场景
@@ -1571,6 +1574,8 @@ function sum(arr){
     ```
   
   - 复杂实现
+  
+    ![image](https://raw.githubusercontent.com/hellowoody/web-lesson/master/%E5%8E%9F%E5%9E%8B/pub-sub3.png)
 
     ```
     /*
@@ -1622,6 +1627,8 @@ function sum(arr){
     ```
 
   - 拟真现实场景实现
+
+    ![image](https://github.com/hellowoody/web-lesson/blob/master/%E5%8E%9F%E5%9E%8B/pub-sub2.png?raw=true)
 
     ```
     /*
