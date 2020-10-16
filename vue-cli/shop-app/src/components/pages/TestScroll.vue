@@ -31,6 +31,7 @@ export default {
       activeCategoryIndex:0,
       distance:0,
       scrollFlag:false,
+      flag:true,
       categorys:[
         "类别1",
         "类别2",
@@ -132,6 +133,8 @@ export default {
       el.scrollTop += 600;
     },
     selectedHandle(index){
+      if(!this.flag) return false
+      this.flag = false
       this.activeCategoryIndex = index
 
       let el = this.$refs.right
@@ -151,6 +154,7 @@ export default {
               scrollAnimation()
             }else{
               this.scrollFlag = false
+              this.flag = true
             }
           }
         },100)

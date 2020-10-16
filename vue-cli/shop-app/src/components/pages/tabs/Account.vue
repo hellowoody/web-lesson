@@ -39,8 +39,12 @@ const menus = [
         path:""
     },
     {
-        name:"绑定卡片",
+        name:"测试左右联动",
         path:"/testscroll"
+    },
+    {
+        name:"测试左右联动布局",
+        path:"/testscrolllayout"
     },
     {
         name:"收藏夹",
