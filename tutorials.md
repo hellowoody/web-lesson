@@ -1710,6 +1710,8 @@ function sum(arr){
 
   - 代码实现
 
+    ![image](https://raw.githubusercontent.com/hellowoody/web-lesson/master/%E5%8E%9F%E5%9E%8B/observer.png)
+
     ```
     /*
         观察者范式 
