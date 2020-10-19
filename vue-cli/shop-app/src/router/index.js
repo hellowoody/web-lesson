@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+
 const Main = ()=> import("@/components/pages/Main")
 const Home = ()=> import("@/components/pages/tabs/Home")
 const Category = ()=> import("@/components/pages/tabs/Category")
@@ -14,6 +15,8 @@ const Register = ()=> import("@/components/pages/Register")
 const GoodsCategory = ()=> import("@/components/pages/GoodsCategory")
 const GoodDetail = ()=> import("@/components/pages/GoodDetail")
 const OrderDetail = ()=> import("@/components/pages/OrderDetail")
+const UploadImg = ()=> import("@/components/pages/UploadImg")
+
 const TestScroll = ()=> import("@/components/pages/TestScroll")
 const TestScrollLayout = ()=> import("@/components/pages/TestScrollLayout")
 
@@ -38,6 +41,8 @@ const routes = [
   // {path:'/gooddetail',name:'gooddetail',component:GoodDetail},
   {path:'/gooddetail/:id',name:'gooddetail',component:GoodDetail},
   {path:'/orderdetail',name:'orderdetail',component:OrderDetail},
+  {path:'/uploadimg',name:'uploadimg',component:UploadImg},
+
   {path:'/testscroll',name:'testscroll',component:TestScroll},
   {path:'/testscrolllayout',name:'testscrolllayout',component:TestScrollLayout},
 ]

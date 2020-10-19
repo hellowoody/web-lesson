@@ -4,7 +4,7 @@
             <a-icon type="bell" style="font-size:20px;"/>
         </div>
         <div class="avaterClass">
-            <a-avatar :size="100" icon="user" />
+            <a-avatar :size="100" icon="user"  @click="goto('/uploadimg')"/>
         </div>
         <a-list
             class="menus"

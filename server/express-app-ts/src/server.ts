@@ -3,6 +3,7 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 import {server as gql_server} from './graphql'
 import {router} from './router';
+
 const config = require("../config");
 
 const app = express()

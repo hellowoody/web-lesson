@@ -202,6 +202,12 @@ export const resetcart = async (req:any,resp:any)=>{
     
 }
 
+export const upload = (req:any,resp:any)=>{
+    const {file} = req
+    console.log(file)
+    resp.json({})
+}
+
 
 export const test2main = async (req:any,resp:any)=>{
 

@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-export const ImgUrl = "http://127.0.0.1:3000/imgs/"
+export const baseUrl = "http://127.0.0.1:3000";
+export const ImgUrl = baseUrl + "/imgs/"
 
 const instance = axios.create({
-    baseURL:"http://127.0.0.1:3000",
+    baseURL:baseUrl,
     timeout:10000, //超时时间
     headers:{
         // 'Content-Type':'application/x-www-form-urlencoded'
