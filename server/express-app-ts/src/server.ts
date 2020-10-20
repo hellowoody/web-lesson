@@ -31,7 +31,7 @@ gql_server.applyMiddleware({
 
 app.use("/html",express.static("./pages"))
 
-app.use("/imgs",express.static("./assets/imgs"))
+app.use("/uploads",express.static("./assets/uploads"))
 
 router(app)
 

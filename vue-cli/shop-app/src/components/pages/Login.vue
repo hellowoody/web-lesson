@@ -27,7 +27,7 @@
 <script>
 import TopBar from '@/components/topbar/TopBar'
 import MyContent from '@/components/content/MyContent.vue'
-import {Http} from '@/kits/Http'
+import {Http,ImgUrl} from '@/kits/Http'
 import {setCacheVal} from '@/kits/LocalStorage'
 
 export default {
@@ -66,6 +66,7 @@ export default {
                             setCacheVal("token",res.data.token)
                             setCacheVal("userid",res.data.userId)
                             setCacheVal("username",res.data.userName)
+                            setCacheVal("imgpath",ImgUrl+res.data.imgpath)
                             this.$message.success({content:res.msg,key,duration:2})
                             this.$router.replace({path:"/main/home"})
                         }else{

@@ -31,6 +31,7 @@ export const login = async (req:any,resp:any)=>{
                 data:{
                     userId:jsonObj.id,
                     userName:jsonObj.name,
+                    imgpath:jsonObj.imgpath,
                     token
                 }
             })
@@ -213,7 +214,9 @@ export const upload = async (req:any,resp:any)=>{
             resp.json({
                 code:1,
                 msg:"上传成功",
-                data:""
+                data:{
+                    filename,
+                }
             })
         }else{
             resp.json({

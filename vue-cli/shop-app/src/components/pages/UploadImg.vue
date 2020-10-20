@@ -6,7 +6,7 @@
       </top-bar>
       <my-content style="padding:unset">
         <div class="pic">
-
+            <img v-if="imgpath !='' " :src="imgpath" style="height:100%;width:auto;"/>
         </div>
         <div class="btn">
             <a-upload name="file" :data="data" :action="actionpath" @change="handleChange">
@@ -20,8 +20,8 @@
 <script>
 import TopBar from '@/components/topbar/TopBar'
 import MyContent from '@/components/content/MyContent'
-import {baseUrl} from '@/kits/Http'
-import {getCacheVal} from '@/kits/LocalStorage'
+import {baseUrl,ImgUrl} from '@/kits/Http'
+import {getCacheVal,setCacheVal} from '@/kits/LocalStorage'
 
 export default {
     name:"UploadImg",
@@ -30,7 +30,8 @@ export default {
             actionpath:baseUrl+"/api/upload",
             data:{
                 userid:getCacheVal("userid")
-            }
+            },
+            imgpath:getCacheVal("imgpath") ? getCacheVal("imgpath")  : ""
         }
     },
     components:{
@@ -47,6 +48,8 @@ export default {
             }
             if (info.file.status === 'done') {
                 this.$message.success(info.file.response.msg);
+                this.imgpath = ImgUrl+info.file.response.data.filename
+                setCacheVal("imgpath",this.imgpath)
             } else if (info.file.status === 'error') {
                 this.$message.error(info.file.response.msg);
             }
@@ -60,7 +63,9 @@ export default {
     width:100%;
     height:320px;
     background-color: #e5e5e5;
-    margin-top:64px
+    margin-top:64px;
+    display:flex;
+    justify-content: center;
 }
 
 .btn {

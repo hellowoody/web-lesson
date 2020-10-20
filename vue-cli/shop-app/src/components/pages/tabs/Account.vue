@@ -4,7 +4,9 @@
             <a-icon type="bell" style="font-size:20px;"/>
         </div>
         <div class="avaterClass">
-            <a-avatar :size="100" icon="user"  @click="goto('/uploadimg')"/>
+            <a-avatar v-if="imgpath == ''" :size="100" icon="user"  @click="goto('/uploadimg')"/>
+            <a-avatar v-else :size="100" :src="imgpath"  @click="goto('/uploadimg')"/>
+            <div style="margin-top:12px;font-size:16px;">{{username}}</div>
         </div>
         <a-list
             class="menus"
@@ -19,7 +21,7 @@
 </template>
 
 <script>
-import {clearCache} from '@/kits/LocalStorage'
+import {clearCache,getCacheVal} from '@/kits/LocalStorage'
 
 const menus = [
     {
@@ -68,6 +70,8 @@ export default {
             ModalText: 'Content of the modal',
             visible: false,
             confirmLoading: false,
+            imgpath:getCacheVal("imgpath") ? getCacheVal("imgpath") : "",
+            username:getCacheVal("username")
         }
     },
     created(){
@@ -125,6 +129,7 @@ export default {
 <style scoped>
 .avaterClass {
     display:flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 280px;

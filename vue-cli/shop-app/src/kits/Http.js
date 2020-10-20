@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const baseUrl = "http://127.0.0.1:3000";
-export const ImgUrl = baseUrl + "/imgs/"
+export const ImgUrl = baseUrl + "/uploads/"
 
 const instance = axios.create({
     baseURL:baseUrl,

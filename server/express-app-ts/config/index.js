@@ -8,5 +8,5 @@ module.exports = {
     db_limit : 10,
     gql_url:"/gql",
     gql_playground:true,
-    static_imgs_url:"/imgs"
+    static_imgs_url:"/uploads"
 }
