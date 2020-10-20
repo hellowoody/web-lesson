@@ -1,21 +1,6 @@
 import {Express} from 'express'
 import * as api from './api'
-import multer from 'multer'
-import path from 'path'
-
-//配置multer的内容
-const upload = multer({
-    storage:multer.diskStorage({
-        // destination(req,file,callback){
-        //     callback(null,"assets/uploads")
-        // },
-        destination:"assets/uploads",
-        filename(req,file,callback){
-            const extname = path.extname(file.originalname)  //获取上传文件名的文件后缀（格式）
-            callback(null,Date.now()+extname)
-        },
-    })
-})
+import * as middleware from './middleware'
 
 export const router = (app : Express)=>{
     
@@ -37,7 +22,7 @@ export const router = (app : Express)=>{
 
     app.post("/api/resetcart",api.resetcart)
 
-    app.post("/api/upload",upload.single("file"),api.upload)
+    app.post("/api/upload",middleware.upload.single("file"),api.upload)
 
     app.post("/api/test2main",api.test2main)
 
