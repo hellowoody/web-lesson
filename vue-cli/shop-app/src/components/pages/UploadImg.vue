@@ -9,7 +9,7 @@
 
         </div>
         <div class="btn">
-            <a-upload name="file" :action="actionpath" @change="handleChange">
+            <a-upload name="file" :data="data" :action="actionpath" @change="handleChange">
                 <a-button style="width:300px" > <a-icon type="upload" /> 上传头像</a-button>
             </a-upload>
         </div>
@@ -21,12 +21,16 @@
 import TopBar from '@/components/topbar/TopBar'
 import MyContent from '@/components/content/MyContent'
 import {baseUrl} from '@/kits/Http'
+import {getCacheVal} from '@/kits/LocalStorage'
 
 export default {
     name:"UploadImg",
     data(){
         return {
-            actionpath:baseUrl+"/api/upload"
+            actionpath:baseUrl+"/api/upload",
+            data:{
+                userid:getCacheVal("userid")
+            }
         }
     },
     components:{
@@ -42,9 +46,9 @@ export default {
                 console.log(info.file, info.fileList);
             }
             if (info.file.status === 'done') {
-                this.$message.success(`${info.file.name} file uploaded successfully`);
+                this.$message.success(info.file.response.msg);
             } else if (info.file.status === 'error') {
-                this.$message.error(`${info.file.name} file upload failed.`);
+                this.$message.error(info.file.response.msg);
             }
         },
     }

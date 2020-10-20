@@ -11,7 +11,7 @@ const upload = multer({
         // },
         destination:"assets/uploads",
         filename(req,file,callback){
-            const extname = path.extname(file.originalname)
+            const extname = path.extname(file.originalname)  //获取上传文件名的文件后缀（格式）
             callback(null,Date.now()+extname)
         },
     })

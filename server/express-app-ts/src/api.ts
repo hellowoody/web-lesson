@@ -202,10 +202,35 @@ export const resetcart = async (req:any,resp:any)=>{
     
 }
 
-export const upload = (req:any,resp:any)=>{
-    const {file} = req
-    console.log(file)
-    resp.json({})
+export const upload = async (req:any,resp:any)=>{
+    const {file:{filename},body:{userid}} = req
+    // console.log("上传后的文件名:"+filename)
+    // console.log("上传者的用户名:"+userid)
+    try {
+        let res = await Do("update user set imgpath = ? where id = ? ",[filename,userid])
+        let jsonObj = JSON.parse(JSON.stringify(res))
+        if (jsonObj.affectedRows === 1) {
+            resp.json({
+                code:1,
+                msg:"上传成功",
+                data:""
+            })
+        }else{
+            resp.json({
+                code:2,
+                msg:"上传失败(未知原因)",
+                data:""
+            })
+        }
+    } catch (error) {
+        resp.json({
+            code:3,
+            msg:"上传失败",
+            data:{
+                error
+            }
+        })
+    }
 }
 
 
