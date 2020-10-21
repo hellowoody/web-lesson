@@ -9,16 +9,31 @@ var url_1 = __importDefault(require("url"));
 var wss = new ws_1.default.Server({
     noServer: true
 });
+var userClients = {};
+/*
+
+userClients = {
+  "zhangsan":client_ws,
+  "lisi":client_ws,
+  "wangwu":client_ws,
+}
+
+*/
 var server = http_1.default.createServer(function (req, resp) {
     var pathname = req.url;
     console.log("http url: ", pathname);
     if (pathname === "/send") {
         // console.log(wss.clients)
-        wss.clients.forEach(function (client) {
-            client.send("服务器主动发送消息！");
-        });
+        // wss.clients.forEach(client=>{
+        //   client.send("服务器主动发送消息！")
+        // })
+        if (userClients["wangwu"]) {
+            userClients["wangwu"].send("王武 给你发消息了");
+        }
+        else {
+            console.log("没有找到相应的那个人");
+        }
     }
-    resp.write("服务器主动发送消息！");
     resp.end('服务器主动发送消息！');
 });
 wss.on('connection', function connection(ws) {
@@ -32,10 +47,18 @@ wss.on('connection', function connection(ws) {
     ws.send('后台已经知道连接成功了');
 });
 server.on("upgrade", function (req, socket, head) {
-    var pathname = url_1.default.parse(req.url).pathname;
+    var _a = url_1.default.parse(req.url), pathname = _a.pathname, query = _a.query;
     console.log(pathname);
     if (pathname === '/wss') {
         wss.handleUpgrade(req, socket, head, function done(ws) {
+            var userid = query === null ? "" : query.substr(query.indexOf("=") + 1);
+            // console.log(userid)
+            if (userid !== "") {
+                userClients[userid] = ws;
+            }
+            else {
+                console.log("无用户id链接");
+            }
             wss.emit('connection', ws, req);
         });
     }

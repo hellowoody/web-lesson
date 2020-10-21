@@ -6,16 +6,34 @@ const wss = new WebSocket.Server({
     noServer:true
 });
 
+const userClients:any = {}
+
+/*
+
+userClients = {
+  "zhangsan":client_ws,
+  "lisi":client_ws,
+  "wangwu":client_ws,
+}
+
+*/
+
 const server = http.createServer((req,resp)=>{
   const pathname = req.url
   console.log("http url: ",pathname)
   if(pathname === "/send"){
     // console.log(wss.clients)
-    wss.clients.forEach(client=>{
-      client.send("服务器主动发送消息！")
-    })
+
+    // wss.clients.forEach(client=>{
+    //   client.send("服务器主动发送消息！")
+    // })
+    if(userClients["wangwu"]){
+      userClients["wangwu"].send("王武 给你发消息了")
+    }else{
+      console.log("没有找到相应的那个人")
+    }
+    
   }
-  resp.write("服务器主动发送消息！")
   resp.end('服务器主动发送消息！')
 })
 
@@ -31,10 +49,17 @@ wss.on('connection', function connection(ws) {
 });
 
 server.on("upgrade",function(req, socket, head){
-  const pathname = url.parse(req.url).pathname
+  const {pathname,query} = url.parse(req.url)
   console.log(pathname)
   if (pathname === '/wss') {
     wss.handleUpgrade(req, socket, head, function done(ws) {
+      let userid = query === null ? "" : query!.substr(query!.indexOf("=")+1)
+      // console.log(userid)
+      if(userid !== ""){
+        userClients[userid] = ws;
+      }else{
+        console.log("无用户id链接")
+      }
       wss.emit('connection', ws, req);
     });
   } 
