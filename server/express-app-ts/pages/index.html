@@ -112,7 +112,7 @@
             ws.onopen = ws.onclose = ws.onerror = ws.onmessage = null
             ws.close()
         }
-        ws = new WebSocket("ws://localhost:8080");
+        ws = new WebSocket("ws://localhost:8081/wss");
         ws.onopen = function(){
             console.log("ws connected !")
             ws.send('Hello World!');
