@@ -3,6 +3,7 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 import {server as gql_server} from './graphql'
 import {router} from './router';
+import http from 'http'
 
 const config = require("../config");
 
@@ -35,7 +36,9 @@ app.use("/uploads",express.static("./assets/uploads"))
 
 router(app)
 
+const http_server = http.createServer(app)
+
 export {
-    app,
+    http_server,
     gql_server
 }
