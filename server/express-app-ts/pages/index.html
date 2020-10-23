@@ -151,7 +151,8 @@
 
         ws.onmessage = function(evt){
             console.log(evt.data)
-            document.getElementById("log").innerHTML += `<div>${evt.data}</div>`
+            const obj = JSON.parse(evt.data)
+            document.getElementById("log").innerHTML += `<div>${obj.from} 对 ${obj.to} 说: ${obj.msg}</div>`
         }
     }
 

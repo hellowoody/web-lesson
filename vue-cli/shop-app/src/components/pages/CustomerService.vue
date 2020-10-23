@@ -5,7 +5,7 @@
             <div slot="middle">客服中心</div>
         </top-bar>
         <my-content>
-            <div v-for="(item,index) in logs" :key="index">{{item.msg}}</div>
+            <div :class="[item.to === userid ? 'msg-left': 'msg-right' ]" v-for="(item,index) in logs" :key="index">{{item.msg}}</div>
         </my-content>
         <footer-bar style="background-color:unset;padding:unset;padding-left:16px;">
             <a-input style="margin-right:16px;"  v-model="msg" />
@@ -30,6 +30,7 @@ export default {
     data(){
         return {
             msg:"",
+            userid : getCacheVal("userid"),
             logs:[]
             /*
             [
@@ -55,8 +56,8 @@ export default {
             this.$router.go(-1)
         },
         InitWs(){
-            const userid = getCacheVal("userid")
-            ws = new WebSocket(`${wsUrl}?userid=${userid}`)
+           
+            ws = new WebSocket(`${wsUrl}?userid=${this.userid}`)
             ws.onopen = this.onOpenHandle;
             ws.onclose = this.onCloseHandle;
             ws.onerror = this.onErrorHandle;
@@ -89,16 +90,14 @@ export default {
         },
         onMessageHandle(evt){
             console.log(evt.data)
-            this.logs.push({
-                form:"",
-                to:"",
-                msg:evt.data,
-            })
+
+            this.logs.push(JSON.parse(evt.data))
         },
         sendMsg(){
-            const from = getCacheVal("userid")
+            const from = this.userid
             const msg = this.msg
             ws.send(JSON.stringify({
+                mode:"CUSTOMER_SERVICE",
                 from,
                 to,
                 msg
@@ -111,4 +110,13 @@ export default {
 
 <style scoped>
 
+.msg-left {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.msg-right {
+    display: flex;
+    justify-content: flex-end;
+}
 </style>

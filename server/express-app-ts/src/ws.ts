@@ -29,12 +29,14 @@ const wsInstance = (server:http.Server)=>{
                                 client.send(`${m_jsonObj.from === "" ? "匿名" : m_jsonObj.from} 对 ${m_jsonObj.to} 说: ${m_jsonObj.msg}`)
                             })
                             break;
-                        case "CUSTOMER_SERVICE" :
-                            console.log()
-                            break;
                         default :
-                            wsclients[m_jsonObj.to].send(`${m_jsonObj.from === "" ? "匿名" : m_jsonObj.from} 对 ${m_jsonObj.to} 说: ${m_jsonObj.msg}`) //发给目标对象
-                            ws.send(`${m_jsonObj.from === "" ? "匿名" : m_jsonObj.from} 对 ${m_jsonObj.to} 说: ${m_jsonObj.msg}`)  //发送给自己
+                            const msg = {
+                                from:m_jsonObj.from ,
+                                to:m_jsonObj.to,
+                                msg:m_jsonObj.msg,
+                            }
+                            wsclients[m_jsonObj.to].send(JSON.stringify(msg)) //发给目标对象
+                            ws.send(JSON.stringify(msg))     //发送给自己
 
                     }
                     // if(m_jsonObj.to === "ALL"){
