@@ -19,6 +19,10 @@
 import TopBar from '@/components/topbar/TopBar';
 import MyContent from '@/components/content/MyContent';
 import FooterBar from '@/components/footerbar/FooterBar';
+import {wsUrl} from '@/kits/Http';
+import {getCacheVal} from '@/kits/LocalStorage';
+
+let ws;
 
 export default {
     name:"CustomerService",
@@ -27,10 +31,33 @@ export default {
         MyContent,
         FooterBar,
     },
+    created(){
+        InitWs()
+    },
     methods:{
         back(){
             this.$router.go(-1)
-        }
+        },
+        InitWs(){
+            const userid = getCacheVal("userid")
+            ws = new WebSocket(`${wsUrl}?userid=${userid}`)
+            ws.onopen = onOpenHandle;
+            ws.onclose = onCloseHandle;
+            ws.onerror = onErrorHandle;
+            ws.onmessage = onMessageHandle;
+        },
+        onOpenHandle(){
+
+        },
+        onCloseHandle(){
+
+        },
+        onErrorHandle(){
+
+        },
+        onMessageHandle(){
+            
+        },
     }
 }
 </script>
