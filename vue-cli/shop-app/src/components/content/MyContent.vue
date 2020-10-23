@@ -62,7 +62,6 @@ export default {
                 if(scrollTop === 0){
                     this.distance = touch.clientY - this.touchstart
                     if (this.distance > 0) {
-                        // e.preventDefault()
                         if (this.distance < 35 ){
                             this.tmpheight = this.distance
                             content.style.transform = "translate3D(0px,"+this.distance+"px,0px)"

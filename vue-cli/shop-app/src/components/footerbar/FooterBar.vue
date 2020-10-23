@@ -1,5 +1,6 @@
 <template>
     <div class="footer-bar">
+        <slot></slot>
         <div class="wrapper-left">
             <slot name="left"></slot>
         </div>

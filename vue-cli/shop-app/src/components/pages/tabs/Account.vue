@@ -37,8 +37,8 @@ const menus = [
         path:""
     },
     {
-        name:"消息通知",
-        path:""
+        name:"客服中心",
+        path:"/customerservice"
     },
     {
         name:"测试左右联动",
