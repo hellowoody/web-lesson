@@ -5,11 +5,11 @@
             <div slot="middle">客服中心</div>
         </top-bar>
         <my-content>
-
+            <div v-for="(item,index) in logs" :key="index">{{item.msg}}</div>
         </my-content>
         <footer-bar style="background-color:unset;padding:unset;padding-left:16px;">
-            <a-input style="margin-right:16px;" />
-            <a-button type="primary">发送</a-button>
+            <a-input style="margin-right:16px;"  v-model="msg" />
+            <a-button type="primary" @click="sendMsg">发送</a-button>
         </footer-bar>
     </div>
 </template>
@@ -23,16 +23,32 @@ import {wsUrl} from '@/kits/Http';
 import {getCacheVal} from '@/kits/LocalStorage';
 
 let ws;
+const to = "CUSTOMER_SERVICE";
 
 export default {
     name:"CustomerService",
+    data(){
+        return {
+            msg:"",
+            logs:[]
+            /*
+            [
+                {
+                    message:"",
+                    from:"",
+                    to:""
+                }
+            ]
+            */
+        }
+    },
     components:{
         TopBar,
         MyContent,
         FooterBar,
     },
     created(){
-        InitWs()
+        this.InitWs()
     },
     methods:{
         back(){
@@ -41,23 +57,54 @@ export default {
         InitWs(){
             const userid = getCacheVal("userid")
             ws = new WebSocket(`${wsUrl}?userid=${userid}`)
-            ws.onopen = onOpenHandle;
-            ws.onclose = onCloseHandle;
-            ws.onerror = onErrorHandle;
-            ws.onmessage = onMessageHandle;
+            ws.onopen = this.onOpenHandle;
+            ws.onclose = this.onCloseHandle;
+            ws.onerror = this.onErrorHandle;
+            ws.onmessage = this.onMessageHandle;
         },
         onOpenHandle(){
-
+            console.log("ws connected !")
+            this.logs.push({
+                form:"",
+                to:"",
+                msg:"欢迎来到客服中心",
+            })
+            ws.send(JSON.stringify({init:"增加一个新用户"}));
         },
         onCloseHandle(){
-
+            console.log("ws closed !")
+            this.logs.push({
+                form:"",
+                to:"",
+                msg:"断开连接",
+            })
         },
-        onErrorHandle(){
-
+        onErrorHandle(e){
+            console.log("ws error : ",e)
+            this.logs.push({
+                form:"",
+                to:"",
+                msg:e,
+            })
         },
-        onMessageHandle(){
-            
+        onMessageHandle(evt){
+            console.log(evt.data)
+            this.logs.push({
+                form:"",
+                to:"",
+                msg:evt.data,
+            })
         },
+        sendMsg(){
+            const from = getCacheVal("userid")
+            const msg = this.msg
+            ws.send(JSON.stringify({
+                from,
+                to,
+                msg
+            }))
+            this.msg = ""
+        }
     }
 }
 </script>

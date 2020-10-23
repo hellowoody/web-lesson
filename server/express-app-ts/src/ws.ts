@@ -23,14 +23,28 @@ const wsInstance = (server:http.Server)=>{
                 if(m_jsonObj.hasOwnProperty("init")){
                     //第一次连接 先不做处理
                 }else{
-                    if(m_jsonObj.to === "ALL"){
-                        wss.clients.forEach(client=>{
-                            client.send(`${m_jsonObj.from === "" ? "匿名" : m_jsonObj.from} 对 ${m_jsonObj.to} 说: ${m_jsonObj.msg}`)
-                        })
-                    }else{
-                        wsclients[m_jsonObj.to].send(`${m_jsonObj.from === "" ? "匿名" : m_jsonObj.from} 对 ${m_jsonObj.to} 说: ${m_jsonObj.msg}`) //发给目标对象
-                        ws.send(`${m_jsonObj.from === "" ? "匿名" : m_jsonObj.from} 对 ${m_jsonObj.to} 说: ${m_jsonObj.msg}`)  //发送给自己
+                    switch (m_jsonObj.to) {
+                        case "ALL" :
+                            wss.clients.forEach(client=>{
+                                client.send(`${m_jsonObj.from === "" ? "匿名" : m_jsonObj.from} 对 ${m_jsonObj.to} 说: ${m_jsonObj.msg}`)
+                            })
+                            break;
+                        case "CUSTOMER_SERVICE" :
+                            console.log()
+                            break;
+                        default :
+                            wsclients[m_jsonObj.to].send(`${m_jsonObj.from === "" ? "匿名" : m_jsonObj.from} 对 ${m_jsonObj.to} 说: ${m_jsonObj.msg}`) //发给目标对象
+                            ws.send(`${m_jsonObj.from === "" ? "匿名" : m_jsonObj.from} 对 ${m_jsonObj.to} 说: ${m_jsonObj.msg}`)  //发送给自己
+
                     }
+                    // if(m_jsonObj.to === "ALL"){
+                    //     wss.clients.forEach(client=>{
+                    //         client.send(`${m_jsonObj.from === "" ? "匿名" : m_jsonObj.from} 对 ${m_jsonObj.to} 说: ${m_jsonObj.msg}`)
+                    //     })
+                    // }else{
+                    //     wsclients[m_jsonObj.to].send(`${m_jsonObj.from === "" ? "匿名" : m_jsonObj.from} 对 ${m_jsonObj.to} 说: ${m_jsonObj.msg}`) //发给目标对象
+                    //     ws.send(`${m_jsonObj.from === "" ? "匿名" : m_jsonObj.from} 对 ${m_jsonObj.to} 说: ${m_jsonObj.msg}`)  //发送给自己
+                    // }
                 }
             } catch (e) {
                 console.log(e)
