@@ -4,8 +4,12 @@
             <div slot="left" style="font-size:24px;" class="iconfont icon-back1" @click="back"></div>
             <div slot="middle">客服中心</div>
         </top-bar>
-        <my-content>
-            <div :class="[item.to === userid ? 'msg-left': 'msg-right' ]" v-for="(item,index) in logs" :key="index">{{item.msg}}</div>
+        <my-content style="padding: 24px 18px 24px 18px;">
+            <div class="msg" :class="[item.to === userid ? 'msg-left': 'msg-right' ]" v-for="(item,index) in logs" :key="index">
+                <a-avatar v-if="item.to === userid" :size="42" style="color: #f56a00; backgroundColor: #fde3cf;margin-right:12px;">客服中心</a-avatar>
+                <div class="msg-content" :class="[item.to === userid ? '': 'msg-content-right' ]">{{item.msg}}</div>
+                <a-avatar v-if="item.to !== userid"  :src="userAvatar" :size="42" style="margin-left:12px;" />
+            </div>
         </my-content>
         <footer-bar style="background-color:unset;padding:unset;padding-left:16px;">
             <a-input style="margin-right:16px;"  v-model="msg" />
@@ -31,6 +35,7 @@ export default {
         return {
             msg:"",
             userid : getCacheVal("userid"),
+            userAvatar:getCacheVal("imgpath"),
             logs:[]
             /*
             [
@@ -110,6 +115,10 @@ export default {
 
 <style scoped>
 
+.msg {
+    margin-bottom: 24px;
+}
+
 .msg-left {
     display: flex;
     justify-content: flex-start;
@@ -118,5 +127,20 @@ export default {
 .msg-right {
     display: flex;
     justify-content: flex-end;
+}
+
+.msg-content {
+    display: flex;
+    align-items: center;
+    background-color: #e5e5e5;
+    padding: 2px 12px 2px 12px;
+    border-radius: 12px;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+    font-size: 13px;
+}
+
+.msg-content-right {
+    background-color: #1890FC;
+    color:#fff;
 }
 </style>
