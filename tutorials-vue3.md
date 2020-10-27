@@ -23,6 +23,7 @@
         const {resolve} = require("path")
 
         module.exports = {
+            base:'./',
             alias:{
                 '/@/':resolve(__dirname,"src")  //模仿webpack中“@”绝对路径的语法糖
             }
@@ -32,16 +33,19 @@
     - 以ts后缀，并用typescript语法为例
 
         ```
+
         import { UserConfig } from "vite";
         import {resolve} from "path";
 
-        const config :UserConfig = {
+        const config : UserConfig = {
+            base:'./',
             alias:{
-                '/@/':resolve(__dirname,"src")   //模仿webpack中“@”绝对路径的语法糖
-            }
+                '/@/':resolve(__dirname,"src")  //模仿webpack中“@”绝对路径的语法糖
+            },
         }
 
         export default config ; 
+
         ```
     
     - 推荐使用ts作为配置文件的类型后缀
