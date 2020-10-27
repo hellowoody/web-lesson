@@ -4,6 +4,8 @@ const express = require('express')
 
 const app = express()
 
-app.use("/pages",express.static("./static"))
+app.use("/pages",express.static("/Users/admin/Documents/code/lesson/web-lesson/vite/admin-app/dist"))
 
-app.listen(3000,()=>console.log("server started,listening port : 3000 "))
+const port = 3001
+
+app.listen(port,()=>console.log(`server started,listening port : ${port} `))
