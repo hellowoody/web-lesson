@@ -2,16 +2,51 @@
 
 ## vite
 
-- 安装
+    - 安装
 
-    ```
-    $ npm init vite-app <project-name>
-    $ cd <project-name>
-    $ npm install
-    $ npm run dev
-    ```
+        ```
+        $ npm init vite-app <project-name>
+        $ cd <project-name>
+        $ npm install
+        $ npm run dev
+        ```
 
-- 入口文件
+## vite配置文件
+
+    - 创建配置文件
+
+        在项目根目录下创建一个名字雯vite.config.js文件。注意vue3是支持ts的，所以也可以将文件名后缀改为ts。
+
+    - 以js后缀，并用commonjs语法为例
+
+        ```
+        const {resolve} = require("path")
+
+        module.exports = {
+            alias:{
+                '/@/':resolve(__dirname,"src")  //模仿webpack中“@”绝对路径的语法糖
+            }
+        }
+
+        ```
+    - 以ts后缀，并用typescript语法为例
+
+        ```
+        import { UserConfig } from "vite";
+        import {resolve} from "path";
+
+        const config :UserConfig = {
+            alias:{
+                '/@/':resolve(__dirname,"src")   //模仿webpack中“@”绝对路径的语法糖
+            }
+        }
+
+        export default config ; 
+        ```
+    
+    - 推荐使用ts作为配置文件的类型后缀
+
+## 入口文件main.js
 
     - 初始化app
 
@@ -33,3 +68,4 @@
 
         createApp(App).mount('#app')
         ```
+
