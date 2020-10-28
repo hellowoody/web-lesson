@@ -72,4 +72,21 @@
 
     createApp(App).mount('#app')
     ```
+## setup组合api
+
+   setup是vue3中新增加opthons属性
+
+   ```
+   export default {
+      setup(){
+
+      }
+   }
+   ```
+## ref
+
+## reactive
+
+## ref和reactive区别
+
 

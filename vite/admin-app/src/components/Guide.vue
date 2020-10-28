@@ -43,24 +43,20 @@ export default {
   },
   //组合api composition api
   setup(){
-    const {
-      count_new,
-      count_new_static,
-      count_reactive,
-      increase_new,
-      decrease_new,
-      getType
-    } = useCount()
+    // const {
+    //   count_new,
+    //   count_new_static,
+    //   count_reactive,
+    //   increase_new,
+    //   decrease_new,
+    //   getType
+    // } = useCount()
+    const countState = useCount()
 
     const {data_ref,data_reactive,updateName} = useRefAndReactive()
 
     return {
-      count_new,
-      count_new_static,
-      count_reactive,
-      increase_new,
-      decrease_new,
-      getType,
+      ...countState,
       data_ref,
       updateName,
       data_reactive
