@@ -1,16 +1,24 @@
 <template>
-  <guide></guide>
+  <layout>
+    <template v-slot:TopBar>
+      <div>top bar</div>
+    </template>
+  </layout>
 </template>
 
 <script>
-
-import Guide from '/@/components/Guide.vue';
+import Layout from '/@/components/layout/Layout.vue';
+import "/@/assets/css/common.css"
 
 export default {
   name: 'App',
   components:{
-    Guide
+    Layout
   },
 
 }
 </script>
+
+<style scoped>
+
+</style>
