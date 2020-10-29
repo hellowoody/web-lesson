@@ -15,8 +15,5 @@ export default {
 </script>
 
 <style scoped>
-.Layout {
-
-}
 
 </style>
