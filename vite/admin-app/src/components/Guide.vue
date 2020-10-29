@@ -22,7 +22,7 @@
 
 <script>
 
-import { reactive, ref} from 'vue'
+import { reactive, ref,onMounted, onUpdated} from 'vue'
 
 export default {
   name:"Guide",
@@ -40,6 +40,15 @@ export default {
       console.log("-")
       this.count--
     }
+  },
+  beforeCreate(){
+    console.log(1000)
+  },
+  created(){
+    console.log(2000)
+  },
+  mounted(){
+    console.log(4000)
   },
   //组合api composition api
   setup(){
@@ -59,7 +68,7 @@ export default {
       ...countState,
       data_ref,
       updateName,
-      data_reactive
+      data_reactive,
     }
   }
 }
