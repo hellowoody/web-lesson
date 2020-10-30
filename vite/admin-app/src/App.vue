@@ -1,8 +1,14 @@
 <template>
   <layout>
     <template v-slot:TopBar>
-      <div>top bar</div>
+      <div style="height:100px;background-color:blue;">top bar</div>
     </template>
+    <template v-slot:SideBar>
+      <div style="flex:1;background-color:red;">边栏</div>
+    </template>
+    <template v-slot:Page>
+      <div style="flex:3">具体的页面内容</div>
+    <template>
   </layout>
 </template>
 
@@ -20,5 +26,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
