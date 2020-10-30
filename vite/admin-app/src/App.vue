@@ -1,7 +1,9 @@
 <template>
   <layout>
     <template v-slot:TopBar>
-      <div style="height:100px;background-color:blue;">top bar</div>
+      <top-bar>
+        <Header></Header>
+      </top-bar>
     </template>
     <template v-slot:SideBar>
       <div style="flex:1;background-color:red;">边栏</div>
@@ -14,12 +16,16 @@
 
 <script>
 import Layout from '/@/components/layout/Layout.vue';
+import TopBar from '/@/components/layout/TopBar.vue';
+import Header from '/@/components/Header.vue';
 import "/@/assets/css/common.css"
 
 export default {
   name: 'App',
   components:{
-    Layout
+    Layout,
+    TopBar,
+    Header
   },
 
 }

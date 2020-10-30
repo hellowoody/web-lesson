@@ -1,4 +1,8 @@
 body {
-    color: rgb(0 0 0 / 0.6);
     margin:0px;
+}
+
+#app {
+    background-color: #fafafa;
+    color: rgb(0 0 0 / 0.6);
 }
