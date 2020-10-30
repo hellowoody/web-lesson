@@ -91,4 +91,29 @@
 
 ## toRaw
 
+## 导入css
+
+ - 位置不同：vue3.0中在<script>脚本中导入css文件
+  ```
+  <script>
+  import "/@/assets/css/common.css"
+  </script>
+  ```
+ - 导入语法不同：vue3.0中直接使用import进行导入，不需要像vue2中使用@import导入
+ - 导入时需要明确文件的后缀
+
+## 命名插槽-named slot
+
+ - 定义命名插槽的方式和原先是一样的
+  ```
+  <slot name="插槽的名字"></slot>
+  ```
+ - 调用插槽的的语法与之前不一样
+ 
+  ```
+  <template v-slot:插槽的名字>
+      <div style="height:100px;background-color:blue;">top bar</div>
+  </template>
+  ```
+
 
