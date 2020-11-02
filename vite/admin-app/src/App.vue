@@ -12,6 +12,13 @@
     </template>
     <template v-slot:Page>
       <div>具体的页面内容</div>
+      <a-button type="primary">
+        Primary
+      </a-button>
+      <a-button>Default</a-button>
+      <a-button type="dashed">
+        Dashed
+      </a-button>
     </template>
   </layout>
 </template>
