@@ -1,6 +1,8 @@
 import {createApp} from 'vue';
 import App from './App.vue';
-import {Button} from 'ant-design-vue';
-import 'ant-design-vue/dist/antd.css';
+import {useAntD} from './antd'
 
-createApp(App).use(Button).mount('#app')
+// createApp(App).use(Button).mount('#app')
+const app = createApp(App);
+useAntD(app);
+app.mount("#app");
