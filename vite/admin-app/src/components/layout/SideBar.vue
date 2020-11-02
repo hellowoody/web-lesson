@@ -13,9 +13,9 @@ export default {
 <style scoped>
 .root {
     width:300px;
-    padding:24px;
     border-right: 1px solid #eaecef;
     box-sizing: border-box;
     overflow-y:auto;
+    /* background-color: #fff; */
 }
 </style>
