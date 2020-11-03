@@ -20,10 +20,10 @@
         </a-menu-item-group>
         <a-menu-item-group key="g2" title="Item 2">
           <a-menu-item key="3">
-            Option 3
+            Option 3 {{a1}}
           </a-menu-item>
           <a-menu-item key="4">
-            Option 4
+            Option 4 {{a2}}
           </a-menu-item>
         </a-menu-item-group>
       </a-sub-menu>
@@ -55,6 +55,7 @@
 </template>
 
 <script>
+import { ref ,reactive,toRefs} from 'vue'
 import { MailOutlined, QqOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons-vue';
 
 export default {
@@ -65,21 +66,41 @@ export default {
         AppstoreOutlined, 
         SettingOutlined 
     },
-    data() {
-        return {
-            selectedKeys: ['1'],
-            openKeys: ['sub1'],
-        };
-    },
+    // data() {
+    //     return {
+    //         selectedKeys: ['1'],
+    //         openKeys: ['sub1'],
+    //     };
+    // },
     setup(){
+        const {state} = useState()
         const handleClick = (e)=>console.log(e)
         const titleClick = e => console.log("titleclick",e)
 
         return {
-            handleClick,
+            ...toRefs(state),
+            handleClick, 
             titleClick
         }
     },
+}
+
+function useState(){
+
+    const state = reactive({
+        selectedKeys:['1'],
+        openKeys:['sub1'],
+        a1,
+        a2,
+        a3,
+        a4,
+        a5,
+        a6,
+    })
+
+    return {
+        state
+    }
 }
 </script>
 
