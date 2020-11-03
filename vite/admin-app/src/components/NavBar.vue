@@ -73,7 +73,10 @@ export default {
     //     };
     // },
     setup(){
-        const {state} = useState()
+        const state = reactive({
+            selectedKeys:['1'],
+            openKeys:['sub1'],
+        })
         const handleClick = (e)=>console.log(e)
         const titleClick = e => console.log("titleclick",e)
 
@@ -85,23 +88,6 @@ export default {
     },
 }
 
-function useState(){
-
-    const state = reactive({
-        selectedKeys:['1'],
-        openKeys:['sub1'],
-        a1,
-        a2,
-        a3,
-        a4,
-        a5,
-        a6,
-    })
-
-    return {
-        state
-    }
-}
 </script>
 
 <style scoped>
