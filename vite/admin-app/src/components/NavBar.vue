@@ -4,17 +4,18 @@
     </template> -->
     <a-menu
         style="margin-top:24px;"
-      v-model:openKeys="openKeys"
-      v-model:selectedKeys="selectedKeys"
-      mode="inline"
+        v-model:openKeys="openKeys"
+        v-model:selectedKeys="selectedKeys"
+        mode="inline"
+        @click="handleClick"
     >
-      <a-sub-menu key="sub1" >
+      <a-sub-menu key="sub1" @titleClick="titleClick">
         <template v-slot:title>
           <span><MailOutlined /><span>Navigation One</span></span>
         </template>
         <a-menu-item-group key="g1">
           <template v-slot:title><QqOutlined /><span>Item 1</span></template>
-          <a-menu-item key="1">Option 1</a-menu-item>
+          <a-menu-item key="1" >Option 1</a-menu-item>
           <a-menu-item key="2">Option 2</a-menu-item>
         </a-menu-item-group>
         <a-menu-item-group key="g2" title="Item 2">
@@ -26,7 +27,7 @@
           </a-menu-item>
         </a-menu-item-group>
       </a-sub-menu>
-      <a-sub-menu key="sub2" >
+      <a-sub-menu key="sub2" @titleClick="titleClick">
         <template v-slot:title>
           <span><AppstoreOutlined /><span>Navigation Two</span></span>
         </template>
@@ -69,6 +70,15 @@ export default {
             selectedKeys: ['1'],
             openKeys: ['sub1'],
         };
+    },
+    setup(){
+        const handleClick = (e)=>console.log(e)
+        const titleClick = e => console.log("titleclick",e)
+
+        return {
+            handleClick,
+            titleClick
+        }
     },
 }
 </script>
