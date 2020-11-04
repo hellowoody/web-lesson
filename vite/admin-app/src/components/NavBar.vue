@@ -7,7 +7,6 @@
         v-model:openKeys="openKeys"
         v-model:selectedKeys="selectedKeys"
         mode="inline"
-        @click="handleClick"
     >
       <a-sub-menu key="sub1" @titleClick="titleClick">
         <template v-slot:title>
@@ -15,8 +14,8 @@
         </template>
         <a-menu-item-group key="g1">
           <template v-slot:title><QqOutlined /><span>Item 1</span></template>
-          <a-menu-item key="1" >Option 1</a-menu-item>
-          <a-menu-item key="2">Option 2</a-menu-item>
+          <a-menu-item key="1" @click="handleClick('goodmanagment')">Option 1</a-menu-item>
+          <a-menu-item key="2" @click="handleClick('testmenu01')">Option 2</a-menu-item>
         </a-menu-item-group>
         <a-menu-item-group key="g2" title="Item 2">
           <a-menu-item key="3">
@@ -57,6 +56,7 @@
 <script>
 import { ref ,reactive,toRefs} from 'vue'
 import { MailOutlined, QqOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons-vue';
+import { useGoto } from '/@/components/hooks/RouterHook.ts'
 
 export default {
     name:"NavBar",
@@ -77,7 +77,8 @@ export default {
             selectedKeys:['1'],
             openKeys:['sub1'],
         })
-        const handleClick = (e)=>console.log(e)
+        const { goName } = useGoto()
+        const handleClick = name => goName(name)
         const titleClick = e => console.log("titleclick",e)
 
         return {
