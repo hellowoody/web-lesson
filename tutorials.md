@@ -1776,3 +1776,71 @@ function sum(arr){
 
   - 观察者模式需要在单个应用程序地址空间中实现。 另一方面，发布者-订阅者模式更多地是跨应用程序模式。
 
+## 35.时间复杂度
+
+  - 复杂度一般用大写O去表示
+  
+  - O(1)
+    
+    ```
+    function fn(){
+    	const a = 1
+	const b = 2
+	return a + b
+    }
+    ```
+    
+  - O(n)
+  
+    ```
+    function fn(n){
+    	const a = 1
+	for(let i=0;i<n;i++){
+            a += i
+	}
+	return a
+    }
+    ```
+    
+  - O(logn) 
+    
+    ```
+    function fn(){
+    	const a = 1
+	for(let i=1 ; i<n ;i++){
+	    i = i*2
+	    a += i
+	}
+	return a
+    }
+    ```
+    
+  - O(m+n)
+  
+   ```
+   function fn(n,m){
+    	const a = 1
+	for(let i=0;i<n;i++){
+            a += i
+	}
+	for(let j=0;i<m;j++){
+            a += j
+	}
+	return a
+    }
+   ```
+   
+  - O(n2)
+   
+   ```
+   function fn(n){
+    	const a = 1
+	for(let i=0;i<n;i++){
+            for(let j=0;j<n;j++){
+	        a += i+j
+	    }
+	}
+	return a
+    }
+   ```
+    
