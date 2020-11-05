@@ -11,7 +11,7 @@
  Target Server Version : 80018
  File Encoding         : 65001
 
- Date: 12/10/2020 17:26:31
+ Date: 05/11/2020 18:49:01
 */
 
 SET NAMES utf8mb4;
@@ -129,6 +129,7 @@ CREATE TABLE `order` (
 -- Records of order
 -- ----------------------------
 BEGIN;
+INSERT INTO `order` VALUES ('41f1f19176d383480afa65d325c06ed0', 'zhang@mail.com', '1', '2020-10-14 08:41:53');
 INSERT INTO `order` VALUES ('7cbbc409ec990f19c78c75bd1e06f215', 'zhang@mail.com', '1', '2020-10-12 14:16:16');
 INSERT INTO `order` VALUES ('d045c59a90d7587d8d671b5f5aec4e7c', 'zhang@mail.com', '1', '2020-10-12 14:20:53');
 COMMIT;
@@ -148,7 +149,7 @@ CREATE TABLE `order_list` (
   `type` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `imgpath` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`,`orderid`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Records of order_list
@@ -159,8 +160,11 @@ INSERT INTO `order_list` VALUES (18, '7cbbc409ec990f19c78c75bd1e06f215', 22, 1, 
 INSERT INTO `order_list` VALUES (19, '7cbbc409ec990f19c78c75bd1e06f215', 3, 1, '乔3', NULL, 1002.00, '03', 'http://127.0.0.1:3000/imgs/shoe08.png');
 INSERT INTO `order_list` VALUES (20, '7cbbc409ec990f19c78c75bd1e06f215', 23, 1, '牛仔夹克', NULL, 300.00, '06', 'http://127.0.0.1:3000/imgs/c03.png');
 INSERT INTO `order_list` VALUES (21, '7cbbc409ec990f19c78c75bd1e06f215', 25, 3, '女款牛仔夹克', NULL, 400.00, '06', 'http://127.0.0.1:3000/imgs/c06.png');
-INSERT INTO `order_list` VALUES (22, 'd045c59a90d7587d8d671b5f5aec4e7c', 21, 3, '秋季毛衣', '夏季牛仔上衣1', 100.00, '06', 'c05.png');
-INSERT INTO `order_list` VALUES (23, 'd045c59a90d7587d8d671b5f5aec4e7c', 23, 2, '牛仔夹克', '牛仔夹克1', 300.00, '06', 'c03.png');
+INSERT INTO `order_list` VALUES (22, 'd045c59a90d7587d8d671b5f5aec4e7c', 21, 3, '秋季毛衣', '夏季牛仔上衣1', 100.00, '06', 'http://127.0.0.1:3000/imgs/c05.png');
+INSERT INTO `order_list` VALUES (23, 'd045c59a90d7587d8d671b5f5aec4e7c', 23, 2, '牛仔夹克', '牛仔夹克1', 300.00, '06', 'http://127.0.0.1:3000/imgs/c03.png');
+INSERT INTO `order_list` VALUES (24, '41f1f19176d383480afa65d325c06ed0', 22, 1, '黄色运动卫衣', '淡淡的黄色运动卫衣1', 200.00, '06', 'http://127.0.0.1:3000/imgs/c02.png');
+INSERT INTO `order_list` VALUES (25, '41f1f19176d383480afa65d325c06ed0', 1, 2, '乔1', '第1代jordan篮球鞋1', 1000.00, '03', 'http://127.0.0.1:3000/imgs/shoe06.png');
+INSERT INTO `order_list` VALUES (26, '41f1f19176d383480afa65d325c06ed0', 23, 2, '牛仔夹克', '牛仔夹克1', 300.00, '06', 'http://127.0.0.1:3000/imgs/c03.png');
 COMMIT;
 
 -- ----------------------------
@@ -248,6 +252,7 @@ CREATE TABLE `user` (
   `id` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
   `name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `pwd` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `imgpath` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '头像路径',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -255,11 +260,11 @@ CREATE TABLE `user` (
 -- Records of user
 -- ----------------------------
 BEGIN;
-INSERT INTO `user` VALUES ('li@mail.com', '李先生', '000000');
-INSERT INTO `user` VALUES ('newzhang@mail.com', '正式用户1', '000000');
-INSERT INTO `user` VALUES ('zhang@mail.com', '张三', '000000');
-INSERT INTO `user` VALUES ('zhao1@mail.com', '兆先生', '000000');
-INSERT INTO `user` VALUES ('zhao@mail.com', '兆先生', '000000');
+INSERT INTO `user` VALUES ('li@mail.com', '李先生', '000000', NULL);
+INSERT INTO `user` VALUES ('newzhang@mail.com', '正式用户1', '000000', NULL);
+INSERT INTO `user` VALUES ('zhang@mail.com', '张三', '000000', '1603161921635.png');
+INSERT INTO `user` VALUES ('zhao1@mail.com', '兆先生', '000000', NULL);
+INSERT INTO `user` VALUES ('zhao@mail.com', '兆先生', '000000', NULL);
 COMMIT;
 
 -- ----------------------------
@@ -284,14 +289,18 @@ INSERT INTO `user_actions` VALUES ('10', 11, 1, NULL, 1, '2020-10-06 09:12:48');
 INSERT INTO `user_actions` VALUES ('li@mail.com', 1, 1, NULL, 2, '2020-10-06 10:11:33');
 INSERT INTO `user_actions` VALUES ('li@mail.com', 22, 1, NULL, 1, '2020-10-05 09:44:16');
 INSERT INTO `user_actions` VALUES ('li@mail.com', 25, 1, NULL, 2, '2020-10-05 09:44:01');
-INSERT INTO `user_actions` VALUES ('zhang@mail.com', 1, 1, NULL, 70, '2020-10-03 14:14:13');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 1, 1, NULL, 76, '2020-10-03 14:14:13');
 INSERT INTO `user_actions` VALUES ('zhang@mail.com', 2, 1, NULL, 5, '2020-10-10 10:10:49');
-INSERT INTO `user_actions` VALUES ('zhang@mail.com', 3, 1, NULL, 9, '2020-10-03 14:18:07');
-INSERT INTO `user_actions` VALUES ('zhang@mail.com', 21, 1, NULL, 30, '2020-10-03 14:14:27');
-INSERT INTO `user_actions` VALUES ('zhang@mail.com', 22, 1, NULL, 7, '2020-10-03 14:18:39');
-INSERT INTO `user_actions` VALUES ('zhang@mail.com', 23, 1, NULL, 10, '2020-10-03 14:18:38');
-INSERT INTO `user_actions` VALUES ('zhang@mail.com', 24, 1, NULL, 2, '2020-10-12 10:13:41');
-INSERT INTO `user_actions` VALUES ('zhang@mail.com', 25, 1, NULL, 2, '2020-10-12 10:13:44');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 3, 1, NULL, 12, '2020-10-03 14:18:07');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 4, 1, NULL, 2, '2020-10-14 10:32:30');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 5, 1, NULL, 1, '2020-10-14 10:32:31');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 17, 1, NULL, 1, '2020-10-14 10:23:05');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 18, 1, NULL, 2, '2020-10-14 10:22:23');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 21, 1, NULL, 35, '2020-10-03 14:14:27');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 22, 1, NULL, 23, '2020-10-03 14:18:39');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 23, 1, NULL, 20, '2020-10-03 14:18:38');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 24, 1, NULL, 20, '2020-10-12 10:13:41');
+INSERT INTO `user_actions` VALUES ('zhang@mail.com', 25, 1, NULL, 4, '2020-10-12 10:13:44');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
