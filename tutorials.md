@@ -126,6 +126,13 @@
 
   - 安装node环境
 
+  - 安装vscode ide
+
+    - 安装vue的plugin插件
+
+      - 安装Vetur
+
+
   - 安装vue-cli
 
     - 官网 https://cli.vuejs.org/zh/
@@ -166,9 +173,303 @@
 
       - vue.config.js配置文件
 
-        
+        ```
+        module.exports = {
+            publicPath:"./"
+        }
+        ```
+        目的是让打包build之后的文件可以找到js和css的引用路径。
 
-  - 制作一个顶部搜索框组件
+      - 引用路径的语法糖-"@"
+
+    - 如何应用外部的css文件
+
+      ```
+      
+      <script>
+      import '@/assets/css/common.css';
+      </script>
+
+      ```
+
+
+## 7.制作一个顶部搜索框组件
+
+  - 将脚手架创建的项目中没有用的文件删除
+
+  - 创建一个名字为TopBar.vue的组件文件
+
+    在src/components/TopBar.vue的文件
+  
+  - 在App.vue中引用并装载TopBar组件
+
+    ```
+    <script>
+    import TopBar from '@/components/TopBar.vue' //引用
+
+    export default {
+      name: 'App',
+      components: {
+        TopBar  // "TopBar":TopBar  装载
+      }
+    }
+    </script>
+    ```
+  
+  - 在TopBar中增加样式和方法
+
+    ```
+    <template>
+      <div class="top-bar">
+          <input class="search-input" v-model="searchInput" placeholder="请输入查询内容" >
+          <button class="search-btn" @click="search" >搜索</button>
+      </div>
+    </template>
+
+    <script>
+
+    export default {
+        name:"TopBar",
+        data(){
+            return {
+                searchInput:""
+            }
+        },
+        methods:{
+            search(){
+                console.log(this.searchInput)
+                console.log("this is search btn")
+            }
+        },
+        watch:{
+            searchInput(newVal,oldVal){
+                console.log(newVal,oldVal)
+            }
+        }
+    }
+    </script>
+
+    <style>
+    .top-bar {
+        height:60px;
+        background-color: #9267FD;
+        box-shadow: 0px 1px 2px rgba(40,40,40,0.2);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:12px 24px;
+        box-sizing: border-box;
+    }
+
+    .search-input {
+        height:100%;
+        width:80%;
+        border-radius: 10px;
+    }
+
+    .search-btn {
+        height: 100%;
+    }
+    </style>
+
+    ```
+  
+## 8.安装vue-router使页面可以跳转
+
+  - 安装vue-router
+
+    - 进入vue3的官网,可能有点慢
+
+      https://v3.vuejs.org/
+
+    - 在顶部菜单栏找到vue3生态中的vue-router，点击进入到vue-router页面
+
+      或者你可以直接访问 https://next.router.vuejs.org/
+
+    - 安装
+
+      ```
+      npm i vue-router@next
+      ```
+
+  - 在vue3项目中装载vue-router
+
+    ```
+    import { createApp } from 'vue'
+    import { createRouter, createWebHashHistory } from 'vue-router';
+    import App from './App.vue'
+
+    const router = createRouter({
+        history:createWebHashHistory(),  //前端渲染的设置
+        routes:[
+          ...
+        ]
+    })
+
+    const app = createApp(App)
+    app.use(router)
+    app.mount('#app')
+    ```
+
+  - 调整项目目录和结构，目的是为了配合router
+
+    - 创建一个首页的页面-Home.vue
+
+    - 然后将“之前”的App.vue文件中的内容拷贝到Home.vue中
+
+      这时能体现@语法糖的优势
+
+    - 修改main.js中路由的部分
+
+      ```
+      const router = createRouter({
+          history:createWebHashHistory(),
+          routes:[
+              {
+                  path:"/",
+                  redirect:{
+                      path:"/home"
+                  }
+              },
+              {
+                  path:"/home",
+                  component:Home,
+              },
+          ]
+      })
+      ```
+  
+  - 添加一个搜索页面，同时在路由中增加配置
+
+    - 在components文件夹下创建一个Search.vue的文件
+
+    - 在main.js中增加路由配置
+
+      ```
+
+      import Search from './components/Search.vue'
+
+      export const router = createRouter({
+          history:createWebHashHistory(),
+          routes:[
+              {
+                  path:"/",
+                  redirect:{
+                      path:"/home"
+                  }
+              },
+              {
+                  path:"/home",
+                  component:Home,
+              },
+              {
+                  path:"/search",
+                  component:Search,
+              },
+          ]
+      })
+
+      ```
+
+    - 验证路由配置成功可以手动修改url进行访问
+
+      http://localhost:8080/#/search
+
+  - 通过搜索按钮触发进行页面跳转
+
+      - vue-router的跳转的方法
+
+        ```
+
+        this.$router.push("/search")
+        
+        ```
+      - 修改TopBar.vue中search方法
+
+        ```
+
+        search(){
+            console.log(this.searchInput)
+            console.log("this is search btn")
+            this.$router.push("/search")
+        }
+
+        ```
+      - 在搜索页面增加一个简单的返回按钮
+
+        ```
+        <template>
+          <h1>this is seacrh page</h1>
+          <button @click="back">返回上一页</button>
+        </template>
+
+        <script>
+        export default {
+            name:"Search",
+            methods:{
+                back(){
+                    this.$router.go(-1)
+                }
+            }
+        }
+        </script>
+        ```
+    
+
+
+
+
+
+  - 封装router
+
+    为了不频繁的修改入口文件main.js，需要把router的内容单独抽离出并进行封装
+
+    - 在src下创建一个router的文件夹，并在文件夹中创建一个index.js文件
+
+      src/router/index.js
+
+    - 将main.js文件中的路由部分剪切到src/router/index.js文件中
+
+      - main.js
+
+        ```
+        import { createApp } from 'vue'
+        import { router } from './router'
+        import App from './App.vue'
+
+        const app = createApp(App)
+        app.use(router)
+        app.mount('#app')
+
+        ```
+      
+      - router/index.js
+
+        ```
+        import { createRouter, createWebHashHistory } from 'vue-router';
+        import Home from '@/components/Home.vue'
+        import Search from '@/components/Search.vue'
+
+        export const router = createRouter({
+            history:createWebHashHistory(),
+            routes:[
+                {
+                    path:"/",
+                    redirect:{
+                        path:"/home"
+                    }
+                },
+                {
+                    path:"/home",
+                    component:Home,
+                },
+                {
+                    path:"/search",
+                    component:Search,
+                },
+            ]
+        })
+        ```
 
 
 
