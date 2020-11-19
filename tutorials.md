@@ -26,6 +26,8 @@
     - proxy代理
     - 计算型属性名
     - Promise
+  - axios
+  - graphql
   - webpack打包
   - nodejs 做服务，实现一个前后端分离的小demo
   - 微信小程序
@@ -1064,6 +1066,7 @@
       .search-history {
           display:flex;
           justify-content: space-between;
+          flex-wrap: wrap;
           padding: 8px 24px;
       }
 
@@ -1072,6 +1075,7 @@
           background-color: #fafafa;
           box-shadow: 0px 1px 8px rgba(40,40,40,0.2);
           border-radius: 8px;
+          margin-top:8px;
       }
       </style>
       ```   
@@ -1142,6 +1146,244 @@
 
     - mounted执行时，除了script中的内容创建完，template模板页面中的虚拟dom(v-dom)也已创建完
 
+## 15.使用promise封装一个异步请求方法
+
+  - 创建一个模拟测试的http请求文件
+
+      src/kits/HttpMock.js
+
+  - 利用promise实现一个异步操作的封装
+
+    ```
+    const baseUrl = "http://mockurl:8080";
+
+    export const Http = (api,param)=>{
+        let url = baseUrl+api
+        console.log(url,param)
+        return new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                resolve([
+                    {
+                        id:0,
+                        name:"aaa"
+                    },
+                    {
+                        id:1,
+                        name:"bbb"
+                    },
+                    {
+                        id:2,
+                        name:"ccc"
+                    },
+                    {
+                        id:3,
+                        name:"ddd"
+                    },
+                    {
+                        id:4,
+                        name:"eee"
+                    },
+                    {
+                        id:5,
+                        name:"fff"
+                    },
+                    {
+                        id:0,
+                        name:"aaa"
+                    },
+                    {
+                        id:0,
+                        name:"aaa"
+                    },
+                ])
+            },1000)
+        })
+    }
+    ```
+
+  - 在查询结果页面使用封装的mock方法进行查询
+
+    ```
+    data(){
+        return {
+            searchInput:"",
+            dataList:[]
+        }
+    },
+    methods:{
+       ...
+        async initData(){
+            const res = await Http("/listData",{
+                searchInput:this.searchInput
+            })
+            this.dataList = res
+            console.log(res)
+        }
+    }
+    ```  
+
+    ```
+    created(){
+       ...
+      this.initData()
+    },
+    ```
+
+    ```
+    <template>
+        ...
+        <h1>搜索结果页面</h1>
+        <div v-for="item in dataList" :key="item.id">{{item.name}}</div>
+    </template>
+    ```
+
+
+
+## 16.Graphql
+
+  - 把Github当作一个免费的文本数据库
+
+    将所需要的数据存入到github项目的issues中
+
+  - 在github graphql explorer中查找
+
+    - 地址
+
+      https://developer.github.com/v4/explorer/
+
+    - gql语句
+
+      ```
+      query { 
+        repository(name:"web-lesson",owner:"hellowoody"){
+            name,
+            description,
+            issues (first:1,labels:["db"]) {
+                nodes {
+                    id,
+                    title,
+                    body,
+                    bodyHTML,
+                    comments (last:5) {
+                        nodes {
+                            body,
+                        },
+                        pageInfo {
+                            hasPreviousPage
+                        }
+                    }
+                }
+            },
+        }
+      }
+      ```
+
+
+## 17.使用Axios进行http请求
+
+  - 安装
+
+    ```
+    npm i --save axios
+    ```
+
+  - 进行封装
+
+    - 在kits文件夹下创建Http.js
+
+    - 根据axios进行封装
+
+      ```
+      import axios from 'axios';
+
+      const instanceGithub = axios.create({
+          baseURL:"https://api.github.com",
+          timeout:10000, //超时时间
+          headers:{
+              'Content-Type' : 'application/json',
+              'Authorization':'bearer '+"2e779e62e16d6196ffb6aa2531955ea71cb7bc2f"
+          }
+      })
+
+      instanceGithub.interceptors.request.use( config => config ,e => Promise.reject(e))
+
+      instanceGithub.interceptors.response.use( resp => {
+          if (resp.status === 200) {
+              return Promise.resolve(resp)
+          }else{
+              return Promise.reject(resp)
+          }
+      },e =>{
+          if (e.response.status) {
+              return Promise.reject(e.response)
+          }
+      })
+
+      export const HttpGql = (param)=>{
+          return new Promise((resolve,reject)=>{
+              instanceGithub.post("/graphql",param)
+                  .then(res => {
+                      resolve(res.data)
+                  })
+                  .catch(e => {
+                      reject(e)
+                  })
+          })
+      }
+
+      ```
+
+    - 在搜索页面进行调用
+
+      ```
+      import {HttpGql} from '@/kits/Http.js'
+      ```
+
+      ```
+      methods:{
+          search(){
+              console.log("在当前页继续查询")
+              this.initData()
+          },
+          async initData(){
+              const pagenum = 5
+              const res = await HttpGql({
+                  query:`
+                      query { 
+                          repository(name:"web-lesson",owner:"hellowoody"){
+                              name,
+                              description,
+                              issues (first:1,labels:["db"]) {
+                                  nodes {
+                                      id,
+                                      title,
+                                      body,
+                                      bodyHTML,
+                                      comments (last:${pagenum}) {
+                                          nodes {
+                                              body,
+                                          },
+                                          pageInfo {
+                                              hasPreviousPage
+                                          }
+                                      }
+                                  }
+                              },
+                          }
+                      }
+                  `
+              })
+              this.dataList = res.data.repository.issues.nodes[0].comments.nodes
+              this.dataList = this.dataList.filter(item => item.body.indexOf(this.searchInput) > 0)
+              console.log(res)
+          }
+      }
+      ```
+
+
+## 18.使用脚手架Vite
+
+  
 ## 22.http post 4种提交方式
 
 - application/x-www-form-urlencoded
