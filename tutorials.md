@@ -121,7 +121,7 @@
 
 ![image](http://woodyhello.com/assets/imgs/lesson/vue/mvc.png)
 
-![image](http://woodyhello.com/assets/imgs/lesson/vue/mvvm.png)
+![image](http://woodyhello.com/assets/imgs/lesson/vue/mvvm_new.png)
 
 ## 5.Proxy实现双向绑定
 
