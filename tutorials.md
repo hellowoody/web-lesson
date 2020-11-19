@@ -20,7 +20,12 @@
   - vue-router
   - iconfont
   - localStorage
-  - ES6 ES7 语法 
+  - “ES6”语法 
+    - 箭头函数
+    - 导入导出
+    - proxy代理
+    - 计算型属性名
+    - Promise
   - webpack打包
   - nodejs 做服务，实现一个前后端分离的小demo
   - 微信小程序
@@ -969,16 +974,173 @@
 
   - 用本地缓存记录，搜索入口页面搜索过的值
 
-## 16.vue 生命周期
+    - 封装localstorage
 
-- 最好理解的场景是列表页面，根据生命周期在dom渲染完成后再去请求http api，不然会出现元素undefined错误，因为http是异步请求，有可能在dom还未渲染时，数据已经返回
-- 在vue里生命周期暴露出来的方法如(beforeCreate created beforeMount mounted beforeupdate updated beforedestroy destroyed),这里在术语上是hook钩子函数，其实可以简单理解为callback回调函数
+      因为localStorage 中的键值对总是以字符串的形式存储，而搜索词应该是个数组，所以需要自己封装一下localStorage的方法
+    
+    - 在src目录下创建一个kits文件夹
+
+    - 创建一个kits/LocalStorage.js文件
+
+      ```
+      /*
+      本地缓存
+      优点：除非手动或者浏览器设置里清空缓存被激活，否则一直存在
+      注意：1.loccalstorage 本身支持 字符串
+          2.本身不支持双向绑定
+      */
+      //loccalstorage 本身支持 字符串
+      //封装的目的：为了可替换
+      export const getArray = (key)=>{
+          let val = localStorage.getItem(key)
+          return val === null ? [] : val.split(',')
+      }
+
+      export const setArray = (key,val)=>{
+          let arr = getArray(key)
+          if (arr.indexOf(val) < 0) {
+              arr.push(val)
+              localStorage.setItem(key,arr.toString())
+          }
+      }
+
+      export const clearItem = (key)=>{
+          localStorage.removeItem(key)
+      }
+      ```
+    - 在搜索入口页面，引如kits/LocalStorage.js这个文件
+
+      ```
+      import {setArray} from '@/kits/LocalStorage.js'
+      ```
+    - 将搜索入口中输入的内容，存放到本地缓存中
+
+      ```
+      search(){
+          setArray("searchhistory",this.searchInput)
+          this.$router.push({path:"/searchresult",query:{
+              searchInput:this.searchInput
+          }})
+      },
+      ```
+    - 通过chrome开发者工具中Application,查看localstorage的情况
 
 
 
 
+  - 将历史搜索内容,显示到搜索入口页面
+
+    - 将getArray方法也引入到搜索入口页面中
+
+      ```
+      import {setArray,getArray} from '@/kits/LocalStorage.js'
+      ```
+    
+    - 在生命周期钩子函数created中，获取历史记录
+
+      ```
+      data(){
+        return {
+            searchInput:"",
+            searchHistory:[]
+        }
+      },
+      ...
+      created(){
+          this.searchHistory = getArray("searchhistory")
+      },
+      ```
+    
+    - 将搜索结果渲染到页面中
+
+      ```
+      <div class="search-history">
+          <div class="search-history-item" v-for="(item,index) in searchHistory" :key="index">{{item}}</div>
+      </div>
+      ```
+
+      ```
+      <style>
+      .search-history {
+          display:flex;
+          justify-content: space-between;
+          padding: 8px 24px;
+      }
+
+      .search-history-item {
+          padding:6px 10px;
+          background-color: #fafafa;
+          box-shadow: 0px 1px 8px rgba(40,40,40,0.2);
+          border-radius: 8px;
+      }
+      </style>
+      ```   
+    
+    - 优化页面
+
+      ```
+      <div class="search-top-bar">
+          <div class="search-title">搜索历史</div>
+          <div class="search-clear">清除</div>
+      </div>
+      ```
+
+      ```
+      .search-top-bar {
+          display:flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          padding: 8px 24px;
+          margin-top:16px;
+      }
+
+      .search-title {
+          font-weight: bold;
+          font-size: 16px;
+      }
+
+      .search-clear {
+          font-size: 15px;
+          color:#9267FD;
+      }
+      ```
 
 
+    - 实现清除功能
+
+      ```
+      <div class="search-clear" @click="clearHistory">清除</div>
+      ```
+
+      ```
+      import {setArray,getArray,clearItem} from '@/kits/LocalStorage.js'
+      ```
+
+      ```
+      clearHistory(){
+          clearItem("searchhistory")
+          this.searchHistory = []
+      }
+      ```
+
+## 14.vue 生命周期
+
+  ![image](https://cn.vuejs.org/images/lifecycle.png)
+
+  - 最好理解的场景是列表页面，根据生命周期在dom渲染完成后再去请求http api，不然会出现元素undefined错误，因为http是异步请求，有可能在dom还未渲染时，数据已经返回
+ 
+  - 在vue里生命周期暴露出来的方法如(beforeCreate created beforeMount mounted beforeupdate updated beforedestroy destroyed),这里在术语上是hook钩子函数，其实可以简单理解为callback回调函数
+
+  - hook和callback区别
+
+    - 首先,都可以简单理解为是回调函数callback
+    - 其次,callback可以理解为在调用之后执行，hook可以理解为在调用之前执行
+
+  - created和mounted区别
+
+    - created执行时，script脚本中的data，methods等都已创建完成，可以直接调用
+
+    - mounted执行时，除了script中的内容创建完，template模板页面中的虚拟dom(v-dom)也已创建完
 
 ## 22.http post 4种提交方式
 

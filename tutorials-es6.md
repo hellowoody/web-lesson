@@ -25,6 +25,7 @@
     const foo = msg => console.log(msg) 
 
     ```
+
 ## 3.Proxy代理
 
  - 语法

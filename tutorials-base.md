@@ -271,13 +271,6 @@ for for-in for-of foreach对比效率
 - foreach 特定场景时只能用它,效率也可以。好处：省略下标，在链表状态下效率会高一点
 
 
-## 8.hook和callback区别
-
-- 首先,都可以简单理解为是回调函数callback
-- 其次,callback可以理解为在调用之后执行，hook可以理解为在调用之前执行
-
-![image](https://cn.vuejs.org/images/lifecycle.png)
-
 ## 9.哈希表，hashmap （面试）
 
 hash（散列、杂凑）函数，是将任意长度的数据映射到有限长度的域上。直观解释起来，就是对一串数据m进行杂糅，输出另一段固定长度的数据h，作为这段数据的特征（指纹）。
