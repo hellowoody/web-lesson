@@ -14,10 +14,12 @@
 
 ## 2.需要掌握了解的内容
 
-  - vue脚手架
-  - vue组件
+  - vue-cli 脚手架
+  - vite 脚手架
+  - vue组件以及互相传值问题
   - vue-router
-  - vue实战
+  - iconfont
+  - localStorage
   - ES6 ES7 语法 
   - webpack打包
   - nodejs 做服务，实现一个前后端分离的小demo
@@ -196,6 +198,8 @@
       ```
       npx vue create cli-demo
       ```
+
+      npx使用,不需要全局装vue,但初学者不建议
 
     - package.json配置文件
 
@@ -514,11 +518,456 @@
 
 
 
-## 6.npx使用,不需要全局装vue,但初学者不建议
 
 
 
 
+
+
+
+
+
+## 9.进一步封装TopBar组件
+
+  - 使用slot插槽，让TopBar在不同页面时显示不一样的布局和内容
+
+    - slots 插槽
+
+      - 普通/匿名插槽slot
+
+        - 你有一个组件叫todo-button
+
+          ```
+          <button class="btn-primary">
+            <slot></slot>
+          </button>
+          ```
+        - 调用todo-button组件时
+
+          ```
+          <todo-button>
+            Add todo
+          </todo-button>
+          ```
+
+        - 当组件渲染时，Add todo会替换组件中的<slot>标签部分
+
+          ```
+          <!-- rendered HTML -->
+          <button class="btn-primary">
+            Add todo
+          </button>
+          ```
+
+
+      - 命名插槽slot
+
+        比如我们的TopBar组件,将按钮的监听方法放在父组件，目的是同样的按钮在不同页面执行不一样的逻辑事件
+
+        - 声明
+
+          ```
+          <template>
+            <div class="top-bar">
+                <div class="left-wrapper">
+                    <slot name="left"></slot>
+                </div>
+                <div class="middle-wrapper">
+                    <input class="search-input" v-model="searchInput" placeholder="请输入查询内容" >
+                </div>
+                <div class="right-wrapper">
+                    <div @click="search" >搜索</div>
+                </div>
+            </div>
+          </template>
+          ```
+        
+        - 调用
+
+          Search.vue
+
+          ```
+          <template>
+              <top-bar>
+                  <template v-slot:left>
+                      <div style="color:#fff" @click="back">返回</div>
+                  </template>
+              </top-bar>
+              <h1>this is seacrh page</h1>
+          </template>
+          ```
+
+  - 组件传值
+
+    - 父传子
+
+      - 父组件中传递
+
+        ```
+        <top-bar searchdefaultval="123456"></top-bar>
+        ```
+
+      - 子组件中接收
+
+        ```
+        props:{
+            searchdefaultval:String
+        },
+        ```
+
+        ```
+        props:{
+            searchdefaultval:{
+              type:String,
+              value:"默认值"
+            }
+        },
+        ```
+
+
+
+    - 子传父
+
+      - 父组件中声明
+
+        ```
+        <top-bar @searchHandle="searchOnChange">
+        <top-bar>
+        ```
+
+        ```
+        searchOnChange(v){
+            this.searchInput = v
+        }
+        ```
+
+      - 子组件触发
+
+        ```
+        watch:{
+            searchInput(newVal,oldVal){
+                clearTimeout(this.timeout)
+                this.timeout = setTimeout(()=>{
+                    console.log(newVal,oldVal)
+                    this.$emit("searchHandle",newVal)
+                },500)
+            }
+        }
+        ```
+
+
+## 10.引用iconfont库
+
+  - 官网
+
+    https://www.iconfont.cn/
+
+  - 操作
+
+    - 选中你要的图标，添加到购物车
+
+    - 点击右上角购物车图标，选择下载代码
+
+    - 将下载的zip放到src/assets/fonts文件夹下，并解压
+
+    - 打开文件夹中的demo_index.html页面查看使用方式
+
+  - 以Font Class为例，介绍如何使用
+
+    - 在App.vue中,将iconfont.css引用
+
+      ```
+      <script>
+      import '@/assets/css/common.css';
+      import '@/assets/fonts/iconfont.css'
+
+      export default {
+        name: 'App',
+        components: {
+        }
+      }
+      </script>
+      ```
+    - 在你需要使用图片的地方，通过class属性进行调用
+
+      ```
+      <top-bar @searchHandle="searchOnChange">
+          <template v-slot:left>
+              <div class="iconfont icon-back" style="color:#fff" @click="back"></div>
+          </template>
+          <template v-slot:right>
+              <div @click="search" >搜索</div>
+          </template>
+      </top-bar>
+      ```
+
+## 11.优化TopBar组件中input部分
+
+  - 实现一个效果：
+    - 在首页的时候点击搜索按钮和焦点触发input框都只是使页面跳转，跳转到搜索页面(搜索入口)
+    - 在搜索页面(搜索入口)中，input框可以正常输入，点击“搜索”按钮，页面跳转到搜结果页面
+
+  - 增加foucs监听事件
+
+    ```
+    <div class="top-bar">
+        ...
+        <div class="middle-wrapper">
+            <slot name="middle">
+                <input class="search-input" v-model="searchInput" @focus="onFocus" placeholder="请输入查询内容" >
+            </slot>
+        </div>
+        ...
+    </div>
+    ```
+
+    ```
+    methods:{
+        onFocus(){
+            console.log("触发input焦点")
+        }
+    },
+    ```
+
+  - 通过emit方式，将触发焦点事件传递给父组件
+
+    TopBar.vue
+
+    ```
+    methods:{
+        onFocus(){
+            this.$emit("focusHandle")
+        }
+    },
+    ```
+
+    Home.vue
+
+    ```
+    <top-bar @focusHandle="goSearch">
+      <template v-slot:right>
+          <div class="iconfont icon-search" @click="goSearch" ></div>
+      </template>
+    </top-bar>
+    ```
+
+    ```
+    methods:{
+      goSearch(){
+        this.$router.push("/search")
+      }
+    }
+    ```
+  
+  - 增加搜索结果页面SearchResult.vue
+
+    - 创建页面并在router配置文件中进行配置
+
+      ```
+      ...
+      import SearchResult from '@/components/SearchResult.vue'
+
+      export const router = createRouter({
+          history:createWebHashHistory(),
+          routes:[
+              ...
+              {
+                  path:"/searchresult",
+                  component:SearchResult,
+              },
+          ]
+      })
+      ```
+
+    - 在搜索入口页面的搜索事件中，进行页面跳转，跳转到搜索结果页面
+
+      ```
+      methods:{
+          ...
+          search(){
+              console.log(this.searchInput)
+              this.$router.push("/searchresult")
+          },
+      }
+      ```
+
+    - 将topbar组件也引入到搜索结果页面中
+
+      ```
+      <template>
+          <top-bar @searchHandle="searchOnChange">
+              <template v-slot:left>
+                  <div class="iconfont icon-back" style="color:#fff" @click="back"></div>
+              </template>
+              <template v-slot:right>
+                  <div @click="search" >搜索</div>
+              </template>
+          </top-bar>
+          <h1>搜索结果页面</h1>
+      </template>
+
+      <script>
+      import TopBar from '@/components/TopBar.vue'
+
+      export default {
+          name:"SearchResult",
+          components: {
+              TopBar
+          },
+          methods:{
+              back(){
+                  this.$router.go(-1)
+              },
+              search(){
+                  console.log("在当前页继续查询")
+              },
+          }
+      }
+      </script>
+
+      <style>
+
+      </style>
+      ```
+
+
+
+
+
+## 12. vue-router的值传递
+
+  - 目的
+
+    将搜索入口页面输入的值，传到搜索结果页面中
+
+  - 两种方式传参接参
+
+    - 查询路由/普通路由
+
+      - 在搜索入口页面，页面跳转时，增加参数
+
+        ```
+        search(){
+            console.log(this.searchInput)
+            this.$router.push({path:"/searchresult",query:{
+                searchInput:this.searchInput
+            }})
+        },
+        
+        ```
+      
+      - 搜索结果页面，接收参数
+
+        ```
+        this.$route.query.searchInput
+        ```
+
+        ```
+        created(){
+            console.log(this.$route.query.searchInput)
+        },
+        ```
+      
+      - 在搜索结果页面，将传来的值默认现在topbar组件的输入框中
+
+        - 将TopBar组件的data修改为props
+
+          ```
+          export default {
+              name:"TopBar",
+              props:{
+                  searchInput:{
+                      type:String,
+                      value:""
+                  }
+              },
+              ...
+          }
+          ```
+        - 在搜索结果页面，增加组件父传子的传值
+
+          ```
+          <top-bar @searchHandle="searchOnChange" :searchInput="searchInput">
+          ```
+
+          ```
+          export default {
+              name:"SearchResult",
+              data(){
+                  return {
+                      searchInput:""
+                  }
+              },
+              created(){
+                  this.searchInput = this.$route.query.searchInput
+                  console.log(this.$route.query.searchInput)
+              },
+              ...
+          }
+          ```
+
+    - 命名路由
+
+      - 修改router配置
+
+        在需要被传参数的路由中，增加name属性
+
+        ```
+        export const router = createRouter({
+            history:createWebHashHistory(),
+            routes:[
+                ...
+                {
+                    path:"/searchresult",
+                    name:"searchresult",  //命名路由
+                    component:SearchResult,
+                },
+            ]
+        })
+        ```
+      - 在搜索入口页面，页面跳转时，增加参数
+
+        ```
+        search(){
+            this.$router.push({name:"searchresult",params:{
+                searchInput:this.searchInput
+            }})
+        },
+        ```
+
+      - 搜索结果页面，接收参数
+
+        ```
+        this.$route.params.searchInput
+        ```
+
+        ```
+        created(){
+            console.log(this.$route.params.searchInput)
+        },
+        ```
+
+## 13.在搜索入口页面，增加本地缓存效果
+
+  - localStorage
+
+    - localStorage 允许在浏览器中存储 key/value 对的数据。
+
+      使用 localStorage 创建一个本地存储的 name/value 对，name="lastname" value="Smith", 然后检索 "lastname" 的值，并插入到 id="result" 的元素上:
+
+      ```
+      // 存储
+      localStorage.setItem("lastname", "Smith");
+      // 检索
+      localStorage.getItem("lastname");
+      ```
+
+    - 存储在 localStorage 的数据可以长期保留；而当页面会话结束——不会被清除
+
+    - 另外，localStorage 中的键值对总是以字符串的形式存储。 (需要注意, 和js对象相比, 键值对总是以字符串的形式存储意味着数值类型会自动转化为字符串类型).
+
+
+  - 用本地缓存记录，搜索入口页面搜索过的值
 
 ## 16.vue 生命周期
 
