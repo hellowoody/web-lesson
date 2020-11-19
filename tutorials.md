@@ -28,6 +28,7 @@
     - Promise
   - axios
   - graphql
+  - vuex
   - webpack打包
   - nodejs 做服务，实现一个前后端分离的小demo
   - 微信小程序
@@ -1414,10 +1415,49 @@
 
       export default config ; 
       ```
+  - 用vite重新实现一遍之前的例子
 
+## 19.Vuex
 
+  - 安装
 
+    npm i --save vuex@next
 
+  - 导入和封装
+
+    - 创建store文件夹，并创建空index.js
+
+      src/store/index.js
+
+    - 在store/index.js 引入vuex
+
+      ```
+      import { createStore } from 'vuex'
+
+      export const store = createStore({
+          state () {
+              return {
+                  count: 1
+              }
+          }
+      })
+      ```
+
+    - 在入口页面main.js 进行装载
+
+      ```
+      import { createApp } from 'vue'
+      import { router } from './router'
+      import { store } from './store'
+      import App from './App.vue'
+
+      const app = createApp(App)
+      app.use(router)
+      app.use(store)
+      app.mount('#app')
+
+      ```
+    
 
 ## 22.http post 4种提交方式
 
