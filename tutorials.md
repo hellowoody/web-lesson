@@ -1383,7 +1383,25 @@
 
 ## 18.使用脚手架Vite
 
-  
+  Vite is a web development build tool that allows for lightning fast serving of code due its native ES Module import approach.
+  Vite是一个Web开发构建工具，由于使用本地ES模块导入方法，因此可以闪电般快速地提供代码。
+  Vue projects can quickly be set up with Vite by running the following commands in your terminal.
+  通过在终端中运行以下命令，可以使用Vite快速设置Vue项目。
+
+  - 使用vite创建项目
+
+    ```
+    npm init vite-app vite-demo
+    cd vite-demo
+    npm install
+    npm run dev
+    ```
+  - 
+
+
+
+
+
 ## 22.http post 4种提交方式
 
 - application/x-www-form-urlencoded
