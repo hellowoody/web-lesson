@@ -1396,7 +1396,15 @@
     npm install
     npm run dev
     ```
-  - 
+  - vite.config.js
+
+    - 和vue-cli的问题一样，打包之后会引不到js和css文件
+
+    - 在项目根目录创建vite.config.js文件
+
+      ```
+      
+      ```
 
 
 
