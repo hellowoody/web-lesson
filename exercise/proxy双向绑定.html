@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>双向绑定</title>
+    </head>
+    <body>
+        <input id="inputEl" value="" oninput="handle(this)">
+        <div id="divEl"></div>
+    </body>
+</html>
+<script>
+    function myBind(target){
+        return new Proxy(target,{
+            get(obj,prop){
+                console.log(obj,prop)
+                return obj[prop]
+            },
+            set(obj,prop,newval){
+                obj[prop] = newval
+                document.getElementById("divEl").innerText = newval
+                return
+            }
+        })
+    }
+
+    let obj = {
+        msg:"你好，世界"
+    }
+
+    let obj_proxy = myBind(obj)
+
+    ;(function(){
+        document.getElementById("divEl").innerText = obj.msg
+        document.getElementById("inputEl").value = obj.msg
+    })()
+
+
+    function handle(e){
+        // console.log(e.value)
+        obj_proxy.msg = e.value
+    }
+
+
+</script>

@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>web component test</title>
+    </head>
+    <body>
+        <user-card></user-card>
+        <template id="userCardTemplate">
+            <img src="https://semantic-ui.com/images/avatar2/large/kristy.png">
+            <div>
+                <p>User name</p>
+            </div>
+        </template>
+        <script>
+            class UserCard extends HTMLElement {
+                constructor(){
+                    super()
+                    let templateEle = document.getElementById("userCardTemplate")
+                    let content = templateEle.content.cloneNode(true)
+                    this.appendChild(content)
+
+                    /*
+                    let a = document.getElementById("xxx")
+                    a.innerHtml = "xxxx"
+                    */
+                }
+            }
+            window.customElements.define('user-card',UserCard)
+        </script>
+    </body>
+</html>
