@@ -1,0 +1,24 @@
+<template>
+    <top-bar @searchHandle="goSearch"></top-bar>
+  <h1>this is home page</h1>
+</template>
+
+<script>
+import TopBar from '@/components/TopBar.vue'
+
+export default {
+    name:"Home",
+    components:{
+        TopBar
+    },
+    methods:{
+        goSearch(){
+            this.$router.push("/search")
+        }
+    }
+}
+</script>
+
+<style>
+
+</style>

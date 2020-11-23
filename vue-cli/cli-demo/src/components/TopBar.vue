@@ -1,13 +1,13 @@
 <template>
     <div class="top-bar">
+        <slot></slot>
         <input class="search-input" v-model="searchInput" placeholder="输入你关心的内容"/>
         <button @click="search">搜索</button>
     </div>
-  <h1>this is topbar</h1>
-  <div>{{searchInput}}</div>
 </template>
 
 <script>
+
 export default {
     name:"TopBar",
     data(){
@@ -18,9 +18,11 @@ export default {
     methods:{
         search(){
             console.log("this is search btn")
+            this.$emit("searchHandle")
         }
     }
 }
+
 </script>
 
 <style>
@@ -35,6 +37,6 @@ export default {
 }
 
 .search-input {
-    width: 80%;
+    width: 70%;
 }
 </style>
