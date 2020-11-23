@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>日期练习</title>
+    </head>
+    <body>
+
+    </body>
+</html>
+<script>
+/*
+    题目：
+    判断当天是否是当月第三个周五
+*/
+    ;(function ifValid() {
+        console.log("in ifValid")
+        let res = false
+
+        /*
+        1.获取日期
+        2.判断当天是不是target日期
+        3.如果不是的话，直接结束
+          如果是的话，
+            减去一周的时间（7天），得到的天数还大于0，以此类推，同时记录累加的次数
+            当减去一周时间后的天数小于0时，结束
+        */
+
+        /*
+        var 
+
+        */
+        const dayofweek = 1
+        const countofmonth = 4
+        let t = new Date()
+        // console.log(t.getDay())
+        // console.log(t.getDate())
+        if (t.getDay() === dayofweek) {
+            let count = 0
+            for(let i= t.getDate() ; i >0 ; i= i-7){
+                count++
+            }
+            if (count===countofmonth){
+                res = true
+            }
+        }
+        console.log(res)
+        return res
+    })()
+</script>
