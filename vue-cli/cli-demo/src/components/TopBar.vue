@@ -5,7 +5,7 @@
         </div>
         <div class="middle-wrapper">
             <slot name="middle">
-                <input class="search-input" v-model="searchInput" placeholder="输入你关心的内容"/>
+                <input class="search-input" v-model="searchInput" @focus="onFocus" placeholder="输入你关心的内容"/>
             </slot>
         </div>
         <div class="right-wrapper">
@@ -18,13 +18,34 @@
 
 export default {
     name:"TopBar",
+    props:{
+        searchDefault:{
+            type:String,
+            default:""
+        }
+    },
     data(){
         return {
-            searchInput:"",
+            searchInput:this.searchDefault,
+            test1:"zhang",
+            test2:1000
         }
     },
     methods:{
-
+        onFocus(){
+            console.log("input focus!")
+            //页面跳转
+            this.$emit("focusHandle")
+        }
+    },
+    watch:{
+        searchInput(newVal,oldVal){
+            clearTimeout(this.timeout)
+            this.timeout = setTimeout(()=>{
+                console.log(newVal,oldVal)
+                this.$emit("searchHandle",newVal)
+            },500)
+        }
     }
 }
 

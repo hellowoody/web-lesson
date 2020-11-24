@@ -22,6 +22,7 @@ export const router = createRouter({
       },
       {
         path:"/searchresult",
+        name:"searchresult",
         component:SearchResult
       }
     ]

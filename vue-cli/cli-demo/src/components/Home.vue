@@ -1,5 +1,5 @@
 <template>
-    <top-bar>
+    <top-bar @focusHandle="goSearch" >
         <template v-slot:right>
             <button @click="goSearch">搜索</button>
         </template>
