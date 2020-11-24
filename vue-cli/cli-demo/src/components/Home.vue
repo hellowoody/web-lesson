@@ -1,5 +1,9 @@
 <template>
-    <top-bar @searchHandle="goSearch"></top-bar>
+    <top-bar>
+        <template v-slot:right>
+            <button @click="goSearch">搜索</button>
+        </template>
+    </top-bar>
   <h1>this is home page</h1>
 </template>
 

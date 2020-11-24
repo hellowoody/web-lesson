@@ -1,8 +1,16 @@
 <template>
     <div class="top-bar">
-        <slot></slot>
-        <input class="search-input" v-model="searchInput" placeholder="输入你关心的内容"/>
-        <button @click="search">搜索</button>
+        <div class="left-wrapper">
+            <slot name="left"></slot>
+        </div>
+        <div class="middle-wrapper">
+            <slot name="middle">
+                <input class="search-input" v-model="searchInput" placeholder="输入你关心的内容"/>
+            </slot>
+        </div>
+        <div class="right-wrapper">
+            <slot name="right"></slot> 
+        </div>
     </div>
 </template>
 
@@ -16,10 +24,7 @@ export default {
         }
     },
     methods:{
-        search(){
-            console.log("this is search btn")
-            this.$emit("searchHandle")
-        }
+
     }
 }
 
@@ -34,9 +39,31 @@ export default {
     padding: 12px 16px;
     box-sizing: border-box;
     justify-content: space-between;
+    align-items: center;
+}
+
+.left-wrapper {
+    color:#fff;
+    width: 15%;
+}
+
+.middle-wrapper {
+    width: 70%;
+    height: 100%;
+}
+
+.right-wrapper {
+    height: 100%;
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .search-input {
-    width: 70%;
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+    box-sizing: border-box;
 }
 </style>

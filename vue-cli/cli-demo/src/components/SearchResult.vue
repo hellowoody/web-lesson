@@ -1,6 +1,8 @@
 <template>
     <top-bar >
-      <div style="color:#fff;display:flex;align-items:center" @click="back">返回</div>
+      <template v-slot:left>
+        <div style="font-size: 20px;" class="iconfont icon-back" @click="back"></div>
+      </template>
     </top-bar> 
   <h1>this is search result </h1>
 </template>

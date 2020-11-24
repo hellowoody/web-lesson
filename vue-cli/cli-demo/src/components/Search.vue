@@ -1,6 +1,11 @@
 <template>
-  <top-bar @searchHandle="goSearchResult">
-    <div style="color:#fff;display:flex;align-items:center" @click="back">返回</div>
+  <top-bar >
+    <template v-slot:left>
+      <div style="font-size: 20px;" class="iconfont icon-back" @click="back"></div>
+    </template>
+    <template v-slot:right>
+        <button @click="goSearchResult">搜索</button>
+    </template>
   </top-bar>
   <h1> this is search page</h1>
 </template>

@@ -4,7 +4,7 @@
 
 <script>
 import '@/assets/css/common.css';
-
+import '@/assets/iconfont/iconfont.css';
 /*
 import / export default / export  是es6语法
 require / module.exports  是commonjs语法 
