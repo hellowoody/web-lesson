@@ -195,7 +195,7 @@
 
     Promise 对象用于表示一个异步操作的最终完成 (或失败), 及其结果值.
     Promise构造函数接受一个函数作为参数，该函数的两个参数分别是resolve和reject。它们是两个函数，由JavaScript引擎提供，不用自己部署。
-      resolve作用是将Promise对象状态由“未完成”变为“成功”，也就是Pending -> Fulfilled，在异步操作成功时调用，并将异步操作的结果作为参数传递出去；而reject函数则是将Promise对象状态由“未完成”变为“失败”，也就是Pending -> Rejected，在异步操作失败时调用，并将异步操作的结果作为参数传递出去。
+    resolve作用是将Promise对象状态由“未完成”变为“成功”，也就是Pending -> Fulfilled，在异步操作成功时调用，并将异步操作的结果作为参数传递出去；而reject函数则是将Promise对象状态由“未完成”变为“失败”，也就是Pending -> Rejected，在异步操作失败时调用，并将异步操作的结果作为参数传递出去。
 
     ```
     const promise1 = new Promise((resolve, reject) => {
@@ -214,15 +214,16 @@
 
     ![image](https://mdn.mozillademos.org/files/8633/promises.png)
 
-    一个 Promise有以下几种状态: 
-    - pending: 初始状态，既不是成功，也不是失败状态。
-    - fulfilled: 意味着操作成功完成。
-    - rejected: 意味着操作失败。
+ 一个 Promise有以下几种状态: 
+ - pending: 初始状态，既不是成功，也不是失败状态。
+ - fulfilled: 意味着操作成功完成。
+ - rejected: 意味着操作失败。
 
-    pending 状态的 Promise 对象可能会变为fulfilled 状态并传递一个值给相应的状态处理方法，也可能变为失败状态（rejected）并传递失败信息。当其中任一种情况出现时，Promise 对象的 then 方法绑定的处理方法（handlers ）就会被调用（then方法包含两个参数：onfulfilled 和 onrejected，它们都是 Function 类型。当Promise状态为fulfilled时，调用 then 的 onfulfilled 方法，当Promise状态为rejected时，调用 then 的 onrejected 方法， 所以在异步操作的完成和绑定处理方法之间不存在竞争）。
+ pending 状态的 Promise 对象可能会变为fulfilled 状态并传递一个值给相应的状态处理方法，也可能变为失败状态（rejected）并传递失败信息。当其中任一种情况出现时，Promise 对象的 then 方法绑定的处理方法（handlers ）就会被调用（then方法包含两个参数：onfulfilled 和 onrejected，它们都是 Function 类型。当Promise状态为fulfilled时，调用 then 的 onfulfilled 方法，当Promise状态为rejected时，调用 then 的 onrejected 方法， 所以在异步操作的完成和绑定处理方法之间不存在竞争）。
 
     因为 Promise.prototype.then 和  Promise.prototype.catch 方法返回promise 对象， 所以它们可以被链式调用。
     then()方法用于指定当前实例状态发生改变时的回调函数。它返回一个新的Promise实例。
+
     ```
     Promise.prototype.then(onFulfilled, onRejected);
     ```
