@@ -8,6 +8,7 @@
         <button onclick="simpleAsyncPromisefn()">promise的异步操作</button>
         <button onclick="errAsyncPromisefn()">失败的promise的异步操作</button>
         <button onclick="asyncPromisefn()">完整的promise的异步操作</button>
+        <button onclick="AwaitAsyncPromisefn()">await的promise的异步操作</button>
     </body>
 </html>
 <script>
@@ -85,6 +86,28 @@ function asyncPromisefn(){
     .catch((e)=>{
         console.log(new Error())
     })
+}
+
+function http_mock(){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            let r = Math.random()
+            if(r > 0.5){
+                resolve(100)
+            }else{
+                reject(200)
+            }
+        },1000)
+    })
+}
+
+async function AwaitAsyncPromisefn(){
+    try {
+        const res = await http_mock()
+        console.log("success:",res)
+    } catch (e) {
+        console.log("fail:",e)
+    }
 }
 
 </script>
