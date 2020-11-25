@@ -6,6 +6,8 @@
     </top-bar> 
   <h1>this is search result </h1>
   <div v-for="(item,index) in dataList" :key="index">{{item.body}}</div>
+  <hr>
+    全局计数器:{{$store.state.count}}
 </template>
 
 <script>

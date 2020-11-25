@@ -16,7 +16,8 @@
       <div class="history-search-content-item" v-for="(item,index) in historySearch" :key="index">{{item}}</div>
     </div>
   </div>
-  
+  <hr>
+    全局计数器:{{$store.state.count}}
 </template>
 
 <script>
