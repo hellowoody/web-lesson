@@ -18,6 +18,8 @@
   </div>
   <hr>
     全局计数器:{{$store.state.count}}
+    <hr>
+    <button @click="getDataListG">获取服务器数据付给全局变量</button>
 </template>
 
 <script>
@@ -65,6 +67,9 @@ export default {
     cleanHistory(){
       clearItem("historysearch")
       this.historySearch = []
+    },
+    getDataListG(){
+      this.$store.dispatch("getDataList")
     }
   }
 }
