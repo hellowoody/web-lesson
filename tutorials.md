@@ -1512,9 +1512,6 @@
         在pages属性数组中，添加新页面的路径及文件名称，ide会自动帮我创建一组文件.
         放在数组最上面的页面，就是微信小程序默认打开的页面。
 
-      - 
-    
-
     - utils文件夹
 
       工具类，类似vue项目中src/kits/*.js
@@ -1527,19 +1524,50 @@
 
       - *.wxml (WeiXin Markup Language）是框架设计的一套标签语言，
 
-        - <text>标签
+        - text标签
 
-          等同于html中<span>标签
+          等同于html中span标签
 
-        - <view>标签
+        - view标签
 
-          等同于html中<div>标签
+          等同于html中div标签
 
       - *.js 脚本文件
 
+        - data 双向绑定的变量
+
+        - onLoad 生命周期函数--监听页面加载
+
+        - onReady 生命周期函数--监听页面初次渲染完成
+
+        - onShow 生命周期函数--监听页面显示
+
+        - onHide 生命周期函数--监听页面隐藏
+
+        - onUnload 生命周期函数--监听页面卸载
+
+        - onPullDownRefresh 页面相关事件处理函数--监听用户下拉动作
+
+        - onReachBottom 页面上拉触底事件的处理函数
+
+        - onShareAppMessage 用户点击右上角分享
+
       - *.json 局部配置文件，功能和根目录下app.json类似
 
+        ```
+        {
+          "navigationBarTitleText": "当前页面的标题"
+        }
+        ```
+
       
+  - 输入框小例子
+
+    - wxml文件
+
+      ```
+      
+      ```
 ## 22.http post 4种提交方式
 
 - application/x-www-form-urlencoded
