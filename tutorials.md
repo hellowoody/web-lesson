@@ -1498,6 +1498,13 @@
 
       全局样式，类似vue项目中src/assets/css/commom.css
 
+      ```
+      page {
+        --themeColor:#9267FD;
+        --themeFontColor:#363636;
+      }
+      ```
+
     - app.json (重要)
 
       - 小程序根目录下的 app.json 文件用来对微信小程序进行全局配置，决定页面文件的路径、窗口表现、设置网络超时时间、设置多 tab 等。
@@ -1511,6 +1518,19 @@
 
         在pages属性数组中，添加新页面的路径及文件名称，ide会自动帮我创建一组文件.
         放在数组最上面的页面，就是微信小程序默认打开的页面。
+
+      - 配置全局属性
+
+        ```
+        {
+          "window":{
+            "backgroundTextStyle":"light",
+            "navigationBarBackgroundColor": "#9267FD",
+            "navigationBarTitleText": "全局标题",
+            "navigationBarTextStyle":"white"
+          }
+        }
+        ```
 
     - utils文件夹
 
@@ -1566,8 +1586,201 @@
     - wxml文件
 
       ```
-      
+      <!--pages/demo/demo.wxml-->
+      <view>
+        <input class="input-class" model:value="{{inputVal}}" />
+      </view>
+      <text>{{inputVal}}</text>
       ```
+
+    - wxss文件
+
+      ```
+      /* pages/demo/demo.wxss */
+
+      .input-class {
+        border: 1px solid #343434;
+        width: 80%;
+        margin:8px;
+      }
+      ```
+
+    - js文件
+
+      ```
+      Page({
+        data: {
+          inputVal:""
+        }
+      })
+      ```
+  
+  - 点击事件例子
+
+    - wxml文件
+
+      ```
+      <!--pages/demo/demo.wxml-->
+      <view style="display:flex;">
+        <input class="input-class" model:value="{{inputVal}}" />
+        <button bindtap="btnTap">按钮</button>
+      </view>
+      <text>{{inputVal}}</text>
+
+      ```
+
+    - wxss文件
+
+      ```
+      /* pages/demo/demo.wxss */
+
+      .input-class {
+        border: 1px solid #343434;
+        width: 80%;
+        margin:8px;
+      }
+      ```
+
+    - js文件
+
+      ```
+      Page({
+        data: {
+          inputVal:""
+        },
+        btnTap(e){
+          console.log(this.data.inputVal)
+          console.log(e)
+        }
+      })
+      ```
+
+  - 修改变量例子
+
+    - wxml文件
+
+      ```
+      <!--pages/demo/demo.wxml-->
+      <view style="display:flex;">
+        <input class="input-class" model:value="{{inputVal}}" />
+        <button bindtap="btnTap">按钮</button>
+      </view>
+      <text>{{inputVal}}</text>
+
+      ```
+
+    - wxss文件
+
+      ```
+      /* pages/demo/demo.wxss */
+
+      .input-class {
+        border: 1px solid #343434;
+        width: 80%;
+        margin:8px;
+      }
+      ```
+
+    - js文件
+
+      ```
+      Page({
+        data: {
+          inputVal:""
+        },
+        btnTap(e){
+          this.setData({
+            inputVal : 100
+          })
+        }
+      })
+      ```
+
+    
+  - 组件应用
+
+    - 创建组件文件夹components
+
+    - 在components文件夹中创建TopBar文件夹
+
+    - 在TopBar文件夹中右键创建TopBar，编辑器会自动创建一组文件
+
+    - 文件目录
+
+      - wxml
+
+        ```
+        <view class="search-input">
+          <navigator url="/pages/index/index">搜索</navigator>
+        </view>
+        ```
+
+      - js
+
+        ```
+        Component({
+          properties: {
+
+          },
+
+          data: {
+
+          },
+
+          methods: {
+
+          }
+        })
+        ```
+
+      - wxss
+
+        ```
+        .search-input {
+          height:90rpx;
+          padding:16rpx;
+          background-color: var(--themeColor);
+          box-sizing: border-box;
+        }
+
+        .search-input navigator {
+          display:flex;
+          justify-content:center;
+          align-items: center;
+          background-color: #fff;
+          color:var(--themeFontColor);
+          height:100%;
+          border-radius: 8px;
+        }
+        ```
+
+    - 调用组件
+
+      - 修改调用页面的配置文件xxx.json
+
+        ```
+        {
+          "usingComponents": {
+            "TopBar":"../../components/TopBar/TopBar"
+          },
+          "navigationBarTitleText": "页面标题"
+        }
+        ```
+
+      - 在wxml中调用
+
+        ```
+        <!--pages/demo/demo.wxml-->
+        <TopBar></TopBar>
+        <view style="display:flex;">
+          <input class="input-class" model:value="{{inputVal}}" />
+          <button bindtap="btnTap">按钮</button>
+        </view>
+        <text>{{inputVal}}</text>
+
+        ```
+
+      
 ## 22.http post 4种提交方式
 
 - application/x-www-form-urlencoded
