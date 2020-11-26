@@ -14,7 +14,7 @@
 <script>
 import TopBar from '@/components/TopBar.vue'
 import { Http as HttpMock} from '@/kits/HttpMock.js'
-import { Http } from '@/kits/Http.js'
+import { Http ,HttpNew} from '@/kits/Http.js'
 export default {
   name:"SearchResult",
   data(){
@@ -39,7 +39,7 @@ export default {
     },
     async initData(){
       try {
-        const res = await HttpMock("/dataList",{
+        const res = await HttpNew("/dataList",{
           count:3
         })
         console.log(res)

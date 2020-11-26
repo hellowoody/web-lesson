@@ -28,3 +28,31 @@ export const Http = (api,param) => {
             .catch(e => reject(e))
     })
 }
+
+const instance= axios.create({
+    baseURL:"http://localhost:3000/api",
+    timeout:10000,
+    headers:{
+        'Content-Type' : 'application/json',
+    }
+})
+
+instance.interceptors.request.use(function(config){
+    return config
+},function(e){
+    return Promise.reject(e)
+})
+
+instance.interceptors.response.use(resp => {
+    if(resp.status === 200){
+        return Promise.resolve(resp)
+    }
+},e => Promise.reject(e))
+
+export const HttpNew = (api,param) => {
+    return new Promise((resolve,reject)=>{
+        instance.post(api,param)
+            .then(res => resolve(res))
+            .catch(e => reject(e))
+    })
+}
