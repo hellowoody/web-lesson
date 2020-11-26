@@ -1457,8 +1457,89 @@
       app.mount('#app')
 
       ```
+
+## 20.微信小程序
+
+  - 网址
+
+    https://mp.weixin.qq.com/
+
+  - 注册
+
+    使用邮箱进行微信小程序的注册
+
+  - 获取AppID(小程序ID)
+
+    - 在左侧菜单中点击【设置】
+    - 在【设置】页面中找到【帐号信息】
+    - 在【帐号信息】中，找到AppID(小程序ID)
+
+  - 开发编辑器IDE下载
+
+    https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html
+
+  - 创建项目
+
+    - 将AppId复制到创项目页面中,(也可以使用测试号，但有功能限制）
+
+    - 后端服务选择【不使用云服务】
+
+  - 项目目录
+
+    - sitemap.json
+
+      设置该小程序在微信内是否能被搜索，以及搜索时的关键字及内容
+
+    - project.config.json
+
+      类似vue项目中的webpack.config.js文件，用于打包的，一般不需修改
+
+    - app.wxss
+
+      全局样式，类似vue项目中src/assets/css/commom.css
+
+    - app.json (重要)
+
+      - 小程序根目录下的 app.json 文件用来对微信小程序进行全局配置，决定页面文件的路径、窗口表现、设置网络超时时间、设置多 tab 等。
+
+      - 详细介绍网址
+
+        https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html
+
+
+      - 在app.json里创建新页面
+
+        在pages属性数组中，添加新页面的路径及文件名称，ide会自动帮我创建一组文件.
+        放在数组最上面的页面，就是微信小程序默认打开的页面。
+
+      - 
     
 
+    - utils文件夹
+
+      工具类，类似vue项目中src/kits/*.js
+
+    - pages文件夹
+
+      页面文件夹，每个页面都是一组文件夹
+
+      - *.wxss 样式文件
+
+      - *.wxml (WeiXin Markup Language）是框架设计的一套标签语言，
+
+        - <text>标签
+
+          等同于html中<span>标签
+
+        - <view>标签
+
+          等同于html中<div>标签
+
+      - *.js 脚本文件
+
+      - *.json 局部配置文件，功能和根目录下app.json类似
+
+      
 ## 22.http post 4种提交方式
 
 - application/x-www-form-urlencoded
