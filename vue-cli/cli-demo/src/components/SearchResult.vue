@@ -40,7 +40,10 @@ export default {
     async initData(){
       try {
         const res = await HttpNew("/dataList",{
-          count:3
+          count:10,
+          data:{
+            name:"zhang"
+          }
         })
         console.log(res)
         this.dataList = res.data

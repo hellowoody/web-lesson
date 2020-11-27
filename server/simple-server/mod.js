@@ -1,16 +1,17 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+
 const app = express()
 
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false})); //application/x-www-form-urlencoded
+app.use(bodyParser.json()); //application/json
 app.use(cors({
     "orgin":"*",
     "method":"GET,POST"
 }))
 
-app.use("/pages",express.static("./pages/index.html"))
+app.use("/",express.static("./pages"))  //静态文件发布器
 
 app.get("/api",(req,resp)=>{
     resp.send("hello api")
@@ -22,15 +23,15 @@ app.post("/api/dataList",(req,resp)=>{
     resp.json([
         {
             id:0,
-            name:"aaa1"
+            name:"aaa123"
         },
         {
             id:1,
-            name:"bbb1"
+            name:"bbb123"
         },
         {
             id:2,
-            name:"ccc1"
+            name:"ccc123"
         },
     ])
 })
