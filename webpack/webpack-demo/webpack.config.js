@@ -29,8 +29,13 @@ module.exports = {
                loader:"url-loader",
                options:{
                     limit:8 * 1024,
+                    name:'[hash:10].[ext]',
                     outputPath:"assets/imgs"
                }
+            },
+            {
+                test:/\.html$/,
+                loader:"html-loader"
             }
         ]
     },
@@ -45,5 +50,24 @@ module.exports = {
             filename:'assets/css/build.css',
         })
     ],
-    mode:"development"
+    mode:"development",
+    devtool:'source-map',
+    resolve:{
+        alias:{
+            "@":resolve(__dirname,"./src")
+        }
+    },
+    devServer:{
+        contentBase:resolve(__dirname,'build'),
+        compress:true,  //启动gzip压缩
+        port:3000,
+        // open:true, //自动开发默认浏览器
+        hot:true //开启hmr服务
+    },
+    optimization:{
+        //split 打包
+        splitChunks:{
+            chunks:'all',
+        }
+    },
 }

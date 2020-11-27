@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://webpack-demo/./src/test.js"],"names":[],"mappings":";;;;;;;;;;;;;;;;;AAAO,6C","file":"js/src_test_js.build.js","sourcesContent":["export const fn = ()=>console.log(\"this is test js\")"],"sourceRoot":""}
