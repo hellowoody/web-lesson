@@ -1,105 +1,87 @@
 <template>
-    <!-- <template v-for="item in 20" :key="item">
-        <div class="menu-item">菜单{{item}}</div>
-    </template> -->
-    <a-menu
-        style="margin-top:24px;"
-        v-model:openKeys="openKeys"
-        v-model:selectedKeys="selectedKeys"
-        mode="inline"
+  <a-menu
+      id="menu-list"
+      v-model:selectedKeys="selectedKeys"
+      v-model:openKeys="openKeys"
+      mode="inline"
     >
-      <a-sub-menu key="sub1" @titleClick="titleClick">
+      <a-menu-item key="home" @click="handleClick('/main/home')">
+        <span class="menu-icon iconfont icon-home"/>
+        <span>首页</span>
+      </a-menu-item>
+      <a-sub-menu v-for="item in menus" :key="item.key" @titleClick="titleClick">
         <template v-slot:title>
-          <span><MailOutlined /><span>Navigation One</span></span>
+          <span><span class="menu-icon" :class="item.icon" /><span>{{item.name}}</span></span>
         </template>
-        <a-menu-item-group key="g1">
-          <template v-slot:title><QqOutlined /><span>Item 1</span></template>
-          <a-menu-item key="1" @click="handleClick('goodmanagment')">Option 1</a-menu-item>
-          <a-menu-item key="2" @click="handleClick('testmenu01')">Option 2</a-menu-item>
-        </a-menu-item-group>
-        <a-menu-item-group key="g2" title="Item 2">
-          <a-menu-item key="3">
-            Option 3 {{a1}}
-          </a-menu-item>
-          <a-menu-item key="4">
-            Option 4 {{a2}}
-          </a-menu-item>
-        </a-menu-item-group>
+        <a-menu-item v-for="t in item.menus" :key="t.key" @click="handleClick(t.path)">{{t.name}}</a-menu-item>
       </a-sub-menu>
-      <a-sub-menu key="sub2" @titleClick="titleClick">
-        <template v-slot:title>
-          <span><AppstoreOutlined /><span>Navigation Two</span></span>
-        </template>
-        <a-menu-item key="5">Option 5</a-menu-item>
-        <a-menu-item key="6">Option 6</a-menu-item>
-        <a-sub-menu key="sub3" title="Submenu">
-          <a-menu-item key="7">
-            Option 7
-          </a-menu-item>
-          <a-menu-item key="8">
-            Option 8
-          </a-menu-item>
-        </a-sub-menu>
-      </a-sub-menu>
-      <a-sub-menu key="sub4">
-        <template v-slot:title>
-          <span><SettingOutlined /><span>Navigation Three</span></span>
-        </template>
-        <a-menu-item key="9">Option 9</a-menu-item>
-        <a-menu-item key="10">Option 10</a-menu-item>
-        <a-menu-item key="11">Option 11</a-menu-item>
-        <a-menu-item key="12">Option 12</a-menu-item>
-      </a-sub-menu>
-    </a-menu>
+  </a-menu>
 </template>
 
 <script>
-import { ref ,reactive,toRefs} from 'vue'
-import { MailOutlined, QqOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons-vue';
+import { ref,toRaw } from 'vue';
 import { useGoto } from '/@/components/hooks/RouterHook.ts'
-
+import { useRoute } from 'vue-router'
 export default {
     name:"NavBar",
-    components:{
-        MailOutlined, 
-        QqOutlined, 
-        AppstoreOutlined, 
-        SettingOutlined 
-    },
-    // data() {
-    //     return {
-    //         selectedKeys: ['1'],
-    //         openKeys: ['sub1'],
-    //     };
-    // },
     setup(){
-        const state = reactive({
-            selectedKeys:['1'],
-            openKeys:['sub1'],
-        })
-        const { goName } = useGoto()
-        const handleClick = name => goName(name)
-        const titleClick = e => console.log("titleclick",e)
+      const menus = [
+        {
+          key:"good",
+          name:"商品管理",
+          icon:"iconfont icon-orderselect",
+          menus:[
+            {
+              key:"goodmanagment",
+              name:"商品列表",
+              path:"/main/goodmanagment"
+            },
+            {
+              key:"goodstore",
+              name:"商品库存",
+              path:"/main/goodmanagment"
+            }
+          ]
+        },
+      ]
+      const route = useRoute()
+      let openKey = ""
 
-        return {
-            ...toRefs(state),
-            handleClick, 
-            titleClick
+      for(let t1 of menus){
+        for(let t2 of t1.menus){
+          if(t2.key === route.name){
+            openKey = t1.key
+            break
+          }
         }
+      }
+      const selectedKeys = ref([route.name])
+      const openKeys = ref([openKey])
+      const { goPath } = useGoto()
+
+      const handleClick = (path)=>{
+        goPath(path)
+      }
+
+      const titleClick = (e)=>{
+        console.log('titleClick', e);
+      }
+
+      return {
+        menus,
+        selectedKeys,
+        openKeys,
+        handleClick,
+        titleClick,
+      }
     },
 }
-
 </script>
 
 <style scoped>
-.menu-item {
-    width:100%;
-    height:50px;
-    display:flex;
-    align-items: center;
-    background-color: #fff;
-    box-shadow: 1px 2px 8px rgb(0 0 0 /0.1);
-    margin-bottom: 6px;
-    padding-left:16px;
+
+.menu-icon {
+  margin-right:8px;
 }
+
 </style>

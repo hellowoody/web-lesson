@@ -1,9 +1,8 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
-import Login from '/@/components/Login.vue'
-import Main from '/@/components/Main.vue'
-import GoodManagment from '/@/components/pages/GoodManagment.vue'
-import TestMenu01 from '/@/components/pages/TestMenu01.vue'
-import TestMenu02 from '/@/components/pages/TestMenu02.vue'
+import {createRouter,createWebHashHistory} from 'vue-router';
+import Main from "/@/components/pages/Main.vue";
+import Home from "/@/components/pages/Home.vue";
+import Login from "/@/components/pages/Login.vue";
+import GoodManagment from "/@/components/pages/GoodManagment.vue";
 
 export const router = createRouter({
     history:createWebHashHistory(),
@@ -11,33 +10,28 @@ export const router = createRouter({
         {
             path:"/",
             redirect:{
-                path:"/main/goodmanagment"
+                path:"/main/home"
             }
         },
         {
             path:"/login",
-            component:Login,
+            component:Login
         },
         {
             path:"/main",
             component:Main,
             children:[
                 {
+                    path:"home",
+                    name:"home",
+                    component:Home
+                },
+                {
                     path:"goodmanagment",
                     name:"goodmanagment",
-                    component:GoodManagment,
-                },
-                {
-                    path:"testmenu01",
-                    name:"testmenu01",
-                    component:TestMenu01
-                },
-                {
-                    path:"testmenu02",
-                    name:"testmenu02",
-                    component:TestMenu02
-                },
+                    component:GoodManagment
+                }
             ]
-        }
+        },
     ]
 })

@@ -1,10 +1,11 @@
-import {createApp} from 'vue';
-import App from './App.vue';
+import { createApp } from 'vue'
 import { router } from './router' 
+import { store } from './store'
+import App from './App.vue'
 import {useAntD} from './antd'
 
-// createApp(App).use(Button).mount('#app')
-const app = createApp(App);
+const app = createApp(App)
 app.use(router)
-useAntD(app);
-app.mount("#app");
+app.use(store)
+useAntD(app)
+app.mount('#app')

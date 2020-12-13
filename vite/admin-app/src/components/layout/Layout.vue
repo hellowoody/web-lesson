@@ -1,31 +1,31 @@
 <template>
-  <div class="layout">
-      <slot name="TopBar"></slot>
-      <div class="content">
-          <slot name="SideBar"></slot>
-          <slot name="Page"></slot>
-      </div>
+  <div class="Layout">
+    <slot name="TopBar"></slot>
+    <div class="Content">
+      <slot name="SideBar"></slot>
+      <slot name="Content"></slot>
+    </div>
   </div>
 </template>
 
 <script>
+
 export default {
   name:"Layout"
 }
 </script>
 
 <style scoped>
-.layout {
-  display:flex;
+.Layout {
+  display: flex;
   min-height: 100vh;
+  flex: 1;
   flex-direction: column;
 }
 
-.content{
+.Content {
   display: flex;
   flex:1;
-  height:calc(100vh - 60px)
 }
-
 
 </style>

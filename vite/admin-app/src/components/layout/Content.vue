@@ -6,14 +6,13 @@
 
 <script>
 export default {
-  name:"SideBar"
+  name:"Content",
 }
 </script>
 
 <style scoped>
 .root {
-  width: 300px;
+  width: 100%;
   padding:24px;
-  border-right: 1px solid #eaecef;
 }
 </style>
