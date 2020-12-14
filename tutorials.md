@@ -499,6 +499,78 @@
         </table>
         ```
 
+    - 列表标签
+
+      - 无序列表
+
+        ```
+        <ul>
+          <li>列表项1</li>
+          <li>列表项2</li>
+          <li>列表项3</li>
+        </ul>
+        ```
+
+      - 有序列表
+
+        ```
+        <ol>
+          <li>列表项1</li>
+          <li>列表项2</li>
+          <li>列表项3</li>
+        </ol>
+        ```
+
+      - 自定义列表
+
+        ```
+        <dl>
+          <dt>联系方式</dt>
+          <dd>微信</dd>
+          <dd>微博</dd>
+          <dd>邮箱</dd>
+        </dl>
+        ```
+    
+    - 表单标签
+
+      - 表单域 form
+
+        ```
+        <form action="url地址" method="提交方式" name="表单域名称">
+          表单元素控件
+        </form>
+        ```
+
+        - action ： 指定接收并处理表单数据服务器url地址
+
+        - method ： get/post 表单提交方式
+
+        - name : 用于指定表单名称，以区分同一个页面中的多个表单域
+
+
+ 
+      
+      - 表单元素
+
+        - 输入框 input
+
+          - 单标签
+
+            ```
+            <input />
+            ```
+
+          - type属性
+
+            ![image](https://github.com/hellowoody/web-lesson/blob/master/%E5%8E%9F%E5%9E%8B/input.png?raw=true)
+
+
+        - 下拉列表 select 
+       
+        - 文本域 textarea
+
+
 ## 12.script标签
 
   - script标签用来放置javascript代码
