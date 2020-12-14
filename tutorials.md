@@ -180,6 +180,8 @@
 
 ## 10.html 常规架构
 
-  
+  - 标签架构图
 
+    ![image](https://raw.githubusercontent.com/hellowoody/web-lesson/master/%E5%8E%9F%E5%9E%8B/html.png)
+  
     
