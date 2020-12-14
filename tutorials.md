@@ -366,8 +366,67 @@
     - &amp;lt;  ： 小于
 
     - &amp;gt;  ： 大于
-    
 
+
+
+  - 表格标签
+
+    - table标签
+
+    - tr 行标签
+
+    - td 单元格
+
+      ```
+      <table>
+          <tr>
+            <td>id</td>
+            <td>姓名</td>
+            <td>成绩</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>张三</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>李四</td>
+            <td>90</td>
+          </tr>
+      </table>
+      ```
+
+    - 表头标签 th （table head）
+
+      ```
+      <table>
+          <tr>
+            <th>id</th>
+            <th>姓名</th>
+            <th>成绩</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>张三</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>李四</td>
+            <td>90</td>
+          </tr>
+      </table>
+      ```
+
+
+
+
+
+ 
+    - 其他属性
+
+      ![image](https://github.com/hellowoody/web-lesson/blob/master/%E5%8E%9F%E5%9E%8B/table.png?raw=true)
 
 ## 12.script标签
 
