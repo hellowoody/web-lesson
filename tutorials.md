@@ -178,10 +178,43 @@
 
   - 空元素/单元素，有些标签没有内容，为空元素，如<img> <br> <hr>
 
-## 10.html 常规架构
+## 10.html标准模板
 
   - 标签架构图
 
     ![image](https://raw.githubusercontent.com/hellowoody/web-lesson/master/%E5%8E%9F%E5%9E%8B/html.png)
   
-    
+  - head标签需要填充的内容
+
+    - title 网站的标题
+
+    - meta
+
+      - 字符集
+       
+        ```
+        <meta charset="utf-8"></meta>
+        //or
+        <meta charset="utf-8" />
+        ```
+
+      - 响应式声明
+
+        ```
+        <meta content="width=device-width,initial-scale=1" name="viewport">
+        ```
+
+  - html标准模板
+
+    ```
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8" />
+            <meta content="width=device-width,initial-scale=1" name="viewport" />
+            <title>标准模板</title>
+        </head>
+        <body>
+        </body>
+    </html>
+    ```
