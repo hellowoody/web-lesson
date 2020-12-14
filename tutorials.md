@@ -270,9 +270,67 @@
 
       ![image](https://raw.githubusercontent.com/hellowoody/web-lesson/master/%E5%8E%9F%E5%9E%8B/img.png)
 
-    - 
+    - 路径
 
+      - 相对路径 
+        
+        ./ : .代表当前目录，如果寻找当前目录上某一文件可以使用./文件名称，有时./也可以省略
+        ../ : 上一层目录
+        ../../ : 上上一层目录
 
+      - 绝对路径
+
+        - 本机中的某一文件的路径，如D:/xxx/1.jpeg
+
+        - 网络图片地址
+
+  - 超链接a
+
+    ```
+    <a href="跳转地址" target="目标窗口弹出方式">文本或图片</a>
+    ```
+
+    - herf 用于指定链接目标的url地址
+
+      - 外部链接
+
+        ```
+        <a href="https://baidu.com">跳转百度</a>
+        ```
+
+      - 内部链接
+
+        ```
+        <a href="login.html">登录</a>
+        ```
+
+      - 空链接
+
+        ```
+        <a href="#">空链接</a>
+        ```
+      
+      - 锚点链接
+
+        可以快速定位到页面中的某个位置
+
+        ```
+        <a href="#footer">底部内容</a>
+        ```
+
+      - 下载链接
+
+        ```
+        <a href="xxx.zip">下载资料</a>
+        ```
+
+    - target 用于指定链接页面打开方式
+
+      - _self : 在当前窗口打开 (默认值)
+
+      - _blank ：在新窗口中打开
+
+    
 ## 12.script标签
 
   - script标签用来放置javascript代码
