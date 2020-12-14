@@ -428,6 +428,77 @@
 
       ![image](https://github.com/hellowoody/web-lesson/blob/master/%E5%8E%9F%E5%9E%8B/table.png?raw=true)
 
+      ```
+      <table align="center" border="1" cellpadding="2" cellspacing="0" width="200">
+           ...
+      </table>
+      ```
+
+
+    - 表格结果标签
+
+      - 表格头部区域 thead
+
+        必须含有tr标签
+
+      - 表格主题区域 tbody
+
+      - 代码例子
+
+        ```
+        <table align="center" border="1" cellpadding="2" cellspacing="0" width="200">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>姓名</th>
+                    <th>成绩</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>张三</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>李四</td>
+                    <td>90</td>
+                </tr>
+            </tbody>
+        </table>
+        ```
+
+    - 合并单元格
+
+      - 跨行合并: rowspan="合并单元格的个数"
+
+        - 目标单元格:最上侧单元格为目标单元格
+
+      - 跨列合并: colspan="合并单元格的个数"
+
+        - 目标单元格:最左侧单元格为目标单元格
+
+      - 代码例子
+
+        ```
+        <table  border="1" cellpadding="1" cellspacing="0" width="240" height="240">
+            <tr>
+                <td></td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <td rowspan="2"></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        ```
+
 ## 12.script标签
 
   - script标签用来放置javascript代码
