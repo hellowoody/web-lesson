@@ -223,7 +223,57 @@
     </html>
     ```
 
-## 11.script标签
+
+
+## 11.常用标签
+
+  - 标题标签h1-h6
+
+    ```
+    <h1></h1>
+    ```
+
+  - 段落标签p
+
+    ```
+    <p>段落内容</p>
+    ```
+
+  - 换行br (单标签)
+
+    ```
+    <br />
+    ```
+
+  - 盒子标签
+
+    - div 块级元素，占满一整行
+
+      ```
+      <div></div>
+      ```
+    - span 行级元素
+
+      ```
+      <span></span>
+      ```
+  
+  - 图像标签img 单标签
+
+    - src 是标签的属性(arribute)
+
+      ```
+      <img src="图片url" />
+      ```
+    
+    - img其他属性
+
+      ![image](https://raw.githubusercontent.com/hellowoody/web-lesson/master/%E5%8E%9F%E5%9E%8B/img.png)
+
+    - 
+
+
+## 12.script标签
 
   - script标签用来放置javascript代码
 
