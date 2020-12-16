@@ -1,0 +1,96 @@
+#header {
+	width:100%;
+	height:40px;
+	background:#333;
+	min-width:1226px;
+}
+
+#h_main {
+	width:1226px;
+	height:40px;
+	margin:0 auto;
+}
+
+#h_main .h_m_left {
+	width:600px;
+	height:40px;
+	float:left;
+	line-height:40px;
+}
+
+#h_main .h_m_right {
+	width:220px;
+	height:40px;
+	float:right;
+}
+
+#h_main .h_m_left ul li{
+	float:left;
+}
+
+#h_main .h_m_left ul li a {
+	color:#b0b0b0;
+}
+#h_main .h_m_left ul li a:hover {
+	color:#fff;
+}
+#h_main .h_m_left ul li span { 
+	color:#424242;
+	margin:0 9px;
+}
+
+#h_main .h_m_right .h_m_r_login {
+	width:68px;
+	height:40px;
+	line-height:40px;
+	float:left;
+}
+
+#h_main .h_m_right .h_m_r_login a {
+	color:#b0b0b0;
+}
+
+#h_main .h_m_right .h_m_r_login a:hover {
+	color:#fff;
+}
+
+#h_main .h_m_right .h_m_r_login span {
+	color:#424242;
+	margin:0 4px;
+}
+
+#h_main .h_m_right .h_m_r_shop {
+	width:120px;
+	height:40px;
+	background:#424242;
+	float:right;
+	line-height:40px;
+	text-align:center;
+	color:#b0b0b0;
+	position:relative;
+	cursor:pointer;
+}
+
+#h_main .h_m_right .h_m_r_shop:hover {
+	background:#fff;
+}
+#h_main .h_m_right .h_m_r_shop:hover .iconfont {
+	color:#f60;
+}
+#h_main .h_m_right .h_m_r_shop:hover .car {
+	color:#f60;
+}
+#h_main .h_m_right .h_m_r_shop .h_m_r_s_hide {
+	width:320px;
+	height:100px;
+	background:#fff;
+	box-shadow:0 2px 10px rgba(0,0,0,0.15);
+	position:absolute;
+	top:40px;
+	right:0px;
+	z-index:10;
+	color:#424242;
+	line-height:100px;
+	cursor:default;
+	display:none;
+}

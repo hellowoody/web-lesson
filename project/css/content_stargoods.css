@@ -1,0 +1,102 @@
+#starGoods {
+    width:1226px;
+    height:400px;
+    margin:0 auto;
+}
+
+#starGoods .s_title .s_t_h2{
+    font-size:22px;
+    font-weight:normal;
+    line-height:60px;
+    float:left;
+} 
+
+#starGoods .s_title .s_t_btn{
+    width:71px;
+    height:22px;
+    border:1px solid #bbb;
+    float:right;
+    margin-top:19px;
+}
+
+#starGoods .s_title .s_t_btn div{
+    width:35px;
+    height:22px;
+    line-height:22px;
+    text-align:center;
+    float:left;
+    cursor:default;
+}
+
+#starGoods .s_title .s_t_btn .iconfont{
+    font-size:12px;
+    font-weight:normal;
+    color:#bbb;
+}
+
+#starGoods .s_title .s_t_btn div.click .iconfont{
+    font-weight:bold;
+    color:#333;
+    transition:.5s;
+}
+
+#starGoods .s_title .s_t_btn div.click:hover{
+    cursor:pointer;
+}
+
+#starGoods .s_title .s_t_btn div.click .iconfont:hover{
+    color:#f60;
+}
+
+#starGoods .s_title .s_t_btn .s_t_b_left{
+    border-right:1px solid #bbb;
+}
+
+#starGoods .s_goods{
+    width:1226px;
+    height:340px;
+    position:relative;
+    overflow:hidden;
+}
+
+#starGoods .s_goods ul{
+    width:1000%;
+}
+
+#starGoods .s_goods li{
+    width:234px;
+    height:340px;
+    background:#fafafa;
+    float:left;
+    margin-right:14px;
+    text-align:center;
+}
+
+#starGoods .s_goods li .s_g_img{
+    width:160px;
+    height:160px;
+    display:block;
+    padding:36px 0;
+    margin:0 auto;
+}
+
+#starGoods .s_goods li .s_g_img img{
+    width:160px;
+    height:160px;
+}
+
+#starGoods .s_goods li .s_g_title{
+    color:#000;
+}
+
+#starGoods .s_goods li .s_g_detail{
+    color:#bbb;
+    margin:8px 0 16px;
+}
+
+#starGoods .s_goods li .s_g_price{
+    color:#f60;
+}
+
+
+

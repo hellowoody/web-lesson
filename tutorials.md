@@ -565,11 +565,65 @@
 
             ![image](https://github.com/hellowoody/web-lesson/blob/master/%E5%8E%9F%E5%9E%8B/input.png?raw=true)
 
+          
+          - 代码例子
+
+            ```
+            <form url="#login" method="get">
+                用户名：<input type="text" name="userid" maxlength="6" placeholder="请输入用户名"/>
+                <br />
+                密码： <input type="password" name="pwd"/>
+                <br />
+                性别: 男 <input type="radio" name="sex" value="male" checked="checked"/>  女 <input type="radio" name="sex" value="female" />
+                <br />
+                爱好: 打游戏 <input type="checkbox" value="game" name="like"/> 打篮球 <input type="checkbox" value="sport" checked="checked" name="like"/> 旅游 <input type="checkbox" value="travel" name="like"/>
+                <br />
+                上传头像 <input type="file" />
+                <br />
+                <input type="submit" value="提交">
+                <input type="reset" value="重置">
+            </form>
+            ```
+
+        
+        - label标签
+
+          - 点击label区域，鼠标自动放在input标签里
+
+            ```
+            <label for="username">用户名</label>
+            <input id="username"/>
+            ```
+
+          - 点击label区域,自动选择radio标签
+
+            ```
+            <label for="left">左</label><input type="radio" name="translation" id="left"/>
+            <label for="right">右</label><input type="radio" name="translation" id="right"/>
+            ```
 
         - 下拉列表 select 
+
+          ```
+          <select>
+              <option>1</option>
+              <option>2</option>
+              <option selected="selected">3</option>
+              <option>4</option>
+              <option>5</option>
+          </select>
+          ```
        
         - 文本域 textarea
 
+          - cols : 一行能输入多个字符
+
+          - rows : 默认打开时显示多少行
+
+          ```
+          <textarea rows="3" cols="20"></textarea>
+          ```
+        
 
 ## 12.script标签
 

@@ -1,0 +1,80 @@
+#banner{
+    width:1226px;
+    height:460px;
+    margin:0 auto;
+    position:relative;
+}
+
+#b_main{
+    width:1226px;
+    height:460px;
+    position:relative;
+}
+
+#b_main .b_m_pic{
+    width:1226px;
+    height:460px;
+}
+
+#b_main .b_m_pic ul li{
+    position:absolute;
+    top:0;
+    left:0;
+    display:none;
+}
+
+#b_main .b_m_btn div{
+    width:41px;
+    height:69px;
+    position:absolute;
+    top:50%;
+    margin-top:-34px;
+    cursor:pointer;
+    background:url(../images/banner/btn.png) no-repeat;
+}
+
+#b_main .b_m_btn .b_m_b_left{
+    left:235px;
+    border-radius:0 2px 2px 0;
+    background-position:-84px 0px;
+}
+
+#b_main .b_m_btn .b_m_b_right{
+    right:0;
+    border-radius:2px 0 0 2px;
+    background-position:-121px 0px;
+}
+
+#b_main .b_m_btn .b_m_b_left:hover{
+    background-position:0px 0px;
+}
+
+#b_main .b_m_btn .b_m_b_right:hover{
+    background-position:-42px 0px;
+}
+
+#b_main .b_m_tab{
+    width:100px;
+    height:10px;
+    position:absolute;
+    right:30px;
+    bottom:30px;
+}
+
+#b_main .b_m_tab ul li{
+    width:6px;
+    height:6px;
+    border-color:rgba(255,255,255,0.3);
+    background:rgba(0,0,0,0.4);
+    border-radius:50%;
+    border:2px solid rgba(255,255,255,0.3);
+    float:left;
+    margin:0 4px;
+    cursor:pointer;
+}
+
+#b_main .b_m_tab ul li:hover,
+#b_main .b_m_tab ul li.click {
+    background:rgba(255,255,255,0.4);
+    border-color:rgba(0,0,0,0.4);
+}
