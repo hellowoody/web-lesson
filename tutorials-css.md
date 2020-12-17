@@ -138,7 +138,7 @@
 | :before              | p:before              | 在每个 &lt;p&gt; 元素的内容之前插入内容。  | 2 |
 | :after               | p:after               | 在每个 &lt;p&gt; 元素的内容之后插入内容。  | 2 |
 | :lang(language)      | p:lang(it)            | 选择带有以 "it" 开头的 lang 属性值的每个 &lt;p&gt; 元素。 | 2 |
-| element1~element2    | p~ul                  | 选择前面有 &lt;p&gt; 元素的每个 <ul> 元素。  | 3 |
+| element1~element2    | p~ul                  | 选择前面有 &lt;p&gt; 元素的每个 &lt;ul&gt; 元素。  | 3 |
 | [attribute^=value]   | a[src^="https"]       | 选择其 src 属性值以 "https" 开头的每个 &lt;a&gt; 元素。 | 3 |
 | [attribute$=value]   | a[src$=".pdf"]        | 选择其 src 属性以 ".pdf" 结尾的所有 &lt;a&gt; 元素。 | 3 |
 | [attribute*=value]   | a[src*="abc"]         | 选择其 src 属性中包含 "abc" 子串的每个 &lt;a&gt; 元素。 | 3 |
