@@ -207,6 +207,7 @@
 
  - 复合选择器
 
+ - 常用选择器表格
 
 | 选择器                | 例子                   | 例子描述            | css版本 |
 | -------------------- | --------------------- | ---------------------------------------- | - |
@@ -254,3 +255,81 @@
 | :checked             | input:checked         | 选择每个被选中的 &lt;input&gt; 元素。          | 3 |
 | :not(selector)       | :not(p)               | 选择非 &lt;p&gt; 元素的每个元素。              | 3 |
 | ::selection          | ::selection           | 选择被用户选取的元素部分。             | 3 |
+
+
+## 6.font
+
+ - 字体font-famliy
+
+    ```
+    p {
+        font-famliy:Arial,"Microsoft Yahei"; // 多个字体，会按从左到右的顺序依次检查客服端机器中是否含有此字体，如果有则使用
+    }
+    ```
+
+    注：字体是有版权的，实际开发时根据开发团队的要求设置字体，如果是自己开发的画，一般不设置此项
+
+ - 字体大小font-size
+
+    ```
+    p {
+        font-size:24px
+    }
+    ```
+
+    谷歌浏览器默认字体大小16px，不同浏览器的默认字体不一样。
+
+    注意：浏览器中支持最小字体是12px
+
+ - 字体粗细(磅重)font-weight
+
+    ```
+    p {
+        font-weight: normal; // normal | bold | bolder | lighter | number (100 - 900，默认是400和normal一样)
+    }
+    ```
+
+ - font-style
+
+    ```
+    p {
+        font-style: normal ; // normal | italic 斜体
+    }
+    ```
+
+ - 复合属性
+
+    ```
+    p {
+        font:italic bold 16px 'Microsoft Yahei' ;// font-style font-weight font-size font-family  必须按照这个顺序声明，其中 font-style font-weight可以
+    }
+    ```
+
+
+## 7.文本属性
+
+    css text 属性可定义外观，比如文本的颜色，对齐文本，装饰文本，文本缩进，行间距等
+
+ - 文本颜色color
+
+    ```
+    div {
+        color : red; // 十六进制表示 #363636 ; rgb表示 rgb(200,200,200)
+    }
+    ```
+
+    注：red,blue是预定义值，一般测试时经常用到。但在实际项目开发时十六进制表示法是最常用到的
+
+ - 对齐文本text-align
+
+    ```
+    div {
+        text-align:center;
+    }
+    ```
+
+    |属性值 |解释 |
+    |---   |---  |
+    |left  |左对齐(默认值) |
+    |right |右对齐 ｜
+    |center|居中对齐|
