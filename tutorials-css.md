@@ -25,8 +25,9 @@
 
 ## 3.css 声明
 
- - 在html的head中用style标签进行声明
+ - 内部样式（优先级居中）
 
+    在html的head中用style标签进行声明
 
     ```
     <!DOCTYPE html>
@@ -48,6 +49,39 @@
     <html>
     ```
 
+
+ - 行间样式（优先级最高）
+
+    ```
+    <div style="color:red">行间样式</div>
+    ```   
+ 
+ - 外部样式（优先级最低）
+
+    ```
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8" />
+            <meta content="width=device-width,initial-scale=1" name="viewport" />
+            <title>标准模板</title>
+            <link rel="stylesheet" href="index.css">
+        </head>
+        <body>
+            <h1>hello world</h1>
+        </body>
+    <html>
+    ```
+
+    ```
+    //css文件 index.css
+
+    h1 {
+        color:blue;
+    }
+
+    ```
+
 ## 4.css选择器简单使用
 
  - 代码例子
@@ -63,6 +97,7 @@
         <li>li of ol</li>
     </ol>
     ```
+ 
  - 小需求
 
     - 把div里面的文字改为红色
@@ -207,6 +242,175 @@
 
  - 复合选择器
 
+    - 更准确更高效的选择目标元素(标签)
+
+    - 由两个或多个基础选择器，通过不同方式组合而成
+
+    - 常用的复合选择器
+
+        - 后代选择器
+
+            ```
+            <ol>
+                <li>a</li>
+                <li>b</li>
+                <li><div>c</div></li>
+            </ol>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+            ```
+
+            要求：把ol里面的li全部改为red
+
+            ```
+            ol li {
+                color:red;
+            }
+
+            ol div {
+                color:blue
+            }
+            ```
+
+            注意：1.ol和li中间需要用空格隔开
+                 2.ol必须是li的父节点
+                 3.ol和li不是必须父子关系，也可以是“爷孙”关系，只要满足后代就行
+
+        - 子选择器
+            
+            - 只能作为某元素的最近一级子元素，简单理解就是“亲儿子”元素
+
+                ```
+                <div class="nav">
+                    <a href="#">i am son</a>
+                    <p>
+                        <a href="#">i am grandson</a>
+                    </p>
+                </div>
+                ```
+
+                ```
+                .nav>a {
+                    color:red;
+                }
+                ```
+
+        - 并集选择器
+
+            可以选择多组标签，同时为他们定义相同的样式，通常用于集体声明
+
+            ```
+            <div>100</div>
+            <p>200</p>
+            <span>300</span>
+            <ul class="u-class">
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
+            </ul>
+            ```
+
+            - 将div，p改为红色
+
+                ```
+                div , p {
+                    color:red;
+                }
+                ```
+
+            - 将div，p，ul中的li 的字体改完蓝色
+
+                ```
+                div,p,u-class li {
+                    color:blue;
+                }
+                ```
+
+        - 伪类选择器
+
+            - 用于向某些选择器添加特殊的效果，比如给链接添加特殊效果，或选择第一个，第n个元素
+
+            - 伪类选择器最大的特点是用冒号:表示，比如:hover,:first-child
+
+            - 伪类选择器有很多，下面讲比较常用的
+
+                - 链接伪类
+
+                    ```
+                    a:link /* 选择所有未被访问的元素 */ 
+                    a:visited /* 选择所有已被访问的元素 */ 
+                    a:hover /* 选择鼠标指针位于其上的元素 */ 
+                    a:active /* 选择活动链接(鼠标按下未弹起的链接) */ 
+                    ```
+
+                    ```
+                    <a href="#">hello world</a>
+                    ```
+
+                    ```
+                    /* 未访问的链接a:link */
+                    a:link {
+                        color:#333;
+                        text-decoration:none;
+                    }
+                    /* 选择点击过的链接 */
+                    a:visited {
+                        color:red;
+                    }
+                    /* 选择鼠标经过的那个链接 */
+                    a:hover {
+                        color:blue;
+                    }
+
+                    a:active {
+                        color:grey;
+                    }
+                    ```
+
+                - 链接伪类注意事项
+
+                    - 为了确保生效，安照LVHA顺序声明 :link - :visited - :hover - :active
+                    
+                    - a标签在浏览器有默认样式，所以实际工作中，都需要给a链接单独的样式
+
+                - 链接伪类常用的写法
+
+                    ```
+                    a {
+                        text-decoration:none;
+                        color:#363636;
+                    }
+
+                    a:hover {
+                        color:red;
+                    }
+                    ```
+
+
+
+
+                - :focus 伪类选择器
+
+                    - 用于选取获取焦点的表单元素
+
+                    - 焦点就是光标，一般情况&lt;input&gt;元素才能获取，因此这个选择器主要针对input来说
+
+                        ```
+                        input:focus {
+                            backgound-color:red;
+                        }
+                        ```
+
+                        ```
+                        <input type="text" />
+                        ```
+
+
+
+                        
  - 常用选择器表格
 
 | 选择器                | 例子                   | 例子描述            | css版本 |
@@ -328,8 +532,46 @@
     }
     ```
 
+    ```
+    <div>测试text align属性</div>
+    ```
+
     |属性值 |解释 |
     |---   |---  |
     |left  |左对齐(默认值) |
     |right |右对齐  |
     |center|居中对齐|
+
+ - 装饰文本text-decoration
+
+    text-decoration属性文本的修饰，可以添加下划线，删除线，上划线
+
+    ```
+    div {
+        text-decoration:underline; // none | underline下划线 | overline上划线 | line-through删除线
+    }
+    ```
+
+    主要用于a标签 去掉下划线
+
+ - 文本缩进text-indent
+
+    文本的第一行缩进，通常是段落的首行缩进
+
+    ```
+    div {
+        text-indent:10px;
+    }
+    ```
+
+ - 行间距line-height
+
+    用于设置行间的距离(行高),可以控制文字与行与行之间的距离
+
+    line-height包含上间距，文字高度（大小），下间距
+
+    ```
+    div {
+        line-height:24px
+    }
+    ```
