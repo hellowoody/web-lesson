@@ -746,3 +746,43 @@
  - 优先性
 
     ![image](https://raw.githubusercontent.com/hellowoody/web-lesson/master/%E5%8E%9F%E5%9E%8B/css-important.png)
+
+## 11.box模型
+
+ - border 边框
+
+    ```
+    border:1px solid #000 /* border-width border-style border-color */
+    ```
+
+    ```
+    border-style:solid | dotted 点线 ｜ dashed 虚线 
+    ```
+
+    - 绘制表格时相邻边框合在一起 border-collapse
+
+        ```
+        border-collapse: collapse;
+        ```
+
+ - padding 内边距
+
+    ```
+    padding:top right bottom left; 四个方向的像素值
+
+    padding:top/bottom right/left;
+    ```
+
+  - margin 外边距
+
+
+## 12.浮动float
+
+    ```
+    float:none | left | right;
+    ```
+ - 浮动会脱离标准流(脱标)
+
+ - 会显示一行并且元素顶部对齐
+
+ - 浮动的元素会具有行内块元素的特性
