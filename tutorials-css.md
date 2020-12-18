@@ -575,3 +575,174 @@
         line-height:24px
     }
     ```
+
+## 8.元素显示模式
+
+ - 显示元素分类
+
+    - 块元素
+
+        div,p,h1-h6,ul,ol,li都是常用的块元素
+
+        - 独占一行
+
+        - 高度，宽度，外边距，内边距可以控制
+
+        - 宽度默认是容器（父级容器）的100%
+
+        - 里面可以放块元素和行元素
+
+        - 注意 类似p，h1-h6文字类的块级元素，内部不允许再放块级元素
+
+    - 行元素
+
+        也叫行内元素，内联元素
+        a,span都是常用的行元素
+
+        - 相邻行内元素在一行上，一行显示多个
+
+        - 高，宽度直接设置是无效的
+
+        - 默认宽度就是它本身内容的宽度
+
+        - 只能容纳文本和其他行元素
+
+        - 注意
+            - a标签里不能再放a 
+            
+            - a标签里面可以放块级元素，但是需要给a转换一下块级模式
+
+    - 行内块元素
+
+        img,input,td 他们同时具有块元素和行元素的特点
+        
+        - 一行上可以放多个
+
+        - 默认块度就是其本身宽度
+
+        - 高度，行高，内外边距都是控制
+
+ - 显示模式转换
+
+    - 转换为块元素：display:block
+
+        ```
+        a {
+            display:block;
+            width:100px;
+            height:100px;
+            background-color:red;
+        }
+        ```
+
+        ```
+        <a href="#">显示模式转换</a>
+        ```
+
+    - 转换为行元素:display:inline
+
+        ```
+        div {
+            display:inline;
+        }
+        ```
+
+        ```
+        <div>aaa</div>
+        <div>bbb</div>
+        ```
+
+    - 转换为行内块元素:display:inline-block
+
+        ```
+        span {
+            display:inline-block;
+            width:100px;
+            height:100px;
+            background-color:blue;
+        }
+        ```
+
+        ```
+        <span>100</span>
+        <span>200</span>
+        ```
+
+
+
+## 9.背景设置background
+
+ - 背景颜色background-color
+
+    ```
+    div {
+        background-color:red; /* transparent 透明(默认值) | 16进制 ｜ rgb ｜ 内置颜色 */
+    }
+    ```
+
+ - 背景图片background-image
+
+    ```
+    div {
+        background-image:none 默认值 | url(url);
+    }
+    ```
+
+    - 背景平铺background-repeat
+
+        ```
+        background-repeat: repeat 默认值 | no-repeat | repeat-x | repeat-y;
+        ```
+
+        ```
+        <div class="imgclass"></div>
+        ```
+
+        ```
+        .imgclass {
+            width:500px;
+            height:500px;
+            background-image:url(i.jpg);
+            background-repeat: repeat;
+        }
+        ```
+    - 背景图片位置background-position
+
+        ```
+        background-position: x y ;
+        ```
+        x,y 可以是具体数值也可以是内置的方位position (center left right top bottom)
+
+    - 背景图片固定background-attachment
+
+        设置背景图片是否固定或随着页面滚动
+
+        ```
+        background-attachment: scroll | fixed ;
+        ```
+
+    - 背景复合写法
+
+        ```
+        background:颜色 图片地址 平铺 是否滚动 图片位置  //注： 这个顺序没有强制性要求，但一般按这个顺序写
+        ```
+
+    - 背景半透明
+
+        a对应alpha值 在0～1之间
+
+        ```
+        background:rgba(0,0,0,0.3)
+        ```
+
+## 10.css三大特定
+
+ - 层叠性
+
+    如果样式冲突时，选择离标签最近的样式
+
+ - 继承性
+
+ - 优先性
+
+    ![image](https://raw.githubusercontent.com/hellowoody/web-lesson/master/%E5%8E%9F%E5%9E%8B/css-important.png)
