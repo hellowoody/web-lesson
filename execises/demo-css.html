@@ -13,6 +13,7 @@
         <meta charset="utf-8" />
         <title>css demo</title>
      
+        <link rel="stylesheet" href="./assets/css/common.css">
         <link rel="stylesheet" href="./assets/css/demo-css.css">
         <style>
             .div-class {
@@ -28,13 +29,17 @@
                 background-color: red;
             }
 
+            #box-id {
+                box-shadow: 0px 8px 20px #000;
+            }
+
             .box2 {
                 background-color: blue;
             }
         </style>
     </head>
     <body>
-        <h1>hello world</h1>
+        <div>hello world</div>
         <div class="div-class">
             css 例子
         </div>
@@ -50,10 +55,19 @@
         </ol>
 
         <hr>
-        <div class="box-base"></div>
+        <div class="box-base" id="box-id">123456</div>
         <br />
-        <div class="box-base box2"></div>
+        <div class="box-base box2" id="box-id">abc</div>
         <br />
-        <div class="box-base"></div>
+        <div class="box-base" id="box-id-3"></div>
     </body>
 </html>
+
+<script>
+    var tmp = document.getElementById("box-id")
+    console.log(tmp.innerText)
+    var arr = document.getElementsByClassName("box-base")
+    console.log(arr[0].innerText)
+
+    
+</script>
