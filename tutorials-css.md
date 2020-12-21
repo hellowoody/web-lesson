@@ -324,7 +324,7 @@
             - 将div，p，ul中的li 的字体改完蓝色
 
                 ```
-                div,p,u-class li {
+                div,p,.u-class li {
                     color:blue;
                 }
                 ```
