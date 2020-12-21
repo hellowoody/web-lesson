@@ -9,7 +9,7 @@
         <h1>h1 标题</h1>
         <h2>h2 标题</h2>
         <h3>h3 标题</h3>
-
+<input />
         <p>“更好统筹发展和安全” “着力解决制约国家发展和安全的重大难题”“抓好发展和安全两件大事”……
             <br>今年的中央经济工作会议上，“发展和安全”被多次提及。</p>
 　　     <p>2020年，几多艰难，成绩斐然。但我们必须清醒地看到，疫情变化和外部环境存在诸多不确定性，我国经济恢复基础尚不牢固。明年世界经济形势仍然复杂严峻，复苏不稳定不平衡，疫情冲击导致的各类衍生风险不容忽视。</p>
@@ -106,5 +106,105 @@
         <h2>aaa</h2>
         <h1 id="positionB">友情链接</h1>
         <h2>aaa</h2>
+        <hr>
+        <h2>无序列表</h2>
+        <ul>
+            <li>
+                <a href="#">跳转</a>
+            </li>
+            <li>b</li>
+            <li>c</li>
+        </ul>
+        <h2>有序列表</h2>
+        <ol>
+            <li>语文</li>
+            <li>数学</li>
+            <li>英语</li>
+        </ol>
+        <h2>自定义列表 diy list</h2>
+        <dl>
+            <dt>自定义演示</dt>
+            <dd>一</dd>
+            <dd>二</dd>
+            <dd>三</dd>
+        </dl>
+        <hr>
+        <h2>表单</h2>
+
+        <form method="post" action="http://127.0.0.1:8080/login" >
+            <div>
+                <span>用户名：</span><input placeholder="请输入userid" />
+            </div>
+            <div>
+                <span>密码：</span><input type="password" placeholder="请输入密码"/>
+            </div>
+            
+            <button type="submit" >提交</button>
+        </form>
+
+        <hr >
+
+        <input />
+        <br>
+        <input type="button" value="修改"/>
+        <br>
+        爱好：
+        <input type="hidden" value="id"/>
+        <input type="checkbox" /> 看电影
+        <input type="checkbox" /> 玩游戏
+        <br>
+        性别
+        <input type="radio" name="sex"/> 男
+        <input type="radio" name="sex"/> 女
+        <br>
+        <input type="file" />
+
+        
+        <form url="#login" method="get">
+    用户名：<input type="text" name="userid" maxlength="6" placeholder="请输入用户名"/>
+    <br />
+    密码： <input type="password" name="pwd"/>
+    <br />
+    性别: 男 <input type="radio" name="sex" value="male" checked="checked"/>  女 <input type="radio" name="sex" value="female" />
+    <br />
+    爱好: 打游戏 <input type="checkbox" value="game" name="like"/> 打篮球 <input type="checkbox" value="sport" checked="checked" name="like"/> 旅游 <input type="checkbox" value="travel" name="like"/>
+    <br />
+    上传头像 <input type="file" />
+    <br />
+    <input type="submit" value="提交">
+    <input type="reset" value="重置">
+</form>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
     </body>
 </html>
+
+<script>
+    function sub(){
+        console.log(2000)
+        /*
+            1.获取 userid
+            2.获取 pwd
+            2.5 校验
+
+            3.上面这两个 提交 server
+            $.post({
+                url:http://127.0.0.1:8080/login
+                data:userid,pwd
+                fn(){
+
+                }
+            })
+        */
+    }
+</script>
