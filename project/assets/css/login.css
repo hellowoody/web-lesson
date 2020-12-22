@@ -1,7 +1,21 @@
+.content {
+    background-image: url("../imgs/login-bg.jpg");
+    background-position: center;
+    height:588px;
+    display:flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.login-form {
+    width: 410px;
+    height: 556px;
+    background-color: #fff;
+    margin-right: 32px;
+}
+
 .footer {
-    /* display:flex;
-    flex-direction: column;
-    align-items: center; */
+    margin-top:100px;
     color:#757575;
     font-size:14px;
     font-weight: 300;
