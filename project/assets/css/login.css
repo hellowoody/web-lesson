@@ -7,6 +7,33 @@
     align-items: flex-end;
 }
 
+.content .login-form {
+    padding:24px;
+    box-sizing: border-box;
+}
+
+.content .login-form .login-form-top {
+    font-size: 24px;
+    color:#666;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .login-form .login-form-top .login-form-top-split{
+    /* border-left: 1px solid #666; */
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-left-color: #e0e0e0;
+    margin-right: 32px;
+    margin-left: 32px;
+    height: 24px;
+}
+
+.content .login-form .login-type-active {
+    color:#f56600;
+}
+
 .login-form {
     width: 410px;
     height: 556px;
