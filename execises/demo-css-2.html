@@ -10,6 +10,32 @@
                 display: block;
                 background-color: red;
             }
+            /* 
+            16进制颜色表示法: # _ _ _ _ _ _  每一个下划线最小值是0 最大值f
+            rgb : (_,_,_) 0-255
+            设置透明度
+            rgba: (0,255,0,0.9)  alpha 0-1
+            rgb(0 255 0 / 0.9);
+            */
+            .circle {
+                width:200px;
+                height:200px;
+                background-color: green;
+                border-radius: 100px;
+            }
+
+            .b-img {
+                width:500px;
+                height:500px;
+                background-image: url("./assets/imgs/1.jpg");
+                background-repeat: no-repeat;
+                background-position: 100px 100px;
+                background-color: green;
+            }
+            /* 
+            bacground-image
+            <img>
+            */
         </style>
     </head>
     <body>
@@ -18,6 +44,29 @@
             <div style="background-color: blue;">200</div> -->
             <a href="#" class="transfer-class">a tag 1</a>
             <a href="#">a tag 2</a>
+        </div>
+        <hr>
+        <div class="circle"></div>
+        <div class="b-img"></div>
+        <hr>
+        <div style="width:500px;height:500px;background-image: url('./assets/imgs/1.jpg');overflow: auto;background-attachment: fixed;">
+            <h1>a</h1>
+            <h1>a</h1>
+            <h1>a</h1>
+            <h1>a</h1>
+            <h1>a</h1>
+            <h1>a</h1>
+            <h1>a</h1>
+            <h1>a</h1>
+            <h1>a</h1>
+            <h1>a</h1>
+            <h1>a</h1>
+            <h1>a</h1>
+            <h1>a</h1>
+            <h1>a</h1>
+            <h1>a</h1>
+            <h1>a</h1>
+            <h1>a</h1>
         </div>
     </body>
 </html>
