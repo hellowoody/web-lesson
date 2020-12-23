@@ -54,6 +54,7 @@ body {
     position: absolute;
     background-color: #fff;
     display: none;
+    overflow-y: auto;
 }
 
 .input-tel {
