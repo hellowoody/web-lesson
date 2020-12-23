@@ -25,6 +25,10 @@
     margin-bottom: 10px;
 }
 
+.login-type-title:hover {
+    color:#f56600
+}
+
 .content .login-form .login-form-top .login-form-top-split{
     /* border-left: 1px solid #666; */
     border-left-width: 1px;

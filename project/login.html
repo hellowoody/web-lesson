@@ -18,9 +18,9 @@
         <div class="content">
             <div class="login-form">
                 <div class="login-form-top">
-                    <div class="login-type-active">账号登陆</div>
+                    <div id="byUserId" onclick="toggleActive(1)"  class="login-type-title login-type-active">账号登陆</div>
                     <div class="login-form-top-split"></div>
-                    <div>扫码登陆</div>
+                    <div id="byScan" onclick="toggleActive(2)" class="login-type-title ">扫码登陆</div>
                 </div>
                 <div class="login-form-subform">
                     <input class="login-form-input" id="userid" />
@@ -87,5 +87,15 @@
 </html>
 
 <script>
-
+function toggleActive(flag){
+    console.log(flag)
+    if(flag == 1){
+        document.getElementById("byUserId").setAttribute("class","login-type-title login-type-active")
+        document.getElementById("byScan").setAttribute("class","login-type-title")
+    }
+    if(flag == 2){
+        document.getElementById("byScan").setAttribute("class","login-type-title login-type-active")
+        document.getElementById("byUserId").setAttribute("class","login-type-title")
+    }
+}
 </script>
