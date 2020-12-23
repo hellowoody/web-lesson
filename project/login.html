@@ -22,7 +22,7 @@
                     <div class="login-form-top-split"></div>
                     <div id="byScan" onclick="toggleActive(2)" class="login-type-title ">扫码登陆</div>
                 </div>
-                <div class="login-form-subform">
+                <div id="login-form-subform" class="login-form-subform">
                     <input class="login-form-input" id="userid" />
                     <br/>
                     <input class="login-form-input"/>
@@ -35,10 +35,10 @@
                    
                     <div class="login-form-btn">登陆</div>
                 </div>
-                <div class="login-form-bytel">
+                <div id="login-form-bytel"  class="login-form-bytel">
                     手机短信登录/注册
                 </div>
-                <div class="login-form-forregister">
+                <div id="login-form-forregister" class="login-form-forregister">
                     <div>立即注册</div>
                     <div class="login-from-splite"></div>
                     <div>忘记密码？</div>
@@ -92,10 +92,16 @@ function toggleActive(flag){
     if(flag == 1){
         document.getElementById("byUserId").setAttribute("class","login-type-title login-type-active")
         document.getElementById("byScan").setAttribute("class","login-type-title")
+        document.getElementById("login-form-subform").style.display = "inherit";
+        document.getElementById("login-form-bytel").style.display = "flex";
+        document.getElementById("login-form-forregister").style.display = "flex";
     }
     if(flag == 2){
         document.getElementById("byScan").setAttribute("class","login-type-title login-type-active")
         document.getElementById("byUserId").setAttribute("class","login-type-title")
+        document.getElementById("login-form-subform").style.display = "none";
+        document.getElementById("login-form-bytel").style.display = "none";
+        document.getElementById("login-form-forregister").style.display = "none";
     }
 }
 </script>
