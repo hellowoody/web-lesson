@@ -14,11 +14,47 @@ body {
     width:854px;
     background-color: #fff;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    /* justify-content 平行于主维度方向排序 */
+    /* justify-content: center;   */
+    /* align-item 垂直于主维度方向排序 */
+    align-items: center;
 }
 
+.register-form-title {
+    font-size: 30px;
+    color:#333;
+    margin-top: 40px;
+}
 
+.register-form-subfrom{
+    display: flex;
+    flex-direction: column;
+    margin-top: 38px;
+}
 
+.select-country {
+    width: 332px;
+    height: 42px;
+    border: 1px solid #333;
+}
+
+.input-tel {
+    height: 40px;
+}
+
+.register-form-btn {
+    width: 332px;
+    height: 48px;
+    color:#fff;
+    background-color: #ff6700;
+    margin-top: 24px;
+    /* text-align: center;
+    line-height: 48px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .footer {
     margin-top:100px;
