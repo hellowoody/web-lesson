@@ -43,6 +43,19 @@ body {
     box-sizing: border-box;
 }
 
+.select-country:hover {
+    cursor: pointer;
+}
+
+.select-country-flat {
+    width: 330px;
+    height: 270px;
+    border: 1px solid #e8e8e8;
+    position: absolute;
+    background-color: #fff;
+    display: none;
+}
+
 .input-tel {
     height: 40px;
     margin-top:5px;
