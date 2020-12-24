@@ -19,12 +19,6 @@
     line-height: 40px;
 }
 
-.h_main .h_m_right {
-    width: 220px;
-    height: 40px;
-    float:right
-}
-
 .h_main .h_m_left ul li {
     float: left;
 }
@@ -42,4 +36,47 @@
     margin:0px 8px;
 }
 
+
+.h_main .h_m_right {
+    width: 220px;
+    height: 40px;
+    float:right
+}
+
+.h_main .h_m_right .h_m_r_login {
+    width: 70px;
+    height: 40px;
+    line-height: 40px;
+    float: left;
+}
+
+.h_main .h_m_right .h_m_r_login a {
+    color:#b0b0b0;
+}
+
+.h_main .h_m_right .h_m_r_login a:hover {
+    color:#fff;
+}
+
+.h_main .h_m_right .h_m_r_login span {
+    color:#424242;
+    margin:0px;
+}
+
+.h_main .h_m_right .h_m_r_shop {
+    width: 120px;
+    height:40px;
+    background-color: #424242;
+    float: right;
+    line-height: 40px;
+    color:#b0b0b0;
+    cursor: pointer;
+}
+
+.h_main .h_m_right .h_m_r_shop:hover {
+    background-color: #fff;
+    color:#f60;
+    padding-left: 15px;
+    box-sizing: border-box;
+}
 
