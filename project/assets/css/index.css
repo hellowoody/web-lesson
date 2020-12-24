@@ -71,12 +71,28 @@
     line-height: 40px;
     color:#b0b0b0;
     cursor: pointer;
+    position: relative;
+    padding-left: 15px;
 }
 
 .h_main .h_m_right .h_m_r_shop:hover {
     background-color: #fff;
     color:#f60;
-    padding-left: 15px;
     box-sizing: border-box;
+}
+
+.h_main .h_m_right .h_m_r_shop .h_m_r_s_hide {
+    width: 316px;
+    height: 100px;
+    background-color: #fff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    position:absolute;
+    top:40px;
+    right:0px;
+    color:#424242;
+    line-height: 100px;
+    text-align: center;
+    cursor: default;
+    display: none;
 }
 
