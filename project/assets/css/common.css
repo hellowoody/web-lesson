@@ -1,6 +1,19 @@
 * {
     margin:0px;
     padding:0px;
+    --themeMinWidth:1226px
+}
+
+ul,li {
+    list-style: none;   
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-size:12px;
 }
 
 .icon {

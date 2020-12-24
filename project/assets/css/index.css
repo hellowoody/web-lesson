@@ -1,0 +1,45 @@
+
+.header {
+    height:40px;
+    background-color: #333;
+    width: 100%;
+    min-width: var(--themeMinWidth);
+}
+
+.h_main {
+    width: var(--themeMinWidth);
+    height:40px;
+    margin:0 auto ; 
+}
+
+.h_main .h_m_left {
+    float: left;
+    width:600px;
+    height:40px;
+    line-height: 40px;
+}
+
+.h_main .h_m_right {
+    width: 220px;
+    height: 40px;
+    float:right
+}
+
+.h_main .h_m_left ul li {
+    float: left;
+}
+
+.h_main .h_m_left ul li a {
+    color:#b0b0b0;
+}
+
+.h_main .h_m_left ul li a:hover {
+    color:#fff;
+}
+
+.h_main .h_m_left ul li span {
+    color:#424242;
+    margin:0px 8px;
+}
+
+
