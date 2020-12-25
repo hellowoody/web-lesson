@@ -35,5 +35,16 @@ $(function(){
             picli.eq(_index).fadeIn().siblings().fadeOut();
         }
 
+
+
+        const $nav_li = $("#b_nav>ul>li");
+		$nav_li.hover(function(){
+			//将对应的hide部分显示
+			$(this).find(".b_n_hide").show();
+		},function(){
+			//将对应的hide部分隐藏
+			$(this).find(".b_n_hide").hide();
+		});
+
      })() // js 闭包 立即执行函数
 }); // jquery for ready
