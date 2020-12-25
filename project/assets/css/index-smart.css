@@ -1,0 +1,109 @@
+#bgColor{
+    width:100%;
+    background:#fafafa;
+    margin-top:30px;
+    padding-top:30px;
+    min-width:1226px;
+    padding-bottom:60px;
+}
+
+h2{
+    font-size:22px;
+    font-weight:normal;
+}
+
+#smart{
+    width:1226px;
+    height:670px;
+    margin:30px auto;
+}
+
+#smart .s_title{
+    height:56px;
+    line-height:56px;
+}
+
+#smart .s_title .s_t_h2{
+    float:left;
+}
+
+#smart .s_title a{
+    float:right;
+    font-size:16px;
+    color:#424242;
+    transition:.3s;
+}
+
+#smart .s_title a:hover{
+    color:#f60;
+}
+
+#smart .s_title a .iconfont{
+    font-size:22px;
+    color:#bbb;
+    margin-left:8px;
+    transition:.3s;
+}
+
+#smart .s_title a:hover .iconfont{
+    color:#f60;
+}
+
+#smart .s_con{
+    width:1226px;
+    height:614px;
+}
+
+#smart .s_con ul li{
+    width:234px;
+    height:300px;
+    background:#fff;
+    float:left;
+    margin-right:14px;
+    text-align:center;
+    position:relative;
+    transition:all .2s linear;
+    position:relative;
+    top:0;
+}
+
+#smart .s_con ul li:hover{
+    box-shadow:0 15px 30px rgba(0,0,0,0.1);
+    top:-2px;
+}
+
+#smart .s_con ul li.first{
+    width:234px;
+    height:614px;
+}
+
+#smart .s_con ul li.s_c_bottom{
+    margin-bottom:14px;
+}
+
+#smart .s_con ul li a{
+    display:block;
+}
+
+#smart .s_con ul li a.s_c_img{
+    padding:20px 37px;
+}
+
+#smart .s_con ul li a.s_c_img img{
+    width:160px;
+    height:160px;
+}
+
+#smart .s_con ul li a.s_c_title{
+    color:#111;
+    font-size:14px;
+}
+
+#smart .s_con ul li .s_c_detail{
+    margin:2px 0 12px;
+    color:#bbb;
+}
+
+#smart .s_con ul li .s_c_price{
+    color:#f60;
+}

@@ -1,0 +1,142 @@
+#content{
+    width:var(--themeMinWidth);
+    height:480px;
+    margin:20px auto 20px;
+    background:#fafafa;
+}
+
+#content .c_title{
+    height:60px;
+    line-height:60px;
+}
+
+#content .c_con{
+    height:420px;
+}
+
+#content .c_con .c_c_li{
+    width:296px;
+    height:419px;
+    background:#fff;
+    float:left;
+    margin-right:10px;
+    overflow:hidden;
+    position:relative;
+    top:0;
+    transition: .3s;
+    border-top:1px solid #ffac13;
+}
+
+#content .c_con .c_c_li:hover{
+    top:-3px;
+    box-shadow:0 10px 20px #ddd;
+}
+
+#content .c_con .c_c_li h3{
+    font-size:16px;
+    margin:50px 0 26px;
+    text-align:center;
+}
+
+#content .c_con .c_c_li .box_wrap{
+    width: 500%;
+    height: 320px;
+}
+
+#content .c_con .c_c_li .box_wrap .box{
+    width:296px;
+    height:320px;
+    float:left;
+}
+
+#content .c_con .c_c_li .box_wrap .box a{
+    display:block;
+}
+
+#content .c_con .c_c_li .box_wrap .box a.c_c_title{
+    text-align:center;
+    color:#222;
+    font-size:20px;
+}
+
+#content .c_con .c_c_li .box_wrap .box a.c_c_detail{
+    margin:10px 50px 20px;
+    text-align:center;
+    color:#bbb;
+}
+
+#content .c_con .c_c_li .box_wrap .box a.c_c_price{
+    margin:0 0 20px;
+    text-align:center;
+    color:#111;
+    text-align:center;
+}
+
+#content .c_con .c_c_li .box_wrap .box a.c_c_img img{
+    margin:0 auto;
+    width:216px;
+    height:154px;
+}
+
+#content .c_con .c_c_li .tab{
+    width:110px;
+    height:12px;
+    position:absolute;
+    bottom:26px;
+    left:50%;
+    margin-left:-55px;
+}
+
+#content .c_con .c_c_li .tab{
+    width:110px;
+    height:12px;
+    position:absolute;
+    bottom:26px;
+    left:50%;
+    margin-left:-55px;
+}
+
+#content .c_con .c_c_li .tab li{
+    width:6px;
+    height:6px;
+    background:gray;
+    float:left;
+    border-radius:50%;
+    margin:3px 10px;
+}
+
+#content .c_con .c_c_li .tab li:hover{
+    background: #f60;
+    cursor: pointer;
+}
+
+#content .c_con .c_c_li .tab li.on{
+    border:2px solid #f60;
+    background:#fff;
+    margin:1px 10px;
+    transition:background .5s ease;
+}
+
+#content .c_con .c_c_li .btn{
+    display:none;
+}
+
+#content .c_con .c_c_li .btn div{
+    width:20px;
+    height:46px;
+    background:rgba(0,0,0,0.3);
+    position:absolute;
+    top:50%;
+    margin-top:-23px;
+    text-align:center;
+    line-height:46px;
+    color:#e5e5e5;
+    transition:background .4s;
+}
+
+#content .c_con .c_c_li .btn div:hover{
+    color:#fff;
+    background:rgba(0,0,0,0.5);
+    cursor:pointer;
+}
+
