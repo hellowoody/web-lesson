@@ -79,6 +79,7 @@
     background-color: #fff;
     color:#f60;
     box-sizing: border-box;
+    z-index:1
 }
 
 .h_main .h_m_right .h_m_r_shop .h_m_r_s_hide {
