@@ -1,0 +1,55 @@
+.banner {
+    width:var(--themeMinWidth);
+    height:460px;
+    margin:10px auto;
+    position: relative;
+}
+
+.b_main {
+    width:var(--themeMinWidth);
+    height:460px;
+    position: relative;
+}
+
+.b_main .b_m_pic {
+    width:var(--themeMinWidth);
+    height:460px;
+}
+
+.b_main .b_m_pic ul li {
+    position: absolute;
+    top:0px;
+    left:0px;
+    display: none;
+}
+
+.b_main .b_m_btn div {
+    width: 41px;
+    height: 69px;
+    position: absolute;
+    top:50%;
+    margin-top: -34px;
+    cursor: pointer;
+    background: url("../imgs/banner/btn.png") no-repeat;
+}
+
+
+.b_main .b_m_btn .b_m_btn_left {
+    left:234px;
+    background-position: -82px, 0;
+}
+
+.b_main .b_m_btn .b_m_btn_left:hover {
+    left:234px;
+    background-position: 0px, 0;
+}
+
+.b_main .b_m_btn .b_m_btn_right {
+    right:0px;
+    background-position: -123px 0px;
+}
+
+.b_main .b_m_btn .b_m_btn_right:hover {
+    right:0px;
+    background-position: -41px 0px;
+}
