@@ -32,6 +32,10 @@
 
     https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html
 
+  - 开发工具的详细说明
+
+    https://developers.weixin.qq.com/miniprogram/dev/devtools/devtools.html
+
   - 创建项目
 
     - 将AppId复制到创项目页面中,(也可以使用测试号，但有功能限制）
@@ -132,9 +136,29 @@
         {
           "navigationBarTitleText": "当前页面的标题"
         }
-        ```
+        ```    
+  
+  - es6 简单语法
 
-      
+    - 导出 
+        - export
+        - module.exports 
+    
+    - 导入 
+        - import
+
+            - 针对export导出的内容，导入的语法
+
+                ```
+                import { xxx } from "相对路径/文件名";
+                ```
+            
+            - 针对module.exports导出的内容，导入的语法
+
+                ```
+                import xxx from "相对路径/文件名";
+                ```
+
   - 输入框小例子
 
     - wxml文件
@@ -334,3 +358,7 @@
 
         ```
 
+
+## 3.slot
+
+    https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/wxml-wxss.html
