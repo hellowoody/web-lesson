@@ -8,11 +8,11 @@
     "pages/demo/demo"
   ],
   "window":{
-    "enablePullDownRefresh":true,
+    "enablePullDownRefresh":false,
     "backgroundTextStyle":"dark",
-    "navigationBarBackgroundColor": "#f1f1f1",
+    "navigationBarBackgroundColor": "#9267FD",
     "navigationBarTitleText": "精美图片",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle":"white"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
