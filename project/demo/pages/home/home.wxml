@@ -1,2 +1,10 @@
-<!--pages/home/home.wxml-->
-<view>hello home pages  {{msg}}</view>
+<!-- 
+  1.text标签: 行标签
+  2.text标签: 对应html中span
+-->
+<!-- 
+  1.view标签: 块级标签
+  2.view标签: 对应html中的div
+-->
+<text class="h1-class">标题1</text>
+<view>标题2</view>

@@ -1,1 +1,5 @@
-/* pages/home/home.wxss */
+.h1-class {
+  color:red;
+  font-size:24px;
+  font-weight:bold;
+}
