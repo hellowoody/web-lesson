@@ -1,4 +1,5 @@
 {
-  "usingComponents": {},
-  "xxx":""
+  "usingComponents": {
+    "pub-title":"../../components/PubTitle/PubTitle"
+  }
 }
