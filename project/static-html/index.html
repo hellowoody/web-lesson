@@ -10,6 +10,46 @@
         </style>
     </head>
     <body>
-        <h1 class="h1-class">标题1</h1>
+        <h1 class="h1-class">双向绑定例子</h1>
+
+        <input id="input_el"  oninput="inputhandle(this)" />
+        <br>
+        <span id="show_el"></span> 
     </body>
 </html>
+<script>
+
+function proxy_bind(target){
+    return new Proxy(target,{
+        get:function(obj,prop){
+            // console.log(obj)
+            // console.log(prop)
+            return obj[prop]
+        },
+        set:function(obj,prop,newvalue){
+
+            obj[prop] = newvalue
+            document.getElementById("show_el").innerText = newvalue
+            return
+        }
+    })
+}
+
+let data = {
+    msg:1000,
+}
+
+let data_bind = proxy_bind(data)
+
+;(function(){
+    document.getElementById("input_el").value = data_bind.msg
+    document.getElementById("show_el").innerText = data_bind.msg
+})()
+
+
+function inputhandle(obj){
+    // console.log(obj.value)
+    data_bind.msg = obj.value
+}
+
+</script>
