@@ -1,0 +1,19 @@
+{
+  "pages":[
+    
+    "pages/index/index",
+    
+    "pages/home/home",
+    "pages/logs/logs",
+    "pages/demo/demo"
+  ],
+  "window":{
+    "enablePullDownRefresh":true,
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#f1f1f1",
+    "navigationBarTitleText": "精美图片",
+    "navigationBarTextStyle":"black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
