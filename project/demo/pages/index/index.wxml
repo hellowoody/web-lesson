@@ -9,5 +9,7 @@
   </view>
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
+    <view></view>
+    <text class="user-motto">{{res_sub}}</text>
   </view>
 </view>

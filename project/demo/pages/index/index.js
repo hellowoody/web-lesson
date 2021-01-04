@@ -1,10 +1,14 @@
 //index.js
 //获取应用实例
+// import { add,sub } from "../../utils/tools"
+import kit_tools from "../../utils/kit"
+
 const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World 123',
+    motto: '加法结果'+kit_tools.add(100,50),
+    res_sub: '乘法结果'+kit_tools.sub(100,50),
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
