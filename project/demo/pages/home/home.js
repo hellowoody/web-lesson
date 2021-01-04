@@ -10,6 +10,9 @@ Page({
 
   test(){
     console.log(this.data.msg)
+    this.setData({
+      msg:"hello 2021"
+    })
   }
 
 })
