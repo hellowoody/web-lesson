@@ -359,6 +359,23 @@
         ```
 
 
-## 3.slot
+
+## 3.跳转
+
+  - navigator标签
+
+    ```
+     <navigator url="/pages/xxx/xxx" >
+     </navigator>
+    ```
+
+  - wx.navigateTo
+
+    ```
+    wx.navigateTo({
+      url: '../logs/logs'
+    })
+    ```
+## 4.slot
 
     https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/wxml-wxss.html
