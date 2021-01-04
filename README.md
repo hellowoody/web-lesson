@@ -92,7 +92,7 @@
 
     - utils文件夹
 
-      工具类，类似vue项目中src/kits/*.js
+      工具类，一些公用的工具方法
 
     - pages文件夹
 
