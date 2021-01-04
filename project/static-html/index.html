@@ -13,6 +13,7 @@
         <h1 class="h1-class">双向绑定例子</h1>
 
         <input id="input_el"  oninput="inputhandle(this)" />
+        <button onclick="btn()">按钮</button>
         <br>
         <span id="show_el"></span> 
     </body>
@@ -50,6 +51,10 @@ let data_bind = proxy_bind(data)
 function inputhandle(obj){
     // console.log(obj.value)
     data_bind.msg = obj.value
+}
+
+function btn(){
+    console.log("this is btn fn")
 }
 
 </script>
