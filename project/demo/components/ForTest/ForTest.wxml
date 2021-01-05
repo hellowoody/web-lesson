@@ -1,6 +1,7 @@
 <view>这是for 的例子组件</view>
 
-<view wx:for="{{[1,2,3]}}" wx:key="index">
-  {{index}} - {{item}}
+<view wx:for="{{arr}}" wx:key="mineIndex" wx:for-index="mineIndex" wx:for-item="obj">
+  {{mineIndex}} - {{obj.id}} {{obj.name}}
+  <view wx:for="{{['a','b','c','d','e']}}" wx:key="index">item {{item}}</view>
 </view>
 
