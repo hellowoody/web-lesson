@@ -1,7 +1,7 @@
 Page({
 
   data: {
-    showTarget:"block",
+    showTarget:"slot",
   },
 
   showComp(e){

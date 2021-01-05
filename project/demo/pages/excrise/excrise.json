@@ -2,7 +2,8 @@
   "usingComponents": {
     "for-test":"../../components/ForTest/ForTest",
     "if-test": "../../components/IfTest/IfTest",
-    "block-test":"../../components/BlockTest/BlockTest"
+    "block-test":"../../components/BlockTest/BlockTest",
+    "slot-test":"../../components/SlotTest/SlotTest"
   },
   "navigationBarTitleText":"练习页面"
 }

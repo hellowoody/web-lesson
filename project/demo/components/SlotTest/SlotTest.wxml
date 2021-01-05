@@ -1,0 +1,10 @@
+<view>slot 例子页面</view>
+
+<view>
+  111
+  <slot></slot>
+  222
+</view>
+
+
+<view>slot 页面结束</view>
