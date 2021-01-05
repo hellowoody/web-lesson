@@ -1,10 +1,10 @@
 <view class="tabs">
   <view class="tabs-title">
-    <view class="tabs-title-item active">选项卡一</view>
-    <view class="tabs-title-item">选项卡二</view>
-    <view class="tabs-title-item">选项卡三</view>
+    <view class="tabs-title-item {{activeIndex == 1 ? 'active' : ''}}" bindtap="changeTab" data-index="1">选项卡一</view>
+    <view class="tabs-title-item {{activeIndex ==2 ? 'active' : ''}}" bindtap="changeTab" data-index="2">选项卡二</view>
+    <view class="tabs-title-item {{activeIndex ==3 ? 'active' :'' }}" bindtap="changeTab" data-index="3">选项卡三</view>
   </view>
   <view class="tabs-content">
-    选项卡一
+    选项卡一的内容
   </view>
 </view>
