@@ -1,7 +1,7 @@
 <view class="tabs">
   <view class="tabs-title">
     <view 
-      class="tabs-title-item {{activeIndex == item.id ? 'active' : ''}}" 
+      class="tabs-title-item {{item.isActive ? 'active' : ''}}" 
       wx:for="{{tabs}}" 
       wx:key="index"
       data-index="{{item.id}}"
