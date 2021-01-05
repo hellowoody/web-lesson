@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "for-test":"../../components/ForTest/ForTest"
+  },
+  "navigationBarTitleText":"练习页面"
+}

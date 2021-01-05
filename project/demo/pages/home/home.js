@@ -5,14 +5,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    msg:""
+    msg:"",
+    age:10,
+    flag:false
   },
 
-  test(){
-    console.log(this.data.msg)
+  test(e){
+    console.log(e)
     this.setData({
-      msg:"hello 2021"
+      flag:!this.data.flag
     })
+    // console.log(this.data.msg)
+    // this.setData({
+    //   msg:"hello 2021"
+    // })
   }
 
 })

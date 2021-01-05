@@ -9,6 +9,7 @@
 <text class="h1-class">标题1</text>
 <view>
   <input style="border:1px solid #363636; width:100px;" model:value="{{msg}}"/>
-  <button bindtap="test">按钮</button>
+  <button id="btn-id-mine" bindtap="test" data-name="zhangsan" >按钮</button>
 </view>
 <text>{{msg}}</text>
+<view id="{{age}}" hidden="{{flag ? true : ''}}" >{{age + 11}}</view>

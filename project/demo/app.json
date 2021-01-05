@@ -1,6 +1,6 @@
 {
   "pages":[
-    
+    "pages/excrise/excrise",
     "pages/index/index",
     "pages/home/home",
     "pages/logs/logs",
