@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "for-test":"../../components/ForTest/ForTest"
+    "for-test":"../../components/ForTest/ForTest",
+    "if-test": "../../components/IfTest/IfTest"
   },
   "navigationBarTitleText":"练习页面"
 }
