@@ -13,6 +13,20 @@
     "navigationBarTitleText": "精美图片",
     "navigationBarTextStyle":"white"
   },
+  "tabBar":{
+    "color":"#363636",
+    "selectedColor":"#9267FD",
+    "list":[
+      {
+        "text":"首页",
+        "pagePath":"pages/excrise/excrise"
+      },
+      {
+        "text":"我的",
+        "pagePath":"pages/index/index"
+      }
+    ]
+  },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }
