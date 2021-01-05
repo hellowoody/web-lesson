@@ -28,18 +28,8 @@ Page({
         content:"内容四"
       },
     ],
-    activeIndex : 1
   },
 
-  changeTab(e){
-    // console.log(e)
-    let {tabs} = this.data
-    tabs.forEach((item,index) => index===e.target.dataset.index-1 ? item.isActive = true : item.isActive = false
-    )
-    this.setData({
-      activeIndex : e.target.dataset.index,
-      tabs
-    })
-  }
+  
   
 })
