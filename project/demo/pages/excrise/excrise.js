@@ -1,7 +1,7 @@
 Page({
 
   data: {
-    showTarget:"for",
+    showTarget:"if",
   },
 
   showComp(e){

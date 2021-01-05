@@ -1,1 +1,8 @@
 <view>if 例子页面</view>
+
+<view wx:if="{{flag}}">hello world</view>
+<button bindtap="toggleshow">控制按钮</button>
+
+<view wx:if="{{target > 5}}">hello world</view>
+<view wx:elif="{{target == 5}}">hello 2021</view>
+<view wx:else>你好 世界</view>

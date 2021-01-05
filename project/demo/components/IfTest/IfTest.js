@@ -1,23 +1,17 @@
-// components/IfTest/IfTest.js
 Component({
-  /**
-   * 组件的属性列表
-   */
   properties: {
 
   },
-
-  /**
-   * 组件的初始数据
-   */
   data: {
-
+    flag:true,
+    target:10
   },
-
-  /**
-   * 组件的方法列表
-   */
   methods: {
-
+    toggleshow(){
+      this.setData({
+        flag : !this.data.flag,
+        target: 3
+      })
+    }
   }
 })
