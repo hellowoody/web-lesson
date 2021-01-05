@@ -14,16 +14,26 @@
     "navigationBarTextStyle":"white"
   },
   "tabBar":{
-    "color":"#363636",
-    "selectedColor":"#9267FD",
+    "color":"#767676",
+    "selectedColor":"#FF3541",
     "list":[
       {
         "text":"首页",
-        "pagePath":"pages/excrise/excrise"
+        "pagePath":"pages/excrise/excrise",
+        "iconPath":"assets/imgs/home.png",
+        "selectedIconPath":"assets/imgs/home-active.png"
+      },
+      {
+        "text":"订单",
+        "pagePath":"pages/home/home",
+        "iconPath":"./assets/imgs/order.png",
+        "selectedIconPath":"./assets/imgs/order-active.png"
       },
       {
         "text":"我的",
-        "pagePath":"pages/index/index"
+        "pagePath":"pages/index/index",
+        "iconPath":"./assets/imgs/person.png",
+        "selectedIconPath":"./assets/imgs/person-active.png"
       }
     ]
   },
