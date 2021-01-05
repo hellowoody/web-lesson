@@ -1,11 +1,21 @@
 <view>slot 例子页面</view>
 
-<view style="display:flex;">
-  <view style="flex:1;background-color:red;height:100px;">
+<!-- <view style="display:flex;">
+  <view style="flex:1;background-color:red;height:100px;" >
     <slot name="left"></slot>
   </view>
   <view style="flex:1;background-color:blue;height:100px;">
-    <slot name="right"></slot>
+    <slot  name="right"></slot>
+  </view>
+</view> -->
+
+
+<view style="display:flex;">
+  <view style="flex:1;background-color:red;height:100px;">
+
+  </view>
+  <view style="flex:1;background-color:blue;height:100px;">
+
   </view>
 </view>
 
