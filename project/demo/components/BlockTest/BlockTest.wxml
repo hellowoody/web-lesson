@@ -4,3 +4,13 @@
 </block>
 <button bindtap="toggle">控制按钮</button>
 
+
+<block wx:for="{{[1,2,3,4,5]}}" wx:key="item">
+  <view>
+    {{index}}
+  </view>
+  <text>{{item}}</text>
+  <view>
+    end
+  </view>
+</block>
