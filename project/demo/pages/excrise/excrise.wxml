@@ -6,5 +6,6 @@
 <if-test wx:if="{{showTarget === 'if'}}"></if-test>
 <block-test wx:if="{{showTarget === 'block'}}"></block-test>
 <slot-test wx:if="{{showTarget === 'slot'}}">
-  这原来就是插槽
+  <view slot="left">左插槽</view>
+  <view slot="right">右插槽</view>
 </slot-test>
