@@ -1,4 +1,6 @@
 <button bindtap="showComp" data-name="for">for 例子页面</button>
 <button bindtap="showComp" data-name="if">if 例子页面</button>
+<button bindtap="showComp" data-name="block">block 例子页面</button>
 <for-test wx:if="{{showTarget === 'for'}}"></for-test>
 <if-test wx:if="{{showTarget === 'if'}}"></if-test>
+<block-test wx:if="{{showTarget === 'block'}}"></block-test>

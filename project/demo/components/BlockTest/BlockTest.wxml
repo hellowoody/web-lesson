@@ -1,0 +1,6 @@
+<block wx:if="{{flag}}">
+  <view >view 1</view>
+  <view >view 2</view>
+</block>
+<button bindtap="toggle">控制按钮</button>
+
