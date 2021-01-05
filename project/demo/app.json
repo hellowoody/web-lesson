@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/tab/tab",
     "pages/excrise/excrise",
     "pages/index/index",
     "pages/home/home",
@@ -19,13 +20,13 @@
     "list":[
       {
         "text":"首页",
-        "pagePath":"pages/excrise/excrise",
+        "pagePath":"pages/tab/tab",
         "iconPath":"assets/imgs/home.png",
         "selectedIconPath":"assets/imgs/home-active.png"
       },
       {
         "text":"订单",
-        "pagePath":"pages/home/home",
+        "pagePath":"pages/excrise/excrise",
         "iconPath":"./assets/imgs/order.png",
         "selectedIconPath":"./assets/imgs/order-active.png"
       },

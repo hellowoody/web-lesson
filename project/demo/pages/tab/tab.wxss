@@ -1,0 +1,22 @@
+.tabs-title {
+  display:flex;
+  height:32px;
+  /* justify-content: space-around; */
+}
+
+.tabs-title-item {
+  flex:1; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:16px 0px;
+}
+
+.tabs-title .active {
+  color:#FF3541;
+  border-bottom:1px solid #FF3541;
+}
+
+.tabs-content {
+  padding:24px;
+}

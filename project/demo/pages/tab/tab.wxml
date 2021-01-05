@@ -1,0 +1,10 @@
+<view class="tabs">
+  <view class="tabs-title">
+    <view class="tabs-title-item active">选项卡一</view>
+    <view class="tabs-title-item">选项卡二</view>
+    <view class="tabs-title-item">选项卡三</view>
+  </view>
+  <view class="tabs-content">
+    选项卡一
+  </view>
+</view>
