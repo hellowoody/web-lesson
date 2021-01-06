@@ -21,4 +21,7 @@
       </view>
     </view>
   </view>
+  <view class="content-card" wx:for="{{cards}}" wx:key="index">
+    {{item.title}}
+  </view>
 </view>

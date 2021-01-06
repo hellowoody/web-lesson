@@ -60,3 +60,10 @@
   margin-left:24rpx;
   box-shadow: 0rpx 4rpx 32rpx rgb(255 80 91 / 0.4);
 }
+
+.content-card {
+  border-radius: 24rpx;
+  height:490rpx;
+  box-shadow: 0rpx 4rpx 42rpx rgb(0 0 0 / 0.16);
+  margin-top:36rpx;
+}

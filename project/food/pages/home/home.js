@@ -32,6 +32,32 @@ Page({
         name:"其他",
         imgPath:"/assets/imgs/t/american_image.png"
       },
+    ],
+    cards:[
+      {
+        id:1,
+        title:"麦辣鸡腿汉堡",
+        rating:"5",
+        commentNum:10,
+        price:"20",
+        imgPath:"/assets/imgs/t/list.png"
+      },
+      {
+        id:2,
+        title:"巨无霸",
+        rating:"5",
+        commentNum:10,
+        price:"20",
+        imgPath:"/assets/imgs/t/list1.png"
+      },
+      {
+        id:3,
+        title:"至尊披萨",
+        rating:"5",
+        commenNum:10,
+        price:"20",
+        imgPath:"/assets/imgs/t/list2.png"
+      },
     ]
   },
 
