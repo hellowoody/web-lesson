@@ -1,1 +1,5 @@
-/* pages/home/home.wxss */
+.top-bar {
+  height:320rpx;
+  color:#fff;
+  background-color: var(--themeColor);
+}

@@ -8,3 +8,8 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+
+page {
+  --themeColor:#9267FD;
+  --themeFontColor:#363636;
+}

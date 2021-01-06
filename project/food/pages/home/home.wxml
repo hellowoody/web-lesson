@@ -1,2 +1,3 @@
-<!--pages/home/home.wxml-->
-<text>pages/home/home.wxml</text>
+<view class="top-bar">
+  <search-input />
+</view>
