@@ -3,3 +3,11 @@
   color:#fff;
   background-color: var(--themeColor);
 }
+
+.categroy-item {
+  margin-left:18rpx;
+  margin-right:32rpx;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
