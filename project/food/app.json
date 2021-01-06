@@ -2,7 +2,8 @@
   "pages":[
     "pages/home/home",
     "pages/profile/profile",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/categroy/categroy"
   ],
   "window":{
     "backgroundTextStyle":"light",

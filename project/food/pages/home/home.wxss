@@ -4,7 +4,14 @@
   background-color: var(--themeColor);
 }
 
+.categroys-scroll {
+  height:calc(320rpx - 90rpx);
+  padding-top:16rpx;
+  box-sizing: border-box;
+}
+
 .categroy-item {
+  flex-shrink:0;
   margin-left:18rpx;
   margin-right:32rpx;
   display:flex;

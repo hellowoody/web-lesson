@@ -1,11 +1,11 @@
 <view class="top-bar">
   <search-input />
-  <scroll-view scroll-x="true">
+  <scroll-view scroll-x="true" class="categroys-scroll">
     <view style="display:flex">
-      <view wx:for="{{categroys}}" wx:key="index" class="categroy-item">
+      <navigator url="/pages/categroy/categroy" wx:for="{{categroys}}" wx:key="index" class="categroy-item">
         <image src="{{item.imgPath}}" style="width:90rpx;margin-bottom:8rpx;" mode="widthFix" />
         <text>{{item.name}}</text>
-      </view>
+      </navigator>
     </view>
   </scroll-view>
 </view>
