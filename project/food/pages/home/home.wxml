@@ -10,5 +10,15 @@
   </scroll-view>
 </view>
 <view class="content">
-
+  <view class="content-top-bar">
+    <view class="content-top-bar-title">今日推荐</view>
+    <view class="content-top-bar-icon">
+      <view class="content-top-bar-icon-item">
+        <text class="iconfont icon-setting-" style="font-size:36rpx;font-weight:bold;"></text>
+      </view>
+      <view class="content-top-bar-icon-item">
+        <text class="iconfont icon-filter" style="font-size:36rpx;font-weight:bold;"></text>
+      </view>
+    </view>
+  </view>
 </view>
