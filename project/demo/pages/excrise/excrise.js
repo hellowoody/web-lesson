@@ -36,5 +36,11 @@ Page({
       activeIndex:e.detail.index,
       tabs
     })
+  },
+
+  goto(){
+    wx.navigateTo({
+      url: '../home/home',
+    })
   }
 })
