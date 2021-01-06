@@ -1,7 +1,18 @@
-<button bindtap="showComp" data-name="for">for 例子页面</button>
-<button bindtap="showComp" data-name="if">if 例子页面</button>
-<button bindtap="showComp" data-name="block">block 例子页面</button>
-<button bindtap="showComp" data-name="slot">slot 例子页面</button>
+<view>
+  页面跳转,点击下面的链接进行页面跳转
+</view>
+<navigator url="/pages/demo/demo">
+  <view style="background-color:#9267FD;height:50px;">跳转demo页面</view>
+</navigator>
+<navigator url="/pages/tab/tab">
+  <view style="background-color:#9267FD;height:50px;">跳转一级页面页面</view>
+</navigator>
+<view style="display:flex;">
+  <button size="mini" bindtap="showComp" data-name="for">for 例子页面</button>
+  <button size="mini" bindtap="showComp" data-name="if">if 例子页面</button>
+  <button size="mini" bindtap="showComp" data-name="block">block 例子页面</button>
+  <button size="mini" bindtap="showComp" data-name="slot">slot 例子页面</button>
+</view>
 <for-test wx:if="{{showTarget === 'for'}}"></for-test>
 <if-test wx:if="{{showTarget === 'if'}}"></if-test>
 <block-test wx:if="{{showTarget === 'block'}}"></block-test>

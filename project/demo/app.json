@@ -25,7 +25,7 @@
         "selectedIconPath":"assets/imgs/home-active.png"
       },
       {
-        "text":"订单",
+        "text":"练习",
         "pagePath":"pages/excrise/excrise",
         "iconPath":"./assets/imgs/order.png",
         "selectedIconPath":"./assets/imgs/order-active.png"
