@@ -1,7 +1,7 @@
 <tabs tabs="{{tabs}}"  bindtabsItemChange="handleTabsItemChange">
   <view style="display:flex">
     <view style="flex:1;height:100px;background-color:red;">内容说明</view>
-    <view style="flex:1;height:100px;background-color:blue">
+    <view style="flex:1;height:100px;background-color:blue;color:#fff;">
       {{tabs[activeIndex-1].content}}
     </view>
   </view>

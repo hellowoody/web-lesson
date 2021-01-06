@@ -24,5 +24,17 @@ Page({
     this.setData({
       showTarget : e.target.dataset.name
     })
+  },
+
+  handleTabsItemChange(e){
+    // console.log(e)
+    let {tabs} = this.data
+    tabs.forEach(function(item,index){
+      return index === e.detail.index-1 ? item.isActive = true : item.isActive = false
+    })
+    this.setData({
+      activeIndex:e.detail.index,
+      tabs
+    })
   }
 })
