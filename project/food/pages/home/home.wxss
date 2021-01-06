@@ -18,3 +18,12 @@
   flex-direction: column;
   align-items: center;
 }
+
+.content {
+  margin-top:-32rpx;
+  border-top-left-radius: 36rpx;
+  border-top-right-radius: 36rpx;
+  height:calc(100vh - 320rpx + 32rpx);
+  background-color:#fff;
+  overflow-y:auto;
+}
