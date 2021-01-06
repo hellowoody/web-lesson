@@ -1,7 +1,8 @@
 {
   "pages":[
     "pages/home/home",
-    "pages/profile/profile"
+    "pages/profile/profile",
+    "pages/search/search"
   ],
   "window":{
     "backgroundTextStyle":"light",
