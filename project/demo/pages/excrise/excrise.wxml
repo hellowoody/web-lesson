@@ -9,3 +9,13 @@
   <view slot="left">左插槽</view>
   <view slot="right">右插槽</view>
 </slot-test>
+
+<tabs tabs="{{tabs}}">
+  <view style="display:flex;flex-direction: column;">
+    <view style="flex:1;height:100px;background-color:red;">内容说明</view>
+    <view style="flex:1;height:100px;background-color:blue">
+      {{tabs[activeIndex-1].content}}
+    </view>
+  </view>
+</tabs>
+

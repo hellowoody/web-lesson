@@ -3,7 +3,8 @@
     "for-test":"../../components/ForTest/ForTest",
     "if-test": "../../components/IfTest/IfTest",
     "block-test":"../../components/BlockTest/BlockTest",
-    "slot-test":"../../components/SlotTest/SlotTest"
+    "slot-test":"../../components/SlotTest/SlotTest",
+    "tabs":"../../components/Tabs/Tabs"
   },
   "navigationBarTitleText":"练习页面"
 }

@@ -11,6 +11,6 @@
     </view>
   </view>
   <view class="tabs-content">
-    {{tabs[activeIndex-1].content}}
+    <slot></slot>
   </view>
 </view>
