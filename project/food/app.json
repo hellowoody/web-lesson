@@ -3,7 +3,8 @@
     "pages/home/home",
     "pages/profile/profile",
     "pages/search/search",
-    "pages/categroy/categroy"
+    "pages/categroy/categroy",
+    "pages/foodDetail/foodDetail"
   ],
   "window":{
     "backgroundTextStyle":"light",

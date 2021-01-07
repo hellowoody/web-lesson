@@ -1,5 +1,5 @@
 <view class="content-card">
-  <image src="{{item.imgPath}}" class="content-card-img" mode="widthFix" />
+  <image src="{{item.imgPath}}" bindtap="goto" class="content-card-img" mode="widthFix" />
   <view class="content-card-desc">
     <view class="content-card-desc-title">
       <view style="font-size:38rpx;font-weight:500;">{{item.title}}</view>
