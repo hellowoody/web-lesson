@@ -67,3 +67,9 @@
   box-shadow: 0rpx 4rpx 42rpx rgb(0 0 0 / 0.16);
   margin-top:36rpx;
 }
+
+.content-card-img{
+  width:100%;
+  border-top-left-radius: 24rpx;
+  border-top-right-radius: 24rpx;
+}
