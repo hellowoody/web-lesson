@@ -1,7 +1,7 @@
 @import "../../assets/wxss/iconfont.wxss";
 
 .top-bar {
-  height:320rpx;
+  height:320rpx; /* rpx px 2rpx=1px  */
   color:#fff;
   background-color: var(--themeColor);
 }
