@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "search-input":"../../components/SearchInput/SearchInput"
+    "search-input":"../../components/SearchInput/SearchInput",
+    "content-card":"../../components/ContentCard/ContentCard"
   },
   "navigationBarTitleText":"首页",
   "enablePullDownRefresh":true,

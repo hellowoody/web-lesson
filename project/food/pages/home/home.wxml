@@ -21,25 +21,6 @@
       </view>
     </view>
   </view>
-  <view class="content-card" wx:for="{{cards}}"  wx:key="index">
-    <image src="{{item.imgPath}}" class="content-card-img" mode="widthFix" />
-    <view class="content-card-desc">
-      <view class="content-card-desc-title">
-        <view style="font-size:38rpx;font-weight:500;">{{item.title}}</view>
-        <view class="iconfont icon-heart1" style="color:#FF3541;font-size:40rpx;"></view>
-      </view>
-      <view class="line"></view>
-      <view class="content-card-desc-detail">
-        <view class="content-card-desc-detail-item" style="color:#ff3541;font-size:36rpx;">¥ {{item.price}}</view>
-        <view class="content-card-desc-detail-item">
-          <text class="iconfont icon-comment" style="font-size:36rpx;margin-right:20rpx"></text>
-          <text>{{item.commentNum}}</text>
-        </view>
-        <view class="content-card-desc-detail-item item-last">
-          <text class="iconfont icon-star" style="font-size:24px;margin-right:20rpx;"></text>
-          <text>{{item.rating}}</text>
-        </view>
-      </view>
-    </view>
-  </view>
+  <!-- 单节点 -->
+  <content-card wx:for="{{cards}}" wx:key="index" item="{{item}}" /> 
 </view>
