@@ -66,10 +66,22 @@
   height:490rpx;
   box-shadow: 0rpx 4rpx 42rpx rgb(0 0 0 / 0.16);
   margin-top:36rpx;
+  position: relative;
 }
 
 .content-card-img{
   width:100%;
   border-top-left-radius: 24rpx;
   border-top-right-radius: 24rpx;
+}
+
+.content-card-desc{ 
+  height: calc(490rpx - 240rpx);
+  background-color: #fff;
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  bottom: 0;
+  border-top-right-radius: 24rpx;
+  border-top-left-radius: 24rpx;
 }

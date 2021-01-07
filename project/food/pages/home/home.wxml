@@ -23,6 +23,8 @@
   </view>
   <view class="content-card" wx:for="{{cards}}"  wx:key="index">
     <image src="{{item.imgPath}}" class="content-card-img" mode="widthFix" />
-    {{item.title}}
+    <view class="content-card-desc">
+
+    </view>
   </view>
 </view>
