@@ -1,4 +1,22 @@
-/**index.wxss**/
+.top-bar {
+  background-color: var(--themeColor);
+  height:360rpx;
+  padding:64rpx 0;
+  box-sizing: border-box;
+}
+
+.top-bar::after {
+  content:"";
+  height:420rpx;
+  position: absolute;
+  top:0;
+  left:-24%;
+  width:150%;
+  border-radius: 0 0 50% 50%;
+  background-color:var(--themeColor);
+  z-index:-1;
+}
+
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -13,9 +31,6 @@
 }
 
 .userinfo-nickname {
-  color: #aaa;
+  color: #fff;
 }
 
-.usermotto {
-  margin-top: 200px;
-}
