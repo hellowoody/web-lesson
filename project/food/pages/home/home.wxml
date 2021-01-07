@@ -22,5 +22,6 @@
     </view>
   </view>
   <!-- 单节点 -->
-  <content-card wx:for="{{cards}}" wx:key="index" item="{{item}}" bindCardLike="handleCardLike" /> 
+  <content-card wx:for="{{cards}}" wx:key="index" item="{{item}}" 
+  bindCardLike="handleCardLike" /> 
 </view>

@@ -67,11 +67,12 @@ Page({
   handleCardLike(e){
     const id = e.detail.id;
     const {cards} = this.data;
-    cards.forEach(function(item,i){
-      if(item.id === id){
-        item.ifLike = !item.ifLike
-      }
-    })
+    // cards.forEach(function(item,i){
+    //   if(item.id === id){
+    //     item.ifLike = !item.ifLike
+    //   }
+    // })
+    cards.forEach(item => item.id === id ? item.ifLike = !item.ifLike : null)
     this.setData({
       cards
     })
