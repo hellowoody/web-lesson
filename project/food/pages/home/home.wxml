@@ -29,7 +29,11 @@
         <view class="iconfont icon-heart1" style="color:#FF3541;font-size:40rpx;"></view>
       </view>
       <view class="line"></view>
-      <view class="content-card-desc-detail"></view>
+      <view class="content-card-desc-detail">
+        <view class="content-card-desc-detail-item">¥ {{item.price}}</view>
+        <view class="content-card-desc-detail-item">{{item.commentNum}}</view>
+        <view class="content-card-desc-detail-item item-last">{{item.rating}}</view>
+      </view>
     </view>
   </view>
 </view>

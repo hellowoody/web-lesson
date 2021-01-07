@@ -107,3 +107,19 @@
   margin-top:32rpx;
   margin-bottom:32rpx;
 }
+
+.content-card-desc-detail {
+  display:flex;
+}
+
+.content-card-desc-detail-item {
+  flex:1;
+  border-right:1px solid #d8d8d8;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-card-desc-detail-item.item-last {
+  border:unset
+}

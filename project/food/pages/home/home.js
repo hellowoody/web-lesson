@@ -54,7 +54,7 @@ Page({
         id:3,
         title:"至尊披萨",
         rating:"5",
-        commenNum:10,
+        commentNum:10,
         price:"20",
         imgPath:"/assets/imgs/t/list2.png"
       },
