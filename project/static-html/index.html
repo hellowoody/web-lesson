@@ -5,7 +5,31 @@
         <title>static html</title>
         <style>
             .h1-class {
-                color:red;
+                color:blue;
+            }
+
+            .father-node {
+                width: 300px;
+                height: 300px;
+                background-color: orange;
+                position: relative;
+            }
+
+            .image-node {
+                width: 300px;
+                height:150px;
+                background-color: grey;
+            }
+
+            .desc-node {
+                background-color: blue;
+                height: 180px;
+                position: absolute;
+                width: 100px;
+                /* bottom: 0; */
+                border-radius: 100px;
+                top: 0;
+                right: 0;
             }
         </style>
     </head>
@@ -16,6 +40,12 @@
         <button onclick="btn()">按钮</button>
         <br>
         <span id="show_el"></span> 
+
+        <div class="father-node">
+            <div class="image-node">图片</div>
+            <div class="desc-node">描述</div>
+        </div>
+
     </body>
 </html>
 <script>
