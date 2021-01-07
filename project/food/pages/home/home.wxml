@@ -24,7 +24,11 @@
   <view class="content-card" wx:for="{{cards}}"  wx:key="index">
     <image src="{{item.imgPath}}" class="content-card-img" mode="widthFix" />
     <view class="content-card-desc">
-
+      <view class="content-card-desc-title">
+        <view style="font-size:38rpx;font-weight:500;">{{item.title}}</view>
+        <view class="iconfont icon-heart1" style="color:#FF3541;font-size:40rpx;"></view>
+      </view>
+      <view class="content-card-desc-detail"></view>
     </view>
   </view>
 </view>

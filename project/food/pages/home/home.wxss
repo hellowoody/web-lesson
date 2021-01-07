@@ -84,4 +84,13 @@
   bottom: 0;
   border-top-right-radius: 24rpx;
   border-top-left-radius: 24rpx;
+  padding:36rpx;
+  box-sizing: border-box;
+  color:var(--themeFontColor)
+}
+
+.content-card-desc-title {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
 }
