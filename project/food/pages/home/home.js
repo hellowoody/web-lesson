@@ -47,7 +47,7 @@ Page({
         title:"巨无霸",
         rating:"5",
         commentNum:10,
-        price:"20",
+        price:"25",
         imgPath:"/assets/imgs/t/list1.png"
       },
       {
@@ -55,7 +55,7 @@ Page({
         title:"至尊披萨",
         rating:"5",
         commentNum:10,
-        price:"20",
+        price:"30",
         imgPath:"/assets/imgs/t/list2.png"
       },
     ]
