@@ -40,7 +40,8 @@ Page({
         rating:"5",
         commentNum:10,
         price:"20",
-        imgPath:"/assets/imgs/t/list.png"
+        imgPath:"/assets/imgs/t/list.png",
+        ifLike:false
       },
       {
         id:2,
@@ -48,7 +49,8 @@ Page({
         rating:"5",
         commentNum:10,
         price:"25",
-        imgPath:"/assets/imgs/t/list1.png"
+        imgPath:"/assets/imgs/t/list1.png",
+        ifLike:false
       },
       {
         id:3,
@@ -56,10 +58,23 @@ Page({
         rating:"5",
         commentNum:10,
         price:"30",
-        imgPath:"/assets/imgs/t/list2.png"
+        imgPath:"/assets/imgs/t/list2.png",
+        ifLike:false
       },
     ]
   },
 
+  handleCardLike(e){
+    const id = e.detail.id;
+    const {cards} = this.data;
+    cards.forEach(function(item,i){
+      if(item.id === id){
+        item.ifLike = !item.ifLike
+      }
+    })
+    this.setData({
+      cards
+    })
+  }
   
 })

@@ -3,7 +3,7 @@
   <view class="content-card-desc">
     <view class="content-card-desc-title">
       <view style="font-size:38rpx;font-weight:500;">{{item.title}}</view>
-      <view class="iconfont icon-heart1" style="color:#FF3541;font-size:40rpx;"></view>
+      <view class="iconfont {{item.ifLike ? 'icon-heart' : 'icon-heart1'}}" bindtap="like" data-id="{{item.id}}" style="color:#FF3541;font-size:40rpx;"></view>
     </view>
     <view class="line"></view>
     <view class="content-card-desc-detail">
