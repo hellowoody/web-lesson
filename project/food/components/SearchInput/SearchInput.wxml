@@ -1,6 +1,7 @@
 <view class="search-input">
-  <view wx:if="{{edit}}">
-    真正的input
+  <view class="search-input-el" wx:if="{{edit}}">
+    <input placeholder="请输入要搜索的内容" class="search-input-nav search-input-el-extend" />
+    <view style="color:#fff;box-shadow:0rpx 2rpx 12rpx rgb(0 0 0 / 0.02);">搜索</view>
   </view>
   <navigator wx:else class="search-input-nav" url="/pages/search/search">搜索</navigator>
 </view>
