@@ -4,7 +4,8 @@
     "pages/profile/profile",
     "pages/search/search",
     "pages/categroy/categroy",
-    "pages/foodDetail/foodDetail"
+    "pages/foodDetail/foodDetail",
+    "pages/editAddress/editAddress"
   ],
   "window":{
     "backgroundTextStyle":"light",

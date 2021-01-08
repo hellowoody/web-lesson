@@ -47,5 +47,16 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  goto(e){
+    // console.log(e)
+    /*
+    e.currentTarget : 最兼容的，因为它能"防止"冒泡事件的发生
+    e.target : 它不能"防止"冒泡事件的发生
+    什么是冒泡事件 看static-html例子文件
+    */
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url,
+    })
   }
 })

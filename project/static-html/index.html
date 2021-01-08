@@ -45,7 +45,12 @@
             <div class="image-node">图片</div>
             <div class="desc-node">描述</div>
         </div>
-
+        <hr>
+        <h1>冒泡事件</h1>
+        <div onclick="parentFn()" data-xxx1="" style="width:100px;height:50px;background-color: blue;">
+            <div onclick="childFn()" data-xxx2="">icon</div>
+            <div onclick="childFn2()" data-xxx3="">编辑地址</div>
+        </div>
     </body>
 </html>
 <script>
@@ -87,4 +92,13 @@ function btn(){
     console.log("this is btn fn")
 }
 
+function parentFn(){
+    console.log("this is parent node")
+}
+function childFn(){
+    console.log("this is child node")
+}
+function childFn2(){
+    console.log("this is child2 node")
+}
 </script>
