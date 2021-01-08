@@ -50,3 +50,27 @@
   font-size: 24rpx;
 }
 
+.order-title {
+  margin-left:36rpx;
+  margin-top:120rpx;
+  font-size:36rpx;
+  color:var(--themeFontColor);
+}
+
+.container {
+  height:100%;
+  display:flex;
+  padding:36rpx;
+  box-sizing: border-box;
+}
+
+.order-item {
+  width:240rpx;
+  height:450rpx;
+  box-shadow: 0rpx 12rpx 24rpx rgb(0 0 0 / 0.08); 
+  border-radius: 16rpx 36rpx;
+  margin-right: 24rpx;
+  padding:24rpx;
+  box-sizing: border-box;
+}
+

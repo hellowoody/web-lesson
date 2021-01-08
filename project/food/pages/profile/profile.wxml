@@ -17,3 +17,9 @@
     </view>
   </view>
 </view>
+<view class="order-title">订单</view>
+<view class="container">
+  <view class="order-item">订单1</view>
+  <view class="order-item">订单2</view>
+  <view class="order-item">订单3</view>
+</view>
