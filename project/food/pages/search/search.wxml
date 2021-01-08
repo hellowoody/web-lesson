@@ -1,4 +1,4 @@
 <search-input edit bindsearch="searchHandle">
   <view slot="btn" bindtap="goSearch" style="color:#fff;box-shadow:0rpx 2rpx 12rpx rgb(0 0 0 / 0.02);">搜索</view>
 </search-input>
-<text>搜索入口页面</text>
+<view wx:for="{{searchHistory}}" wx:key="index">{{item}}</view>
