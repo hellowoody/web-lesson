@@ -7,6 +7,7 @@
 
 .page-body {
   padding:20rpx 0;
+  box-sizing: border-box;
 }
 
 .page-section {
@@ -15,9 +16,9 @@
 
 .weui-cells {
   position: relative;
-  margin-top:2rpx;
+  margin-top:1rpx;
   background-color:#fff;
-  line-height: 1.4;
+  line-height: 1.41;
   font-size:17px;
 }
 
@@ -26,7 +27,8 @@
   position: absolute;
   left:0;
   top:0;
-  height:1px;
+  right:0;
+  height:1rpx;
   border-top:1rpx solid #d9d9d9;
   color:#d9d9d9;
 }
@@ -37,15 +39,16 @@
   left:0;
   bottom:0;
   right:0;
-  height:1px;
+  height:1rpx;
   border-top:1rpx solid #d9d9d9;
   color:#d9d9d9;
 }
 
 .weui-cells_title {
-  margin-top:2rpx;
-  margin-bottom:2rpx;
-  padding:0 30rpx;
+  margin-top: 1rpx;
+  margin-bottom:1rpx;
+  padding-left:30rpx;
+  padding-right:30rpx;
   color:#999;
   font-size: 28rpx;
 }
@@ -58,6 +61,9 @@
   padding:20rpx 30rpx;
   position: relative;
   display:flex;
+  display:-webkit-box;
+  display:-webkit-flex;
+  -webkit-box-align: center;
   align-items: center;
 }
 
@@ -66,8 +72,16 @@
   position: absolute;
   right:0;
   left: 30rpx;
-  height:1px;
-  /* border-top:1rpx solid #d9d9d9; */
+  top:0;
+  height:1rpx;
+  border-top:1rpx solid #d9d9d9;
   color:#d9d9d9;
+}
+
+.weui-cell:first-child:before {
+  display: none;
+}
+.weui-cell_active {
+  background-color: #ECECEC;
 }
 
