@@ -62,6 +62,16 @@
   align-items: center;
 }
 
+.sumbit-btn {
+  position: fixed;
+  bottom:100rpx;
+  left:0;
+  right:0;
+  width:600rpx;
+  background-color: var(--themeColor);
+  color:#fff;
+}
+
 
 
 

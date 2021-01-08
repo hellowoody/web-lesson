@@ -17,5 +17,9 @@ Page({
       }
     })
   },
+
+  updateUserBase(){
+    console.log(this.data.userBase)
+  }
   
 })

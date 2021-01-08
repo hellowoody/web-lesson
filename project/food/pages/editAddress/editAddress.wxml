@@ -24,3 +24,4 @@
     </view>
   </view>
 </view>
+<button class="sumbit-btn" bindtap="updateUserBase">修改</button>
