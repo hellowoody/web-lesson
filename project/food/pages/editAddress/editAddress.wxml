@@ -3,7 +3,7 @@
     <view class="weui-cells_title">收货人</view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
-        <input value="{{userBase.name}}" bindinput="inputHandle"  placeholder="请输入收货人的称呼"/>
+        <input value="{{userBase.name}}" data-key="name" bindinput="inputHandle"  placeholder="请输入收货人的称呼"/>
       </view>
     </view>
   </view>
@@ -11,7 +11,7 @@
     <view class="weui-cells_title">手机号</view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
-        <input value="{{userBase.tel}}" bindinput="inputHandle2" placeholder="请输入联系方式"/>
+        <input value="{{userBase.tel}}" data-key="tel" bindinput="inputHandle" placeholder="请输入联系方式"/>
       </view>
     </view>
   </view>
@@ -19,7 +19,7 @@
     <view class="weui-cells_title">地址</view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
-        <input value="{{userBase.address}}" bindinput="inputHandle3" placeholder="请输入收货地址"/>
+        <input value="{{userBase.address}}" data-key="address" bindinput="inputHandle" placeholder="请输入收货地址"/>
       </view>
     </view>
   </view>
