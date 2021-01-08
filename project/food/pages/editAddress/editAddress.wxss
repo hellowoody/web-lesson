@@ -28,8 +28,7 @@
   left:0;
   top:0;
   right:0;
-  height:1rpx;
-  border-top:1rpx solid #d9d9d9;
+  border-top:2rpx solid #d9d9d9;
   color:#d9d9d9;
 }
 
@@ -39,8 +38,7 @@
   left:0;
   bottom:0;
   right:0;
-  height:1rpx;
-  border-top:1rpx solid #d9d9d9;
+  border-top:2rpx solid #d9d9d9;
   color:#d9d9d9;
 }
 
@@ -61,27 +59,9 @@
   padding:20rpx 30rpx;
   position: relative;
   display:flex;
-  display:-webkit-box;
-  display:-webkit-flex;
-  -webkit-box-align: center;
   align-items: center;
 }
 
-.weui-cell:before {
-  content:" ";
-  position: absolute;
-  right:0;
-  left: 30rpx;
-  top:0;
-  height:1rpx;
-  border-top:1rpx solid #d9d9d9;
-  color:#d9d9d9;
-}
 
-.weui-cell:first-child:before {
-  display: none;
-}
-.weui-cell_active {
-  background-color: #ECECEC;
-}
+
 
