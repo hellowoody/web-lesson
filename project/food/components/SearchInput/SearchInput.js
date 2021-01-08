@@ -1,6 +1,11 @@
 Component({
 
-  properties: {},
+  properties: {
+    edit:{
+      type:Boolean,
+      value:false
+    }
+  },
 
   data: {},
 

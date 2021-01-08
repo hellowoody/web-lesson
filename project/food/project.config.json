@@ -61,14 +61,7 @@
       "list": []
     },
     "miniprogram": {
-      "list": [
-        {
-          "name": "pages/editAddress/editAddress",
-          "pathName": "pages/editAddress/editAddress",
-          "query": "",
-          "scene": null
-        }
-      ]
+      "list": []
     }
   }
 }

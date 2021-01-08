@@ -1,3 +1,6 @@
 <view class="search-input">
-  <navigator class="search-input-nav" url="/pages/search/search">搜索</navigator>
+  <view wx:if="{{edit}}">
+    真正的input
+  </view>
+  <navigator wx:else class="search-input-nav" url="/pages/search/search">搜索</navigator>
 </view>
