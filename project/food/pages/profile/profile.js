@@ -51,8 +51,8 @@ Page({
   goto(e){
     // console.log(e)
     /*
-    e.currentTarget : 最兼容的，因为它能"防止"冒泡事件的发生
-    e.target : 它不能"防止"冒泡事件的发生
+    e.currentTarget : 最兼容的，因为它能针对冒泡事件的找到我们“想要的”参数
+    e.target : 它永远是找一开始被触发方法的那个标签中有没有参数
     什么是冒泡事件 看static-html例子文件
     */
     wx.navigateTo({
