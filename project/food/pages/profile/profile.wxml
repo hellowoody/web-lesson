@@ -6,4 +6,14 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
+  <view class="icon-menu">
+    <view class="icon-menu-item">
+        <text class="iconfont icon-edit" style="font-size:50rpx;margin-bottom:8rpx;"></text>
+        <text>编辑地址</text>
+    </view>
+    <view class="icon-menu-item">
+      <text class="iconfont icon-kefu" style="font-size:50rpx;margin-bottom:8rpx;"></text>
+      <text>联系客服</text>
+    </view>
+  </view>
 </view>
