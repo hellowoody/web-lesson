@@ -12,6 +12,7 @@
         <text>编辑地址</text>
     </view>
     <view class="icon-menu-item">
+      <button open-type="contact" class="contact-btn"></button>
       <text class="iconfont icon-kefu" style="font-size:50rpx;margin-bottom:8rpx;"></text>
       <text>联系客服</text>
     </view>

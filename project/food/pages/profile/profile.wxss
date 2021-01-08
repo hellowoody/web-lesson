@@ -74,3 +74,11 @@
   box-sizing: border-box;
 }
 
+.contact-btn {
+  display: inline-block;
+  position: absolute;
+  width: 50rpx !important;
+  height:100rpx;
+  opacity: 0;
+}
+
