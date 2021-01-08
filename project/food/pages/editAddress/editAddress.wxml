@@ -1,2 +1,10 @@
-<!--pages/editAddress/editAddress.wxml-->
-<text>pages/editAddress/editAddress.wxml</text>
+<view class="page page-body">
+  <view class="page-section">
+    <view class="weui-cells_title">收货人</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input" placeholder="请输入收货人的称呼"/>
+      </view>
+    </view>
+  </view>
+</view>

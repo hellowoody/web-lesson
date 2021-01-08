@@ -1,1 +1,73 @@
-/* pages/editAddress/editAddress.wxss */
+.page {
+  background-color: #f8f8f8;
+  height:100vh;
+  font-size:32rpx;
+  line-height: 1.6;
+}
+
+.page-body {
+  padding:20rpx 0;
+}
+
+.page-section {
+  margin-bottom:20rpx;
+}
+
+.weui-cells {
+  position: relative;
+  margin-top:2rpx;
+  background-color:#fff;
+  line-height: 1.4;
+  font-size:17px;
+}
+
+.weui-cells::before{
+  content:" ";
+  position: absolute;
+  left:0;
+  top:0;
+  height:1px;
+  border-top:1rpx solid #d9d9d9;
+  color:#d9d9d9;
+}
+
+.weui-cells::after {
+  content:" ";
+  position: absolute;
+  left:0;
+  bottom:0;
+  right:0;
+  height:1px;
+  border-top:1rpx solid #d9d9d9;
+  color:#d9d9d9;
+}
+
+.weui-cells_title {
+  margin-top:2rpx;
+  margin-bottom:2rpx;
+  padding:0 30rpx;
+  color:#999;
+  font-size: 28rpx;
+}
+
+.weui-cells_after-title {
+  margin-top: 0px;
+}
+
+.weui-cell {
+  padding:20rpx 30rpx;
+  position: relative;
+  display:flex;
+  align-items: center;
+}
+
+.weui-cell:before {
+  content:" ";
+  position: absolute;
+  right:0;
+  left: 30rpx;
+  height:1px;
+  /* border-top:1rpx solid #d9d9d9; */
+  color:#d9d9d9;
+}
+

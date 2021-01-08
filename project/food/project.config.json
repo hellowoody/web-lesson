@@ -63,8 +63,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/profile/profile",
-          "pathName": "pages/profile/profile",
+          "name": "pages/editAddress/editAddress",
+          "pathName": "pages/editAddress/editAddress",
           "query": "",
           "scene": null
         }
