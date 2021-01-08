@@ -3,6 +3,7 @@
     "pages/home/home",
     "pages/profile/profile",
     "pages/search/search",
+    "pages/searchResult/searchResult",
     "pages/categroy/categroy",
     "pages/foodDetail/foodDetail",
     "pages/editAddress/editAddress"
