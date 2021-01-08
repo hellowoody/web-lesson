@@ -1,6 +1,6 @@
 <view class="search-input">
   <view class="search-input-el" wx:if="{{edit}}">
-    <input placeholder="请输入要搜索的内容" class="search-input-nav search-input-el-extend" />
+    <input placeholder="请输入要搜索的内容" value="{{searchInput}}" bindinput="inputHandle" class="search-input-nav search-input-el-extend" />
     <slot name="btn"></slot>
   </view>
   <navigator wx:else class="search-input-nav" url="/pages/search/search">搜索</navigator>

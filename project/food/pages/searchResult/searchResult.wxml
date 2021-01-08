@@ -1,2 +1,1 @@
-<!--pages/searchResult/searchResult.wxml-->
-<text>pages/searchResult/searchResult.wxml</text>
+<text>{{searchContent}}</text>

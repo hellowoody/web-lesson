@@ -9,7 +9,14 @@ Component({
     }
   },
 
-  data: {},
+  data: {
+    searchInput:""
+  },
 
-  methods: {}
+  methods: {
+    inputHandle(e){
+      // console.log(e.detail.value)
+      this.triggerEvent("search",e.detail.value)
+    }
+  }
 })
