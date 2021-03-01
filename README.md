@@ -648,7 +648,7 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
 - 暂时性死区
 
   ```
-  	// name 会被提升
+  // name 会被提升
 	console.log(name); // undefined 
 	var name = 'Matt'; 
 	// age 不会被提升
@@ -656,3 +656,48 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
 	let age = 26;
   ```
   在解析代码时，JavaScript 引擎也会注意出现在块后面的 let 声明，只不过在此之前不能以任何方式来引用未声明的变量。在 let 声明之前的执行瞬间被称为“暂时性死区”（temporal dead zone），在此阶段引用任何后面才声明的变量都会抛出 ReferenceError。
+
+- 全局声明
+
+  ```
+  var name = 'Matt'; 
+	console.log(window.name); // 'Matt' 
+	let age = 26; 
+	console.log(window.age); // undefined
+  ```
+  
+  不过，let 声明仍然是在全局作用域中发生的，相应变量会在页面的生命周期内存续。因此，为了避免 SyntaxError，必须确保页面不会重复声明同一个变量。
+
+-  for 循环中的 let 声明
+  
+  在 let 出现之前，for 循环定义的迭代变量会渗透到循环体外部：
+  ```
+   for (var i = 0; i < 5; ++i) { 
+	// 循环逻辑
+   } 
+   console.log(i); // 5
+  ```
+  改成使用 let 之后，这个问题就消失了，因为迭代变量的作用域仅限于 for 循环块内部：
+  ```
+  	for (let i = 0; i < 5; ++i) { 
+	// 循环逻辑
+	} 
+	console.log(i); // ReferenceError: i 没有定义
+  ```
+  在使用 var 的时候，最常见的问题就是对迭代变量的奇特声明和修改：
+  ```
+    for (var i = 0; i < 5; ++i) { 
+		setTimeout(() => console.log(i), 0) 
+	} 
+	// 你可能以为会输出 0、1、2、3、4 
+	// 实际上会输出 5、5、5、5、5
+  ```
+
+  ```
+  for (let i = 0; i < 5; ++i) { 
+	setTimeout(() => console.log(i), 0) 
+  } 
+	// 会输出 0、1、2、3、4
+  ```
+  这种每次迭代声明一个独立变量实例的行为适用于所有风格的 for 循环，包括 for-in 和 for-of循环。
+  
