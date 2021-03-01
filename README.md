@@ -1,12 +1,12 @@
 # 第一章 什么是 JavaScript
 
-## 1.JavaScript包含的内容
+## 1.1 JavaScript包含的内容
 
  - ECMAScript-核心
  - DOM-文档对象模型
  - BOM-浏览器对象模型
 
-## 2.ECMAScript
+## 1.2 ECMAScript
 
  - ECMAScript，即 ECMA-262 定义的语言，并不局限于 Web 浏览器。事实上，这门语言没有输入和输出之类的方法。ECMA-262 将这门语言作为一个基准来定义，以便在它之上再构建更稳健的脚本语言。Web 浏览器只是 ECMAScript 实现可能存在的一种宿主环境（host environment）。其他宿主环境还有服务器端 JavaScript 平台 Node.js 和即将被淘汰的 Adobe Flash，以及即将被流行的Deno。
 
@@ -25,7 +25,7 @@
 	- ES10 - 2019年提出（ES2019）
 		- 增加了 Array.prototype.flat()/flatMap()、String.prototype.trimStart()/trimEnd()、Object.fromEntries()方法，以及 Symbol.prototype.description 属性，明确定义了 Function.prototype.toString()的返回值并固定了 Array.prototype.sort()的顺序。另外，这次修订解决了与 JSON 字符串兼容的问题，并定义了 catch 子句的可选绑定。
 
-## 3.浏览器的支持
+## 1.3 浏览器的支持
 
   | 浏览器            |             ECMAScript 符合性     |
 | -----------------------    | ------------------------ |
@@ -63,7 +63,7 @@
 | Firefox 21~44 | 第 5 版 | 
 | Firefox 45+ | 第 6 版 | 
 
-## 4.DOM
+## 1.4 DOM
 
  文档对象模型（DOM，Document Object Model）是一个应用编程接口（API），用于在 HTML 中使用扩展的 XML。DOM 将整个页面抽象为一组分层节点。HTML 或 XML 页面的每个组成部分都是一种节点，包含不同的数据。比如下面的 HTML 页面：
  
@@ -135,7 +135,7 @@
 
  DOM也有不同浏览器支持不同的兼容性问题，但兼容表和上一节的兼容表不一样，推荐从网上搜索一下某一版本的浏览器是否支持对应版本的DOM
 
-## 5.BOM
+## 1.5 BOM
 
 IE3 和 Netscape Navigator 3 提供了浏览器对象模型（BOM） API，用于支持访问和操作浏览器的窗口。使用 BOM，开发者可以操控浏览器显示页面之外的部分。而 BOM 真正独一无二的地方，当然也是问题最多的地方，就是它是唯一一个没有相关标准的 JavaScript 实现。HTML5 改变了这个局面，这个版本的 HTML 以正式规范的形式涵盖了尽可能多的 BOM 特性。由于 HTML5 的出现，之前很多与 BOM有关的问题都迎刃而解了。
 
@@ -207,7 +207,7 @@ IE3 和 Netscape Navigator 3 提供了浏览器对象模型（BOM） API，用�
 
 # 第二章 HTML 引入 JavaScript
 
-## 1. script标签
+## 2.1 script标签
  
  将 JavaScript 插入 HTML 的主要方法是使用&lt;script&gt;元素。这个元素是由网景公司创造出来，并最早在 Netscape Navigator 2 中实现的。后来，这个元素被正式加入到 HTML 规范。&lt;script&gt;元素有下列 8 个属性。
 
@@ -233,7 +233,7 @@ IE3 和 Netscape Navigator 3 提供了浏览器对象模型（BOM） API，用�
 
  包含在&lt;script&gt;内的代码会被从上到下解释。在上面的例子中，被解释的是一个函数定义，并且该函数会被保存在解释器环境中。在&lt;script&gt;元素中的代码被计算完成之前，页面的其余内容不会被加载，也不会被显示。
 
-## 2. 标签位置
+## 2.2 标签位置
 
 ```
 	<!DOCTYPE html> 
@@ -266,7 +266,7 @@ IE3 和 Netscape Navigator 3 提供了浏览器对象模型（BOM） API，用�
 
  这样一来，页面会在处理 JavaScript 代码之前完全渲染页面。用户会感觉页面加载更快了，因为浏览器显示空白页面的时间短了。
 
-## 3. 推迟执行脚本
+## 2.3 推迟执行脚本
 
 ```
 	<!DOCTYPE html> 
@@ -286,7 +286,7 @@ IE3 和 Netscape Navigator 3 提供了浏览器对象模型（BOM） API，用�
 	
  对 defer 属性的支持是从 IE4、Firefox 3.5、Safari 5 和 Chrome 7 开始的。其他所有浏览器则会忽略这个属性，按照通常的做法来处理脚本。考虑到这一点，还是把要推迟执行的脚本放在页面底部比较好。
 
-## 4. 异步执行脚本
+## 2.4 异步执行脚本
 
  HTML5 为&lt;script&gt;元素定义了 async 属性。从改变脚本处理方式上看，async 属性与 defer 类似。当然，它们两者也都只适用于外部脚本，都会告诉浏览器立即开始下载。不过，与 defer 不同的是，标记为 async 的脚本并不保证能按照它们出现的次序执行，比如：
 
@@ -308,7 +308,7 @@ IE3 和 Netscape Navigator 3 提供了浏览器对象模型（BOM） API，用�
 
  异步脚本保证会在页面的 load 事件前执行，但可能会在 DOMContentLoaded（参见第 17 章）之前或之后。Firefox 3.6、Safari 5 和 Chrome 7 支持异步脚本。使用 async 也会告诉页面你不会使用document.write，不过好的 Web 开发实践根本就不推荐使用这个方法。
 
-## 5. 动态加载脚本
+## 2.5 动态加载脚本
 
 ```
  	let script = document.createElement('script'); 
@@ -325,7 +325,7 @@ IE3 和 Netscape Navigator 3 提供了浏览器对象模型（BOM） API，用�
 	<link rel="preload" href="gibberish.js">
 ```
 
-## 6. XHTML 中的变化
+## 2.6 XHTML 中的变化
 
 可扩展超文本标记语言（XHTML，Extensible HyperText Markup Language）是将 HTML 作为 XML的应用重新包装的结果。与 HTML 不同，在 XHTML 中使用 JavaScript 必须指定 type 属性且值为text/javascript，HTML 中则可以没有这个属性。XHTML 虽然已经退出历史舞台，但实践中偶尔可能也会遇到遗留代码，这里稍作介绍。
 
@@ -397,3 +397,14 @@ if (a &lt; b) {
 ```
 
 这种格式适用于所有现代浏览器。虽然有点黑科技的味道，但它可以通过 XHTML 验证，而且对XHTML 之前的浏览器也能优雅地降级。
+
+## 2.7 行内代码与外部文件
+
+虽然可以直接在 HTML 文件中嵌入 JavaScript 代码，但通常认为最佳实践是尽可能将 JavaScript 代码放在外部文件中。不过这个最佳实践并不是明确的强制性规则。推荐使用外部文件的理由如下。
+
+ - 可维护性。
+  JavaScript 代码如果分散到很多 HTML 页面，会导致维护困难。而用一个目录保存所有 JavaScript 文件，则更容易维护，这样开发者就可以独立于使用它们的 HTML 页面来编辑代码。
+ - 缓存。
+  浏览器会根据特定的设置缓存所有外部链接的 JavaScript 文件，这意味着如果两个页面都用到同一个文件，则该文件只需下载一次。这最终意味着页面加载更快。
+ - 适应未来。
+  通过把 JavaScript 放到外部文件中，就不必考虑用 XHTML 或前面提到的注释黑科技。包含外部 JavaScript 文件的语法在 HTML 和 XHTML 中是一样的。
