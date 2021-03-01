@@ -13,17 +13,17 @@
  - 宿主环境提供ECMAScript 的基准实现和与环境自身交互必需的扩展。扩展（比如 DOM）使用 ECMAScript 核心类型和语法，提供特定于环境的额外功能。
 
  - ECMAScript 版本
-  - ES5 - 2009年提出,最流行最兼容那版本
-  - ES6 - 2015年提出（ES2015）
-	- ES6 正式支持了类、模块、迭代器、生成器、箭头、函数、期约、反射、代理和众多新的数据类型。
-  - ES7 - 2016年提出（ES2016）
-	- 如 Array.prototype.includes 和指数操作符
-  - ES8 - 2017年提出（ES2017）
-	- 要增加了异步函数（async/ await）、SharedArrayBuffer 及 Atomics API，以及 Object.values()/Object.entries()/Object. getOwnPropertyDescriptors()和字符串填充方法，另外明确支持对象字面量最后的逗号。
-  - ES9 - 2018年提出（ES2018）
-	- 异步迭代、剩余和扩展属性、一组新的正则表达式特性、Promise finally()，以及模板字面量
-  - ES10 - 2019年提出（ES2019）
-    - 增加了 Array.prototype.flat()/flatMap()、String.prototype.trimStart()/trimEnd()、Object.fromEntries()方法，以及 Symbol.prototype.description 属性，明确定义了 Function.prototype.toString()的返回值并固定了 Array.prototype.sort()的顺序。另外，这次修订解决了与 JSON 字符串兼容的问题，并定义了 catch 子句的可选绑定。
+	- ES5 - 2009年提出,最流行最兼容那版本
+	- ES6 - 2015年提出（ES2015）
+		- ES6 正式支持了类、模块、迭代器、生成器、箭头、函数、期约、反射、代理和众多新的数据类型。
+	- ES7 - 2016年提出（ES2016）
+		- 如 Array.prototype.includes 和指数操作符
+	- ES8 - 2017年提出（ES2017）
+		- 要增加了异步函数（async/ await）、SharedArrayBuffer 及 Atomics API，以及 Object.values()/Object.entries()/Object. getOwnPropertyDescriptors()和字符串填充方法，另外明确支持对象字面量最后的逗号。
+	- ES9 - 2018年提出（ES2018）
+		- 异步迭代、剩余和扩展属性、一组新的正则表达式特性、Promise finally()，以及模板字面量
+	- ES10 - 2019年提出（ES2019）
+		- 增加了 Array.prototype.flat()/flatMap()、String.prototype.trimStart()/trimEnd()、Object.fromEntries()方法，以及 Symbol.prototype.description 属性，明确定义了 Function.prototype.toString()的返回值并固定了 Array.prototype.sort()的顺序。另外，这次修订解决了与 JSON 字符串兼容的问题，并定义了 catch 子句的可选绑定。
 
 ## 3.浏览器的支持
 
