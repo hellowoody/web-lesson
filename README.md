@@ -142,13 +142,65 @@ IE3 和 Netscape Navigator 3 提供了浏览器对象模型（BOM） API，用�
 - 总体来说，BOM 主要针对浏览器窗口和子窗口（frame），不过人们通常会把任何特定于浏览器的扩展都归在 BOM 的范畴内。比如，下面就是这样一些扩展：
 
 	- 弹出新浏览器窗口的能力；
+
+		```
+		window.open("about:blank", "_blank","height=100,width=100,top=0,left=0,resizable=yes");
+		```
+	
 	- 移动、缩放和关闭浏览器窗口的能力；
+	
+		```
+		var open = window.open("about:blank", "_blank","height=100,width=100,top=0,left=0,resizable=yes");
+		open.moveTo(100, 100);
+		open.moveBy(100, 100);
+		open.resizeTo(500, 500);
+		open.close();
+		```
+	
 	- navigator 对象，提供关于浏览器的详尽信息；
+
+		```
+		navigator.appName  // 浏览器全名
+		navigator.platform  // 返回浏览器运行的系统平台
+		navigator.deviceMemory // 返回单位为 GB 的设备内存容量
+		navigator.onLine      //是否联网，但不能判断是互联网还是局域网
+		navigator.getBattery().then((b) => console.log(b));  // 查看电脑电量
+		```
+
 	- location 对象，提供浏览器加载页面的详尽信息；
+
+		```
+		navigator.geolocation.getCurrentPosition((position) => p = position);
+		console.log(p.timestamp); // 1525364883361 
+		console.log(p.coords); // Coordinates {...}
+		console.log(p.coords.latitude, p.coords.longitude); // 37.4854409, -122.2325506
+		```
+
 	- screen 对象，提供关于用户屏幕分辨率的详尽信息；
+
+		```
+		 screen.height
+		 screen.width
+		 screen.colorDepth
+		 screen.pixelDepth
+		```
 	- performance 对象，提供浏览器内存占用、导航行为和时间统计的详尽信息；
-	- 对 cookie 的支持；
-	-  其他自定义对象，如 XMLHttpRequest 和 IE 的 ActiveXObject。
+	- history 对象；
+
+		```
+		// 后退一页
+		history.go(-1); 
+		// 前进一页
+		history.go(1); 
+		// 前进两页
+		history.go(2);
+		// 后退一页
+		history.back();
+		// 前进一页
+		history.forward();
+		```
+
+	- 其他自定义对象，如 XMLHttpRequest 和 IE 的 ActiveXObject。
 
 - 因为在很长时间内都没有标准，所以每个浏览器实现的都是自己的 BOM。有一些所谓的事实标准，比如对于 window 对象和 navigator 对象，每个浏览器都会给它们定义自己的属性和方法。现在有了HTML5，BOM 的实现细节应该会日趋一致。
 
