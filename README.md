@@ -528,3 +528,32 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
    注释
   */
   ```
+- 严格模式
+
+ ```
+ "use strict";
+ ```
+
+- 语句
+
+ ```
+ let sum = a + b // 没有分号也有效，但不推荐
+ let diff = a - b; // 加分号有效，推荐
+ ```
+
+ ```
+ if (test) { 
+	test = false; 
+	console.log(test); 
+ }
+
+ // 有效，但容易导致错误，应该避免
+ if (test) 
+  console.log(test); 
+ // 推荐
+ if (test) { 
+  console.log(test); 
+ }
+
+ ```
+ 
