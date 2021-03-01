@@ -27,41 +27,41 @@
 
 ## 3.浏览器的支持
 
-	| 浏览器            |             ECMAScript 符合性     |
-	| -----------------------    | ------------------------ |
-	| Netscape Navigator 2 | — |  
-	| Netscape Navigator 3 | — | 
-	| Netscape Navigator 4~4.05 | — | 
-	| Netscape Navigator 4.06~4.79 | 第 1 版| 
-	| Netscape 6+（Mozilla 0.6.0+） | 第 3 版 | 
-	| IE3 | — |  
-	| IE4 | — | 
-	| IE5 | 第 1 版 | 
-	| IE5.5~8 | 第 3 版 | 
-	| IE9 | 第 5 版（部分）| 
-	| IE10~11 | 第 5 版 | 
-	| Edge 12+ | 第 6 版 | 
-	| Opera 6~7.1 | 第 2 版 | 
-	| Opera 7.2+ | 第 3 版 | 
-	| Opera 15~28 | 第 5 版 | 
-	| Opera 29~35 | 第 6 版（部分）| 
-	| Opera 36+ | 第 6 版 | 
-	| Safari 1~2.0.x | 第 3 版（部分）| 
-	| Safari 3.1~5.1 | 第 5 版（部分）| 
-	| Safari 6~8 | 第 5 版 | 
-	| Safari 9+ | 第 6 版 | 
-	| iOS Safari 3.2~5.1 | 第 5 版（部分）| 
-	| iOS Safari 6~8.4 | 第 5 版 | 
-	| iOS Safari 9.2+ | 第 6 版 | 
-	| Chrome 1~3 | 第 3 版 | 
-	| Chrome 4~22 | 第 5 版（部分）| 
-	| Chrome 23+ | 第 5 版 | 
-	| Chrome 42~48 | 第 6 版（部分）| 
-	| Chrome 49+ | 第 6 版 | 
-	| Firefox 1~2 | 第 3 版 | 
-	| Firefox 3.0.x~20 | 第 5 版（部分）| 
-	| Firefox 21~44 | 第 5 版 | 
-	| Firefox 45+ | 第 6 版 | 
+  | 浏览器            |             ECMAScript 符合性     |
+| -----------------------    | ------------------------ |
+| Netscape Navigator 2 | — |  
+| Netscape Navigator 3 | — | 
+| Netscape Navigator 4~4.05 | — | 
+| Netscape Navigator 4.06~4.79 | 第 1 版| 
+| Netscape 6+（Mozilla 0.6.0+） | 第 3 版 | 
+| IE3 | — |  
+| IE4 | — | 
+| IE5 | 第 1 版 | 
+| IE5.5~8 | 第 3 版 | 
+| IE9 | 第 5 版（部分）| 
+| IE10~11 | 第 5 版 | 
+| Edge 12+ | 第 6 版 | 
+| Opera 6~7.1 | 第 2 版 | 
+| Opera 7.2+ | 第 3 版 | 
+| Opera 15~28 | 第 5 版 | 
+| Opera 29~35 | 第 6 版（部分）| 
+| Opera 36+ | 第 6 版 | 
+| Safari 1~2.0.x | 第 3 版（部分）| 
+| Safari 3.1~5.1 | 第 5 版（部分）| 
+| Safari 6~8 | 第 5 版 | 
+| Safari 9+ | 第 6 版 | 
+| iOS Safari 3.2~5.1 | 第 5 版（部分）| 
+| iOS Safari 6~8.4 | 第 5 版 | 
+| iOS Safari 9.2+ | 第 6 版 | 
+| Chrome 1~3 | 第 3 版 | 
+| Chrome 4~22 | 第 5 版（部分）| 
+| Chrome 23+ | 第 5 版 | 
+| Chrome 42~48 | 第 6 版（部分）| 
+| Chrome 49+ | 第 6 版 | 
+| Firefox 1~2 | 第 3 版 | 
+| Firefox 3.0.x~20 | 第 5 版（部分）| 
+| Firefox 21~44 | 第 5 版 | 
+| Firefox 45+ | 第 6 版 | 
 
 #### 1.2.1 下载jQuery
 
