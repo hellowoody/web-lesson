@@ -232,3 +232,56 @@ IE3 和 Netscape Navigator 3 提供了浏览器对象模型（BOM） API，用�
  ```
 
  包含在&lt;script&gt;内的代码会被从上到下解释。在上面的例子中，被解释的是一个函数定义，并且该函数会被保存在解释器环境中。在&lt;script&gt;元素中的代码被计算完成之前，页面的其余内容不会被加载，也不会被显示。
+
+## 2. 标签位置
+
+	```
+	<!DOCTYPE html> 
+	<html> 
+	<head> 
+	<title>Example HTML Page</title> 
+	<script src="example1.js"></script> 
+	<script src="example2.js"></script> 
+	</head> 
+	<body> 
+	<!-- 这里是页面内容 --> 
+	</body> 
+	</html>
+	```
+	这种做法的主要目的是把外部的 CSS 和 JavaScript 文件都集中放到一起。不过，把所有 JavaScript文件都放在&lt;head&gt;里，也就意味着必须把所有 JavaScript 代码都下载、解析和解释完成后，才能开始渲染页面（页面在浏览器解析到&lt;body&gt;的起始标签时开始渲染）。对于需要很多 JavaScript 的页面，这会导致页面渲染的明显延迟，在此期间浏览器窗口完全空白。为解决这个问题，现代 Web 应用程序通常将所有 JavaScript 引用放在&lt;body&gt;元素中的页面内容后面，如下面的例子所示：
+
+	```
+	<!DOCTYPE html> 
+	<html> 
+	<head> 
+	<title>Example HTML Page</title> 
+	</head> 
+	<body> 
+	<!-- 这里是页面内容 --> 
+	<script src="example1.js"></script> 
+	<script src="example2.js"></script> 
+	</body> 
+	</html>
+	```
+
+	这样一来，页面会在处理 JavaScript 代码之前完全渲染页面。用户会感觉页面加载更快了，因为浏览器显示空白页面的时间短了。
+
+## 3. 推迟执行脚本
+
+	```
+	<!DOCTYPE html> 
+	<html> 
+	<head> 
+		<title>Example HTML Page</title> 
+		<script defer src="example1.js"></script> 
+		<script defer src="example2.js"></script> 
+	</head> 
+		<body> 
+		<!-- 这里是页面内容 --> 
+		</body> 
+	</html>
+	```
+
+	虽然这个例子中的<script>元素包含在页面的<head>中，但它们会在浏览器解析到结束的</html>标签后才会执行。HTML5 规范要求脚本应该按照它们出现的顺序执行，因此第一个推迟的脚本会在第二个推迟的脚本之前执行，而且两者都会在 DOMContentLoaded 事件之前执行（关于事件，请参考第 17 章）。不过在实际当中，推迟执行的脚本不一定总会按顺序执行或者在 DOMContentLoaded事件之前执行，因此最好只包含一个这样的脚本。
+	
+	对 defer 属性的支持是从 IE4、Firefox 3.5、Safari 5 和 Chrome 7 开始的。其他所有浏览器则会忽略这个属性，按照通常的做法来处理脚本。考虑到这一点，还是把要推迟执行的脚本放在页面底部比较好。
