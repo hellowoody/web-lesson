@@ -556,4 +556,74 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
  }
 
  ```
+
+- 关键字与保留字
+
+- 变量
+
+  - var 关键字
+
+   ```
+   var message; // undefined
+   ```
+
+  ```
+  var message = "hi"; 
+  message = 100; // 合法，但不推荐
+  ```
+  在这个例子中，变量 message 首先被定义为一个保存字符串值 hi 的变量，然后又被重写为保存了数值 100。虽然不推荐改变变量保存值的类型，但这在 ECMAScript 中是完全有效的。
+
+  - var 声明作用域
+
+  ```
+  function test() { 
+	var message = "hi"; // 局部变量
+  } 
+  test(); 
+  console.log(message); // 出错！
+  ```
+
+  ```
+  // 不推荐
+  function test() { 
+    message = "hi"; // 全局变量
+  } 
+  test(); 
+  console.log(message); // "hi"
+  ```
+
+  ```
+  var message = "hi", 
+      found = false, 
+      age = 29;
+  ```
  
+  - var 声明提升
+
+  ```
+  function foo() { 
+	console.log(age); 
+	var age = 26; 
+   } 
+  foo(); // undefined
+  ```
+  之所以不会报错，是因为 ECMAScript 运行时把它看成等价于如下代码：
+  ```
+  function foo() { 
+	var age; 
+	console.log(age); 
+	age = 26; 
+  } 
+  foo(); // undefined
+  ```
+  这就是所谓的“提升”（hoist），也就是把所有变量声明都拉到函数作用域的顶部。
+
+  ```
+  function foo() { 
+	var age = 16; 
+	var age = 26; 
+	var age = 36; 
+	console.log(age); 
+  } 
+  foo(); // 36
+  ```
