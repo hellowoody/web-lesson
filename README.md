@@ -408,3 +408,30 @@ if (a &lt; b) {
   浏览器会根据特定的设置缓存所有外部链接的 JavaScript 文件，这意味着如果两个页面都用到同一个文件，则该文件只需下载一次。这最终意味着页面加载更快。
  - 适应未来。
   通过把 JavaScript 放到外部文件中，就不必考虑用 XHTML 或前面提到的注释黑科技。包含外部 JavaScript 文件的语法在 HTML 和 XHTML 中是一样的。
+
+在配置浏览器请求外部文件时，要重点考虑的一点是它们会占用多少带宽。在 SPDY/HTTP2 中，预请求的消耗已显著降低，以轻量、独立 JavaScript 组件形式向客户端送达脚本更具优势。
+比如，第一个页面包含如下脚本：
+
+```
+<script src="mainA.js"></script> 
+<script src="component1.js"></script> 
+<script src="component2.js"></script> 
+<script src="component3.js"></script> 
+...
+```
+
+后续页面可能包含如下脚本：
+
+```
+<script src="mainB.js"></script> 
+<script src="component3.js"></script> 
+<script src="component4.js"></script> 
+<script src="component5.js"></script> 
+...
+```
+
+在初次请求时，如果浏览器支持 SPDY/HTTP2，就可以从同一个地方取得一批文件，并将它们逐个放到浏览器缓存中。从浏览器角度看，通过 SPDY/HTTP2 获取所有这些独立的资源与获取一个大JavaScript 文件的延迟差不多。
+
+在第二个页面请求时，由于你已经把应用程序切割成了轻量可缓存的文件，第二个页面也依赖的某些组件此时已经存在于浏览器缓存中了。
+
+当然，这里假设浏览器支持 SPDY/HTTP2，只有比较新的浏览器才满足。如果你还想支持那些比较老的浏览器，可能还是用一个大文件更合适。
