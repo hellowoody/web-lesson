@@ -1,14 +1,8 @@
-# 第一章 什么是 JavaScript
+# 第一章 jQuery基本语法
 
-## 1. JavaScript包含的内容
+## 1. jQuery简介
 
- - ECMAScript-核心
- - DOM-文档对象模型
- - BOM-浏览器对象模型
-
- | JavaScript                   |
-| ---------- | --- | ---------- |
-| ECMAScript | DOM | DOM        |
+​		jQuery是继Prototype之后又一个优秀的JavaScript库，是一个由John Resig创建于2006年1月的开源项目。目前jQuery团队主要包括核心库、UI、插件和jQuery Mobile等开发人员以及推广和网站设计、维护人员。
 
 ### 1.1  jQuery的优势
 
