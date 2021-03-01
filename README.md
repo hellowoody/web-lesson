@@ -1,32 +1,77 @@
 # 第一章 什么是 JavaScript
 
-## 1. JavaScript包含的内容
+## 1.JavaScript包含的内容
 
  - ECMAScript-核心
  - DOM-文档对象模型
  - BOM-浏览器对象模型
 
- | JavaScript  |   |             |
-| ---------- | --- | --------- |
-| ECMAScript | DOM | DOM       |
+## 2.ECMAScript
 
-### 1.1  jQuery的优势
+ - ECMAScript，即 ECMA-262 定义的语言，并不局限于 Web 浏览器。事实上，这门语言没有输入和输出之类的方法。ECMA-262 将这门语言作为一个基准来定义，以便在它之上再构建更稳健的脚本语言。Web 浏览器只是 ECMAScript 实现可能存在的一种宿主环境（host environment）。其他宿主环境还有服务器端 JavaScript 平台 Node.js 和即将被淘汰的 Adobe Flash，以及即将被流行的Deno。
 
-​		jQuery的理念是写得少，做得多。jQuery独特的选择器、链式操作、事件处理机制和封装完善的Ajax都是JavaScript库望尘莫及的。   
+ - 宿主环境提供ECMAScript 的基准实现和与环境自身交互必需的扩展。扩展（比如 DOM）使用 ECMAScript 核心类型和语法，提供特定于环境的额外功能。
 
-- 轻量级
-- 强大的选择器
-- 出色的DOM操作的封装
-- 可靠的事件处理机制
-- 完善的Ajax
-- 不污染顶级变量
-- 出色的浏览器兼容性
-- 链式操作方式
-- 隐式迭代
-- 开源
-- 等等
 
-### 1.2 jQuery代码编写
+ - ECMA-262 到底定义了什么？
+  - 语法
+  - 类型
+  - 语句
+  - 关键字
+  - 保留字
+  - 操作符
+  - 全局对象
+
+ - ECMAScript 版本
+  - ES5 - 2009年提出,最流行最兼容那版本
+  - ES6 - 2015年提出（ES2015）
+	- ES6 正式支持了类、模块、迭代器、生成器、箭头、函数、期约、反射、代理和众多新的数据类型。
+  - ES7 - 2016年提出（ES2016）
+	- 如 Array.prototype.includes 和指数操作符
+  - ES8 - 2017年提出（ES2017）
+	- 要增加了异步函数（async/ await）、SharedArrayBuffer 及 Atomics API，以及 Object.values()/Object.entries()/Object. getOwnPropertyDescriptors()和字符串填充方法，另外明确支持对象字面量最后的逗号。
+  - ES9 - 2018年提出（ES2018）
+	- 异步迭代、剩余和扩展属性、一组新的正则表达式特性、Promise finally()，以及模板字面量
+  - ES10 - 2019年提出（ES2019）
+    - 增加了 Array.prototype.flat()/flatMap()、String.prototype.trimStart()/trimEnd()、Object.fromEntries()方法，以及 Symbol.prototype.description 属性，明确定义了 Function.prototype.toString()的返回值并固定了 Array.prototype.sort()的顺序。另外，这次修订解决了与 JSON 字符串兼容的问题，并定义了 catch 子句的可选绑定。
+
+## 3.浏览器的支持
+
+  | 浏览器            |             ECMAScript 符合性     |
+| -----------------------    | ------------------------ |
+| Netscape Navigator 2 | — |  
+| Netscape Navigator 3 | — | 
+| Netscape Navigator 4~4.05 | — | 
+| Netscape Navigator 4.06~4.79 | 第 1 版| 
+| Netscape 6+（Mozilla 0.6.0+） | 第 3 版 | 
+| IE3 | — |  
+| IE4 | — | 
+| IE5 | 第 1 版 | 
+| IE5.5~8 | 第 3 版 | 
+| IE9 | 第 5 版（部分）| 
+| IE10~11 | 第 5 版 | 
+| Edge 12+ | 第 6 版 | 
+| Opera 6~7.1 | 第 2 版 | 
+| Opera 7.2+ | 第 3 版 | 
+| Opera 15~28 | 第 5 版 | 
+| Opera 29~35 | 第 6 版（部分）| 
+| Opera 36+ | 第 6 版 | 
+| Safari 1~2.0.x | 第 3 版（部分）| 
+| Safari 3.1~5.1 | 第 5 版（部分）| 
+| Safari 6~8 | 第 5 版 | 
+| Safari 9+ | 第 6 版 | 
+| iOS Safari 3.2~5.1 | 第 5 版（部分）| 
+| iOS Safari 6~8.4 | 第 5 版 | 
+| iOS Safari 9.2+ | 第 6 版 | 
+| Chrome 1~3 | 第 3 版 | 
+| Chrome 4~22 | 第 5 版（部分）| 
+| Chrome 23+ | 第 5 版 | 
+| Chrome 42~48 | 第 6 版（部分）| 
+| Chrome 49+ | 第 6 版 | 
+| Firefox 1~2 | 第 3 版 | 
+| Firefox 3.0.x~20 | 第 5 版（部分）| 
+| Firefox 21~44 | 第 5 版 | 
+| Firefox 45+ | 第 6 版 | 
 
 #### 1.2.1 下载jQuery
 
