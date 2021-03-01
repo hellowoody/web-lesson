@@ -6,9 +6,9 @@
  - DOM-文档对象模型
  - BOM-浏览器对象模型
 
- | JavaScript                   |
-| ---------- | --- | ---------- |
-| ECMAScript | DOM | DOM        |
+| JavaScript                   |
+| ---------- | --- | --------- |
+| ECMAScript | DOM | DOM       |
 
 ### 1.1  jQuery的优势
 
