@@ -435,3 +435,46 @@ if (a &lt; b) {
 在第二个页面请求时，由于你已经把应用程序切割成了轻量可缓存的文件，第二个页面也依赖的某些组件此时已经存在于浏览器缓存中了。
 
 当然，这里假设浏览器支持 SPDY/HTTP2，只有比较新的浏览器才满足。如果你还想支持那些比较老的浏览器，可能还是用一个大文件更合适。
+
+## 2.8 文档模式
+
+IE5.5 发明了文档模式的概念，即可以使用 doctype 切换文档模式。最初的文档模式有两种：混杂模式（quirks mode）和标准模式（standards mode）。
+
+IE 初次支持文档模式切换以后，其他浏览器也跟着实现了。随着浏览器的普遍实现，又出现了第三种文档模式：准标准模式（almost standards mode）。这种模式下的浏览器支持很多标准的特性，但是没有标准规定得那么严格。主要区别在于如何对待图片元素周围的空白（在表格中使用图片时最明显）。
+
+混杂模式在所有浏览器中都以省略文档开头的 doctype 声明作为开关。这种约定并不合理，因为混杂模式在不同浏览器中的差异非常大，不使用黑科技基本上就没有浏览器一致性可言。
+
+标准模式通过下列几种文档类型声明开启：
+```
+<!-- HTML 4.01 Strict --> 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" 
+"http://www.w3.org/TR/html4/strict.dtd"> 
+<!-- XHTML 1.0 Strict --> 
+<!DOCTYPE html PUBLIC 
+"-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<!-- HTML5 --> 
+<!DOCTYPE html>
+```
+准标准模式通过过渡性文档类型（Transitional）和框架集文档类型（Frameset）来触发：
+
+```
+<!-- HTML 4.01 Transitional --> 
+<!DOCTYPE HTML PUBLIC 
+"-//W3C//DTD HTML 4.01 Transitional//EN" 
+"http://www.w3.org/TR/html4/loose.dtd"> 
+<!-- HTML 4.01 Frameset --> 
+<!DOCTYPE HTML PUBLIC 
+"-//W3C//DTD HTML 4.01 Frameset//EN" 
+"http://www.w3.org/TR/html4/frameset.dtd"> 
+<!-- XHTML 1.0 Transitional --> 
+<!DOCTYPE html PUBLIC 
+"-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!-- XHTML 1.0 Frameset --> 
+<!DOCTYPE html PUBLIC 
+"-//W3C//DTD XHTML 1.0 Frameset//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+```
+
+准标准模式与标准模式非常接近，很少需要区分。人们在说到“标准模式”时，可能指其中任何一个。而对文档模式的检测（本书后面会讨论）也不会区分它们。一般所说的标准模式，指的就是除混杂模式以外的模式。
