@@ -645,3 +645,14 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
   } 
 	console.log(age); // ReferenceError: age 没有定义
   ```
+- 暂时性死区
+
+  ```
+  	// name 会被提升
+	console.log(name); // undefined 
+	var name = 'Matt'; 
+	// age 不会被提升
+	console.log(age); // ReferenceError：age 没有定义
+	let age = 26;
+  ```
+  在解析代码时，JavaScript 引擎也会注意出现在块后面的 let 声明，只不过在此之前不能以任何方式来引用未声明的变量。在 let 声明之前的执行瞬间被称为“暂时性死区”（temporal dead zone），在此阶段引用任何后面才声明的变量都会抛出 ReferenceError。
