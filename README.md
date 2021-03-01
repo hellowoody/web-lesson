@@ -478,3 +478,33 @@ IE 初次支持文档模式切换以后，其他浏览器也跟着实现了。�
 ```
 
 准标准模式与标准模式非常接近，很少需要区分。人们在说到“标准模式”时，可能指其中任何一个。而对文档模式的检测（本书后面会讨论）也不会区分它们。一般所说的标准模式，指的就是除混杂模式以外的模式。
+
+
+
+
+## 2.9 <noscript>元素
+
+针对早期浏览器不支持 JavaScript 的问题，需要一个页面优雅降级的处理方案。最终，&lt;noscript&gt;元素出现，被用于给不支持JavaScript 的浏览器提供替代内容。虽然如今的浏览器已经 100%支持JavaScript，但对于禁用 JavaScript 的浏览器来说，这个元素仍然有它的用处。
+&lt;noscript&gt;元素可以包含任何可以出现在&lt;body&gt;中的 HTML 元素，&lt;script&gt;除外。在下列两种情况下，浏览器将显示包含在&lt;noscript&gt;中的内容：
+
+ - 浏览器不支持脚本;
+ - 浏览器对脚本的支持被关闭;
+
+任何一个条件被满足，包含在&lt;noscript&gt;中的内容就会被渲染。否则，浏览器不会渲染&lt;noscript&gt;中的内容。
+下面是一个例子：
+```
+<!DOCTYPE html> 
+<html> 
+ <head> 
+ <title>Example HTML Page</title> 
+ <script defer="defer" src="example1.js"></script> 
+ <script defer="defer" src="example2.js"></script> 
+ </head> 
+ <body> 
+<noscript> 
+<p>This page requires a JavaScript-enabled browser.</p> 
+</noscript> 
+ </body> 
+</html>
+```
+这个例子是在脚本不可用时让浏览器显示一段话。如果浏览器支持脚本，则用户永远不会看到它。
