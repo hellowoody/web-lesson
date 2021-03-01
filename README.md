@@ -627,3 +627,21 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
   ```
 
 - let 声明 
+
+  let 跟 var 的作用差不多，但有着非常重要的区别。最明显的区别是，let 声明的范围是块作用域，而 var 声明的范围是函数作用域。
+  
+  ```
+  if (true) { 
+	var name = 'Matt'; 
+	console.log(name); // Matt 
+  } 
+	console.log(name); // Matt
+  ```
+
+  ```
+  if (true) { 
+	let age = 26; 
+	console.log(age); // 26 
+  } 
+	console.log(age); // ReferenceError: age 没有定义
+  ```
