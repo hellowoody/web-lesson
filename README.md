@@ -559,9 +559,7 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
 
 - 关键字与保留字
 
-- 变量
-
-  - var 关键字
+- var 关键字
 
    ```
    var message; // undefined
@@ -573,7 +571,7 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
   ```
   在这个例子中，变量 message 首先被定义为一个保存字符串值 hi 的变量，然后又被重写为保存了数值 100。虽然不推荐改变变量保存值的类型，但这在 ECMAScript 中是完全有效的。
 
-  - var 声明作用域
+- var 声明作用域
 
   ```
   function test() { 
@@ -598,7 +596,7 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
       age = 29;
   ```
  
-  - var 声明提升
+- var 声明提升
 
   ```
   function foo() { 
@@ -627,3 +625,5 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
   } 
   foo(); // 36
   ```
+
+- let 声明 
