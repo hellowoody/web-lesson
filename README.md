@@ -207,7 +207,7 @@ IE3 和 Netscape Navigator 3 提供了浏览器对象模型（BOM） API，用�
 
 # 第二章 HTML 引入 JavaScript
 
-## script标签
+## 1. script标签
  
  将 JavaScript 插入 HTML 的主要方法是使用&lt;script&gt;元素。这个元素是由网景公司创造出来，并最早在 Netscape Navigator 2 中实现的。后来，这个元素被正式加入到 HTML 规范。&lt;script&gt;元素有下列 8 个属性。
 
@@ -219,3 +219,16 @@ IE3 和 Netscape Navigator 3 提供了浏览器对象模型（BOM） API，用�
  - language：废弃。最初用于表示代码块中的脚本语言（如"JavaScript"、"JavaScript 1.2"或"VBScript"）。大多数浏览器都会忽略这个属性，不应该再使用它。
  - src：可选。表示包含要执行的代码的外部文件。
  - type：可选。代替 language，表示代码块中脚本语言的内容类型（也称 MIME 类型）。按照惯例，这个值始终都是"text/javascript"，尽管"text/javascript"和"text/ecmascript"都已经废弃了。JavaScript 文件的 MIME 类型通常是"application/x-javascript"，不过给type 属性这个值有可能导致脚本被忽略。在非 IE 的浏览器中有效的其他值还有"application/javascript"和"application/ecmascript"。如果这个值是 module，则代码会被当成 ES6 模块，而且只有这时候代码中才能出现 import 和 export 关键字。
+
+ 使用&lt;script&gt;的方式有两种：通过它直接在网页中嵌入 JavaScript 代码，以及通过它在网页中包含外部 JavaScript 文件。
+ 要嵌入行内 JavaScript 代码，直接把代码放在&lt;script&gt;元素中就行：
+
+ ```
+ <script> 
+ function sayHi() { 
+	console.log("Hi!"); 
+ } 
+ </script>
+ ```
+
+ 包含在&lt;script&gt;内的代码会被从上到下解释。在上面的例子中，被解释的是一个函数定义，并且该函数会被保存在解释器环境中。在&lt;script&gt;元素中的代码被计算完成之前，页面的其余内容不会被加载，也不会被显示。
