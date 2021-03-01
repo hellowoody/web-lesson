@@ -285,3 +285,115 @@ IE3 和 Netscape Navigator 3 提供了浏览器对象模型（BOM） API，用�
  虽然这个例子中的&lt;script&gt;元素包含在页面的<head>中，但它们会在浏览器解析到结束的&lt;/html&gt;标签后才会执行。HTML5 规范要求脚本应该按照它们出现的顺序执行，因此第一个推迟的脚本会在第二个推迟的脚本之前执行，而且两者都会在 DOMContentLoaded 事件之前执行（关于事件，请参考第 17 章）。不过在实际当中，推迟执行的脚本不一定总会按顺序执行或者在 DOMContentLoaded事件之前执行，因此最好只包含一个这样的脚本。
 	
  对 defer 属性的支持是从 IE4、Firefox 3.5、Safari 5 和 Chrome 7 开始的。其他所有浏览器则会忽略这个属性，按照通常的做法来处理脚本。考虑到这一点，还是把要推迟执行的脚本放在页面底部比较好。
+
+## 4. 异步执行脚本
+
+ HTML5 为&lt;script&gt;元素定义了 async 属性。从改变脚本处理方式上看，async 属性与 defer 类似。当然，它们两者也都只适用于外部脚本，都会告诉浏览器立即开始下载。不过，与 defer 不同的是，标记为 async 的脚本并不保证能按照它们出现的次序执行，比如：
+
+```
+<!DOCTYPE html> 
+<html> 
+ <head> 
+ <title>Example HTML Page</title> 
+<script async src="example1.js"></script> 
+<script async src="example2.js"></script> 
+ </head> 
+ <body> 
+ <!-- 这里是页面内容 --> 
+ </body> 
+</html>
+```
+
+ 在这个例子中，第二个脚本可能先于第一个脚本执行。因此，重点在于它们之间没有依赖关系。给脚本添加 async 属性的目的是告诉浏览器，不必等脚本下载和执行完后再加载页面，同样也不必等到该异步脚本下载和执行后再加载其他脚本。正因为如此，异步脚本不应该在加载期间修改 DOM。
+
+ 异步脚本保证会在页面的 load 事件前执行，但可能会在 DOMContentLoaded（参见第 17 章）之前或之后。Firefox 3.6、Safari 5 和 Chrome 7 支持异步脚本。使用 async 也会告诉页面你不会使用document.write，不过好的 Web 开发实践根本就不推荐使用这个方法。
+
+## 5. 动态加载脚本
+
+```
+ 	let script = document.createElement('script'); 
+	script.src = 'gibberish.js'; 
+	script.async = false; 
+	document.head.appendChild(script);
+```
+
+ 在把 HTMLElement 元素添加到 DOM 且执行到这段代码之前不会发送请求。默认情况下，以这种方式创建的&lt;script&gt;元素是以异步方式加载的，相当于添加了 async 属性。不过这样做可能会有问题，因为所有浏览器都支持 createElement()方法，但不是所有浏览器都支持 async 属性。因此，如果要统一动态脚本的加载行为，可以明确将其设置为同步加载.
+
+ 以这种方式获取的资源对浏览器预加载器是不可见的。这会严重影响它们在资源获取队列中的优先级。根据应用程序的工作方式以及怎么使用，这种方式可能会严重影响性能。要想让预加载器知道这些动态请求文件的存在，可以在文档头部显式声明它们：
+
+```
+	<link rel="preload" href="gibberish.js">
+```
+
+## 6. XHTML 中的变化
+
+可扩展超文本标记语言（XHTML，Extensible HyperText Markup Language）是将 HTML 作为 XML的应用重新包装的结果。与 HTML 不同，在 XHTML 中使用 JavaScript 必须指定 type 属性且值为text/javascript，HTML 中则可以没有这个属性。XHTML 虽然已经退出历史舞台，但实践中偶尔可能也会遇到遗留代码，这里稍作介绍。
+
+在 XHTML 中编写代码的规则比 HTML 中严格，这会影响使用&lt;script&gt;元素嵌入 JavaScript 代码。下面的代码块虽然在 HTML 中有效，但在 XHML 中是无效的。
+
+```
+<script type="text/javascript"> 
+ function compare(a, b) { 
+ if (a < b) { 
+ console.log("A is less than B"); 
+ } else if (a > b) { 
+ console.log("A is greater than B"); 
+ } else { 
+ console.log("A is equal to B"); 
+ } 
+ } 
+</script>
+```
+
+在 HTML 中，解析&lt;script&gt;元素会应用特殊规则。XHTML 中则没有这些规则。这意味着 a < b语句中的小于号（<）会被解释成一个标签的开始，并且由于作为标签开始的小于号后面不能有空格，这会导致语法错误。
+避免 XHTML 中这种语法错误的方法有两种。第一种是把所有小于号（<）都替换成对应的 HTML实体形式（&lt;）。结果代码就是这样的:
+
+```
+<script type="text/javascript"> 
+ function compare(a, b) { 
+if (a &lt; b) { 
+ console.log("A is less than B"); 
+} else if (a > b) { 
+ console.log("A is greater than B"); 
+ } else { 
+ console.log("A is equal to B"); 
+ } 
+ } 
+</script>
+```
+
+这样代码就可以在 XHTML 页面中运行了。不过，缺点是会影响阅读。好在还有另一种方法。第二种方法是把所有代码都包含到一个 CDATA 块中。在 XHTML（及 XML）中，CDATA 块表示文档中可以包含任意文本的区块，其内容不作为标签来解析，因此可以在其中包含任意字符，包括小于号，并且不会引发语法错误。使用 CDATA 的格式如下：
+
+```
+<script type="text/javascript"><![CDATA[ 
+ function compare(a, b) { 
+ if (a < b) { 
+ console.log("A is less than B"); 
+ } else if (a > b) { 
+ console.log("A is greater than B"); 
+ } else { 
+ console.log("A is equal to B"); 
+ } 
+ } 
+]]></script>
+```
+
+在兼容 XHTML 的浏览器中，这样能解决问题。但在不支持 CDATA 块的非 XHTML 兼容浏览器中则不行。为此，CDATA 标记必须使用 JavaScript 注释来抵消：
+
+```
+<script type="text/javascript"> 
+//<![CDATA[ 
+ function compare(a, b) { 
+ if (a < b) { 
+ console.log("A is less than B"); 
+ } else if (a > b) { 
+ console.log("A is greater than B"); 
+ } else { 
+ console.log("A is equal to B"); 
+ } 
+ } 
+//]]> 
+</script>
+```
+
+这种格式适用于所有现代浏览器。虽然有点黑科技的味道，但它可以通过 XHTML 验证，而且对XHTML 之前的浏览器也能优雅地降级。
