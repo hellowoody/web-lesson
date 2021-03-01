@@ -645,6 +645,7 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
   } 
 	console.log(age); // ReferenceError: age 没有定义
   ```
+
 - 暂时性死区
 
   ```
@@ -700,4 +701,65 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
 	// 会输出 0、1、2、3、4
   ```
   这种每次迭代声明一个独立变量实例的行为适用于所有风格的 for 循环，包括 for-in 和 for-of循环。
-  
+
+- const 声明
+ 
+   const 的行为与 let 基本相同，唯一一个重要的区别是用它声明变量时必须同时初始化变量，且尝试修改 const 声明的变量会导致运行时错误。 
+   ```
+   const age = 26; 
+   age = 36; // TypeError: 给常量赋值
+   ```
+
+   ```
+   // const 也不允许重复声明
+	const name = 'Matt'; 
+	const name = 'Nicholas'; // SyntaxError
+   ```
+
+   ```
+   // const 声明的作用域也是块
+	const name = 'Matt'; 
+	if (true) { 
+	const name = 'Nicholas'; 
+	} 
+	console.log(name); // Matt
+   ```
+
+   const 声明的限制只适用于它指向的变量的引用。换句话说，如果 const 变量引用的是一个对象，那么修改这个对象内部的属性并不违反 const 的限制。
+
+   ```
+    const person = {}; 
+	person.name = 'Matt'; // ok
+   ```
+
+## 3.2 数据类型
+
+ECMAScript 有 6 种简单数据类型（也称为原始类型）：Undefined、Null、Boolean、Number、String 和 Symbol。Symbol（符号）是 ECMAScript 6 新增的。还有一种复杂数据类型叫 Object（对象）。Object 是一种无序名值对的集合。因为在 ECMAScript 中不能定义自己的数据类型，所有值都可以用上述 7 种数据类型之一来表示。
+
+- typeof 操作符
+
+  因为 ECMAScript 的类型系统是松散的，所以需要一种手段来确定任意变量的数据类型。typeof操作符就是为此而生的。
+
+  ```
+  let message = "some string"; 
+	console.log(typeof message); // "string" 
+	console.log(typeof(message)); // "string" 
+	console.log(typeof 95); // "number"
+  ```
+
+  注意typeof在某些情况下返回的结果可能会让人费解，但技术上讲还是正确的。比如，调用typeof null 返回的是"object"。这是因为特殊值 null 被认为是一个对空对象的引用。
+
+- NaN
+
+  ```
+  console.log(NaN !== NaN);  // true
+  ```
+
+- 数值转换
+
+  ```
+  let num1 = parseInt("10", 2); // 2，按二进制解析
+	let num2 = parseInt("10", 8); // 8，按八进制解析
+	let num3 = parseInt("10", 10); // 10，按十进制解析
+	let num4 = parseInt("10", 16); // 16，按十六进制解析
+  ```
