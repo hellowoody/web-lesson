@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>dom 练习</title>
+    </head>
+    <body>
+        <h1>hello world</h1>
+        <button id="addNode">增加节点</button>
+        <!-- <button id="delNode">删除节点</button> -->
+    </body>
+</html>
+<script>
+document.getElementById("addNode").addEventListener("click",function(){
+    var node = document.createElement("p");
+    var text = document.createTextNode("这是一个新段落")
+    node.appendChild(text)
+    var body = document.getElementsByTagName("body")[0]
+    body.appendChild(node)
+})
+</script>
