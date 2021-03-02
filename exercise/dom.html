@@ -5,8 +5,9 @@
     </head>
     <body>
         <h1>hello world</h1>
+        <h1>标题二</h1>
         <button id="addNode">增加节点</button>
-        <!-- <button id="delNode">删除节点</button> -->
+        <button onclick="delNode()" >删除节点</button>
     </body>
 </html>
 <script>
@@ -17,4 +18,11 @@ document.getElementById("addNode").addEventListener("click",function(){
     var body = document.getElementsByTagName("body")[0]
     body.appendChild(node)
 })
+
+function delNode(){
+    var body = document.getElementsByTagName("body")[0]
+    var title2 = document.getElementsByTagName("h1")[1]
+    body.removeChild(title2)
+}
+
 </script>
