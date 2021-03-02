@@ -8,6 +8,7 @@
         <h1>标题二</h1>
         <button id="addNode">增加节点</button>
         <button onclick="delNode()" >删除节点</button>
+        <button>修改节点</button>
     </body>
 </html>
 <script>
@@ -24,5 +25,14 @@ function delNode(){
     var title2 = document.getElementsByTagName("h1")[1]
     body.removeChild(title2)
 }
+
+document.getElementsByTagName("button")[2].addEventListener("click",()=>{
+    var body = document.getElementsByTagName("body")[0]
+    var title2 = document.getElementsByTagName("h1")[1]
+    var newTitle2 = document.createElement("h2")
+    var newText = document.createTextNode("这才是正确的第二标题")
+    newTitle2.appendChild(newText)
+    body.replaceChild(newTitle2,title2)
+})
 
 </script>
