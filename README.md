@@ -789,3 +789,61 @@ ECMAScript 有 6 种简单数据类型（也称为原始类型）：Undefined、
   let hexNum1 = 0xA; // 十六进制 10 
   let hexNum2 = 0x1f; // 十六进制 31
   ```
+- 值的范围
+
+  由于内存的限制，ECMAScript 并不支持表示这个世界上的所有数值。ECMAScript 可以表示的最小数值保存在 Number.MIN_VALUE 中，这个值在多数浏览器中是 5e324；可以表示的最大数值保存在Number.MAX_VALUE 中，这个值在多数浏览器中是 1.797 693 134 862 315 7e+308。如果某个计算得到的数值结果超出了 JavaScript 可以表示的范围，那么这个数值会被自动转换为一个特殊的 Infinity（无穷）值。任何无法表示的负数以-Infinity（负无穷大）表示，任何无法表示的正数以 Infinity（正无穷大）表示。
+
+  如果计算返回正 Infinity 或负 Infinity，则该值将不能再进一步用于任何计算。这是因为Infinity 没有可用于计算的数值表示形式。要确定一个值是不是有限大（即介于 JavaScript 能表示的最小值和最大值之间），可以使用 isFinite()函数。
+
+  ```
+  let result = Number.MAX_VALUE + Number.MAX_VALUE; 
+	console.log(isFinite(result)); // false
+  ```
+- String类型
+
+  String（字符串）数据类型表示零或多个 16 位 Unicode 字符序列。字符串可以使用双引号（"）、单引号（'）或反引号（`）标示，因此下面的代码都是合法的：
+
+  ```
+  let firstName = "John"; 
+	let lastName = 'Jacob'; 
+	let lastName = `Jingleheimerschmidt`
+  ```
+
+- 字符串特点
+  
+  ECMAScript 中的字符串是不可变的（immutable），意思是一旦创建，它们的值就不能变了。要修改某个变量中的字符串值，必须先销毁原始的字符串，然后将包含新值的另一个字符串保存到该变量，如下所示：
+
+  ```
+  let lang = "Java"; 
+	lang = lang + "Script";
+  ```
+- toString()转换为字符串
+
+  几乎所有值都有的 toString()方法。这个方法唯一的用途就是返回当前值的字符串等价物。比如：
+
+  ```
+	let value1 = 10; 
+	let value2 = true; 
+	let value3 = null; 
+	let value4; 
+	console.log(String(value1)); // "10" 
+	console.log(String(value2)); // "true" 
+	console.log(String(value3)); // "null" 
+	console.log(String(value4)); // "undefined"
+  ```
+
+  多数情况下，toString()不接收任何参数。不过，在对数值调用这个方法时，toString()可以接收一个底数参数，即以什么底数来输出数值的字符串表示。默认情况下，toString()返回数值的十进制字符串表示。而通过传入参数，可以得到数值的二进制、八进制、十六进制，或者其他任何有效基数的字符串表示，比如：
+
+  ```
+  let num = 10; 
+	console.log(num.toString()); // "10" 
+	console.log(num.toString(2)); // "1010" 
+	console.log(num.toString(8)); // "12" 
+	console.log(num.toString(10)); // "10" 
+	console.log(num.toString(16)); // "a"
+  ```
+
+  这个例子展示了传入底数参数时，toString()输出的字符串值也会随之改变。数值 10 可以输出为任意数值格式。注意，默认情况下（不传参数）的输出与传入参数 10 得到的结果相同。
+
+- 模板字面量
+
