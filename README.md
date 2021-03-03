@@ -847,3 +847,24 @@ ECMAScript 有 6 种简单数据类型（也称为原始类型）：Undefined、
 
 - 模板字面量
 
+  ECMAScript 6 新增了使用模板字面量定义字符串的能力。与使用单引号或双引号不同，模板字面量保留换行字符，可以跨行定义字符串：
+
+  ```
+  let myMultiLineString = 'first line\nsecond line'; 
+	let myMultiLineTemplateLiteral = `first line 
+	second line`;
+  ```	
+
+  字符串插值通过在${}中使用一个 JavaScript 表达式实现：
+
+  ```
+  let value = 5; 
+	let exponent = 'second';
+
+	let interpolatedTemplateLiteral = 
+ 	`${ value } to the ${ exponent } power is ${ value * value }`;
+
+	 console.log(interpolatedTemplateLiteral); // 5 to the second power is 25
+  ```
+
+  
