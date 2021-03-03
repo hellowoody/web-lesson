@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>dom 练习</title>
+    </head>
+    <body>
+        <h1>hello world</h1>
+        <h1>标题</h1>
+        <button >增加一个节点</button>
+        <button id="del" >删除节点</button>
+        <button onclick="updateNode()">修改节点</button>
+        <button onclick="replaceNode()">替换节点</button>
+    </body>
+</html>
+<script>
+/*
+html标签与js方法的绑定 属于dom操作
+
+*/
+document.getElementsByTagName("button")[0].addEventListener("click",function(){
+    var node = document.createElement("h2");
+    var text = document.createTextNode("标题2")
+    node.appendChild(text)
+    var body = document.getElementsByTagName("body")[0]
+    body.appendChild(node)
+})
+
+document.getElementById("del").addEventListener("click",function(){
+    var body = document.getElementsByTagName("body")[0]
+    var willdelNode = document.getElementsByTagName("h1")[1]
+    body.removeChild(willdelNode)
+})
+
+function updateNode(){
+    document.getElementsByTagName("h1")[1].innerText = "title"
+}
+
+function replaceNode(){
+    var body = document.getElementsByTagName("body")[0]
+    var newChild = document.createElement("h3")
+    var newChildText = document.createTextNode("标题3")
+    newChild.appendChild(newChildText)
+    var oldChild = document.getElementsByTagName("h1")[1]
+    body.replaceChild(newChild,oldChild)
+}
+</script>
