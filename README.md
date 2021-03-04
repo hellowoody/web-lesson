@@ -849,22 +849,65 @@ ECMAScript 有 6 种简单数据类型（也称为原始类型）：Undefined、
 
   ECMAScript 6 新增了使用模板字面量定义字符串的能力。与使用单引号或双引号不同，模板字面量保留换行字符，可以跨行定义字符串：
 
-  ```
-  let myMultiLineString = 'first line\nsecond line'; 
+	```
+	let myMultiLineString = 'first line\nsecond line'; 
 	let myMultiLineTemplateLiteral = `first line 
 	second line`;
-  ```	
+	```	
 
-  字符串插值通过在${}中使用一个 JavaScript 表达式实现：
+	字符串插值通过在${}中使用一个 JavaScript 表达式实现：
 
-  ```
-  let value = 5; 
+	```
+	let value = 5; 
 	let exponent = 'second';
 
 	let interpolatedTemplateLiteral = 
- 	`${ value } to the ${ exponent } power is ${ value * value }`;
+	`${ value } to the ${ exponent } power is ${ value * value }`;
 
-	 console.log(interpolatedTemplateLiteral); // 5 to the second power is 25
-  ```
+		console.log(interpolatedTemplateLiteral); // 5 to the second power is 25
+	```
 
-  
+# 第四章 DOM
+
+  DOM 表示由多层节点构成的文档，通过它开发者可以添加、删除和修改页面的各个部分。之所以介绍DOM，主要因为它与浏览器中的 HTML 网页相关，并且在 JavaScript 中提供了 DOM API。
+
+  ## 4.1 节点层级
+
+    任何 HTML 或 XML 文档都可以用 DOM 表示为一个由节点构成的层级结构。
+	这些关系构成了层级，让标记可以表示为一个以特定节点为根的树形结构。
+
+	```
+	<html> 
+		<head> 
+			<title>Sample Page</title> 
+		</head> 
+		<body> 
+			<p>Hello World!</p> 
+		</body> 
+	</html>
+	```
+
+	其中，document 节点表示每个文档的根节点。在这里，根节点的唯一子节点是<html>元素，我们称之为文档元素（documentElement）。
+	文档元素是文档最外层的元素，所有其他元素都存在于这个元素之内。每个文档只能有一个文档元素。
+	HTML 页面中，文档元素始终是<html>元素。在 XML 文档中，则没有这样预定义的元素，任何元素都可能成为文档元素。
+
+ ## 4.2 Node 类型
+
+    Node 接口在 JavaScript中被实现为 Node 类型，在除 IE之外的所有浏览器中都可以直接访问这个类型。
+	在 JavaScript中，所有节点类型都继承 Node 类型，因此所有类型都共享相同的基本属性和方法。
+
+	每个节点都有 nodeType 属性，表示该节点的类型。
+	node类型有12种，常用的有3种：
+
+	Node.ELEMENT_NODE - 1
+	Node.ATTRIBUTE_NODE - 2
+	Node.TEXT_NODE - 3
+
+	节点类型可通过与这些常量比较来确定，比如：
+
+	```
+	if (someNode.nodeType == Node.ELEMENT_NODE){ 
+		alert("Node is an element."); 
+	}
+	```
+
