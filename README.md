@@ -941,3 +941,43 @@ ECMAScript 有 6 种简单数据类型（也称为原始类型）：Undefined、
  ## 4.3 节点关系
 
    文档中的所有节点都与其他节点有关系。这些关系可以形容为家族关系，相当于把文档树比作家谱。在 HTML 中，&lt;body&gt;元素是&lt;html&gt;元素的子元素，而&lt;html&gt;元素则是&lt;body&gt;元素的父元素。&lt;head&gt;元素是&lt;body&gt;元素的同胞元素，因为它们有共同的父元素&lt;html&gt;。
+   
+   每个节点都有一个 childNodes 属性，其中包含一个 NodeList 的实例。NodeList 是一个类数组对象，用于存储可以按位置存取的有序节点。
+
+   NodeList 对象独特的地方在于，它其实是一个对 DOM 结构的查询，因此 DOM 结构的变化会自动地在 NodeList 中反映出来。我们通常说 NodeList 是实时的活动对象，而不是第一次访问时所获得内容的快照。
+
+   ```
+   let firstChild = someNode.childNodes[0]; 
+	let secondChild = someNode.childNodes.item(1); 
+	let count = someNode.childNodes.length;
+   ```
+
+   无论是使用中括号还是 item()方法都是可以的，但多数开发者倾向于使用中括号，因为它是一个类数组对象。
+
+ 
+ ## 4.4 常用的节点方法
+
+   - hasChildNodes()
+
+   - appendChild()
+
+   - insertBefore()
+
+     ```
+	 // 作为最后一个子节点插入
+	returnedNode = someNode.insertBefore(newNode, null); 
+	alert(newNode == someNode.lastChild); // true 
+	// 作为新的第一个子节点插入
+	returnedNode = someNode.insertBefore(newNode, someNode.firstChild); 
+	alert(returnedNode == newNode); // true 
+	alert(newNode == someNode.firstChild); // true 
+	// 插入最后一个子节点前面
+	returnedNode = someNode.insertBefore(newNode, someNode.lastChild); 
+	alert(newNode == someNode.childNodes[someNode.childNodes.length - 2]); // true
+	 ```
+
+   -  replaceChild()
+
+   -  removeChild()
+
+   上面介绍的方法都用于操纵某个节点的子元素，也就是说使用它们之前必须先取得父节点（使用前面介绍的 parentNode 属性）。
