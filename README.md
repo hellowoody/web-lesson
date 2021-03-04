@@ -981,3 +981,76 @@ ECMAScript 有 6 种简单数据类型（也称为原始类型）：Undefined、
    -  removeChild()
 
    上面介绍的方法都用于操纵某个节点的子元素，也就是说使用它们之前必须先取得父节点（使用前面介绍的 parentNode 属性）。
+
+ ## 4.5 Document 类型
+
+   Document 类型是 JavaScript 中表示文档节点的类型。在浏览器中，文档对象 document 是HTMLDocument 的实例（HTMLDocument 继承 Document），表示整个 HTML 页面。
+
+   document.documentElement 属性，始终指向 HTML 页面中的&lt;html&gt;元素。
+
+   虽然 document.childNodes 中始终有<html>元素，但使用 documentElement 属性可以更快更直接地访问该元素。
+
+   ```
+	let html = document.documentElement; // 取得对<html>的引用
+	let body = document.body; // 取得对<body>的引用
+	let doctype = document.doctype; // 取得对<!doctype>的引用
+   ```
+ 
+ ## 4.6 定位元素
+
+   getElementById()和 getElementsByTagName(),getElementsByName()就是 Document 类型提供的三个方法。
+   getElementsByTagName()，getElementsByName() 返回的是HTMLCollection 对象
+   HTMLCollection 对象还有一个额外的方法 namedItem()，可通过标签的 name 属性取得某一项的引用。
+   要取得文档中的所有元素，可以给 getElementsByTagName()传入*。在 JavaScript 和 CSS 中，*一般被认为是匹配一切的字符。来看下面的例子：
+
+   ```
+   let allElements = document.getElementsByTagName("*");
+   ```
+
+   - 特殊集合
+
+     - document.anchors 包含文档中所有带 name 属性的&lt;a&gt;元素。
+	 - document.forms 包含文档中所有&lt;form&gt;元素（与 document.getElementsByTagName ("form")返回的结果相同）
+	 - document.images 包含文档中所有&lt;img&gt;元素（与 document.getElementsByTagName ("img")返回的结果相同）
+	 - document.links 包含文档中所有带 href 属性的&lt;a&gt;元素。
+
+
+ 
+ ## 4.7 文档写入
+   
+   document 对象有一个古老的能力，即向网页输出流中写入内容。这个能力对应 4 个方法：write()、writeln()、open()和 close()。其中，write()和 writeln()方法都接收一个字符串参数，可以将这个字符串写入网页中。write()简单地写入文本，而 writeln()还会在字符串末尾追加一个换行符（\n）。
+  
+   ```
+   <html> 
+	<head> 
+	<title>document.write() Example</title> 
+	</head> 
+	<body> 
+	<p>The current date and time is: 
+	<script type="text/javascript"> 
+	document.write("<strong>" + (new Date()).toString() + "</strong>"); 
+	</script> 
+	</p> 
+	</body> 
+	</html>
+   ```
+
+   前面的例子展示了在页面渲染期间通过 document.write()向文档中输出内容。如果是在页面加载完之后再调用 document.write()，则输出的内容会重写整个页面，如下面的例子所示：
+
+
+   ```
+	<html> 
+	<head> 
+	<title>document.write() Example</title> 
+	</head> 
+	<body> 
+	<p>This is some content that you won't get to see because it will be 
+	overwritten.</p> 
+	<script type="text/javascript"> 
+	window.onload = function(){ 
+	document.write("Hello world!"); 
+	}; 
+	</script> 
+	</body> 
+	</html>
+   ```
