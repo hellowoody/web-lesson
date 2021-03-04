@@ -893,21 +893,21 @@ ECMAScript 有 6 种简单数据类型（也称为原始类型）：Undefined、
 
  ## 4.2 Node 类型
 
-    Node 接口在 JavaScript中被实现为 Node 类型，在除 IE之外的所有浏览器中都可以直接访问这个类型。
-	在 JavaScript中，所有节点类型都继承 Node 类型，因此所有类型都共享相同的基本属性和方法。
+   Node 接口在 JavaScript中被实现为 Node 类型，在除 IE之外的所有浏览器中都可以直接访问这个类型。
+   在 JavaScript中，所有节点类型都继承 Node 类型，因此所有类型都共享相同的基本属性和方法。
 
-	每个节点都有 nodeType 属性，表示该节点的类型。
-	node类型有12种，常用的有3种：
+   每个节点都有 nodeType 属性，表示该节点的类型。
+   node类型有12种，常用的有3种：
 
-	Node.ELEMENT_NODE - 1
-	Node.ATTRIBUTE_NODE - 2
-	Node.TEXT_NODE - 3
+   - Node.ELEMENT_NODE - 1
+   - Node.ATTRIBUTE_NODE - 2
+   - Node.TEXT_NODE - 3
 
-	节点类型可通过与这些常量比较来确定，比如：
+   节点类型可通过与这些常量比较来确定，比如：
 
-	```
-	if (someNode.nodeType == Node.ELEMENT_NODE){ 
-		alert("Node is an element."); 
-	}
-	```
+   ```
+   if (someNode.nodeType == Node.ELEMENT_NODE){ 
+	alert("Node is an element."); 
+   }
+   ```
 
