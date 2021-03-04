@@ -911,3 +911,33 @@ ECMAScript 有 6 种简单数据类型（也称为原始类型）：Undefined、
    }
    ```
 
+   ```
+   <!DOCTYPE html>
+	<html>
+		<head>
+			<title>dom</title>
+		</head>
+		<body>
+			<h1 id="a" name="aaa">hello world</h1>
+			<h1 id="b">标题二</h1>
+		</body>
+	</html>
+	<script>
+	var a = document.getElementById("a")
+	console.log(a.nodeType) //元素节点
+	console.log(a.childNodes[0].nodeType) // 文本类型节点
+	console.log(a.childNodes[0].nodeValue)
+	console.log(a.attributes[0].nodeType) // 属性节点
+	console.log(a.attributes[0].nodeValue)
+	console.log(a.attributes[1].nodeValue)
+	</script>
+   ```
+   
+   使用node类型一般应用在底层框架中，例如使用nodeType，nodeValue，nodeName，先检查了节点是不是元素。如果是，则将其 nodeName 的值赋给一个变量。对元素而言，nodeName 始终等于元素的标签名，而 nodeValue 则始终为 null。
+
+
+   
+
+ ## 4.3 节点关系
+
+   文档中的所有节点都与其他节点有关系。这些关系可以形容为家族关系，相当于把文档树比作家谱。在 HTML 中，&lt;body&gt;元素是&lt;html&gt;元素的子元素，而&lt;html&gt;元素则是&lt;body&gt;元素的父元素。&lt;head&gt;元素是&lt;body&gt;元素的同胞元素，因为它们有共同的父元素&lt;html&gt;。
