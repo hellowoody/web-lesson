@@ -1163,7 +1163,68 @@ ECMAScript 有 6 种简单数据类型（也称为原始类型）：Undefined、
 
 
  
-  ## 5.0 DOM扩展
+  ## 4.10 DOM扩展
+
+    - querySelector()
+
+	  querySelector()方法接收 CSS 选择符参数，返回匹配该模式的第一个后代元素，如果没有匹配项则返回 null。下面是一些例子：
+
+	  ```
+	  // 取得<body>元素
+		let body = document.querySelector("body"); 
+		// 取得 ID 为"myDiv"的元素
+		let myDiv = document.querySelector("#myDiv");
+		// 取得类名为"selected"的第一个元素
+		let selected = document.querySelector(".selected"); 
+		// 取得类名为"button"的图片
+		let img = document.body.querySelector("img.button");
+	  ```
+	- querySelectorAll()
+
+	  querySelectorAll()方法跟 querySelector()一样，也接收一个用于查询的参数，但它会返回所有匹配的节点，而不止一个。这个方法返回的是一个 NodeList 的静态实例。
+	  再强调一次，querySelectorAll()返回的 NodeList 实例一个属性和方法都不缺，但它是一个静态的“快照”，而非“实时”的查询。
+
+
+	- matches() 用的比较少
+
+	  matches()方法（在规范草案中称为 matchesSelector()）接收一个 CSS 选择符参数，如果元素匹配则该选择符返回 true，否则返回 false。例如：
+
+	  ```
+	  if (document.body.matches("body.page1")){ 
+		// true 
+		}
+	  ```
+
+	  使用这个方法可以方便地检测某个元素会不会被 querySelector()或 querySelectorAll()方法返回。
+
+	- document.characterSet
+
+	  
+
+
 
     
 
+  ## 4.11 自定义数据属性
+
+    HTML5 允许给元素指定非标准的属性，但要使用前缀 data-以便告诉浏览器，这些属性既不包含与渲染有关的信息，也不包含元素的语义信息。除了前缀，自定义属性对命名是没有限制的，data-后面跟什么都可以。下面是一个例子：
+    
+	```
+	<div id="myDiv" data-appId="12345" data-myname="Nicholas"></div>
+	```
+    
+	```
+	// 本例中使用的方法仅用于示范
+	let div = document.getElementById("myDiv"); 
+	// 取得自定义数据属性的值
+	let appId = div.dataset.appId; 
+	let myName = div.dataset.myname; 
+	// 设置自定义数据属性的值
+	div.dataset.appId = 23456; 
+	div.dataset.myname = "Michael"; 
+	// 有"myname"吗？
+	if (div.dataset.myname){ 
+	console.log(`Hello, ${div.dataset.myname}`); 
+	}
+	```
+  
