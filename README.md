@@ -891,7 +891,7 @@ ECMAScript 有 6 种简单数据类型（也称为原始类型）：Undefined、
 	文档元素是文档最外层的元素，所有其他元素都存在于这个元素之内。每个文档只能有一个文档元素。
 	HTML 页面中，文档元素始终是<html>元素。在 XML 文档中，则没有这样预定义的元素，任何元素都可能成为文档元素。
 
- ## 4.2 Node 类型
+  ## 4.2 Node 类型
 
    Node 接口在 JavaScript中被实现为 Node 类型，在除 IE之外的所有浏览器中都可以直接访问这个类型。
    在 JavaScript中，所有节点类型都继承 Node 类型，因此所有类型都共享相同的基本属性和方法。
@@ -938,7 +938,7 @@ ECMAScript 有 6 种简单数据类型（也称为原始类型）：Undefined、
 
    
 
- ## 4.3 节点关系
+  ## 4.3 节点关系
 
    文档中的所有节点都与其他节点有关系。这些关系可以形容为家族关系，相当于把文档树比作家谱。在 HTML 中，&lt;body&gt;元素是&lt;html&gt;元素的子元素，而&lt;html&gt;元素则是&lt;body&gt;元素的父元素。&lt;head&gt;元素是&lt;body&gt;元素的同胞元素，因为它们有共同的父元素&lt;html&gt;。
    
@@ -955,7 +955,7 @@ ECMAScript 有 6 种简单数据类型（也称为原始类型）：Undefined、
    无论是使用中括号还是 item()方法都是可以的，但多数开发者倾向于使用中括号，因为它是一个类数组对象。
 
  
- ## 4.4 常用的节点方法
+  ## 4.4 常用的节点方法
 
    - hasChildNodes()
 
@@ -982,7 +982,7 @@ ECMAScript 有 6 种简单数据类型（也称为原始类型）：Undefined、
 
    上面介绍的方法都用于操纵某个节点的子元素，也就是说使用它们之前必须先取得父节点（使用前面介绍的 parentNode 属性）。
 
- ## 4.5 Document 类型
+  ## 4.5 Document 类型
 
    Document 类型是 JavaScript 中表示文档节点的类型。在浏览器中，文档对象 document 是HTMLDocument 的实例（HTMLDocument 继承 Document），表示整个 HTML 页面。
 
@@ -996,7 +996,7 @@ ECMAScript 有 6 种简单数据类型（也称为原始类型）：Undefined、
 	let doctype = document.doctype; // 取得对<!doctype>的引用
    ```
  
- ## 4.6 定位元素
+  ## 4.6 定位元素
 
    getElementById()和 getElementsByTagName(),getElementsByName()就是 Document 类型提供的三个方法。
    getElementsByTagName()，getElementsByName() 返回的是HTMLCollection 对象
@@ -1016,7 +1016,7 @@ ECMAScript 有 6 种简单数据类型（也称为原始类型）：Undefined、
 
 
  
- ## 4.7 文档写入
+  ## 4.7 文档写入
    
    document 对象有一个古老的能力，即向网页输出流中写入内容。这个能力对应 4 个方法：write()、writeln()、open()和 close()。其中，write()和 writeln()方法都接收一个字符串参数，可以将这个字符串写入网页中。write()简单地写入文本，而 writeln()还会在字符串末尾追加一个换行符（\n）。
   
@@ -1054,3 +1054,116 @@ ECMAScript 有 6 种简单数据类型（也称为原始类型）：Undefined、
 	</body> 
 	</html>
    ```
+
+
+  ## 4.8 html
+
+   - 属性
+
+     - id
+	 - name
+	 - class
+	 - style
+	 - title
+	 - 还有一些特有属性
+
+   - getAttribute()
+
+   - setAttribute()
+
+   - removeAttribute()
+
+   - 创建元素 createElement()
+
+   - 创建属性 createAttribute()
+
+     ```
+	 let attr = document.createAttribute("align"); 
+		attr.value = "left"; 
+		element.setAttributeNode(attr); 
+		alert(element.attributes["align"].value); // "left" 
+		alert(element.getAttributeNode("align").value); // "left" 
+		alert(element.getAttribute("align")); // "left"
+	 ```
+   
+
+
+
+
+  ## 4.9 table
+
+   ```
+   <table border="1" width="100%"> 
+	<tbody> 
+		<tr> 
+			<td>Cell 1,1</td> 
+			<td>Cell 2,1</td> 
+		</tr> 
+		<tr> 
+			<td>Cell 1,2</td> 
+			<td>Cell 2,2</td> 
+		</tr> 
+		</tbody> 
+	</table>
+   ```
+
+   ```
+   // 创建表格
+	let table = document.createElement("table"); 
+	table.border = 1; 
+	table.width = "100%"; 
+	// 创建表体
+	let tbody = document.createElement("tbody"); 
+	table.appendChild(tbody); 
+	// 创建第一行
+	let row1 = document.createElement("tr"); 
+	tbody.appendChild(row1); 
+	let cell1_1 = document.createElement("td"); 
+	cell1_1.appendChild(document.createTextNode("Cell 1,1")); 
+	row1.appendChild(cell1_1); 
+	let cell2_1 = document.createElement("td"); 
+	cell2_1.appendChild(document.createTextNode("Cell 2,1")); 
+	row1.appendChild(cell2_1); 
+	// 创建第二行
+	let row2 = document.createElement("tr"); 
+	tbody.appendChild(row2); 
+	let cell1_2 = document.createElement("td"); 
+	cell1_2.appendChild(document.createTextNode("Cell 1,2")); 
+	row2.appendChild(cell1_2); 
+	let cell2_2= document.createElement("td"); 
+	cell2_2.appendChild(document.createTextNode("Cell 2,2")); 
+	row2.appendChild(cell2_2); 
+	// 把表格添加到文档主体
+	document.body.appendChild(table);
+   ```
+
+   ```
+   // 创建表格
+	let table = document.createElement("table"); 
+	table.border = 1; 
+	table.width = "100%"; 
+	// 创建表体
+	let tbody = document.createElement("tbody"); 
+	table.appendChild(tbody); 
+	// 创建第一行
+	tbody.insertRow(0); 
+	tbody.rows[0].insertCell(0); 
+	tbody.rows[0].cells[0].appendChild(document.createTextNode("Cell 1,1")); 
+	tbody.rows[0].insertCell(1); 
+	tbody.rows[0].cells[1].appendChild(document.createTextNode("Cell 2,1")); 
+	// 创建第二行
+	tbody.insertRow(1); 
+	tbody.rows[1].insertCell(0); 
+	tbody.rows[1].cells[0].appendChild(document.createTextNode("Cell 1,2")); 
+	tbody.rows[1].insertCell(1); 
+	tbody.rows[1].cells[1].appendChild(document.createTextNode("Cell 2,2"));
+	// 把表格添加到文档主体
+	document.body.appendChild(table);
+   ```
+
+
+ 
+  ## 5.0 DOM扩展
+
+    
+
