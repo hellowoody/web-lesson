@@ -511,7 +511,7 @@ IE 初次支持文档模式切换以后，其他浏览器也跟着实现了。�
 
 # 第三章 语言基础
 
-## 3.1 语法
+  ## 3.1 语法
 
 ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如 Java 和 Perl。熟悉这些语言的开发者，应该很容易理解ECMAScript 宽松的语法。
 
@@ -732,141 +732,172 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
 	person.name = 'Matt'; // ok
    ```
 
-## 3.2 数据类型
+  ## 3.2 数据类型
 
-ECMAScript 有 6 种简单数据类型（也称为原始类型）：Undefined、Null、Boolean、Number、String 和 Symbol。Symbol（符号）是 ECMAScript 6 新增的。还有一种复杂数据类型叫 Object（对象）。Object 是一种无序名值对的集合。因为在 ECMAScript 中不能定义自己的数据类型，所有值都可以用上述 7 种数据类型之一来表示。
+    ECMAScript 有 6 种简单数据类型（也称为原始类型）：Undefined、Null、Boolean、Number、String 和 Symbol。Symbol（符号）是 ECMAScript 6 新增的。还有一种复杂数据类型叫 Object（对象）。Object 是一种无序名值对的集合。因为在 ECMAScript 中不能定义自己的数据类型，所有值都可以用上述 7 种数据类型之一来表示。
 
-- typeof 操作符
+    - typeof 操作符
 
-  因为 ECMAScript 的类型系统是松散的，所以需要一种手段来确定任意变量的数据类型。typeof操作符就是为此而生的。
+      因为 ECMAScript 的类型系统是松散的，所以需要一种手段来确定任意变量的数据类型。typeof操作符就是为此而生的。
 
-  ```
-  let message = "some string"; 
-	console.log(typeof message); // "string" 
-	console.log(typeof(message)); // "string" 
-	console.log(typeof 95); // "number"
-  ```
+		```
+		let message = "some string"; 
+			console.log(typeof message); // "string" 
+			console.log(typeof(message)); // "string" 
+			console.log(typeof 95); // "number"
+		```
 
-  注意typeof在某些情况下返回的结果可能会让人费解，但技术上讲还是正确的。比如，调用typeof null 返回的是"object"。这是因为特殊值 null 被认为是一个对空对象的引用。
+      注意typeof在某些情况下返回的结果可能会让人费解，但技术上讲还是正确的。比如，调用typeof null 返回的是"object"。这是因为特殊值 null 被认为是一个对空对象的引用。
 
-- NaN
+    - NaN
 
-  ```
-  console.log(NaN !== NaN);  // true
-  ```
+		```
+		console.log(NaN !== NaN);  // true
+		```
 
-- 数值转换
+    - 数值转换
 
-  parseInt(string, radix)   解析一个字符串并返回指定基数的十进制整数， radix 是2-36之间的整数，表示被解析字符串的基数。
-  - string
-    要被解析的值。如果参数不是一个字符串，则将其转换为字符串(使用  ToString 抽象操作)。字符串开头的空白符将会被忽略。
-  - radix 可选
-    从 2 到 36，表示字符串的基数。例如指定 16 表示被解析值是十六进制数。请注意，10不是默认值！
+      parseInt(string, radix)   解析一个字符串并返回指定基数的十进制整数， radix 是2-36之间的整数，表示被解析字符串的基数。
 
-  ```
-  let num1 = parseInt("10", 2); // 2，按二进制解析
-	let num2 = parseInt("10", 8); // 8，按八进制解析
-	let num3 = parseInt("10", 10); // 10，按十进制解析
-	let num4 = parseInt("10", 16); // 16，按十六进制解析
-  ```
+      - string
+	
+        要被解析的值。如果参数不是一个字符串，则将其转换为字符串(使用  ToString 抽象操作)。字符串开头的空白符将会被忽略。
 
-- Number类型
+      - radix 可选
+        从 2 到 36，表示字符串的基数。例如指定 16 表示被解析值是十六进制数。请注意，10不是默认值！
 
-  ECMAScript 中最有意思的数据类型或许就是 Number 了。Number 类型使用 IEEE 754 格式表示整数和浮点值（在某些语言中也叫双精度值）。
+			```
+			let num1 = parseInt("10", 2); // 2，按二进制解析
+				let num2 = parseInt("10", 8); // 8，按八进制解析
+				let num3 = parseInt("10", 10); // 10，按十进制解析
+				let num4 = parseInt("10", 16); // 16，按十六进制解析
+			```
 
-  ```
-  let intNum = 55; // 整数
-  let octalNum1 = 070; // 八进制的 56
-  let octalNum2 = 079; // 无效的八进制值，当成 79 处理
-  let octalNum3 = 08; // 无效的八进制值，当成 8 处理
-  ```
+    - Number类型
 
-  整数也可以用八进制（以 8 为基数）或十六进制（以 16 为基数）字面量表示。对于八进制字面量，第一个数字必须是零（0），然后是相应的八进制数字（数值 0~7）。如果字面量中包含的数字超出了应有的范围，就会忽略前缀的零，后面的数字序列会被当成十进制.
+      ECMAScript 中最有意思的数据类型或许就是 Number 了。Number 类型使用 IEEE 754 格式表示整数和浮点值（在某些语言中也叫双精度值）。
 
-  要创建十六进制字面量，必须让真正的数值前缀 0x（区分大小写），然后是十六进制数字（0~9 以 及 A~F）。十六进制数字中的字母大小写均可。下面是几个例子：
+		```
+		let intNum = 55; // 整数
+		let octalNum1 = 070; // 八进制的 56
+		let octalNum2 = 079; // 无效的八进制值，当成 79 处理
+		let octalNum3 = 08; // 无效的八进制值，当成 8 处理
+		```
 
-  ```
-  let hexNum1 = 0xA; // 十六进制 10 
-  let hexNum2 = 0x1f; // 十六进制 31
-  ```
-- 值的范围
+      整数也可以用八进制（以 8 为基数）或十六进制（以 16 为基数）字面量表示。对于八进制字面量，第一个数字必须是零（0），然后是相应的八进制数字（数值 0~7）。如果字面量中包含的数字超出了应有的范围，就会忽略前缀的零，后面的数字序列会被当成十进制.
 
-  由于内存的限制，ECMAScript 并不支持表示这个世界上的所有数值。ECMAScript 可以表示的最小数值保存在 Number.MIN_VALUE 中，这个值在多数浏览器中是 5e324；可以表示的最大数值保存在Number.MAX_VALUE 中，这个值在多数浏览器中是 1.797 693 134 862 315 7e+308。如果某个计算得到的数值结果超出了 JavaScript 可以表示的范围，那么这个数值会被自动转换为一个特殊的 Infinity（无穷）值。任何无法表示的负数以-Infinity（负无穷大）表示，任何无法表示的正数以 Infinity（正无穷大）表示。
+      要创建十六进制字面量，必须让真正的数值前缀 0x（区分大小写），然后是十六进制数字（0~9 以 及 A~F）。十六进制数字中的字母大小写均可。下面是几个例子：
 
-  如果计算返回正 Infinity 或负 Infinity，则该值将不能再进一步用于任何计算。这是因为Infinity 没有可用于计算的数值表示形式。要确定一个值是不是有限大（即介于 JavaScript 能表示的最小值和最大值之间），可以使用 isFinite()函数。
+		```
+		let hexNum1 = 0xA; // 十六进制 10 
+		let hexNum2 = 0x1f; // 十六进制 31
+		```
 
-  ```
-  let result = Number.MAX_VALUE + Number.MAX_VALUE; 
-	console.log(isFinite(result)); // false
-  ```
-- String类型
+      - 值的范围
 
-  String（字符串）数据类型表示零或多个 16 位 Unicode 字符序列。字符串可以使用双引号（"）、单引号（'）或反引号（`）标示，因此下面的代码都是合法的：
+        由于内存的限制，ECMAScript 并不支持表示这个世界上的所有数值。ECMAScript 可以表示的最小数值保存在 Number.MIN_VALUE 中，这个值在多数浏览器中是 5e324；可以表示的最大数值保存在Number.MAX_VALUE 中，这个值在多数浏览器中是 1.797 693 134 862 315 7e+308。如果某个计算得到的数值结果超出了 JavaScript 可以表示的范围，那么这个数值会被自动转换为一个特殊的 Infinity（无穷）值。任何无法表示的负数以-Infinity（负无穷大）表示，任何无法表示的正数以 Infinity（正无穷大）表示。
 
-  ```
-  let firstName = "John"; 
-	let lastName = 'Jacob'; 
-	let lastName = `Jingleheimerschmidt`
-  ```
+        如果计算返回正 Infinity 或负 Infinity，则该值将不能再进一步用于任何计算。这是因为Infinity 没有可用于计算的数值表示形式。要确定一个值是不是有限大（即介于 JavaScript 能表示的最小值和最大值之间），可以使用 isFinite()函数。
 
-- 字符串特点
+			```
+			let result = Number.MAX_VALUE + Number.MAX_VALUE; 
+				console.log(isFinite(result)); // false
+			```
+
+    - String类型
+
+      String（字符串）数据类型表示零或多个 16 位 Unicode 字符序列。字符串可以使用双引号（"）、单引号（'）或反引号（`）标示，因此下面的代码都是合法的：
+
+		```
+		let firstName = "John"; 
+			let lastName = 'Jacob'; 
+			let lastName = `Jingleheimerschmidt`
+		```
+
+      - 字符串特点
   
-  ECMAScript 中的字符串是不可变的（immutable），意思是一旦创建，它们的值就不能变了。要修改某个变量中的字符串值，必须先销毁原始的字符串，然后将包含新值的另一个字符串保存到该变量，如下所示：
+        ECMAScript 中的字符串是不可变的（immutable），意思是一旦创建，它们的值就不能变了。要修改某个变量中的字符串值，必须先销毁原始的字符串，然后将包含新值的另一个字符串保存到该变量，如下所示：
 
-  ```
-  let lang = "Java"; 
-	lang = lang + "Script";
-  ```
-- toString()转换为字符串
+			```
+			let lang = "Java"; 
+				lang = lang + "Script";
+			```
+      
+	  - toString()转换为字符串
 
-  几乎所有值都有的 toString()方法。这个方法唯一的用途就是返回当前值的字符串等价物。比如：
+        几乎所有值都有的 toString()方法。这个方法唯一的用途就是返回当前值的字符串等价物。比如：
 
-  ```
-	let value1 = 10; 
-	let value2 = true; 
-	let value3 = null; 
-	let value4; 
-	console.log(String(value1)); // "10" 
-	console.log(String(value2)); // "true" 
-	console.log(String(value3)); // "null" 
-	console.log(String(value4)); // "undefined"
-  ```
+			```
+				let value1 = 10; 
+				let value2 = true; 
+				let value3 = null; 
+				let value4; 
+				console.log(String(value1)); // "10" 
+				console.log(String(value2)); // "true" 
+				console.log(String(value3)); // "null" 
+				console.log(String(value4)); // "undefined"
+			```
 
-  多数情况下，toString()不接收任何参数。不过，在对数值调用这个方法时，toString()可以接收一个底数参数，即以什么底数来输出数值的字符串表示。默认情况下，toString()返回数值的十进制字符串表示。而通过传入参数，可以得到数值的二进制、八进制、十六进制，或者其他任何有效基数的字符串表示，比如：
+  		多数情况下，toString()不接收任何参数。不过，在对数值调用这个方法时，toString()可以接收一个底数参数，即以什么底数来输出数值的字符串表示。默认情况下，toString()返回数值的十进制字符串表示。而通过传入参数，可以得到数值的二进制、八进制、十六进制，或者其他任何有效基数的字符串表示，比如：
 
-  ```
-  let num = 10; 
-	console.log(num.toString()); // "10" 
-	console.log(num.toString(2)); // "1010" 
-	console.log(num.toString(8)); // "12" 
-	console.log(num.toString(10)); // "10" 
-	console.log(num.toString(16)); // "a"
-  ```
+			```
+			let num = 10; 
+				console.log(num.toString()); // "10" 
+				console.log(num.toString(2)); // "1010" 
+				console.log(num.toString(8)); // "12" 
+				console.log(num.toString(10)); // "10" 
+				console.log(num.toString(16)); // "a"
+			```
 
-  这个例子展示了传入底数参数时，toString()输出的字符串值也会随之改变。数值 10 可以输出为任意数值格式。注意，默认情况下（不传参数）的输出与传入参数 10 得到的结果相同。
+        这个例子展示了传入底数参数时，toString()输出的字符串值也会随之改变。数值 10 可以输出为任意数值格式。注意，默认情况下（不传参数）的输出与传入参数 10 得到的结果相同。
 
-- 模板字面量
+    - 模板字面量
 
-  ECMAScript 6 新增了使用模板字面量定义字符串的能力。与使用单引号或双引号不同，模板字面量保留换行字符，可以跨行定义字符串：
+      ECMAScript 6 新增了使用模板字面量定义字符串的能力。与使用单引号或双引号不同，模板字面量保留换行字符，可以跨行定义字符串：
 
-	```
-	let myMultiLineString = 'first line\nsecond line'; 
-	let myMultiLineTemplateLiteral = `first line 
-	second line`;
-	```	
+		```
+		let myMultiLineString = 'first line\nsecond line'; 
+		let myMultiLineTemplateLiteral = `first line 
+		second line`;
+		```	
 
-	字符串插值通过在${}中使用一个 JavaScript 表达式实现：
+	  字符串插值通过在${}中使用一个 JavaScript 表达式实现：
 
-	```
-	let value = 5; 
-	let exponent = 'second';
+		```
+		let value = 5; 
+		let exponent = 'second';
 
-	let interpolatedTemplateLiteral = 
-	`${ value } to the ${ exponent } power is ${ value * value }`;
+		let interpolatedTemplateLiteral = 
+		`${ value } to the ${ exponent } power is ${ value * value }`;
 
-		console.log(interpolatedTemplateLiteral); // 5 to the second power is 25
-	```
+			console.log(interpolatedTemplateLiteral); // 5 to the second power is 25
+		```
 
+    - Object 类型
+  
+      ECMAScript 中的对象其实就是一组数据和功能的集合。对象通过 new 操作符后跟对象类型的名称来创建。开发者可以通过创建 Object 类型的实例来创建自己的对象，然后再给对象添加属性和方法：
+
+  ## 3.3 操作符
+
+    - 一元操作符
+
+	  ```
+	  let age = 29; 
+		++age;
+
+	  let age = 29; 
+		age = age + 1;
+	  ```
+
+	  ```
+	  let age = 29; 
+		let anotherAge = --age + 2;
+
+		console.log(age); // 28 
+		console.log(anotherAge); // 30
+	  ```
+
+  
 # 第四章 DOM
 
   DOM 表示由多层节点构成的文档，通过它开发者可以添加、删除和修改页面的各个部分。之所以介绍DOM，主要因为它与浏览器中的 HTML 网页相关，并且在 JavaScript 中提供了 DOM API。
@@ -1169,16 +1200,16 @@ ECMAScript 有 6 种简单数据类型（也称为原始类型）：Undefined、
 
 	  querySelector()方法接收 CSS 选择符参数，返回匹配该模式的第一个后代元素，如果没有匹配项则返回 null。下面是一些例子：
 
-	  ```
-	  // 取得<body>元素
-		let body = document.querySelector("body"); 
-		// 取得 ID 为"myDiv"的元素
-		let myDiv = document.querySelector("#myDiv");
-		// 取得类名为"selected"的第一个元素
-		let selected = document.querySelector(".selected"); 
-		// 取得类名为"button"的图片
-		let img = document.body.querySelector("img.button");
-	  ```
+		```
+		// 取得<body>元素
+			let body = document.querySelector("body"); 
+			// 取得 ID 为"myDiv"的元素
+			let myDiv = document.querySelector("#myDiv");
+			// 取得类名为"selected"的第一个元素
+			let selected = document.querySelector(".selected"); 
+			// 取得类名为"button"的图片
+			let img = document.body.querySelector("img.button");
+		```
 	- querySelectorAll()
 
 	  querySelectorAll()方法跟 querySelector()一样，也接收一个用于查询的参数，但它会返回所有匹配的节点，而不止一个。这个方法返回的是一个 NodeList 的静态实例。
@@ -1189,19 +1220,15 @@ ECMAScript 有 6 种简单数据类型（也称为原始类型）：Undefined、
 
 	  matches()方法（在规范草案中称为 matchesSelector()）接收一个 CSS 选择符参数，如果元素匹配则该选择符返回 true，否则返回 false。例如：
 
-	  ```
-	  if (document.body.matches("body.page1")){ 
-		// true 
-		}
-	  ```
+		```
+		if (document.body.matches("body.page1")){ 
+			// true 
+			}
+		```
 
 	  使用这个方法可以方便地检测某个元素会不会被 querySelector()或 querySelectorAll()方法返回。
 
 	- document.characterSet
-
-	  
-
-
 
     
 
@@ -1209,22 +1236,22 @@ ECMAScript 有 6 种简单数据类型（也称为原始类型）：Undefined、
 
     HTML5 允许给元素指定非标准的属性，但要使用前缀 data-以便告诉浏览器，这些属性既不包含与渲染有关的信息，也不包含元素的语义信息。除了前缀，自定义属性对命名是没有限制的，data-后面跟什么都可以。下面是一个例子：
     
-	```
-	<div id="myDiv" data-appId="12345" data-myname="Nicholas"></div>
-	```
+		```
+		<div id="myDiv" data-appId="12345" data-myname="Nicholas"></div>
+		```
     
-	```
-	// 本例中使用的方法仅用于示范
-	let div = document.getElementById("myDiv"); 
-	// 取得自定义数据属性的值
-	let appId = div.dataset.appId; 
-	let myName = div.dataset.myname; 
-	// 设置自定义数据属性的值
-	div.dataset.appId = 23456; 
-	div.dataset.myname = "Michael"; 
-	// 有"myname"吗？
-	if (div.dataset.myname){ 
-	console.log(`Hello, ${div.dataset.myname}`); 
-	}
-	```
+		```
+		// 本例中使用的方法仅用于示范
+		let div = document.getElementById("myDiv"); 
+		// 取得自定义数据属性的值
+		let appId = div.dataset.appId; 
+		let myName = div.dataset.myname; 
+		// 设置自定义数据属性的值
+		div.dataset.appId = 23456; 
+		div.dataset.myname = "Michael"; 
+		// 有"myname"吗？
+		if (div.dataset.myname){ 
+		console.log(`Hello, ${div.dataset.myname}`); 
+		}
+		```
   
