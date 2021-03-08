@@ -1196,9 +1196,9 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
  
   ## 4.10 DOM扩展
 
-    - querySelector()
+   - querySelector()
 
-	  querySelector()方法接收 CSS 选择符参数，返回匹配该模式的第一个后代元素，如果没有匹配项则返回 null。下面是一些例子：
+     querySelector()方法接收 CSS 选择符参数，返回匹配该模式的第一个后代元素，如果没有匹配项则返回 null。下面是一些例子：
 
 		```
 		// 取得<body>元素
@@ -1210,15 +1210,15 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
 			// 取得类名为"button"的图片
 			let img = document.body.querySelector("img.button");
 		```
-	- querySelectorAll()
 
-	  querySelectorAll()方法跟 querySelector()一样，也接收一个用于查询的参数，但它会返回所有匹配的节点，而不止一个。这个方法返回的是一个 NodeList 的静态实例。
-	  再强调一次，querySelectorAll()返回的 NodeList 实例一个属性和方法都不缺，但它是一个静态的“快照”，而非“实时”的查询。
+   - querySelectorAll()
 
+     querySelectorAll()方法跟 querySelector()一样，也接收一个用于查询的参数，但它会返回所有匹配的节点，而不止一个。这个方法返回的是一个 NodeList 的静态实例。
+	 再强调一次，querySelectorAll()返回的 NodeList 实例一个属性和方法都不缺，但它是一个静态的“快照”，而非“实时”的查询。
 
-	- matches() 用的比较少
+   - matches() 用的比较少
 
-	  matches()方法（在规范草案中称为 matchesSelector()）接收一个 CSS 选择符参数，如果元素匹配则该选择符返回 true，否则返回 false。例如：
+     matches()方法（在规范草案中称为 matchesSelector()）接收一个 CSS 选择符参数，如果元素匹配则该选择符返回 true，否则返回 false。例如：
 
 		```
 		if (document.body.matches("body.page1")){ 
@@ -1226,11 +1226,9 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
 			}
 		```
 
-	  使用这个方法可以方便地检测某个元素会不会被 querySelector()或 querySelectorAll()方法返回。
+	 使用这个方法可以方便地检测某个元素会不会被 querySelector()或 querySelectorAll()方法返回。
 
-	- document.characterSet
-
-    
+   - document.characterSet
 
   ## 4.11 自定义数据属性
 
