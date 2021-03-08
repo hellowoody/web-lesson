@@ -814,42 +814,42 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
 			let lastName = `Jingleheimerschmidt`
 		```
 
-      - 字符串特点
+     - 字符串特点
   
-        ECMAScript 中的字符串是不可变的（immutable），意思是一旦创建，它们的值就不能变了。要修改某个变量中的字符串值，必须先销毁原始的字符串，然后将包含新值的另一个字符串保存到该变量，如下所示：
+       ECMAScript 中的字符串是不可变的（immutable），意思是一旦创建，它们的值就不能变了。要修改某个变量中的字符串值，必须先销毁原始的字符串，然后将包含新值的另一个字符串保存到该变量，如下所示：
 
 			```
 			let lang = "Java"; 
 				lang = lang + "Script";
 			```
       
-	  - toString()转换为字符串
+	 - toString()转换为字符串
 
-        几乎所有值都有的 toString()方法。这个方法唯一的用途就是返回当前值的字符串等价物。比如：
+       几乎所有值都有的 toString()方法。这个方法唯一的用途就是返回当前值的字符串等价物。比如：
 
-			```
-				let value1 = 10; 
-				let value2 = true; 
-				let value3 = null; 
-				let value4; 
-				console.log(String(value1)); // "10" 
-				console.log(String(value2)); // "true" 
-				console.log(String(value3)); // "null" 
-				console.log(String(value4)); // "undefined"
-			```
+		```
+			let value1 = 10; 
+			let value2 = true; 
+			let value3 = null; 
+			let value4; 
+			console.log(String(value1)); // "10" 
+			console.log(String(value2)); // "true" 
+			console.log(String(value3)); // "null" 
+			console.log(String(value4)); // "undefined"
+		```
 
-  		多数情况下，toString()不接收任何参数。不过，在对数值调用这个方法时，toString()可以接收一个底数参数，即以什么底数来输出数值的字符串表示。默认情况下，toString()返回数值的十进制字符串表示。而通过传入参数，可以得到数值的二进制、八进制、十六进制，或者其他任何有效基数的字符串表示，比如：
+  	   多数情况下，toString()不接收任何参数。不过，在对数值调用这个方法时，toString()可以接收一个底数参数，即以什么底数来输出数值的字符串表示。默认情况下，toString()返回数值的十进制字符串表示。而通过传入参数，可以得到数值的二进制、八进制、十六进制，或者其他任何有效基数的字符串表示，比如：
 
-			```
-			let num = 10; 
-				console.log(num.toString()); // "10" 
-				console.log(num.toString(2)); // "1010" 
-				console.log(num.toString(8)); // "12" 
-				console.log(num.toString(10)); // "10" 
-				console.log(num.toString(16)); // "a"
-			```
+		```
+		let num = 10; 
+			console.log(num.toString()); // "10" 
+			console.log(num.toString(2)); // "1010" 
+			console.log(num.toString(8)); // "12" 
+			console.log(num.toString(10)); // "10" 
+			console.log(num.toString(16)); // "a"
+		```
 
-        这个例子展示了传入底数参数时，toString()输出的字符串值也会随之改变。数值 10 可以输出为任意数值格式。注意，默认情况下（不传参数）的输出与传入参数 10 得到的结果相同。
+       这个例子展示了传入底数参数时，toString()输出的字符串值也会随之改变。数值 10 可以输出为任意数值格式。注意，默认情况下（不传参数）的输出与传入参数 10 得到的结果相同。
 
     - 模板字面量
 
