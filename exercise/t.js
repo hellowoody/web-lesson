@@ -1,4 +1,3 @@
-
 let b = navigator.getBattery().then((b) => console.log(b));
 
 
@@ -13,15 +12,15 @@ function getAge(id,name){
     
 }
 
-window.navigator = {
-    appName:"123",
-    platform:"456",
-    getBattery:function(){
-        console.log(789)
+// window.navigator = {
+//     appName:"123",
+//     platform:"456",
+//     getBattery:function(){
+//         console.log(789)
 
-        return new Promise()
-    }
-}
+//         return new Promise()
+//     }
+// }
 
 /*
 

@@ -2,25 +2,29 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
         <title>script标签 练习</title>
         <script>
-            var tmp = 100
-            console.log(tmp)
-            // while(true){}
-            console.log(300)
-            var myGloablObj = {
-                version : "0.1.0",
-                fn:function(){
+            //<![CDATA[
+                var tmp = 100
+                console.log(tmp)
+                // while(true){}
+                console.log(300)
+                var myGloablObj = {
+                    version : "0.1.0",
+                    fn:function(){
 
+                    }
                 }
-            }
+            //]]>
             
-            var s = document.createElement("script");
-            s.src = "./t.js"
-            s.async = false
-            document.head.append(s)
+            
+            // var s = document.createElement("script");
+            // s.src = "./t.js"
+            // s.async = false
+            // document.head.append(s)
         </script>
-        <!-- <script defer src="t.js"></script> -->
+        <script defer src="t.js"></script>
         
     </head>
     <body>
@@ -28,7 +32,7 @@
         <button id="btn">btn</button>
     </body>
 </html>
-<script>
+<script >
+// import "./t.js" ;
 console.log(500,myGloablObj.version)  
-
 </script> 
