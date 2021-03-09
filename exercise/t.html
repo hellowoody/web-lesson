@@ -15,8 +15,12 @@
                 }
             }
             
+            var s = document.createElement("script");
+            s.src = "./t.js"
+            s.async = false
+            document.head.append(s)
         </script>
-        <script defer src="t.js"></script>
+        <!-- <script defer src="t.js"></script> -->
         
     </head>
     <body>
