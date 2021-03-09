@@ -5,6 +5,7 @@ let b = navigator.getBattery().then((b) => console.log(b));
 //(b) => console.log(b)
 // obj JS type function 
 // obj()
+document.getElementById("btn").addEventListener("click",()=>console.log("btn click"))
 
 function getAge(id,name){
     console.log(arguments.id)
