@@ -1,0 +1,30 @@
+<!-- dtd -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>script标签 练习</title>
+        <script>
+            var tmp = 100
+            console.log(tmp)
+            // while(true){}
+            console.log(300)
+            var myGloablObj = {
+                version : "0.1.0",
+                fn:function(){
+
+                }
+            }
+
+        </script>
+        <script src="t.js"></script>
+        
+    </head>
+    <body>
+        <h1>script 标签</h1> 
+        <button id="btn">btn</button>
+    </body>
+</html>
+<script>
+console.log(500,myGloablObj.version)  
+document.getElementById("btn").addEventListener("click",()=>console.log("btn click"))
+</script> 
