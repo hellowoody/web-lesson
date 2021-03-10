@@ -1,0 +1,27 @@
+<!-- dtd -->
+<!DOCTYPE html> 
+<html>
+    <head>
+        <script>
+            var global = {
+                version : "0.1.0"
+            }
+
+        </script>
+    </head>
+    <body>
+        <h1>hello</h1>
+        <button id="btn">按钮</button>
+    </body>
+</html>
+<script>
+            var btn = document.getElementById("btn")
+            console.log(btn)
+            btn.addEventListener("click",function(){
+                console.log("this is btn click")
+            })
+    var a = 100
+    var flag = true
+    // while(flag){} //空转
+    console.log(a,global.version)
+</script>

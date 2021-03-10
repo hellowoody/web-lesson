@@ -6,7 +6,6 @@ var battery = nav.getBattery()
 
 battery.then(a => console.log(b));
 
-
 /**
  
 html css  
