@@ -2,12 +2,14 @@
 <!DOCTYPE html> 
 <html>
     <head>
-        <script>
+        <script defer>
             var global = {
                 version : "0.1.0"
             }
-
+         
         </script>
+        <script defer src="./script.js"></script>
+        <script src="./script1.js"></script>
     </head>
     <body>
         <h1>hello</h1>
@@ -15,11 +17,7 @@
     </body>
 </html>
 <script>
-            var btn = document.getElementById("btn")
-            console.log(btn)
-            btn.addEventListener("click",function(){
-                console.log("this is btn click")
-            })
+           
     var a = 100
     var flag = true
     // while(flag){} //空转
