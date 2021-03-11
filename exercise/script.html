@@ -2,22 +2,35 @@
 <!DOCTYPE html> 
 <html>
     <head>
-        <script defer>
+        <!-- <meta charset="utf-8"> -->
+        <script>
             var global = {
                 version : "0.1.0"
             }
-         
+            var s = document.createElement('script'); 
+            s.src = "./script.js";
+            s.async = false;
+            document.head.appendChild(s);
+
         </script>
-        <script defer src="./script.js"></script>
+        <script src="./script.js"></script>
+        <!-- <script defer src="./script.js"></script> -->
+        <!-- <script async src="./script.js"></script> -->
     <body>
         <h1>hello</h1>
         <button id="btn">按钮</button>
     </body>
 </html>
 <script>
-           
     var a = 100
     var flag = true
     // while(flag){} //空转
     console.log(a,global.version)
+    console.log(3000)
+</script>
+
+<script type="module">
+    import "./script.js"
+    
+      console.log(4000)
 </script>
