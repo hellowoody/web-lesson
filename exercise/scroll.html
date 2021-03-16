@@ -1,0 +1,36 @@
+<!Doctype html>
+<html>
+    <head>
+        <style>
+            * {
+                margin:0px;
+                padding:0px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="a" style="width: 100%;background-color: red;"></div>
+        <div id="b" style="width: 100%;height:200px;background-color: blue;"></div>
+    </body>
+</html>
+
+<script>
+;(function(){
+    document.getElementById("a").style.height= window.innerHeight + "px"
+})()
+
+window.addEventListener("resize",function(){
+    document.getElementById("a").style.height= window.innerHeight + "px"
+})
+    
+
+    document.addEventListener("scroll",function(){
+        // console.log(window.innerHeight)
+        // if(document.getElementById("b").offsetTop - document.documentElement.scrollTop + 100 < window.innerHeight){
+        if(document.getElementById("b").getBoundingClientRect().top + 100 < window.innerHeight){
+            document.getElementById("b").style.backgroundColor = "pink"
+        }else{
+            document.getElementById("b").style.backgroundColor = "blue"
+        }
+    })
+</script>

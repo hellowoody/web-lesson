@@ -28,3 +28,8 @@ es6  promise 处理/形容 异步操作
 
 arrow function
 */
+
+
+export const test = function(){
+    console.log("i from t.js")
+}
