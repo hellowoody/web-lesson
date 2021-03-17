@@ -21,6 +21,16 @@
     })
 
     document.addEventListener("scroll",function(){
-        
+        // 如果id=b的div它的纵坐标的值 小于 当前可视窗口的值时,需要改变颜色
+        // var div_b_y_height = document.getElementById("b").offsetTop - document.documentElement.scrollTop + 100;
+        var div_b_y_height = document.getElementById("b").getBoundingClientRect().top + 100;
+        var inner_height = window.innerHeight
+        if(div_b_y_height < inner_height){
+            //改变颜色
+            document.getElementById("b").style.backgroundColor = "pink";
+        }else{
+            //将重置为默认的蓝色
+            document.getElementById("b").style.backgroundColor = "blue";
+        }
     })
 </script>
