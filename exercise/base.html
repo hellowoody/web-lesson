@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src=""></script>
+    </head>
+    <body>
+        <h1>hello world</h1>
+    </body>
+</html>
+<script>
+// 'use strict';
+// var abc;
+var a = 200;
+var abc = 100;
+
+
+
+function self(){
+    'use strict';
+}
+
+/*
+    es6 引用外部js - 引用模块 module
+    只要说的module
+
+*/
+
+var score = 80
+
+if(score >= 60) console.log("过线了")
+
+
+
+if(1==1){
+    var person = "zhangsan"  
+}
+
+console.log(person)
+
+function area(){
+    var person1 = "wangwu"
+}
+
+area()
+
+// console.log(person1);
+
+//声明 语法糖
+var name = "zhangsan";
+var age = 50;
+var gender = "male";
+
+console.log(name,age,gender)
+
+var name1 = "王武",
+    age1 = "60",
+    gender1 = "female";
+
+console.log(name1,age1,gender1)
+
+/*
+    var 声明提升
+*/
+function promote(){
+    'use strict';
+    console.log(t); //undefined
+    var t  = 100
+    console.log(t) //100
+}
+
+promote();
+
+
+</script>

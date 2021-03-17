@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            * {
+                margin:0px;
+                padding:0px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="a" style="background-color: red;width:100%;"></div>
+        <div id="b" style="background-color: blue;width:100%;height:200px;"></div>
+    </body>
+</html>
+<script>
+    document.getElementById("a").style.height = window.innerHeight + "px";
+    
+    window.addEventListener("resize",function(){
+        document.getElementById("a").style.height = window.innerHeight + "px";
+    })
+
+    document.addEventListener("scroll",function(){
+        
+    })
+</script>

@@ -15,22 +15,24 @@
 </html>
 
 <script>
-;(function(){
-    document.getElementById("a").style.height= window.innerHeight + "px"
-})()
+// ;(function(){
+    
+// })()
 
-window.addEventListener("resize",function(){
-    document.getElementById("a").style.height= window.innerHeight + "px"
-})
+document.getElementById("a").style.height= window.innerHeight + "px";
+
+// window.addEventListener("resize",function(){
+//     document.getElementById("a").style.height= window.innerHeight + "px"
+// })
     
 
-    document.addEventListener("scroll",function(){
-        // console.log(window.innerHeight)
-        // if(document.getElementById("b").offsetTop - document.documentElement.scrollTop + 100 < window.innerHeight){
-        if(document.getElementById("b").getBoundingClientRect().top + 100 < window.innerHeight){
-            document.getElementById("b").style.backgroundColor = "pink"
-        }else{
-            document.getElementById("b").style.backgroundColor = "blue"
-        }
-    })
+document.addEventListener("scroll",function(){
+    // console.log(window.innerHeight)
+    // if(document.getElementById("b").offsetTop - document.documentElement.scrollTop + 100 < window.innerHeight){
+    if(document.getElementById("b").getBoundingClientRect().top + 100 < window.innerHeight){
+        document.getElementById("b").style.backgroundColor = "pink"
+    }else{
+        document.getElementById("b").style.backgroundColor = "blue"
+    }
+})
 </script>
