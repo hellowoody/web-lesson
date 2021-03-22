@@ -1051,6 +1051,70 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
 	  let max = (num1 > num2) ? num1 : num2;
 	  ```
 
+  ## 3.4 Date 日期对象
+  
+  	Date 类型将日期保存为自协调世界时（UTC，Universal Time Coordinated）时间 1970 年 1 月 1 日午夜（零时）至今所经过的毫秒数。使用这种存储格式，Date 类型可以精确表示 1970 年 1 月 1 日之前及之后 285 616 年的日期。
+        要创建日期对象，就使用 new 操作符来调用 Date 构造函数：
+	
+	```
+	let now = new Date();
+	```
+	
+        指定某一具体日期
+	
+	- Date.parse()
+	  
+	 - “月/日/年”，如"5/23/2019"；
+	 - “月名 日, 年”，如"May 23, 2019"；
+	 - “周几 月名 日 年 时:分:秒 时区”，如"Tue May 23 2019 00:00:00 GMT-0700"；
+	 - ISO 8601 扩展格式“YYYY-MM-DDTHH:mm:ss.sssZ”，如 2019-05-23T00:00:00（只适用于兼容 ES5 的实现）。
+	
+	```
+	//比如，要创建一个表示“2021 年 3 月 1 日”的日期对象，可以使用以下代码：
+	let someDate = new Date(Date.parse("Mar 1, 2021"));
+	let someDate = new Date(Date.parse("3/1/2021"));
+	```
+	
+        如果直接把表示日期的字符串传给 Date 构造函数，那么 Date 会在后台调用 Date.parse()。换句话说，下面这行代码跟前面那行代码是等价的：
+	
+	```
+	let someDate = new Date("3/1/2021");
+	let someDate = new Date("2021-03-23T17:20:00")
+	```
+	
+	- Date.UTC()
+          默认是GTM时间，也就是传入的参数是格林威治标准时间，但生成的是转成本地的时间
+	
+	```
+	// GMT 时间 2000 年 1 月 1 日零点
+	let y2k = new Date(Date.UTC(2021, 0)); 
+	// GMT 时间 2021 年 5 月 5 日 2 点 55 分 55 秒  其实是本地时间 10 点 55 分 55 秒 ，也就是时间往后移8小时。
+	let allFives = new Date(Date.UTC(2021, 4, 5, 2, 55, 55));
+	```
+	
+        与 Date.parse()一样，Date.UTC()也会被 Date 构造函数隐式调用，但有一个区别：这种情况下创建的是本地日期，不是 GMT 日期。不过 Date 构造函数跟 Date.UTC()接收的参数是一样的。
+	
+	
+	```
+	// 传入什么时间就是返回什么时间
+
+	let allFives = new Date(2021, 4, 5, 2, 55, 55);
+	
+	```
+	
+        ECMAScript 还提供了 Date.now()方法，返回表示方法执行时日期和时间的毫秒数。这个方法可以方便地计算运行程序
+	
+	```
+	let start = Date.now(); 
+	// 调用函数
+	doSomething(); 
+	// 结束时间
+	let stop = Date.now(), 
+	result = stop - start;
+	```
+	
+ 
+
 # 第四章 DOM
 
   DOM 表示由多层节点构成的文档，通过它开发者可以添加、删除和修改页面的各个部分。之所以介绍DOM，主要因为它与浏览器中的 HTML 网页相关，并且在 JavaScript 中提供了 DOM API。
