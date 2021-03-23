@@ -89,5 +89,50 @@ let anotherAge1 = age1-- + 2 ;
 
 console.log(age1,anotherAge1); // 28 31
 
+// 位运算 
+
+/*
+
+十进制 2    
+二进制 10
+
+*/
+
+let a = 2
+let b = a << 5 //左侧移动5位
+
+/*
+1000000 
+1*2 6次方 = 64 
+
+*/
+
+
+//布尔操作符
+//逻辑非
+if(1 != 0 ){
+    console.log("正确")
+}
+//逻辑与 &&  并且
+if( 5 < 10 && 5 > 1 ){
+    console.log("正确")
+}
+//逻辑或 ||
+let tmp = "SUN"
+if(tmp == "SUN" || tmp == "sunday" ||  tmp == "Sunday" || tmp == 0 ){
+    console.log("今天是周日")
+}
+
+//三元表达式
+let age = 20;
+if(age >= 18){
+    return "成年"
+}else{
+    return "未成年"
+}
+
+let status = age >= 18 ? "成年" : "未成年";
+
+
 
 </script>
