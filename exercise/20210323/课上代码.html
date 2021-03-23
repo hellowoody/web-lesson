@@ -1,0 +1,36 @@
+<script>
+    function ifString(p){
+        if(typeof p === "string"){
+            return "是字符串类型"
+        }else{
+            return "其他类型"
+        }
+    }
+
+/*
+8进制
+
+70
+7*8一次方 + 0*8零次方 = 56
+*/
+
+// string
+
+let str = "my name '' is hello";
+let str1 = '我的名字是"你好"';
+
+// 反引号 模版引号
+let person_name = "";
+
+person_name = "李明"
+
+let template = ` 
+    您好
+
+        ${person_name}先生/女士，xxxxxx
+
+
+                           此致
+`
+
+</script>

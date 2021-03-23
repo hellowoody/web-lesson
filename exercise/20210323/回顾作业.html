@@ -1,0 +1,30 @@
+<script>
+for (var i = 0; i < 5; ++i) { 
+  	// setTimeout(() => console.log(i), 0) 
+    setTimeout(function(){
+        console.log(i)
+    },1000)
+} 
+
+// 4 4 4 4 4
+
+for (let i = 0; i < 5; ++i) { 
+//   setTimeout(() => console.log(i), 0) 
+  setTimeout(function(){
+      console.log(i)
+  },1000)
+}
+
+// 0 - 4
+
+
+/*
+
+param_1:回调函数  
+param_2:单位为毫秒的数字
+setTimeout(function(){
+    //回调函数
+},1000)
+
+*/
+</script>
