@@ -1051,6 +1051,363 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
 	  let max = (num1 > num2) ? num1 : num2;
 	  ```
 
+  ## 3.4 Date 日期对象
+  
+    Date 类型将日期保存为自协调世界时（UTC，Universal Time Coordinated）时间 1970 年 1 月 1 日午夜（零时）至今所经过的毫秒数。使用这种存储格式，Date 类型可以精确表示 1970 年 1 月 1 日之前及之后 285 616 年的日期。
+    要创建日期对象，就使用 new 操作符来调用 Date 构造函数：
+	
+	```
+	let now = new Date();
+	```
+	
+    指定某一具体日期
+	
+	- Date.parse()
+	  
+	 - “月/日/年”，如"5/23/2019"；
+	 - “月名 日, 年”，如"May 23, 2019"；
+	 - “周几 月名 日 年 时:分:秒 时区”，如"Tue May 23 2019 00:00:00 GMT-0700"；
+	 - ISO 8601 扩展格式“YYYY-MM-DDTHH:mm:ss.sssZ”，如 2019-05-23T00:00:00（只适用于兼容 ES5 的实现）。
+	
+	```
+	//比如，要创建一个表示“2021 年 3 月 1 日”的日期对象，可以使用以下代码：
+	let someDate = new Date(Date.parse("Mar 1, 2021"));
+	let someDate = new Date(Date.parse("3/1/2021"));
+	```
+	
+    如果直接把表示日期的字符串传给 Date 构造函数，那么 Date 会在后台调用 Date.parse()。换句话说，下面这行代码跟前面那行代码是等价的：
+	
+	```
+	let someDate = new Date("3/1/2021");
+	let someDate = new Date("2021-03-23T17:20:00")
+	```
+	
+	- Date.UTC()
+    
+      默认是GTM时间，也就是传入的参数是格林威治标准时间，但生成的是转成本地的时间
+	
+        ```
+        // GMT 时间 2000 年 1 月 1 日零点
+        let y2k = new Date(Date.UTC(2021, 0)); 
+        // GMT 时间 2021 年 5 月 5 日 2 点 55 分 55 秒  其实是本地时间 10 点 55 分 55 秒 ，也就是时间往后移8小时。
+        let allFives = new Date(Date.UTC(2021, 4, 5, 2, 55, 55));
+        ```
+	
+      与 Date.parse()一样，Date.UTC()也会被 Date 构造函数隐式调用，但有一个区别：这种情况下创建的是本地日期，不是 GMT 日期。不过 Date 构造函数跟 Date.UTC()接收的参数是一样的。
+	
+	
+        ```
+        // 传入什么时间就是返回什么时间
+
+        let allFives = new Date(2021, 4, 5, 2, 55, 55);
+        
+        ```
+	
+    - Date.now()
+
+    ECMAScript 还提供了 Date.now()方法，返回表示方法执行时日期和时间的毫秒数。这个方法可以方便地计算运行程序
+	
+        ```
+        let start = Date.now(); 
+        // 调用函数
+        doSomething(); 
+        // 结束时间
+        let stop = Date.now(), 
+        result = stop - start;
+        ```
+	
+    - 常用的方法
+
+      - getYear()
+
+      - getMonth()
+
+      - getDay()   一周之内 day of week   1 2 3 4 5 6 0
+
+      - getDate()   一月之内 day of month
+
+  
+  ## 3.5 数组 Array
+
+    - 定义
+
+      在连续的内存空间中，储存一组相同类型的元素
+
+
+        有几种基本的方式可以创建数组。一种是使用 Array 构造函数，比如：
+
+        ```
+        let colors = new Array();
+        ```
+
+        如果知道数组中元素的数量，那么可以给构造函数传入一个数值，然后 length 属性就会被自动创建并设置为这个值。比如，下面的代码会创建一个初始 length 为 20 的数组：
+
+        ```
+        let colors = new Array(20);
+        ```
+
+        也可以给 Array 构造函数传入要保存的元素。比如，下面的代码会创建一个包含 3 个字符串值的数组：
+
+        ```
+        let colors = new Array("red", "blue", "green");
+        ```
+
+        另一种创建数组的方式是使用数组字面量（array literal）表示法。数组字面量是在中括号中包含以逗号分隔的元素列表，如下面的例子所示：
+
+        ```
+        let colors = ["red", "blue", "green"]; // 创建一个包含 3 个元素的数组
+        let names = []; // 创建一个空数组
+        let values = [1,2,]; // 创建一个包含 2 个元素的数组
+        ```
+
+        Array.from()用于将类数组结构转换为数组实例
+
+        ```
+        // 字符串会被拆分为单字符数组
+        console.log(Array.from("Matt")); // ["M", "a", "t", "t"]
+
+        const a1 = [1, 2, 3, 4]; 
+        const a2 = Array.from(a1, x => x**2);
+        console.log(a2); // [1, 4, 9, 16]
+        ```
+
+        Array.of()可以把一组参数转换为数组。这个方法用于替代在 ES6之前常用的 Array.prototype. slice.call(arguments)，一种异常笨拙的将 arguments 对象转换为数组的写法：
+
+        ```
+        console.log(Array.of(1, 2, 3, 4)); // [1, 2, 3, 4]
+        ```
+
+    - 检测数组
+
+      ```
+      if (value instanceof Array){ 
+        // 操作数组
+      }
+      ```
+    
+    - 转换方法
+
+      ```
+      let colors = ["red", "blue", "green"]; // 创建一个包含 3 个字符串的数组
+        alert(colors.toString()); // red,blue,green 
+        alert(colors.valueOf()); // red,blue,green 
+        alert(colors); // red,blue,green
+      ```
+    
+    - 栈方法 
+
+      栈是一种后进先出（LIFO，Last-In-First-Out）的结构
+
+      - push
+
+       ```
+       let colors = new Array(); // 创建一个数组
+        let count = colors.push("red", "green"); // 推入两项
+        alert(count); // 2 
+        count = colors.push("black"); // 再推入一项
+        alert(count); // 3
+       ```
+      - pop
+
+       ```
+       let item = colors.pop(); // 取得最后一项
+        alert(item); // black 
+        alert(colors.length); // 2
+       ```
+
+    - 队列方法
+
+      队列以先进先出（FIFO，First-In-First-Out）形式限制访问
+
+      ```
+      let colors = new Array(); // 创建一个数组
+        let count = colors.push("red", "green"); // 推入两项
+        alert(count); // 2
+
+        count = colors.push("black"); // 再推入一项
+        alert(count); // 3
+      ```
+
+      ```
+      let item = colors.shift(); // 取得第一项
+        alert(item); // red 
+        alert(colors.length); // 2
+      ```
+    
+    - 排序方法
+
+      - reverse()方法就是将数组元素反向排列
+
+       ```
+        let values = [1, 2, 3, 4, 5]; 
+            values.reverse(); 
+            alert(values); // 5,4,3,2,1
+       ```
+      - sort()会按照升序重新排列数组元素
+
+       ```
+        let values = [0, 1, 5, 10, 15]; 
+        values.sort(); 
+        alert(values); // 0,1,10,15,5
+       ```
+
+       ```
+       function compare(value1, value2) { 
+        if (value1 < value2) { 
+            return -1; 
+        } else if (value1 > value2) { 
+            return 1; 
+        } else { 
+            return 0; 
+        } 
+       }
+
+        let values = [0, 1, 5, 10, 15]; 
+        values.sort(compare); 
+        alert(values); // 0,1,5,10,15
+       ```
+
+    - 操作方法
+
+      - concat
+
+        ```
+        let colors = ["red", "green", "blue"]; 
+            let colors2 = colors.concat("yellow", ["black", "brown"]); 
+            console.log(colors); // ["red", "green","blue"] 
+            console.log(colors2); // ["red", "green", "blue", "yellow", "black", "brown"]
+        ```
+      
+      - slice
+
+        ```
+        let colors = ["red", "green", "blue", "yellow", "purple"]; 
+            let colors2 = colors.slice(1); 
+            let colors3 = colors.slice(1, 4);
+
+            alert(colors2); // green,blue,yellow,purple 
+            alert(colors3); // green,blue,yellow
+        ```
+      
+      - splice
+
+        - 删除
+
+        ```
+        let colors = ["red", "green", "blue"]; 
+        let removed = colors.splice(0,1); // 删除第一项
+        alert(colors); // green,blue 
+        alert(removed); // red，只有一个元素的数组
+        ```
+
+        - 插入
+
+        ```
+        let colors = [ "green", "blue"]; 
+        inserted = colors.splice(1, 0, "yellow", "orange"); // 在位置 1 插入两个元素
+        alert(colors); // green,yellow,orange,blue 
+        alert(inserted); // 空数组
+        ```
+
+        - 替换
+
+        ```
+        let colors = [ "green", "yellow","orange","blue"]; 
+        replaced = colors.splice(1, 1, "red", "purple"); // 插入两个值，删除一个元素
+        alert(colors); // green,red,purple,orange,blue 
+        alert(replaced); // yellow，只有一个元素的数组
+        ```
+
+       
+      - indexOf
+       
+        indexOf()方法从数组前头（第一项）开始向后搜索   
+
+        ```
+        let numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1]; 
+            alert(numbers.indexOf(4)); // 3 
+        ```
+      
+      - lastIndexOf
+
+        lastIndexOf()从数组末尾（最后一项）开始向前搜索
+
+        ```
+        let numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1]; 
+            alert(numbers.lastIndexOf(4)); // 5
+        ```
+
+    
+    - 迭代方法
+
+      - every()：对数组每一项都运行传入的函数，如果对每一项函数都返回 true，则这个方法返回 true。
+
+      - filter()：对数组每一项都运行传入的函数，函数返回 true 的项会组成数组之后返回。
+
+      - forEach()：对数组每一项都运行传入的函数，没有返回值。
+
+      - map()：对数组每一项都运行传入的函数，返回由每次函数调用的结果构成的数组。
+
+      - some()：对数组每一项都运行传入的函数，如果有一项函数返回 true，则这个方法返回 true。
+
+      注意：这些方法都不改变调用它们的数组。
+
+      ```
+      let numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1]; 
+        let everyResult = numbers.every((item, index, array) => item > 2); 
+        alert(everyResult); // false 
+        let someResult = numbers.some((item, index, array) => item > 2); 
+        alert(someResult); // true
+      ```
+
+      ```
+      let numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1]; 
+        let filterResult = numbers.filter((item, index, array) => item > 2); 
+        alert(filterResult); // 3,4,5,4,3
+      ```
+
+      ```
+      let numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1]; 
+        let mapResult = numbers.map((item, index, array) => item * 2); 
+        alert(mapResult); // 2,4,6,8,10,8,6,4,2
+      ```
+
+    
+    - 归并方法 reduce()
+
+      ```
+      let values = [1, 2, 3, 4, 5]; 
+        let sum = values.reduce((prev, cur, index, array) => prev + cur); 
+        alert(sum); // 15
+      ```
+
+    - 各个方法的效率
+
+      - 访问access O(1)
+
+      - 搜索search O(N)
+
+      - 插入Insert O(N)
+
+      - 删除Delete O(N)
+
+    - 特点
+
+      - 适合读取
+
+      - 不适合写入或删除
+
+    - leetcode
+
+      27 283 485
+
+  ## 3.6 语句
+
+    ### 3.6.1 循环
+
+      - for  
+
+
 # 第四章 DOM
 
   DOM 表示由多层节点构成的文档，通过它开发者可以添加、删除和修改页面的各个部分。之所以介绍DOM，主要因为它与浏览器中的 HTML 网页相关，并且在 JavaScript 中提供了 DOM API。
