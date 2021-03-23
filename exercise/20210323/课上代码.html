@@ -33,4 +33,61 @@ let template = `
                            此致
 `
 
+//Object
+
+let obj = new Object();
+
+// console.log(typeof obj) // "object"
+obj.name = "zhang";
+obj.age = "100";
+obj.speak = function(){
+    console.log("i am talking")
+}
+
+let obj1 = {};
+obj1.name = "zhang";
+obj1.age = "100";
+obj1.speak = function(){
+    console.log("i am talking")
+}
+
+let obj2 = {
+    name:"zhang",
+    age : 100,
+    speak:function(){
+        console.log("talking")
+    }
+}
+
+function foo(){
+    console.log("this is function foo")
+    // return {
+    //     toString:()=> "tostring func"
+    // }
+}
+foo.prototype.toString = ()=>"hello world"
+let f = new foo();
+
+console.log(typeof f) //object
+console.log(f.constructor)
+
+
+console.log(f.toString())
+
+//一元操作符
+
+let age = 29;
+// ++age; //  age = age + 1
+let anotherAge = --age + 2;
+
+console.log(age,anotherAge); // 28 30
+
+
+let age1 = 29;
+// ++age; //  age = age + 1
+let anotherAge1 = age1-- + 2 ;
+
+console.log(age1,anotherAge1); // 28 31
+
+
 </script>
