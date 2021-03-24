@@ -84,4 +84,69 @@
     // age1 = age1 - 1 
     console.log(age1,a_age1);  // 28 31
 
+
+    // 位运算 
+    /*
+        二进制        1001
+        一补数(反码)   0110
+        二补数(补码)   0111
+    */
+
+    // 左移
+    let oldval = 2;
+    let newval = oldval << 5
+    /*
+     二进制  10
+            1000000  
+    */
+
+    // 布尔操作符
+
+    // 逻辑非 !
+    let score = 80;
+
+    if(score != 60){
+        console.log("及格") ;
+    }else{
+        console.log("不及格");
+    }
+    
+    let flag = false;
+    let num = 10; 
+    // js 自动转型 0 - false 非零 0 - true
+    // obj  null - false  !null - true
+    function t1(){
+        let o = {}
+        if(num){
+            return "非零"
+        } else{
+            return "零"
+        }
+        //逻辑与 &&
+
+        if (score <= 100 && score > 90) {
+            return "A"
+        }else if (score <= 90 && score > 60){
+            return "B"
+        }else{
+            return "C"
+        }
+
+        //逻辑或 ||
+        let dayStr = "SUN";
+        if(dayStr === "SUN" || dayStr ==="sunday" || dayStr === "0" ){
+            return "周日"
+        }
+    }
+    
+    // 三元表达式 
+
+    let person; // undefined
+
+    // let person_status = person === null || person === undefined ? "不可用" : "可用";
+
+    let person_status = !person ? "不可用" : "可用";
+    
+    console.log(person,person_status)
+
 </script>
