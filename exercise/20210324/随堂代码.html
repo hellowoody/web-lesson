@@ -1,0 +1,87 @@
+<script>
+    function testStr(param){
+        if(typeof param == "string"){
+            return "没错，就是字符串类型"
+        }else{
+            return "不对"
+        }
+    }
+
+    // string 类型
+    let str1 = "hello,'world'";
+    let str2 = '"hello",world';
+    // 反引号 模版引号 template
+
+    let person_name = "张三";
+    let content = "元旦好";
+
+    let str3 = `
+您好
+    ${person_name}先生/女士，${content}。
+
+            此致
+    `;
+
+    //Object 对象类型
+
+    let obj = new Object()
+    obj.name = "zhang"
+    obj.age=  30
+    obj.go = function(target){
+        return "去"+target+"了"
+    }
+    obj.status = 1 ;
+
+
+    let obj2 = {};
+    obj2.name = "wang"
+    obj2.age=  30
+    obj2.go = function(target){
+        return "去"+target+"了"
+    }
+    obj2.status = 1
+
+    // key / value 健值对
+    let obj3 = {
+        name:"lisi",
+        age:30,
+        foo:function(){},
+        status:"1",
+    }
+
+    // console.log(obj2)
+
+    function animal(){
+        let name = "小强";
+        let kind = "dog";
+        let age = 2;
+        // console.log(100)
+        return {
+            name:name,
+            kind:kind,
+            age:age,
+            toString:function(){
+                return "i am qiang dog"
+            }
+        }
+    }
+
+    let dog_qiang = new animal();
+    // console.log(dog_qiang)
+    // console.log(dog_qiang.constructor)
+    // console.log(dog_qiang.toString())
+    
+
+    // 一元操作符
+
+    let age = 29;
+    let a_age = --age + 2;
+    
+    console.log(age,a_age);  // 28 30
+
+    let age1 = 29;  // 29 
+    let a_age1 = age1-- + 2; //31  
+    // age1 = age1 - 1 
+    console.log(age1,a_age1);  // 28 31
+
+</script>
