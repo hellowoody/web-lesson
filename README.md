@@ -1127,11 +1127,27 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
       - getDate()   一月之内 day of month
 
   
-  ## 3.5 数组 Array
+  
+  ## 3.5 语句
 
-    - 定义
+   - if语句
+
+     范德萨发的
+
+   - fdas
+
+  ## 3.6 数组 Array
+
+   - 数组的定义
 
       在连续的内存空间中，储存一组相同类型的元素
+	
+   - js数组的特殊点
+
+	  跟其他语言中的数组一样，ECMAScript 数组也是一组有序的数据。
+	  但跟其他语言不同的是，数组中每个槽位可以存储任意类型的数据。
+	  这意味着可以创建一个数组，它的第一个元素是字符串，第二个元素是数值，第三个是对象。
+	  ECMAScript 数组也是动态大小的，会随着数据添加而自动增长。
 
 
         有几种基本的方式可以创建数组。一种是使用 Array 构造函数，比如：
@@ -1177,7 +1193,7 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
         console.log(Array.of(1, 2, 3, 4)); // [1, 2, 3, 4]
         ```
 
-    - 检测数组
+   - 检测数组
 
       ```
       if (value instanceof Array){ 
@@ -1185,7 +1201,7 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
       }
       ```
     
-    - 转换方法
+   - 转换方法
 
       ```
       let colors = ["red", "blue", "green"]; // 创建一个包含 3 个字符串的数组
@@ -1194,11 +1210,11 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
         alert(colors); // red,blue,green
       ```
     
-    - 栈方法 
+   - 栈方法 
 
       栈是一种后进先出（LIFO，Last-In-First-Out）的结构
 
-      - push
+     - push
 
        ```
        let colors = new Array(); // 创建一个数组
@@ -1207,7 +1223,7 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
         count = colors.push("black"); // 再推入一项
         alert(count); // 3
        ```
-      - pop
+     - pop
 
        ```
        let item = colors.pop(); // 取得最后一项
@@ -1215,7 +1231,7 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
         alert(colors.length); // 2
        ```
 
-    - 队列方法
+   - 队列方法
 
       队列以先进先出（FIFO，First-In-First-Out）形式限制访问
 
@@ -1234,7 +1250,7 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
         alert(colors.length); // 2
       ```
     
-    - 排序方法
+   - 排序方法
 
       - reverse()方法就是将数组元素反向排列
 
@@ -1267,7 +1283,7 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
         alert(values); // 0,1,5,10,15
        ```
 
-    - 操作方法
+   - 操作方法
 
       - concat
 
@@ -1338,7 +1354,7 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
         ```
 
     
-    - 迭代方法
+   - 迭代方法
 
       - every()：对数组每一项都运行传入的函数，如果对每一项函数都返回 true，则这个方法返回 true。
 
@@ -1373,7 +1389,7 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
       ```
 
     
-    - 归并方法 reduce()
+   - 归并方法 reduce()
 
       ```
       let values = [1, 2, 3, 4, 5]; 
@@ -1381,7 +1397,7 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
         alert(sum); // 15
       ```
 
-    - 各个方法的效率
+   - 各个方法的效率
 
       - 访问access O(1)
 
@@ -1391,21 +1407,15 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
 
       - 删除Delete O(N)
 
-    - 特点
+   - 数组的特点
 
       - 适合读取
 
       - 不适合写入或删除
 
-    - leetcode
+   - leetcode
 
       27 283 485
-
-  ## 3.6 语句
-
-    ### 3.6.1 循环
-
-      - for  
 
 
 # 第四章 DOM
