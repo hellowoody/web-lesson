@@ -1132,9 +1132,241 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
 
    - if语句
 
-     范德萨发的
+     if 语句是使用最频繁的语句之一，语法如下： 
+	 
+	 ```
+	 if (condition) {
+		 statement1
+	 } else {
+		 statement2
+	 }
+	 ```
+	 这里的条件（condition）可以是任何表达式，并且求值结果不一定是布尔值。ECMAScript 会自动调用 Boolean()函数将这个表达式的值转换为布尔值。如果条件求值为 true，则执行语句statement1；如果条件求值为 false，则执行语句 statement2。
 
-   - fdas
+	 ```
+	 if (i > 25) { 
+		console.log("Greater than 25."); 
+	 } else if (i < 0) { 
+		console.log("Less than 0."); 
+	 } else { 
+		console.log("Between 0 and 25, inclusive."); 
+	 }
+	 ```
+
+	 练习题：根据input输入框中的年龄，判断并输出"儿童，少年，成人"。（判断规则小于10是儿童（不含10），10到20之间（不含20）是少年，其他是成人）
+
+   - while 语句
+
+     while 语句是一种先测试循环语句，即先检测退出条件，再执行循环体内的代码。因此，while 循环体内的代码有可能不会执行。
+
+	 ```
+	 while(expression) {
+		 statement
+	 } 
+	 ```
+
+	 这是一个例子：
+	 
+	 ```
+	 let i = 0; 
+	 while (i < 10) { 
+		i += 2; 
+	 }
+	 ```
+	 在这个例子中，变量 i 从 0 开始，每次循环递增 2。只要 i 小于 10，循环就会继续。
+
+   - for 语句
+
+     for 语句也是先测试语句，只不过增加了进入循环之前的初始化代码，以及循环执行后要执行的表达式，语法如下：
+
+	 ```
+	 for (initialization; expression; post-loop-expression) {
+		 statement
+	 }
+	 ```
+
+	 下面是一个用例：
+
+     ```
+	 let count = 10; 
+	 for (let i = 0; i < count; i++) { 
+	 	console.log(i); 
+	 }
+	 ```
+
+	 以上代码在循环开始前定义了变量 i 的初始值为 0。然后求值条件表达式，如果求值结果为 true（i < count），则执行循环体。因此循环体也可能不会被执行。如果循环体被执行了，则循环后表达式也会执行，以便递增变量 i。for 循环跟下面的 while 循环是一样的：
+
+	 ```
+	 let count = 10; 
+		let i = 0; 
+		while (i < count) { 
+			console.log(i); 
+			i++; 
+		}
+	 ```
+
+	 无穷循环
+
+	 ```
+	 for (;;) { // 无穷循环
+		
+	 }
+
+	 ```
+
+   - for-in 语句
+
+	 ```
+	 for (property in expression) {
+		 statement
+	 }
+	 ``` 
+     下面是一个例子：
+
+	 ```
+	 let obj = {
+		 name:"zhang",
+		 gender:"male",
+		 score:100
+	 }
+	 for (const propName in obj) { 
+		console.log(propName); 
+	 }
+	 ```
+
+	 ```
+	 let arr = ['a','b','c']
+	 for (const key in arr) { 
+		console.log(key); 
+	 }
+	 ```
+
+	 练习：输出全局变量window对象的所有属性
+   
+   - for-of 语句
+
+     ```
+	 for (property of expression) {
+		 statement
+	 }
+	 ```
+
+	 下面是示例：
+
+	 ```
+	 for (const el of [2,4,6,8]) { 
+		console.log(el); 
+	 }
+
+	 ```
+
+	 在这个例子中，我们使用 for-of 语句显示了一个包含 4 个元素的数组中的所有元素。循环会一直持续到将所有元素都迭代完。与 for 循环一样，这里控制语句中的 const 也不是必需的。但为了确保这个局部变量不被修改，推荐使用 const。
+	 如果尝试迭代的变量不支持迭代，则 for-of 语句会抛出错误。
+
+	 ```
+	 let obj = {
+		 name:"zhang",
+		 gender:"male",
+		 score:100
+	 }
+
+	 for (const el of obj) { 
+		console.log(el); 
+	 }
+	 ```
+
+
+
+   
+   - break 和 continue 语句
+
+     break 和 continue 语句为执行循环代码提供了更严格的控制手段。其中，break 语句用于立即退出循环，强制执行循环后的下一条语句。而 continue 语句也用于立即退出循环，但会再次从循环顶部开始执行。
+
+	 ```
+	 let num = 0; 
+	 let arr = []
+	 for (let i = 1; i < 10; i++) {  
+		if (i % 5 == 0) { 
+			break; 
+		} 
+		arr.push(i)
+		num++; 
+	 } 
+	 console.log(arr)  //[1, 2, 3, 4]
+	 console.log(num); // 4
+	 ```
+     在上面的代码中，for 循环会将变量 i 由 1 递增到 10。而在循环体内，有一个 if 语句用于检查 i 能否被 5 整除（使用取模操作符）。如果是，则执行 break 语句，退出循环。
+
+	 ```
+	 let num = 0; 
+	 let arr = []
+		for (let i = 1; i < 10; i++) { 
+			if (i % 5 == 0) { 
+				continue; 
+			} 
+			arr.push(i)
+			num++; 
+		} 
+		console.log(arr)  // [1, 2, 3, 4, 6, 7, 8, 9]
+		console.log(num); // 8
+	 ```
+   
+   - switch 语句
+
+     switch 语句是与 if 语句紧密相关的一种流控制语句，从其他语言借鉴而来。ECMAScript中 switch 语句跟 C 语言中 switch 语句的语法非常相似，如下所示：
+
+	 ```
+	 switch (expression) { 
+	 case value1: 
+		statement
+	 	break; 
+	 case value2: 
+		statement 
+		break; 
+	 case value3: 
+		statement 
+		break; 
+	 case value4: 
+		statement 
+		break; 
+	 default: 
+		statement
+	 }
+	 ```
+
+	 这里的每个 case（条件/分支）相当于：“如果表达式等于后面的值，则执行下面的语句。”break 关键字会导致代码执行跳出 switch 语句。如果没有 break，则代码会继续匹配下一个条件。default 关键字用于在任何条件都没有满足时指定默认执行的语句（相当于 else 语句）。
+
+	 ```
+	 if (i == 25) { 
+			console.log("25"); 
+		} else if (i == 35) { 
+			console.log("35"); 
+		} else if (i == 45) { 
+			console.log("45"); 
+		} else { 
+			console.log("Other"); 
+		}
+	 ```
+
+	 ```
+	 switch (i) { 
+		case 25: 
+			console.log("25"); 
+			break; 
+		case 35: 
+			console.log("35"); 
+			break; 
+		case 45: 
+			console.log("45"); 
+			break; 
+		default: 
+			console.log("Other"); 
+		}
+	 ```
+
+	 为避免不必要的条件判断，最好给每个条件后面都加上 break 语句。
+
+	 练习题：根据input输入框中的年龄，判断并输出"儿童，少年，成人"。（判断规则小于10是儿童（不含10），10到20之间（不含20）是少年，其他是成人）
 
   ## 3.6 数组 Array
 
