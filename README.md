@@ -1649,6 +1649,83 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
 
       27 283 485
 
+  ## 3.7 函数 Function
+
+    ```
+	function functionName(arg0, arg1,...,argN) { 
+		statements 
+	}
+	```
+	下面是一个例子
+
+	```
+	function sayHi(name, message) { 
+ 		console.log("Hello " + name + ", " + message); 
+	}
+	```
+
+	可以通过函数名来调用函数，要传给函数的参数放在括号里（如果有多个参数，则用逗号隔开）。下面是调用函数 sayHi()的示例：
+
+	```
+	sayHi("zhangsan", "how are you today?");
+	```
+
+	ECMAScript 中的函数不需要指定是否返回值。
+	任何函数在任何时间都可以使用 return 语句来返回函数的值，用法是后跟要返回的值。比如：
+
+	```
+	function sum(num1, num2) { 
+		return num1 + num2; 
+	}
+	```
+
+	函数 sum()会将两个值相加并返回结果。注意，除了 return 语句之外没有任何特殊声明表明该函数有返回值。然后就可以这样调用它：
+
+	```
+	const result = sum(5, 10);
+	```
+
+	要注意的是，只要碰到 return 语句，函数就会立即停止执行并退出。因此，return 语句后面的代码不会被执行。比如：
+
+	```
+	function sum(num1, num2) { 
+		return num1 + num2; 
+		console.log("Hello world"); // 不会执行
+	}
+	```
+
+	在这个例子中，console.log 不会执行，因为它在 return 语句后面。一个函数里也可以有多个 return 语句，像这样：
+
+	```
+	function diff(num1, num2) { 
+		if (num1 < num2) { 
+			return num2 - num1; 
+		} else { 
+			return num1 - num2; 
+		} 
+	}
+	```
+
+	这个 diff()函数用于计算两个数值的差。如果第一个数值小于第二个，则用第二个减第一个；否则，就用第一个减第二个。代码中每个分支都有自己的 return 语句，返回正确的差值。
+
+	return 语句也可以不带返回值。这时候，函数会立即停止执行并返回 undefined。这种用法最常用于提前终止函数执行，并不是为了返回值。比如在下面的例子中，console.log 不会执行：
+
+	```
+	function sayHi(name, message) { 
+		return; 
+		console.log("Hello " + name + ", " + message); // 不会执行
+	}
+	```
+
+	函数的参数，函数体中有一个内置的变量对象叫arguments。
+	
+	```
+	function getArgsArray() { 
+		 console.log(arguments)
+		 console.log(Array.from(arguments))
+	}
+	```
+
 
 # 第四章 DOM
 
