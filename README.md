@@ -2082,3 +2082,50 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
 		}
 		```
   
+
+  
+
+
+# 第五章 闭包
+
+  匿名函数经常被人误认为是闭包（closure）。
+  闭包指的是那些引用了另一个函数作用域中变量的函数，通常是在嵌套函数中实现的。
+  比如，下面是之前展示的 createComparisonFunction()函数：
+  ```
+   function createComparisonFunction(propertyName) { 
+		return function(object1, object2) { 
+			let value1 = object1[propertyName]; 
+			let value2 = object2[propertyName]; 
+			if (value1 < value2) { 
+				return -1; 
+			} else if (value1 > value2) { 
+				return 1; 
+			} else { 
+				return 0; 
+			} 
+		}; 
+	}
+  ```
+  这里位于内部函数（匿名函数）中，其中引用了外部函数的变量 propertyName。
+
+  ## 立即执行函数 IIFE
+
+    ```
+	(function(){
+
+	})()
+	```
+
+	```
+	(function(){
+		var message = 100 //私有
+		var foo = function(){
+			console.log(message)
+		}
+	    window.$ = {
+			foo
+		}  //模仿jquery写法
+	})()
+
+	$.foo()
+	```
