@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <input id="input_el"  placeholder="mm/dd/yyyy" >
+        <button onclick="sub()">提交</button>
+        
+    </body>
+</html>
+<script>
+    function sub(){
+        /*
+            1.通过input_el 这个id 获取input输入的value
+            2.根据这个值（5/23/2019） new Date(value) 
+            3.进行日期的计算
+                3.1 23号是星期几 getDay 
+                3.2 本月的几个星期几 for(_;_;_)
+            4.body 标签对象 追加一个结果标签(append)
+               <div>
+                    此日期是month月份的第几个星期几
+                </div>
+        */
+        let input_val = document.getElementById("input_el").value;
+        console.log(input_val)
+        let date = new Date(input_val)
+        console.log(date)
+        let year = date.getFullYear(); // yyyy
+        let month = date.getMonth() + 1 ;
+        let day_of_month = date.getDate();
+        let day_of_week = date.getDay() === 0 ? "日" : date.getDay() ;   //星期几
+        console.log(year,month,day_of_month,day_of_week);
+        let count = 0 ;
+        for(let i = day_of_month; i > 0 ; i = i - 7){
+            count++;
+        }
+        console.log("第",count,"次");
+
+        let res = `${year}年${month}月` ;
+    }
+</script>
