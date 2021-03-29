@@ -1,0 +1,39 @@
+
+<script>
+    // 声明一个空数组
+    let arr1 = new Array();
+    let arr2 = [];
+
+    let arr3 = new Array(3); // length 3 empty
+    // 1 2 3 4 5
+    let arr4 = new Array(1,2,3,4,5); // [1,2,3,4,5]
+    let arr5 = [1,2,3,4,5];
+    console.log(arr4)
+    console.log(arr5)
+
+
+    let arr_old = [1,2,3];
+    // let arr_new = [2,4,6]
+    // let arr_new = [] ;
+    // for(let val of arr_old){
+    //     arr_new.push(val * 2)
+    // }
+
+    let arr_new = Array.from(arr_old,function(val){
+        return val * 2
+    })
+
+
+    /*
+        length 100,0000
+    */
+   let a = []
+   for(let i = 0 ; i< 1000000 ; i++){
+        a.push(i)
+   }
+
+//    let a2 = new Array(3000000);
+//    a2.fill(0)
+
+
+</script>

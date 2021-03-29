@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <input id="age" >
+        <button onclick="checkAge()">换算</button>
+    </body>
+</html>
+<script>
+    function checkAge(){
+        //1.获取输入的数值
+        let age = document.getElementById("age").value;
+        console.log(age);
+        /*
+        age < 10  儿童
+        10 <= age < 20  少年
+        20 <= age  成年
+        */
+    //    if(age < 10 && age > 0){
+    //       console.log("儿童")
+    //    }else if (age >= 10 && age <20) {
+    //        console.log("少年")
+    //    }else if(age >=20){
+    //        console.log("成年")
+    //    }else{
+    //        console.log("输入不合规")
+    //    }
+
+       switch(true){
+            case age < 10 && age > 0:
+                console.log("儿童")
+                break;
+            case age >= 10 && age <20 :
+                console.log("少年")
+                break;
+            case age >=20 :
+                console.log("成年")
+                break;
+            default:
+                console.log("输入不合规")
+       }
+    }
+</script>
