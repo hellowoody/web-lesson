@@ -30,8 +30,13 @@
         let day_of_week = date.getDay() === 0 ? "日" : date.getDay() ;   //星期几
         console.log(year,month,day_of_month,day_of_week);
         let count = 0 ;
-        for(let i = day_of_month; i > 0 ; i = i - 7){
-            count++;
+        // for(let i = day_of_month; i > 0 ; i = i - 7){
+        //     count++;
+        // }
+        let tmp = day_of_month;
+        while(tmp > 0){
+            tmp = tmp - 7;
+            count = count + 1;
         }
         console.log("第",count,"次");
 

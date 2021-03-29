@@ -1,0 +1,38 @@
+<script>
+    let arr = [0,1,2,3,4,5] //number
+    let arr2 = ["张三",100,true,{}]
+
+
+    let arr3 = new Array();
+    let arr4 = [];
+
+    let arr5 = new Array(5);
+    console.log(arr5)
+
+    let arr6 = new Array("a","b","c");
+    console.log(arr6)
+    let arr7 = ["a","b","c"]
+    console.log(arr7)
+
+    let str = "hello,world";
+    let arr8 = Array.from(str)
+    console.log(arr8);
+
+    let arr_old = [1,2,3]
+    // let arr_new = [2,4,6]
+    let arr_new = Array.from(arr_old,function(v){
+        return v**3
+    })
+    console.log(arr_new); //1 8 27
+
+    console.log(Array.of('a','b','c')) // ['a','b','c']
+
+    let arr9 = [];
+    arr9.push(0)
+    arr9.push(1)
+    arr9.push(2)
+    arr9.push(3)
+    arr9.push(4)
+    arr9.push(5)
+    console.log(arr9);
+</script>

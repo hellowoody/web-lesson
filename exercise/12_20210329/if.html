@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <input id="input_el" />
+        <button onclick="checkAge()">判断</button>
+    </body>
+</html>
+<script>
+    function checkAge(){
+        let age = document.getElementById("input_el").value ;
+        console.log(age) ;
+        if(age < 9 && age > 0){
+            console.log("儿童")
+        }else if(age >=10 && age < 20){
+            console.log("少年")
+        }else if(age>= 20){
+            console.log("成年")
+        }
+    }
+</script>

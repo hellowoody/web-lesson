@@ -1,0 +1,29 @@
+<script>
+    // let num = 0;
+    // let arr = [];
+
+    // for(let i =1 ;i<10;i++){
+    //     console.log(i)
+    //     if(i % 5 === 0){
+    //         break;
+    //     }
+    //     arr.push(i);
+    //     num = num + 1;
+    // }
+    // console.log(arr) //[1 2 3 4]
+    // console.log(num) // 4
+
+    let num = 0;
+    let arr = [];
+
+    for(let i =1 ;i<10;i++){
+        console.log(i)
+        if(i % 5 === 0){
+            continue;
+        }
+        arr.push(i);
+        num = num + 1;
+    }
+    console.log(arr) // [1 2 3 4  6 7 8 9]
+    console.log(num) // 8
+</script>
