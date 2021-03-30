@@ -1,0 +1,98 @@
+<script>
+    /*
+    for(;;)
+    while()
+    for-in
+    for-of
+
+    比较上面这四种循环方法的性能
+    1.如何构造一个长度为100万的数组
+    
+    for(let i =0 ; i<100万; i++){
+        arr.push("")
+    }
+    arr length 100 万
+    let startTime = Date.now() 
+    for(let t of arr){}
+    let endTime = Date.now()
+    let duration = endTime - startTime
+
+    */
+ 
+
+    // 1.构造一个数组 长度20数组
+    // let arr = [1,1,1,1,1,1,1,1,1]
+    // let arr1 = new Array(1,1,1,1,1,1,1,1,1)
+    let arr = [];
+    for(let i =0 ; i<5000 ; i++){
+        arr.push(i)
+    }
+
+    // let arr1 = new Array(10000000)
+    // console.log(arr)
+
+    let for_start = Date.now(); //1617085106421 ms
+    for(let i = 0; i < arr.length ; i++){
+        arr[i]
+    }
+    let for_end = Date.now();  // 1617085106421 ms
+    console.log(for_end - for_start);  // 4 ms
+
+    let while_start = Date.now();
+    let tmp = 0
+    while(tmp < arr.length - 1){
+        tmp = tmp + 1;
+        arr[tmp];
+    }
+    let while_end = Date.now();
+    console.log(while_end - while_start); // 8 ms
+    
+    let date_start = new Date();
+    let forin_start = date_start.getTime();
+    for(let index in arr){}
+    let date_end = new Date()
+    let forin_end = date_end.getTime();
+    console.log(forin_end - forin_start) // 900 ms
+
+    let forof_start = Date.now();
+    for(let val of arr){}
+    let forof_end = Date.now();
+    console.log(forof_end - forof_start);
+
+    // 四种遍历的效率  for > while > for-of > for-in
+    
+    
+    // let arr = new Array(1000000);
+    // // arr.fill("");
+
+    // let for_start = Date.now(); //1617085106421 ms
+    // for(let i = 0; i < arr.length ; i++){
+    //     arr[i]
+    // }
+    // let for_end = Date.now();  // 1617085106421 ms
+    // console.log(for_end - for_start);  // 4 ms
+
+    // let while_start = Date.now();
+    // let tmp = 0
+    // while(tmp < arr.length - 1){
+    //     tmp = tmp + 1;
+    //     arr[tmp];
+    // }
+    // let while_end = Date.now();
+    // console.log(while_end - while_start); // 8 ms
+    
+    // let date_start = new Date();
+    // let forin_start = date_start.getTime();
+    // for(let index in arr){}
+    // let date_end = new Date()
+    // let forin_end = date_end.getTime();
+    // console.log(forin_end - forin_start) // 900 ms
+
+    // let forof_start = Date.now();
+    // for(let val of arr){}
+    // let forof_end = Date.now();
+    // console.log(forof_end - forof_start);
+    
+
+
+</script>
