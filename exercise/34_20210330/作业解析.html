@@ -1,0 +1,81 @@
+<script>
+    /*
+        for(;;){}
+        while(){}
+        for-in
+        for-of
+
+        比较上面4中循环的效率，做个排行
+
+        let start = Date.now(); 
+        // 调用函数
+        doSomething(); 
+        // 结束时间
+        let stop = Date.now(), 
+        result = stop - start;
+    */
+
+    // 1.创建一个长度为100，0000的数组
+    let arr = []
+    for(let i = 0; i<1000000; i++){
+        arr.push("")
+    }
+    // console.log(arr);
+    // let arr = new Array(1000000);
+    // arr.fill("");
+ 
+    let for_start = Date.now(); 
+    for(let i = 0;i<arr.length-1;i++){
+        arr[i]
+    }
+    let for_end = Date.now();
+    console.log(for_end - for_start); // 5 ms
+
+
+    let while_start = Date.now();
+    let tmp = 0;
+    while(tmp < arr.length - 1){
+        arr[tmp]
+        tmp++
+    }
+    let while_end = Date.now();
+    console.log(while_end - while_start);  // 6-7 ms
+
+    let forin_start = Date.now();
+    for(let key in arr){}
+    let forin_end = Date.now();
+    console.log(forin_end - forin_start) // 600 ms
+
+    let forof_start = Date.now();
+    for(let val of arr){}
+    let forof_end = Date.now();
+    console.log(forof_end - forof_start) // 160 ms
+
+    // 效率的排行 for > while > for-of > for-in
+    
+
+    // let for_start = Date.now(); 
+    // for(let i = 0;i<1000000;i++){}
+    // let for_end = Date.now();
+    // console.log(for_end - for_start); // 5 ms
+
+
+    // let while_start = Date.now();
+    // let tmp = 0;
+    // while(tmp < 1000000){
+    //     tmp++
+    // }
+    // let while_end = Date.now();
+    // console.log(while_end - while_start);  // 6-7 ms
+
+    // let forin_start = Date.now();
+    // for(let key in arr){}
+    // let forin_end = Date.now();
+    // console.log(forin_end - forin_start) // 600 ms
+
+    // let forof_start = Date.now();
+    // for(let val of arr){}
+    // let forof_end = Date.now();
+    // console.log(forof_end - forof_start) // 160 ms
+
+</script>
