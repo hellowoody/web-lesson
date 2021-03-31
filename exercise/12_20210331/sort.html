@@ -1,0 +1,37 @@
+<script>
+    let arr = [13,1,-12,0,5]
+
+    // console.log(arr.sort());
+
+    // arr.sort(function(v1,v2){
+    //     console.log(v1,v2)
+    // })
+    // sort 每次从数组拿出两个值，v1是偏后面的值，v2是偏前面的值
+
+    /*
+        在sort回调方法里，
+        如果返回1        说明v1，v2 不需要调换位置
+        如果返回-1       说明v1，v2 需要调换位置
+        如果返回0        说明v1，v2 相等
+    */
+   // asc 升序
+    function asc(v1,v2){
+        if(v1 > v2){
+            return 1 ;
+        }else{
+            return -1;
+        }
+    }
+    // desc 倒序
+    function desc(v1,v2){
+        if(v1 > v2){
+            return -1;
+        }else if(v1 === v2){
+            return 0
+        }else{
+            return 1
+        }
+    }
+
+    arr.sort(desc)
+</script>

@@ -1,0 +1,39 @@
+<script>
+    /*
+        splice(p1,p2,p3...)
+
+        p1 定位数组的索引
+        p2 需要删除元素的个数
+        p3... 是新插入的元素
+    
+    */
+    let arr = [1,2,3,4,5,6];
+
+    // let del = arr.splice(1,2) // [2]
+    // console.log(arr)
+    // console.log(del)
+
+    arr.splice(3,0,"a","b","c")
+    console.log(arr)
+
+
+    let arr1 = Array.from("helloworld");
+    arr1.splice(5,0," ")
+    console.log(arr1.join("")) //hello world
+
+
+    let arr2 = Array.from("i am man");
+    console.log(arr2) ; // ["i", " ", "a", "m", " ", "m", "a", "n"]
+    //方法一
+    // arr2.splice(5,3,"w","o","m","a","n");
+    // // arr2.splice(5,3,...Array.from("woman")) //flat
+    // console.log(arr2.join(""));
+
+    //方法二
+    // arr2.splice(5,0,"w","o")
+    arr2.splice(5,0,...["w","o"])
+    console.log(arr2.join(""))
+
+
+
+</script>
