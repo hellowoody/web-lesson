@@ -25,7 +25,7 @@
     // arr.fill("");
  
     let for_start = Date.now(); 
-    for(let i = 0;i<arr.length-1;i++){
+    for(let i = 0;i<arr.length;i++){
         arr[i]
     }
     let for_end = Date.now();
@@ -34,7 +34,7 @@
 
     let while_start = Date.now();
     let tmp = 0;
-    while(tmp < arr.length - 1){
+    while(tmp < arr.length){
         arr[tmp]
         tmp++
     }
@@ -42,12 +42,16 @@
     console.log(while_end - while_start);  // 6-7 ms
 
     let forin_start = Date.now();
-    for(let key in arr){}
+    for(let key in arr){
+        // console.log(key)
+    }
     let forin_end = Date.now();
     console.log(forin_end - forin_start) // 600 ms
 
     let forof_start = Date.now();
-    for(let val of arr){}
+    for(let val of arr){
+        // console.log(val)
+    }
     let forof_end = Date.now();
     console.log(forof_end - forof_start) // 160 ms
 

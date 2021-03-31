@@ -1,0 +1,37 @@
+<script>
+    let arr = [3,0,1,-2,10]
+    // console.log(arr.sort())
+
+    // arr.sort(function(v1,v2){
+    //     console.log(v1,v2) //v1 偏后的值 ，v2 偏前的值
+    // })
+
+    /*
+        compare 的返回值
+        
+        如果是1 说明是 两个值不需要交换位置
+        如果是-1 说明是 两个值需要交换位置
+        如果是0 两值相等
+    */
+
+    //升序排列
+    // function compare(v1,v2){
+    //     if(v1 > v2){
+    //         return 1 
+    //     }else{
+    //         return -1
+    //     }
+    // }
+
+     //倒序排列
+     function compare(v1,v2){
+        if(v1 > v2){
+            return -1 
+        }else{
+            return 1
+        }
+    }
+
+    let arr_asc = arr.sort(compare);
+    console.log(arr_asc);
+</script>

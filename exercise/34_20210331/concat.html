@@ -1,0 +1,23 @@
+<script>
+    /*
+    数组当中push和concat的区别
+    push 改变了原先的数组
+    concat 返回的一个新的数组，原并未修改
+    */
+   let arr = [1,2,3];
+   let arr_new = arr.concat("a","b","c");
+    console.log(arr,arr_new)
+    arr.push("zhang","wang","li");
+    console.log(arr)
+
+    let arr1 = ["h","e","l","l","o"]
+    let arr2 = ["w","o","r","l","d"]
+    // arr1.push(arr2) // 解决不了两个数组的拼接
+    let arr3 = arr1.concat(arr2);
+    let arr4 = arr1.concat(" ",arr2)
+    console.log(arr3)
+    console.log(arr4.join(""))
+
+    // let res = arr1.join("") + " " + arr2.join("")  //hello world
+
+</script>
