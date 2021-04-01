@@ -1,0 +1,36 @@
+<script>
+    let arr = [1,2,3,4,5,6];
+    /*
+        数组的every方法的参数是 回调函数
+
+        这里的回调函数的参数解释 p1,p2,p3
+        p1:每次遍历的元素的值
+        p2:每次遍历的元素的值的索引
+        p3:原始数组
+    */
+    // arr.every(function(item,index,obj){
+    //     console.log(item,index,obj)
+    //     return true //boolean
+    // })  
+
+    // 判断arr数组是否都大于0
+
+    // let res = arr.every(function(item){
+    //     return item > 0 
+    // })
+    // console.log(res)
+
+    // 判断arr数组是否都大于1
+
+    // let res = arr.every(function(item){
+    //     return item > 1 
+    // })
+    // console.log(res)
+
+    let arr1 = Array.from("aaaabaaaaa")
+    //判断这个arr1数组是否为统一a字母 
+    let res1 = arr1.every(function(item){
+        return item === "a"
+    })
+    console.log(res1)
+</script>

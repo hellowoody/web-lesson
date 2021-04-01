@@ -1,0 +1,15 @@
+<script>
+    /*
+        数组的some迭代方法
+        校验每一项，如果其中有一个符合条件的，some()结果为true；
+        如果没有任何一个符合条件，some()结果返回false
+    */
+    let arr = [10,-10,0,-2,3,9,1,50]
+
+    let res = arr.some(function(val){
+        return val > 60
+    })
+
+    console.log(res)
+
+</script>

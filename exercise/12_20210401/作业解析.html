@@ -1,0 +1,39 @@
+<script>
+/*
+    遍历其中一个数组建立elem : index的映射，比如arr = [5, 8, 10]，则生成对应的obj = {5：0，8：1，10：2};
+    let arr = [5,8,10]
+    目的输入一个对象
+    let obj = {
+        key:val
+    }
+    let obj = {
+        5:0,
+        8:1,
+        10:2
+    }
+*/
+
+let arr = [5,8,10,20]
+// let obj = {}
+let obj = new Object()
+// let person = new Object()
+// person.name = "zhang"
+// person.age = 20
+// console.log(person)
+
+// let person1 = {
+//     name:"zhang",
+//     age:20
+// }
+
+for(let i = 0 ; i < arr.length ;i++){
+    // arr[i] 数组的值
+    // i      数组的索引
+    // obj[arr[i]] = i
+    let key = arr[i]
+    obj[key] = i
+}
+
+console.log(obj)
+
+</script>

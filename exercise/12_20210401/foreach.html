@@ -1,0 +1,24 @@
+<script>
+    /*
+        数组中的forEach方法，你可以认为跟之前的for-loop，while ，for-in，for-of
+    */
+
+    // Array.from("i love the game!").forEach(function(val,index,arr_old){
+    //     console.log(val+"索引为"+index);
+    // })
+
+    Array.from("i love the game!").forEach((val,index) => {
+        // if(val === " "){
+        //     val = "空格"
+        // }
+
+        /*
+            a > b ? "前面的语句为真" : "前面的语句为假"
+        */
+        console.log((val === " " ? "空格" : val)  + " 索引值 " + index);
+    })
+
+    // Array.from("i love the game!").forEach((val,index) => console.log((val === " " ? "空格" : val ) + " 索引值 " + index))
+
+
+</script>

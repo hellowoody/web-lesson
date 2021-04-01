@@ -1,0 +1,21 @@
+<script>
+    let arr = [1,2,3,4,5,6]
+    /*
+        返回新的数组，在原先arr数组基础上每个元素的3倍
+    */
+
+    let arr_new = Array.from(arr,function(item){
+        return item*3
+    })
+    console.log(arr_new)
+
+    /*
+        数组的map方法，返回经过遍历运算之后的新数组 
+    */
+
+    let arr_new2 = arr.map(function(val){
+        return val ** 3
+    })
+    console.log(arr_new2)
+
+</script>
