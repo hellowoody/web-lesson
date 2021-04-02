@@ -1,0 +1,40 @@
+<script>
+
+    // let arr = [1,2,3,4,5]
+
+    // arr.forEach(function(p1,p2,p3){
+    //     console.log(p2,p1);
+    // })
+
+    // 练习题
+    // for-loop while for-in for-of  ForEach 谁的性能更好一点
+
+    let large = new Array(2000000);
+    large.fill("");
+
+    let foreach_start = Date.now();
+    large.forEach(item => {});
+    let foreach_end = Date.now();
+    console.log("foreach duration : ",foreach_end - foreach_start ,"ms")
+
+    let for_start = Date.now();
+    for(let i = 0; i<large.length ; i++){
+        large[i]
+    }
+    let for_end = Date.now();
+    console.log("for duration : ",for_end - for_start ,"ms")
+
+
+    let forin_start = Date.now();
+    for(let key in large){
+        large[key]
+    }
+    let forin_end = Date.now();
+    console.log("for-in duration : ",forin_end - forin_start ,"ms")
+
+    let forof_start = Date.now();
+    for(let val of large){}
+    let forof_end = Date.now();
+    console.log("for-of duration : ",forof_end - forof_start ,"ms")
+
+</script>

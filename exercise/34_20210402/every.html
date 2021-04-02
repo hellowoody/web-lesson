@@ -1,0 +1,58 @@
+<script>
+    /*
+        every
+
+        p1:每次循环取出的元素
+        p2:每次循环取出的元素对应的索引值
+        p3:原数组
+
+    */
+
+    let arr = [-1,0,1,10,-100,0.2]
+
+    // let res = true;  // true 都是正数 ｜ false 不都是
+
+    // for(let v of arr){
+    //     // console.log("front",v)
+    //     if(v <= 0){
+    //         res = false
+    //         break
+    //     }
+    //     // console.log("end",v)
+    // }
+
+    // console.log(res)
+
+    let res = arr.every(function(item){
+        // console.log(item,index,arr_old)
+        return item > -150 // true | false
+    })
+
+    /*
+
+    匿名函数 to 箭头函数的 转变过程
+    let res = arr.every((item) => {
+        return item > -150 
+    })
+
+    let res = arr.every( item => {
+        return item > -150 
+    })
+
+    let res = arr.every( item => item > -150 )
+    
+    */
+    
+    console.log(res)
+
+
+    let numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1]; 
+    // let everyResult = numbers.every((item, index, array) => item > 2); 
+
+    let everyResult = numbers.every(function(item){
+        return item > 2
+    }); 
+
+    console.log(everyResult)
+
+</script>

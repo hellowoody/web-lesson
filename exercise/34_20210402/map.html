@@ -1,0 +1,16 @@
+<script>
+    let arr = [1,2,3,4,5]
+    // let arr = Array.of(1,2,3) // [1,2,3]
+
+    // let arr_new = Array.from(arr,function(item){
+    //     return item**3
+    // }) 
+
+    // console.log(arr_new)
+
+
+    let arr_new2 = arr.map(function(item,index,arr_old){
+        return item ** 3
+    })
+    console.log(arr_new2)
+</script>

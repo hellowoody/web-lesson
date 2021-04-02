@@ -1,0 +1,38 @@
+<script>
+    /*
+        遍历其中一个数组建立elem : index的映射，比如arr = [5, 8, 10]，则生成对应的obj = {5：0，8：1，10：2};
+        [5, 8, 10]
+        to
+        {
+            5:0,
+            8:1,
+            10:2
+        }
+    */
+
+    let arr = [5,8,10,"abc",100,"name",20];
+    
+    let obj = {} // or  let obj = new Object()
+
+    // let stu = {}
+    // stu.id = 1
+    // stu.name ="zhang";
+
+    // //or 
+
+    // let stu = {
+    //     id:1,
+    //     name:"zhang"
+    // }
+
+    for(let i in arr){
+        /*
+            i        索引值
+            arr[i]   元素
+        */
+        obj[arr[i]] = i
+    }
+
+    console.log(obj);
+
+</script>

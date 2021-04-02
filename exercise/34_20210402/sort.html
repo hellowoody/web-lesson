@@ -1,0 +1,19 @@
+<script>
+    /*
+    value1 :偏后面值 1
+    value2 :偏前面值 0
+    */
+    function asc(value1, value2) { 
+        if (value1 < value2) { 
+            return -1;  // 对调位置
+        } else if (value1 > value2) { 
+            return 1;   // 不对调
+        } else { 
+            return 0;   // 不对调
+        } 
+    }
+
+    let values = [0, 1, 5, 10, 15]; 
+    values.sort(asc); 
+    alert(values); // 0,1,5,10,15
+</script>

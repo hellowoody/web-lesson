@@ -1,0 +1,31 @@
+<script>
+
+    /*
+        filter 过滤
+
+        p1:每次循环取出的元素
+        p2:每次循环取出的元素对应的索引值
+        p3:原数组
+    
+    */
+
+    let arr = [1,0,2,3,-1,0,5]
+    // 过滤出0
+    let arr_new = arr.filter(function(val,index,arr_old){
+        return val !== 0
+    })    
+    console.log(arr_new) // [1,2,3,-1,5]
+
+    // 练习题
+    // "i love the game" 去掉空格 返回不带空格的字符串
+
+    let str = "i love the game";
+    let str_arr = Array.from(str);
+    let str_arr_new = str_arr.filter(function(item){
+        return item !== " " // true 本次的item追加到新数组中 | false 不处理
+    })
+    console.log(str_arr_new);
+    console.log(str_arr_new.join(""));
+
+
+</script>
