@@ -1,0 +1,46 @@
+<script>
+    /*
+    
+        时间复杂度
+
+    */
+
+    // fn1 时间复杂度 O(1)
+    function fn1(a,b){
+        if(typeof a === "number"){
+
+        }
+        if(typeof b === "number"){
+
+        }
+        let sum = a+b;
+        return sum
+    }
+
+    // 1 ~ 1000 数据累加  
+    // fn2 时间复杂度 O(n) 100
+    function fn2(){
+        let arr= [1,1000]
+        let sum = 0
+        for(let val of arr){
+            sum = sum +val
+        }
+        return sum
+    }
+
+    // 时间复杂度 O(n**2)  1000*10000
+    function fn3(){
+        let arr1 = Array(10000);
+        arr1.fill(1);
+
+        let arr2 = Array(1000);
+        arr2.fill(2);
+
+        for(let i = 0 ; i<arr1.length ; i++){
+            for(let j=0; j <arr2.length ; j++){
+
+            }
+        }
+    }
+
+</script>

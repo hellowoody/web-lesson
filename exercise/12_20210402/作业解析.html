@@ -1,0 +1,75 @@
+<script>
+    /*
+        在0 ～ 1000 正整数中，计算出凡是能被5整除的数的累加值
+
+        要求：
+            用reduce计算
+
+        100 % 5 === 0 能被5整除
+    */
+
+    // 方法一
+    /*
+        1.用filter过滤 “100 % 5 === 0” 新数组
+        2.再用reduce进行累加
+    */
+    
+    let arr = [] ; // new Array()
+    for(let i = 1; i<=1000 ; i++){
+        arr.push(i)
+    }
+
+    /*
+        p1 每次迭代的数组的元素
+        p2 相对于p1的索引
+        p3 原始数组
+    */
+    // let arr_new = arr.filter(function(p1){
+    //     return p1 % 5 === 0 // true | false
+    // })
+
+    // console.log(arr_new) //len 200 的新数组
+
+    // /*
+    //     p1 acc 上一次的计算结果
+    //     p2 每次迭代的数组的元素
+    //     p3 相对于p2的索引
+    //     p4 原始数组
+    // */
+    // let sum = arr_new.reduce(function(p1,p2){
+    //     return p1 = p1 + p2;
+    // },0)
+
+    // console.log(sum)  //100500
+
+
+    //方法二
+
+    /*
+        直接reduce方法，在每次迭代的时候，进行取模的运算
+    */
+
+    // const sum2 = arr.reduce(function(acc,item){
+    //     if(item % 5 === 0){
+    //         acc = acc + item
+    //     }
+    //     return acc
+    // },0)
+
+    //arr len 1000
+    const sum2 = arr.reduce(function(acc,item){
+        if(item % 5 === 0){
+            // len 200
+            return acc = acc + item
+        }else{
+            return acc
+        }
+
+    },0)
+
+    console.log(sum2)
+
+
+
+
+</script>
