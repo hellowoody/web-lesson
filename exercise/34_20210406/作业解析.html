@@ -1,0 +1,75 @@
+<script>
+    /*
+
+        作业1
+        在0 ～ 1000 正整数中，计算出凡是能被5整除的数的累加值
+
+        要求：
+            用reduce计算
+
+        100 % 5 === 0 能被5整除
+    */
+
+    /*
+         forEach
+        map
+        every
+        some
+        filter
+    */
+
+    let arr = []
+    for(let i = 1;i<=1000;i++){
+        arr.push(i)
+    }
+
+    // 方法一   
+    let sum = arr.reduce(function(acc,p2,p3,p4){
+        if(p2 % 5 === 0){
+            acc = acc + p2
+        }
+        return acc
+    },0)
+
+    console.log("累加结果为:",sum)
+
+    // 方法二
+
+    let arr_new = arr.filter(function(item){
+        return item % 5 === 0
+    });
+
+    let sum_new = arr_new.reduce((acc,item) => acc+item,0);
+    console.log(sum_new)
+
+
+
+    /*
+        作业2
+
+        利用forEach 对“i love the game”进行遍历，并打印
+        打印的要求：
+
+        i 的索引为 0
+        空格 的索引为 1
+        ...
+    */
+
+    // let str = "i love the game";
+
+    // let arr = Array.from(str); // ["i"," ","l",...]
+    /*
+        p1 每次迭代的值
+        p2 p1相对应的索引
+        p3 原始的数组
+    */
+    // arr.forEach(function(p1,p2,p3){
+    //     // express ? "" : ""
+    //     console.log(( p1 === " " ? "空格" : p1 ) + " 的索引为 " + p2);
+    //     // console.log(p1,"的索引为",p2);
+    // })
+
+    // 链式调用法
+    // Array.from("i love the game").forEach((p1,p2) => console.log(( p1 === " " ? "空格" : p1 ) + " 的索引为 " + p2) )
+
+</script>

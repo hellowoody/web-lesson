@@ -1,0 +1,38 @@
+<script>
+    
+
+    // let sum = 0
+    // for(let val of arr){
+    //     sum = sum + val
+    // }
+    // console.log(sum)
+
+    /*
+        
+        p1:上一次计算出的结果 acc
+        p2:每次循环取出的元素
+        p3:每次循环取出的元素对应的索引值
+        p4:原数组
+    
+    */
+    // let res = arr.reduce(function(acc,item,index,arr_old){
+    //     console.log(acc,item,index)
+    //     return acc = acc+item
+
+    // },0)
+    // console.log(res)
+
+    let arr = [1,2,3,4,5,6]
+    /*
+        当reduce不传第二个参数时
+        第一次遍历中，acc默认取出数组的第一个值(索引为0的值)，同时item取得是数组第二值
+        所以，当不传第二个参数时，reduce 会少循环一次
+    */
+    let res = arr.reduce(function(acc,item,index){
+        console.log(acc,item,index)
+        return acc+item
+    })
+
+
+
+</script>
