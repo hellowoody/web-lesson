@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>dom</title>
+    </head>
+    <body>
+        <div id="app">
+            111111111
+            <p id="p_id" name="p_name" style="color:blue;">hello world</p>
+            222222222
+        </div>
+        <div id="app" name="p_name"></div>
+        <button onclick="addNode()">增加一个节点</button>
+        <button onclick="getNode()">获取app节点</button>
+        <button onclick="hasNode()">校验是否有子节点</button>
+    </body>
+</html>
+<script>
+let app = document.getElementById("app"); // object
+// console.log(app.childNodes);
+
+// NodeList （Array Date ） 是 childNodes返回值 类型
+
+for(let item of app.childNodes){
+    // console.log(item.nodeType) 
+    if(item.nodeType === 1){
+        console.log(item.nodeType) // 1
+        console.log(item.nodeName)  // P
+        console.log(item.nodeValue) // NULL
+        console.log("================")
+        console.log(item.childNodes[0].nodeType)
+        console.log("===>",item.childNodes.item(0).nodeType)
+        console.log(item.childNodes[0].nodeName)
+        console.log(item.childNodes[0].nodeValue)
+        console.log("================")
+        console.log(item.attributes[0].nodeType)
+        console.log(item.attributes[0].nodeName)
+        console.log(item.attributes[0].nodeValue)
+        console.log(item.attributes[1].nodeType)
+        console.log(item.attributes[1].nodeName)
+        console.log(item.attributes[1].nodeValue)
+        console.log(item.attributes[2].nodeType)
+        console.log(item.attributes[2].nodeName)
+        console.log(item.attributes[2].nodeValue)
+    }
+}
+
+
+function getNode(){
+    console.log(app.childNodes) // 不是某一刻历史快照，而是实时活动的对象
+}
+
+
+function addNode(){
+    let node = document.createElement("p");  // <p></p>
+    let text = document.createTextNode("你好,世界"); // “你好,世界”
+    node.appendChild(text);  // <p>你好,世界</p>
+    // app.appendChild(node);
+    // app.insertBefore(待插入新节点,在哪个节点之前插入)
+    // app.insertBefore(node,app.childNodes[1]);
+    app.insertBefore(node,null);
+}
+
+function hasNode(){
+    console.log(app.hasChildNodes()) // true
+    console.log(document.getElementById("app2").hasChildNodes()) // false
+}
+
+
+// document.getElementById("") // id符合条件 第一个元素
+
+// document.getElementsByTagName() // 标签符合条件的 元素数组
+// document.getElementsByTagNameNS()  // html xml  namespace 命名空间
+
+// document.getElementsByName() // name属性符合条件的 元素数组
+
+</script>

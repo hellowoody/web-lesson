@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+
+        <div id="app">
+            11111
+            <p name="content">hello world</p>
+            222222
+        </div>
+
+
+        <div name="content">你好</div>
+
+
+        
+
+        <button onclick="addNode()">增加一个节点</button>
+        <button onclick="getNode()">获取app节点</button>
+    </body>
+</html>
+<script>
+
+   'use strict';
+
+    let app = document.getElementById("app");
+
+    for(let item of app.childNodes){
+        // console.log(item.nodeType);
+        if(item.nodeType === 1){
+            console.log(item.nodeType); //1
+            console.log(item.nodeValue);
+            console.log(item.nodeName);
+            console.log("================")
+            console.log(item.childNodes)
+            console.log(item.childNodes[0].nodeType) // 3
+            console.log(item.childNodes.item(0).nodeType) // 3
+            console.log(item.childNodes[0].nodeValue)
+            console.log(item.childNodes[0].nodeName)
+        }
+    }
+
+    function getNode(){
+        console.log(app.childNodes)  // 返回值的类型 就是NodeList
+    }
+
+    function addNode(){
+        let node = document.createElement("p");  // <p></p>
+        let text = document.createTextNode("新段落"); // 新段落
+        node.appendChild(text); // <p>新段落</p>
+        // app.appendChild(node) 
+        // app.insertBefore(node,app.firstChild);
+        // app.insertBefore(node,app.childNodes[1]);
+        app.insertBefore(node,null);
+    }
+
+    /*
+        document.getElementById()  //根据id获取节点,返回符合条件的第一个元素
+
+        document.getElementsByTagName() //根据标签获取节点,返回的符合条件的数组
+
+        document.getElementsByName() //根据name属性获取节点,返回的符合条件的数组
+
+    
+    */
+
+</script>
