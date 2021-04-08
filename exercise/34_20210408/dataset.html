@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+
+        </style>
+        <script src="./jquery.js"></script>
+    </head>
+    <body>
+        <div data-id="stu001" data-name="zhangsan" id="div-id" name="div-name">
+            张三的信息
+        </div>
+    </body>
+</html>
+<script>
+    let d = document.querySelector("div");
+
+    console.log(d.dataset);
+    console.log(d.dataset.id);
+    console.log(d.dataset.name);
+    console.log(d.attributes.id.nodeValue);
+    console.log(d.attributes.name.nodeValue);
+</script>

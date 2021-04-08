@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>write </title>
+        <style>
+            .p_class {
+                font-weight: bold;
+                color:red;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="id1">div - hello world</div>
+        <p class="p_class" id="id2">p - hello world</p>
+        <span id="id3">span hello world</span>
+        <br>
+        <button onclick="remove()">移除属性</button>
+        <button onclick="update()">修改文字颜色</button>
+        <button onclick="create()">增加属性</button>
+    </body>
+</html>
+<script>
+    let d = document.getElementsByTagName("div")[0]
+
+    d.setAttribute("id","div_id");
+    d.setAttribute("name","div_name")
+    d.setAttribute("style","color:blue")
+    d.setAttribute("class","div_class")
+    d.setAttribute("myAttr2","div_class2")
+
+    function remove(){
+        let d_new = document.getElementById("div_id")
+        d_new.removeAttribute("class")
+    }
+    function update(){
+        let d_new = document.getElementById("div_id")
+        d_new.setAttribute("style","color:red;font-size:24px;")
+    }
+
+    function create(){
+        let attr = document.createAttribute("myAttr"); 
+
+        attr.value= "left";
+
+        d.setAttributeNode(attr)
+
+
+    }
+
+</script>

@@ -7,7 +7,7 @@
 
         <div id="app">
             11111
-            <p name="content">hello world</p>
+            <p name="content123" id="p_id" style="color:blue;">hello world</p>
             222222
         </div>
 
@@ -26,6 +26,7 @@
    'use strict';
 
     let app = document.getElementById("app");
+    let appNodes = app.childNodes
 
     for(let item of app.childNodes){
         // console.log(item.nodeType);
@@ -39,11 +40,26 @@
             console.log(item.childNodes.item(0).nodeType) // 3
             console.log(item.childNodes[0].nodeValue)
             console.log(item.childNodes[0].nodeName)
+            console.log("*****************")
+            console.log(item.attributes)
+            console.log("------------------")
+            console.log(item.attributes[0].nodeType) //2
+            console.log(item.attributes[0].nodeValue)
+            console.log(item.attributes[0].nodeName)
+            console.log(item.attributes[1].nodeType) //2
+            console.log(item.attributes[1].nodeValue)
+            console.log(item.attributes[1].nodeName)
+            console.log(item.attributes[2].nodeType) //2
+            console.log(item.attributes[2].nodeValue)
+            console.log(item.attributes[2].nodeName)
+
+            console.log(item.attributes.id)
+            
         }
     }
 
     function getNode(){
-        console.log(app.childNodes)  // 返回值的类型 就是NodeList
+        console.log(appNodes)  // 返回值的类型 就是NodeList
     }
 
     function addNode(){
@@ -51,9 +67,11 @@
         let text = document.createTextNode("新段落"); // 新段落
         node.appendChild(text); // <p>新段落</p>
         // app.appendChild(node) 
+        // app.insertBefore(待插入的新节点，在哪个节点之前插入)
         // app.insertBefore(node,app.firstChild);
         // app.insertBefore(node,app.childNodes[1]);
-        app.insertBefore(node,null);
+        app.insertBefore(node,document.getElementById("p_id"));
+        // app.insertBefore(node,null);
     }
 
     /*

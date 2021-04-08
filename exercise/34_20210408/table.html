@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <!-- <table border="1" width="100"  cellSpacing="0">
+            <thead>
+                <tr>
+                    <th>列1</th>
+                    <th>列2</th>
+                    <th>列3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                </tr>
+            </tbody>
+        </table> -->
+    </body>
+</html>
+<script>
+
+const tableStyle = {
+    rows:2,
+    cols:3
+}
+
+let table = document.createElement("table"); // <table></table>
+table.border = "1";
+table.width = "200";
+table.cellSpacing = "0"; 
+
+let thead = document.createElement("thead") // <thead></thead>
+thead.insertRow(0);
+thead.rows[0].insertCell(0);
+thead.rows[0].cells[0].appendChild(document.createTextNode("列1"));
+thead.rows[0].insertCell(1);
+thead.rows[0].cells[1].appendChild(document.createTextNode("列2"));
+thead.rows[0].insertCell(2);
+thead.rows[0].cells[2].appendChild(document.createTextNode("列3"));
+table.appendChild(thead);
+
+let tbody = document.createElement("tbody");
+for(let i = 0 ; i<tableStyle.rows;i++){
+    tbody.insertRow(i);
+    for(let j = 0 ; j < tableStyle.cols ; j++ ){
+        tbody.rows[i].insertCell(j);
+        tbody.rows[i].cells[j].appendChild(document.createTextNode(`${i+1}行-${j+1}列`))
+    }
+}
+table.appendChild(tbody);
+
+document.body.appendChild(table)
+
+    
+</script>
