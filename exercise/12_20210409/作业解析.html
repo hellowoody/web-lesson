@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <button onclick="add()">增加</button>
+        <input placeholder="要删除第几行"> <button onclick="del()">删除</button>
+        <br>
+        大类
+        <ul>
+            <li>小类1</li>
+            <li>小类2</li>
+            <li>小类3</li>
+        </ul>
+    </body>
+</html>
+
+<script>
+    function add(){
+        /*
+            1.createElement 创建空标签 Node <li></li>
+            2.createTextNode 创建一段文本 Text "小类4"
+            3.Node.appendChild(Text)  <li>小类4</li>
+            4.父节点.appendChild(Node)
+        */
+        let ul = document.getElementsByTagName("ul")[0] // 返回数组
+
+        let li = document.createElement("li");
+        // let text = document.createTextNode("小类"+ (ul.children.length + 1));
+        let text = document.createTextNode(`小类${ul.children.length + 1}`);
+        li.appendChild(text);   
+        ul.appendChild(li)
+    }
+
+    function del(){
+        /*
+            1.获取到要删除的节点 <li 类别6>
+            2.拿到要被删除的节点的父节点.removeChild(要删除的节点)
+        */
+        let inputs = document.getElementsByTagName("input")  //数组 
+        let input = inputs[0]
+        let targetRow = input.value;
+        console.log(targetRow)
+        let ul = document.getElementsByTagName("ul")[0] // 返回数组,通过[]访问索引为0的值
+        let delItem = ul.children[targetRow - 1];
+        delItem.parentNode.removeChild(delItem);
+        // ul.removeChild(delItem);
+    }
+
+</script>

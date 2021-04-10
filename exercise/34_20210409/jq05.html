@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" >
+    <script src="../jquery.js"></script>
+</head>
+<body>
+    <form action="">
+        <input type="radio" name="gender" value="male" checked /> male
+        <br>
+        <input type="radio" name="gender" value="female"> female
+        <br>
+        <input type="text" placeholder="请输入id">
+        <br>
+        <input id="check" type="checkbox" > 同意并接收协议
+    </form>
+    <button>提交</button>
+</body>
+</html>
+<script>
+    $("button").click(function(){
+        let check = $("#check")  //jq
+        let check_dom = check[0]; // to dom
+        console.log(check_dom.checked) // true ｜ false
+        if(!check_dom.checked){
+            alert("请同意")
+        }else{
+            console.log("提交了")
+            
+        }
+    })
+</script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.2.4/jquery.js"></script> -->
+        <!-- <script src="../jquery.js"></script> -->
+
+        <script>
+            // 闭包     
+            ;(function(){
+                window.jQuery = function(callback){
+                    callback()
+                }
+                window.$ = function(callback){
+                    callback()
+                }
+            })()
+
+            //$(funciton(){})  //jq “加载” 配置好可以引用 
+            jQuery(function(){
+               console.log("hello12345")
+           })
+        //    jQuery(function(){
+        //        console.log("hello")
+        //    })
+        </script>
+    </head>
+</html>

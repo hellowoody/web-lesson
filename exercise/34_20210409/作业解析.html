@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        tbody {
+            color:red;
+        }
+
+        /* nth 索引1开始 */
+        /* tbody tr:nth-child(2){
+            color:blue;
+        } */
+        /* tbody tr:nth-of-type(2){
+            color:blue;
+        } */
+        tbody tr:nth-last-child(1){
+            color:pink;
+        }
+    </style>
+    <body>
+        <button onclick="addRow()">增行</button>
+        <button onclick="delRow()">删行</button>
+    </body>
+</html>
+<script>
+
+const tableStyle = {
+    rows:2,
+    cols:3
+}
+
+let table = document.createElement("table"); // <table></table>
+table.border = "1";
+table.width = "200";
+table.cellSpacing = "0"; 
+
+let thead = document.createElement("thead") // <thead></thead>
+thead.insertRow(0);
+thead.rows[0].insertCell(0);
+thead.rows[0].cells[0].appendChild(document.createTextNode("列1"));
+thead.rows[0].insertCell(1);
+thead.rows[0].cells[1].appendChild(document.createTextNode("列2"));
+thead.rows[0].insertCell(2);
+thead.rows[0].cells[2].appendChild(document.createTextNode("列3"));
+table.appendChild(thead);
+
+let tbody = document.createElement("tbody");
+for(let i = 0 ; i<tableStyle.rows;i++){
+    tbody.insertRow(i);
+    for(let j = 0 ; j < tableStyle.cols ; j++ ){
+        tbody.rows[i].insertCell(j);
+        tbody.rows[i].cells[j].appendChild(document.createTextNode(`${i+1}行-${j+1}列`))
+    }
+}
+table.appendChild(tbody);
+
+document.body.appendChild(table)
+
+ 
+ 
+function addRow(){
+    /*
+    1.createElement  Node
+    2.createTextNode  text
+    3.Node.appendChild(text)  DIV  // <div>hello</div>
+    4.DIV的父节点.appendChild(DIV)
+    */
+    let tbody = document.querySelector("tbody");
+    // tbody.insertRow(新行的索引)
+    let index = tbody.rows.length; // 2
+    tbody.insertRow(index) // 新增一行 tbody的rows 3
+    tbody.rows[index].insertCell(0)
+    tbody.rows[index].cells[0].append(document.createTextNode("new"))
+    tbody.rows[index].insertCell(1)
+    tbody.rows[index].cells[1].append(document.createTextNode("new"))
+    tbody.rows[index].insertCell(2)
+    tbody.rows[index].cells[2].append(document.createTextNode("new"))
+
+}
+
+function delRow(){
+    /*
+        1.先获取你要删除那个标签
+        2.再remove
+    */
+    let tbody = document.querySelector("tbody");
+    //第一种方式
+    // let lastrow = document.querySelector("tbody tr:nth-last-child(1)")  //获取tbody中最后一个行
+    // tbody.removeChild(lastrow);
+    //第二种方式
+    tbody.deleteRow(tbody.rows.length - 1)
+
+}
+
+</script>

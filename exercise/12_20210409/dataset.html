@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="stu_id" name="stu_name" class="stu_class" style="color:blue" data-stuid="s000001" data-name="张三">学生信息</div>
+    </body>
+</html>
+<script>
+    let div = document.querySelector("div");
+    console.log(div.dataset)
+    let student = div.dataset
+    console.log(student.stuid,student.name)
+</script>

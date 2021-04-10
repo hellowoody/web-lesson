@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- <script src="../jquery.js"></script> -->
+        <script>
+            /*
+            jQuery 和 闭包彼此的关系
+
+            1.jQuery本身就是一个闭包 ， jquery是一个立即执行函数
+            2.什么闭包 
+                a.函数套函数
+                b.内层函数使用了外层函数变量
+                function outer(a,b){
+                    function inner(){
+                        console.log(a)
+                    }
+                }
+
+            3.立即执行函数是闭包的一种形式
+                ;(function(){
+
+                })()
+            */
+            
+            ;(function(){
+                let fn = function(callback){
+                    callback()
+                }
+                window.$ = window.zhangsan = fn
+            })()
+            
+            
+            zhangsan(function(){
+                console.log("hello123456")
+            })
+        </script>
+    </head>
+</html>
