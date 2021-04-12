@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="../jquery.js"></script>
+    </head>
+    <body>
+        <div id="foo">
+            <h1>hello</h1>
+        </div>
+    </body>
+</html>
+<script>
+    // document.querySelector("");
+    //dom方法
+    console.log(document.getElementById("foo").innerHTML)
+    console.log(document.querySelector("#foo").innerHTML)
+    //jq html
+    console.log($("#foo").html()) 
+
+    /*
+        jq 对象：类数组对象， 可以用数组的方式访问或操作 [index] length
+        dom 对象：类json结构的对象 obj = {id:1,name:"zhang"}  obj.id obj.name
+    */
+
+    /*
+        jq（数组） to dom
+        jq[index]
+    */
+    let div = $("#foo")
+    // $("div")
+    console.log(div)    //jq 对象
+    console.log(div[0]) // dom 对象
+    console.log(div[0] === document.getElementById("foo")) // true 
+
+    console.log("******************")
+
+    /*
+        dom to jq
+        $(dom)
+    */
+
+    let div_dom = document.querySelector("#foo") // dom
+    console.log(div_dom)    // dom
+    console.log($(div_dom)) //jq new jq obj
+    console.log($(div_dom) === $("#foo")) // false
+
+</script>

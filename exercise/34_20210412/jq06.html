@@ -1,0 +1,102 @@
+<html>
+
+<head>
+    <style>
+
+        div.mini {
+            width: 100px;
+            height: 100px;
+            background-color: #f0f0f0;
+            margin: 16px;
+        }
+
+        .one {
+            background-color: blanchedalmond;
+        }
+    </style>
+    <script src="../jquery.js"></script>
+    <script>
+        $(function () {
+            //dom方法1
+            // document.getElementById("two").setAttribute("style","background-color:blue");
+            //dom方法2
+            // document.getElementById("two").style = "background-color:blue"
+            //dom方法3
+            // let style = document.createAttribute("style")
+            // style.value = "background-color:orange"
+            // document.getElementById("two").setAttributeNode(style); 
+
+            // 基本选择器
+            // $("#two").css("background-color","blue")
+            // $("div").css("color","red")
+            // $(".one").css("background-color","pink")
+            // $("#two,span").css("color","red")
+
+            // 层级选择器
+            // $("body div").css("border-radius","20px")
+            // $("body > div").css("border-radius","20px")
+            //$("#two + div").css("color","red") // 先id为two元素找到，找到刚才元素的紧挨着的后面的下一个元素，去和加号后面的选择器匹配， 如果匹配上了则样式生效
+            // $("#two ~ span").css("color","blue")
+
+            // 简单过滤选择器
+            // $("div:first").css("border-radius","20px")
+            // $("div").first().css("border-radius","20px")
+            // $("div:not(#two)").css("color","blue")
+            // $("div:even").css("background-color","blue")
+            // $("div:eq(3)").css("border-radius","20px")
+            // console.log($(":header")) 
+
+            // 内容过滤选择器
+            // $("div:contains('id')").css("background-color","pink")
+            // $("div:empty").css("background-color","pink")
+            // $("div:has(.mini)").css("background-color","pink")
+            // $("div:parent").css("background-color","pink")
+
+            // 可见性过滤选择器
+            // $("div:visible").css("background-color","blue")
+            // $("div:hidden").css("background-color","blue")
+            // $("button").click(function(){
+            //     $("div:hidden").show(3000)
+            // })
+
+            // 属性过滤选择器
+            // $("div[id]").css("border-radius","20px")
+            // $("div[id=one]").css("border-radius","20px")
+            // $("div[id!=one]").css("border-radius","20px")
+            // $("div[title^=t]").css("background-color","blue")
+            // $("div[title$=r]").css("background-color","blue")
+            // $("div[title*=t]").css("background-color","blue")
+
+            // 子元素过滤选择器
+            // $("div.one:nth-child(2)").css("background-color","blue")
+            // $("div.one:nth-of-type(2)").css("background-color","blue")
+            // $("div.one:first").css("background-color","blue")
+            // $("div.one:last").css("background-color","blue")
+            $("div:only-child").css("background-color","blue")
+
+        })
+    </script>
+</head>
+<body>
+    <button>展现</button> 
+    <div id="one" class="one"> 
+        <div class="mini"> class为mini </div>
+    </div>
+    <div id="two" class="one" > 
+        id为two，class为one的div   
+       <div class="mini" title="other"> class为mini,title为other </div>
+       <div class="mini" title="test"> class为mini,title为test ******</div>
+    </div>
+    <span>aaa</span>
+    <div id="three" class="one">
+        <div class="mini"> class为mini </div>
+        <div class="mini"> class为mini ******</div>
+        <div class="mini"> class为mini </div>
+        <div class="mini"> </div>
+    </div>
+    <span>BBB</span>
+    <div class="one" style="width: 100%;height: 50px;"></div>
+    <div class="one" style="display: none;width: 100%;height: 50px;margin-top:20px;"></div>
+</body>
+
+</html>

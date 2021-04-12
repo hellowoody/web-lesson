@@ -1,0 +1,39 @@
+<html>
+    <style>
+        .c {
+            width: 50px;
+            height: 50px;
+            background-color: blue;
+            border-radius: 50px;
+        }
+
+        /* body > div {
+           position: relative; 
+        }
+
+        div:nth-child(2){
+            position: absolute;
+            bottom:0px;
+            right:0px;
+        } */
+
+        body > div {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .c:nth-child(2) {
+            align-self: flex-end;
+
+        }
+        
+
+    </style>
+
+    <body>
+        <div style="width: 500px;height: 500px;background-color: pink;">
+            <div class="c"></div>
+            <div class="c"></div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <script src="../jquery.js"></script>
+    <body>
+        <form action="">
+            <input type="radio" name="gender" value="male"  > 男
+            <input type="radio" name="gender" value="female" checked > 女
+            <br>
+            用户id: <input type="text" placeholder="长度不要超过8个字符"> 
+            <br>
+            <input id="check" type="checkbox" > 同意并接受协议
+        </form>
+        <button>提交</button>
+    </body>
+</html>
+<script>
+
+$("button").click(function(){
+    // console.log($("input"))
+    let inputs = $("input") //jq length 4
+    let check_dom = inputs[3] // dom
+    // let check = $("#check"); //jq
+    // let check_dom = check[0]; //to dom
+    console.log(check_dom.checked) // obj.checked
+    if(check_dom.checked){
+        console.log("提交成功")
+    }else{
+        alert("请同意")
+    }
+})
+
+
+</script>

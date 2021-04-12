@@ -11,8 +11,9 @@
                 a.函数套函数
                 b.内层函数使用了外层函数变量
                 function outer(a,b){
+                    let num = 100
                     function inner(){
-                        console.log(a)
+                        console.log(num)
                     }
                 }
 
@@ -30,7 +31,7 @@
             })()
             
             
-            zhangsan(function(){
+            $(function(){
                 console.log("hello123456")
             })
         </script>
