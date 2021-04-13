@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="../jquery.js"></script>
+        <script>
+            $(function(){
+                const items = document.getElementsByTagName("p"); //dom 数组
+                const items_jq = $("p"); //jq 数组
+
+                for(let i = 0 ; i<items_jq.length ;i++){
+                    // console.log(items_jq[i])
+                    // dom 绑定事件
+                    // items_jq[i].onclick = function(){
+                    //     console.log(1000)
+                    // }
+                    // jq 绑定事件
+                    $(items_jq[i]).click(function(){
+                        console.log($(this).text())
+                    })
+                }
+
+            })
+        </script>
+    </head>
+    <body>
+        <p>段落111111111111</p>
+        <p>段落222222222222</p>
+        <p>段落333333333333</p>
+        <p>段落444444444444</p>
+        <p>段落555555555555</p>
+    </body>
+</html>

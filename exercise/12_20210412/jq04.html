@@ -7,6 +7,7 @@
         <div id="foo">
             <h1>hello</h1>
         </div>
+        <div></div>
     </body>
 </html>
 <script>
@@ -26,7 +27,7 @@
         jq（数组） to dom
         jq[index]
     */
-    let div = $("#foo")
+    let div = $("div")
     // $("div")
     console.log(div)    //jq 对象
     console.log(div[0]) // dom 对象
@@ -36,7 +37,7 @@
 
     /*
         dom to jq
-        $(dom)
+        $(dom) 
     */
 
     let div_dom = document.querySelector("#foo") // dom

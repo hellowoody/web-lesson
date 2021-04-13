@@ -1,0 +1,62 @@
+<html>
+
+<head>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.js"></script>
+</head>
+
+<body>
+    <form id="fm">
+        <input type="button" value="Button" />
+        <br /> 
+        <input type="checkbox" name="c" />1 
+        <input type="checkbox" name="c" />2 
+        <input type="checkbox" name="c" />3
+        <br /> 
+        <input type="file" />
+        <br /> 
+        <input type="hidden" />
+        <div style="display: none;">test</div>
+        <br /> 
+        <input type="image" src="m.jpeg" width="100"/>
+        <br /> 
+        <input type="password" />
+        <br /> 
+        <input type="radio" name="a" />1 
+        <input type="radio" name="a" />2
+        <br /> 
+        <input type="reset" />
+        <br /> 
+        <input type="submit" />
+        <br /> 
+        <input type="text" />
+        <br /> 
+        <select>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+        </select>
+        <br /> 
+        <textarea></textarea>
+        <br /> 
+        <button>Button</button>
+    </form>
+    
+</body>
+
+</html>
+<script>
+$(function(){
+    console.log($(":input").length)
+    console.log($(":text").length)
+    console.log($(":password").length)
+    console.log($(":radio").length)
+    console.log($(":checkbox").length)
+    console.log($(":submit").length)
+    // console.log($(":submit"))
+    console.log($(":image").length)
+    console.log($(":reset").length)
+    console.log($(":file").length)
+})
+
+ 
+</script>

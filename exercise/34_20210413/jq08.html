@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <script src="../jquery.js"></script>
+    <script>
+        $(function(){
+            // js code
+            let p_arr = $("p") // jq 类数组
+
+            for(let i=0;i<p_arr.length ; i++){
+                // p_arr[i] // dom
+                // 1.dom 绑定
+                // p_arr[i].onclick = function(){
+                //     console.log(1000,this)
+                // }
+                // 2.to jq 绑定
+                $(p_arr[i]).click(function(){
+                    // console.log(2000)
+                    // console.log(this.innerText) // 上下文 dom 对象
+                    console.log($(this).html()) // 上下文 dom 对象
+                    console.log($(this).text()) // 上下文 dom 对象
+                })
+            }
+        })
+
+    </script>
+    <body>
+        <p>段落111111111</p>
+        <p><a>段落222222222</a></p>
+        <p>段落333333333</p>
+        <p>段落444444444</p>
+        <p>段落555555555</p>
+    </body>
+</html>

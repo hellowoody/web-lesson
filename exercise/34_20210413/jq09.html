@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <script src="../jquery.js"></script>
+    <script>
+        $(function(){
+            let data = [
+                {id:2020001,name:"张三",score:90},
+                {id:2020002,name:"张四",score:80},
+                {id:2020003,name:"张五",score:70},
+                {id:2020004,name:"张刘",score:60},
+                {id:2020005,name:"张琪",score:50},
+                {id:2020006,name:"张八",score:40},
+            ]
+            let table = $("<table></table>") //jq 
+            let table_dom = table[0]
+            table_dom.border = 1;
+            table_dom.cellSpacing = 0;
+            table_dom.width =  "200px"
+            for(let i = 0 ; i< data.length; i++){
+                let tr = $("<tr></tr>"); //jq
+                for(let key in data[i]){
+                    tr.append($(`<td>${data[i][key]}</td>`))
+                }
+                table.append(tr)
+            }
+            $("body").append(table)  
+
+            // let table_dom = table[0]
+            // table_dom.border = 1;
+            // table_dom.cellSpacing = 0;
+            // table_dom.width =  "200px"
+            // for(let i = 0 ; i< data.length; i++){
+            //     table_dom.insertRow(i);
+            //     let j = 0
+            //     for(let key in data[i]){
+            //         // console.log(key)
+            //         table_dom.rows[i].insertCell(j)
+            //         table_dom.rows[i].cells[j].appendChild(document.createTextNode(data[i][key]))
+            //         j++
+            //     }
+            // }
+
+            // document.body.appendChild(table[0])  
+            
+            // $("table tr:even").css("background-color","orange"); 
+            $("tr").each(function(i,item){
+                if(i % 2 ===0){
+                    $(this).css("background-color","orange")
+                }else{
+                    this.style.backgroundColor = "blue";
+                    this.style.color = "white";
+                }
+            })
+        })
+    </script>
+    <body>
+    </body>
+</html>
+<script>
+    //iife
+//    ;(function(){
+//         let table = document.createElement("table");
+//         // jq 如何创建一个标签
+//         document.body.appendChild(table)
+//    })()
+
+</script>

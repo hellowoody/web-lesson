@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <style>
+            div.mini {
+                width: 100px;
+                height: 100px;
+                background-color: #f0f0f0;
+                margin: 16px;
+            }
+
+            .one {
+                background-color: blanchedalmond;
+            }
+        </style>
+        <script src="../jquery.js"></script>
+        <script>
+            $(function () {
+                // 基本选择器
+                // let dom = document.getElementById("one")
+                // dom.style = ""
+                // $("#one").css("background-color","#000")
+                // $("div").css("color","blue")
+                // $(".one").css("background-color","red")
+                // $("*").css("color","blue")
+                // $("#one,#two").css("background-color","blue")
+                // 层级选择器
+                // $("body div").css("border-radius","20px")
+                // $("body > div").css("border-radius","20px")
+                // $("#two+span").css("color","blue") // 找到id为two的元素，找到这个元素下一个元素，看下一个元素和加号后面的选择器是否匹配，如果匹配则生效
+                // $("#two~div").css("color","blue") //找到id为two的元素,再找到它后面的兄弟节点为～号后面一致的标签
+
+                // 简单过滤选择器
+                //  $("div:first").css("background-color","#bbffaa");
+                //  $("div").first().css("background-color","blue");
+                //  $("div:last").css("background-color","blue");
+                //  $("div:not(.one)").css("background-color","#bbffaa");
+                //  $("div:even").css("background-color","#bbffaa"); // even 偶数 序号从0开始
+                // $("div:eq(3)").css("background-color","#bbffaa");
+                // $("div *:header").css("color","red")
+
+                // 内容过滤选择器
+                // $("div:contains(id)").css("background-color","blue")
+                // $("div:empty").css("background-color","blue")
+                // $("div:has(.mini)").css("background-color","blue") //注意找到其实是父元素，而has指的是孩子元素的属性或样式
+                // $("div:parent").css("border-radius","20px")
+
+                // 可见行过滤选择器
+                // $("div:visible").css("border-radius","20px")
+                
+                // $("button").click(function(){
+                //     $("div:hidden")
+                //         .css("background-color","blue")      // 设置样式
+                //         .show(3000)                          // 让它显示 duration 单位毫秒
+                //         .css("border-radius","20px")
+                // })
+
+                // 属性过滤选择器
+                // $("div[id]").css("border-radius","20px")
+                // $("div[id=one]").css("border-radius","20px")
+                // $("div[id!=one]").css("border-radius","20px")
+                // $("div[id!=one]").css("border-radius","20px")
+                // $("div[title^=ot]").css("background-color","blue")
+                // $("div[title$=t]").css("background-color","blue")
+                // $("div[title*=t]").css("background-color","blue")
+                // $("div[title*=h][class=mini]").css("background-color","blue")
+
+                // 子元素过滤选择器
+                // $("div:first-child").css("background-color","blue") //最后渲染的是子节点
+                // $("div:last-child").css("background-color","blue") //最后渲染的是子节点
+                // $("div:only-child").css("background-color","blue") //最后渲染的是子节点
+                $("div.one:nth-child(2)").css("background-color","blue")
+            })
+
+            // $(document).ready(function(){
+
+            // })
+        </script>
+    </head>
+
+    <body>
+        
+        <h1>标题1</h1>
+        <div id="one" class="one">
+          <div class="mini"> class为mini </div>
+        </div>
+
+       <div id="two" class="one"> 
+            id为two，class为one的div  *********
+            <div class="mini" title="other"> class为mini,title为other ======</div>
+            <div class="mini" title="test"> class为mini,title为test ******</div>
+        </div>
+        <span>aaa</span>
+        <div id="three" class="one">
+            <div class="mini"> class为mini **********</div>
+            <div class="mini"> class为mini </div>
+            <div class="mini"> class为mini </div>
+            <div class="mini"> </div>
+        </div>
+        <button>显示隐藏的div</button>
+        <div class="one" style="display: none;width: 100%;height: 50px;margin-top:20px;"></div>
+        <div class="one" style="width: 100%;height: 50px;"></div>
+    </body>
+
+</html>
