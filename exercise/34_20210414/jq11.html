@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <script src="../jquery.js"></script>
+    <body>
+        <div id="ttt" style="background-color: red;"></div>
+        <ul>
+            <li>red</li>
+            <li>yellow</li>
+            <li>blue</li>
+            <li>pink</li>
+            <li>black</li>
+        </ul>
+        <input id="i" placeholder="请输入手机号">
+        <button>创建ul-li</button>
+    </body>
+</html>
+<script>
+    // 查找节点
+    console.log($("ul li:eq(1)").html(),$("ul li:eq(1)").text())
+    // 查找属性节点
+    let input = $("input")
+    console.log(input.attr("id"))
+    console.log(input.attr("placeholder"))
+    // 创建节点 文本 属性
+    let span = $("<span id='id1' name='name1'>hello</span>")
+    $("body").append(span)
+    // 插入节点
+    let div2 = $("<div id='id2' name='name2'>你好</div>")
+    // div2.appendTo($("#ttt"))
+    div2.appendTo("#ttt")
+    let span2 = $("<span>张三,</span>")
+    // span.prepend(span2)
+    span2.prependTo(span)
+
+    // $("input").after($("<br><br>"))
+    $("<br><br><br>").insertAfter("input")
+
+
+    $("button").click(function(){
+        var $li_1 = $("<li title='猴头菇饼干'>猴头菇饼干</li>"); 
+        var $li_2 = $("<li title='猕猴桃'>猕猴桃</li>");
+        var $li_3 = $("<li title='其他'>其他</li>"); 
+        var $parent = $("ul"); 
+        var $two_li = $("ul li:eq(1)");
+        //获取第二个li元素节点 
+
+        //使用append()将创建的第一个<li>元素添加到<ul>中
+        let ul = $("<ul></ul>")
+        $("body").append(ul.append($li_1))
+        //使用prepend()将创建的第二个<li>元素添加到<ul>中 
+         ul.prepend($li_2)
+        //使用insertAfter()将创建的第三个<li>元素添加到<ul>中
+         $li_3.insertAfter($li_2)
+    })
+</script>

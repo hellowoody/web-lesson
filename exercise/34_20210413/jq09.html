@@ -18,6 +18,12 @@
             table_dom.width =  "200px"
             for(let i = 0 ; i< data.length; i++){
                 let tr = $("<tr></tr>"); //jq
+                /*
+                stu {id:1,name:"zhang"} stu.id stu.name
+                ["a","b"]
+                for-in: 数组or对象中key 遍历出来
+                for-of: 数组 Array（iteration） a , b
+                */
                 for(let key in data[i]){
                     tr.append($(`<td>${data[i][key]}</td>`))
                 }

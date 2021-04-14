@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        .div_class {
+            width:300px;
+            height:300px;
+            background-color: blanchedalmond;
+        }
+        /* 
+            1.transform : 变换
+            2.transition : 过渡
+            3.animation : 动画
+         */
+        .new_class {
+            transform: skew(-20deg);
+        }
+
+        h1 {
+            -webkit-transition: all 2s ease-in;
+        }
+
+        .A {
+            transform: translateX(200px);
+        }
+
+        .B {
+            transform: translateY(200px);
+        }
+    </style>
+    <script src="../jquery.js"></script>
+    <body>
+        <button onclick="toggle()">切换样式</button>
+        <div name="div_name1">
+            <h1>hello world</h1>
+        </div>
+
+        <div id="newid"></div>
+        <span></span>
+    </body>
+</html>
+<script>
+    // document.querySelector("div").getAttribute("name")
+    // $("div").attr("name")
+
+    // $("div")
+    //     .attr("id","id01")
+    //     .attr("style","color:blue")
+    //     .attr("class","div_class");
+    
+    // config param
+    $("div[id!=newid]")
+        .attr({
+            "id":"id01",
+            "style":"color:blue",
+            "class":"div_class"
+        })
+        .removeAttr("style")
+        .addClass("new_class")
+        // .removeClass("div_class")
+
+    // $("div").removeAttr("style")
+    function toggle(){
+        $("h1").toggleClass("A")
+    }
+
+    $("#newid").html("<strong>jQuery学习网站</strong>")
+    console.log($("#newid").html())
+
+    $("span").text("张三你好")
+    console.log($("span").text())
+</script>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <script src="../jquery.js"></script>
+    <body>
+        <!-- <table border="1" cellSpacing="0" width="200">
+            <thead>
+                <tr>
+                    <th>学号</th>
+                    <th>姓名</th>
+                    <th>成绩</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2021001</td>
+                    <td>张三</td>
+                    <td>90</td>
+                </tr>
+            </tbody>
+        </table> -->
+    </body>
+</html>
+<script>
+    // let div = $("<div id='a01'>hello world</div>") ;
+    // $("body").append(div)
+
+    const data = [
+        {id:2021001,name:"张三",score:90}, //row
+        {id:2021002,name:"张四",score:80},
+        {id:2021003,name:"张五",score:70},
+        {id:2021004,name:"张刘",score:60},
+        {id:2021005,name:"张琪",score:50},
+        {id:2021006,name:"张八",score:40},
+    ]
+
+    let table = $("<table border='1' width='200' cellSpacing='0' ></table>")
+    // 创建表头
+    let thead = $("<thead></thead>");
+    let thead_row = $("<tr></tr>");
+    let thead_th1 = $("<th>学号</th>")
+    let thead_th2 = $("<th>姓名</th>")
+    let thead_th3 = $("<th>成绩</th>")
+    thead_row.append(thead_th1).append(thead_th2).append(thead_th3)
+    thead.append(thead_row)
+    table.append(thead)
+
+    // 创建表体
+    let tbody = $("<tbody></tbody>");
+    for(let i=0 ; i< data.length ;i++){
+        let tr = $("<tr></tr>")
+        for(let key in data[i]){
+            // console.log(key,data[i][key]);
+            // $("<td>"+data[i][key]+"</td>")
+            tr.append($(`<td>${data[i][key]}</td>`))
+        }
+        tbody.append(tr)
+    }
+    table.append(tbody)
+
+    $("body").append(table);
+
+    // even 偶数行 odd 奇数行
+    // $("tr:even").css("background-color","orange") // 偶数行
+    // $("tr:odd").css("background-color","#f2f2f2") // 偶数行
+  
+    $("tr:nth-child(2n),thead tr:nth-child(1)").css("background-color","orange") // 偶数行
+
+    /*
+    thead child 1  不符合
+    tbody child 6  2 4 6
+    */
+</script>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    </head>
+
+    <body>
+        <!-- <checkbox name="cb">选项1</checkbox> -->
+        <input name="check" type="checkbox" name="cb">选项1 <br>
+        <input name="check" type="checkbox" name="cb">选项2 <br>
+        <input name="check" type="checkbox" name="cb" checked>选项3 <br>
+        <input name="check" type="checkbox" name="cb">选项4 <br>
+        <input name="check" type="checkbox" name="cb">选项5 <br>
+        <input name="check" type="checkbox" name="cb">选项6 <br>
+        <input name="check" type="checkbox" name="cb">选项7 <br>
+
+        <button onclick="getCheckCount()">获取 选中的个数</button>
+    </body>
+
+</html>
+<script>
+    function getCheckCount(){
+        console.log($(":checked").length)
+    }
+</script>

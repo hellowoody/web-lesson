@@ -1,0 +1,28 @@
+<html>  
+    <head>  
+        <meta charset="utf-8" />  
+        <title></title>  
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.js"></script>
+        <script type="text/javascript">  
+            $(function() {    
+                // $div2.data("value", 1);  
+                var $div2=$("#div2");
+                $("#detach").on("click", function() {  
+                    $div2.detach();  
+                });  
+  				
+                $("#back").on("click", function() {  
+                    $("#div3").before($div2);  
+                    console.log($("#div2").attr('data'));  
+                });  
+            });  
+        </script>  
+    </head>  
+    <body>  
+        <p></p>
+        <div id="div2" data='kka'>div2</div>  
+        <div id="div3">div3</div>  
+        <input value="detach" id="detach" type="button" />  
+        <input value="back" id="back" type="button" />  
+    </body>  
+</html> 

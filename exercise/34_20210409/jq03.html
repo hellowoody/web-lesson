@@ -10,15 +10,17 @@
         $(document).ready(function () { //alert("hello jQuery!"); 
             $(".level1 > a").click(function () { //导航栏效果 
                 //链式表达法
-                $(this).addClass("current")
-                .next()
-                .show()
-                .parent()
-                .siblings()
-                .children("a")
-                .removeClass("current")
-                .next()
-                .hide();
+                // this dom
+                $(this)  // dom to jq
+                    .addClass("current") // 追加class 样式
+                    .next()  // 获取兄弟节点ul
+                    .show()  // ul显示
+                    .parent() // 获取父节点 li level1
+                    .siblings() // 其他兄弟节点
+                    .children("a") // 兄弟节点的子节点中的a标签
+                    .removeClass("current") 
+                    .next()
+                    .hide();
                 return false;
             });
         });
@@ -28,7 +30,8 @@
 <body>
     <div id="box" class="box">
         <ul class="menu">
-            <li class="level1"> <a href="#none">衬衫</a>
+            <li class="level1"> 
+                <a href="#none" >衬衫</a>
                 <ul class="level2">
                     <li><a href="#none">短袖衬衫</a></li>
                     <li><a href="#none">长袖衬衫</a></li>
@@ -36,7 +39,8 @@
                     <li><a href="#none">长袖T恤</a></li>
                 </ul>
             </li>
-            <li class="level1"> <a href="#none">卫衣</a>
+            <li class="level1"> 
+                <a href="#none">卫衣</a>
                 <ul class="level2">
                     <li><a href="#none">开襟卫衣</a></li>
                     <li><a href="#none">套头卫衣</a></li>
@@ -44,7 +48,8 @@
                     <li><a href="#none">童装卫衣</a></li>
                 </ul>
             </li>
-            <li class="level1"> <a href="#none">裤子</a>
+            <li class="level1"> 
+                <a href="#none">裤子</a>
                 <ul class="level2">
                     <li><a href="#none">短裤</a></li>
                     <li><a href="#none">休闲裤</a></li>
