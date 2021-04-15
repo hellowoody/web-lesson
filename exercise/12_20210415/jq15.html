@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <script src="../jquery.js"></script>
+    <body>
+        <input id="id01" placeholder="请输入用户名">
+        <input type="radio" name="gender" value="male" >男
+        <input type="radio" name="gender" value="female" >女
+        <button onclick="getval()">获取值</button>
+    </body>
+</html>
+<script>
+$("#id01").val("hello world")
+function getval(){
+    console.log($("#id01").val())
+    console.log($("input[type=radio]:checked").val())
+}
+</script>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <script src="../jquery.js"></script>
+    <body>
+        <ul>
+            <li>red</li>
+            <li><h2>yellow</h2></li>
+            <li id="id01" name="name01" style="color:blue">blue</li>
+            <li>pink</li>
+            <li>black</li>
+        </ul>
+    </body>
+</html>
+<script>
+//查找元素节点
+console.log($("ul li:eq(1)").text()) // yellow
+console.log($("ul li:eq(1)").html()) // <h2>yellow</h2>
+//查找属性节点
+console.log($("ul li:eq(2)").attr("style"))
+console.log($("ul li:eq(2)").attr("name"))
+//创建节点 ，文本
+let div = $("<div id='div01' style='font-weight:bold'>hello world</div>")
+$("body").append(div)
+let div2 = $("<div>,嗨.</div>")
+div2.appendTo("body")
+// div2.appendTo($("body"))  //这样也可以
+
+let div3 = $("<div>prepend</div>")
+// div.prepend(div3)
+div3.prependTo(div)
+
+
+var $li_1 = $("<li title='猴头菇饼干'>猴头菇饼干</li>"); 
+var $li_2 = $("<li title='猕猴桃'>猕猴桃</li>"); 
+var $li_3 = $("<li title='其他'>其他</li>"); 
+var $parent = $("ul"); 
+var $two_li = $("ul li:eq(1)");
+//使用append()将创建的第一个<li>元素添加到<ul>中 
+let ul = $("<ul></ul>")
+$("body").append(ul.append($li_1));
+//使用prepend()将创建的第二个<li>元素添加到<ul>中 
+ul.prepend($li_2)
+//使用insertAfter()将创建的第三个<li>元素添加到<ul>中
+// $li_3.insertAfter($li_2) // _3 第二位
+$li_3.insertAfter($li_1) // _3 第三位
+</script>

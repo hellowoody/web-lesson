@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+</head>
+
+<body>
+    <form id="fm" >
+        <input type="button" value="Button" />
+        <br /> 
+        <input type="checkbox" name="c" />1 
+        <input type="checkbox" name="c" />2 
+        <input type="checkbox" name="c" />3
+        <br /> 
+        <input type="file" />
+        <br /> 
+        <input type="hidden" />
+        <div style="display: none;">test</div>
+        <br /> 
+        <input type="image" src="m.jpeg" width="100"/>
+        <br /> 
+        <input type="password" />
+        <br /> 
+        <input type="radio" name="a" />1 
+        <input type="radio" name="a" />2
+        <br /> 
+        <input type="reset" />
+        <br /> 
+        <input type="submit" />
+        <br /> 
+        <input type="text" />
+        <br /> 
+        <select>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+        </select>
+        <br /> 
+        <textarea></textarea>
+        <br /> 
+        <button onclick="remove()">remove</button>
+        <button onclick="detach()">detach</button>
+        <button onclick="empty()">empty</button>
+    </form>   
+</body>
+
+</html>
+<script>
+
+function remove(){
+    console.log($("#fm").remove())
+}
+
+function detach(){
+    $("#fm").detach()
+}
+
+function empty(){
+    $("#fm").empty()
+}
+
+function test(){
+
+}
+
+
+ 
+</script>

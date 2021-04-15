@@ -15,15 +15,16 @@
         $(document).ready(function () { //alert("hello jQuery!"); 
             $(".level1 > a").click(function () { //导航栏效果 
                 //链式表达法
-                $(this).addClass("current")
-                .next()
-                .show()
-                .parent()
-                .siblings()
-                .children("a")
-                .removeClass("current")
-                .next()
-                .hide();
+                $(this)
+                    .addClass("current")
+                    .next()
+                    .show()
+                    .parent()
+                    .siblings()
+                    .children("a")
+                    .removeClass("current")
+                    .next()
+                    .hide();
                 return false;
             });
         });

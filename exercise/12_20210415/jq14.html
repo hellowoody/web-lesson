@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <style>
+
+        div {
+            /* 监听的属性 过渡的时长 贝塞尔曲线 */
+            -webkit-transition: all 1s ease-in; 
+        }
+
+        .div-class{
+            width:200px;
+            height: 200px;
+            background-color: blanchedalmond;
+        }
+        /* 
+            1.transform: 变形 ｜ 转换
+            2.transition: 过渡 
+            3.animation: 动画 
+        */
+
+        .A {
+            /* transform: skew(-20deg); */
+            transform: skew(-20deg) translateX(200px) ;
+        }
+
+        .B {
+
+        }
+    </style>
+    <script src="../jquery.js"></script>
+    <body>
+        <div id="d01" name="div-name">
+            <h1>hello world</h1>
+        </div>
+        <button onclick="tran()">变形</button>
+        <button onclick="removeClass()">删除样式</button>
+        <button onclick="toggleClass()">切换样式</button>
+        <div id="newid"></div>
+    </body>
+</html>
+<script>
+// 获取属性
+// document.querySelector("div").getAttribute("name")
+// $("div").attr("name")
+
+// $("div")
+//     .attr("title","div-title")
+//     .attr("style","color:blue;font-weight:bold")
+//     .attr("class","div-class")
+
+// config param
+$("div[id!=newid]")
+    .attr({
+        "title":"div-title",
+        "style":"color:blue;font-weight:bold",
+        "class":"div-class"
+    })
+    .removeAttr("name")
+
+function tran(){
+    $("div").addClass("A")
+}
+
+function removeClass(){
+    $("div").removeClass()
+}
+
+function toggleClass(){
+    $("div").toggleClass("A")
+}
+
+console.log($("#newid").html())
+$("#newid").html("<p>段落</p>")
+console.log($("#newid").html())
+</script>

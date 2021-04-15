@@ -48,6 +48,10 @@
     let tbody = $("<tbody></tbody>");
     for(let i=0 ; i< data.length ;i++){
         let tr = $("<tr></tr>")
+        /*
+        for-in : 数组 ｜ 对象，遍历出来的数组的索引 ｜ 对象的属性（key） 当遍历数量比较大时，效率会低一点
+        for-of : 数组 （iteration 迭代）
+        */
         for(let key in data[i]){
             // console.log(key,data[i][key]);
             // $("<td>"+data[i][key]+"</td>")
@@ -61,7 +65,7 @@
 
     // even 偶数行 odd 奇数行
     // $("tr:even").css("background-color","orange") // 偶数行
-    // $("tr:odd").css("background-color","#f2f2f2") // 偶数行
+    // $("tr:odd").css("background-color","#f2f2f2") // 奇数行
   
     $("tr:nth-child(2n),thead tr:nth-child(1)").css("background-color","orange") // 偶数行
 
