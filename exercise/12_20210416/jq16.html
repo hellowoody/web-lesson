@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <script src="../jquery.js"></script>
+    <script>
+
+        // jq的闭包 clousr
+        // ;(function(){
+        //     function hide(){
+        //         console.log(1000)
+        //     }
+        //     window.$ = function(){
+
+        //     }
+        // })()
+
+
+        $(function(){
+            $("button:eq(1)").click(function(){
+                $("p").show(1000)
+            })
+
+            $("button:eq(2)").click(function(){
+                // toggleClass("classname") 
+                $("p").toggle(500)
+            })
+
+            $("button[name=fade]:eq(0)").click(function(){
+                $("p[name=fade]").fadeOut(1000,function(){
+                    console.log("这是回调函数")
+                })
+            })
+            $("button[name=fade]:eq(1)").click(function(){
+                $("p[name=fade]").fadeIn(1000,function(){
+                    console.log("fadeIn这是回调函数")
+                })
+            })
+            $("button[name=fade]:eq(2)").click(function(){
+                $("p[name=fade]").fadeToggle()
+            })
+            $("button[name=fade]:eq(3)").click(function(){
+                let o = $("input[name=fade]").val() //""
+                if(o === "") o = 0
+                $("p[name=fade]").fadeTo(1000,o)
+            })
+        })
+        
+        function hide(){
+            // $("p").attr("style","display:none")
+            $("p").hide(500) // 1000 ms = 1s
+        }
+    </script>
+    <body>
+        <p>这是一段文字</p>
+        <button onclick="hide()">隐藏</button>
+        <button>显示</button>
+        <button>切换</button>
+        <hr>
+        <p name="fade">fade 事例</p>
+        <button name="fade">淡出</button>
+        <button name="fade">淡入</button>
+        <button name="fade">切换</button>
+        <input name="fade" placeholder="请输入淡入淡出的透明值">
+        <button name="fade">fadeto</button>
+    </body>
+</html>

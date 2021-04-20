@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="box" style="width: 100px;height:100px;background-color: blue;"></div>
+        <button onclick="start()">start</button>
+    </body>
+</html>
+<script>
+    /*
+    jq 数组 
+    dom  Object  {a:1,b:2} 
+    */
+const box = document.getElementById("box");
+function start(){
+    box.style.transition = "all 2s ease"
+    // 屏幕每刷新一次，就会调用一次RAF  
+    // 异步队列  微任务 
+    requestAnimationFrame(function(){
+        requestAnimationFrame(function(){
+            box.style.width = "200px"
+            box.style.transform = "translateX(300px) rotate(30deg)"
+        })
+    })
+}
+</script>

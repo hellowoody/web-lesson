@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <script src="../jquery.js"></script>
+    <body>
+        <div id="el" style="height: 100px;width: 100px;background-color: red;"></div>
+        <button id="btn">start</button>
+        <button id="stop">stop</button>
+    </body>
+</html>
+<script>
+    $("#btn").click(function(){
+        $("#el").animate({
+            marginLeft:"300px",
+            width:"200px",
+            height:"150px"
+        },2000,function(){
+            console.log("this is callback")
+        });
+        var div=$("div"); 
+        div.animate({height:'300px',opacity:'0.4'},"slow"); 
+        div.animate({width:'300px',opacity:'0.8'},"slow"); 
+        div.animate({height:'100px',opacity:'0.4'},"slow"); 
+        div.animate({width:'100px',opacity:'0.8'},"slow");
+    })
+
+
+    $("#stop").click(function(){
+        // $("#el").stop(false,false) //  $("#el").stop() 
+        // $("#el").stop(false,true)
+        // $("#el").stop(true,false)
+        // $("#el").stop(true,true)
+    })
+
+
+</script>

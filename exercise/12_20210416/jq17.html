@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        #panel {
+            background-color: #e5eecc;
+            border: solid 1px #363636;
+            width: 200px;
+            height:50px;
+            box-shadow: 0px 1px 2px #f0f0f0;
+            display: none;
+        }
+    </style>
+    <script src="../jquery.js"></script>
+    <body>
+        <div style="width:200px;height:30px;background-color: #e5eecc;color:#fff" onclick="slide()">点击</div>
+        <div id="panel"></div>
+        <hr>
+        <div id="id01" style="width:200px;height:30px;background-color: crimson;color:#fff" onclick="rafSlide()">点我</div>
+    </body>
+</html>
+<script>
+function slide(){
+    $("#panel").slideToggle()
+}
+
+let rafid //undefined
+let h = 30
+function step(){
+    // requestAnimationFrame
+    if(h <= 80){
+        // 累加高度
+        let div = document.getElementById("id01")
+        h = h + 2;
+        div.style.height = h + "px"
+        window.requestAnimationFrame(step)
+    }else{
+        // 停止
+        if(rafid) {
+            window.cancelAnimationFrame(rafid)
+        }
+    }
+}
+
+/*
+    frame
+    1/60   刷新一次的时间0.016s 
+*/
+
+function rafSlide(){
+    rafid = window.requestAnimationFrame(step) // 执行step方法，同时返回动画id
+}
+</script>

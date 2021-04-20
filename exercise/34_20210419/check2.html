@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <!-- <script src="../jquery.js"></script> -->
+    <body>
+        <input type="checkbox" >
+        <button id="ck">check btn</button>
+        <button id="ck_prop">check btn prop</button>
+    </body>
+</html>
+<script>
+    $("#ck").click(function(){
+        console.log($("input").attr("checked"))
+        if(!$("input").attr("checked")){
+            $("input").attr("checked","checked")
+            $("input").attr("checked",true)
+        }else{
+            $("input").removeAttr("checked")
+        }
+    })
+    $("#ck_prop").click(function(){
+        console.log($("input").prop("checked"))
+        if(!$("input").prop("checked")){
+            // $("input").prop("checked","checked")
+            $("input").prop("checked",true)
+        }else{
+            $("input").removeProp("checked")
+        }
+    })
+</script>

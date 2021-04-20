@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <script src="../jquery.js"></script>
+    <body>
+        <div id="box" style="width: 100px;height:100px;background-color: blue;"></div>
+        <button onclick="start()">start</button>
+        <button onclick="stop()">stop</button>
+    </body>
+</html>
+<script>
+function start(){
+    // config param
+    $("#box").animate({
+        // "margin-left":"300px"
+        marginLeft:"300px",
+        width:"50px",
+        height:"150px",
+        opacity:"0.5",
+        // transform:"rotate(30deg)"
+    },2000,function(){
+        // console.log("now is margin left 300px")
+        console.log(arguments) // parameter 形参  argument 实参
+        console.log(this) // 作用域 ｜ 上下文  dom id=“box”
+        $(this).css("transform","rotate(30deg)")
+    })
+
+    let div = $("#box")
+    // 数组 [h300,w300,h100,w100]  
+    div.animate({height:'300px',opacity:'0.4'},"slow"); 
+    div.animate({width:'300px',opacity:'0.8'},"slow"); 
+    div.animate({height:'100px',opacity:'0.4'},"slow"); 
+    div.animate({width:'100px',opacity:'0.8'},"slow");
+}
+
+function stop(){
+    $("#box").stop(false,false) // $("#box").stop()
+    // $("#box").stop(true,false) 
+    // $("#box").stop(false,true) 
+    // $("#box").stop(true,true) 
+}
+</script>

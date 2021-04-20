@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="el" style="height: 100px;width: 100px;background-color: red;"></div>
+        <button id="btn">start</button>
+    </body>
+</html>
+<script>
+
+    /*
+        css tranform  transition
+    */
+    const box = document.getElementById("el")
+    document.getElementById("btn").onclick = function(){
+        box.style.transition = "all 2s cubic-bezier(.64,-0.81,.46,1.69)"
+        // js 异步队列 微任务
+        requestAnimationFrame(function(){
+            requestAnimationFrame(function(){
+                box.style.transform = "translateX(300px)"
+            })
+        })
+    }
+    // $("#btn").click(function(){
+    //     $("#el").animate({
+    //         marginLeft:"300px",
+    //         width:"200px",
+    //         height:"150px"
+    //     },2000,function(){
+    //         console.log("this is callback")
+    //     });
+    // })
+</script>

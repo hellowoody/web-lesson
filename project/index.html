@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=deivce-width,initial-scale=1" />
+        <title>首页</title>
+        <link rel="stylesheet" href="./assets/css/common.css" />
+        <link rel="stylesheet" href="./assets/css/index.css" />
+        <link rel="stylesheet" href="./assets/css/index-nav.css" />
+    </head>
+    <body>
+        <div class="header">
+            <div class="h_main">
+                <div class="h_m_right">
+                    <div id="h_m_r_shop" class="h_m_r_shop">
+                        <i class="iconfont">&#xe601;</i>
+                        <span class="car">购物车（<span id="num">0</span>）</span>
+                        <div id="h_m_r_s_hide" class="h_m_r_s_hide">
+                            购物车中还没商品，请选购
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="n_wrap">
+            <div id="nav">
+                <div class="n_search">
+                    <div class="n_s_input">
+                        <input type="text">
+                        <div class="n_s_hotwords">
+                            <a href="#">红米Pro</a>
+                            <a href="#">小米笔记本Air</a>
+                        </div>
+                        <div class="n_s_hide">
+                            <ul>
+                                <li><a href="http://search.mi.com/search_%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA5">小米手机5<span>约有11件</span></a></li>
+                                <li><a href="#">空气净化器2<span>约有1件</span></a></li>
+                                <li><a href="#">活塞耳机<span>约有4件</span></a></li>
+                                <li><a href="#">小米路由器<span>约有8件</span></a></li>
+                                <li><a href="#">移动电源<span>约有21件</span></a></li>
+                                <li><a href="#">运动相机<span>约有3件</span></a></li>
+                                <li><a href="#">小蚁摄像机<span>约有2件</span></a></li>
+                                <li><a href="#">小米体重秤<span>约有1件</span></a></li>
+                                <li><a href="#">小米插线板<span>约有13件</span></a></li>
+                                <li><a href="#">配件优惠套装<span>约有32件</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="n_s_find">
+                        <i class="iconfont">&#xe600;</i>
+                    </div>
+                </div>
+            </div>
+    
+            
+        </div>
+
+        <button onclick="add()">增加商品</button>
+       
+    </body>
+</html>
+<script src="./assets/js/jquery.min.js"></script>
+<script src="./assets/js/header.js"></script>
+<script src="./assets/js/nav.js"></script>
+<script>
+function add(){
+
+    
+    //jq to dom dom childnodes
+    if($("#h_m_r_s_hide")[0].childNodes.length === 1){
+        // console.log($("#h_m_r_s_hide")[0].childNodes[0].nodeType)
+        if($("#h_m_r_s_hide")[0].childNodes[0].nodeType === 3){
+            //清空文字
+            $("#h_m_r_s_hide")[0].childNodes[0].remove();
+            $("#h_m_r_s_hide").append($("<div>商品1</div>"))
+            
+        }else{
+            $("#h_m_r_s_hide").append($("<div>商品2</div>"))
+            $("#h_m_r_s_hide").height($("#h_m_r_s_hide").height()*2)
+        }
+    }else{
+        $("#h_m_r_s_hide").append($("<div>商品3</div>"))
+        $("#h_m_r_s_hide").height($("#h_m_r_s_hide").height() + 100)
+    }
+}
+</script>

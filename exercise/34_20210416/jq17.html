@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        #panel{
+            width:200px;
+            height:50px;
+            background-color: blue;
+            border:solid 1px #363636;
+            display: none;
+        }
+    </style>
+    <script src="../jquery.js"></script>
+    <body>
+        <div style="width:200px;height:30px;background-color: blue;" onclick="slide()">点我切换</div>
+        <div id="panel">
+            1234
+        </div> 
+        <hr>
+        <div id="raf" style="width:200px;height:30px;background-color:crimson;" onclick="rafSlide()">点我</div>
+    </body>
+</html>
+<script>
+function slide(){
+    $("#panel").slideToggle();
+}
+
+let id
+var h = 30
+// 60  1/60 = 0.016s 
+function step(){
+    if(h <= 80){
+        h = h + 2
+        let div = document.getElementById("raf")
+        div.style.height = h + "px"
+        window.requestAnimationFrame(step) // 又调用了一次step
+    }else{
+        // stop
+       if(id){
+        window.cancelAnimationFrame(id)
+       }
+    }
+}
+
+function rafSlide(){
+    id = window.requestAnimationFrame(step) // js bom 0.016
+}
+
+
+
+</script>

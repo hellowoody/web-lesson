@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <script src="../jquery.js"></script>
+    <script>
+        /*
+            闭包 closur 
+        */
+
+        // ;(function(){
+        //     // todo
+
+        //     window.$ = function(){
+
+        //     }
+        // })()
+        $(function(){
+            // []属性选择器
+            $("button:eq(1)").click(function(){
+                $("p").show(500)
+            })
+
+            $("button:eq(2)").click(function(){
+                // toggleClass(“classname”)
+                $("p").toggle(1000)
+                /*
+                if(){
+
+                }else{
+
+                }
+                */
+            })
+
+            $("button[name=fade]:eq(0)").click(function(){
+                // $("p[name=fade]").fadeOut()
+                // $("p[name=fade]").fadeOut("slow")
+                $("p[name=fade]").fadeOut(3000,function(){
+                    console.log("fade的 callback方法")
+                })
+            })
+            $("button[name=fade]:eq(1)").click(function(){
+                $("p[name=fade]").fadeIn(500)
+            })
+            $("button[name=fade]:eq(2)").click(function(){
+                $("p[name=fade]").fadeToggle(500)
+            })
+
+            /*
+                1.button按钮的事件绑定上
+                2.在绑定事件中 直接调用fadeto(500,0.5)
+                3.获取input值
+                4.判断第三步拿到值 是否是空字符串0
+                5.传入fadeto的第二个参数
+            */
+
+            $("button:last-child").click(function(){
+                // console.log(1000)
+                // $("p[name=fade]").fadeTo(500,0.5)
+                let val = $("input[name=fade]").val()
+                if (val === "") val = 0.5
+                $("p[name=fade]").fadeTo(500,val) 
+            })
+
+        })
+        
+
+        function hide(){
+            // $("p").attr("style","display:none")
+            $("p").hide(500) // 1000ms = 1s
+        }
+
+    </script>
+    <body>
+        <p>这是一段文字</p>
+        <button onclick="hide()">隐藏</button>
+        <button >显示</button>
+        <button >切换</button>
+        <hr> 
+        <p name="fade">淡入淡出</p>
+        <button name="fade">淡出</button>
+        <button name="fade">淡入</button>
+        <button name="fade">切换</button>
+        <input name="fade" placeholder="请输入透明度"> 
+        <button>fadeto</button>
+    </body>
+</html>

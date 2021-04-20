@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <!-- <script src="../jquery.js"></script> -->
+    <body>
+        <input type="checkbox">
+        <button onclick="test()">checkbox btn</button>
+    </body>
+</html>
+<script>
+    function test(){
+        /*
+            如何获取一个复选框的实时状态
+            jq -》 dom -》 dom.checked
+            
+        */
+
+        /*
+            jq attr 主要对dom进行操作
+            jq prop 对dom 和 html 进行操作     
+        
+        */
+        let checkbox = $("input")
+        // console.log(checkbox[0].checked)
+        console.log(checkbox.prop("checked"))
+        // if(checkbox[0].checked){
+        if($("input").prop("checked")){
+            // 已选中
+            // checkbox.removeAttr("checked")
+            $("input").removeProp("checked")
+        }else{
+            // 未选中
+            // checkbox.attr("checked",true)
+            $("input").prop("checked",true)
+            // checkbox.attr("checked","checked")
+        }
+    }
+</script>
