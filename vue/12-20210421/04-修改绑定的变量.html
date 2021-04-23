@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div>
+                {{msg}}
+            </div>
+            <button @click="update">修改msg的值</button>
+            <button @click="update_arrow">修改msg的值 箭头函数(注：不要用这种形式)</button>
+        </div>
+    </body>
+</html>
+<script> 
+new Vue({
+    el:"#app",
+    data:{
+        msg:"张三,你好"
+    },
+    methods:{
+        update(){
+            // console.log(2000)
+            this.msg = "hello , zhangsan"
+        },
+        // arrow function
+        /*
+            1.普通函数: this 最后一个调用这个方法的对象
+            2.箭头函数: this 上一层作用域对象/上下文
+        */
+        update_arrow:() => {
+            console.log("start")
+            this.msg = "hello , zhangsan arrow"
+            console.log("end")
+            console.log(window.msg)
+        }
+    }
+})
+</script>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div class="one" id="app">
+            <!-- 插值表达式 -->
+            <div v-if="val === 'A'">this is A</div>
+            <div v-else-if="val === 'B'">this is B</div>
+            <div v-else>other</div>
+        </div>
+    </body>
+</html>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            val:"A"
+        },
+    })
+
+    // if(true){
+
+    // }else if(){
+
+    // }else{
+
+    // }
+</script>

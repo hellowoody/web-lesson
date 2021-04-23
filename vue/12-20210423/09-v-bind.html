@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .box1 {
+                width: 200px;
+                height: 200px;
+                background-color: blue;
+            }
+
+            .box2 {
+                border-radius: 20px;
+            }
+
+            .box3 {
+                width: 150px;
+                height: 150px;
+                background-color: orange;
+            }
+        </style>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <a href="https://baidu.com">跳转百度</a>
+            <a v-bind:href="url">跳转微博</a>
+            <a :href="url">跳转微博(简单写法)</a>
+            <!-- 只要我们绑定的是属性 就可以v-bind -->
+            <div v-bind:style="stylebox1">bind style</div>
+            <div style="color:#fff" :style="stylebox2">bind style</div>
+            <div :class="['box1','box2']">class bind1</div>
+            <div :class="classbox">class bind2</div>
+            <div :class="{box1:isActive,box3:!isActive}">class bind3</div>
+            <button @click="toggle">切换</button>
+        </div>
+    </body>
+</html>
+<script>
+new Vue({
+    el:"#app",
+    data:{
+        url:"http://t.cn",
+        stylebox1:"width:100px;height: 100px;background-color: red;",
+        stylebox2:{
+            width:"50px",
+            height:"50px",
+            // "background-color":"pink",
+            backgroundColor:"pink",
+        },
+        classbox:['box1','box2'],
+        isActive:true
+    },
+    methods:{
+        toggle(){
+            this.isActive = !this.isActive
+        }
+    }
+})
+</script>

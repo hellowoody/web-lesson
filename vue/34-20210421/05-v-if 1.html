@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div class="one" id="app">
+            <!-- 插值表达式 -->
+            <div v-if="flag">
+                {{message}}
+            </div>
+            <button @click="show">显示</button>
+            <button @click="hide">隐藏</button>
+            <button @click="toggle">切换</button>
+        </div>
+    </body>
+</html>
+<script>
+    new Vue({
+        // key:value
+        el:"#app",
+        data:{
+            message:"张三,你好！",
+            flag:false
+        },
+        methods:{
+            /*
+                v-if 显示/隐藏 是通过v-dom 直接插入或删除节点，不是通过css样式进行隐藏
+            */
+            show:function(){
+                this.flag = true
+            },
+            hide(){
+                this.flag = false
+            },
+            toggle(){
+                this.flag = !this.flag
+            }
+        }
+
+    })
+</script>

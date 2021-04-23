@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <p v-if="val == 1">相等</p>
+            <p v-if="val === 1">不相等 类型不同</p>
+            <hr>
+            <p v-if="val == '1'">相等</p>
+            <p v-if="val === '1'">相等</p>
+        </div>
+    </body>
+</html>
+<script>
+new Vue({
+    el:"#app",
+    data:{
+        val:"1"
+    },
+})
+</script>

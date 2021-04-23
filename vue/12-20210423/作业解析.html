@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div>第一行:{{msg}}</div>
+            <div>第二行:{{msg_reverse}}</div>
+            <!-- <button v-on:click="reverse">反转</button> -->
+            <button @click="reverse">反转</button>
+        </div>
+    </body>
+</html>
+<script>
+new Vue({
+    el:"#app", // querySelector()
+    data:{
+        msg:"hello world !",
+        msg_reverse:""
+    },
+    methods:{
+        reverse:function(){
+            // console.log(this.msg)
+            // console.log(Array.from(this.msg).reverse().join(""))
+            // this.msg_reverse = Array.from(this.msg).reverse().join("")
+            this.msg_reverse = this.msg.split("").reverse().join("")
+        }
+    }
+})
+</script>
+
+<script>
+    /*
+        1. new Vue
+        2. 模版里有两行内容
+            第一行: hello world !
+            第二行: 
+        3. 按钮
+            a 将第一行的内容字符串进行反转
+            b 将反转后的内容显示第二行
+
+        思路：
+           1.数组可以进行反转
+           2.string to array
+           3.array to string
+           4. vue 把变量绑定并显示在页面上
+    */
+</script>

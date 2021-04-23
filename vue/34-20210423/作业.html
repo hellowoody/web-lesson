@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <button @click="add">+</button>
+            <div v-for="(val,prop) in obj" :key="prop">
+                <input :value="prop" :name="prop" @change="updatekey"> - <input :value="val" :name="prop" @input="updateval">
+            </div>
+            <div>
+                {{obj}}
+            </div>
+        </div>
+    </body>
+</html>
+<script>
+const app = new Vue({
+    el:"#app",
+    data:{
+        obj:{
+            name:"zhangsan",
+            gender:"male",
+            score:90
+        }
+    },
+    methods:{
+        updatekey(e){
+            if(e.target.name === ""){
+                this.$set(this.obj,e.target.value,"")
+                this.$delete(this.obj,e.target.name)
+            }else if(this.obj.hasOwnProperty(e.target.name)){
+                console.log("100")
+                this.$set(this.obj,e.target.value,this.obj[e.target.name])
+                this.$delete(this.obj,e.target.name)
+                
+            }
+        },
+        updateval(e){
+            console.log(e.target.value)
+            if(this.obj.hasOwnProperty(e.target.name)){
+                this.obj[e.target.name] = e.target.value
+            }
+        },
+        add(){
+            this.$set(this.obj,"","")
+            console.log(this.obj)
+        }
+    }
+})
+</script>

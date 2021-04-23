@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        
+    </head>
+    <body>
+        <div id="app">
+            <div>{{msg}}</div>
+            <div>one {{reversed()}}</div>
+            <div>two {{reversed()}}</div>
+            <div>three {{reversed()}}</div>
+            <!-- 计算属性使用时，你就把它当作属性 -->
+            <div>1 {{reverseMsg}}</div>
+            <div>2 {{reverseMsg}}</div>
+            <div>3 {{reverseMsg}}</div>
+        </div>
+    </body>
+</html>
+<script>
+/*
+  methods方法和computed计算属性的区别
+
+  只要 msg 还没有发生改变，多次访问 reverseMsg 计算属性会立即返回之前的计算结果，而不必再次执行函数。
+*/
+const app = new Vue({
+    el:"#app",
+    data:{
+        msg:"! u ssim I",
+    },
+    methods:{
+        reversed(){
+            console.log(2000)
+            return this.msg
+                        .split("")
+                        .reverse()
+                        .join('')
+        }
+    },
+    computed:{
+        reverseMsg:function(){
+            console.log(1000)
+            this.msg += 1
+            // console.log(Array.from(this.msg).concat("1"))
+            return Array.from(this.msg).reverse().join('')
+        }
+    }
+})
+
+</script>

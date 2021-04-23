@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>原生js实现双向绑定</title>
+    </head>
+    <body>
+        <input placeholder="请输入内容">
+        <br>
+        <div></div>
+    </body>
+</html>
+
+<script>
+    /*
+        使用原生js实现双向绑定
+        推荐使用 proxy (代理)
+    */
+
+//    new Proxy(需要被代理的对象,可配置的对象json的对象)
+
+    const obj = {
+        name:"zhangsan",
+        age:10
+    }
+
+    function proxy_bind(target){
+        return new Proxy(target,{
+            get:function(obj,prop){
+                // console.log(obj,prop)
+                return obj[prop]
+                // return "张三"
+            },
+            set:function(obj,prop,newvalue){
+                // console.log(obj)
+                // console.log(prop)
+                // console.log(newvalue)
+                if(prop === "age"){
+                    if(newvalue < 0){
+                        return obj[prop] = -1*newvalue
+                    }
+                }
+                return obj[prop] = newvalue
+            }
+        })
+    }
+
+    const obj_bind = proxy_bind(obj)
+
+
+</script>

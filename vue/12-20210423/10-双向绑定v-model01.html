@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <input placeholder="请输入一些内容" v-model="msg" >
+            <br>
+            {{msg}}
+        </div>
+    </body>
+</html>
+<script>
+new Vue({
+    el:"#app",
+    data:{
+        msg:"hello"
+    },
+})
+</script>

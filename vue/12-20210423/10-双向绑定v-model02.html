@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+        <script src="https://unpkg.com/vue@next"></script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- <input v-bind:value="msg" v-on:input="handle" placeholder="请输入一些内容" > -->
+            <input :value="msg" @input="handle" placeholder="请输入一些内容" >
+            <br>
+            {{msg}}
+        </div>
+    </body>
+</html>
+<script>
+/*
+    v-on               语法糖 @
+    v-bind             语法糖 :
+    v-on  v-bind       语法糖 v-model
+*/
+// const app = new Vue({
+//     
+// })
+
+const param = {
+    data(){
+        return {
+            msg:"hello"
+        }
+    },
+    methods:{
+        handle(e){
+            console.log(e.target.value)
+            this.msg = e.target.value
+        }
+    }
+}
+const app = Vue.createApp(param).mount('#app')
+</script>

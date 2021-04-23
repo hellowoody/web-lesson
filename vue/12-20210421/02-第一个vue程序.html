@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- 插值表达式 -->
+            {{msg}}
+        </div>
+        <!-- 外面就是普通html 跟vue没有关系 -->
+        {{msg}}
+        <div>
+            {{msg}}
+        </div>
+    </body>
+</html>
+<script>
+    /*
+        1.我们所写的vue的相关语法，其实都是new Vue()时参数
+        2.el挂载点，就可以当成querySelector("")使用
+        3.vue是有作用域
+    */
+    // config parameter is object
+    const param = {
+        el:"#app",  // 挂载点 querySelector("")
+        // el:"div:nth-child(1)",  // 挂载点 querySelector("")
+        data:{
+            msg:"张三 你好"
+        }
+    }
+    new Vue(param)
+</script>

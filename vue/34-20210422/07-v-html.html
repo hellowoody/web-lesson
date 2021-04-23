@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!-- vue 开发版 你的f12 console 会有两行提示语句 -->
+        <!-- 如果你用生产版 f12没有提示 -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- <span v-text="msg">,世界</span>  错误或无效-->
+            <!-- <span v-text="msg,世界"></span>  错误或无效-->
+            <!-- <span v-text="msg"></span>,世界   这是可以的-->
+            <!-- <span v-text="msg + ',世界'"></span>   -->
+            <span v-text="msg"></span>
+            <span v-html="msg"></span>
+            <br>
+            <!-- {{msg}},世界 -->
+            <span>{{msg + ",世界"}}</span>
+        </div>
+    </body>
+</html>
+
+<script>
+new Vue({
+    el:"#app",
+    data:{
+        msg:"<h1>你好</h1>"
+    }
+})
+</script>

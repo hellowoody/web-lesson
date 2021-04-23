@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <input oninput="handle(this)"> 
+        <div></div>
+    </body>
+</html>
+<script>
+/*
+    proxy 代理 范式
+    new Proxy(需要被代理的对象，config option obj 可以配置的对象)
+*/
+const obj = {
+    name:"zhangsan"
+}
+
+function proxy_bind(target){
+    return new Proxy(target,{
+        set:function(obj,prop,newval){
+            // console.log("set func")
+            // console.log(obj,prop,newval)
+            document.querySelector("div").innerText = newval
+            obj[prop] = newval
+        },
+        get:function(obj,prop){
+            // console.log("get func")
+            // console.log(obj,prop)
+            return obj[prop]
+        }
+    })
+}
+
+const obj_proxy = proxy_bind(obj);  // obj 进行代理 返回代理后的对象
+
+function handle(obj){
+    // console.log(obj.value)
+    obj_proxy.name = obj.value
+}
+</script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div>
+                {{msg}}
+            </div>
+            <button v-on:click="update">修改msg的值</button>
+            <button @click="update_mock">修改msg的值 mock</button>
+        </div>
+    </body>
+</html>
+<script>
+new Vue({
+    el:"#app",
+    data:{
+        msg:"张三,你好"
+    },
+    methods:{
+        // key:value
+        /*
+            1.vue中，尽量不要使用箭头函数
+            2.vue 方法的简单写法
+            3.绑定方法名时 主要永远不要写空的小括号
+            4.v-on: 简单写法
+                v-on: 语法糖(简单的写法) @
+        */
+        update:function(){
+            console.log(1000)
+        },
+        update_mock(){
+            console.log(2000)
+        }
+    }
+})
+</script>

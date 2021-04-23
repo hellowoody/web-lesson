@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div v-if="val === 'A'">this is A</div>
+            <div v-else-if="val === 'B'">this is B</div>
+            <div v-else>others</div>
+            <button @click="setA">set A</button>
+            <button @click="setB">set B</button>
+            <button @click="setOthers">set others</button>
+        </div>
+    </body>
+</html>
+<script>
+new Vue({
+    el:"#app",
+    data:{
+        val:"A"
+    },
+    methods:{
+        setA(){
+            this.val = 'A'
+        },
+        setB(){
+            this.val = 'B'
+        },
+        setOthers(){
+            this.val = '0'
+        },
+    }
+})
+
+// if(true) console.log(100) //语法糖
+
+// if(){
+
+// }else if(){
+
+// }else{
+
+// }
+
+</script>

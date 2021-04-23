@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        
+    </head>
+    <body>
+        <div id="app">
+            <ul>
+                <li v-for="(item,index) in list" :key="index">{{item}}</li>
+            </ul>
+            <input v-model="newval" placeholder="需要增加内容">
+            <br>
+            <button @click="add">增加</button>
+            <br>
+            <input v-model="delval" placeholder="删除的索引">
+            <br>
+            <button @click="remove">删除</button>
+        </div>
+    </body>
+</html>
+
+<script>
+const app = new Vue({
+    el:"#app",
+    data:{
+        list:['a','b','c','d','e'],
+        newval:"",
+        delval:""
+    },
+    methods:{
+        add(){
+            this.list.push(this.newval)
+        },
+        remove(){
+            this.list.splice(this.delval,1)
+            // this.list.pop()
+        }
+    }
+})
+
+</script>

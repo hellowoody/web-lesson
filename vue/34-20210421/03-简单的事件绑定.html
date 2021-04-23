@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div class="one" id="app">
+            <!-- 插值表达式 -->
+            <div>
+                {{message}}
+            </div>
+            <button v-on:click="clickHandler">点击事件</button>
+            <button @click="myclick">点击事件（简单写法）</button>
+        </div>
+    </body>
+</html>
+<script>
+    // config parameter
+    /*
+        v-dom virtual dom
+    */
+    new Vue({
+        // key:value
+        el:"#app",
+        data:{
+            message:"张三,你好！"
+        },
+        methods:{
+            /*
+                1.vue 尽量不要用箭头函数
+                2.methods 方法的简单写法 methodname(){}
+                3.模版中绑定方法简单写法 
+                    v-on:的语法糖是@
+                4.vue中 绑定方法永远不出现 绑定的方法后加上“空”小括号
+            */
+            clickHandler:function(){
+                console.log(1000)
+            },
+            myclick(){
+                console.log(2000)
+            }
+        }
+
+    })
+</script>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>原生js实现双向绑定</title>
+    </head>
+    <body>
+        <input placeholder="请输入内容" value="1" oninput="handle(this)">
+        <br>
+        <div></div>
+    </body>
+</html>
+
+<script>
+    const obj = {}
+    
+    function proxy_bind(target){
+        return new Proxy(target,{
+            get:function(obj,prop){
+                return obj[prop]
+            },
+            set:function(obj,prop,newvalue){
+                document.querySelector("div").innerText = newvalue
+                return obj[prop] = newvalue
+            }
+        })
+    }
+
+    const obj_bind = proxy_bind(obj)
+
+    function handle(obj){
+        // console.log(obj.value)
+        obj_bind.value = obj.value
+    }   
+</script>

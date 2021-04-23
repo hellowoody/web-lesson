@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!-- vue 开发版 你的f12 console 会有两行提示语句 -->
+        <!-- 如果你用生产版 f12没有提示 -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div id="row1">
+                第一行:{{msg}}
+            </div>
+            <div id="row2">
+                第二行:{{msg_reverse}}
+            </div>
+            <!-- <button v-on:click="test">反转</button> -->
+            <button @click="reverse">反转</button>
+        </div>
+    </body>
+</html>
+
+<script>
+    /*
+        1. new Vue
+        2. 模版里有两行内容
+            第一行 hello world!
+            第二行 
+        3. 按钮 -》 将第一行的字符串进行反转
+                   显示到第二行
+
+        思路：
+         1.数组可以反转
+         2.string to array
+         3.array to string
+         4.vue 显示页面上 v-if this.varible
+    */
+const param = {
+    el:"#app" , // js querySelector()
+    data:{
+        msg:"hello zhangsan !",
+        msg_reverse:""
+    },
+    methods:{
+        reverse(){
+            // console.log(1000)
+            // str to Array
+            // const str = Array.from(this.msg).reverse().join("")
+            const str = this.msg.split("").reverse().join("")
+            console.log(str)
+            this.msg_reverse = str
+        }
+    }
+}
+new Vue(param)
+
+</script>

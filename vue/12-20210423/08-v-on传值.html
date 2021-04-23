@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <button @click="handle01">事件绑定01</button>
+            <br>
+            <button @click="handle02(100)">事件绑定02</button>
+            <br>
+            <button name="btn-name" @click="handle03($event)">事件绑定03</button>
+            <br>
+            <input @change="changehandle">
+            <br>
+            <button name="btn-name" @click="handle04($event,500)">事件绑定04</button>
+        </div>
+    </body>
+</html>
+<script>
+new Vue({
+    el:"#app", 
+    methods:{
+        handle01:function(e){
+            console.log(1000)
+            console.log(e)
+        },
+        handle02(p){
+            console.log(p)
+        },
+        handle03(e){
+            console.log(e.target.name)
+        },
+        changehandle(e){
+            console.log(e.target.value)
+        },
+        handle04(e,p){
+            console.log(e,p)
+        }
+    }
+})
+</script>
