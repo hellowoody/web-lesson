@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 渐近式 -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <ul>
+                <!-- <li v-for="item in list" v-bind:key="item">{{item}}</li> -->
+                <li v-for="(item,i) in list" :key="i">{{i + '-' + item}}</li>
+            </ul>
+        </div>
+    </body>
+</html>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            list:['a','a','c','d','e']
+        },
+    })
+</script>

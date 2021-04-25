@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div>请选择你的身份</div>
+            <input type="radio" @click="clickhanle($event)" @change="changehandle" name="roleid" value="学生" v-model="role">学生
+            <input type="radio" @click="clickhanle" @change="changehandle" name="roleid" value="成人" v-model="role">成人
+            <input type="radio" @click="clickhanle" @change="changehandle" name="roleid" value="退伍军人" v-model="role">退伍军人
+            <div>{{role}}</div>
+        </div>
+    </body>
+</html>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            role:""
+        },
+        methods:{
+            clickhanle(e,p){
+                console.log(e.target.value)
+            },
+            changehandle(e){
+                console.log("***",e.target.value)
+            }
+        }
+    })
+</script>

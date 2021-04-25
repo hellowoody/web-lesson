@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 渐近式 -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div>{{msg}}</div>
+            <div>{{reversed()}}</div>
+            <div>{{reversed()}}</div>
+            <div>{{reversed()}}</div>
+            <div>{{reverseMsg}}</div>
+            <div>{{reverseMsg}}</div>
+            <div>{{reverseMsg}}</div>
+        </div>
+    </body>
+</html>
+<script>
+/*
+  methods方法和computed计算属性的区别
+
+  只要 msg 还没有发生改变，多次访问 reverseMsg 计算属性会立即返回之前的计算结果，而不必再次执行函数。
+*/
+const app = new Vue({
+        el:"#app",
+        data:{
+            msg:"hello world !",
+        },
+        methods:{
+            reversed(){
+                console.log(1000)
+                return this.msg.split("").reverse().join("")
+            },
+        },
+        computed:{
+            reverseMsg:function(){
+                console.log(2000)
+                return this.msg.split("").reverse().join("")
+            }
+        }
+    })
+</script>

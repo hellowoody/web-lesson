@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 渐近式 -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <ul>
+                <!-- <li v-for="item in list" v-bind:key="item">{{item}}</li> -->
+                <li v-for="(item,i) in list" :key="i">{{i + '-' + item}}</li>
+                <br>
+                <input placeholder="请输入添加的值" v-model="addval">
+                <button @click="add">增加</button>
+                <br>
+                <input placeholder="请输入移除的索引" v-model="removeval">
+                <button @click="remove">移除</button>
+            </ul>
+        </div>
+    </body>
+</html>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            list:['a','b','c','d','e'],
+            addval:"",
+            removeval:""
+        },
+        methods:{
+            add(){
+                this.list.push(this.addval)
+            },
+            remove(){
+                // this.list.splice(定位的索引,删除几个元素,添加的元素...)
+                this.list.splice(this.removeval,1)
+            }
+        }
+    })
+</script>

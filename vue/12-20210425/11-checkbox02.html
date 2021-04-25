@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <input type="checkbox" v-model="isagree">是否同意
+            <div>{{isagree}}</div>
+            <button @click="toggle">切换</button>
+        </div>
+    </body>
+</html>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            isagree:false
+        },
+        methods:{
+            toggle(){
+                this.isagree = !this.isagree
+            }
+        }
+    })
+</script>
