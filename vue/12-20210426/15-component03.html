@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 渐近式 -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app1">
+            {{msg}}
+            <my-global></my-global>
+            <my-part></my-part>
+            <!-- <MyPart></MyPart> -->
+        </div>
+        <div id="app2">
+            {{msg}}
+            <my-global></my-global>
+            <my-part></my-part>
+        </div>
+    </body>
+</html>
+<script>
+
+// 定义组件
+const Comp = Vue.extend({
+    template:"<h2>我是组件</h2>"
+})
+
+const MyPart = Vue.extend({
+    template:"<h6>我是局部组件</h6>"
+})
+
+//注册全局组件
+Vue.component("my-global",Comp)
+  
+new Vue({
+    el:"#app1",
+    data:{
+        msg:"hello01"
+    },
+    components:{
+        // "my-part":Comp2
+        // "MyPart":Comp2
+        // "MyPart":MyPart
+        MyPart,
+    }
+})
+new Vue({
+    el:"#app2",
+    data:{
+        msg:"hello02"
+    },
+    components:{
+        "my-part":MyPart
+    }
+})
+</script>

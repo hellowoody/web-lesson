@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 渐近式 -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <ul>
+                <li v-for="(v,i) in list" :key="i">{{i + '-' + v}}</li>
+            </ul>
+            <hr>
+            <button @click="add">增加</button>
+            <hr>
+            <ul>
+                <li v-for="(v,i) in listFilter" :key="i">{{i + '-' + v}}</li>
+            </ul>
+        </div>
+    </body>
+</html>
+<script>
+const app = new Vue({
+        el:"#app",
+        data:{
+            list:['a','b','c','d','e'],
+        },
+        methods:{
+            add(){
+                this.list.push("f")
+            }
+        },
+        computed:{
+            listFilter(){
+                return this.list.filter(function(item){
+                    return item > 'c'
+                })
+            }
+        }
+    })
+</script>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <parent-comp></parent-comp>
+        </div>
+        <template id="ChildComp">
+            <h6>子组件</h6>
+        </template>
+        <template id="ParentComp">
+            <div>
+                <h2>父组件</h2>
+                <child-comp></child-comp>
+            </div>
+        </template>
+    </body>
+</html>
+<script>
+
+const ChildComp = {
+    template:"#ChildComp"
+}
+/*
+    Vue2.0 中组件模板 必须包含在一个根节点内
+*/
+const ParentComp = {
+    template:"#ParentComp",
+    components:{
+        "child-comp":ChildComp,
+        // ChildComp
+    }
+}
+
+new Vue({
+    el:"#app",
+    components:{
+        ParentComp
+    }
+})
+</script>

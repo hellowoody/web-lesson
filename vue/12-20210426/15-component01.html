@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
+        <!-- 渐近式 -->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     </head>
     <body>
@@ -9,7 +9,6 @@
             {{msg}}
             <my-global></my-global>
         </div>
-
         <div id="app2">
             {{msg}}
             <my-global></my-global>
@@ -18,25 +17,24 @@
 </html>
 <script>
 
-//声明了一个组件
+// 定义组件
 const Comp = Vue.extend({
-    template:"<h1>hello , 组件</h1>"
+    template:"<h2>我是组件</h2>"
 })
-//注册了一个全局组件
+
+//注册全局组件
 Vue.component("my-global",Comp)
-
-
+  
 new Vue({
     el:"#app1",
     data:{
-        msg:"this is app1"
+        msg:"hello01"
     }
 })
-
 new Vue({
     el:"#app2",
     data:{
-        msg:"this is app2"
+        msg:"hello02"
     }
 })
 </script>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 渐近式 -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <ul>
+                <li v-for="(v,i) in list" :key="i">{{i + '-' + v}}</li>
+            </ul>
+            <hr>
+            <button @click="add">增加</button>
+            <button @click="testSet">测试计算属性的set方法</button>
+            <hr>
+            <ul>
+                <li v-for="(v,i) in listFilter" :key="i">{{i + '-' + v}}</li>
+            </ul>
+        </div>
+    </body>
+</html>
+<script>
+const app = new Vue({
+        el:"#app",
+        data:{
+            list:['a','b','c','d','e'],
+        },
+        methods:{
+            add(){
+                this.list.push("f")
+            },
+            testSet(){
+                this.listFilter = ["A","B","C","D","E"]
+            }
+        },
+        computed:{
+            listFilter:{
+                get:function(){
+                    return this.list.filter(item => item > 'B')
+                },
+                set:function(newval){
+                    console.log(1000,newval)
+                    this.list = newval
+                }
+            }
+        }
+    })
+</script>

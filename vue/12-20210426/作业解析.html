@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-8" >
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     </head>
     <body>
         <div id="app">
             <button @click="add">+</button>
-            <div v-for="(val,prop) in obj" :key="prop">
-                <input :value="prop"  :name="prop" @change="updatekey"> 
-                - 
-                <input :value="val" :name="prop" @input="updateval">
+            <div v-for="(val,key) in obj" :key="key">
+                <!-- {{key + "-" + val}} -->
+                <input v-bind:value="key" :name="key" @change="updatekey">
+                -
+                <input :value="val" :name="key" @input="updateval($event)">
             </div>
-            <div>
-                {{obj}}
-            </div>
+            <div>{{obj}}</div>
         </div>
     </body>
 </html>
@@ -23,20 +22,33 @@ const app = new Vue({
     el:"#app",
     data:{
         obj:{
-            name:"zhangsan",
-            gender:"male",
-            score:90,
+            name: "zhangsan", 
+            gender: "male", 
+            score: 90,
         }
     },
     methods:{
         add(){
-            //通过vue特有的$set，在obj对象中新增一个"":""的建值对
+            // this.obj[""] = ""  //这么写不行，因为这样式对普通对象的操作，不会被代理
+            /*
+                this.$set() -> insert
+                this.$set(你要操作的对象,新的key,新的value)
+            */
             this.$set(this.obj,"","")
-            console.log(this.obj)
+        },
+        updateval(e){
+            /*
+                判断obj中是否含有input中的name属性值的属性
+                    如果含有
+                        设置新的值
+            */
+            // console.log(e.target.name) //key
+            if(this.obj.hasOwnProperty(e.target.name)){
+                this.obj[e.target.name] = e.target.value
+            }
         },
         updatekey(e){
             /*
-                $set -> insert
                 判断input中的name属性
                     如果为空字符串（新增那一行）
                         则将input中的value属性值和空字符串设置为新的键值对
@@ -46,23 +58,12 @@ const app = new Vue({
                         然后删除原有的名字叫input中的name属性的键值对
             */
             if(e.target.name === ""){
+                // 操作新增的那一行
                 this.$set(this.obj,e.target.value,"")
-                this.$delete(this.obj,"")
+                this.$delete(this.obj,e.target.name)
             }else if(this.obj.hasOwnProperty(e.target.name)){
-                console.log("100")
                 this.$set(this.obj,e.target.value,this.obj[e.target.name])
                 this.$delete(this.obj,e.target.name)
-            }
-        },
-        updateval(e){
-            /*
-                判断obj中是否含有input中的name属性值的属性
-                    如果含有
-                        设置新的值
-            */
-            console.log(e.target.value)
-            if(this.obj.hasOwnProperty(e.target.name)){
-                this.obj[e.target.name] = e.target.value
             }
         }
     }
