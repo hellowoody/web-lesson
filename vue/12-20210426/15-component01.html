@@ -19,7 +19,7 @@
 
 // 定义组件
 const Comp = Vue.extend({
-    template:"<h2>我是组件</h2>"
+    template:"<h2>我是组件</h2>",
 })
 
 //注册全局组件
@@ -28,7 +28,7 @@ Vue.component("my-global",Comp)
 new Vue({
     el:"#app1",
     data:{
-        msg:"hello01"
+        msg:"hello01!"
     }
 })
 new Vue({

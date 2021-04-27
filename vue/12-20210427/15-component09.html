@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 渐近式 -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <parent-comp></parent-comp>
+        </div>
+    </body>
+</html>
+<script type="text/x-template" id="ChildComp">
+    <h6>{{msg}}</h6>
+</script>
+<script type="text/x-template" id="ParentComp">
+    <div>
+        <h2>{{msg}}</h2>
+        <child-comp></child-comp>    
+    </div>
+</script>
+<script>
+const ChildComp = {
+    data:function(){
+        return {
+            msg:"子组件123456"
+        }
+    },
+    template:"#ChildComp",
+}
+const ParentComp = {
+    data(){
+        return {
+            msg:"父组件"
+        }
+    },
+    template:"#ParentComp",
+    components:{
+        ChildComp
+    }
+}
+
+new Vue({
+    el:"#app",
+    components:{
+        ParentComp
+    }
+})
+</script>

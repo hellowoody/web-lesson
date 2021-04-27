@@ -9,6 +9,7 @@
             {{msg}}
             <my-global></my-global>
             <my-part></my-part>
+            <!-- <MyPart></MyPart> -->
         </div>
         <div id="app2">
             {{msg}}
@@ -20,25 +21,32 @@
 <script>
 
 // 定义组件
-const Comp = Vue.extend({
-    template:"<h2>我是组件</h2>"
-})
-
-const Comp2 = Vue.extend({
+const MyPart = {
     template:"<h6>我是局部组件</h6>"
-})
+}
 
 //注册全局组件
-Vue.component("my-global",Comp)
+Vue.component("my-global",{
+    template:"<h2>我是组件</h2>"
+})
   
+/*
+    1.在html中标签名字一般都是小写
+    2.在Vue注册组件时可以大写命名，vue内部按驼峰的形式会帮我我们拆解
+    3.js ES语法支持
+        当key:value,如果key，value是一样的，那么可以简单写成 key
+*/
+
 new Vue({
     el:"#app1",
     data:{
         msg:"hello01"
     },
     components:{
-        // key:value
-        "my-part":Comp2
+        // "my-part":Comp2
+        // "MyPart":Comp2
+        // "MyPart":MyPart,
+        MyPart,
     }
 })
 new Vue({
@@ -47,7 +55,7 @@ new Vue({
         msg:"hello02"
     },
     components:{
-        "my-part":Comp2
+        "my-part":MyPart
     }
 })
 </script>

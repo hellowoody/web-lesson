@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 渐近式 -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <parent-comp></parent-comp>
+        </div>
+    </body>
+</html>
+<script>
+const ChildComp = {
+    template:"<h6>子组件</h6>"
+}
+/*
+    在vue2.0 中组件中模板必须包裹在一个根节点中
+*/
+const ParentComp = {
+    // template:"<h2>父组件</h2>",
+    // vue2.0中这么写是错误的
+    // template:`
+    //     <h2>父组件</h2>
+    //     <child-comp></child-comp> 
+    // `,
+    template:`
+        <div>
+            <h2>父组件</h2>
+            <child-comp></child-comp>    
+        </div>
+    `,
+    components:{
+        ChildComp
+    }
+}
+
+new Vue({
+    el:"#app",
+    components:{
+        ParentComp
+    }
+})
+</script>

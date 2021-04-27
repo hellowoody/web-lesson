@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 渐近式 -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <counter></counter>
+            <counter></counter>
+            <counter></counter>
+        </div>
+        <template id="Counter">
+            <div>
+                <h1>{{count}}</h1>
+                <button @click="add">+</button>
+            </div>
+        </template>
+    </body>
+</html>
+<script>
+
+// const obj = {
+//     foo:function(){
+//         return 'a'
+//     }
+// }  
+// obj.foo() 
+
+// let o = {
+//     date:new Date()
+// }
+
+// function bar(){
+//     return new Date()
+// }
+// bar() 10:00
+// sleep(1000)
+// bar() 10:01
+
+// o.date 11:00
+// o.date 11:00
+
+/*
+const obj1 = {
+    getdate:new Date()
+}
+
+const obj2 ={
+    getdate:function(){
+        return new Date()
+    }
+}
+*/
+
+const data = {
+    count:0
+}
+const Counter = {
+    data:function(){
+        return data
+    },
+    template:"#Counter",
+    methods:{
+        add(){
+            this.count++
+        }
+    }
+}
+new Vue({
+    el:"#app",
+    data:{
+
+    },
+    components:{
+        Counter
+    }
+})
+</script>
