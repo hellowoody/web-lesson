@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 渐近式 -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <counter :num="count" @increment-on="add"></counter>
+            <counter :num="count"></counter>
+        </div>
+    </body>
+</html>
+
+<script>
+
+const Counter = {
+    props:{
+        num:Number
+    },
+    template:`
+        <div>
+            <h5>{{num}}</h5>
+            <button @click="add">+</button>
+            <button >-</button>
+        </div>
+    `,
+    methods:{
+        add(){
+            // 发布-订阅模式 emit
+            // this.$emit(绑定方法的名字,需要传的参数)
+            this.$emit("increment-on",this.num+1)
+            // this.$emit("increment-on")
+        }
+    }
+}
+
+new Vue({
+    el:"#app",
+    data:{
+        count:0
+    },
+    components:{
+        Counter
+    },
+    methods:{
+        // add(){
+        //     this.count++
+        // }
+        add(newval){
+            this.count = newval
+        }
+    }
+})
+</script>

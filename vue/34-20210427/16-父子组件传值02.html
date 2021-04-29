@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- 渐近式 -->
+        <meta charset="utf-8">
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     </head>
     <body>
@@ -10,31 +10,28 @@
         </div>
     </body>
 </html>
-<script type="text/x-template" id="ChildComp">
-    <h6>{{msg}}</h6>
-</script>
-<script type="text/x-template" id="ParentComp">
-    <div>
-        <h2>{{msg}}</h2>
-        <child-comp></child-comp>    
-    </div>
-</script>
 <script>
+
 const ChildComp = {
-    data:function(){
-        return {
-            msg:"子组件123456"
-        }
-    },
-    template:"#ChildComp",
+    props:["param01","param02"],
+    template:`
+        <h6>{{param02 + "," + param01}}</h6>
+    `
 }
+
 const ParentComp = {
     data(){
         return {
-            msg:"父组件"
+            p1:"子组件",
+            p2:"你好"
         }
     },
-    template:"#ParentComp",
+    template:`
+        <div>
+            <h2>父组件</h2>
+            <child-comp v-bind:param01="p1" :param02="p2" ></child-comp>
+        </div>
+    `,
     components:{
         ChildComp
     }
@@ -42,10 +39,8 @@ const ParentComp = {
 
 new Vue({
     el:"#app",
-    data:{
-
-    },
     components:{
+        // "parent-comp":ParentComp
         ParentComp
     }
 })

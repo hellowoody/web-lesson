@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 渐近式 -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <parent-comp></parent-comp>
+        </div>
+    </body>
+</html>
+
+<script>
+
+const ChildComp = {
+    data(){
+        return {
+            msg:"我是"
+        }
+    },
+    // props:["param","nickname"],
+    // props:{
+    //     param:String,
+    //     nickname:String
+    // },
+    props:{
+        param:String,
+        nickname:{
+            type:String,
+            default:"默认值",
+        }
+    },
+    template:`
+        <h5>{{msg + param + nickname}}</h5>
+    `
+}
+
+const ParentComp = {
+    data(){
+        return {
+            msg:"父组件",
+            p1:"子组件",
+            p2:"16-案例"
+        }
+    },
+    template:`
+        <div>
+            <h2>{{msg}}</h2>
+            <!--child-comp v-bind:param="p1" :nickname="p2"></child-comp -->
+            <child-comp v-bind:param="p1"></child-comp>
+        </div>
+    `,
+    components:{
+        ChildComp
+    }
+}
+
+new Vue({
+    el:"#app",
+    components:{
+        ParentComp
+    }
+})
+</script>

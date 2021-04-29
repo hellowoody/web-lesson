@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <counter :num="count" @increment="add"></counter>
+            <counter :num="count" ></counter>
+        </div>
+    </body>
+</html>
+<script>
+
+const Counter = {
+    props:{
+        num:Number
+    },
+    template:`
+        <div>
+            <h5>{{num}}</h5>
+            <button @click="add">+</button>
+        </div>
+    `,
+    methods:{
+        add(){
+            // vue 子组件调用父组件中方法
+            // Gof 广播设计范式 emit 
+            // this.$emit(父组件中模版标签中的方法名,需要传递参数<可传可不传>)
+            // this.$emit("increment")
+            this.$emit("increment",this.num+1)
+        }
+    }
+}
+
+new Vue({
+    el:"#app",
+    data:{
+        count:0
+    },
+    components:{
+        Counter
+    },
+    methods:{
+        // add(){
+        //     this.count++
+        // }
+        add(newval){
+            this.count = newval
+        }
+    }
+})
+</script>

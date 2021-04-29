@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <counter></counter>
+            <counter></counter>
+            <counter></counter>
+        </div>
+        <template id="Counter">
+            <div>
+                <h5>{{count}}</h5>
+                <button @click="add">+</button>
+            </div>
+        </template>
+    </body>
+</html>
+<script>
+
+const date1 = {
+    getdate: new Date()
+}
+
+const date2 = {
+    getdate:function(){
+        return new Date()
+    }
+}
+
+const str = "123"  // 字面量
+// 对象
+const obj = {
+    count:0
+}
+const Counter = {
+    data:function(){
+        return obj
+    },
+    template:"#Counter",
+    methods:{
+        add(){
+            this.count++
+        }
+    }
+}
+
+new Vue({
+    el:"#app",
+    components:{
+        Counter
+    }
+})
+</script>
