@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <!-- 父组件 -->
+        <div id="app">
+            <div>{{msg}}</div>
+            <comp ref="c1"></comp>
+        </div>
+        <!-- 子组件 -->
+        <template id="Comp">
+            <div>
+                <h5>{{count}}</h5>
+                <button @click="add">+</button>
+                <button @click="getParentComp">获取父组件的内容</button>
+                <button @click="setParentComp">修改父组件的内容</button>
+            </div>
+        </template>
+    </body>
+</html>
+<script>
+const Comp = {
+    data(){
+        return {
+            count:0
+        }
+    },
+    template:"#Comp",
+    methods:{
+        add(){
+            this.count++
+        },
+        getParentComp(){
+            console.log(this.$parent.msg)
+        },
+        // 不推荐大家使用跨组件修改值 ！！！
+        setParentComp(){
+            this.$parent.msg = "新的值"
+        }
+    }
+}
+
+Vue.component("comp",Comp)
+
+const app = new Vue({
+    el:"#app",
+    data:{
+        msg:"在子组件中获取父组件的内容"
+    },
+})
+</script>

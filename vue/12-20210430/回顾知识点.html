@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <counter v-bind:countson="count" @increment="add" @decrement="sub"></counter>
+            <counter :countson="count"></counter>
+            <counter :countson="count"></counter>
+        </div>
+
+
+
+        <template id="Counter">
+            <div>
+                <h5>{{countson}}</h5>
+                <button v-on:click="add">+</button>
+                <button @click="sub">-</button>
+            </div>
+        </template>
+    </body>
+</html>
+<script>
+// vue的静态方法 专门去声明组件
+/*
+    1.在声明组件传参数时不需要配置el
+    2.配置data属性时，组件是函数，而new Vue实例时是对象
+*/
+// const Counter = Vue.extend({
+//     data:function(){
+//         return {
+//             count:0
+//         }
+//     },
+//     template:`
+//         <div>
+//             <h5>{{count}}</h5>
+//         </div>
+//     `
+// }) 
+const Counter = {
+    // data:function(){
+    //     return {
+    //         count:0
+    //     }
+    // },
+
+    // props:["countson"],
+
+    props:{
+        // key:value
+        countson:{
+            type:Number,
+            default:-1
+        }
+    },
+    template:"#Counter",
+    methods:{
+        add(){
+            // this.$emit("标签中的事件名字")
+            this.$emit("increment")
+        },
+        sub(){
+            // this.countson
+            this.$emit("decrement")
+        }
+    }
+}
+
+//全局注册 
+//vue静态方法component
+// Vue.component("counter",Counter)
+
+new Vue({
+    el:"#app" , // elementlink => querySelector()
+    data:{
+        count:0
+    },
+    // 局部注册组件
+    // 简化写法
+    components:{
+        // "counter":Counter
+        // counter:Counter
+        // Counter:Counter   // vue中会自动将组件注册的名字从大写驼峰写法专成小写
+        Counter              // js es语法中 如果key和value的命名一样的话，就可以写一个
+    },
+    methods:{
+        add(){
+            this.count++
+        },
+        sub(){
+            this.count--
+        }
+    }
+}) 
+</script>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div>{{msg}}</div>
+            <counter ref="c1"></counter>
+        </div>
+    </body>
+</html>
+<script>
+
+const Counter = Vue.extend({
+    data:function(){
+        return {
+            count:0
+        }
+    },
+    template:`
+        <div>
+            <h5>{{count}}</h5>
+            <button @click="add">+</button>
+            <button @click="getParentData">获取父组件的属性</button>
+            <button @click="setParentData">修改父组件的属性</button>
+        </div>
+    `,
+    methods:{
+        add(){
+            this.count++
+        },
+        getParentData(){
+            console.log(this.$parent.msg)
+        },
+        setParentData(){
+            // 实际开发中尽量不要用，但是面试时需要记住有这种方式修改父组件的变量
+            this.$parent.msg = "修改后的值"
+        }
+    }
+}) 
+
+const app = new Vue({
+    el:"#app" , // elementlink => querySelector()
+    data:{
+        msg:"子组件获取父组件的内容"
+    },
+    components:{
+        Counter              // js es语法中 如果key和value的命名一样的话，就可以写一个
+    },
+    methods:{
+        getSonComp(){
+            // this.$children  拿到的就是当前页面所有子组件
+            for(let item of this.$children){
+                // console.log(item)
+                console.log(item.count)
+            }
+        },
+        getTargetSonComp(){
+            console.log(this.$refs.c2.count)
+        }
+    }
+}) 
+</script>

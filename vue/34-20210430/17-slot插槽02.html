@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            * {
+                margin:0;
+                padding:0;
+            }
+            .topbar {
+                position: fixed;
+                top:0;
+                height:50px;
+                width: 100%;
+                background-color: blue;
+                color:#fff;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        </style>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <top-bar>
+                <template v-slot:right>
+                    <div>头像，登出</div>
+                </template>
+                <template v-slot:left>
+                    <div>系统标题</div>
+                </template>
+            </top-bar>
+        </div>
+    </body>
+</html>
+<script>
+
+Vue.component("top-bar",{
+    template:`
+        <div class="topbar">
+            <div>
+                <slot name="left"></slot>
+            </div>
+            <div>
+                <slot name="right"></slot>
+            </div>
+        </div>
+    `
+})
+
+const app = new Vue({
+    el:"#app",
+
+})
+</script>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <comp>
+                <h1>原来这就是插槽</h1>
+                <h2>标题2</h2>
+                <a href="#">baidu.com</a>
+            </comp>
+        </div>
+    </body>
+</html>
+<script>
+
+Vue.component("comp",{
+    template:`
+        <div>
+            <slot>我是一个插槽</slot>
+        </div>
+    `
+})
+ 
+const app = new Vue({
+    el:"#app" , 
+}) 
+</script>

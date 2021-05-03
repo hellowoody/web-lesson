@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <counter ref="c1"></counter>
+            <counter ref="c2"></counter>
+            <counter ref="c3"></counter>
+            <button @click="getSonComp">获取所有子组件中的变量</button>
+            <button @click="getTargetSonComp">获取特定子组件中的变量</button>
+        </div>
+    </body>
+</html>
+<script>
+/*
+    html -> dom -> id
+*/
+/*
+    vue -> v-dom -> ref
+    $refs 
+    ref
+*/
+const Counter = Vue.extend({
+    data:function(){
+        return {
+            count:0
+        }
+    },
+    template:`
+        <div>
+            <h5>{{count}}</h5>
+            <button @click="add">+</button>
+        </div>
+    `,
+    methods:{
+        add(){
+            this.count++
+        }
+    }
+}) 
+
+const app = new Vue({
+    el:"#app" , // elementlink => querySelector()
+    // 局部注册组件
+    // 简化写法
+    components:{
+        Counter              // js es语法中 如果key和value的命名一样的话，就可以写一个
+    },
+    methods:{
+        getSonComp(){
+            // this.$children  拿到的就是当前页面所有子组件
+            for(let item of this.$children){
+                // console.log(item)
+                console.log(item.count)
+            }
+        },
+        getTargetSonComp(){
+            console.log(this.$refs.c2.count)
+        }
+    }
+}) 
+</script>

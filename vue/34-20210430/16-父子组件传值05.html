@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <comp></comp>
+            <comp></comp>
+            <comp></comp>
+            <button @click="getAllComp">获取所有的子组件</button>
+        </div>
+
+        <template id="Comp">
+            <div>
+                <h5>{{count}}</h5>
+                <button @click="add">+</button>
+            </div>
+        </template>
+    </body>
+</html>
+<script>
+
+const Comp = {
+    data(){
+        return {
+            count:0
+        }
+    },
+    template:"#Comp",
+    methods:{
+        add(){
+            this.count++
+        }
+    }
+}
+
+Vue.component("comp",Comp)
+
+const app = new Vue({
+    el:"#app",
+    methods:{
+        getAllComp(){
+            // this.$children //拿到当前页面的所有子组件 
+            for(let item of this.$children){
+                // console.log(item.count)
+                console.log(item)
+            }
+        }
+    }
+})
+</script>
