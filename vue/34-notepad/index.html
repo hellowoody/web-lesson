@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>vue-notepad</title>
+        <link type="text/css" rel="styleSheet"  href="./index.css" />
+        <!-- vue库 2.x版本 -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div class="top-bar">
+                {{title}}
+            </div>
+            <div class="content">
+                <left-part v-bind:list="listData"></left-part>
+                <right-part v-bind:formdata="formData"></right-part>
+            </div>
+            <div class="footer"></div>
+        </div>
+    </body>
+</html>
+<script type="text/x-template" id="left-part">
+    <div class="left-part">
+        <ul>
+            <li v-for="(item,index) in list" v-bind:key="item.id">
+                {{item.id + "-" + item.title}}
+                <button @click="del(item.id)">删除</button>
+                <button @click="delByIndex(index)">删除(按索引删除)</button>
+                <button @click="updateForShow(item)">修改</button>
+            </li>
+        </ul>
+    </div>
+</script>
+<script type="text/x-template" id="right-part">
+    <div class="right-part">
+        <span>id:{{formdata.id}}</span>
+        <br>
+        <input placeholder="请输入title" v-model="formdata.title">
+        <br>
+        <textarea cols="50" rows="10" placeholder="请输入content" v-model="formdata.content"></textarea>
+        <br>
+        <button v-on:click="sub">新增</button>
+        <button v-on:click="updateForm">修改</button>
+    </div>
+</script>
+<script src="./index.js"></script>
