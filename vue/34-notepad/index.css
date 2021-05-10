@@ -12,14 +12,14 @@ ul li {
 }
 
 .top-bar {
-    height:55px;
+    /* height:55px;
     width: 100%;
-    background-color: #4fc08d;
+    background-color: #4fc08d; */
     color:#fff;
-    display: flex;
+    /* display: flex;
     align-items: center;
     padding:0 24px;
-    box-sizing: border-box;
+    box-sizing: border-box; */
 }
 
 .content {
