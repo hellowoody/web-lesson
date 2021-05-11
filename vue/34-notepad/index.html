@@ -26,7 +26,9 @@
                         @on-update="updateForm"
                     ></right-part>
                 </a-layout-content>
-                <a-layout-footer>Footer</a-layout-footer>
+                <a-layout-footer>
+                    <a-input-search placeholder="请输入需要过滤的内容" v-model="searchContent" enter-button @search="onSearch" />
+                </a-layout-footer>
             </a-layout>
         </div>
     </body>

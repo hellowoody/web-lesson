@@ -3,31 +3,35 @@
     <head>
         <meta charset="utf-8" >
         <title>单页面记事本应用-Vue</title>
+        <link rel="styleSheet" href="./antd/antd.css" />
         <link type="text/css" rel="styleSheet" href="./index.css"/>
         <!-- vue version 2.0 -->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="./antd/antd.js"></script>
     </head>
     <body>
         <div id="app">
-            <div class="header">
-                {{title}}
-            </div>
-            <div class="content">
-                <left-part 
-                    v-bind:listdata="list" 
-                    @on-del="del" 
-                    @on-delbyid="delById" 
-                    @on-detail="detail" 
-                ></left-part>
-                <right-part 
-                    :formdata="formData" 
-                    @add="sub"
-                    @on-update="update"
-                ></right-part>
-            </div>
-            <div class="footer">
-                this is footer
-            </div>
+            <a-layout>
+                <a-layout-header style="color:#fff">
+                    {{title}}
+                </a-layout-header>
+                <a-layout-content class="content">
+                    <left-part 
+                        v-bind:listdata="list" 
+                        @on-del="del" 
+                        @on-delbyid="delById" 
+                        @on-detail="detail" 
+                    ></left-part>
+                    <right-part 
+                        :formdata="formData" 
+                        @add="sub"
+                        @on-update="update"
+                    ></right-part>
+                </a-layout-content>
+                <a-layout-footer>
+                    <a-input-search placeholder="需要过滤的内容" v-model="searchContent" enter-button @search="onSearch" />
+                </a-layout-footer>
+            </a-layout>
         </div>
     </body>
 </html>

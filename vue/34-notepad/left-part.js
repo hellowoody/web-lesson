@@ -2,22 +2,16 @@ const LeftPart = {
     props:["list"],
     template:`
         <div class="left-part">
-            <ul>
-                <li v-for="(item,index) in list" v-bind:key="item.id">
-                    {{item.id + "-" + item.title}}
-                    <a-radio-group >
-                        <a-radio-button value="large" @click="del(item.id)">
-                            删除
-                        </a-radio-button>
-                        <a-radio-button value="default" @click="delByIndex(index)">
-                            删除(按索引删除)
-                        </a-radio-button>
-                        <a-radio-button value="small" @click="detail(item)">
-                            查看
-                        </a-radio-button>
-                    </a-radio-group>
-                </li>
-            </ul>
+            <a-list item-layout="horizontal" :data-source="list">
+                <a-list-item slot="renderItem" slot-scope="item, index">
+                    <a slot="actions" @click="del(item.id)">删除</a>
+                    <a slot="actions" @click="delByIndex(index)">删除(按索引删除)</a>
+                    <a slot="actions" @click="detail(item)">查看</a>
+                    <a-list-item-meta :description="item.content.substr(0,10) + '......' ">
+                        <div slot="title" >{{item.id + "-" + item.title}}</div>
+                    </a-list-item-meta>
+                </a-list-item>
+            </a-list>
         </div>
     `,
     methods:{

@@ -33,7 +33,9 @@ new Vue({
             id:"",
             title:"",
             content:""
-        }
+        },
+        searchContent:"",
+        old_list :[]
     },
     methods:{
         sub(){
@@ -107,6 +109,16 @@ new Vue({
             }else{
                 alert("该id不存在于左侧列表中，请点击新增按钮进行添加")
             }
+        },
+        onSearch(){
+            console.log(this.searchContent)
+            this.list = this.list.filter((item) => {
+                if(item.title.indexOf(this.searchContent) < 0 && item.content.indexOf(this.searchContent) < 0  ){
+                    return false
+                }else{
+                    return true
+                }
+            })
         }
     },
     components:{

@@ -3,14 +3,16 @@ const LeftPart = {
     props:["listdata"],
     template:`
         <div class="left-part">
-            <ul>
-                <li v-for="(item,index) in listdata" :key="index">
-                    {{item.id + "-" + item.title}}
-                    <button @click="del(index)">删除</button>
-                    <button @click="delById(item.id)">删除(id方式删除)</button>
-                    <button @click="detail(item)">查看</button>
-                </li>
-            </ul>
+            <a-list item-layout="horizontal" :data-source="listdata">
+                <a-list-item slot="renderItem" slot-scope="item, index">
+                    <a slot="actions" @click="del(index)">删除</a>
+                    <a slot="actions" @click="delById(item.id)">删除(id方式删除)</a>
+                    <a slot="actions" @click="detail(item)">查看</a>
+                    <a-list-item-meta :description="item.content.substr(0,10)+'......'">
+                        <div slot="title">{{item.id + "-" + item.title}}</div>
+                    </a-list-item-meta>
+                </a-list-item>
+            </a-list>
         </div>
     `,
     methods:{

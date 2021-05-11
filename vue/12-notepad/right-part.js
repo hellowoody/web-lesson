@@ -1,15 +1,29 @@
 const RightPart = {
+    data(){
+        return {
+            buttonItemLayout:{
+                wrapperCol: { span: 14, offset: 0 }
+            }
+        }
+    },
     props:["formdata"],
     template:`
         <div class="right-part">
-            <span>id:{{formdata.id}}</span>
-            <br>
-            <input placeholder="请输入title" v-model="formdata.title">
-            <br>
-            <textarea cols="30" rows="10" placeholder="请输入content" v-model="formdata.content"></textarea>
-            <br>
-            <button v-on:click="sub">新增</button>
-            <button v-on:click="update">修改</button>
+            <a-form-model layout="horizontal" :model="formdata" >
+                <a-form-model-item label="ID">
+                    <a-input disabled v-model="formdata.id" />
+                </a-form-model-item>
+                <a-form-model-item label="标题">
+                    <a-input v-model="formdata.title" placeholder="请输入title" />
+                </a-form-model-item>
+                <a-form-model-item label="内容">
+                    <a-textarea v-model="formdata.content" allow-clear placeholder="请输入内容" />
+                </a-form-model-item>
+                <a-form-model-item v-bind:wrapper-col="buttonItemLayout.wrapperCol">
+                    <a-button type="primary" v-on:click="sub">新增</a-button>
+                    <a-button v-on:click="update">修改</a-button>
+                </a-form-model-item>
+            </a-form-model>
         </div>
     `,
     methods:{

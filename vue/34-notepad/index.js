@@ -8,6 +8,7 @@ new Vue({
         title:"vue 记事本练习",
         listData:[
             {
+                show:true,
                 id:"1",
                 title:"事项1",
                 content:"事项1内容事项1内容事项1内容事项1内容事项1内容事项1内容事项1内容事项1内容事项1内容"
@@ -30,7 +31,8 @@ new Vue({
             id:"",
             title:"",
             content:"",
-        }
+        },
+        searchContent:"",
     },
     methods:{ 
         del(id){
@@ -119,8 +121,18 @@ new Vue({
                 alert("该表单的id不存在在原有list中，请点击新增按钮")
             }
             
+        },
+        onSearch(){
+            console.log(1000,this.searchContent)
+            this.listData = this.listData.map((item) => {
+                if(item.title.indexOf(this.searchContent) < 0 && item.content.indexOf(this.searchContent) < 0 ){
+                // if(!item.title.includes(this.searchContent) && !item.content.includes(this.searchContent)){
+                    return false
+                }else{
+                    return true
+                }
+            })
         }
-        
     },
     //将组件局部注册到vue实例中
     components:{
