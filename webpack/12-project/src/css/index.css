@@ -1,0 +1,30 @@
+.bluefont {
+    color:blue;
+}
+
+.img1 {
+    width:150px;
+    height:150px;
+    /* background-color: red; */
+    background-image: url("../imgs/1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.img2 {
+    width:150px;
+    height:150px;
+    /* background-color: blue; */
+    background-image: url("../imgs/2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.img3 {
+    width:150px;
+    height:150px;
+    /* background-color: pink; */
+    background-image: url("../imgs/3.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
