@@ -1,0 +1,1 @@
+export const zhangsan = "张三"

@@ -23,7 +23,8 @@ module.exports = {
     // 打包后的内容
     output:{
         path:resolve(__dirname,"build"),   // 支持绝对路径  d://lesson/day01/build/js/built.js
-        filename:"./js/built.js"
+        filename:"./js/built.[name].js",
+        chunkFilename:"./chunks/chunk.[name].js"
     },
     mode:"development", // 模式 development 开发模式 jquery.js ｜ production 生产模式 jquery.min.js
     //配置模块
@@ -69,7 +70,22 @@ module.exports = {
                 test: /\.html$/,
                 loader:"html-loader",
                 options:{
-                    esModule:false
+                    esModule:false // 通过配置文件告诉webpack打包图片不需要它通过es的语法单独按module模块进行打包
+                }
+            },
+            // 规则 5 处理字体文件 (把iconfont.css 和 字体文件打包到output中js中)
+            // {
+            //     test:/\.ttf$/,
+            //     loader:"url-loader",
+            // }
+            // 规则6 
+            {
+                test:/\.ttf)$/,
+                loader:"file-loader",
+                options:{
+                    // name:"[name].[ext]",
+                    name:"[hash:5].[ext]",
+                    outputPath:"./fonts"
                 }
             }
         ]
@@ -87,13 +103,25 @@ module.exports = {
             filename:"./css/built.css"  // 最终打包出的css 输出到哪个“子目录”并且文件名是什么
         }),
         new CleanWebpackPlugin()
-    ],
+    ],  
     devServer:{
         contentBase:resolve(__dirname,"build"),
         // 行业术语：起个服务，listen port 3000 
+        port:3000,
         compress:true,
-        port:3000, 
         open:false, // 服务启动后，是否开发当前操作系统的默认浏览器
-        hot:true ,// hmr
+        hot:true ,// hmr 启动   *.js / *.ts ｜ *.css *.html *.json
+    },
+    // devtool:"source-map", 
+    resolve:{
+        alias:{
+            "@":resolve(__dirname,"src"),
+        }
+    },
+    // js文件分割打包
+    optimization:{
+        splitChunks:{
+            chunks:"all"
+        }
     }
 }

@@ -1,16 +1,15 @@
 {
-  "name": "34-project",
+  "name": "34-project-vue",
   "version": "1.0.0",
-  "description": "",
-  "main": "webpack.config.js",
+  "main": "index.js",
   "scripts": {
-    "build": "npx webpack",
-    "dev": "npx webpack serve",
-    "start": "npx webpack serve"
+    "build":"npx webpack",
+    "dev":"npx webpack serve"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "dependencies": {
+    "ant-design-vue": "^1.7.5",
+    "vue": "^2.6.12"
+  },
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "css-loader": "^5.2.4",

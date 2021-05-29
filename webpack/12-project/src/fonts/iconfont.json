@@ -1,0 +1,30 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "490590",
+      "name": "school",
+      "font_class": "school",
+      "unicode": "eced",
+      "unicode_decimal": 60653
+    },
+    {
+      "icon_id": "600061",
+      "name": "school",
+      "font_class": "school1",
+      "unicode": "e695",
+      "unicode_decimal": 59029
+    },
+    {
+      "icon_id": "13519492",
+      "name": "school",
+      "font_class": "school2",
+      "unicode": "e66a",
+      "unicode_decimal": 58986
+    }
+  ]
+}
