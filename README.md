@@ -379,8 +379,3 @@
 ## 4.slot
 
     https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/wxml-wxss.html
-
-## 回放
-
-链接: https://pan.baidu.com/s/1q7EqA7_QywDp4Vmd_Jjqlg  密码: smc7
---来自百度网盘超级会员V4的分享
