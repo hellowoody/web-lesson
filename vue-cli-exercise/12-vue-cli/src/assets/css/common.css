@@ -1,0 +1,17 @@
+* {
+    margin:0;
+    padding:0;
+}
+
+ul li {
+    list-style:none;
+}
+
+body {
+    background-color: #f3f3f3cf;
+}
+
+a {
+    color:unset;
+}
+

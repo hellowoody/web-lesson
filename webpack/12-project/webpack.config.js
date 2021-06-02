@@ -80,7 +80,7 @@ module.exports = {
             // }
             // 规则6 
             {
-                test:/\.ttf)$/,
+                test:/\.(ttf)$/,
                 loader:"file-loader",
                 options:{
                     // name:"[name].[ext]",

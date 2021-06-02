@@ -1,26 +1,15 @@
-import Vue from 'vue' // vue.runtime.js 
-// import Vue from 'vue/dist/vue.js' // vue.js
-import App from './App.vue'
+import "@/antd";
+import '@/assets/css/common.css';
+
+import Vue from 'vue' // vue.runtime.js   缺少的一部分功能 渲染html
+import router from "@/router";
+import App from '@/App.vue';
 
 Vue.config.productionTip = false
 
-// new Vue({
-//   render: function (h) { return h(App) },
-// }).$mount('#app')
-
-/*
-
-vue.js             new vue 实例中 是不存在render
-vue.runtime.js     new vue 实例中 只有render
-
-*/
-// new Vue({
-//   el:"#app",
-//   render: function (h) { return h("div",{
-//     style:"width:100px;height:100px;background-color:red"
-//   }) },
-// })
+//路由第三步:将路由实例，传入Vue实例中
 new Vue({
-  el:"#app",
+  router,
   render: function (h) { return h(App) },
-})
+}).$mount('#app')
+

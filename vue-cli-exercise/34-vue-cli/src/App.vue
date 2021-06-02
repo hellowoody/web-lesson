@@ -1,26 +1,6 @@
 <template>
-  <!-- not dom , is v-dom -->
-  <div>
-    <div>计步器 : {{count}}</div>
-    <button @click="increment">+</button>
-    <button @click="decrement">-</button>
-  </div>
+    <div>
+        <!-- 一级路由 -->
+        <router-view></router-view>
+    </div>
 </template>
-<script>
-export default {
-  name: 'App',
-  data(){
-    return {
-      count:0
-    }
-  },
-  methods:{
-    increment(){
-      this.count++
-    },
-    decrement(){
-      this.count--
-    }
-  }
-}
-</script>
