@@ -8,11 +8,13 @@
           </div>
       </a-layout-header>
       <a-layout-content class="content">
-          <router-view></router-view>
+          <!-- 二级路由占位符 -->
+          <!-- list -->
+          <!-- detail -->
+          <transition name="slide">
+              <router-view></router-view>
+          </transition>
       </a-layout-content>
-      <a-layout-footer>
-          <a-input-search placeholder="需要过滤的内容" v-model="searchContent" enter-button @search="onSearch" />
-      </a-layout-footer>
   </a-layout>
 </template>
 
@@ -23,14 +25,6 @@ export default {
   data(){
     return {
       title:"单页面记事本应用-Vue",
-        
-        formData:{
-            id:"",
-            title:"",
-            content:""
-        },
-        searchContent:"",
-        old_list :[]
     }
   },
   methods:{
@@ -61,16 +55,6 @@ export default {
             alert("该id不存在于左侧列表中，请点击新增按钮进行添加")
         }
     },
-    onSearch(){
-        console.log(this.searchContent)
-        this.list = this.list.filter((item) => {
-            if(item.title.indexOf(this.searchContent) < 0 && item.content.indexOf(this.searchContent) < 0  ){
-                return false
-            }else{
-                return true
-            }
-        })
-    }
   },
 }
 </script>
@@ -93,7 +77,43 @@ export default {
     justify-content: space-between; 
     padding:0px 24px;
     margin-top:24px;
-    height: calc(100vh - 64px - 80px - 24px);
+    height: calc(100vh - 64px - 24px);
 }
+
+/* 
+css3 动画效果 
+1.transition 过渡
+2.transform  变形
+3.animation  动画
+*/
+
+.slide-enter-active , .slide-leave-active  {
+    transition: all 0.75s ease-out;
+}
+
+
+/* 进入前的样式 */
+.slide-enter {
+    position:absolute;
+    right:-100%; 
+}
+/* 进入后的样式 */
+.slide-enter-to {
+    position:absolute;
+    right:0;
+}
+
+/* 离开前的样式 */
+.slide-leave {
+    position: absolute;
+    opacity: 1;
+}
+
+/* 离开后的样式 */
+.slide-leave-to {
+    position: absolute;
+    opacity: 0;
+}
+
 </style>
 

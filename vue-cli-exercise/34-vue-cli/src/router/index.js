@@ -7,12 +7,18 @@ import Counter from "@/components/Counter"
 import List from "@/components/List"
 import Detail from "@/components/Detail"
 
+/*
+  1.<router-link to="url">  <a href="url">
+  2.<router-view> 某一级路由中组件/页面的占位符
+  3.$router  相当于路由的全局对象（页面的跳转） this.$router.currentRoute
+  4.$route   相当于本次路由的对象（获取参数）this.$route
+*/
 Vue.use(VueRouter) 
 
 const routes = [
   // {path:"/",redirect:"/notepad"}, //重定向
   {
-    path:"/",
+    path:"/", // 默认路由
     redirect:{path:"/notepad/list"}  //重定向
   }, 
   {

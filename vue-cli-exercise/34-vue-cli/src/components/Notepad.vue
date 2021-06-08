@@ -10,11 +10,10 @@
         </a-layout-header>
         <a-layout-content class="content">
             <!-- 二级路由 -->
-            <router-view></router-view>
+            <transition name="slide">
+                <router-view></router-view>
+            </transition>
         </a-layout-content>
-        <a-layout-footer>
-            <a-input-search placeholder="请输入需要过滤的内容" v-model="searchContent" enter-button @search="onSearch" />
-        </a-layout-footer>
     </a-layout>
   </div>
 </template>
@@ -25,13 +24,6 @@ export default {
   data(){
     return {
         title:"vue 记事本练习",
-        listData:[],
-        formData:{
-            id:"",
-            title:"",
-            content:"",
-        },
-        searchContent:"",
     }
   },
   methods:{
@@ -63,17 +55,6 @@ export default {
         }
         
     },
-    onSearch(){
-        console.log(1000,this.searchContent)
-        this.listData = this.listData.filter((item) => {
-            if(item.title.indexOf(this.searchContent) < 0 && item.content.indexOf(this.searchContent) < 0 ){
-            // if(!item.title.includes(this.searchContent) && !item.content.includes(this.searchContent)){
-                return false
-            }else{
-                return true
-            }
-        })
-    }
   },
 }
 </script>
@@ -98,6 +79,42 @@ export default {
     padding:0px 24px;
     box-sizing: border-box;
     margin-top:16px;
-    height: calc(100vh - 64px - 80px - 16px);
+    height: calc(100vh - 64px - 16px);
 }
+
+/* 
+css3 动画
+1.transition 过渡
+2.transform  变形
+3.animation  动画
+*/
+
+/* 进入时或离开时过渡样式 */
+.slide-enter-active , .slide-leave-active {
+    transition: all 0.55s ease-out;
+}
+
+/* 进入前 */
+.slide-enter {
+    position: absolute;
+    right:-100%;
+}
+/* 进入后 */
+.slide-enter-to {
+    position: absolute;
+    right:0;
+}
+
+/* 离开之前 */
+.slide-leave {
+    position: absolute;
+    opacity: 1;
+}
+
+/* 离开之后 */
+.slide-leave-to {
+    position: absolute;
+    opacity: 0;
+}
+
 </style>

@@ -1,6 +1,8 @@
 <template>
     <div class="left-part">
-        <a-list item-layout="horizontal" :data-source="list">
+        <a-input-search placeholder="需要过滤的内容" v-model="searchContent" enter-button @search="onSearch" />
+        <a-button type="primary" block style="margin-top:8px;" @click="add">新增</a-button>
+        <a-list item-layout="horizontal" :data-source="$store.state.dataList">
             <a-list-item slot="renderItem" slot-scope="item, index">
                 <a slot="actions" @click="del(index)">删除</a>
                 <a slot="actions" @click="delById(item.id)">删除(id方式删除)</a>
@@ -15,40 +17,52 @@
 
 <script>
 export default {
-    name:"LeftCard",
+    name:"List",
     data(){
         return {
-            list:[
-                {
-                    id:"1",
-                    title:"事项1",
-                    content:"内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1"
-                },
-                {
-                    id:"2",
-                    title:"事项2",
-                    content:"内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1"
-                },
-                {
-                    id:"3",
-                    title:"事项3",
-                    content:"内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1"
-                },
-            ],
+            list:[],
+            searchContent:"",
         }
     },
     methods:{
         del(index){
-            this.list.splice(index,1)
+            this.$store.commit("del",index)
+            this.$message.success("删除成功",1)
         },
         delById(id){
-            this.list = this.list.filter(item => item.id === id ? false : true)
+            this.$store.commit("delById",id)
+            this.$message.success("删除成功（by id）",1)
         },
-        detail(item){
+        add(){
             this.$router.push({
-                path:"detail"
+                path:"detail",
+                // query:{
+                //     // formdata:item
+                //     // id:item.id
+                // }
             })
         },
+        detail(item){
+            // console.log(this.$router)
+            // console.log(this.$route)
+            // this.$router.push({
+            //     name:"detailname",
+            //     params:{
+            //         a:1,
+            //         b:2
+            //     }
+            // })
+            this.$router.push({
+                path:"detail",
+                query:{
+                    // formdata:item
+                    id:item.id
+                }
+            })
+        },
+        onSearch(){
+            this.$store.commit("onSearch",this.searchContent)
+        }
     }
 }
 </script>

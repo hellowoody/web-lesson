@@ -7,7 +7,11 @@ import {
     FormModel,
     List,
     Layout,
-    Input
+    Input,
+    Spin,
+    message,
+    notification,
+    Icon
 } from 'ant-design-vue'; // 部分加载
 
 Vue.use(Button)
@@ -15,3 +19,8 @@ Vue.use(FormModel)
 Vue.use(List)
 Vue.use(Layout)
 Vue.use(Input)
+Vue.use(Spin)
+Vue.use(Icon)
+
+Vue.prototype.$message = message
+Vue.prototype.$notification = notification

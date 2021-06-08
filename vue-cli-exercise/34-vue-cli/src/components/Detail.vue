@@ -11,8 +11,8 @@
                 <a-textarea v-model="formdata.content" placeholder="请输入content"  :auto-size="{ minRows: 3, maxRows: 5 }"/>
             </a-form-model-item>
             <a-form-model-item v-bind:wrapper-col="buttonItemLayout.wrapperCol">
-                <a-button type="primary" v-on:click="sub">新增</a-button>
-                <a-button v-on:click="updateForm">修改</a-button>
+                <a-button v-if="flag === 'new'" type="primary" v-on:click="sub">新增</a-button>
+                <a-button v-else type="primary" v-on:click="updateForm">修改</a-button>
                 <a-button v-on:click="back">返回</a-button>
             </a-form-model-item>
         </a-form-model>
@@ -31,15 +31,60 @@ export default {
                 labelCol: { span: 4 },
                 wrapperCol: { span: 14 },
             },
-            formdata:{
-
-            }
+            formdata:{},
+            flag:""
         }
+    },
+    created(){
+        // 页面（v-dom）还没有渲染完之前
+        // console.log(this.$route.query.id);
+        if(this.$route.query.id === "new"){
+            // 新增
+            this.flag = "new"
+        }else{
+            // 修改
+            this.formdata = this.$store.getters.selected(this.$route.query.id)
+            this.flag = "edit"
+        }
+        
+        // this.formdata = this.$route.query.formdata
     },
     methods:{
         sub(){
+            this.formdata.id = Date.now().toString().substr(-5)
+            // this.listData.push(this.formData)
+            this.$store.commit("sub",this.formdata)
+            this.formdata = {
+                id:"",
+                title:"",
+                content:""
+            }
+            this.$notification.open({
+                message:"恭喜",
+                description:"新增成功",
+                icon: h => h("a-icon",{
+                    props:{
+                        type:"check-circle",
+                        theme:"twoTone",
+                        "two-tone-color":"#52c41a"
+                    }
+                }),
+            })
+            this.$router.go(-1)
         },
         updateForm(){
+            this.$store.commit("updateForm",this.formdata)
+            this.$notification.open({
+                message:"恭喜",
+                description:"修改成功",
+                icon: h => h("a-icon",{
+                    props:{
+                        type:"check-circle",
+                        theme:"twoTone",
+                        "two-tone-color":"#52c41a"
+                    }
+                }),
+            })
         },
         back(){
             this.$router.go(-1)

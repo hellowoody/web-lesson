@@ -88,3 +88,20 @@ npx vue create 你的项目名字(注意:不要是中文，不要有空格，不
  - 把昨天main.vue删除掉，但在删除前将其内容拷贝app.vue中
 
  - 找到记事本中header区域，头部的右上角加上 “登陆”，“计步器”等菜单（链接）
+
+
+# 回顾
+
+1.调整页面的结构：将原先搜索框和左侧列表放在一页面（组件/路由），表单的页面只包含表单
+1.5 vue-router 的常有功能
+2.路由的传参数
+    query:(path方式)
+    params:
+3.路由做切换时 过渡效果
+
+
+weibo.com/login
+weibo.com/newlist
+weibo.com/newlist/top10/a
+weibo.com/new
+weibo.com/new/vote
