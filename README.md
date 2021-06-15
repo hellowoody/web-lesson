@@ -142,7 +142,7 @@
 
     - 导出 
         - export
-        - module.exports 
+        - export default 
     
     - 导入 
         - import
@@ -153,11 +153,19 @@
                 import { xxx } from "相对路径/文件名";
                 ```
             
-            - 针对module.exports导出的内容，导入的语法
+            - 针对export default 导出的内容，导入的语法
 
                 ```
                 import xxx from "相对路径/文件名";
                 ```
+  - commonjs 简单语法
+
+    - 导出 
+        - module.exports
+        - exports 
+    
+    - 导入 
+        - require
 
   - 输入框小例子
 
