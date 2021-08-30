@@ -1,0 +1,167 @@
+<!DOCTYPE html> <!-- h5 --> 
+<html>
+    <head>
+        <title>vue2 知识点</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    </head>
+    <body>
+        <div class="app"></div>
+    </body>
+</html>
+<script>
+    //定义组件
+    const childComp = {
+        name:"childComp",
+        data(){
+            return {
+                msg:"我是子组件"
+            }
+        },
+        template:`
+            <h5>{{msg}}</h5>
+        `
+    }
+
+    // vue 2.x
+    // 注意： 在vue2.x版本中，尽量不要使用箭头函数，因为箭头函数的自身特性的原因
+    new Vue({
+        el:".app", // element link
+        data:{
+            msg: "hello vue 2.x",
+            price: 100
+        },
+        // template 中的标签时真正html标签
+        // 其实 v-dom 标签 虚拟dom  virtal-dom
+        template:`
+            <div>
+                <h1 id="abc" class="h1class">{{msg}}</h1>  
+                <h5 ref="a1" >{{msg}}</h5>  
+                <button v-on:click="change">中文翻译</button>  
+                <button @click="change">中文翻译 （语法糖）</button>  
+                <hr>
+                <div>价格：{{price}}</div>
+                <div>中国：{{yuan}}</div>
+                <div>美国：{{dollar}}</div>
+                <child-comp></child-comp>
+            </div>
+        `, // render
+        methods:{
+            change:function(){
+                this.msg = "你好 vue 2.x"
+            },
+            // 语法糖（语法简化的写法）
+            changeName(){
+                this.msg = "你好 vue 2.x"
+            }
+        },
+        // 计算属性 computed
+        computed:{
+            yuan(){
+                return this.price + "元"
+            },
+            dollar(){
+                return this.price + "美元"
+            }
+        },
+        created(){
+            /*
+                给你保证 Vue option param参数中的内容全部完成
+                但是，不能给你保证页面是否都渲染完
+            */
+            console.log( document.getElementById("abc")) // <h1 id="abc">hello </h1>
+            console.log( this.msg)
+            console.log( this.change())
+            console.log( this.yuan)
+            console.log("生命周期: created")
+        },
+        mounted(){
+            /*
+                既给你保证 Vue option param参数中的内容全部完成
+                也同时给你保证页面都渲染完
+            */
+            console.log("======================")
+            console.log( document.getElementById("abc")) // <h1 id="abc">hello </h1>
+            console.log( this.$refs.a1)  //  <h5>hello</h5>
+            console.log( this.msg)
+            console.log( this.change())
+            console.log( this.yuan)
+            console.log("生命周期: mounted")
+        },
+        components:{
+            // key:value
+            // "child-comp":childComp
+            childComp
+        }
+    }) // options object param
+</script>
+
+<script>
+// 箭头函数的特点
+window.price = 1000
+const obj = {
+    price:100,
+    change:function(){
+        // 函数表达式或者匿名函数中的“上下文”this，最后“谁”调用了这个方法，“谁”就是this
+        // 我们是可以改变匿名函数中的this的
+           // 可以改变函数调用的顺序，从而改变this
+           // 通过手动强制的方法进行改变，apply bind call
+        this.price = this.price+1
+        return "增加成功"
+    },
+    changeArrow:() => {
+        // 箭头函数中的“上下文”this 永远指向它的外一层作用域的对象
+        console.log(this)
+        this.price = this.price+1
+        return "增加成功"
+    }
+}
+
+const obj2 = {
+    price:200,
+    obj:{
+        price:100,
+        change:function(){
+            console.log(this)
+            // 函数表达式或者匿名函数中的“上下文”this，最后“谁”调用了这个方法，“谁”就是this
+            this.price = this.price+1
+            return "增加成功"
+        },
+        changeArrow:() => {
+            // 箭头函数中的“上下文”this 永远指向它的外一层作用域的对象
+            console.log(this) // window.price or obj2.price ? 
+            this.price = this.price+1
+            return "增加成功"
+        }
+    }
+}
+
+// js 作用域
+const a = 1
+function fn(){
+    // 作用域
+    const a = 1000
+}
+
+const obj3 = {
+    price:300,
+    change:function(){
+        //被匿名函数包裹的目的是强调作用域的概念
+        console.log("foo函数外：",this)
+        const foo = function(){
+            console.log("foo函数内：",this)
+            this.price = this.price + 1
+        }
+        return foo
+    },
+    changeArrow:function(){
+        //被匿名函数包裹的目的是强调作用域的概念
+        console.log("foo函数外：",this)
+        const foo = () => {
+            console.log("foo函数内：",this)
+            this.price = this.price + 1
+        }
+        foo()
+    }
+}
+
+</script>
