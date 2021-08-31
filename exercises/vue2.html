@@ -5,20 +5,49 @@
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     </head>
     <body>
-        <div class="app"></div>
+        <div class="app">
+
+        </div>
     </body>
 </html>
 <script>
     //定义组件
     const childComp = {
         name:"childComp",
+        props:{
+            a:String,
+            b:{
+                type:Number,
+                default:-1
+            },
+            price_param:Number,
+            dollar_param:String,
+        },
+        // 为什么vue 2.x 组件中定义双向绑定的变量为什么时以函数形式？
         data(){
             return {
                 msg:"我是子组件"
             }
         },
+        methods:{
+            handle(){
+                // 调用父组件中square方法
+                // "广播"开发范式 emit -》 “小喇叭”
+                // this.$emit("事件名称")
+                this.$emit("price_square")
+            }
+        },
         template:`
-            <h5>{{msg}}</h5>
+            <div>
+                <h5>{{msg}}</h5>
+                <hr>
+                <div>从父组件接收的参数</div>
+                {{a}} {{b}} 
+                <br>
+                {{price_param}}  {{dollar_param}} 
+                <hr>
+                <button @click="handle">价格平方</button>
+            </div>
         `
     }
 
@@ -42,7 +71,9 @@
                 <div>价格：{{price}}</div>
                 <div>中国：{{yuan}}</div>
                 <div>美国：{{dollar}}</div>
-                <child-comp></child-comp>
+                <div>地球：{{changePrice("jan") }}</div>
+                <child-comp a="10" v-bind:b="3"></child-comp>
+                <child-comp @price_square="square"  :price_param="price" :dollar_param="dollar"></child-comp>
             </div>
         `, // render
         methods:{
@@ -52,6 +83,9 @@
             // 语法糖（语法简化的写法）
             changeName(){
                 this.msg = "你好 vue 2.x"
+            },
+            square(){
+                this.price = this.price * this.price
             }
         },
         // 计算属性 computed
@@ -61,6 +95,35 @@
             },
             dollar(){
                 return this.price + "美元"
+            },
+            changePrice(){
+                return function(type){
+                    let result = ""
+                    switch (type) {
+                        case "usa":
+                        case "can":
+                            result = this.price + "美金"
+                            break;
+                        case "eng":
+                            result = this.price  + "英镑"
+                            break;
+                        case "aus":
+                            result = this.price  + "奥币"
+                            break;
+                        case "jan":
+                            result = this.price  + "日元"
+                            break;
+                        case "china":
+                        case "hongkang":
+                        case "taiwan":
+                            result = this.price  + "元"
+                            break;
+                        default:
+                            result = this.price 
+                            break;
+                    }
+                    return result
+                }
             }
         },
         created(){
@@ -71,7 +134,7 @@
             console.log( document.getElementById("abc")) // <h1 id="abc">hello </h1>
             console.log( this.msg)
             console.log( this.change())
-            console.log( this.yuan)
+            console.log( this.yuan )
             console.log("生命周期: created")
         },
         mounted(){

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>vue3 组合api知识点</title>
+        <script src="https://unpkg.com/vue@next"></script>
+    </head>
+    <body>
+        <div id="app">
+        </div>
+    </body>
+</html>
+<script>
+/*
+区别
+1.vue3 使用时不再new vue()了，而是使用静态方法createApp
+2.vue3 语法的核心思想时函数式编程，而vue2约定配置式编程
+3.vue3 组合api中 不存在this
+*/  
+const Counter_V2 = {
+    name:"Counter",
+    data:function(){
+        return {
+            count:0
+        }
+    },
+    methods:{
+        increment(){
+            this.count++
+        },
+        decrement(){
+            this.count--
+        },
+    },
+    template:`
+        <div>
+            <div>计步器:{{count}}</div>
+            <button @click="increment">+</button>
+            <button @click="decrement">-</button>
+        </div>
+    `
+}
+
+const Counter = {
+    //composition api
+    setup:function(){
+        const count = Vue.ref(0);
+        console.log(count,count.value)
+        const add = () => {
+            count.value = count.value+1
+        }
+        const sub = () => {
+            count.value = count.value-1
+        }
+        return {
+            count:count,
+            increment:add,
+            decrement:sub,
+        }
+    },
+    template:`
+        <div>
+            <h2>vue 组合api 例子</h2>
+            <div>{{count}}</div>   
+            <button @click="increment">+</button> 
+            <button @click="decrement">-</button> 
+        </div>
+    `
+}
+
+
+const app = Vue.createApp(Counter); // not options obj param ， it is component
+app.mount("#app"); // 挂载到body标签中的某个节点
+</script>
