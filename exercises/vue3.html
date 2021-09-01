@@ -15,12 +15,17 @@
 1.vue3 使用时不再new vue()了，而是使用静态方法createApp
 2.vue3 语法的核心思想时函数式编程，而vue2约定配置式编程
 3.vue3 组合api中 不存在this
+4.vue3 在template中既可以使用vue2声明的data以及mehtods，同时也可以使用setup中的return后的属性和方法。
+        但是在setup中，你不能拿到vue2声明的data以及mehtods
+5.vue3 template中不再强制根节点的要求
+6.vue3 vue3是在vue2基础上做了优化
+        速度快,在版本3中，你可以声明不需要双向绑定的变量，同时这个变量也可以在模板中直接使用
 */  
 const Counter_V2 = {
     name:"Counter",
     data:function(){
         return {
-            count:0
+            count:0,
         }
     },
     methods:{
@@ -40,9 +45,9 @@ const Counter_V2 = {
     `
 }
 
-const Counter = {
+const Counter_V3 = {
     //composition api
-    setup:function(){
+    setup(){
         const count = Vue.ref(0);
         console.log(count,count.value)
         const add = () => {
@@ -67,7 +72,100 @@ const Counter = {
     `
 }
 
+const Counter_Mix = {
+    //composition api
+    data(){
+        return {
+            msg:"hello vue3"
+        }
+    },
+    setup(props,context){
+        /*
+            在setup中 你不能获取用vue2语法声明的data，methods，或者说是event时间
+            因为，我们用生命周期钩子函数做了打印，发现setup 会在beforecreated之前执行。
+        */
+        console.log("setup")
+        // console.log("props:",props)
+        // console.log("context:",context)
+        const count = Vue.ref(0)
+        const add = () => {
+            count.value = count.value+1
+        }
+        const sub = () => {
+            count.value = count.value-1
+        }
+        return {
+            count,
+            add,
+            sub,
+        }
+    },
+    beforeCreate(){
+        // evented
+        console.log("beforeCreate")
+    },
+    created(){
+        // data methods computed watch
+        console.log("created")
+    },
+    mounted(){
+        // data methods computed watch template
+        console.log("mounted")
+    },
+    methods:{
+        increment(){
+            this.count++
+        },
+        decrement(){
+            this.count--
+        },
+    },
+    template:`
+        <div>
+            <h1>{{msg}}</h1>
+            <h2>vue 组合api 例子</h2>
+            <div>{{count}}</div>   
+            <button @click="increment">+</button> 
+            <button @click="sub">-</button> 
+        </div>
+    `
+}
 
-const app = Vue.createApp(Counter); // not options obj param ， it is component
+const CompositionApiDemo = {
+    setup(){
+        let a = "1"
+        const b = Vue.ref("hello")
+
+        const c = Vue.reactive({
+            name:"zhang",
+            age:100
+        })
+        
+        const changeA= () => {
+            a = "10"
+            console.log(a)
+        }
+        const changeB = () => {
+            b.value = "你好"
+        }
+        
+        return {
+            a,
+            b,
+            c,
+            changeA,
+            changeB
+        }
+    },
+    template:`
+        <div>{{a}}</div>
+        <div>{{b}}</div>
+        <div>{{c.name}}</div>
+        <button @click="changeA">change a</button>
+        <button @click="changeB">change b</button>
+    `
+}
+
+const app = Vue.createApp(CompositionApiDemo); // not options obj param ， it is component
 app.mount("#app"); // 挂载到body标签中的某个节点
 </script>

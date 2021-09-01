@@ -1,0 +1,56 @@
+<script>
+/*
+var 存在作用域不清晰的问题，同时它也是比较老的语法
+let const 比较新的语法，ES6
+let  声明之后可以继续修改
+const "声明"之后(初始化之后)，不能修改
+*/
+
+/*
+代码方式
+var vs let
+*/
+// for(var i= 0 ; i<5; i++){
+//     setTimeout(() => {
+//         console.log(i)
+//     }, 0);
+// }
+// 5
+// 5
+// 5
+// 5
+// 5
+// for(let i= 0 ; i<5; i++){
+//     setTimeout(() => {
+//         console.log(i)
+//     }, 0);
+// }
+// 0 1 2 3 4
+
+/*
+    let vs const
+*/
+
+// 基本类型（字面量） string boolean number 
+// let a = 1;
+// a = 10
+// console.log(a)
+// const b = "hello"
+// b = "你好"
+// console.log(b)
+// 引用类型 object(json) array
+let aa = {a:1}
+aa = "123"
+console.log(aa)
+
+const bb = {b:1}
+// bb = "123"
+bb.b = 100
+console.log(bb)
+
+const cc = [1,2,3]
+// cc = [1,2,3,4]
+cc.push(4)
+console.log(cc)
+
+</script>
