@@ -42,11 +42,11 @@ const Comp = {
         const c = Vue.reactive({
             name:"zhang",
             age:100
-        })
+        })   // proxy {name:xxx,age:xxx}
         const c2 = Vue.ref({
             name:"li",
             age:90
-        })
+        })   // {value:{name:xxx,age:xxx}}
         const changeA= () => {
             a = "10"
             console.log(a)
@@ -92,6 +92,7 @@ const Comp = {
             changePrice
         }
     },
+    // template中标签是v-dom ,在通过vue3框架渲染后生成html dom
     template:`
         <div>{{a}}</div>
         <div>{{b}}</div>
