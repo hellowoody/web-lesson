@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>reactive 语法糖</title>
+        <script src="https://unpkg.com/vue@next"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div>{{price}}</div>
+            <div>{{person.name}},{{person.score}}</div>
+            <div>{{count}}</div>
+        </div>
+    </body>
+</html>
+<script>
+Vue.createApp({
+    setup(){
+        const data = Vue.reactive({
+            price:100,
+            person:{
+                name:"zhangsan",
+                score:100
+            },
+            count:0
+        })
+
+        console.log(data)
+
+        return {
+            ...data // “解构” flat
+        }
+
+    }
+}).mount("#app")
+</script>

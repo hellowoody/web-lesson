@@ -32,6 +32,8 @@
 
  - var let const 区别
 
+ - 仿照vue3中reactive方法实现一个自己代理方法
+
 # Vue3 知识点
 
  - 1.vue3 使用时不再new vue()了，而是使用静态方法createApp
