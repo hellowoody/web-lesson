@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>computed计算属性</title>
+        <script src="https://unpkg.com/vue@next"></script>
+    </head>
+    <body>
+        <div id="app">
+            {{key1}} {{key2}}
+            <hr>
+            {{price}} {{yuan}} {{dollar}}
+            <hr>
+            {{priceUnit("china")}} {{priceUnit("usa")}} {{priceUnit("jan")}} {{priceUnit("eup")}}
+        </div>
+    </body>
+</html>
+<script>
+Vue.createApp({
+    // vue2
+    computed:{
+        key1:function(){
+            return 200
+        },
+    },
+    setup(){
+        //vue3
+        const key2 = Vue.computed(function(){
+            return 100
+        })
+        ///////////////
+        const price = Vue.ref(100); // {value:100}
+        const yuan = Vue.computed(() => price.value + "元")
+        const dollar = Vue.computed(() => price.value + "$")
+        const priceUnit = Vue.computed(() => {
+            return (country) => {
+                let res = price.value
+                switch(country){
+                    case "china":
+                        res += "元";
+                        break;
+                    case "usa":
+                        res += "$"
+                        break;
+                    case "jan":
+                        res += "日元"
+                        break;
+                    default:
+                }
+                return res
+            }
+        })
+
+        return {
+           key2,
+           yuan,
+           dollar,
+           price,
+           priceUnit
+        }
+
+    }
+}).mount("#app")
+</script>

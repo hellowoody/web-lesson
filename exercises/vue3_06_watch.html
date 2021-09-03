@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>watch 侦听</title>
+        <script src="https://unpkg.com/vue@next"></script>
+    </head>
+    <body>
+        <div id="app">
+            
+        </div>
+    </body>
+</html>
+<script>
+Vue.createApp({
+    data(){
+        return {
+            a:0
+        }
+    },
+    watch:{
+        a:function(newval,prev){
+            console.log(newval,prev)
+        }
+    },
+    setup(){
+        
+        const count = Vue.ref(0);
+
+        const person = Vue.reactive({
+            name:"zhang",
+            gender:"man"
+        })
+
+        Vue.watch(count,function(newVal,prevVal){
+            console.log(newVal,prevVal)
+        })
+
+        Vue.watch(() => {
+            return person.name
+        },function(newVal,prevVal){
+            console.log(newVal,prevVal)
+        })
+
+        setTimeout(() => {
+            person.name = "张"
+        }, 1000);
+
+        // setInterval(() => {
+        //     count.value += 1
+        // }, 1000)
+
+    }
+}).mount("#app")
+</script>

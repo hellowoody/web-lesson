@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>method</title>
+        <script src="https://unpkg.com/vue@next"></script>
+    </head>
+    <body>
+        <div id="app">
+            <button v-on:click="fn1">按钮1</button>
+            <button @click="fn2($event)">按钮2</button>
+            <button @click="fn3(100)">按钮3</button>
+            <button @click="fn4(100,200)">按钮4</button>
+            <button @click="fn5(100,200,300)">按钮5</button>
+            <button @click="fn6($event,100,200,300)">按钮6</button>
+        </div>
+    </body>
+</html>
+<script>
+Vue.createApp({
+    setup(){
+        
+        const fn1 = function(e){
+            console.log("this is fn1",e)
+        }
+
+        const fn2 = (e) => {
+            console.log("this is fn2",e)
+        }
+
+        function fn3(p) {
+            console.log("this is fn3",p)
+        }
+
+        const fn4 = (p1,p2) => {
+            console.log("this is fn4",p1,p2)
+        }
+
+        const fn5 = (p1,p2,p3) => {
+            console.log("this is fn5",p1,p2,p3)
+        }
+        
+        const fn6 = (e,p1,p2,p3) => {
+            console.log("this is fn6",e,p1,p2,p3)
+        }
+
+        return {
+            fn1,
+            fn2,
+            fn3,
+            fn4,
+            fn5,
+            fn6,
+        }
+
+    }
+}).mount("#app")
+</script>
