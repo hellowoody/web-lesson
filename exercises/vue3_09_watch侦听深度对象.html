@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>watch 侦听</title>
+        <script src="https://unpkg.com/vue@next"></script>
+    </head>
+    <body>
+        <div id="app">
+        </div>
+    </body>
+</html>
+<script>
+Vue.createApp({
+    setup(){
+        const obj = Vue.reactive({
+            id:1,
+            person:{
+                name:"zhang",
+                gender:"male"
+            }
+        })
+
+        Vue.watch(() => Object.assign({},obj),(v1,v2) => {
+            console.log(v1,v2)
+        },{
+            deep:true
+        })
+
+        setTimeout(() => {
+            obj.id = 10
+            // obj.person.name = "张"
+        },2000)
+
+    }
+}).mount("#app")
+</script>

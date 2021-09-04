@@ -11,6 +11,7 @@
     </body>
 </html>
 <script>
+
     //定义组件
     const childComp = {
         name:"childComp",
@@ -53,7 +54,7 @@
 
     // vue 2.x
     // 注意： 在vue2.x版本中，尽量不要使用箭头函数，因为箭头函数的自身特性的原因
-    new Vue({
+    const app = new Vue({
         el:".app", // element link
         data:{
             msg: "hello vue 2.x",
@@ -156,6 +157,7 @@
             childComp
         }
     }) // options object param
+    console.log(app)
 </script>
 
 <script>

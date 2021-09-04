@@ -35,16 +35,16 @@ Vue.createApp({
             console.log(newVal,prevVal)
         })
 
-        Vue.watch(() => {
-            return person.name
-        },function(newVal,prevVal){
-            console.log(newVal,prevVal)
+        Vue.watch(() => person.name,function(newVal,prevVal){
+            console.log("watch reactive: ",newVal,prevVal)
         })
 
-        setTimeout(() => {
-            person.name = "张"
-        }, 1000);
+        // setTimeout 隔多少毫秒后执行第一个参数的回调函数 ，注意回调函数只执行一次
+        // setTimeout(() => {
+        //     person.name = "张"
+        // }, 1000);
 
+        // setInterval  每隔多少毫秒后会执行第一个参数的回调函数
         // setInterval(() => {
         //     count.value += 1
         // }, 1000)

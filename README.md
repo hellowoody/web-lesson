@@ -32,7 +32,7 @@
 
  - var let const 区别
 
- - 仿照vue3中reactive方法实现一个自己代理方法
+ - 仿照vue3中reactive方法实现一个自己代理方法（proxy）
 
 # Vue3 知识点
 
@@ -48,7 +48,10 @@
  - 5.vue3 template中不再强制根节点的要求
  - 6.vue3 vue3是在vue2基础上做了优化
     - 运行时速度快,在版本3中，你可以声明不需要双向绑定的变量（这个变量不会被监控），同时这个变量也可以在模板中直接使用
-
+    - vue3和vue2实现双向绑定的方式不一样
+      - vue2 的ES5 观察者模式（Observer）
+      - vue3 的ES7 代理模式 （Proxy）
+     
         云开发clound（docker 虚拟机 分布式） k8s 2.5w 
         serverless无服务 11ty deno react vue3.2 
  - 7.vue3 声明双向绑定变量的方式一共有两种 ref and reactive
@@ -57,6 +60,10 @@
     - 用ref创建时，可以传入任何类型（基本类型，引用类型）
  
  - 8.vue3 侦听有两种方式watcheffect和watch，在实际开发中使用watch比较没有坑，但不表示watcheffect不好，所以要酌情使用
+
+ - 9.vue3 侦听数组
+   - 如果你想侦听整个数组的增加或减少的话，你要在第一个参数返回值中，用到浅拷贝
+   - 如果你想侦听数组中某一个值的话，那就在第一个参数的返回值中直接返回你需要监控的值
 
  ## 备注:js类型中，基本类型 （string number boolean） <-> 引用类型 (json object ,array)
  
