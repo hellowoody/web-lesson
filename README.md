@@ -55,6 +55,8 @@
     - ref是在reactive基础上的一层封装
     - 用reactive创建双向绑定变量时不能传基本类型（简单类型） string number boolean
     - 用ref创建时，可以传入任何类型（基本类型，引用类型）
+ 
+ - 8.vue3 侦听有两种方式watcheffect和watch，在实际开发中使用watch比较没有坑，但不表示watcheffect不好，所以要酌情使用
 
  ## 备注:js类型中，基本类型 （string number boolean） <-> 引用类型 (json object ,array)
  
