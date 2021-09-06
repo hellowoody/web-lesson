@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>vue3 生命周期钩子函数</title>
+        <script src="https://unpkg.com/vue@next"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+
+<script>
+
+const Comp = {
+    beforeCreate(){
+        console.log("vue2.x beforeCreate")
+    },
+    created(){
+        console.log("vue2.x created")
+    },
+    mounted(){
+        console.log("vue2.x mounted")
+    },
+    template:`
+        <h1>生命周期钩子函数</h1>
+        <div>{{state.count}}</div>
+    `,
+    setup(){
+        // console.log(Vue)
+        // Vue.computed({},{})
+        // Vue.onBeforeCreate(() => console.log("Vue3.0 onBeforeCreate")) 没有！
+        // Vue.onCreated(() => console.log("Vue3.0 onCreated"))           没有！
+        Vue.onBeforeMount(() => console.log("Vue3.0 onBeforeMount"))
+        Vue.onMounted(() => console.log("Vue3.0 mounted"))
+        Vue.onBeforeUpdate(() => console.log("Vue3.0 onBeforeUpdate"))
+        Vue.onUpdated(() => console.log("Vue3.0 onUpdated"))
+        Vue.onBeforeUnmount(() => console.log("Vue3.0 onBeforeUnmount"))
+        Vue.onUnmounted(() => console.log("Vue3.0 onUnmounted"))
+       
+        const state = Vue.reactive({
+            count:0
+        })
+
+        setTimeout(() => state.count = 10,2000)
+
+        return {
+            state
+        }
+    }
+}
+
+Vue.createApp(Comp).mount("#app")
+</script>
