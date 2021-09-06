@@ -36,6 +36,10 @@
                 // "广播"开发范式 emit -》 “小喇叭”
                 // this.$emit("事件名称")
                 this.$emit("price_square")
+            },
+            print(){
+                console.log(this.a)
+                console.log(this.$props.a)
             }
         },
         template:`
@@ -48,6 +52,7 @@
                 {{price_param}}  {{dollar_param}} 
                 <hr>
                 <button @click="handle">价格平方</button>
+                <button @click="print">打印</button>
             </div>
         `
     }

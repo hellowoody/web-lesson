@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>vue3 组件</title>
+        <script src="https://unpkg.com/vue@next"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+
+<script>
+const ChildComp = {
+    // props:["a","b","c","d"],
+    props:{
+        a:String,
+        b:String,
+        c:String,
+        d:String,
+    },
+    template:`
+        <h5>子组件</h5>
+        <div>{{a}} {{b}}</div>
+    `,
+    // vue3 父组件向子组件传值时，子组件可以通过setup函数中第一个参数props拿到相应的值
+    setup(props,context){
+        console.log(props) // proxy
+        console.log(Vue.toRefs(props)) // Object
+        console.log(Vue.toRef(props,"a"))
+    }
+}
+
+const ParentComp = {
+    template:`
+        <h1>父组件</h1>
+        <child-comp a="1" b="2" v-bind:c="data1" :d="data2" ></child-comp>
+    `,
+    components:{
+        ChildComp,
+    },
+    setup(){
+        const data1 = "hello";
+        const data2 = Vue.ref("世界")
+
+        return {
+            data1,
+            data2
+        }
+    }
+}
+
+Vue.createApp(ParentComp).mount("#app")
+</script>
