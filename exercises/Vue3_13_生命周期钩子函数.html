@@ -12,13 +12,13 @@
 <script>
 
 const Comp = {
-    beforeCreate(){
-        console.log("vue2.x beforeCreate")
-    },
-    created(){
-        console.log("vue2.x created")
-    },
-    mounted(){
+    // beforeCreate(){
+    //     console.log("vue2.x beforeCreate")
+    // },
+    // created(){
+    //     console.log("vue2.x created")
+    // },
+    mounted:function(){
         console.log("vue2.x mounted")
     },
     template:`
@@ -38,12 +38,13 @@ const Comp = {
         Vue.onUnmounted(() => console.log("Vue3.0 onUnmounted"))
        
         const state = Vue.reactive({
-            count:0
+            count:100
         })
 
         setTimeout(() => state.count = 10,2000)
 
         return {
+            // ...state // 在setup的return中用到了“解构”语法糖，那么对应的对象就失去双向绑定了
             state
         }
     }

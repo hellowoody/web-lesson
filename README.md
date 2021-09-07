@@ -75,6 +75,13 @@
 
    - 重要提示！以上我们所提到的组件通讯中需要注意的点是Vue3.0和Vue3.1的内容，而后面的实战中Vue3.2会有稍许不同
 
+ - 11.vue3 生命周期钩子函数
+
+   - 在setup中使用生命周期钩子函数，需要在原先钩子函数名称前加个“on”
+
+   - setup中没有生命周期前两个钩子函数，beforeCreate，created，因为setup比这两个钩子函数更早执行，
+     你也可以这么认为：在vue3中，setup()就是原先beforeCreate，created的综合体，它包含了这两个钩子函数所要做的内容
+
 
  ## 备注:js类型中，基本类型 （string number boolean） <-> 引用类型 (json object ,array)
  
