@@ -82,6 +82,26 @@
    - setup中没有生命周期前两个钩子函数，beforeCreate，created，因为setup比这两个钩子函数更早执行，
      你也可以这么认为：在vue3中，setup()就是原先beforeCreate，created的综合体，它包含了这两个钩子函数所要做的内容
 
+ - 12.使用vite创建项目
+
+    - 如果npm是6.x版本，你需要执行
+
+      ```
+      npm init vite your-project-name --template vue
+      ```
+
+    - 如果npm是7+版本，你需要执行(需要额外的双横线)
+
+      ```
+      npm init vite your-project-name -- --template vue
+      ```
+
+    - 注意：因为前端框架实时都在更新，最终都要以官网为准，下面为别是Vue官网的vite环节以及Vite官网中的使用环节链接
+
+      https://v3.cn.vuejs.org/guide/installation.html#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7-cli
+      
+      https://cn.vitejs.dev/guide/#scaffolding-your-first-vite-project
+
 
  ## 备注:js类型中，基本类型 （string number boolean） <-> 引用类型 (json object ,array)
  
