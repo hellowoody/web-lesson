@@ -34,6 +34,10 @@
 
  - 仿照vue3中reactive方法实现一个自己代理方法（proxy）
 
+ - Vue3 官方为什么推荐使用vite脚手架，而不是webpack？(vite和webpack的区别) 
+  
+    参考project/web-static项目
+
 # Vue3 知识点
 
  - 1.vue3 使用时不再new vue()了，而是使用静态方法createApp
@@ -101,6 +105,15 @@
       https://v3.cn.vuejs.org/guide/installation.html#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7-cli
       
       https://cn.vitejs.dev/guide/#scaffolding-your-first-vite-project
+
+    - 注意：如果你npm install时很慢
+
+      ```
+      npm i --registry https://registry.npm.taobao.org
+      ```
+
+      这个命令是临时替换源，而不是永久替换
+
 
 
  ## 备注:js类型中，基本类型 （string number boolean） <-> 引用类型 (json object ,array)

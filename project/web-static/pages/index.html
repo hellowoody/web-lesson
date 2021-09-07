@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <script src="./index.bundle.js"></script>
+    </head>
+    <body>
+        <h1>静态页面</h1>
+    </body>
+</html>
+<!-- 发布页面对于我们有两种比较容易上手的，nodejs express ， nginx -->
+<!-- 模块的形式 rollup vite -->
+<script type="module">
+    import {A} from "./index.js";
+    console.log(A.name); // zhang
+    console.log("1000");
+</script>
+
+<!-- 传统方式（webpack） -->
+<script>
+    console.log(A.name); // li
+    console.log("1000");
+</script>
