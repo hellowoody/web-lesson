@@ -121,6 +121,12 @@
     - 在defineConfig方法的参数中，增加base:"./"的配置属性
  
  - 14.如果你的vscode,报template根节点的错误，从左侧扩展插件中找到vetur，点击extentions setting，打开设置页面后，找到Vetur > Validation:Template,把对勾去掉
+
+ - 15.nginx注意以下几个问题
+
+    - nginx文件夹不能放在中文或有空格的文件夹下
+
+    - conf配置文件中配置alias路径时，需要把反斜杠换成两个正斜杠
     
  ## 备注:js类型中，基本类型 （string number boolean） <-> 引用类型 (json object ,array)
  
