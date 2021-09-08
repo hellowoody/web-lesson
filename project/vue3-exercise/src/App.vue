@@ -1,21 +1,47 @@
-<script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <h1>App 组件</h1>
+  <div> {{a}} <input v-model="b" /> <input v-model="c.val" /> </div>
+  <hr>
+  <div>计算属性（b的平方）：{{square}}</div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<script>
+import {ref,reactive,computed,watch} from "vue";
+export default {
+  data(){
+    return {
+      a:0
+    }
+  },
+  setup(){
+    const b = ref("10")
+    const c = reactive({
+      val : 100
+    })
+
+    const square = computed(function(){
+      return b.value*b.value
+    })
+
+    watch(b,(currentVal,prevVal) => {
+      console.log("b改变了,当前值=",currentVal,"旧值=",prevVal)
+    })
+
+    watch(() => ({...b}),(currentVal,prevVal) => {
+      console.log("c改变了,当前值=",currentVal,"旧值=",prevVal)
+    })
+    // watch(() => Object.assign({},c),(currentVal,prevVal) => {
+    //   console.log("c改变了,当前值=",currentVal,"旧值=",prevVal)
+    // })
+
+    return {
+      b,
+      c,
+      square
+    }
+  }
 }
-</style>
+
+</script>
+
+
