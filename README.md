@@ -116,6 +116,10 @@
 
 
 
+ - 13.修改vite.config.js
+
+    - 在defineConfig方法的参数中，增加base:"./"的配置属性
+    
  ## 备注:js类型中，基本类型 （string number boolean） <-> 引用类型 (json object ,array)
  
 
