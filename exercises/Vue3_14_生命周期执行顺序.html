@@ -28,10 +28,15 @@ const Comp = {
     `,
     setup(){
         console.log("===setup===")
-        const arr = new Array(10000000)
+        // 同步 线性
+        const arr = new Array(10000000) // 构建很大的数组 千万级数组
         for(let item of arr){
 
         }
+        // 异步 不需要等待
+        // setTimeout(() => {
+        //     console.log(1000)
+        // }, 2000);
         // 为什么 不能使用前两个?
         // 因为setup比beforecreate 和 created 更之前执行
         Vue.onBeforeMount(() => console.log("Vue3.0 onBeforeMount")) //3
