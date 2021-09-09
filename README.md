@@ -127,6 +127,28 @@
     - nginx文件夹不能放在中文或有空格的文件夹下
 
     - conf配置文件中配置alias路径时，需要把反斜杠换成两个正斜杠
+
+ - 16.antd按需加载
+
+    - 安装 unplugin-vue-components
+
+      vite-plugin-components has been renamed to unplugin-vue-components
+    
+    - 使用 unplugin-vue-components ,前提nodejs版本必须是v14+
+
+      https://github.com/antfu/unplugin-vue-components/issues/136
+ 
+ - 17.升级nodejs
+
+    ```
+
+    npm install -g n
+
+    n stable  // 安装稳定版
+
+    n latest  // 安装最新版
+
+    ```
     
  ## 备注:js类型中，基本类型 （string number boolean） <-> 引用类型 (json object ,array)
  
