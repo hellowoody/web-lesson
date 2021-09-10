@@ -1,7 +1,7 @@
 <script setup>
 
-import {ref,inject} from "vue";
-const message = inject("$message")   // 手段1
+import {ref} from "vue";
+import message from 'ant-design-vue/lib/message';  // 手段3
 const count = ref(0)
 const increment = () => {
     if(count.value < 99){
@@ -23,7 +23,7 @@ const decrement = () => {
 </script>
 
 <template>
-    <div>计步器01: {{count}}</div>
+    <div>计步器03: {{count}}</div>
     <a-button @click="increment">+</a-button>
     <a-button @click="decrement">-</a-button>
 </template>

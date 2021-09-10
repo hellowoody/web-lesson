@@ -149,6 +149,12 @@
     n latest  // 安装最新版
 
     ```
+  
+ - 18.Vue3.2 &lt;script setup&gt;中，父子组件通讯
+
+    - 父转子时，子组件使用defineProps()方法，进行参数定义，注意defineProps方法可以接受对象或数组参数
+
+    - 子调用父时，子组件使用defineEmits()方法，进行父组件事件名称定义，注意defineEmits方法可以接受对象或数组参数
     
  ## 备注:js类型中，基本类型 （string number boolean） <-> 引用类型 (json object ,array)
  

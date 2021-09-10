@@ -2,8 +2,8 @@
 
 import {ref,getCurrentInstance} from "vue";
 const count = ref(0)
-const app = getCurrentInstance() // app 就是 main.js中的app，app -> 就是vue2中的this
-const message = app.appContext.config.globalProperties.$message;
+const app = getCurrentInstance() // app 就是 main.js中的app，app -> 就是vue2中的this   //手段2
+const message = app.appContext.config.globalProperties.$message;                    //手段2
 const increment = () => {
     if(count.value < 99){
         count.value += 1
