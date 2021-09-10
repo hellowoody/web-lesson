@@ -10,10 +10,10 @@ defineProps({
 })
 // defineProps(["a","b","c","d"])
 
-const emits = defineEmits(["printHandle"])
+const emit = defineEmits(["printHandle"])
 
 const handle = () => {
-    emits("printHandle",2000)
+    emit("printHandle",2000)
 }
 </script>
 
