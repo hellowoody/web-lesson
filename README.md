@@ -156,6 +156,16 @@
     - 父传子时，子组件使用defineProps()方法，进行参数定义，注意defineProps方法可以接受对象或数组参数
 
     - 子调用父时，子组件使用defineEmits()方法，进行父组件事件名称定义，注意defineEmits方法可以接受对象或数组参数
+
+ - 19.vue-router
+
+    - 当你用es6将useRouter,useRoute导入进来后,建议马上运行这两个函数，并赋值给连个对象
+
+      ```
+      const router = useRouter();  // 做跳转用的
+      const route = useRoute();    // 获取参数
+      ```
+    
     
  ## 备注:js类型中，基本类型 （string number boolean） <-> 引用类型 (json object ,array)
  
