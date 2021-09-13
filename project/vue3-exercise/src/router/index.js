@@ -2,6 +2,7 @@ import { createRouter,createWebHashHistory} from "vue-router"
 import Exercise01Page from "@/components/Exercise01Page.vue";
 import Exercise02Page from "@/components/Exercise02Page.vue";
 import ExerciseMenuPage from "@/components/ExerciseMenuPage.vue";
+import ExerciseStorePage from "@/components/ExerciseStorePage.vue";
 
 export const router = createRouter({
     history:createWebHashHistory(),
@@ -23,6 +24,10 @@ export const router = createRouter({
         {   
             path:"/e02",
             component:Exercise02Page
+        },
+        {   
+            path:"/e03",
+            component:ExerciseStorePage
         }
     ]
 })

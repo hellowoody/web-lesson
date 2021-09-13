@@ -165,7 +165,15 @@
       const router = useRouter();  // 做跳转用的
       const route = useRoute();    // 获取参数
       ```
-    
+    - &lt;router-view&gt;标签可以充当占位符
+
+ - 20.vuex
+
+    - mutation 对应调用的方法是 commit
+
+    - action 对应调用的方法是 dispatch
+
+    - action 中调用mutation中的方法也需要用commit
     
  ## 备注:js类型中，基本类型 （string number boolean） <-> 引用类型 (json object ,array)
  
