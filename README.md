@@ -174,6 +174,16 @@
     - action 对应调用的方法是 dispatch
 
     - action 中调用mutation中的方法也需要用commit
+
+    - 访问全局命名空间的state： store.state.你定义的变量名
+
+    - 访问局部命名空间的state： store.state.modules定义的名字(modules文件的名字).你定义的变量名
+
+    - 访问全局命名空间的mutation： store.commit("你定义的方法名")
+
+    - 访问局部命名空间的mutation： store.commit("文件名/你定义的方法名")
+
+    - 访问局部命名空间的getters: store.getters["文件名/你定义的计算属性名"]
     
  ## 备注:js类型中，基本类型 （string number boolean） <-> 引用类型 (json object ,array)
  

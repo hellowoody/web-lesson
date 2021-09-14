@@ -1,51 +1,26 @@
 import { createStore } from "vuex";
+// 全局命名空间
+import {getters} from "@/store/getters";
+import {mutations} from "@/store/mutations";
+import {actions} from "@/store/actions";
+// module命名空间
+import count02 from "@/store/modules/count02"
+import count03 from "@/store/modules/count03"
 
 export const store = createStore({
+    modules:{
+        "count02":count02,
+        count03,
+    },
     state:function(){
         return {
             count:10
         }
     },
     // 同步
-    mutations:{
-        increment:function(state,p){
-            state.count += p
-            // state.count++
-        },
-        decrement(state){
-            state.count--
-        }
-    },
+    mutations,
     // 异步
-    actions:{
-        incrementDelay:(context) => {
-            // 模拟网络延迟 
-            // pending
-            // fullxxx -> resolve
-            // rejected -> reject
-            new Promise((resolve,reject) => {
-                setTimeout(() => {
-                    resolve()
-                }, 2000);
-            }).then(() => {
-                context.commit("increment",3)
-                // context.state.count = context.state.count + 3 // 不能这么写，虽然控制台没有抛错，因为全局状态追踪会产生问题，用chrome插件查看会更直观
-            })
-        },
-        decrementDelay:({commit}) => {
-            new Promise((resolve,reject) => {
-                setTimeout(() => {
-                    resolve()
-                }, 2000);
-            }).then(() => {
-                commit("decrement")
-            })
-        }
-    },
+    actions,
     // 全局状态中的计算属性
-    getters:{
-        countSquare(state){
-            return state.count * state.count
-        },
-    }
+    getters
 })
