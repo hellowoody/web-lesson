@@ -38,6 +38,10 @@
   
     参考project/web-static项目
 
+ - webpack中loader和plugins的区别
+
+    > https://zhuanlan.zhihu.com/p/322002543
+
 # Vue3 知识点
 
  - 1.vue3 使用时不再new vue()了，而是使用静态方法createApp
