@@ -10,5 +10,8 @@
         <li>
             <router-link to="/e03">全局状态管理</router-link>
         </li>
+        <li>
+            <router-link to="/eslot">插槽练习</router-link>
+        </li>
     </ul>
 </template>

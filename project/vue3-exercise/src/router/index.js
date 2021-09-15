@@ -3,6 +3,7 @@ import Exercise01Page from "@/components/Exercise01Page.vue";
 import Exercise02Page from "@/components/Exercise02Page.vue";
 import ExerciseMenuPage from "@/components/ExerciseMenuPage.vue";
 import ExerciseStorePage from "@/components/ExerciseStorePage.vue";
+import ExerciseSlotPage from "@/components/ExerciseSlotPage.vue";
 import StoreCount02 from "@/components/exercise/StoreCount02.vue";
 import StoreCount03 from "@/components/exercise/StoreCount03.vue";
 
@@ -40,6 +41,10 @@ export const router = createRouter({
                     component:StoreCount03
                 },
             ]
+        },
+        {
+            path:"/eslot",
+            component:ExerciseSlotPage
         }
     ]
 })

@@ -184,7 +184,25 @@
     - 访问局部命名空间的mutation： store.commit("文件名/你定义的方法名")
 
     - 访问局部命名空间的getters: store.getters["文件名/你定义的计算属性名"]
-    
+  
+
+ - 21.具名插槽
+
+    ```
+    <slot-name-comp>
+        <!-- vue2.x的具名插槽用法 -->
+        <!-- <div slot="left">111</div>
+        <div slot="right">222</div> -->
+        <!-- vue3.x的用法 -->
+        <template v-slot:left>
+            <div>111</div>
+        </template>
+        <template v-slot:right>
+            <div>222</div>
+        </template>
+    </slot-name-comp>
+    ```
+   
  ## 备注:js类型中，基本类型 （string number boolean） <-> 引用类型 (json object ,array)
  
 
