@@ -203,7 +203,7 @@
     </slot-name-comp>
     ```
    
- ## 备注:js类型中，基本类型 （string number boolean） <-> 引用类型 (json object ,array)
+ > 备注:js类型中，基本类型 （string number boolean） <-> 引用类型 (json object ,array)
 
 
  
@@ -213,11 +213,11 @@
 
   - 软件环境
 
-    > nodejs 14.17.6
+    - nodejs 14.17.6
 
-    > npm 6.14.15
+    - npm 6.14.15
 
-    > vite 2.5.2
+    - vite 2.5.2
 
     - vue 3.2.6
 
