@@ -1,9 +1,11 @@
 <script setup>
 import { ref } from 'vue'
-
+import {useStore} from 'vuex'
 defineProps({
   msg: String
 })
+
+const store = useStore()
 
 const count = ref(0)
 </script>
@@ -26,7 +28,8 @@ const count = ref(0)
     <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
   </p>
 
-  <a-button type="button" @click="count++">count is: {{ count }}</a-button>
+  <a-button type="button" @click="count++">局部计步器 count is: {{ count }}</a-button>
+  <a-button type="button" @click="store.commit('increment')">全局计步器 count is: {{ $store.state.count }}</a-button>
   <p>
     Edit
     <code>components/HelloWorld.vue</code> to test hot module replacement.
