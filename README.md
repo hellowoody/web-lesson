@@ -40,7 +40,7 @@
 
  > webpack中loader和plugins的区别
 
-    [https://zhuanlan.zhihu.com/p/322002543]https://zhuanlan.zhihu.com/p/322002543
+    https://zhuanlan.zhihu.com/p/322002543
 
 # Vue3 知识点
 
