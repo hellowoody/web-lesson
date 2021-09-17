@@ -1,6 +1,8 @@
 import {createRouter,createWebHashHistory} from "vue-router";
-import Main from "@/components/Main.vue";
-import Home from "@/components/pages/Home.vue"
+import Main from "@/components/pages/Main.vue"
+import Home from "@/components/pages/tabs/Home.vue"
+import Tab2 from "@/components/pages/tabs/Tab2.vue"
+import Account from "@/components/pages/tabs/Account.vue"
 
 export const router = createRouter({
     history:createWebHashHistory(), // important 强制需要配置的
@@ -8,16 +10,26 @@ export const router = createRouter({
         {
             path:"/",
             redirect:{
-                path:"/home"
+                path:"/main/home"
             }
         },
         {
             path:"/main",
-            component:Main
-        },
-        {
-            path:"/home",
-            component:Home
+            component:Main,
+            children:[
+                {
+                    path:"home",
+                    component:Home
+                },
+                {
+                    path:"tab2",
+                    component:Tab2
+                },
+                {
+                    path:"account",
+                    component:Account
+                },
+            ]
         }
     ]
 })

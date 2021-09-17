@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "iconfont"; /* Project id  */
+  src: url('iconfont.ttf?t=1631841623480') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-gouwuche:before {
+  content: "\e73d";
+}
+
+.icon-shangpinfenlei:before {
+  content: "\e724";
+}
+
+.icon-gouwuche1:before {
+  content: "\e63c";
+}
+
+.icon-hanhan-01-01:before {
+  content: "\e671";
+}
+
+.icon-shouye:before {
+  content: "\e609";
+}
+

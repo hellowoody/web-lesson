@@ -1,5 +1,5 @@
 <template>
-    <div class="tab-bar">
+    <div class="tab-bar tab-bar-extend">
         <slot></slot>
     </div>
 </template>
@@ -14,5 +14,10 @@
     bottom:0px;
     left:0px;
     right:0px;
+}
+
+.tab-bar-extend {
+    display: flex;
+    align-items: center;
 }
 </style>
