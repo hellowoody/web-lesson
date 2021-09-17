@@ -236,3 +236,7 @@
     - 操作系统:macos 10.15.7  (win10 professnal sp2)
 
     - ... 如 graphql deno express 数据库等
+
+  - 制作底部导航栏
+
+  > 创建tabbar父组件，并根据原型图设置css样式
