@@ -17,7 +17,9 @@ const props = defineProps({
 
 const doActive = () => {
     if(route.path !== props.path){
-        router.push(props.path)
+        router.replace({
+            path:props.path
+        })
     }
 }
 
