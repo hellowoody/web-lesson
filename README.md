@@ -1,44 +1,44 @@
 # 12周目标
 
- - vue3.x 制作适配手机端的商城app
+ > vue3.x 制作适配手机端的商城app
 
- - vue3.x 制作后台管理服务以及接口
+ > vue3.x 制作后台管理服务以及接口
 
 # 涉及到的技术
 
- - vue2.x 和 vue3.x
+ > vue2.x 和 vue3.x
 
- - nodejs express
+ > nodejs express
 
- - 数据库 monogodb 或 mysql
+ > 数据库 monogodb 或 mysql
 
- - 静态网站和动态网站区别
+ > 静态网站和动态网站区别
 
- - 常用的第三方工具库
+ > 常用的第三方工具库
 
- - typescript
+ > typescript
 
- - deno
+ > deno
 
- - serverless
+ > serverless
 
- - 前端面试题
+ > 前端面试题
 
 # 面试题
 
- - 匿名函数和箭头函数区别
+ > 匿名函数和箭头函数区别
 
- - 为什么vue 2.x 组件中定义双向绑定的变量为什么时以函数形式？
+ > 为什么vue 2.x 组件中定义双向绑定的变量为什么时以函数形式？
 
- - var let const 区别
+ > var let const 区别
 
- - 仿照vue3中reactive方法实现一个自己代理方法（proxy）
+ > 仿照vue3中reactive方法实现一个自己代理方法（proxy）
 
- - Vue3 官方为什么推荐使用vite脚手架，而不是webpack？(vite和webpack的区别) 
+ > Vue3 官方为什么推荐使用vite脚手架，而不是webpack？(vite和webpack的区别) 
   
     参考project/web-static项目
 
- - webpack中loader和plugins的区别
+ > webpack中loader和plugins的区别
 
     > https://zhuanlan.zhihu.com/p/322002543
 
@@ -217,25 +217,25 @@
 
   - 软件环境
 
-    - nodejs 14.17.6
+    > nodejs 14.17.6
 
-    - npm 6.14.15
+    > npm 6.14.15
 
-    - vite 2.5.2
+    > vite 2.5.2
 
-    - vue 3.2.6
+    > vue 3.2.6
 
-    - vue-router 4.0.11
+    > vue-router 4.0.11
 
-    - vuex 4.0.2
+    > vuex 4.0.2
 
-    - ant-design-vue 2.2.7
+    > ant-design-vue 2.2.7
 
-    - vs-code 插件 vetur
+    > vs-code 插件 vetur
 
-    - 操作系统:macos 10.15.7  (win10 professnal sp2)
+    > 操作系统:macos 10.15.7  (win10 professnal sp2)
 
-    - ... 如 graphql deno express 数据库等
+    > ... 如 graphql deno express 数据库等
 
   - 制作底部导航栏
 
