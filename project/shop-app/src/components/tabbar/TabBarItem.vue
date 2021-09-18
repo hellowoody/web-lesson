@@ -38,7 +38,7 @@ const actveStyle = computed(() => {
 <template>
     <div @click="doActive" class="tab-bar-item" :style="actveStyle">
         <slot name="icon">
-            <div :class="icon" style="font-size:20px"></div>
+            <div :class="icon" :style="{'fontSize':'20px'}"></div>
         </slot>
         <div style="font-size:13px;">{{name}}</div>
     </div>

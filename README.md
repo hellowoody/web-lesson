@@ -248,3 +248,76 @@
     > 修改路由配置文件，优化为二级路由，让底部选项卡提高复用性
 
     > 因为底部选项卡中的所有页面都是一级页面，所以选项卡跳转时不应该用push，而是使用replace
+
+
+# 全景项目
+
+  - 创建项目，用nodejs和npm，创建一个空项目
+
+      ```
+      npm init -y
+      ```
+  
+  - 安装脚手架-webpack
+
+      ```
+      npm i -D webpack webpack-cli webpack-dev-server
+      ``` 
+  - 安装typescript
+
+      ```
+      npm i -D typescript // 安装库
+      npx tsc --init      // 创建ts配置文件
+      ```
+       
+  - 配置webpack文件
+
+    - 如果loader只有一个且还配置了option时，需要写成 loader:"xxx-loader"
+
+    - webpack-dev-server 更新了现在是v4.x.x版本
+
+      ```
+      devServer: {
+          static: {
+              directory: join(__dirname, 'public'),
+          },
+          compress: true,
+          port: 3000
+      }
+      ```
+    - resolve配置后缀名
+
+      重点！后缀名需要加“点”,如 .xxx
+
+      ```
+      resolve:{
+          extensions:[".tsx",".ts",".js"]  // 打包数组中的后缀名文件
+      }
+      ```
+    - 安装插件
+
+      ```
+      npm i -D html-webpack-plugin
+      ```
+    
+    - 安装模块loader
+
+      ```
+      npm i -D file-loader url-loader ts-loader
+      ```
+  
+  - 配置tsconfig文件
+
+    > rootDir设置为"./"
+
+    > outDir设置为"./build" ，同webpack配置文件的output中path属性一致就行
+
+    > allowJs设置为true
+  
+  - 安装threejs库
+
+    ```
+    npm i --save three
+    npm i -D @types/three
+    ```
+  
