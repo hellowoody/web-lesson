@@ -392,4 +392,41 @@
     ```
 
   - 如何结合到vue项目中
-  
+
+    - 安装three.js
+
+      ```
+      npm install --save three
+      ```
+    
+    - 创建页面 src/components/pages/VrRoom.vue
+
+    - 配置路由
+
+      ```
+      routes:[
+        {
+            path:"/vrroom",
+            component:VrRoom
+        }
+      ]
+      ```
+
+    - 使用虚拟dom和生命周期钩子函数的知识，把你的js代码和template模版关联起来
+
+      ```
+      <script setup>
+      import {ref,onMounted} from "vue"
+      const vr = ref(null)  //注意！ 此处的vr必须和template中的ref="vr"一致
+      onMounted(() => {
+        const div = vr.value
+        console.log(div)   //<div></div>
+      })
+      <script>
+      <template>
+        <div ref="vr"></div>
+      </template>
+      ```
+    - 将vrroom的代码直接复制到onMounted中
+
+    - 将vrroom的图片素材复制到项目中，并修改相应的路径
