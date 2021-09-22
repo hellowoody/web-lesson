@@ -321,7 +321,66 @@
     npm i -D @types/three
     ```
 
-  - 加载图片
+  - 创建渲染器
+
+    ```
+    const renderer = new THREE.WebGLRenderer();             // 创建渲染器
+    renderer.setSize(window.innerWidth,window.innerHeight); // 设置尺寸和像素
+    ```
+
+  - 将渲染器加到html页面中
+
+    ```
+    const canvas = renderer.domElement
+    document.body.appendChild(canvas)                       // 关联html页面中的body标签
+    ```
+
+  - 创建场景
+
+    ```
+    const scene = new THREE.Scene();                        // 创建场景
+    ```
+
+  - 创建摄像头
+
+    ```
+    const camera = new THREE.PerspectiveCamera(90,window.innerWidth/window.innerHeight, 0.1,100);  //创建摄像头
+    camera.position.set(0,0,2);                             // 设置摄像机的位置
+    ```
+
+  - 增加控制
+
+    ```
+    new OrbitControls(camera,canvas)           // 通过鼠标控制场景中的角度和位置
+    ```
+
+  - 创建立方体和材质
+
+    ```
+    const boxGeo = new THREE.BoxGeometry(1,1,1);            // 创建一个立方体
+    const materials = []                                    // 立方体的材质数组
+    const texture_left = new THREE.TextureLoader().load("./assets/imgs/scene_left.jpg")  // 加载图片
+    materials.push(new THREE.MeshBasicMaterial({map:texture_left,side:THREE.BackSide}))
+    ```
+
+  - 创建网格，注意在three中你能看到的都是网格
+
+    ```
+    const box = new THREE.Mesh(boxGeo,materials);           // 创建网格
+    box.position.set(0,0,0);                                // 设置网格坐标
+    ```
+  
+  - 将网格加入到场景中
+
+    ```
+    scene.add(box)  // 把立方体加入到场景中                    //  将网格添加到场景中
+    ```
+
+  - 最终的渲染
+
+    ```
+    renderer.render(scene,camera) // 渲染器渲染场景
+    ```
 
   - 如何结合到vue项目中
   
