@@ -363,6 +363,15 @@
     materials.push(new THREE.MeshBasicMaterial({map:texture_left,side:THREE.BackSide}))
     ```
 
+  - 重点注意材质的渲染是有方向的，默认只渲染前面，而我们这个案例中需要设置成渲染后面
+
+    ```
+    new THREE.MeshBasicMaterial({
+        map:texture_left,
+        side:THREE.BackSide
+    })
+    ```
+
   - 创建网格，注意在three中你能看到的都是网格
 
     ```
