@@ -42,6 +42,11 @@
 
     https://zhuanlan.zhihu.com/p/322002543
 
+ > 下面两个导入语句如何理解
+
+    import * as aaa from "xxx";
+    import bbb from "xxx";
+
 # Vue3 知识点
 
  - 1.vue3 使用时不再new vue()了，而是使用静态方法createApp
@@ -248,6 +253,14 @@
     > 修改路由配置文件，优化为二级路由，让底部选项卡提高复用性
 
     > 因为底部选项卡中的所有页面都是一级页面，所以选项卡跳转时不应该用push，而是使用replace
+
+  - 制作顶部导航栏
+
+    > 创建TopBar组件
+
+    > 使用具名插槽填充左中右三个位置
+
+    > 中间的插槽用antd中的input组件实现，注意修改样式的作用域问题
 
 
 # VR全景看房
