@@ -44,8 +44,23 @@
 
  > 下面两个导入语句如何理解
 
-    import * as aaa from "xxx";
-    import bbb from "xxx";
+    export let a = 100;
+    export const b = 200;
+    export const c = function(){
+        console.log(300)
+    }
+
+    export const d = {
+        name:"zhang"
+    }
+
+    export default {
+        classname:"3,4 class",
+        year:"2020"
+    }
+
+    import * as aaa from "a.js";   // 除了默认导出的之外，可以导出所有命名暴露出的变量，函数或对象
+    import bbb from "xxx";        // 只能导出默认暴露(导出)的内容
 
 # Vue3 知识点
 

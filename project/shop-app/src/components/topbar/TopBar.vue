@@ -1,5 +1,10 @@
 <script setup>
 import { SearchOutlined } from '@ant-design/icons-vue';
+
+const emit = defineEmits(["focusHandle"])
+
+const focusFunc = () => emit("focusHandle")
+
 </script>
 
 <template>
@@ -9,7 +14,7 @@ import { SearchOutlined } from '@ant-design/icons-vue';
         </div>
         <div class="middle">
             <slot name="middle">
-                <a-input size="large" :disabled="true">
+                <a-input size="large" @focus="focusFunc" >
                     <template #prefix>
                         <search-outlined  style="color:rgb(0 0 0 / 0.25)" />
                     </template>
