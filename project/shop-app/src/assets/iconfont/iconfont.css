@@ -1,6 +1,6 @@
 @font-face {
   font-family: "iconfont"; /* Project id  */
-  src: url('iconfont.ttf?t=1631841623480') format('truetype');
+  src: url('iconfont.ttf?t=1632445112413') format('truetype');
 }
 
 .iconfont {
@@ -11,8 +11,20 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-fanhui1:before {
+  content: "\f0115";
+}
+
+.icon-fanhui2:before {
+  content: "\f0116";
+}
+
 .icon-gouwuche:before {
   content: "\e73d";
+}
+
+.icon-sousuo:before {
+  content: "\e693";
 }
 
 .icon-shangpinfenlei:before {

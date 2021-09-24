@@ -6,11 +6,32 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "77847",
+      "name": "返回1",
+      "font_class": "fanhui1",
+      "unicode": "f0115",
+      "unicode_decimal": 983317
+    },
+    {
+      "icon_id": "77848",
+      "name": "返回2",
+      "font_class": "fanhui2",
+      "unicode": "f0116",
+      "unicode_decimal": 983318
+    },
+    {
       "icon_id": "577341",
       "name": "购物车",
       "font_class": "gouwuche",
       "unicode": "e73d",
       "unicode_decimal": 59197
+    },
+    {
+      "icon_id": "666889",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e693",
+      "unicode_decimal": 59027
     },
     {
       "icon_id": "7100359",

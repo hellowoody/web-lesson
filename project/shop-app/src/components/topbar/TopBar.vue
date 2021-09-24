@@ -1,9 +1,18 @@
 <script setup>
-import { SearchOutlined } from '@ant-design/icons-vue';
-
-const emit = defineEmits(["focusHandle"])
-
+import { SearchOutlined,EditOutlined } from '@ant-design/icons-vue';
+import {ref,watch} from "vue"
+const props = defineProps({
+    edit:Boolean
+})
+const emit = defineEmits(["focusHandle","searchContentChangeHandle"])
 const focusFunc = () => emit("focusHandle")
+
+const searchContent = ref("")
+
+watch(searchContent,(currentVal,prevVal) => {
+    // console.log(currentVal,prevVal)
+    emit("searchContentChangeHandle",currentVal)
+})
 
 </script>
 
@@ -14,7 +23,12 @@ const focusFunc = () => emit("focusHandle")
         </div>
         <div class="middle">
             <slot name="middle">
-                <a-input size="large" @focus="focusFunc" >
+                <a-input v-if="edit" v-model:value="searchContent" size="large" >
+                    <template #prefix>
+                        <edit-outlined style="color:rgb(0 0 0 / 0.25)" />
+                    </template>
+                </a-input>
+                <a-input v-else size="large" @focus="focusFunc" >
                     <template #prefix>
                         <search-outlined  style="color:rgb(0 0 0 / 0.25)" />
                     </template>
