@@ -9,9 +9,11 @@ const focusFunc = () => emit("focusHandle")
 
 const searchContent = ref("")
 
+let timeoutId = null                                                                 // 定义一个计时器的编号
 watch(searchContent,(currentVal,prevVal) => {
     // console.log(currentVal,prevVal)
-    emit("searchContentChangeHandle",currentVal)
+    clearTimeout(timeoutId)                                                          // 清空/重置上一次的计时器
+    timeoutId = setTimeout(() => emit("searchContentChangeHandle",currentVal),500)   // 创建计时器
 })
 
 </script>
