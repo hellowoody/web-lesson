@@ -8,12 +8,14 @@ const go = path => router.push({path})
 </script>
 
 <template>
-<top-bar @focusHandle="go('/search')">
-    <template v-slot:right>
-        <div class="iconfont icon-gouwuche1" style="font-size:24px" ></div>
-    </template>
-</top-bar>
-<a-button style="margin-top:10px;" @click="back">返回</a-button>
-<a-button @click="go('/vrroom')">VR全景</a-button>
-<div>home</div>
+<div>
+    <top-bar @focusHandle="go('/search')">
+        <template v-slot:right>
+            <div class="iconfont icon-gouwuche1" style="font-size:24px" ></div>
+        </template>
+    </top-bar>
+    <a-button style="margin-top:10px;" @click="back">返回</a-button>
+    <a-button @click="go('/vrroom')">VR全景</a-button>
+    <div>home</div>
+</div>
 </template>

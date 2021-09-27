@@ -1,11 +1,15 @@
 <script setup>
+import {ref} from "vue"
 import {useRoute,useRouter} from "vue-router"
 import TopBar from "@/components/topbar/TopBar.vue";
+
 const route = useRoute();
 const router = useRouter()
+let searchContent = ""
+const data = ref([])
+
 const back = () => router.go(-1)
 const go = path => router.push({path})
-let searchContent = ""
 const searchContentChange = content => {
     // console.log("现在时searchResult页面了",content)
     searchContent = content
@@ -21,6 +25,8 @@ const initData = (content) => {
 
     // })
     //  resData => [{},{},{}]
+    const resData = [1,2,3,4,5]   //假设是从网络返回的数据
+    data.value = resData
 }
 
 // 将从上一个页面拿到的搜索内容router_param_searchContent ，调用后台api进行搜索
@@ -34,13 +40,24 @@ const search = () => {
 </script>
 
 <template>
-    <top-bar @searchContentChangeHandle="searchContentChange" :searchInput="router_param_searchContent" edit>
-        <template v-slot:left>
-            <div class="iconfont icon-fanhui1" @click="back" style="font-size:23px;"></div>
-        </template>
-        <template v-slot:right>
-            <div class="iconfont icon-sousuo" @click="search" style="font-size:23px;"></div>
-        </template>
-    </top-bar>
-    search result
+    <div>
+        <top-bar @searchContentChangeHandle="searchContentChange" :searchInput="router_param_searchContent" edit>
+            <template v-slot:left>
+                <div class="iconfont icon-fanhui1" @click="back" style="font-size:23px;"></div>
+            </template>
+            <template v-slot:right>
+                <div class="iconfont icon-sousuo" @click="search" style="font-size:23px;"></div>
+            </template>
+        </top-bar>
+        <div style="padding:20px;box-sizing:border-box;">
+            <div style="color:rgb(0 0 0 / 0.5);font-size:15px;font-weight:500;">有{{data.length}}个商品符合要求</div>
+            <a-list :data-source="data">
+                <template #renderItem="{item,index}">
+                    <a-list-item>
+                        {{index}} - {{item}}
+                    </a-list-item>
+                </template>
+            </a-list>
+        </div>
+    </div>
 </template>

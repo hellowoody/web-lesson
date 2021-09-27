@@ -60,6 +60,8 @@ onMounted(() => {
 </script>
 
 <template>
- <a-button @click="back">back</a-button>
- <div ref="vr"></div>
+    <div>
+        <a-button @click="back">back</a-button>
+        <div ref="vr"></div>
+    </div>
 </template>
