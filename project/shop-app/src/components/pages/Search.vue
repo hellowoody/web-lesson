@@ -39,7 +39,7 @@ const goSearch = () => {
     }
 }
 const searchContentChange = content => {
-    console.log("现在时search页面了",content)
+    // console.log("现在时search页面了",content)
     searchContent = content
 }
 const searchByHistory = searchContent => {

@@ -2,13 +2,12 @@
 import { SearchOutlined,EditOutlined } from '@ant-design/icons-vue';
 import {ref,watch} from "vue"
 const props = defineProps({
-    edit:Boolean
+    edit:Boolean,       // 这个变量是个状态位（一般都是布尔类型或是0，1，2之类的简单数值），区别输入框显示状态的
+    searchInput:String  // 输入框需要显示的内容
 })
 const emit = defineEmits(["focusHandle","searchContentChangeHandle"])
 const focusFunc = () => emit("focusHandle")
-
-const searchContent = ref("")
-
+const searchContent = ref(props.searchInput ? props.searchInput : "")
 let timeoutId = null                                                                 // 定义一个计时器的编号
 watch(searchContent,(currentVal,prevVal) => {
     // console.log(currentVal,prevVal)
