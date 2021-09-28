@@ -85,13 +85,12 @@
     > 修改所有组件，让tempalte中的标签都有一个根结点
 
     > 过渡方向
-       fold-left ： 往下一个页面跳转 （新页面的到来 enter ； 当前页面的离开 leave）
-       
-       fold-right : 回到上一个页面   (老页面的回归 enter ；当前页面的离开 leave）
+    
+      > fold-left ： 往下一个页面跳转 （新页面的到来 enter ； 当前页面的离开 leave）
+      > fold-right : 回到上一个页面   (老页面的回归 enter ；当前页面的离开 leave）
 
     > 使用全局状态控制页面跳转的方向，这里我们使用modules的形式创建pageDireaction.js,声明状态以及方法
-       direction:""   //  “” ｜ forward | backward
-
-       forward:   跳转到下一个页面，从一级页面向二级页面跳,可以理解为打仗作战时前进
-
-       backward： 返回上一个页面
+       
+      > direction:""   //  “” ｜ forward | backward
+      > forward:   跳转到下一个页面，从一级页面向二级页面跳,可以理解为打仗作战时前进
+      > backward： 返回上一个页面
