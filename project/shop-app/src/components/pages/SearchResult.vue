@@ -1,14 +1,20 @@
 <script setup>
 import {ref} from "vue"
 import {useRoute,useRouter} from "vue-router"
+import {useStore} from "vuex"
 import TopBar from "@/components/topbar/TopBar.vue";
 
 const route = useRoute();
 const router = useRouter()
+const store = useStore();
+
 let searchContent = ""
 const data = ref([])
 
-const back = () => router.go(-1)
+const back = () => {
+    store.commit("pageDirection/setDirection","backward")
+    router.go(-1)
+}
 const go = path => router.push({path})
 const searchContentChange = content => {
     // console.log("现在时searchResult页面了",content)

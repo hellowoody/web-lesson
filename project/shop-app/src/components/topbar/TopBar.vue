@@ -11,7 +11,7 @@ const searchContent = ref(props.searchInput ? props.searchInput : "")
 let timeoutId = null                                                                 // 定义一个计时器的编号
 watch(searchContent,(currentVal,prevVal) => {
     // console.log(currentVal,prevVal)
-    clearTimeout(timeoutId)                                                          // 清空/重置上一次的计时器
+    clearTimeout(timeoutId)                                                          // 清空 / 删除上一次的计时器
     timeoutId = setTimeout(() => emit("searchContentChangeHandle",currentVal),500)   // 创建计时器
 })
 

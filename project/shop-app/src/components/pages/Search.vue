@@ -2,16 +2,22 @@
 <script setup>
 import {ref,inject} from "vue"
 import {useRouter} from "vue-router";
+import {useStore} from "vuex";
 import TopBar from "@/components/topbar/TopBar.vue";
 import {setArray,getArray,clearItem} from "@/kits/LocalStorageKit.ts";
 
 const message = inject("$message")
 const router = useRouter()
+const store = useStore();
 
 let searchContent = ""
 const historySearch = ref(getArray("historySearch"))  // 因为historySearch这个对象需要显示在页面上
 
-const back = () => router.go(-1)
+const back = () => {
+    store.commit("pageDirection/setDirection","backward")
+    router.go(-1)
+}
+
 const go = path => router.push({path})
 const goSearch = () => {
     if(searchContent !== ""){
@@ -28,6 +34,8 @@ const goSearch = () => {
                 setItem "a,b,c,d"
         */ 
         setArray("historySearch",searchContent)
+        store.commit("pageDirection/setDirection","forward")
+        
         router.push({
             path:"/searchresult",
             query:{
@@ -43,6 +51,7 @@ const searchContentChange = content => {
     searchContent = content
 }
 const searchByHistory = searchContent => {
+    store.commit("pageDirection/setDirection","forward")
     router.push({
         path:"/searchresult",
         query:{

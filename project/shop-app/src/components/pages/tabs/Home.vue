@@ -1,9 +1,16 @@
 <script setup>
+import {useStore} from "vuex"
 import {useRouter} from "vue-router";
 import TopBar from "@/components/topbar/TopBar.vue";
+
 const router = useRouter()
+const store = useStore();
+
 const back = () => router.go(-1)
-const go = path => router.push({path})
+const go = path => {
+    store.commit("pageDirection/setDirection","forward")
+    router.push({path})
+}
 
 </script>
 
