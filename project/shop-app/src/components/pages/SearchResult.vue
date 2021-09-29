@@ -3,6 +3,7 @@ import {ref} from "vue"
 import {useRoute,useRouter} from "vue-router"
 import {useStore} from "vuex"
 import TopBar from "@/components/topbar/TopBar.vue";
+import MyContent from "@/components/content/MyContent.vue";
 
 const route = useRoute();
 const router = useRouter()
@@ -55,7 +56,7 @@ const search = () => {
                 <div class="iconfont icon-sousuo" @click="search" style="font-size:23px;"></div>
             </template>
         </top-bar>
-        <div style="padding:20px;box-sizing:border-box;">
+        <my-content>
             <div style="color:rgb(0 0 0 / 0.5);font-size:15px;font-weight:500;">有{{data.length}}个商品符合要求</div>
             <a-list :data-source="data">
                 <template #renderItem="{item,index}">
@@ -64,6 +65,6 @@ const search = () => {
                     </a-list-item>
                 </template>
             </a-list>
-        </div>
+        </my-content>
     </div>
 </template>

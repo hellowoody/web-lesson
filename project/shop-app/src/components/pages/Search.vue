@@ -4,6 +4,7 @@ import {ref,inject} from "vue"
 import {useRouter} from "vue-router";
 import {useStore} from "vuex";
 import TopBar from "@/components/topbar/TopBar.vue";
+import MyContent from "@/components/content/MyContent.vue";
 import {setArray,getArray,clearItem} from "@/kits/LocalStorageKit.ts";
 
 const message = inject("$message")
@@ -76,7 +77,7 @@ const clearSearchHistory = () => {
                 <div class="iconfont icon-sousuo" @click="goSearch" style="font-size:23px;"></div>
             </template>
         </top-bar>
-        <div style="padding:20px;box-sizing:border-box;">
+        <my-content>
             <div style="display:flex;justify-content:space-between;">
                 <div style="color:rgb(0 0 0 / 0.5);font-size:16px;font-weight:bold;">最近搜索</div>
                 <div style="color:#B620E0;font-size:14px;" @click="clearSearchHistory">清空</div>
@@ -86,7 +87,7 @@ const clearSearchHistory = () => {
                     {{item}}
                 </div>
             </div>
-        </div>
+        </my-content>
     </div>
 </template>
 

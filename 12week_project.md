@@ -92,8 +92,16 @@
 
     - 使用全局状态控制页面跳转的方向，这里我们使用modules的形式创建pageDireaction.js,声明状态以及方法
        
-      > direction:""   //  “” ｜ forward | backward
+      > direction:  "" | forward | backward
 
       > forward:   跳转到下一个页面，从一级页面向二级页面跳,可以理解为打仗作战时前进
 
       > backward： 返回上一个页面
+    
+  - 首页轮播图
+
+    > 将antd-vue中的carousel导入到项目中，并按官网例子实现最基本的代码例子
+
+    > 控制台如果报错“innerSliderUtils.js:387 Unable to preventDefault inside passive event listener invocation.”，可以暂时不去管他，这个错误是由于浏览器的更新安全机制passive导致的
+
+    > 将图片引入到轮播图中
