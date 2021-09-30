@@ -8,5 +8,6 @@
 .my-content {
     padding:24px;
     box-sizing:border-box;
+    overflow-x: hidden;
 }
 </style>

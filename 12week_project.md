@@ -105,3 +105,128 @@
     > 控制台如果报错“innerSliderUtils.js:387 Unable to preventDefault inside passive event listener invocation.”，可以暂时不去管他，这个错误是由于浏览器的更新安全机制passive导致的
 
     > 将图片引入到轮播图中
+
+  - 横向滚动
+
+    - 创建商品卡片组件ProductCard.vue
+
+    - 使用css实现
+
+      设置父元素的样式
+      ```
+      .product-list {
+          display:flex;         /* 让子元素显示在一行 */
+          overflow-x: auto;     /* !!! 横向的overflow设置为auto */
+          margin-top:18px;
+          padding:2px;
+          box-sizing: border-box;
+      }
+      ```
+      设置子元素样式
+      ```
+      .product-item {
+          flex-shrink:0;        /* 保证子元素的长宽比例不改变 */
+          margin-right:15px;
+      }
+      ```
+
+    - 使用第三方库实现横向滚动-better-scroll
+
+      - 安装
+
+        官网地址: https://better-scroll.github.io/docs/zh-CN/guide/
+
+        ```
+        npm install @better-scroll/core --save
+        ```
+
+      - 使用之前需要修改两处之前的代码
+
+        第一处：需要修改MyContent组件中样式，增加一个横向overflow的控制
+
+        ```
+        .my-content {
+            padding:24px;
+            box-sizing:border-box;
+            overflow-x: hidden;       /* 这一行是新加的 */
+        }
+        ```
+
+        第二处：修改App.vue组件中，增加过渡效果时宽度的样式
+
+        ```
+        .fold-left-enter-active {
+          position:fixed;
+          height: 100vh;
+          width: 100%;                 /* !!! 将100vh改为100%,注意这个页面中所有的宽度都需要这么修改    */
+          animation-name: fold-left-in;
+          animation-duration: 0.3s;
+        }
+        ```
+      
+      - better-scroll 在Vue3.2中使用方法
+
+        - template 部分
+
+          ```
+          <div ref="wrapper" class="product-list-bs">
+              <!-- 这里我们增加了一个<div ref="list"></div>标签，原因如下 -->
+              <!-- 这里要注意的是，BetterScroll 默认处理容器（wrapper）的第一个子元素（content）的滚动，其它的元素都会被忽略。 -->
+              <div ref="list" class="list">
+                  <product-card v-for="(item,index) in products" :key="index" style="margin-right:15px;" :product="item"></product-card>
+              </div>
+          </div>
+          ```
+
+        - css 部分
+
+          ```
+          .product-list-bs {
+              margin-top:18px;
+              overflow: hidden;
+              touch-action: none;
+          }
+
+          .list {
+              display: flex;
+          }
+          ```
+
+        - js 部分
+
+          ```
+          import {ref,onMounted,nextTick} from "vue"
+
+
+          const wrapper = ref(null)
+          const list = ref(null)
+          let picScroll
+          // 这里使用onMounted 是为了保证dom已经渲染完毕，好让我们调整ref=list 标签的宽度
+          onMounted(() => {
+                  const wrapper_div = wrapper.value // <div></div>
+                  // console.log(wrapper_div)
+                  const list_div = list.value // <div></div>
+                  let itemWidth = 138
+                  let margin = 15 ;
+                  let width = (itemWidth + margin) * products.value.length;
+                  // console.log(width)
+                  list_div.style.width = width + "px"
+                  //  nextTick保证ref=list dom的width更新完毕
+                  nextTick(() => {
+                      if (!picScroll) {
+                          picScroll = new BScroll(wrapper_div, {
+                              scrollX: true,
+                              eventPassthrough: 'vertical' // 忽略竖直方向的滚动
+                          })
+                      } else {
+                          picScroll.refresh()
+                      }
+                  })
+          })
+          ```
+
+    - 总结对比
+
+      > better-scroll实现的效果细节比自己用css实现的要好，比如回弹的效果
+
+      > 自己实现代码简单，不需要修改之前的代码。使用第三方库的需要遵守其开发的约定，不符合其规定的需要对原有代码稍微调整
