@@ -154,8 +154,8 @@
         ```
 
         > overflow注意事项：
-          https://developer.mozilla.org/zh-CN/docs/Web/CSS/overflow
-          设置一个轴为visible（默认值），同时设置另一个轴为不同的值，会导致设置visible的轴的行为会变成auto。 
+        >  https://developer.mozilla.org/zh-CN/docs/Web/CSS/overflow
+        >  设置一个轴为visible（默认值），同时设置另一个轴为不同的值，会导致设置visible的轴的行为会变成auto。 
 
         第二处：修改App.vue组件中，增加过渡效果时宽度的样式
 
@@ -170,9 +170,8 @@
         ```
 
         > 在better-scroll中不要使用相对单位，例如vh。 
-          https://github.com/ustbhuangyi/better-scroll/issues/793
-
-          https://github.com/ustbhuangyi/better-scroll/issues/757
+        >  https://github.com/ustbhuangyi/better-scroll/issues/793
+        >  https://github.com/ustbhuangyi/better-scroll/issues/757
 
       
       - better-scroll 在Vue3.2中使用方法
