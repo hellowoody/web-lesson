@@ -43,7 +43,7 @@ watch(() => route.path ,(to,from) => {
 .fold-left-enter-active {
   position:fixed;
   height: 100vh;
-  width: 100%;
+  width: 100vh;
   animation-name: fold-left-in;
   animation-duration: 0.3s;
 }
@@ -51,7 +51,7 @@ watch(() => route.path ,(to,from) => {
 .fold-left-leave-active {
   position: fixed;
   height: 100vh;
-  width: 100%;
+  width: 100vh;
   animation-name: fold-left-out;
   animation-duration: .3s;
 }
@@ -81,7 +81,7 @@ watch(() => route.path ,(to,from) => {
 .fold-right-enter-active {
   position: fixed;
   height: 100vh;
-  width: 100%;
+  width: 100vh;
   animation-name: fold-right-in;
   animation-duration: .3s;
 }
@@ -89,7 +89,7 @@ watch(() => route.path ,(to,from) => {
 .fold-right-leave-active {
   position: fixed;
   height: 100vh;
-  width: 100%;
+  width: 100vh;
   animation: fold-right-out .3s;
 }
 

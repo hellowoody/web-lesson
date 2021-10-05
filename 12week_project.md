@@ -148,9 +148,14 @@
         .my-content {
             padding:24px;
             box-sizing:border-box;
-            overflow-x: hidden;       /* 这一行是新加的 */
+            overflow-x: hidden;       /* 这一行是新加的，作用时防止设置wrapper宽度超过屏幕宽度时，阻止横向滑动 */
+            overflow-y: auto;         /* 强制让y轴方向的策略时auto自动，防止因为下面的注意事项导致y轴会根据x轴的策略变化而改变  */
         }
         ```
+
+        > overflow注意事项：
+          https://developer.mozilla.org/zh-CN/docs/Web/CSS/overflow
+          设置一个轴为visible（默认值），同时设置另一个轴为不同的值，会导致设置visible的轴的行为会变成auto。 
 
         第二处：修改App.vue组件中，增加过渡效果时宽度的样式
 
@@ -158,11 +163,18 @@
         .fold-left-enter-active {
           position:fixed;
           height: 100vh;
-          width: 100%;                 /* !!! 将100vh改为100%,注意这个页面中所有的宽度都需要这么修改    */
+          width: 100%;                 /* !!! 将100vh改为100%,注意这个页面中所有的宽度都需要这么修改，如果不设置会导致横向滑动失效   */
           animation-name: fold-left-in;
           animation-duration: 0.3s;
         }
         ```
+
+        > 在better-scroll中不要使用相对单位，例如vh
+
+          https://github.com/ustbhuangyi/better-scroll/issues/793
+
+          https://github.com/ustbhuangyi/better-scroll/issues/757
+
       
       - better-scroll 在Vue3.2中使用方法
 
