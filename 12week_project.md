@@ -169,9 +169,9 @@
         }
         ```
 
-        > 在better-scroll中不要使用相对单位，例如vh。 
-        >  https://github.com/ustbhuangyi/better-scroll/issues/793
-        >  https://github.com/ustbhuangyi/better-scroll/issues/757
+        > 在better-scroll中不要使用相对单位，例如vh。  
+        >  https://github.com/ustbhuangyi/better-scroll/issues/793  
+        >  https://github.com/ustbhuangyi/better-scroll/issues/757  
 
       
       - better-scroll 在Vue3.2中使用方法
