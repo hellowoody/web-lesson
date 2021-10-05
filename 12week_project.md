@@ -153,9 +153,9 @@
         }
         ```
 
-        > overflow注意事项：
-        >  https://developer.mozilla.org/zh-CN/docs/Web/CSS/overflow
-        >  设置一个轴为visible（默认值），同时设置另一个轴为不同的值，会导致设置visible的轴的行为会变成auto。 
+        > overflow注意事项：  
+        >  https://developer.mozilla.org/zh-CN/docs/Web/CSS/overflow  
+        >  设置一个轴为visible（默认值），同时设置另一个轴为不同的值，会导致设置visible的轴的行为会变成auto。   
 
         第二处：修改App.vue组件中，增加过渡效果时宽度的样式
 
