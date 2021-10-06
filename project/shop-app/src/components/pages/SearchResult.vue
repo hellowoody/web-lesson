@@ -44,6 +44,14 @@ const search = () => {
     initData(searchContent)
 }
 
+const refresh = () => {
+    return new Promise((resolve,reject) => {
+        setTimeout(() => {
+            resolve(true)
+        },800)
+    })
+}
+
 </script>
 
 <template>
@@ -56,7 +64,7 @@ const search = () => {
                 <div class="iconfont icon-sousuo" @click="search" style="font-size:23px;"></div>
             </template>
         </top-bar>
-        <my-content>
+        <my-content :refreshFunc="refresh">
             <div style="color:rgb(0 0 0 / 0.5);font-size:15px;font-weight:500;">有{{data.length}}个商品符合要求</div>
             <a-list :data-source="data">
                 <template #renderItem="{item,index}">

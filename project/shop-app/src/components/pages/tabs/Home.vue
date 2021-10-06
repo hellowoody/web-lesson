@@ -131,6 +131,16 @@ onMounted(() => {
 
 })
 
+const refresh = () => {
+    // 未来这就是网络请求
+    // return Promise.resolve(true);
+    return new Promise((resolve,reject) => {
+        setTimeout(() => {
+            resolve(true)
+        },800)
+    })
+}
+
 // const refId = ref(null)
 
 // onMounted(() => {
@@ -159,7 +169,7 @@ onMounted(() => {
             <div class="iconfont icon-gouwuche1" style="font-size:24px" ></div>
         </template>
     </top-bar>
-    <my-content hasTabBar>
+    <my-content hasTabBar :refreshFunc="refresh">
         <a-carousel ref="refId">
             <div v-for="(item,index) in homeImgs" :key="index+item">
                 <h3 class="carousel-title">{{index+1}}</h3>

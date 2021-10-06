@@ -240,3 +240,7 @@
       > better-scroll实现的效果细节比自己用css实现的要好，比如回弹的效果
 
       > 自己实现代码简单，不需要修改之前的代码。使用第三方库的需要遵守其开发的约定，不符合其规定的需要对原有代码稍微调整
+
+  - 下拉加载
+
+    > ![image](http://woodyhello.com/assets/imgs/lesson/vue/mvc.png)

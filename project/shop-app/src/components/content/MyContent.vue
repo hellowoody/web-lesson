@@ -1,10 +1,15 @@
 <script setup>
 import {ref,onMounted} from "vue";
 const props = defineProps({
-    hasTabBar:Boolean // true 一级页面 | false 非一级页面
+    hasTabBar:Boolean, // true 一级页面 | false 非一级页面
+    refreshFunc:{
+        type:Function,
+        default:function(){}
+    }
 })
 
-const loading = ref(false);
+const loading = ref(false);    // proxy {value:false}   loading.value
+const msg = ref("下拉刷新");     // proxy {value:"正在加载"} 
 const contentRef = ref(null);  // proxy { value:<div class="my-content"></div> }
 const topbar_height = 60;
 const tabbar_height = 58;
@@ -41,9 +46,10 @@ onMounted(() => {
         if(scrollTop === 0){
             distance = touch.clientY - touchstart ; // 手指在y轴的滑动距离
             if(distance > 0){
+                loading.value = true;
                 if(distance <= 50){
                     // 通过js 让class=“content”的div在y轴中进行向下移动
-                    content.style.transform = `translate3d(0,${distance}px,0)`
+                    content.style.transform = `translate3d(0,${distance}px,0)`;
                 }
             }
         }
@@ -51,11 +57,20 @@ onMounted(() => {
     content.addEventListener("touchend",function(e){
         if(distance === 0) { return }
         if(distance > 0) {
-            setTimeout(() => {
-                content.style.transform = `translate3d(0,0,0)`;
-                distance = 0 ;
-                touchstart =0 ;
-            },800)
+            msg.value = "正在加载"
+            // 父组件中的网络请求 ，网络请求是异步，Promise一般是封装异步方法的
+            props.refreshFunc().then((res) => {
+                console.log(res)
+                res ? msg.value = "加载成功" : msg.value = "加载失败"
+                setTimeout(() => {
+                    // 下面的代码全部都是重置归零的代码
+                    content.style.transform = `translate3d(0,0,0)`;
+                    distance = 0 ;
+                    touchstart =0 ;
+                    loading.value = false;
+                    msg.value = "下拉刷新"
+                } ,800)
+            })
         }
     },{passive:false})
 })
@@ -63,7 +78,7 @@ onMounted(() => {
 
 <template>
     <div ref="contentRef" class="my-content">
-        <div v-if="loading" class="loading">正在加载</div>
+        <div v-if="loading" class="loading">{{msg}}</div>
         <slot></slot>
     </div>
 </template>
@@ -75,6 +90,7 @@ onMounted(() => {
     overflow-x: hidden;
     overflow-y: auto;
     height: calc(100vh - v-bind(sub_height));
+    transition: 500ms;
     --webkit-overflow-scrolling:touch;
 }
 
