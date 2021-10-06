@@ -24,6 +24,8 @@
 
   - 制作底部导航栏
 
+    > ![image](https://github.com/hellowoody/web-lesson/blob/2021-12weeks/assets/imgs/tabbar.png?raw=true)
+    
     > 创建tabbar父组件，并根据原型图设置css样式 
 
     > 创建tabbar子组件TabBarItem,使用flex弹性布局特点使之均分，并用具名插槽的方式为图标留出占位符
@@ -35,6 +37,8 @@
     > 因为底部选项卡中的所有页面都是一级页面，所以选项卡跳转时不应该用push，而是使用replace
 
   - 制作顶部导航栏
+
+    > ![image](https://github.com/hellowoody/web-lesson/blob/2021-12weeks/assets/imgs/topbar.png?raw=true)  
 
     > 创建TopBar组件
 
@@ -72,6 +76,8 @@
 
   - 页面跳转的过渡效果
 
+    > ![image](https://github.com/hellowoody/web-lesson/blob/2021-12weeks/assets/imgs/page_transition.png?raw=true)  
+
     > 找到在哪增加代码，是在App.vue中，注意并不是因为他是组件的入口，而是因为他是一级路由的占位符页面
 
     > 使用watch侦听useRoute中route.path
@@ -107,6 +113,8 @@
     > 将图片引入到轮播图中
 
   - 横向滚动
+
+    > ![image](https://github.com/hellowoody/web-lesson/blob/2021-12weeks/assets/imgs/horizontal_scroll.png?raw=true)  
 
     - 创建商品卡片组件ProductCard.vue
 
@@ -243,4 +251,4 @@
 
   - 下拉加载
 
-    > ![image](https://github.com/hellowoody/web-lesson/blob/2021-12weeks/assets/imgs/%E7%94%BB%E6%9D%BF.png?raw=true)
+    > ![image](https://github.com/hellowoody/web-lesson/blob/2021-12weeks/assets/imgs/pull_refresh.png?raw=true)
