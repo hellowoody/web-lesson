@@ -243,4 +243,4 @@
 
   - 下拉加载
 
-    > ![image](http://woodyhello.com/assets/imgs/lesson/vue/mvc.png)
+    > ![image](https://github.com/hellowoody/web-lesson/blob/2021-12weeks/assets/imgs/%E7%94%BB%E6%9D%BF.png?raw=true)
