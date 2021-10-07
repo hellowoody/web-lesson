@@ -64,7 +64,7 @@ const refresh = () => {
                 <div class="iconfont icon-sousuo" @click="search" style="font-size:23px;"></div>
             </template>
         </top-bar>
-        <my-content :refreshFunc="refresh">
+        <my-content pull :refreshFunc="refresh">
             <div style="color:rgb(0 0 0 / 0.5);font-size:15px;font-weight:500;">有{{data.length}}个商品符合要求</div>
             <a-list :data-source="data">
                 <template #renderItem="{item,index}">

@@ -134,6 +134,7 @@ onMounted(() => {
 const refresh = () => {
     // 未来这就是网络请求
     // return Promise.resolve(true);
+    // axios 
     return new Promise((resolve,reject) => {
         setTimeout(() => {
             resolve(true)
@@ -169,7 +170,7 @@ const refresh = () => {
             <div class="iconfont icon-gouwuche1" style="font-size:24px" ></div>
         </template>
     </top-bar>
-    <my-content hasTabBar :refreshFunc="refresh">
+    <my-content pull hasTabBar :refreshFunc="refresh">
         <a-carousel ref="refId">
             <div v-for="(item,index) in homeImgs" :key="index+item">
                 <h3 class="carousel-title">{{index+1}}</h3>

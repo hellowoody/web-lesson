@@ -2,6 +2,7 @@
 import {ref,onMounted} from "vue";
 const props = defineProps({
     hasTabBar:Boolean, // true 一级页面 | false 非一级页面
+    pull:Boolean,
     refreshFunc:{
         type:Function,
         default:function(){}
@@ -21,58 +22,70 @@ let touchstart = 0,  // 记录手指第一次碰屏幕时的y轴距离
 
 // 保证钩子函数中的代码能拿到页面的中渲染好的标签/节点
 onMounted(() => {
-    // 这里就是钩子函数中的代码
-    const content = contentRef.value;
-    /*
-        分析1:任何一个标签都有一个属性scrollTop，这个属性可读可写
-             使用content这个标签的scrollTop作为一个标识位
-             这个标识位作用是，通过是否大于0来判断 下拉刷新的监听事件是否执行或是是否继续
-    */ 
-    /*
-        分析2:通过以往的基础知识的掌握，我们可以通过监听touchstart，touchmove，touchend
-              这一组事件来控制content的纵向移动
-    */
-    //  touchstart 监听手指刚触碰content标签时的那一瞬间事件 
-    content.addEventListener("touchstart",function(e){
-        // console.log(e)
-        touchstart = e.targetTouches[0].clientY;       // 存下来手指第一次碰content标签的y轴高度
-    },{passive:false})
-    //  touchmove 计算手指在屏幕移动的纵向距离
-    content.addEventListener("touchmove",function(e){
-        if(touchstart <= 0) { return }
-        const touch = e.targetTouches[0];
-        const scrollTop = content.scrollTop;
-        // 通过分析1得出的结论， 只有当scrollTop === 0 时，下拉刷新才会生效
-        if(scrollTop === 0){
-            distance = touch.clientY - touchstart ; // 手指在y轴的滑动距离
-            if(distance > 0){
-                loading.value = true;
-                if(distance <= 50){
-                    // 通过js 让class=“content”的div在y轴中进行向下移动
-                    content.style.transform = `translate3d(0,${distance}px,0)`;
+    if(props.pull){
+        // 这里就是钩子函数中的代码
+        const content = contentRef.value;
+        /*
+            分析1:任何一个标签都有一个属性scrollTop，这个属性可读可写
+                使用content这个标签的scrollTop作为一个标识位
+                这个标识位作用是，通过是否大于0来判断 下拉刷新的监听事件是否执行或是是否继续
+        */ 
+        /*
+            分析2:通过以往的基础知识的掌握，我们可以通过监听touchstart，touchmove，touchend
+                这一组事件来控制content的纵向移动
+        */
+        //  touchstart 监听手指刚触碰content标签时的那一瞬间事件 
+        content.addEventListener("touchstart",function(e){
+            // 这一步校验目的：防止用户上一次的下拉加载还未完成时，又一次出发下拉加载
+            // 防止的手段：拿loading状态位进行校验，如果是这种情况，直接“不理他” return
+            if(loading.value){
+                e.stopPropagation();  // 阻止冒泡事件
+                return
+            }
+            // console.log(e)
+            touchstart = e.targetTouches[0].clientY;       // 存下来手指第一次碰content标签的y轴高度
+        },{passive:false})
+        //  touchmove 计算手指在屏幕移动的纵向距离
+        content.addEventListener("touchmove",function(e){
+            if(touchstart <= 0) { return }
+            if(loading.value){
+                e.stopPropagation();  // 阻止冒泡事件
+                return
+            }
+            const touch = e.targetTouches[0];
+            const scrollTop = content.scrollTop;
+            // 通过分析1得出的结论， 只有当scrollTop === 0 时，下拉刷新才会生效
+            if(scrollTop === 0){
+                distance = touch.clientY - touchstart ; // 手指在y轴的滑动距离
+                if(distance > 0){
+                    loading.value = true;
+                    if(distance <= 50){
+                        // 通过js 让class=“content”的div在y轴中进行向下移动
+                        content.style.transform = `translate3d(0,${distance}px,0)`;
+                    }
                 }
             }
-        }
-    },{passive:false})
-    content.addEventListener("touchend",function(e){
-        if(distance === 0) { return }
-        if(distance > 0) {
-            msg.value = "正在加载"
-            // 父组件中的网络请求 ，网络请求是异步，Promise一般是封装异步方法的
-            props.refreshFunc().then((res) => {
-                console.log(res)
-                res ? msg.value = "加载成功" : msg.value = "加载失败"
-                setTimeout(() => {
-                    // 下面的代码全部都是重置归零的代码
-                    content.style.transform = `translate3d(0,0,0)`;
-                    distance = 0 ;
-                    touchstart =0 ;
-                    loading.value = false;
-                    msg.value = "下拉刷新"
-                } ,800)
-            })
-        }
-    },{passive:false})
+        },{passive:false})
+        content.addEventListener("touchend",function(e){
+            if(distance === 0) { return }
+            if(distance > 0) {
+                msg.value = "正在加载"
+                // 父组件中的网络请求 ，网络请求是异步，Promise一般是封装异步方法的
+                props.refreshFunc().then((res) => {
+                    console.log(res)
+                    res ? msg.value = "加载成功" : msg.value = "加载失败"   
+                    setTimeout(() => {
+                        // 下面的代码全部都是重置归零的代码
+                        content.style.transform = `translate3d(0,0,0)`;
+                        distance = 0 ;
+                        touchstart =0 ;
+                        loading.value = false;
+                        msg.value = "下拉刷新"
+                    } ,800)
+                })
+            }
+        },{passive:false})
+    }
 })
 </script>
 
