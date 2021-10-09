@@ -252,3 +252,26 @@
   - 下拉加载
 
     > ![image](https://github.com/hellowoody/web-lesson/blob/2021-12weeks/assets/imgs/pull_refresh.png?raw=true)
+
+  - 完善底部导航栏的选项卡
+
+    > 将底部选项卡设置为【首页】 【类别】 【购物车】 【我的】
+  
+  - 实现类别页面，使用沉浸式布局实现ui
+
+    > ![image](https://github.com/hellowoody/web-lesson/blob/2021-12weeks/assets/imgs/category.png?raw=true)
+
+  - 实现我的个人页面
+
+    - 登陆状态的切换
+
+      > 未登陆  
+
+      ![image](https://github.com/hellowoody/web-lesson/blob/2021-12weeks/assets/imgs/account-logout.png?raw=true)
+
+      > 登陆  
+
+      ![image](https://github.com/hellowoody/web-lesson/blob/2021-12weeks/assets/imgs/account-login.png?raw=true)
+
+
+      

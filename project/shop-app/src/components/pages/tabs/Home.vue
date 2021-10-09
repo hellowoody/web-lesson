@@ -64,7 +64,7 @@ const moreContent = [
     {
         name:"拼一拼",
         backgroundColor:"#b1eafd",
-        fontColor:"#18 51 62",
+        fontColor:"#185162",
     },
 ]
 

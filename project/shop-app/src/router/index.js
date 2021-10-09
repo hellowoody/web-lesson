@@ -4,7 +4,8 @@ import Search from "@/components/pages/Search.vue"
 import SearchResult from "@/components/pages/SearchResult.vue"
 import VrRoom from "@/components/pages/VrRoom.vue"
 import Home from "@/components/pages/tabs/Home.vue"
-import Tab2 from "@/components/pages/tabs/Tab2.vue"
+import Category from "@/components/pages/tabs/Category.vue"
+import Cart from "@/components/pages/tabs/Cart.vue"
 import Account from "@/components/pages/tabs/Account.vue"
 
 export const router = createRouter({
@@ -25,8 +26,12 @@ export const router = createRouter({
                     component:Home
                 },
                 {
-                    path:"tab2",
-                    component:Tab2
+                    path:"category",
+                    component:Category
+                },
+                {
+                    path:"cart",
+                    component:Cart
                 },
                 {
                     path:"account",

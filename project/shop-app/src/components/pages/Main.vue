@@ -12,7 +12,12 @@ import TabBarItem from "@/components/tabbar/TabBarItem.vue";
                     <div class="iconfont icon-shouye" style="font-size:20px"></div>
                 </template>
             </tab-bar-item>
-            <tab-bar-item path="/main/tab2">
+            <tab-bar-item name="类别" path="/main/category">
+            </tab-bar-item>
+            <tab-bar-item name="购物车" path="/main/cart">
+                <template v-slot:icon>
+                    <div class="iconfont icon-gouwuche" style="font-size:20px"></div>
+                </template>
             </tab-bar-item>
             <tab-bar-item  name="我的" path="/main/account">
                 <template v-slot:icon>
