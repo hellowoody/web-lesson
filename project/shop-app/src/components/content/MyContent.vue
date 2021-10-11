@@ -113,4 +113,8 @@ onMounted(() => {
     font-size:16px;
     color:rgba(0,0,0,0.5)
 }
+
+::-webkit-scrollbar {
+    display:none;
+}
 </style>

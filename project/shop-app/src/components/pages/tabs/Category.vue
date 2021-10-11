@@ -1,6 +1,9 @@
 <script setup>
 import MyContent from "@/components/content/MyContent.vue";
 import { computed } from "vue";
+import {useRouter} from "vue-router";
+
+const router = useRouter();
 
 const categorys = [
     {
@@ -48,12 +51,16 @@ const fontStyle = computed(() => (item) => ({
     marginLeft:"72px",
 }))
 
+const gotoGoodsCategory = (type) => {
+    router.push({path:"/goodscategory",query:{ type }})
+}
+
 </script>
 
 <template>
     <my-content>
         <div class="title">商品类别</div>
-        <div class="card" :style="cardStyle(item)" v-for="(item,index) in categorys" :key="index">
+        <div @click="gotoGoodsCategory(item.id)" class="card" :style="cardStyle(item)" v-for="(item,index) in categorys" :key="index">
             <div class="card-left" :class="item.iconlogo"></div>
             <div :style="fontStyle(item)">{{item.name}}</div>
         </div>

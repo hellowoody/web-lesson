@@ -273,5 +273,15 @@
 
       ![image](https://github.com/hellowoody/web-lesson/blob/2021-12weeks/assets/imgs/account-login.png?raw=true)
 
+    - 菜单，使用a-list 标签  
+
+      ![image](https://github.com/hellowoody/web-lesson/blob/2021-12weeks/assets/imgs/menus.png?raw=true)
+
+  - 商品列表,搜索结果页面和商品类别页面都可以使用
+
+    > ![image](https://github.com/hellowoody/web-lesson/blob/2021-12weeks/assets/imgs/product-list.png?raw=true)
+
+
+
 
       
