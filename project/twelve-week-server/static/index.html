@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <input type="button" value="测试网络get" onclick="testnetget()">
+        <input type="button" value="测试网络post" onclick="testnetpost()">
+    </body>
+</html>
+<script>
+    function testnetget(){
+        fetch("http://localhost:3100/list",{
+            method:"GET",
+        }).then(function(res){
+            console.log(res)
+        })
+    }
+    function testnetpost(){
+        fetch("http://localhost:3100/mockapi",{
+            method:"POST"
+        }).then(function(res){
+            console.log(res)
+        })
+    }
+</script>

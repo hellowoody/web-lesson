@@ -281,7 +281,32 @@
 
     > ![image](https://github.com/hellowoody/web-lesson/blob/2021-12weeks/assets/imgs/product-list.png?raw=true)
 
+  - 跨域问题
 
+    > ![image](https://github.com/hellowoody/web-lesson/blob/2021-12weeks/assets/imgs/cors.png?raw=true)
 
+  - 创建数据库
 
-      
+    > 前提是电脑中已经安装了mongodb数据库，并且能启动成功
+
+    > 创建数据库
+
+       查看当先mongodb中的数据库有哪些
+       show dbs;
+       show databases;
+
+       使用use命名“创建”一个数据库，如shop_app
+       use shop_app;
+
+       先创建一个测试表first_table，用来验证数据库的可用性
+       db.first_table.insert({a:1});
+
+       测试是否能查询到刚刚创建的测试表
+       db.first_table.find();
+
+    > 执行初始化脚本
+
+       脚本路径在project/twelve-week-server/初始化数据库.sql中
+       
+
+       
