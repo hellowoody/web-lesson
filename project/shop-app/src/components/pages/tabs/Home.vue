@@ -6,44 +6,26 @@ import BScroll from '@better-scroll/core';
 import TopBar from "@/components/topbar/TopBar.vue";
 import MyContent from "@/components/content/MyContent.vue";
 import ProductCard from "@/components/product/ProductCard.vue";
+import {Gql,ImgUrl} from "@/kits/HttpKit.ts"
 
 const router = useRouter()
 const store = useStore();
-const homeImgs = ref([
-    "src/assets/imgs/home01.png",
-    "src/assets/imgs/home02.png",
-    "src/assets/imgs/home03.png",
-])
+const homeImgs = ref([])
 
-const products = ref([
-    {
-        id:1,
-        name:"鞋1",
-        price:"1000",
-        imgpath:"src/assets/imgs/shoe01.png",
-        type:{
-            id:"1"
-        }
-    },
-    {
-        id:2,
-        name:"鞋2",
-        price:"2000",
-        imgpath:"src/assets/imgs/shoe02.png",
-        type:{
-            id:"1"
-        }
-    },
-    {
-        id:3,
-        name:"鞋3",
-        price:"3000",
-        imgpath:"src/assets/imgs/shoe03.png",
-        type:{
-            id:"1"
-        }
-    },
-])
+const products = ref([])
+
+// 初始时伪造数据，用来支撑better-scroll的动态算宽度
+const mockProductCardList = () => {
+    for(let item of [1,2,3]){
+        products.value.push({
+            id:item,
+            name:"产品名称",
+            price:0
+        })
+    }
+}
+mockProductCardList();
+
 
 const moreContent = [
     {
@@ -131,16 +113,41 @@ onMounted(() => {
 
 })
 
-const refresh = () => {
-    // 未来这就是网络请求
-    // return Promise.resolve(true);
-    // axios 
-    return new Promise((resolve,reject) => {
-        setTimeout(() => {
-            resolve(true)
-        },800)
-    })
+const refresh = () => initData()
+
+const initData = async () => {
+    const gql = {
+        query:`
+           {
+                homeImgs
+                    goods {
+                    id
+                    name
+                    price
+                    imgpath
+                    type {
+                    id
+                    }
+                }
+            }
+        `
+    }
+    try {
+        const res = await Gql(gql)
+        res.data.goods.map(item => {
+            item.imgpath = ImgUrl + item.imgpath
+            return item
+        })
+        homeImgs.value = res.data.homeImgs;
+        products.value = res.data.goods;
+        console.log("scuccess")
+        return true
+    } catch (error) {
+        return false
+    }
 }
+
+initData();
 
 // const refId = ref(null)
 
