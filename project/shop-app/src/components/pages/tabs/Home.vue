@@ -11,18 +11,26 @@ import {Gql,ImgUrl} from "@/kits/HttpKit.ts"
 const router = useRouter()
 const store = useStore();
 const homeImgs = ref([])
-
-const products = ref([])
+const categorys = ref([])
+const products = []
 
 // 初始时伪造数据，用来支撑better-scroll的动态算宽度
 const mockProductCardList = () => {
-    for(let item of [1,2,3]){
-        products.value.push({
+    for(let item of [1,2,3,4,5]){
+        products.push({
             id:item,
             name:"产品名称",
             price:0
         })
     }
+    categorys.value.push({
+        name:"商品类别",
+        products
+    })
+    categorys.value.push({
+        name:"商品类别",
+        products
+    })
 }
 mockProductCardList();
 
@@ -79,7 +87,7 @@ onMounted(() => {
         const list_div = list.value // <div ref="list"></div>
         let itemWidth = 138; // 设置一个变量，让这个变量的值等于productcard组件的宽度
         let margin = 15 ;
-        let width = (itemWidth + margin) * products.value.length - margin;
+        let width = (itemWidth + margin) * products.length - margin;
         // console.log(width)
         list_div.style.width = width + "px"  // ！！！ 加单位px
         //  nextTick保证ref=list dom的width更新完毕
@@ -116,17 +124,24 @@ onMounted(() => {
 const refresh = () => initData()
 
 const initData = async () => {
+    let t = '["03","04"]'
+    const start = 0;
+    const count = 5;
     const gql = {
         query:`
            {
                 homeImgs
-                    goods {
+                categorys(id:"goods_type",type:${t}){
                     id
                     name
-                    price
-                    imgpath
-                    type {
-                    id
+                    goods(start:${start},count:${count}) {
+                        id
+                        name
+                        price
+                        imgpath
+                        type(id:"goods_type"){
+                            id
+                        }
                     }
                 }
             }
@@ -134,12 +149,14 @@ const initData = async () => {
     }
     try {
         const res = await Gql(gql)
-        res.data.goods.map(item => {
-            item.imgpath = ImgUrl + item.imgpath
-            return item
-        })
+        for (let c of res.data.categorys){
+            c.goods.map(item => {
+                item.imgpath = ImgUrl + item.imgpath
+                return item
+            })
+        }
         homeImgs.value = res.data.homeImgs;
-        products.value = res.data.goods;
+        categorys.value = res.data.categorys;
         console.log("scuccess")
         return true
     } catch (error) {
@@ -185,21 +202,21 @@ initData();
             </div>
         </a-carousel>
         <div class="title">
-            <div class="title-left">类别1</div>
+            <div class="title-left">{{categorys[0].name}}</div>
             <div class="title-right">查看全部</div>
         </div>
         <div class="product-list">
-            <product-card v-for="(item,index) in products" :key="index" class="product-item" :product="item"></product-card>
+            <product-card v-for="(item,index) in categorys[0].goods" :key="index" class="product-item" :product="item"></product-card>
         </div>
         <div class="title">
-            <div class="title-left">类别2</div>
+            <div class="title-left">{{categorys[1].name}}</div>
             <div class="title-right">查看全部</div>
         </div>
         <div ref="wrapper" class="product-list-bs">
             <!-- 这里我们增加了一个<div ref="list"></div>标签，原因如下 -->
             <!-- 这里要注意的是，BetterScroll 默认处理容器（wrapper）的第一个子元素（content）的滚动，其它的元素都会被忽略。 -->
             <div ref="list" class="list">
-                <product-card v-for="(item,index) in products" :key="index" style="margin-right:15px;" :product="item"></product-card>
+                <product-card v-for="(item,index) in categorys[1].goods" :key="index" style="margin-right:15px;" :product="item"></product-card>
             </div>
         </div>
         <div ref="wrapper_bs" class="wrapper_bs_class">
