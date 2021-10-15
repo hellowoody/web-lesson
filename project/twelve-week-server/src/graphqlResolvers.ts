@@ -4,6 +4,26 @@ export const Hello = (parent:any,args:any) => {
     return "hello graphql"
 }
 
+export const Good = async (parent:any,args:any) => {
+    try {
+        const client = await Connect();
+        try {
+            const db = client.db("shop_app"); // 找到数据库
+            const query:any = {
+                id:args.id
+            };
+            const result = await db.collection("goods").findOne(query)
+            return result
+        } catch (e) {
+            return e
+        } finally {
+            client.close();
+        }
+    } catch (error) {
+        return error
+    }
+}
+
 export const Goods = async (parent:any,args:any) => {
     try {
         const client = await Connect();

@@ -157,7 +157,7 @@ const initData = async () => {
         }
         homeImgs.value = res.data.homeImgs;
         categorys.value = res.data.categorys;
-        console.log("scuccess")
+        // console.log("scuccess")
         return true
     } catch (error) {
         return false

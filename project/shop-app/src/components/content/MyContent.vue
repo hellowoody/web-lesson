@@ -72,7 +72,7 @@ onMounted(() => {
                 msg.value = "正在加载"
                 // 父组件中的网络请求 ，网络请求是异步，Promise一般是封装异步方法的
                 props.refreshFunc().then((res) => {
-                    console.log(res)
+                    // console.log(res)
                     res ? msg.value = "加载成功" : msg.value = "加载失败"   
                     setTimeout(() => {
                         // 下面的代码全部都是重置归零的代码

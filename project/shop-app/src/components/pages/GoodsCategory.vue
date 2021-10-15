@@ -5,6 +5,7 @@ import {useStore} from "vuex"
 import TopBar from "@/components/topbar/TopBar.vue";
 import MyContent from "@/components/content/MyContent.vue";
 import ProductCard from "@/components/product/ProductCard.vue";
+import {Gql,ImgUrl} from "@/kits/HttpKit.ts";
 
 const route = useRoute();
 const router = useRouter()
@@ -15,6 +16,8 @@ let searchContent = ""
 const data = ref([])
 const loading = ref(false);
 const loadingMore = ref(false);
+let start = 0;
+const count = 5;
 
 const back = () => {
     store.commit("pageDirection/setDirection","backward")
@@ -26,112 +29,36 @@ const searchContentChange = content => {
     searchContent = content
 }
 const router_param_searchContent = route.query.searchContent;
-const products = [
-    {
-       id:1,
-       name:"乔1",
-       price:"1001",
-       type:{
-           id:"03"
-       },
-       imgpath:"src/assets/imgs/shoe06.png"
-    },
-    {
-       id:2,
-       name:"乔2",
-       price:"1002",
-       type:{
-           id:"03"
-       },
-       imgpath:"src/assets/imgs/shoe07.png"
-    },
-    {
-       id:3,
-       name:"乔3",
-       price:"1003",
-       type:{
-           id:"03"
-       },
-       imgpath:"src/assets/imgs/shoe08.png"
-    },
-    {
-       id:4,
-       name:"乔4",
-       price:"1004",
-       type:{
-           id:"03"
-       },
-       imgpath:"src/assets/imgs/shoe09.png"
-    },
-    {
-       id:5,
-       name:"乔5",
-       price:"1005",
-       type:{
-           id:"03"
-       },
-       imgpath:"src/assets/imgs/shoe10.png"
-    },
-    {
-       id:6,
-       name:"衣服1",
-       price:"101",
-       type:{
-           id:"04"
-       },
-       imgpath:"src/assets/imgs/c01.png"
-    },
-    {
-       id:7,
-       name:"衣服2",
-       price:"12",
-       type:{
-           id:"04"
-       },
-       imgpath:"src/assets/imgs/c02.png"
-    },
-    {
-       id:8,
-       name:"衣服3",
-       price:"103",
-       type:{
-           id:"04"
-       },
-       imgpath:"src/assets/imgs/c03.png"
-    },
-    {
-       id:9,
-       name:"衣服4",
-       price:"104",
-       type:{
-           id:"04"
-       },
-       imgpath:"src/assets/imgs/c04.png"
-    },
-    {
-       id:10,
-       name:"衣服5",
-       price:"105",
-       type:{
-           id:"04"
-       },
-       imgpath:"src/assets/imgs/c05.png"
-    },
-]
 
 const searchData = (type,content) => {
-    console.log("调用后台搜索方法的参数:",type,content)
-    // 待实现
-    // http.post("http://api",{
-    //     searchContent : router_param_searchContent
-    // }).then((resData) => {
+    // console.log("调用后台搜索方法的参数:",type,content)
+    // console.log("查询的内容：",searchContent,"查询的类别",type)
+    const p = {
+        query:`
+            {
+                goods (start:${start},count:${count},name:"${searchContent}",type:["${type}"]) {
+                    id
+                    name
+                    price
+                    imgpath
+                    type (id:"goods_type") {
+                    id
+                    }
+                }
+            }
+        `
+    }
 
-    // })
-    //  resData => [{},{},{}]
-    const resData = content 
-        ? products.filter(item => item.type.id === type && item.name.indexOf(content) >= 0)  
-        : products.filter(item => item.type.id === type)   //假设是从网络返回的数据
-    data.value = resData
+    return Gql(p).then((res) => {
+        // console.log(res.data)
+        data.value = data.value.concat(res.data.goods.map(item => {
+            item.imgpath = ImgUrl + item.imgpath
+            return item
+        }))
+        return true
+    }).catch(()=>{
+        return false
+    })
 }
 
 // 将从上一个页面拿到的搜索类别 ，调用后台api进行搜索
@@ -139,25 +66,22 @@ searchData(type);
 
 const search = () => {
     console.log("本次搜索的新内容:",searchContent)
+    data.value = []
+    start = 0
     searchData(type,searchContent)
 }
 
 const refresh = () => {
-    return new Promise((resolve,reject) => {
-        setTimeout(() => {
-            resolve(true)
-        },800)
-    })
+    data.value = []
+    start = 0;
+    return searchData(type)
 }
 
-const loadMore = () => {
-    // loading.value = true;
+const loadMore = async () => {
     loadingMore.value = true;
-    setTimeout(() => {
-        data.value = data.value.concat(products.filter(item => item.type.id === type))
-        // loading.value = false;
-        loadingMore.value = false;
-    },900)
+    start = start + count
+    await searchData(type)
+    loadingMore.value = false;
 }
 
 </script>

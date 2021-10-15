@@ -3,8 +3,10 @@ import Main from "@/components/pages/Main.vue"
 import Search from "@/components/pages/Search.vue"
 import SearchResult from "@/components/pages/SearchResult.vue"
 import GoodsCategory from "@/components/pages/GoodsCategory.vue"
+import GoodDetail from "@/components/pages/GoodDetail.vue"
 import VrRoom from "@/components/pages/VrRoom.vue"
 import BlankPage from "@/components/pages/BlankPage.vue"
+
 import Home from "@/components/pages/tabs/Home.vue"
 import Category from "@/components/pages/tabs/Category.vue"
 import Cart from "@/components/pages/tabs/Cart.vue"
@@ -32,6 +34,7 @@ export const router = createRouter({
         { path:"/search", component:Search },
         { path:"/searchresult", component:SearchResult },
         { path:"/goodscategory", component:GoodsCategory },
+        { path:"/gooddetail/:id", component:GoodDetail },
         { path:"/vrroom", component:VrRoom },
         { path:"/blankpage", component:BlankPage }
     ]

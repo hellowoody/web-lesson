@@ -6,6 +6,7 @@ const typeDefs = gql `
 type Query {
     hello:String
     homeImgs:[String]
+    good (id:String!) :Good
     goods (start:Int!,count:Int!,type:[String],name:String) :[Good]
     categorys (id:String!,type:[String]!) :[Category]
 }
@@ -43,6 +44,7 @@ const resolvers = {
                 urlBase + "/home03.png",
             ]
         },
+        good: gr.Good,
         goods: gr.Goods,
         categorys:gr.Categorys
     },

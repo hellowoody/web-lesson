@@ -1,5 +1,8 @@
 <script setup>
 import {computed} from "vue"
+import {useRouter} from "vue-router"
+
+const router = useRouter()
 const props = defineProps({
     product:Object 
 })
@@ -9,10 +12,17 @@ const imgStyle = computed(() => props.product.imgpath && props.product.imgpath !
         backgroundSize:'cover'
     }) : ""
 )
+
+const goto = () => {
+    console.log("跳转明细页面")
+    router.push({
+        path:"/gooddetail/"+props.product.id
+    })
+}
 </script>
 
 <template>
-    <div class="product-card">
+    <div @click="goto" class="product-card">
         <div class="product-img" :style="imgStyle"></div>
         <div class="product-desc">
             <div style="color:rgb(0 0 0 / 0.5)">
@@ -26,7 +36,6 @@ const imgStyle = computed(() => props.product.imgpath && props.product.imgpath !
 </template>
 
 <style scoped>
-
 .product-card {
     box-shadow: 0px 1px 8px #e3e3e3;
     background-color: #fff;

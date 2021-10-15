@@ -114,4 +114,8 @@ watch(() => route.path ,(to,from) => {
     transform: translate3d(100%,0,0);
   }
 }
+
+::-webkit-scrollbar {
+    display:none;
+}
 </style>
