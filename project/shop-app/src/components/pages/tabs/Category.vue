@@ -2,8 +2,10 @@
 import MyContent from "@/components/content/MyContent.vue";
 import { computed } from "vue";
 import {useRouter} from "vue-router";
+import {useStore} from "vuex";
 
 const router = useRouter();
+const store = useStore();
 
 const categorys = [
     {
@@ -52,6 +54,7 @@ const fontStyle = computed(() => (item) => ({
 }))
 
 const gotoGoodsCategory = (type) => {
+    store.commit("pageDirection/setDirection","forward")
     router.push({path:"/goodscategory",query:{ type }})
 }
 

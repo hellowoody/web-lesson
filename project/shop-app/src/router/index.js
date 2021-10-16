@@ -34,7 +34,7 @@ export const router = createRouter({
         { path:"/search", component:Search },
         { path:"/searchresult", component:SearchResult },
         { path:"/goodscategory", component:GoodsCategory },
-        { path:"/gooddetail/:id", component:GoodDetail },
+        { path:"/gooddetail/:id/:type", component:GoodDetail },
         { path:"/vrroom", component:VrRoom },
         { path:"/blankpage", component:BlankPage }
     ]

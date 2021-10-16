@@ -11,7 +11,7 @@ const store = useStore();
 // watch(_,_) 侦听是简单对象 还是 引用对象？
 // watch route
 watch(() => route.path ,(to,from) => {
-  console.log(to,from)
+  // console.log(to,from)
   if(to.indexOf("/main/") >= 0 && from.indexOf("/main/") >=0 ){
     transitionName.value = "";
   }else{

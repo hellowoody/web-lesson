@@ -16,6 +16,7 @@ type Good {
    name:String,
    price:Float,
    imgpath:String,
+   gooddesc:String
    count:Int,
    type (id:String):Dict
 }

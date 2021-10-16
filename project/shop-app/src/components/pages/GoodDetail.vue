@@ -2,20 +2,30 @@
 import TopBar from "@/components/topbar/TopBar.vue";
 import MyContent from "@/components/content/MyContent.vue";
 import ProductCard from "@/components/product/ProductCard.vue";
+import FooterBar from "@/components/footerbar/FooterBar.vue";
+import FooterBarButton from "@/components/footerbar/FooterBarButton.vue";
 import {Gql,ImgUrl} from "@/kits/HttpKit";
 import {useRouter,useRoute} from "vue-router";
-import {ref} from "vue"
+import {useStore} from "vuex";
+import {ref,watch} from "vue"
 
-const router = useRouter();
+const store = useStore();
 const route = useRoute();
+const router = useRouter();
 const product = ref({})
-const topImgs = ref([])
+const products = ref([])
+const bgImg = ref("")
+let start = 0 ,count = 6 ;
 
-const back = () => router.go(-1)
+const back = () => {
+    store.commit("pageDirection/setDirection","backward")
+    router.go(-1)
+}
 
 const initData = async () => {
     // console.log(route)
     const id = route.params.id
+    const type = route.params.type
     const p = {
         query:`
             {
@@ -23,29 +33,49 @@ const initData = async () => {
                     id
                     name
                     price
+                    gooddesc
                     imgpath
                     type (id:"goods_type") {
                         id
                         name
                     }
                 } 
+                goods (start:${start},count:${count},type:["${type}"]) {
+                    id
+                    name
+                    price
+                    imgpath
+                    type (id:"goods_type") {
+                        id
+                    } 
+                }
             }
         `
     }
     try {
         const res = await Gql(p);
         product.value = res.data.good;
-        topImgs.value = [
-            ImgUrl + res.data.good.imgpath,
-            ImgUrl + res.data.good.imgpath,
-            ImgUrl + res.data.good.imgpath,
-        ]
+        // 1.在相似商品数组中过滤掉本次商品
+        // 2.图片的前缀加上
+        products.value = res.data.goods.filter(item => item.id != id).map(item => {
+            item.imgpath = ImgUrl + item.imgpath
+            return item
+        });
+        bgImg.value = `url(${ImgUrl + res.data.good.imgpath})`
     }catch {
 
     }
+
 }
 
 initData();
+
+watch(() => route.path,(to,from) => {
+    // console.log(to,from)
+    if(to.indexOf("/gooddetail/") >= 0){
+        initData()
+    }
+})
 </script>
 
 <template>
@@ -62,13 +92,31 @@ initData();
         </template>
     </top-bar>
     <my-content>
-        <a-carousel ref="refId">
-            <div v-for="(item,index) in topImgs" :key="index+item">
-                <h3 class="carousel-title">{{index+1}}</h3>
-                <img class="carousel-img" :src="item" />
-            </div>
+        <a-carousel ref="refId" style="width:100%;">
+            <div class="bg-div"></div>
+            <div class="bg-div"></div>
+            <div class="bg-div"></div>
         </a-carousel>
+        <div style="margin-top:30px;padding:0px 5px;box-sizing: border-box;">
+            <div class="goodtitle">{{product.name}} - {{product.gooddesc}}</div>
+            <div class="goodprice">¥ {{product.price}}</div>
+            <div class="othertitle">相近商品</div>
+            <div class="otherlist">
+                <product-card class="otherlist-item" v-for="item in products" :key="item.id" :product="item"></product-card>
+            </div>
+            <div class="comment">用户评论</div>
+            <a-skeleton avatar active :paragraph="{rows:3}"/>
+            <a-skeleton avatar active :paragraph="{rows:3}"/>
+        </div>
     </my-content>
+    <footer-bar>
+        <template v-slot:left>
+            <footer-bar-button style="border:none" name="加入购物车" />
+        </template>
+        <template v-slot:right>
+            <footer-bar-button name="立即购买" style="border:none;background-color:#d8d8d8;" />
+        </template>
+    </footer-bar>
 </div>
 </template>
 
@@ -76,10 +124,14 @@ initData();
 .ant-carousel :deep(.slick-slide) {
   text-align: center;
   height: 160px;
-  line-height: 160px;
   overflow: hidden;
-  position: relative;
   border-radius:15px;
+}
+
+.bg-div {
+    height:160px;
+    background-image: v-bind(bgImg);
+    background-size:"contain";
 }
 
 .ant-carousel :deep(.slick-slide h3) {
@@ -100,5 +152,44 @@ initData();
     object-fit: cover;
     width:100%;
     height:160px;
+}
+
+.goodtitle {
+    font-size:16px;
+    font-weight:bold;
+    color:rgb(0 0 0 / 0.5);
+}
+
+.goodprice {
+    font-size:18px;
+    font-weight:bold;
+    color:#fa6400;
+    margin-top:15px;
+}
+
+.othertitle {
+    font-size:16px;
+    font-weight:bold;
+    color:rgb(0 0 0 / 0.5);
+    margin-top:28px;
+}
+
+.otherlist {
+    display:flex;
+    overflow-x: auto;
+    margin-top:16px;
+}
+
+.otherlist-item {
+    flex-shrink: 0;
+    margin-right:16px;
+}
+
+.comment {
+    margin-top:30px;
+    margin-bottom:30px;
+    font-size:16px;
+    color:rgb(0 0 0 /0.5);
+    font-weight:bold;
 }
 </style>
