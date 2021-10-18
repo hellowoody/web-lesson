@@ -5,9 +5,10 @@ import ProductCard from "@/components/product/ProductCard.vue";
 import FooterBar from "@/components/footerbar/FooterBar.vue";
 import FooterBarButton from "@/components/footerbar/FooterBarButton.vue";
 import {Gql,ImgUrl} from "@/kits/HttpKit";
+import {getCacheVal} from "@/kits/LocalStorageKit";
 import {useRouter,useRoute} from "vue-router";
 import {useStore} from "vuex";
-import {ref,watch} from "vue"
+import {ref,watch} from "vue";
 
 const store = useStore();
 const route = useRoute();
@@ -76,6 +77,30 @@ watch(() => route.path,(to,from) => {
         initData()
     }
 })
+
+const addCart = () => {
+    /*
+        1.校验当前用户是否登陆
+            如果本地缓存中的token存在，那么认为已经登陆，否则未登录
+        2.如果没登陆
+            直接跳转到登陆页面(一般登陆页面都用注册的超链接)
+        3.如果已经登陆了
+            把当前的商品加入的购物车(cart),全局状态管理store.state
+    */
+    if(getCacheVal("token")){
+        // 已经登陆
+        console.log("已经登陆，开始加入购物车")
+    }else{
+        // 未登陆
+        store.commit("pageDirection/setDirection","forward")
+        router.push({path:"/login"})
+    }
+}
+
+const order = () => {
+    console.log("立即购买")
+}
+
 </script>
 
 <template>
@@ -111,10 +136,10 @@ watch(() => route.path,(to,from) => {
     </my-content>
     <footer-bar>
         <template v-slot:left>
-            <footer-bar-button style="border:none" name="加入购物车" />
+            <footer-bar-button style="border:none" name="加入购物车" @funcHandle="addCart" />
         </template>
         <template v-slot:right>
-            <footer-bar-button name="立即购买" style="border:none;background-color:#d8d8d8;" />
+            <footer-bar-button name="立即购买" style="border:none;background-color:#d8d8d8;" @funcHandle="order" />
         </template>
     </footer-bar>
 </div>

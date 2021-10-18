@@ -9,6 +9,7 @@ import Spin from "ant-design-vue/lib/spin";
 // import {Carousel,List} from "ant-design-vue"  // 局部引用
 import message from 'ant-design-vue/lib/message';
 import Skeleton from 'ant-design-vue/lib/skeleton';
+import Form from 'ant-design-vue/lib/form';
 import "ant-design-vue/dist/antd.css";
 
 export const useAntd = (app) => {
@@ -23,4 +24,5 @@ export const useAntd = (app) => {
     app.use(Avatar)
     app.use(Spin)
     app.use(Skeleton)
+    app.use(Form)
 }

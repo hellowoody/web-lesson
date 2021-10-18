@@ -17,3 +17,7 @@ export const clearItem = (key:string) => {
     localStorage.removeItem(key)
 }
 
+export const getCacheVal = (key:string) : string => {
+    return localStorage.getItem(key)
+}
+
