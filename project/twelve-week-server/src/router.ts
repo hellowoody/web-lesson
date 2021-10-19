@@ -19,4 +19,6 @@ export const useRouter = (app:Express) => {
 
     app.post("/mockrole",api.MockRole)
 
+    app.post("/api/login",api.Login)
+
 }

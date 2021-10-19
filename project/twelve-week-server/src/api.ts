@@ -78,3 +78,45 @@ export const MockRole = (req:any,resp:any) => {
             break;
     }
 }
+
+export const Login = async (req:any,resp:any) => {
+    const p = req.body
+    try {
+        const client = await Connect();
+        const db = client.db("shop_app");
+        const user = await db.collection("user").findOne({id:p.id});
+        if(user){
+            if(user.pwd === p.pwd){
+                /*
+                待实现 
+                生成加密后的token 令牌 “信物”
+                */
+                resp.json({
+                    code:1,
+                    msg:"登陆成功",
+                    data:{
+                        userId:"",
+                        userName:"",
+                        imgpath:"",
+                        token:""
+                    }
+                })
+            }else{
+                resp.json({
+                    code:2,
+                    msg:"密码不正确",
+                    data:""
+                })
+            }
+        }else{
+            resp.json({
+                code:3,
+                msg:"无此用户",
+                data:""
+            })
+        }
+    } catch (error) {
+        
+    }
+    resp.json({})
+}

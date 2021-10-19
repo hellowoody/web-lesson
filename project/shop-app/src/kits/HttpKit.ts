@@ -40,3 +40,15 @@ export const Gql = (param) => {
             .catch(e => reject(e))
     })
 }
+
+export const Http = (api,param) => {
+    return new Promise((resolve,reject) => {
+        instance.post("/api"+api,param)
+            .then(res => {
+                resolve(res.data)
+            })
+            .catch(e => {
+                reject(e)
+            })
+    })
+}
