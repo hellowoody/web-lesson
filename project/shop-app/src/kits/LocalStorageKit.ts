@@ -21,3 +21,11 @@ export const getCacheVal = (key:string) : string => {
     return localStorage.getItem(key)
 }
 
+export const setCacheVal = (key:string,val:any) => {
+    localStorage.setItem(key,val)
+}
+
+export const clearCache = () => {
+    localStorage.clear()
+}
+

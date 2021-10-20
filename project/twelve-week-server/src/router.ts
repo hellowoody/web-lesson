@@ -21,4 +21,6 @@ export const useRouter = (app:Express) => {
 
     app.post("/api/login",api.Login)
 
+    app.post("/api/register",api.Register)
+
 }

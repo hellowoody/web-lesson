@@ -1,4 +1,5 @@
 import {Connect} from "./db/Mongo"
+import {MD5} from "crypto-js";
 
 export const RootApi = (req:any,resp:any) => {
     resp.send("这是首页")
@@ -80,7 +81,7 @@ export const MockRole = (req:any,resp:any) => {
 }
 
 export const Login = async (req:any,resp:any) => {
-    const p = req.body
+    const p = req.body // {id:1,pwd:2}
     try {
         const client = await Connect();
         const db = client.db("shop_app");
@@ -91,14 +92,15 @@ export const Login = async (req:any,resp:any) => {
                 待实现 
                 生成加密后的token 令牌 “信物”
                 */
+                const token = MD5(p.id+p.pwd).toString()
                 resp.json({
                     code:1,
                     msg:"登陆成功",
                     data:{
-                        userId:"",
-                        userName:"",
-                        imgpath:"",
-                        token:""
+                        userId:user.id,
+                        userName:user.name,
+                        imgpath:user.imgpath,
+                        token
                     }
                 })
             }else{
@@ -116,7 +118,47 @@ export const Login = async (req:any,resp:any) => {
             })
         }
     } catch (error) {
-        
+        console.log(error)
+        resp.rend({
+            code:-1,
+            msg:"数据库连接失败",
+            data:""
+        })
     }
-    resp.json({})
+}
+
+export const Register = async (req:any,resp:any) => {
+    const p = req.body // {username:0,id:1,pwd:2}
+    try {
+        const client = await Connect();
+        const db = client.db("shop_app");
+        const res = await db.collection("user").insertOne({
+            _id:p.id,
+            id:p.id,
+            pwd:p.pwd,
+            name:p.username,
+            imgpath:""
+        });
+        // console.log(res)
+        if(res.insertedCount === 1){
+            resp.json({
+                code:1,
+                msg:"注册成功",
+                data:""
+            })
+        } else {
+            resp({
+                code:2,
+                msg:"注册失败(未知原因)",
+                data:""
+            })
+        }
+    } catch (error) {
+        console.log(error)
+        resp.rend({
+            code:-1,
+            msg:"数据库连接失败",
+            data:""
+        })
+    }
 }

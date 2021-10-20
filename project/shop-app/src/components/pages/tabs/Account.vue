@@ -1,11 +1,17 @@
 <script setup>
 import MyContent from "@/components/content/MyContent.vue";
 import {BellOutlined,UserOutlined,RightOutlined} from "@ant-design/icons-vue"
+import { Modal } from 'ant-design-vue';
+import {getCacheVal,clearCache} from "@/kits/LocalStorageKit"
 import {useRouter} from "vue-router"
-import {ref} from "vue"
+import {ref,inject} from "vue"
 
-const loginStatus = ref(false);
+const loginStatus = ref(getCacheVal("token") ? true : false);
+const username = ref(getCacheVal("username"))
+const avatar = ref(getCacheVal("imgpath"))
 const router = useRouter()
+const message = inject("$message")
+
 const menus = [
     {
         name:"个人信息",
@@ -33,7 +39,7 @@ const menus = [
     },
     {
         name:"退出登陆",
-        path:"/blankpage"
+        path:"/logout"
     },
     
 ]
@@ -56,10 +62,38 @@ const uploadImg = () => {
     */ 
 }
 
-const logintoggle = () => loginStatus.value = !loginStatus.value
-
 const goto = (path) => {
-    router.push({path})
+    switch (path) {
+    case "/logout":
+        // 1.能不能有一个方法是批量清空
+        // 2.得有返回消息
+        // 3.重置双向绑定的用户信息
+        // 4.推出前给他一个缓冲，让他犹豫一下，为了用户考虑之后再做选择
+        showConfirm()
+        break;
+    default:
+        router.push({path})
+    }
+}
+
+const showConfirm = () => {
+    Modal.confirm({
+        title:"您是否确定要登出?",
+        okText:"确定",
+        cancelText:"取消",
+        centered:true,
+        onOk(){
+            // 1.能不能有一个方法是批量清空
+            clearCache()
+            // 2.得有返回消息
+            message.success("登出成功")
+            // 3.重置双向绑定的用户信息
+            loginStatus.value = false;
+            username.value = "";
+            avatar.value = "";
+        },
+        onCancel(){}
+    })
 }
 </script>
 
@@ -76,14 +110,14 @@ const goto = (path) => {
                 </a-avatar>
             </template>
             <template v-else>
-                <a-avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" :size="100" @click="uploadImg"></a-avatar>
-                <div style="margin-top:12px;font-size:16px;color:rgb(0 0 0 / 0.5)">章三</div>
+                <a-avatar :src="avatar" :size="100" @click="uploadImg"></a-avatar>
+                <div style="margin-top:12px;font-size:16px;color:rgb(0 0 0 / 0.5)">{{username}}</div>
             </template>
         </div>
         <a-list class="menus" item-layout="horizontal" :data-source="menus">
             <template #renderItem="{ item }">
                 <a-list-item>
-                    <div>{{item.name}}</div>
+                    <div @click="goto(item.path)">{{item.name}}</div>
                     <a slot="actions" @click="goto(item.path)">
                         <RightOutlined style="color:rgba(0, 0, 0, 0.85)"/>
                     </a>

@@ -3,7 +3,7 @@ import axios from "axios";
 const ip = "127.0.0.1";
 const port = 3100;
 export const baseURL = `http://${ip}:${port}`;
-export const ImgUrl = baseURL + "/assets/upload/"
+export const ImgUrl = baseURL + "/assets/upload/"  // http://127.0.0.1:3100/assets/upload/
 
 // instance Promise
 const instance = axios.create({

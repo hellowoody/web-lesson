@@ -12,12 +12,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
     "apollo-server-express": "^2.25.2",
     "cors": "^2.8.5",
+    "crypto-js": "^4.1.1",
+    "express": "^4.17.1",
     "mongodb": "^3.6.10"
   },
   "devDependencies": {
+    "@types/crypto-js": "^4.0.2",
     "@types/express": "^4.17.12",
     "@types/graphql": "^14.5.0",
     "@types/mongodb": "^3.6.20",
