@@ -1,5 +1,6 @@
 import {Express} from "express"
 import * as api from "./api";
+import * as middleware from "./middleware"
 
 export const useRouter = (app:Express) => {
     // app.get("路由匹配的规则,http访问你后台时的路径",callback)
@@ -22,5 +23,7 @@ export const useRouter = (app:Express) => {
     app.post("/api/login",api.Login)
 
     app.post("/api/register",api.Register)
+
+    app.post("/api/uploadavatar",middleware.upload.single("file"),api.UploadAvatar)
 
 }

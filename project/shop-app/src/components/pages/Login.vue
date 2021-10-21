@@ -45,7 +45,7 @@ const sub = async () => {
             setCacheVal("token",res.data.token);
             setCacheVal("userid",res.data.userId);
             setCacheVal("username",res.data.userName);
-            setCacheVal("imgpath", ImgUrl + res.data.imgpath);
+            setCacheVal("imgpath", res.data.imgpath === "" ? "" : ImgUrl + res.data.imgpath);
             message.success({key,content:res.msg,duration:2})
             // 跳转回上一个业务页面
             back();

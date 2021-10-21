@@ -4,12 +4,14 @@ import {BellOutlined,UserOutlined,RightOutlined} from "@ant-design/icons-vue"
 import { Modal } from 'ant-design-vue';
 import {getCacheVal,clearCache} from "@/kits/LocalStorageKit"
 import {useRouter} from "vue-router"
+import {useStore} from "vuex"
 import {ref,inject} from "vue"
 
 const loginStatus = ref(getCacheVal("token") ? true : false);
 const username = ref(getCacheVal("username"))
 const avatar = ref(getCacheVal("imgpath"))
 const router = useRouter()
+const store = useStore()
 const message = inject("$message")
 
 const menus = [
@@ -58,8 +60,18 @@ const uploadImg = () => {
     /*
         判断用户是否登陆
             登陆：直接跳转到头像上传页面
-          为登陆：跳转到登陆页面
+          未登陆：跳转到登陆页面
     */ 
+    if(getCacheVal("token")){
+        // 已经登陆
+        // console.log("已经登陆，跳转修改头像页面")
+        store.commit("pageDirection/setDirection","forward")
+        router.push({path:"/uploadimg"})
+    }else{
+        // 未登陆
+        store.commit("pageDirection/setDirection","forward")
+        router.push({path:"/login"})
+    }
 }
 
 const goto = (path) => {
@@ -110,7 +122,11 @@ const showConfirm = () => {
                 </a-avatar>
             </template>
             <template v-else>
-                <a-avatar :src="avatar" :size="100" @click="uploadImg"></a-avatar>
+                <!-- 已登陆的分支 -->
+                <a-avatar v-if="avatar === ''" :size="100" @click="uploadImg">
+                    <template #icon><user-outlined /></template>
+                </a-avatar>
+                <a-avatar v-else :src="avatar" :size="100" @click="uploadImg"></a-avatar>
                 <div style="margin-top:12px;font-size:16px;color:rgb(0 0 0 / 0.5)">{{username}}</div>
             </template>
         </div>

@@ -11,6 +11,7 @@ import GoodsCategory from "@/components/pages/GoodsCategory.vue"
 import GoodDetail from "@/components/pages/GoodDetail.vue"
 import Login from "@/components/pages/Login.vue"
 import Register from "@/components/pages/Register.vue"
+import UploadImg from "@/components/pages/UploadImg.vue"
 import VrRoom from "@/components/pages/VrRoom.vue"
 import BlankPage from "@/components/pages/BlankPage.vue"
 
@@ -41,6 +42,7 @@ export const router = createRouter({
         { path:"/gooddetail/:id/:type", component:GoodDetail },
         { path:"/login", component:Login },
         { path:"/register", component:Register },
+        { path:"/uploadimg", component:UploadImg },
         { path:"/vrroom", component:VrRoom },
         { path:"/blankpage", component:BlankPage }
     ]

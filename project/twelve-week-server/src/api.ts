@@ -162,3 +162,44 @@ export const Register = async (req:any,resp:any) => {
         })
     }
 }
+
+export const UploadAvatar = async (req:any,resp:any) => {
+    const {file,body} = req
+    console.log("上传后的文件名:" + file.filename);
+    console.log("上传者的用户名:" + body.userid);
+    try {
+        const client = await Connect();
+        const db = client.db("shop_app");
+        const query:any = {
+            id:body.userid
+        }
+        const update:any = {
+            $set:{
+                imgpath:file.filename
+            }
+        }
+        const res = await db.collection("user").updateOne(query,update)
+        // console.log(res)
+        if(res.result.ok === 1 && res.result.n === 1){
+            resp.json({
+                code:1,
+                msg:"上传成功",
+                data:{
+                    filename:file.filename
+                }
+            })
+        }else{
+            resp.json({
+                code:2,
+                msg:"上传失败(未知原因)",
+                data:""
+            })
+        }
+    } catch (error) {
+        resp.rend({
+            code:-1,
+            msg:"数据库连接失败",
+            data:""
+        })
+    }
+}
