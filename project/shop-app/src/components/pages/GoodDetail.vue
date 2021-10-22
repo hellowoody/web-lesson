@@ -8,14 +8,15 @@ import {Gql,ImgUrl} from "@/kits/HttpKit";
 import {getCacheVal} from "@/kits/LocalStorageKit";
 import {useRouter,useRoute} from "vue-router";
 import {useStore} from "vuex";
-import {ref,watch} from "vue";
+import {ref,watch,inject} from "vue";
 
 const store = useStore();
 const route = useRoute();
 const router = useRouter();
-const product = ref({})
+const product = ref({}) // {value:product}
 const products = ref([])
 const bgImg = ref("")
+const message = inject("$message")
 let start = 0 ,count = 6 ;
 
 const back = () => {
@@ -89,7 +90,17 @@ const addCart = () => {
     */
     if(getCacheVal("token")){
         // 已经登陆
-        console.log("已经登陆，开始加入购物车")
+        /*
+            1.获取全局状态管理中的购物车数组
+            2.调用对应的mutations方法进行数组添加
+        */
+        store.commit("good/pushCart",{
+            ...product.value,
+            type:product.value.type.id,
+            countbuy:1
+        })
+
+        message.success("添加成功")
     }else{
         // 未登陆
         store.commit("pageDirection/setDirection","forward")
@@ -101,11 +112,16 @@ const order = () => {
     console.log("立即购买")
 }
 
+const go = path => {
+    store.commit("pageDirection/setDirection","forward")
+    router.push({path})
+}
+
 </script>
 
 <template>
 <div>
-    <top-bar>
+    <top-bar style="box-shadow:unset;">
         <template v-slot:left>
             <div class="iconfont icon-fanhui1" @click="back" style="font-size:23px;"></div>
         </template>
@@ -113,7 +129,7 @@ const order = () => {
             <div>商品明细</div>
         </template>
         <template v-slot:right>
-                <div class="iconfont icon-gouwuche" style="font-size:23px;"></div>
+                <div class="iconfont icon-gouwuche" @click="go('/cart')" style="font-size:23px;"></div>
         </template>
     </top-bar>
     <my-content>

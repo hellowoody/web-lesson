@@ -14,7 +14,7 @@ import TabBarItem from "@/components/tabbar/TabBarItem.vue";
             </tab-bar-item>
             <tab-bar-item name="类别" path="/main/category">
             </tab-bar-item>
-            <tab-bar-item name="购物车" path="/main/cart">
+            <tab-bar-item name="订单" path="/main/order">
                 <template v-slot:icon>
                     <div class="iconfont icon-gouwuche" style="font-size:20px"></div>
                 </template>

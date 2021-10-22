@@ -191,7 +191,7 @@ initData();
 <div>
     <top-bar @focusHandle="go('/search')">
         <template v-slot:right>
-            <div class="iconfont icon-gouwuche1" style="font-size:24px" ></div>
+            <div class="iconfont icon-gouwuche1" @click="go('/cart')" style="font-size:24px" ></div>
         </template>
     </top-bar>
     <my-content pull hasTabBar :refreshFunc="refresh">

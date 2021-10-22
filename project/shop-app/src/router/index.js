@@ -1,7 +1,7 @@
 import {createRouter,createWebHashHistory} from "vue-router";
 import Home from "@/components/pages/tabs/Home.vue"
 import Category from "@/components/pages/tabs/Category.vue"
-import Cart from "@/components/pages/tabs/Cart.vue"
+import Order from "@/components/pages/tabs/Order.vue"
 import Account from "@/components/pages/tabs/Account.vue"
 
 import Main from "@/components/pages/Main.vue"
@@ -12,6 +12,7 @@ import GoodDetail from "@/components/pages/GoodDetail.vue"
 import Login from "@/components/pages/Login.vue"
 import Register from "@/components/pages/Register.vue"
 import UploadImg from "@/components/pages/UploadImg.vue"
+import Cart from "@/components/pages/Cart.vue"
 import VrRoom from "@/components/pages/VrRoom.vue"
 import BlankPage from "@/components/pages/BlankPage.vue"
 
@@ -32,7 +33,7 @@ export const router = createRouter({
             children:[
                 { path:"home",component:Home},
                 { path:"category", component:Category},
-                { path:"cart", component:Cart},
+                { path:"order", component:Order},
                 { path:"account", component:Account},
             ]
         },
@@ -43,6 +44,7 @@ export const router = createRouter({
         { path:"/login", component:Login },
         { path:"/register", component:Register },
         { path:"/uploadimg", component:UploadImg },
+        { path:"/cart", component:Cart },
         { path:"/vrroom", component:VrRoom },
         { path:"/blankpage", component:BlankPage }
     ]
