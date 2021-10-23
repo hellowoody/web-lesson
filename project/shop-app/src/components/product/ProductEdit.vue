@@ -1,7 +1,10 @@
 <script setup>
-import {computed} from "vue"
+import {computed,inject} from "vue"
 import {ImgUrl} from "@/kits/HttpKit";
+import {useStore} from "vuex";
 
+const message = inject("$message")
+const store = useStore()
 const props = defineProps({
     index:Number,
     product:Object
@@ -14,9 +17,22 @@ const ImgStyle = computed(() => {
     }
 })
 
-const decrease = () => console.log("-")
+const decrease = async () => {
+    await store.dispatch("good/subCart",props.index)
+}
 
-const increase = () => console.log("+")
+const increase = async () => {
+    const res = await store.dispatch("good/addCart",props.index)
+    if(!res){
+        message.warn("购买数量最大支持99")
+    }
+}
+
+const confirm = () => {
+    decrease()
+    message.success("移除成功")
+}
+
 </script>
 <template>
     <div class="product-edit">
@@ -25,7 +41,16 @@ const increase = () => console.log("+")
             <div style="font-weight:bold;">{{product.name}}</div>
             <div style="color:#fa6400">{{product.price}}</div>
             <div style="display:flex">
-                <div class="btn" @click="decrease">-</div>
+                <a-popconfirm
+                    v-if="product.countbuy <= 1"
+                    title="是否从购物车移除改商品?"
+                    ok-text="移除"
+                    cancel-text="取消"
+                    @confirm="confirm"
+                >
+                    <div class="btn">-</div>
+                </a-popconfirm>
+                <div v-else class="btn" @click="decrease">-</div>
                 <div style="margin:1px 10px 0px 10px;">{{product.countbuy}}</div>
                 <div class="btn" @click="increase">+</div>
             </div>

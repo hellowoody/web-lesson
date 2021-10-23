@@ -8,7 +8,7 @@ import {Gql,ImgUrl} from "@/kits/HttpKit";
 import {getCacheVal} from "@/kits/LocalStorageKit";
 import {useRouter,useRoute} from "vue-router";
 import {useStore} from "vuex";
-import {ref,watch,inject} from "vue";
+import {ref,watch,inject,toRaw} from "vue";
 
 const store = useStore();
 const route = useRoute();
@@ -79,7 +79,7 @@ watch(() => route.path,(to,from) => {
     }
 })
 
-const addCart = () => {
+const addCart = async () => {
     /*
         1.校验当前用户是否登陆
             如果本地缓存中的token存在，那么认为已经登陆，否则未登录
@@ -92,15 +92,19 @@ const addCart = () => {
         // 已经登陆
         /*
             1.获取全局状态管理中的购物车数组
-            2.调用对应的mutations方法进行数组添加
+            2.调用对应的mutations方法进行数组添加 (优化时否定了这个方案)
+            3.调用对应的actions异步方法进行添加
         */
-        store.commit("good/pushCart",{
+        const res = await store.dispatch("good/pushCart",{
             ...product.value,
             type:product.value.type.id,
             countbuy:1
         })
-
-        message.success("添加成功")
+        if(res){
+            message.success("添加成功")
+        }else{
+            message.warn("购买数量最大支持99")
+        }
     }else{
         // 未登陆
         store.commit("pageDirection/setDirection","forward")
@@ -108,8 +112,17 @@ const addCart = () => {
     }
 }
 
-const order = () => {
-    console.log("立即购买")
+const order = async () => {
+    product.value.countbuy = 1
+    // console.log(product.value) // proxy
+    // console.log(toRaw(product.value)) // {}
+    const res = await store.dispatch("good/pushCart",toRaw(product.value))
+    if(res){
+        // message.success("添加成功")
+        go("/cart")
+    }else{
+        message.warn("购买数量最大支持99")
+    }
 }
 
 const go = path => {

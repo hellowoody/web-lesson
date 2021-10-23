@@ -2,6 +2,8 @@
 import TopBar from "@/components/topbar/TopBar.vue";
 import MyContent from "@/components/content/MyContent.vue";
 import ProductEdit from "@/components/product/ProductEdit.vue";
+import FooterBar from "@/components/footerbar/FooterBar.vue";
+import FooterBarButton from "@/components/footerbar/FooterBarButton.vue";
 import {useRouter} from "vue-router"
 import {useStore} from "vuex"
 
@@ -11,6 +13,11 @@ const router = useRouter();
 const back = () => {
     store.commit("pageDirection/setDirection","backward")
     router.go(-1)
+}
+
+const order = async () => {
+    const res = await store.dispatch("good/order")
+    console.log(res)
 }
 
 </script>
@@ -34,5 +41,16 @@ const back = () => {
                 style="margin-top:16px;"
             ></product-edit>
         </my-content>
+        <footer-bar>
+            <template v-slot:left>
+                <div>
+                    <div style="color:rgb(0 0 0 / 0.5);font-size:12px;font-weight:bold">总价</div>
+                    <div style="color:#fa6400;font-size:16px;font-weight:bold">{{store.getters["good/cartTotalPrice"]}}</div>
+                </div>
+            </template>
+            <template v-slot:right>
+                <footer-bar-button name="创建订单" @funcHandle="order" style="border:none;background-color:#d8d8d8;color:#fff;"  />
+            </template>
+        </footer-bar>
     </div>
 </template>
