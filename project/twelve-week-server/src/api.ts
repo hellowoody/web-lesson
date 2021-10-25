@@ -1,6 +1,11 @@
 import {Connect} from "./db/Mongo"
 import {MD5} from "crypto-js";
 
+/*
+    1.nodejs -> express (基于nodejs封装了一套很好的http请求和返回的api)
+    2.后端返回给页面信息，resp的最常用的两个方法返回页面，send和json
+*/
+
 export const RootApi = (req:any,resp:any) => {
     resp.send("这是首页")
 }
@@ -119,7 +124,16 @@ export const Login = async (req:any,resp:any) => {
         }
     } catch (error) {
         console.log(error)
-        resp.rend({
+        /*
+            1.测试这个分支是否走的通
+            2.结果发现两个问题
+                a.resp.send 拼写错误
+                b.当拼写改正之后，这个分支开始走不通
+            3.为什么这个分支没有正常的返回给页面
+                因为页面与后台的超时时间 和 后台与mongodb的超时时间 矛盾了，导致页面没有正常拿到返回值
+                解决方案：调整这两个时间就行，让它们合理
+        */ 
+        resp.send({
             code:-1,
             msg:"数据库连接失败",
             data:""
@@ -155,7 +169,7 @@ export const Register = async (req:any,resp:any) => {
         }
     } catch (error) {
         console.log(error)
-        resp.rend({
+        resp.send({
             code:-1,
             msg:"数据库连接失败",
             data:""
@@ -196,7 +210,7 @@ export const UploadAvatar = async (req:any,resp:any) => {
             })
         }
     } catch (error) {
-        resp.rend({
+        resp.send({
             code:-1,
             msg:"数据库连接失败",
             data:""

@@ -6,6 +6,8 @@ const uri = "mongodb://localhost:27017";
 
 // https://github.com/mongodb/node-mongodb-native/releases/tag/v3.2.1
 const options = {
+//    connectTimeoutMS: 5000, 
+    serverSelectionTimeoutMS: 10000, // 10s
     useUnifiedTopology: true
 }
 

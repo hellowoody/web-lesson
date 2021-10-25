@@ -1,9 +1,14 @@
+import {getCacheVal} from "@/kits/LocalStorageKit";
+import {Http,ImgUrl} from "@/kits/HttpKit";
+
 const state = () => ({
+    // vuex 处理引用类型 json array “每一层”都做了代理
     cartData:[],
 })
 
 const mutations = {
     pushCart(state,item) {
+        item.imgpath = ImgUrl + item.imgpath
         state.cartData.push(item)
     },
     increaseCart(state,index) {
@@ -31,7 +36,9 @@ const actions = {
         if(index > -1){
             return actions.addCart(context,index)
         }else{
-            context.commit("pushCart",item)
+            context.commit("pushCart",{
+                ...item
+            })
             return true
         }
     },
@@ -53,22 +60,51 @@ const actions = {
         context.commit("decreaseCart",index)
         context.commit("removeCart",index)  
     },
-    order(context){
-        console.log(1000000)
+    async order({state,getters}){
         /*
             1.定义一个参数对象
             2.带着参数访问后台创建订单的接口 /createorder
             3.清空购物车
         */ 
+
+       // 使用了深拷贝的方式构造details数组
+       const details = []
+       for(let i = 0 ; i < state.cartData.length ; i++){
+         details.push(Object.assign({},state.cartData[i]))
+       }
+       console.log(details)
+       const p = {
+            userid:getCacheVal("userid"),
+            price:getters.cartTotalPricePure,
+            // details:state.cartData
+            // details:{
+            //    ...state.cartData  //  ES2019 flat rest  原理:浅拷贝
+            // }
+            // details:Object.assign([],state.cartData)  // ES5
+            /*
+                浅拷贝有特定语法比方说 Object.assign or flat ...
+                深拷贝没有特定的语法，所以深拷贝就是通过循环遍历方式重复调用浅拷贝语法
+            */ 
+            details
+       }
+       //  以上构造参数时 使用的深/浅拷贝，其实都可以忽略  
+       //  从另一个侧面反应出 proxy的强大
+       //  在大部分场景下 你可以忽略proxy的这一层“外衣” 
+       console.log(p)
+
+       const res = await Http("/createorder")
     }
 }
 
 const getters = {
     cartTotalPrice(state){
+        return  "¥ " + getters.cartTotalPricePure(state)
+    },
+    cartTotalPricePure(state){
         let total = 0
-        return  "¥ " + state.cartData.reduce((acc,item) => {
+        return  state.cartData.reduce((acc,item) => {
             return acc + item.price * item.countbuy
-        },total)
+        },total).toFixed(2)
     }
 }
 

@@ -8,7 +8,7 @@ export const ImgUrl = baseURL + "/assets/upload/"  // http://127.0.0.1:3100/asse
 // instance Promise
 const instance = axios.create({
     baseURL,
-    timeout:10000, //10s 超时时间
+    timeout:12000, //12s 超时时间
     headers:{
         // 这是报文的格式
         "Content-Type":"application/json",

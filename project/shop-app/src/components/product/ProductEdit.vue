@@ -12,7 +12,7 @@ const props = defineProps({
 
 const ImgStyle = computed(() => {
     return {
-        "background-image":`url('${ImgUrl+props.product.imgpath}')`,
+        "background-image":`url('${props.product.imgpath}')`,
         "background-size":"cover"
     }
 })
