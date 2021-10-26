@@ -1,4 +1,5 @@
 import {Connect} from "./db/Mongo"
+import moment from "moment";
 
 export const Hello = (parent:any,args:any) => {
     return "hello graphql"
@@ -138,5 +139,59 @@ export const goodtype = async (parent:any,args:any) => {
     } catch (error) {
         return error
     }
+}
+
+export const userOrder = async (parent:any,args:any) => {
+    try {
+        const client = await Connect();
+        try {
+            const db = client.db("shop_app"); // 找到数据库
+            const query:any = {
+                userid:args.userid
+            }
+            const result = await db.collection("order").find(query).skip(args.start).limit(args.count).toArray()
+            return result;
+        } catch (e) {
+            return e
+        } finally {
+            client.close();
+        }
+    } catch (error) {
+        return error
+    }
+}
+
+export const orderstatus = async (parent:any,args:any) => {
+    try {
+        const client = await Connect();
+        try {
+            const db = client.db("shop_app"); // 找到数据库
+            // 下面写的是mongodb的一种特殊查询语法,aggregate一般用在嵌套的数据结构，而且你还想查询或返回内层的数据
+            const aggregate:any = [
+                {$unwind:"$items"},
+                {$match:{
+                    id:args.id,
+                    "items.id":parent.status
+                }},
+                {$project:{"items":1}}
+            ]
+            const result = await db.collection("dict").aggregate(aggregate).toArray()
+            return result[0].items;
+        } catch (e) {
+            return e
+        } finally {
+            client.close();
+        }
+    } catch (error) {
+        return error
+    }
+}
+
+export const countGood = async (parent:any,args:any) => {
+    return parent.details.length
+}
+
+export const formatOrderdate = async (parent:any,args:any) => {
+    return moment(parent.sysdate).format("yyyy-MM-DD HH:mm:ss");
 }
 

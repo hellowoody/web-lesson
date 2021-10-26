@@ -21,6 +21,9 @@ const mutations = {
         if(state.cartData[index].countbuy === 0){
             state.cartData.splice(index,1)
         }
+    },
+    resetCart(state){
+        state.cartData = []
     }
 }
 
@@ -90,9 +93,14 @@ const actions = {
        //  以上构造参数时 使用的深/浅拷贝，其实都可以忽略  
        //  从另一个侧面反应出 proxy的强大
        //  在大部分场景下 你可以忽略proxy的这一层“外衣” 
-       console.log(p)
-
-       const res = await Http("/createorder")
+       //  console.log(p)
+       try {
+            const res = await Http("/createorder",p)
+            //  console.log(res)
+            return res
+       } catch (error) {
+           return e
+       }
     }
 }
 

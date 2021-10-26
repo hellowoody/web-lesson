@@ -8,7 +8,7 @@ import {Gql,ImgUrl} from "@/kits/HttpKit";
 import {getCacheVal} from "@/kits/LocalStorageKit";
 import {useRouter,useRoute} from "vue-router";
 import {useStore} from "vuex";
-import {ref,watch,inject,toRaw} from "vue";
+import {ref,watch,inject} from "vue";
 
 const store = useStore();
 const route = useRoute();
@@ -113,10 +113,13 @@ const addCart = async () => {
 }
 
 const order = async () => {
-    product.value.countbuy = 1
     // console.log(product.value) // proxy
     // console.log(toRaw(product.value)) // {}
-    const res = await store.dispatch("good/pushCart",toRaw(product.value))
+    const res = await store.dispatch("good/pushCart",{
+        ...product.value,
+        type:product.value.type.id,
+        countbuy:1
+    })
     if(res){
         // message.success("添加成功")
         go("/cart")

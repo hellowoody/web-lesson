@@ -6,7 +6,9 @@ import FooterBar from "@/components/footerbar/FooterBar.vue";
 import FooterBarButton from "@/components/footerbar/FooterBarButton.vue";
 import {useRouter} from "vue-router"
 import {useStore} from "vuex"
+import {inject} from "vue";
 
+const message = inject("$message")
 const store = useStore();
 const router = useRouter();
 
@@ -16,8 +18,18 @@ const back = () => {
 }
 
 const order = async () => {
-    const res = await store.dispatch("good/order")
-    console.log(res)
+    try {
+        const res = await store.dispatch("good/order")
+        console.log(res)
+        if(res.code === 1){
+            message.success(res.msg)
+            store.commit("good/resetCart")
+        }else{  
+            message.error(res.msg)
+        }
+    } catch(e) {
+        message.error(e)
+    }  
 }
 
 </script>

@@ -217,3 +217,41 @@ export const UploadAvatar = async (req:any,resp:any) => {
         })
     }
 }
+
+export const CreateOrder = async (req:any,resp:any) => {
+    // 1.拿到页面传来的参数
+    const p = req.body // {details:[],userid:""} object
+    try {
+        // 2.连接数据库
+        const client = await Connect();
+        // 3.切换数据库
+        const db = client.db("shop_app");
+        // 4.通过db创建订单 = 插入数据
+        const date = new Date()
+        p.id = MD5(date.getUTCMilliseconds().toString()).toString()
+        p.status = "1";
+        p.sysdate = new Date()
+        const res = await db.collection("order").insertOne(p)
+        // console.log(res)
+        if(res.insertedCount === 1){
+            resp.json({
+                code:1,
+                msg:"创建成功",
+                data:{}
+            })
+        }else{
+            resp.json({
+                code:2,
+                msg:"创建订单失败",
+                data:{}
+            })
+        }
+    } catch (error) {
+        resp.send({
+            code:-1,
+            msg:"连接数据库失败",
+            data:{}
+        })
+    }
+    
+}

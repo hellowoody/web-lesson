@@ -8,7 +8,7 @@ const config = require("../config")
 const app:Express = express()
 // 加载中间件
 app.use(express.json())  // 前后台交互时会发生报文传递，这一行会根据报文头head，将报文转成合法的json格式
-app.use(express.urlencoded({extended:false}))  // 前后台交互时会发生报文传递，这一行会根据报文头head，将报文转成合法的表单格式
+app.use(express.urlencoded({extended:false}))  // x-www-form-urlencoded 前后台交互时会发生报文传递，这一行会根据报文头head，将报文转成合法的表单格式
 app.use(cors()) // 跨域
 // app.use("前缀路径",express.static("你要发布静态资源的路径"))
 app.use("/assets",express.static("./static"))
