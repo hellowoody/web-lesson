@@ -13,6 +13,7 @@ import Login from "@/components/pages/Login.vue"
 import Register from "@/components/pages/Register.vue"
 import UploadImg from "@/components/pages/UploadImg.vue"
 import Cart from "@/components/pages/Cart.vue"
+import OrderDetail from "@/components/pages/OrderDetail.vue"
 import VrRoom from "@/components/pages/VrRoom.vue"
 import BlankPage from "@/components/pages/BlankPage.vue"
 
@@ -45,6 +46,7 @@ export const router = createRouter({
         { path:"/register", component:Register },
         { path:"/uploadimg", component:UploadImg },
         { path:"/cart", component:Cart },
+        { path:"/orderdetail", component:OrderDetail },
         { path:"/vrroom", component:VrRoom },
         { path:"/blankpage", component:BlankPage }
     ]

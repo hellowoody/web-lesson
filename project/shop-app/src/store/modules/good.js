@@ -4,6 +4,7 @@ import {Http,ImgUrl} from "@/kits/HttpKit";
 const state = () => ({
     // vuex 处理引用类型 json array “每一层”都做了代理
     cartData:[],
+    selectedOrder:{}
 })
 
 const mutations = {
@@ -24,6 +25,9 @@ const mutations = {
     },
     resetCart(state){
         state.cartData = []
+    },
+    setSelectedOrder(state,order){
+        state.selectedOrder = order
     }
 }
 
