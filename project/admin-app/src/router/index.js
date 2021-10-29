@@ -8,6 +8,7 @@ export const router = createRouter({
     history:createWebHashHistory(),
     routes:[
         // 一级路由
+        {path:"/",redirect:{ path:"/main/home" }}, // 一般匹配根路径时，使用路由的重定向
         {path:"/login",component:Login}, // 登陆页面
         {path:"/main",component:Main,children:[
             // 二级路由
