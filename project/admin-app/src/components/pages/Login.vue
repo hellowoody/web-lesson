@@ -1,10 +1,13 @@
 <script setup>
 import {useRouter} from "vue-router"
-import {reactive,ref,inject} from "vue";
+import {reactive,ref,inject,toRaw} from "vue";
+import {Http} from "@/kits/HttpKit"
+import {setCacheVal} from "@/kits/LocalStorageKit"
 
 const formData = reactive({
     id:"",
     pwd:"",
+    role:"admin"
 })
 const loginForm = ref(null);
 const router = useRouter()
@@ -17,9 +20,21 @@ const message = inject("$message")
 const key = "loadingkey"
 const onSubmit = () => {
     message.loading({key,content:"登陆中..."})
-    loginForm.value.validate().then((valid) => {
-        message.success({key,content:"登陆成功,跳转中...",duration:2})
-        router.replace({path:"/main/home"})
+    loginForm.value.validate().then(async (valid) => {
+        const res = await Http("/login",toRaw(formData))
+        if(res.code === 1){
+            setCacheVal("token",res.data.token)
+            setCacheVal("username",res.data.userName)
+            setCacheVal("userid",res.data.userId)
+            message.success({key,content:res.msg,duration:2})
+            router.replace({path:"/main/home"})
+        }else{
+            message.error({
+                content:res.msg,
+                key,
+                duration:2
+            })
+        }
     }).catch(err => {
         // console.log(err)
         message.warn({key,content:"请输入合法的内容",duration:2})
@@ -27,7 +42,7 @@ const onSubmit = () => {
 }
 
 const reset = () => {
-
+    loginForm.value.resetFields();
 }
 
 </script>

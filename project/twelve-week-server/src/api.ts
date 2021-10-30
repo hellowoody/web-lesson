@@ -86,7 +86,15 @@ export const MockRole = (req:any,resp:any) => {
 }
 
 export const Login = async (req:any,resp:any) => {
-    const p = req.body // {id:1,pwd:2}
+    const p = req.body // {id:1,pwd:2,role:"admin|null|undefined|''"}
+    if(p.role === "admin" && p.id !== "admin"){
+        resp.json({
+            code:4,
+            msg:"权限不足",
+            data:""
+        })
+        return
+    }
     try {
         const client = await Connect();
         const db = client.db("shop_app");

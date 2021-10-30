@@ -3,17 +3,17 @@ import Login from "@/components/pages/Login.vue";
 import Main from "@/components/pages/Main.vue";
 import Home from "@/components/pages/Home.vue";
 import StorageManagment from "@/components/pages/StorageManagment.vue";
-
+ 
 export const router = createRouter({
     history:createWebHashHistory(),
     routes:[
         // 一级路由
-        {path:"/",redirect:{ path:"/main/home" }}, // 一般匹配根路径时，使用路由的重定向
+        {path:"/",redirect:{ path:"/login" }}, // 一般匹配根路径时，使用路由的重定向
         {path:"/login",component:Login}, // 登陆页面
         {path:"/main",component:Main,children:[
             // 二级路由
-            {path:"home",component:Home},
-            {path:"storemanagment",component:StorageManagment},
+            {path:"home",name:"home",component:Home},
+            {path:"storemanagment",name:"storemanagment",component:StorageManagment},
         ]}  // 业务页面
     ]
 })

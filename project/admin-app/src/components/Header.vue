@@ -1,12 +1,23 @@
 <script setup>
 import {useRouter} from "vue-router"
 import { DownOutlined } from '@ant-design/icons-vue';
+import {clearCache,getCacheVal} from "@/kits/LocalStorageKit";
+import {ref} from "vue";
+
+const username = ref(getCacheVal("username"))
 const router = useRouter()
 
-const goto = () => {
-    router.push({
-        path:"/login"
-    })  
+const goto = (path) => {
+    switch (path) {
+    case "/logout":
+        clearCache();
+        router.replace({
+            path:"/login"
+        })
+        break;
+    default:
+        router.push({path}) 
+    }
 }
 
 </script>
@@ -19,12 +30,12 @@ const goto = () => {
             <template #overlay>
                 <a-menu>
                     <a-menu-item>
-                        <div class="menu-item"><span class="iconfont icon-hanhan-01-01"></span>张三</div>
+                        <div class="menu-item"><span class="iconfont icon-hanhan-01-01"></span>{{username}}</div>
                     </a-menu-item>
-                    <a-menu-item>
+                    <a-menu-item @click="goto('/main/home')">
                         <div class="menu-item"><span class="iconfont icon-shezhi"></span>设置</div>
                     </a-menu-item>
-                    <a-menu-item @click="goto">
+                    <a-menu-item @click="goto('/logout')">
                         <div class="menu-item"><span class="iconfont icon-tubiaozhizuomoban-"></span>登出</div>
                     </a-menu-item>
                 </a-menu>
