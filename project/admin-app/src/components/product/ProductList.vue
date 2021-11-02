@@ -1,20 +1,22 @@
 <script setup>
-import {Gql,ImgUrl} from "@/kits/HttpKit";
-import {reactive,computed} from "vue"
+import {Gql,Http,ImgUrl} from "@/kits/HttpKit";
+import {reactive,computed,watch,inject} from "vue"
 
 const data = reactive({
     loading:true,
     loadingMore:false,
-    dataList:[]
+    dataList:[],
+    searchInput:""
 })
-let start = 0 , count = 8;
+const message = inject("$message")
+let start = 0 , count = 10;
 
 const getData = async (start,count,searchInput) => {
     try {
         const p = {
             query:`
                 {
-                    goods (start:${start},count:${count}) {
+                    goods (start:${start},count:${count},name:"${searchInput}") {
                         id
                         name
                         price
@@ -39,7 +41,7 @@ const getData = async (start,count,searchInput) => {
 }
 
 const initData = async () => {
-    data.dataList = await getData(start,count)
+    data.dataList = await getData(start,count,data.searchInput)
     data.loading = false
 }
 
@@ -55,22 +57,48 @@ const edit = (product) => {
     console.log("edit=> ",product)
 }
 
-const del = (product,index) => {
-    console.log("del=> ",product,index)
+const del = async (product,index) => {
+    try {
+        const res = await Http("/delgood",{id:product.id})
+        if(res.code === 1){
+            data.dataList.splice(index,1)
+            message.success(res.msg)
+        }else{
+            message.error(res.msg)
+        }
+    } catch(e){
+        message.error(res.msg)
+    }
 }
 
 const onLoadMore = async () => {
     data.loadingMore = true;
     start += count
-    const res = await getData(start,count)
+    const res = await getData(start,count,data.searchInput)
     data.dataList = data.dataList.concat(res)
     data.loadingMore = false;
 }
 
+const onSearch = async () => {
+    data.loadingMore = true
+    start = 0;
+    data.dataList = await getData(start,count,data.searchInput)
+    data.loadingMore = false
+}
+
+let timeoutId = 0
+watch(() => data.searchInput,(newval) => {
+    clearTimeout(timeoutId)
+    timeoutId = setTimeout(() => {
+        data.searchInput = newval
+        onSearch()
+    },500)
+})
 
 </script>
 
 <template>
+    <a-input-search v-model:value="data.searchInput" @search="onSearch" placeholder="请输入想要查找商品的名称"></a-input-search>
     <a-list
         :data-source="data.dataList"
         item-layout="horizontal"

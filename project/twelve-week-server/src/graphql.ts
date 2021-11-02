@@ -13,7 +13,7 @@ type Query {
 }
 
 type Good {
-   id: Int,
+   id: String,
    name:String,
    price:Float,
    imgpath:String,

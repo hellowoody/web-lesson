@@ -1,6 +1,6 @@
 <script setup>
 import ProductList from "@/components/product/ProductList.vue";
-import ProductEdit from "@/components/product/ProductDetail.vue";
+import ProductDetail from "@/components/product/ProductDetail.vue";
 </script>
 
 <template>
@@ -9,7 +9,7 @@ import ProductEdit from "@/components/product/ProductDetail.vue";
             <product-list ></product-list>
         </div>
         <div class="edit">
-            <product-edit></product-edit>
+            <product-detail></product-detail>
         </div>
     </div>
 </template>

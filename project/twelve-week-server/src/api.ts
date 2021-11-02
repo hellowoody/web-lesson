@@ -263,3 +263,34 @@ export const CreateOrder = async (req:any,resp:any) => {
     }
     
 }
+
+export const DelGood = async (req:any,resp:any) => {
+    const p = req.body;
+    try {
+        const client = await Connect();
+        const db = client.db("shop_app");
+        const res = await db.collection("goods").deleteOne({
+            id:p.id
+        })
+        // console.log(res)
+        if(res.result.ok === 1 && res.result.n === 1){
+            resp.json({
+                code:1,
+                msg:"删除成功",
+                data:""
+            })
+        }else{
+            resp.json({
+                code:2,
+                msg:"删除失败(未知原因)",
+                data:""
+            })
+        }
+    } catch (error) {
+        resp.json({
+            code:2,
+            msg:"数据库异常",
+            data:""
+        })
+    }
+}

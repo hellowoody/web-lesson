@@ -6,7 +6,10 @@ import Form from "ant-design-vue/lib/form"
 import List from "ant-design-vue/lib/list"
 import Avatar from "ant-design-vue/lib/avatar"
 import Spin from "ant-design-vue/lib/spin"
+import Select from "ant-design-vue/lib/select"
 import message from "ant-design-vue/lib/message";
+import DatePicker from "ant-design-vue/lib/date-picker";
+import Radio from "ant-design-vue/lib/radio";
 import "ant-design-vue/dist/antd.css"
 
 export const useAntD = (app) => {
@@ -19,4 +22,7 @@ export const useAntD = (app) => {
     app.use(List)
     app.use(Avatar)
     app.use(Spin)
+    app.use(Select)
+    app.use(DatePicker)
+    app.use(Radio)
 }
