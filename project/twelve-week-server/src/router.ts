@@ -29,4 +29,6 @@ export const useRouter = (app:Express) => {
     app.post("/api/createorder",api.CreateOrder)
 
     app.post("/api/delgood",api.DelGood)
+
+    app.post("/api/uploadImg",middleware.upload.single("file"),api.uploadImg)
 }

@@ -1,7 +1,9 @@
 <script setup>
 import {Gql,Http,ImgUrl} from "@/kits/HttpKit";
-import {reactive,computed,watch,inject} from "vue"
+import {reactive,computed,watch,inject,toRaw} from "vue"
+import {useStore} from "vuex"
 
+const store = useStore()
 const data = reactive({
     loading:true,
     loadingMore:false,
@@ -54,7 +56,10 @@ const showPrice = computed(() => {
 })
 
 const edit = (product) => {
-    console.log("edit=> ",product)
+    store.commit("setSelectedGood",{
+        ...toRaw(product),
+        type:product.type.id
+    })
 }
 
 const del = async (product,index) => {

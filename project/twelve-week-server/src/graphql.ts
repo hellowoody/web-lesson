@@ -43,6 +43,11 @@ type Order {
     status(id:String):Dict,
     details:[Good]
 }
+
+type Mutation {
+    setGood (id:String,name:String!,price:Float!,count:Int!,publishDate:String!,type:String!,imgpath:String!):Good
+}
+
 `
 
 const resolvers = {
@@ -71,6 +76,9 @@ const resolvers = {
         status:gr.orderstatus,
         goodcount:gr.countGood,
         orderdate:gr.formatOrderdate
+    },
+    Mutation:{
+        setGood:gr.setGood
     }
 }
 

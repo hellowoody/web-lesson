@@ -294,3 +294,32 @@ export const DelGood = async (req:any,resp:any) => {
         })
     }
 }
+
+export const uploadImg = async (req:any,resp:any) => {
+    const {file:{filename}} = req;
+    try {
+        if(filename){
+            resp.json({
+                code:1,
+                msg:"上传成功",
+                data:{
+                    filename
+                }
+            })
+        }else{
+            resp.json({
+                code:2,
+                msg:"上传失败(未知原因)",
+                data:""
+            })
+        }
+    } catch (error) {
+        resp.json({
+            code:3,
+            msg:"上传失败",
+            data:{
+                error
+            }
+        })
+    }
+}

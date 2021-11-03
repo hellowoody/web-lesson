@@ -1,5 +1,6 @@
 import {Connect} from "./db/Mongo"
 import moment from "moment";
+import {MD5} from "crypto-js";
 
 export const Hello = (parent:any,args:any) => {
     return "hello graphql"
@@ -193,5 +194,48 @@ export const countGood = async (parent:any,args:any) => {
 
 export const formatOrderdate = async (parent:any,args:any) => {
     return moment(parent.sysdate).format("yyyy-MM-DD HH:mm:ss");
+}
+
+export const setGood = async (parent:any,args:any) => {
+    try {
+        // 1.连接mongodb
+        const client = await Connect();
+        try {
+            // 2.获取前台传的参数
+            // console.log(args)
+            let date = new Date();
+            let id = args.id ? args.id : MD5(date.getUTCMilliseconds().toString()).toString()
+            const record:any = {
+                id,
+                name:args.name,
+                price:args.price,
+                count:args.count,
+                type:args.type,
+                imgpath:args.imgpath,
+                sysdate:args.publishDate
+            }
+            // 3.切换数据库
+            const db = client.db("shop_app")
+            // 4.执行增删改的操作
+            const result = await db.collection("goods").updateOne(
+                {id:id},
+                {$set:record},
+                {upsert:true}
+            )
+            const res:any = {}
+            if(result.result.ok === 1 && result.result.n === 1){
+                res.id = id
+            }else{
+                res.id = ""
+            }
+            return res
+        } catch (error) {
+            return error
+        } finally {
+            client.close();
+        }
+    } catch (error) {
+        return error
+    }
 }
 

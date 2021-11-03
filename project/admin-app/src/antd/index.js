@@ -10,6 +10,7 @@ import Select from "ant-design-vue/lib/select"
 import message from "ant-design-vue/lib/message";
 import DatePicker from "ant-design-vue/lib/date-picker";
 import Radio from "ant-design-vue/lib/radio";
+import Modal from "ant-design-vue/lib/modal";
 import "ant-design-vue/dist/antd.css"
 
 export const useAntD = (app) => {
@@ -25,4 +26,5 @@ export const useAntD = (app) => {
     app.use(Select)
     app.use(DatePicker)
     app.use(Radio)
+    app.use(Modal)
 }
