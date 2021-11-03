@@ -157,6 +157,7 @@ const go = path => {
         <div style="margin-top:30px;padding:0px 5px;box-sizing: border-box;">
             <div class="goodtitle">{{product.name}} - {{product.gooddesc}}</div>
             <div class="goodprice">¥ {{product.price}}</div>
+            <div class="goodprice" @click="go('/vrroom')">进店查看</div>
             <div class="othertitle">相近商品</div>
             <div class="otherlist">
                 <product-card class="otherlist-item" v-for="item in products" :key="item.id" :product="item"></product-card>
