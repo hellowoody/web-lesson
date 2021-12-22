@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>登陆页面</title>
+        <link rel="stylesheet" href="./assets/css/login.css" />
+        <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css"/>
+        
+        <script src="./assets/iconfont/iconfont.js"></script>
+        <!-- <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.min.js" ></script> -->
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3 d-none d-sm-none d-md-none d-lg-block wrapper-left"></div>
+                <div class="col wrapper-right">
+                    <div class="top-bar">
+                        <div class="top-bar-left">
+                            <img width="40" height="40" src="./assets/imgs/login/logo-mi2.png">
+                            <span>小米账号</span>
+                        </div>
+                        <div class="top-bar-right">
+                            <!-- .top-bar-right div  -->
+                            <!-- .top-bar-right div div:nth-child(1) -->
+                            <!-- .top-bar-right > div > div:nth-child(1) -->
+                            <span>用户协议</span>
+                            <span>隐私协议</span>
+                            <span>帮助中心</span>
+                            <span>｜</span>
+                            <div style="position: relative;">
+                                <div id="i18n-show">中文(简体)</div>
+                                <div class="i18n-hidden">
+                                    <div>中文(繁体)</div>
+                                    <div>English</div>
+                                </div>
+                            </div>
+                            <!-- <ul>
+                                <li>用户协议</li>
+                                <li>隐私协议</li>
+                                <li>帮助中心</li>
+                                <li>｜</li>
+                                <li>中文(简体)</li>
+                            </ul> -->
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="my-card">
+                            <div class="card-title">
+                                登陆
+                            </div>
+                            <form action="http://127.0.0.1:3000/login" method="post" name="loginForm">
+                                <input class="form_input" placeholder="邮箱/手机号/小米ID"/>
+                                <input class="form_input" type="password" placeholder="密码"/>
+                                <div class="ckeckPermission">
+                                    <input type="checkbox" id="my_checkbox" name="ckeckPermission" /> 
+                                    <label for="my_checkbox"></label>
+                                    <span>已阅读并同意小米帐号<a href="#">用户协议</a>和<a href="#">隐私政策</a></span>
+                                </div>
+                                <div class="btn">
+                                    登陆
+                                </div>
+                                <div style="display:flex;justify-content:space-between;color:#ff5c00;margin-top: 10px;font-size:17px;">
+                                    <span>忘记密码?</span>
+                                    <span>手机号登陆</span>
+                                </div>
+                                <div class="others">
+                                    <div class="others-title">
+                                        其他方式登录
+                                    </div>
+                                    <div class="others-items">
+                                        <svg class="icon" aria-hidden="true">
+                                            <use xlink:href="#icon-zhifubao"></use>
+                                        </svg>
+                                        <svg class="icon" aria-hidden="true">
+                                            <use xlink:href="#icon-weixin"></use>
+                                        </svg>
+                                        <svg class="icon" aria-hidden="true">
+                                            <use xlink:href="#icon-QQ"></use>
+                                        </svg>
+                                        <svg class="icon" aria-hidden="true">
+                                            <use xlink:href="#icon-shejiaotubiao-42"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        小米公司版权所有-京ICP备10046444-京公网安备11010802020134号-京ICP证110507号
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+<script>
+$(function(){
+    console.log("jq is ready")
+    console.log($(".top-bar-right div ")) // size 5
+    console.log("=================")
+    console.log($(".top-bar-right div div:nth-child(1)")) // size  error
+    console.log("=================")
+    console.log($(".top-bar-right > div > div:nth-child(1)")) // size 1
+    
+    // $("#i18n-show").hover(() => {
+    $(".top-bar-right > div > div:nth-child(1)").hover(() => {
+        $(".i18n-hidden").stop(true).slideDown(300)
+    },() => {
+        $(".i18n-hidden").hover(() => {
+            $(".i18n-hidden").stop(true).slideDown(300)
+        },() => {
+            $(".i18n-hidden").stop(true).slideUp()
+        })
+
+        
+        $(".i18n-hidden").stop(true).slideUp()
+    })
+})
+</script>

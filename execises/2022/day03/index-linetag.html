@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>行元素</title>
+        <style>
+            span:nth-child(1) {
+                width: 2px;
+                /* 宽高设置无效 */
+            }
+            span:nth-child(2) {
+                margin: 100px 100px;
+            }
+            span:nth-child(3) {
+                padding:24px;
+                background-color: #afafaf;
+            }
+        </style>
+    </head>
+    <body>
+        <span>span1 fdsafdsafdsafdsafdasfdsa</span>
+        <span>span2 
+            <span>内部span
+                <a href="#">内部a</a>
+            </span>
+        </span>
+        <span>span3</span>
+        <a href="#">a1
+            <div>div2</div>
+        </a>
+        <a href="#">a2</a>
+        <a href="#">a3</a>
+    </body>
+</html>

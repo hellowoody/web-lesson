@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .root {
+                display: flex;
+                flex-direction: column;
+                background-color: #afafaf;
+                height:300px;
+                width: 300px;
+                justify-content: space-between;
+            }
+
+            .item {
+                width: 100px;
+                height: 100px;
+                background-color: red;
+            }
+
+            .item:nth-child(2) {
+                align-self: flex-end;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="root">
+            <div class="item"></div>
+            <div class="item"></div>
+        </div>
+    </body>
+</html>

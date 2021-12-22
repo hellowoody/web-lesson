@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            div {
+                width:200px;
+                height: 200px;
+                margin:8px;
+            }
+
+            div:nth-child(2) {
+                color:blue;   /* weight 0 */
+            }
+
+            div span {
+                color:red;   /* weight 1 */
+            }
+
+            .myclass {
+                color:pink    /* weight 10 */
+            }
+
+            #myId {
+                color:orange !important; /* weight 100  无穷大*/
+            }
+        </style>
+    </head>
+    <body>
+        <div>第一个</div>
+        <div>
+            fdasfdsa
+            <!-- 行内的权重  1000 -->
+            <span id="myId" class="myclass" style="color:grey;">第二个</span>
+        </div>
+        <div>第三个</div>
+    </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>css03</title>
+        <meta charset="utf-8" />
+        <style>
+            .nav a {
+                color:green;
+            }
+
+            .nav > a {
+                color:red;
+            }
+
+            a:link {
+                color:#363636;
+                text-decoration: none;
+            }
+
+            a:visited {
+                color:#afafaf;
+            }
+
+            a:hover {
+                color:#383838;
+                box-shadow: 0px 1px 8px rgb(0 0 0 / 0.1);
+            }
+
+            a:active {
+                color:red;
+            }
+
+            #input01:focus {
+                border:1px solid red;
+                outline: none;
+                background-color: rgb(255 0 0 / 0.3);
+            }
+
+            a:nth-of-type(1) {
+                font-size:12px;
+                font-weight:800;
+                font-style: italic;
+            }
+
+            a:nth-of-type(2) {
+                font:italic bolder 24px 'Microsoft Yahei';
+            }
+        </style>
+    </head>
+    <body>
+        <input id="input01" placeholder="请输入xxx" />
+        <hr>
+        <a href="#">超链接</a>
+        <a href="#a01">超链接01</a>
+        <a href="#a02">超链接02</a>
+        <a href="#a03">超链接03</a>
+        <a href="#a04">超链接04</a>
+        <div class="nav">
+            <a href="#">son</a>
+            <p>
+                <a href="#">grandson</a>
+            </p>
+        </div>
+    </body>
+</html>

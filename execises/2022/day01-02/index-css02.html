@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>css02</title>
+        <meta charset="utf-8" />
+        <style>
+
+            * {
+                margin:0px;
+                padding:0px;
+            }
+
+            body {
+                height:100px;
+            }
+
+            div {
+                color:red;
+            }
+
+            /* div:nth-of-type(2){
+                color:pink;
+            } */
+
+
+            /* div:first-child {
+                color:green;   
+            }
+             */
+
+             .d01 {
+                 color:blue;
+             }
+
+            ul li {
+                color:red;
+            }
+
+            ul a {
+                color:grey;
+            }
+
+            .cname1 {
+                background-color: #afafaf;
+            }
+
+            .cname2 {
+                font-size:50px;
+            }
+
+            div {
+                width:100px;
+                height:100px;
+                background-color: #162b22;
+                margin:5px;
+            }
+
+            div:nth-of-type(2) {
+                background-color: blue;
+            }
+
+            div:nth-child(2n+1) {
+                background-color: red;
+            }
+
+            /* div:nth-of-type(1) , div:nth-of-type(3) {
+                background-color: red;
+            } */
+
+        </style>
+    </head>
+    <body>
+        <div></div>
+        <div></div>
+        <div></div>
+        <hr />
+        <div class="d01">One</div>
+        <div class="cname1 cname2">Two</div>
+        <p>这是段落</p>
+        <ul>
+            <li>a</li>
+            <li>
+                <span>
+                    <a>b</a>
+                </span>
+            </li>
+        </ul>
+        <ol>
+            <li>item-1</li>
+            <li>item-2</li>
+        </ol>
+    </body>
+</html>

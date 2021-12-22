@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link></link>
+        <style></style>
+        <script src="./index.js"></script>
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- <script src="./jquery.min.js"></script> -->
+        <script>
+            var title = document.getElementById("title")
+            console.log(title)
+        </script>
+    </head>
+    <body>
+        <h1 id="title">hello</h1>
+        <div class="box">i am box</div>
+        <ul>
+            <li>a</li>
+            <li>b</li>
+            <li>c</li>
+        </ul>
+    </body>
+</html>
+<script>
+    /*
+        使用的是js 原生操作dom元素的方式
+    */ 
+    // var title = document.getElementById("title")
+    // console.log(title.innerHTML)
+    // title.innerHTML = title.innerHTML + ",world."
+    // window.alert("hello")
+    // document.write("hello document")
+    // console.log("hello js")
+    // class 选择器
+    // var boxs = document.getElementsByClassName("box")
+    // console.log(boxs[0])
+    // var tags = document.getElementsByTagName("ul")
+    // console.log(tags[0])
+</script>
+
+<script>
+/*
+    使用的是jquery操作dom元素的方式
+*/ 
+/*
+jQuery or $
+*/
+$(function(){
+    // console.log("hello jq")
+})
+
+
+console.log($("#title").html())
+console.log($(".box").html())
+console.log($("ul li")[0].innerHTML)
+console.log($("ul li")[1].innerHTML)
+console.log($("ul li")[2].innerHTML)
+</script>
+

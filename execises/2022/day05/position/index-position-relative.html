@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>relative</title>
+        <style>
+            div {
+                display: inline-block;
+                width:150px;
+                height:150px;
+                background-color: pink;
+            }
+            /* 当position是默认值static时，top，right，bottom，left对其不管用  */
+            div:nth-child(2) {
+                background-color: red;
+                position: relative;
+                top:100px;
+                left:50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div></div>
+        <div></div>
+        <div></div>
+    </body>
+</html>

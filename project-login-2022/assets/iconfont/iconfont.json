@@ -1,0 +1,51 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1920211",
+      "name": "QQ方",
+      "font_class": "QQfang",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "6360070",
+      "name": "支付平台-支付宝",
+      "font_class": "zhifupingtai-zhifubao",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "8574987",
+      "name": "支付宝",
+      "font_class": "zhifubao",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "15559706",
+      "name": "微博",
+      "font_class": "shejiaotubiao-42",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "15933094",
+      "name": "微信",
+      "font_class": "weixin",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "25672343",
+      "name": "QQ",
+      "font_class": "QQ",
+      "unicode": "fed8",
+      "unicode_decimal": 65240
+    }
+  ]
+}

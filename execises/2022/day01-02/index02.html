@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport"  content="width=device-width,initial-scale=1" />
+        <title>第二天练习</title>
+    </head>
+    <body>
+        <h1>列表</h1>
+        <!-- ul li 块级元素 -->
+        <ul>
+            <li>篮球</li>
+            <li>足球</li>
+            <li>排球</li>
+        </ul>
+
+        <ol>
+            <li>金牌</li>
+            <li>银牌</li>
+            <li>铜牌</li>
+        </ol>
+
+        <dl>
+            <dt>联系方式</dt>
+            <dd>微信</dd>
+            <dd>qq</dd>
+            <dd>手机</dd>
+        </dl>
+        <h1>form表单</h1>
+        <form action="#" method="post" name="form01">
+            <input />
+            <input type="text"/>
+            <input type="button" value="按钮1"/> 
+            <button>按钮2</button>
+            <br>
+            <input type="checkbox" name="cb" />音乐
+            <input type="checkbox" name="cb" />电影
+            <br>
+            <input type="radio" name="rd" value="male"/> 男
+            <input type="radio" name="rd" value="female"/> 女
+            <br/>
+            <input type="file" accept="image/jpeg,image/png" />
+            <br/>
+            <input id="userid" type="hidden" value="zhangsan" />
+            <input id="role" type="hidden" value="admin" />
+            <br/>
+            <!-- <input type="image" src="./jd.jpeg"  onclick="test()"/> -->
+            <br />
+            <input type="password" placeholder="请输入6位密码">
+            <br />
+            <input type="reset" value="重置" />
+            <input type="submit" value="提交" />
+        </form> 
+        <hr/>
+        <form name="form02">
+            <label for="usernamech">用户名:</label>
+            <input id="usernamech" placeholder="请输入中文字符"></input>
+        </form>
+        <h1>下拉选择</h1>
+        <select>
+            <option>请选择</option>
+            <option >中文</option>
+            <option selected>英文</option>
+            <option>意大利文</option>
+        </select>
+        <h1>文本域</h1>
+        <textarea rows="20" cols="80"></textarea>
+    </body>
+</html>
+<script>
+    function test(){
+        alert(111)
+    }
+</script>

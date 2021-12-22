@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jq 向下展开和向上折叠</title>
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <style>
+            #b {
+                width: 100px;
+                height: 100px;
+                box-shadow: 0px 1px 8px rgb(0 0 0 / 0.2);
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="a">中文(简体)</div>
+        <div id="b">
+            中文繁体
+            <br>
+            English
+        </div>
+    </body>
+</html>
+<script>
+    /*
+        我想通过js的语法动态改变display:none
+    */
+    $("#a").hover(function(){
+        console.log("鼠标移上来了")
+        /*
+            获取b ，让b slidedown()
+        */ 
+        $("#b").stop(true).slideDown("fast")
+    },function(){
+        console.log("鼠标移走了")
+        /*
+            获取b ，让b slideup()
+        */
+       $("#b").stop(true).slideUp(100)
+    })
+    /*
+        函数签名：告诉用户 这个函数需要传哪些参数，以及返回值是什么
+    */ 
+</script>
+
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>sticky</title>
+        <style>
+            .parent {
+                width:100%;
+                height: 300px;
+                background-color: orchid;
+            }
+
+            .top-bar {
+                position: sticky;
+                top:0px;
+                background-color: powderblue;
+                width:100%;
+                height:100px;
+            }
+        </style>
+    </head>
+    <body style="height:150vh;">
+        <div class="parent">
+            <!-- 
+                sticky:
+
+                relative和fixed的结合，一些时间时relative定位(定位基于自身默认位置)
+                另一些时候自动变成fixed定位(定位基于视觉窗口)
+
+             -->
+            <div class="top-bar"></div>
+        </div>
+    </body>
+</html>
