@@ -93,3 +93,99 @@
  - 结构图
    
    ![image](./assets//imgs/nodeskelton.png)
+
+
+## 一个基础的HTTP服务器
+
+ 让我们先从服务器模块开始。在你的项目的根目录下创建一个叫server.js的文件，并写入以下代码：
+
+ ```
+    var http = require("http");
+
+    http.createServer(function(req, resp) {
+        resp.writeHead(200, {"Content-Type": "text/plain"});
+        resp.write("Hello World");
+        resp.end();
+    }).listen(3000,() => console.log("server starting ... "));
+ ```
+ 
+ 用这样的代码也可以达到同样的目的：
+
+ ```
+    var http = require("http");
+
+    function onRequest(req, resp) {
+        resp.writeHead(200, {"Content-Type": "text/plain"});
+        resp.write("Hello World");
+        resp.end();
+    }
+    http.createServer(onRequest).listen(3000,() => console.log("server starting ... "));
+ ```
+
+ 你刚刚完成了一个可以工作的HTTP服务器。为了证明这一点，我们来运行并且测试这段代码。首先，用Node.js执行你的脚本：
+
+ ```
+    node server.js
+ ```
+
+ 接下来，打开浏览器访问http://localhost:3000，你会看到一个写着“Hello World”的网页。
+
+ 接下来我们简单分析一下我们服务器代码中剩下的部分，也就是我们的回调函数 onRequest() 的主体部分。
+
+ 当回调启动，我们的 onRequest() 函数被触发的时候，有两个参数被传入： request 和 response 。
+
+ - response
+
+     它们是对象，你可以使用它们的方法来处理HTTP请求的细节，并且响应请求（比如向发出请求的浏览器发回一些东西）。
+
+     所以我们的代码就是：当收到请求时，使用 response.writeHead() 函数发送一个HTTP状态200和HTTP头的内容类型（content-type），使用 response.write() 函数在HTTP相应主体中发送文本“Hello World"。
+
+     最后，我们调用 response.end() 完成响应。
+
+ - request
+
+     我们从request获取请求的URL和其他需要的GET及POST参数。
+
+     我们需要的所有数据都会包含在request对象中，该对象作为onRequest()回调函数的第一个参数传递。
+     
+     但是为了解析这些数据，我们需要额外的Node.JS模块，它们分别是url和querystring模块。
+
+
+     ```  
+     
+          http://localhost:3000/a?b=1&c=2
+
+          const urlObj = new URL(`http://localhost:3000${req.url}`);
+          urlObj.search             // ?b=1&c=2
+          urlObj.pathname           // /a
+          urlObj.searchParams       // b=1&c=2
+
+     ```
+ 
+ - 增加路由校验和返回一个html页面
+
+     ```
+
+        var http = require("http");
+        var { URL } = require("url")
+
+        // http://localhost:3000/a?b=1&c=2
+
+        http.createServer(function(req, resp) {
+
+            if(req.url === "/favicon.ico"){
+                resp.end()
+                return
+            }
+
+            const urlObj = new URL(`http://localhost:3000${req.url}`);
+            console.log("searchParams b " + urlObj.searchParams.get("b") );
+            console.log("searchParams c " + urlObj.searchParams.get("c") );
+            resp.writeHead(200, {"Content-Type": "text/html;charset=utf-8"});
+            resp.write("Hello World");
+            resp.write("<br>")
+            resp.write("<h1>你好</h1>")
+            resp.end();
+        }).listen(3000,() => console.log("server starting ... "));
+
+     ```
