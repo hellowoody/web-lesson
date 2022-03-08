@@ -94,6 +94,166 @@
    
    ![image](./assets//imgs/nodeskelton.png)
 
+## 模块系统
+
+ - revealing module模块（闭包-立即执行函数）
+
+    典型的例子如Jquery
+
+    ```
+    const myModule = (function(){
+        const _foo = () => {}
+        const _bar = []
+
+        const exported = {
+            foo:_foo,
+            bar:_bar
+        }
+
+        return exported
+    })()
+
+    console.log(myModule)
+    console.log(myModule._bar,myModule.bar)
+    ```
+
+ - CommonJS
+
+    CommonJs是首个内置于Node.js平台的模块系统。
+
+    - require 导入
+
+        自己实现require
+
+        ```
+        function loadModule(filename,module,require){
+            const wrappedSrc = 
+            `
+            (function(module,exports,require){
+                ${fs.readFileSync(filename,"utf8")}
+            })(module,module.exports.require)
+            `
+            eval(wrappedSrc)
+        }
+
+        function require(moduleName){
+            console.log("require invoked for module:${moduleName}")
+            const id = require.resolve(moduleName)
+            if(require.cache[id]){
+                return require.cache[id].exports
+            }
+            //模块的元数据
+            const module = {
+                exports:{},
+                id
+            }
+            //更新缓存
+            require.cache[id] = module
+
+            //载入模块
+            loadModule(id,module,require)
+            //返回导出的变量
+            return module.exports
+        }
+
+        require.cache = {}
+
+        require.resolve = (moduleName) => {
+            /*
+                根据moduleName解析出完整的模块id
+                这块是require解决“依赖地狱”的核心
+            */
+        }
+
+        ```
+
+    - exports 与 module.exports 导出
+
+        许多刚接触Node.js的开发者，经常搞不清exports 和 module.exports之间的区别。
+
+        ```
+        //正确写法
+        exports.hello = () => {
+            console.log("hello")
+        }
+
+        //错误写法
+        exports =  () => {
+            console.log("hello")
+        }
+
+        ```
+
+        ```
+        module.exports = () => {
+            console.log("hello")
+        }
+        ```
+     
+    
+    - CommonJS如何处理“依赖地狱”情况
+
+        ![image](./assets/imgs/commonjs-dependencyhell01.png)
+
+        ```
+        //a.js
+
+        exports.loaded = false
+        const b = require("./b")
+        module.exports = {
+            b,
+            loaded:true
+        }
+
+        ```
+
+        ```
+        //b.js
+        exports.loaded = false
+        const a = requre("./a")
+        module.exports = {
+            a,
+            loaded:true
+        }
+        ```
+
+        ```
+        //问题:下面打印的结果是什么
+
+        const a = require("/a")
+        const b = require("/b")
+        console.log("a->",JSON.stringify(a,null,2))
+        console.log("b->",JSON.stringify(b,null,2))  
+        ```
+
+        ```
+        //打印结果
+        a-> {
+            loaded:true,
+            b:{
+                loaded:true,
+                a:{
+                    loaded:false
+                }
+            }
+        }
+
+        b-> {
+            loaded:true,
+            a:{
+                loaded:false
+            }
+        }
+        ```
+
+        图解
+
+        ![image](./assets/imgs/commonjs-dependencyhell02.png)
+
+
+        总结：虽然CommonJS可以支持“依赖地狱”的情况，但是运行的结果取决于加载的顺序，这对于大型项目有一定的影响。
+
+ - ESM
 
 ## 一个基础的HTTP服务器
 
