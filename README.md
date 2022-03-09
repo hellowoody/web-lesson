@@ -94,6 +94,16 @@
    
    ![image](./assets//imgs/nodeskelton.png)
 
+## 开始使用(创建项目)
+
+ > 打开终端
+
+ > 通过cd命令进入你要创建项目的目录
+
+ > npm init 或者 npm init -y
+
+ > 执行上述命令会自动生成package.json文件
+
 ## 模块系统
 
  - revealing module模块（闭包-立即执行函数）
@@ -254,6 +264,84 @@
         总结：虽然CommonJS可以支持“依赖地狱”的情况，但是运行的结果取决于加载的顺序，这对于大型项目有一定的影响。
 
  - ESM
+
+    ECMAScript模块也叫作ES模块，或简称为ESM。ESM的语法相当简洁，它也支持循环依赖，而且能够异步加载模块（CommonJS的加载是同步的）。
+    ESM与CommonJS的一项重要的区别，在于ES模块是静态的（static），也就是说，引入这种模块的那些语句，必须写在最顶层，而且要置于控制语句之外。
+    另外，受引用的模块只能使用常量字符串，而不能依赖那种需要在运行期动态求值的表达式。
+
+    比如，我们不能用下面这种方式来引入ES模块
+
+    ```
+    if(condition){
+        import module1 from 'module1'
+    }else{
+        import module2 from 'module2'
+    }
+    ```
+
+    与ES模块相比，之前讲的CommonJS模块，则可以根据条件来引入
+
+    ```
+    let module = null
+    if(condition){
+        module = require("module1")
+    }else{
+        module = require("module2")
+    }
+    ```
+
+    这种看似过于严格的ESM规则，其实可以实现CommonJS无法实现的功能，比如优化代码的tree shaking。
+
+    - 在Node.js中如何使用
+
+        Node.js平台中默认会将.js后缀结尾的文件，当成CommonJS语法所写的文件。因此，如果你直接在.js文件中使用ESM语法是会报错的。
+        有两种办法，让Node.js解释器把模块当成ESM，而不是CommonJS
+
+        > 把模块文件的后缀名改成.mjs
+
+        > 给最近的上级package.json文件添加名为“type”的字段，并将字段值设为“module”
+
+    - 导出命令 export
+
+        ```
+        // a.js
+        export const msg = "hello node";
+
+        export const log = str => console.log(str);
+        ```
+
+    - 引入命令 import
+
+        ```
+        // b.js
+        import {msg,log} from "./a.js";
+
+        import {msg,log as myLog} from "./a.js";
+
+        import * as A from "./a.js";
+        ```
+
+    - 默认导出  export default
+
+        和CommonJS的module.exports类似，ESM也有只公布一个对象的特性，叫做默认导出 export default。
+        一个文件中可以有多个export，但只能有一个default export。
+
+        ```
+        // a.js
+        export default {
+            a:1,
+            b:2
+        }
+        ```
+
+        ```
+        // b.js
+        import aModule from "./a.js"
+
+        console.log(aModule.a)
+        console.log(aModule.b)
+        ```
+  
 
 ## 一个基础的HTTP服务器
 
