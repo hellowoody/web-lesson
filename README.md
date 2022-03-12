@@ -343,6 +343,239 @@
         ```
   
 
+    - 模块加载过程
+
+        这个过程可以细分成三个阶段
+
+        - 第一阶段构造[Construction，也叫做刨析（Parsing）]
+
+            寻找所有的引入语句，并递归地从相关文件里加载每个模块内容。
+
+        - 第二阶段实例化（Instantiation）
+
+            针对每个导出的实体，在内存中保留一个带名称的引用，但暂且不给他赋值。另外，还要针对所有的import语句及export语句创建引用，以记录他们之间的依赖关系。这一阶段不执行任何JavaScript代码。
+
+        - 第三阶段执行（Evaluation）
+
+            到了这一阶段，Node.JS终于可以开始执行代码了，这样能够让早前已经实例化的那些实体，获得实际的取值。在这一阶段，Node.JS可以从入口点开始，顺畅地往下执行，因为其中有待解析的那些地方，已经全部解析清楚了。
+
+        简单的说，第一阶段的任务是找到依赖图之中所有的点，第二阶段的任务是在有依赖关系的点之间创建路径，第三阶段则是按照正确的顺序遍历这些路径。
+
+    - 解析循环依赖
+
+        ![image](./assets/imgs/commonjs-dependencyhell01.png)
+
+        ```
+        //a.js
+        import * as bModule from "./b.js";
+        export let loaded = false;
+        export const b = bModule
+        loaded = true
+        ```
+
+        ```
+        //b.js
+        import * as aModule from "./a.js";
+        export let loaded = false;
+        export const a = aModule;
+        loaded = true;
+        ```
+
+        ```
+        //main.js
+        import * as a from "./a.js";
+        import * as b from "./b.js";
+        console.log("a->",a)
+        console.log("b->",b)
+        ```
+
+        ```
+        //输出
+
+        a -> <ref *1>[Module]{
+            b:[Module]{a:[Circular*1],loaded:true},
+            loaded:true
+        }
+
+        b -> <ref *1>[Module]{
+            a:[Module]{b:[Circular*1],loaded:true},
+            loaded:true
+        }
+        ```
+
+        ![image](./assets/imgs/esm-dependencyhell01.png)
+
+        ![image](./assets/imgs/esm-dependencyhell02.png)
+
+        ![image](./assets/imgs/esm-dependencyhell03.png)
+
+## 回调和事件
+
+ - 回调Callback
+
+    - 闭包（closure）
+
+        通过闭包，我们可以引用某个函数在刚刚创建的时候所处的那套环境。这意味着，我们可以把程序请求执行异步操作时所处的情境（context，也叫做上下文）保留起来，无论系统以后在什么时间与什么场合触发回调，我们都能得知程序当初发起这项异步操作时的情况。
+
+    - continuation-passing风格（CPS）
+
+        CPS是一个通用的理念，未必总是针对异步操作而言。凡是不把操作结果直接传给调用方，而是将其播报给另一个函数（即回调函数）的做法，无论同步还是异步，都可以叫做CPS式做法。
+
+        - 同步的CPS
+
+            ```
+            function add(a,b){
+                return a+b
+            }
+            ```
+
+            ```
+            function addCps(a,b,callback){
+                callback(a+b)
+            }
+            ```
+
+            ```
+            console.log("start")
+            addCps(1,2,result => console.log(`result:${result}`))
+            console.log("end")
+            ```
+
+            ```
+            start
+            result:3
+            end
+            ```
+        - 异步的CPS
+
+            ```
+            function addAsync(a,b,callback){
+                setTimeout(() => callback(a+b),100)
+            }
+            ```
+
+            ```
+            console.log("start")
+            addAsync(1,2,result => console.log(`result:${result}`))
+            console.log("end")
+            ```
+
+            ```
+            start
+            end
+            result:3
+            ```
+        - 并非所有的回调都是CPS
+
+            有些函数虽然可以通过参数接受回调，但这并不意味这函数一定是异步函数，也不意味着它必定是采用CPS编写的。比如，Array对象的map（）方法就是个例子：
+
+            ```
+            const result = [1,5,7].map(item => item -1)
+            console.log(result) // [0,4,6]
+            ```
+ 
+
+ - Observer(观察者)模式
+
+    Observer模式定义了一个对象（这叫做主题，subject），它会在状态改变的时候通知一组观察者（或者说监听者）。
+    Observer模式与Callback模式之间的主要区别在于，它可以通知多个监听器（也就是观察者），而采用CPS（接续传递风格）所实现的普通Callback模式，通常只会把执行结果传给一个监听器，也就是用户在提交执行请求时传入的那个回调。
+
+    - EventEmitter
+
+        ![image](./assets/imgs/eventemitter.png)
+
+        ```
+        import {EventEmitter} from "events";
+        const emitter = new EventEmitter();
+        ```
+
+        > on(event,listener):这个方法可以为某种事件注册一个新的监听器。（事件用字符串表示，监听器用函数表示。）
+
+        > once(event,listener):这个方法也能注册监听器，但是触发完一次事件后，这个监听器就会遭到移除。
+
+        > emit(event,args...):这个方法用来触发新事件，并且能够传一些参数给监听器。
+
+        > removeListener(event,listener):这个方法用来移除某种事件的监听器。
+    
+    - 创建并使用EventEmitter
+
+        ```
+        import {EventEmitter} from "events"
+        import {readFile} from "fs";
+
+        function findRegex(files,regex){
+            const emitter = new EventEmitter();
+            for(const file of files){
+                readFile(file,"utf8",(err,content) => {
+                    if(err){
+                        return emitter.emit("error",err)
+                    }
+                    emitter.emit("fileread",file)
+                    const match = content.match(regex)
+                    if(match){
+                        match.forEach(item => emitter.emit("found",file,item))
+                    }
+                })
+            }
+            return emitter
+        }
+        ```
+
+        ```
+        findRegex(["fileA.txt","fileB.json"],/hello\w+/g)
+            .on("fileread",file => console.log(`${file} was read`))
+            .on("found",(file,match) => console.log(`matched ${match} in ${file}`))
+            .on("error",err => console.log(`error emitted ${err.message}`))
+        ```
+
+    - 让任何一个对象都能为监听器所观察
+
+        ```
+        import {EventEmitter} from "events";
+        import {readFile} from "fs";
+
+        class FindRegex extends EventEmitter {
+            constructor(regex){
+                super()
+                this.regex = regex;
+                this.files = []
+            }
+
+            addFile(file){
+                this.files.push(file);
+                return this
+            }
+
+            find(){
+                for(const file of this.files){
+                    readFile(file,"utf8",(err,content) => {
+                        if(err){
+                            return this..emit("error",err)
+                        }
+                        this.emit("fileread",file)
+                        const match = content.match(this.regex)
+                        if(match){
+                            match.forEach(item => this.emit("found",file,item))
+                        }
+                    })
+                }
+                return emitter
+            }
+        }
+        ```
+
+        ```
+        const findRegexInstance = new FindRegex(/a\w+/)
+
+        findRegexInstance
+            .addFile("fileA.txt")
+            .addFile("fileB.json")
+            .find()
+            .on("fileread",file => console.log("fileread: ",file))
+            .on("found",(file,content) => console.log("found: ",file,content))
+            .on("error",err => console.log("err: ",err))
+        ```
+
 ## 一个基础的HTTP服务器
 
  让我们先从服务器模块开始。在你的项目的根目录下创建一个叫server.js的文件，并写入以下代码：
