@@ -409,6 +409,51 @@
 
         ![image](./assets/imgs/esm-dependencyhell03.png)
 
+## 正则表达式Regex
+
+ - 声明
+
+    > let expression = /pattern/flags;
+
+    > let expression = new RegExp(pattern,flags)
+    ```
+    let pattern1 = /at/g
+    console.log(pattern1)
+    let pattern2 = new RegExg("at","g")
+    console.log(pattern2)
+    ```
+- 使用
+
+    - exec
+
+        调用者：正则表达式
+
+        ```
+        let pattern = /o/g;
+        console.log(pattern.exec("hello world"));
+        console.log(pattern.exec("hello world"));
+        ```
+
+    - test
+
+        调用者：正则表达式
+        返回布尔值：true匹配成功，false匹配失败
+
+        ```
+        let pattern = /o/g
+        console.log(pattern.test("hello world"))
+        console.log(pattern.test("hello world"))
+        ```
+
+    - match
+
+        调用者：字符串
+
+        ```
+        let pattern = /o/g
+        console.log("hello world".match(pattern))
+        ```
+
 ## 回调和事件
 
  - 回调Callback
