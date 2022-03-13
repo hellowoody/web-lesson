@@ -454,6 +454,171 @@
         console.log("hello world".match(pattern))
         ```
 
+## 核心模块
+
+ - 全局变量
+
+    JavaScript 中有一个特殊的对象，称为全局对象（Global Object），它及其所有属性都可以在程序的任何地方访问，即全局变量。在浏览器 JavaScript 中，通常 window 是全局对象，而 Node.js 中的全局对象是 global，所有全局变量（除了 global 本身以外）都是 global对象的属性。我们在 Node.js 中能够直接访问到对象通常都是 global 的属性，如 console、process 等。
+
+    - process
+
+        process 是一个全局变量，即 global 对象的属性。它用于描述当前 Node.js 进程状态的对象，提供了一个与操作系统的简单接口。通常在你写本地命令行程序的时候，少不了要和它打交道。下面将会介绍 process 对象的一些最常用的成员方法。
+
+        - process.argv是命令行参数数组，第一个元素是 node，第二个元素是脚本文件名，从第三个元素开始每个元素是一个运行参数。
+
+            ```
+            
+            node argv.js 1991 name=byvoid --v "Carbo Kuo" 
+
+            console.log(process.argv); 
+
+            [ 'node', 
+            '/home/byvoid/argv.js', 
+            '1991', 
+            'name=byvoid', 
+            '--v', 
+            'Carbo Kuo' ]
+            ```
+        - process.stdout是标准输出流，通常我们使用的 console.log() 向标准输出打印字符，而 process.stdout.write() 函数提供了更底层的接口。
+
+            ```
+            process.stdout.write("1000\n")
+            ```
+
+        - process.stdin是标准输入流
+
+            初始时它是被暂停的，要想从标准输入读取数据，你必须恢复流，并手动编写流的事件响应函数。
+
+            ```
+            process.stdin.resume(); 
+            process.stdin.on('data', function(data) { 
+                process.stdout.write('read from console: ' + data.toString()); 
+            });
+            ```
+    
+
+    - console
+  
+        console 用于提供控制台标准输出，它是由 Internet Explorer 的 JScript 引擎提供的调试工具，后来逐渐成为浏览器的事实标准。Node.js 沿用了这个标准，提供与习惯行为一致的console 对象，用于向标准输出流（stdout）或标准错误流（stderr）输出字符。
+
+       > console.log()
+
+       > console.error()
+
+       > console.trace()
+
+ - 文件系统 fs
+
+    fs 模块是文件操作的封装，它提供了文件的读取、写入、更名、删除、遍历目录、链接等 POSIX 文件系统操作。与其他模块不同的是，fs 模块中所有的操作都提供了异步的和同步的两个版本，例如读取文件内容的函数有异步的 fs.readFile() 和同步的fs.readFileSync()。我们以几个函数为代表，介绍 fs 常用的功能，并列出 fs 所有函数的定义和功能。
+
+    - fs.readFile 
+
+        fs.readFile(filename,[encoding],[callback(err,data)])是最简单的读取文件的函数。它接受一个必选参数 filename，表示要读取的文件名。第二个参数 encoding是可选的，表示文件的字符编码。callback 是回调函数，用于接收文件的内容。如果不指定 encoding，则 callback 就是第二个参数。回调函数提供两个参数 err 和 data，err 表示有没有错误发生，data 是文件内容。如果指定了 encoding，data 是一个解析后的字符串，否则 data 将会是以 Buffer 形式表示的二进制数据。
+
+        例如以下程序，我们从 content.txt 中读取数据，但不指定编码：
+
+        ```
+        fs.readFile('content.txt', function(err, data) { 
+            if (err) { 
+                console.error(err); 
+            } else { 
+                console.log(data); 
+            } 
+        });
+        ```
+
+        假设 content.txt 中的内容是 UTF-8 编码的 Text 文本文件示例，运行结果如下：
+
+        ```
+        <Buffer 54 65 78 74 20 e6 96 87 e6 9c ac e6 96 87 e4 bb b6 e7 a4 ba e4 be 8b>
+        ```
+
+        这个程序以二进制的模式读取了文件的内容，data 的值是 Buffer 对象。如果我们给fs.readFile 的 encoding 指定编码：
+
+        ```
+        var fs = require('fs'); 
+        fs.readFile('content.txt', 'utf-8', function(err, data) { 
+            if (err) { 
+                console.error(err); 
+            } else { 
+                console.log(data); 
+            } 
+        });
+        ```
+
+        那么运行结果则是：
+
+        ```
+        Text 文本文件示例
+        ```
+
+        当读取文件出现错误时，err 将会是 Error 对象。如果 content.txt 不存在，运行前面的代码则会出现以下结果：
+
+        ```
+        { [Error: ENOENT, no such file or directory 'content.txt'] errno: 34, code: 'ENOENT', path: 'content.txt' }
+        ```
+    
+    - fs.readFileSync
+        fs.readFileSync(filename, [encoding])是 fs.readFile 同步的版本。它接受的参数和 fs.readFile 相同，而读取到的文件内容会以函数返回值的形式返回。如果有错误发生，fs 将会抛出异常，你需要使用 try 和 catch 捕捉并处理异常。
+
+    - fs.open
+
+        fs.open(path, flags, [mode], [callback(err, fd)])是 POSIX open 函数的封装，与 C 语言标准库中的 fopen 函数类似。它接受两个必选参数，path 为文件的路径，flags 可以是以下值。
+
+        > r ：以读取模式打开文件。
+
+        > r+ ：以读写模式打开文件。
+
+        > w ：以写入模式打开文件，如果文件不存在则创建。
+
+        > w+ ：以读写模式打开文件，如果文件不存在则创建。
+
+        > a ：以追加模式打开文件，如果文件不存在则创建。
+
+        > a+ ：以读取追加模式打开文件，如果文件不存在则创建。
+
+        mode 参数用于创建文件时给文件指定权限，默认是 0666。回调函数将会传递一个文件描述符 fd。
+    
+    - fs.read
+
+        fs.read(fd, buffer, offset, length, position, [callback(err, bytesRead, buffer)])是 POSIX read 函数的封装，相比 fs.readFile 提供了更底层的接口。fs.read的功能是从指定的文件描述符 fd 中读取数据并写入 buffer 指向的缓冲区对象。offset 是buffer 的写入偏移量。length 是要从文件中读取的字节数。position 是文件读取的起始位置，如果 position 的值为 null，则会从当前文件指针的位置读取。回调函数传递bytesRead 和 buffer，分别表示读取的字节数和缓冲区对象。
+
+        以下是一个使用 fs.open 和 fs.read 的示例。
+
+        ```
+        var fs = require('fs'); 
+        fs.open('content.txt', 'r', function(err, fd) { 
+            if (err) { 
+                console.error(err); 
+                return; 
+            } 
+        
+            var buf = new Buffer(8); 
+            fs.read(fd, buf, 0, 8, null, function(err, bytesRead, buffer) { 
+                if (err) { 
+                    console.error(err); 
+                    return; 
+                } 
+            
+                console.log('bytesRead: ' + bytesRead); 
+                console.log(buffer); 
+            }) 
+        });
+        ```
+
+        运行结果则是：
+
+        ```
+        bytesRead: 8 
+        <Buffer 54 65 78 74 20 e6 96 87>
+        ```
+
+        一般来说，除非必要，否则不要使用这种方式读取文件，因为它要求你手动管理缓冲区和文件指针，尤其是在你不知道文件大小的时候，这将会是一件很麻烦的事情。
+
+    - 其他方法
+
+        ![image](./assets/imgs/fs.png)
+
 ## 回调和事件
 
  - 回调Callback
