@@ -1,0 +1,149 @@
+<script>
+// 1 区分大小写
+var a = "hello";
+var A = "你好"
+var Typeof = "a"
+console.log(a,A,Typeof)
+console.log(typeof a) // 返回a类型
+
+// 2 声明规则，“起名字”规则
+var Axx = "1000"; 
+var _xx = "2000";  // 下划线开头的变量一般代表私有变量
+var $xx = "2000";  // 一般不使用，在Symbal的类型中或工具类对外声明时
+
+// 3 注释
+// 单行注释
+
+/*
+    多行注释
+    边栏没有*
+*/
+
+/**
+ * 多行注释
+ * 边栏有*
+*/
+
+// 4 严格模式
+
+// 普通模式中
+
+s = 1000
+
+console.log(s)
+
+// 严格模式中
+function test_strict(){
+    console.log(100000000)
+    "use strict";
+    sss = 3000
+    console.log(sss)
+}
+test_strict()
+
+// 5 语句
+
+// 赋值语句
+var aa = 10;
+var bb = 20;
+var sum = aa + bb;
+console.log("sum: ",sum);  // 30
+
+// 逻辑/条件 语句
+/*
+    表达式的返回值 true/false
+    js 会强制转型 
+        数值 to 布尔类: 当数值 !== 0  => true
+                      当数值  === 0 => false
+        对象 to 布尔类: 当对象有值时          => true
+                      当对象null/undefined => false
+    if(表达式) {
+
+    }
+*/
+var flag = -1
+if(1){
+    console.log("进入条件语句")
+}
+
+var ooo = {a:1}  // {}
+// var ooo = new Object()
+var oooo         // undefined
+var ooooo = null // 空值
+if(ooooo){
+    console.log("对象类型测试 进入条件语句")
+}
+// if的特殊规则
+if(1){
+    console.log("1 转成布尔类型 为 true")
+}
+
+if(2>1) 
+    console.log("2 大于 1")
+
+if(-1 < 0) console.log("-1 小于 0")
+
+// if ... else ...
+
+function sub(a,b) {
+    if(a-b >= 0){
+        console.log("结果是正数或零")
+    }else{
+        console.log("负数")
+    }
+}
+
+// if ... else if ... else
+
+function sub_new(a,b){
+    if(a - b > 0 ){
+        console.log("+")
+    }else if(a - b == 0){
+        console.log("0")
+    }else{
+        console.log("-")
+    }
+}
+
+// 6 保留字 关键字
+// if for class function var let const String string number
+// var if = 100
+
+// 7 赋值 类型
+var num = 10; // num 数值类型 
+console.log(num)
+num = 9;
+console.log(num)
+num = "ten";  // 现将num 从number -> string,然后再将“ten”赋值
+console.log(num)
+
+// 8 作用域
+
+var OUT = "out"
+console.log(OUT)
+// 代码块
+{
+    var IN = "in"
+    console.log(IN)
+    console.log(IN,OUT)
+}
+console.log(IN)
+
+if(1 == 1){
+    console.log(OUT)
+    var IN_2 = "if_in"
+}
+
+console.log(IN_2)
+
+// js 里“只有”function里才能有作用域的概念(函数时js中的最小作用域)
+
+function area(){
+    var IN_3 = "area_in"
+    console.log(OUT) // out
+}
+
+console.log(IN_3)  // undefined
+
+
+</script>

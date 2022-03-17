@@ -1,0 +1,77 @@
+<script>
+/*
+    GMT（我们日常用的，也是格林威治时间，缺点有点小不准） 
+    UTC (JS底层处理时间的标准)
+*/
+// 1.获取当前时间
+let now = new Date() 
+// 2.指定某一时间  Date.parse()
+let someDate01 = new Date(Date.parse("Mar 1, 2022"));
+let someDate02 = new Date(Date.parse("3/1/2022"));
+let someDate05 = new Date(Date.parse("2021-03-01T17:20:00"))
+console.log(someDate01) // 2022-3-1 00:00:00
+console.log(someDate02) // 2022-3-1 00:00:00
+console.log(someDate05) // 2022-3-1 17:20:00
+let someDate03 = new Date("3/1/2021");
+let someDate04 = new Date("2021-03-01T17:20:00")
+console.log(someDate03)
+console.log(someDate04)
+// 3.Date.UTC()
+// 从这个例子证明UTC和GMT时间相差8小时
+const d1 = new Date(Date.UTC(2022,2))
+console.log("d1 UTC->GMT:",d1)
+const d2 = new Date(Date.UTC(2022,2,8,9,0,0))
+console.log("d2 UTC->GMT:",d2)
+// 我们日常使用时也可以省去Date.UTC
+// 这种写法系统会将UTC->GMT 加上的8小时减去
+const d3 = new Date(2022,2)
+console.log("d3 UTC->GMT:",d3)
+const d4 = new Date(2022,2,8,9,0,0)
+console.log("d4 UTC->GMT:",d4)
+
+// 归纳
+// 用new Date 如何指定一个具体时间呢？
+let sd1 = new Date("Mar 1, 2022");
+let sd2 = new Date("3/1/2021");
+let sd3 = new Date("2021-03-01T17:20:00") 
+let sd4 = new Date(2022,2)
+let sd5 = new Date(2022,2,8,9,0,0)
+// new Date(year,month(从0开始),day,hour,min,sec,ms)
+
+/*
+    function Dog(){
+        this.run = function(){
+            console.log("dog is running")
+        }
+    }
+
+*/
+
+
+// Date.now() staic function 静态方法
+// 返回一串数值，此时到1970年的毫秒数值差
+// 它的使用场景，测试方法的运行时间
+console.log(Date.now()) // 一串数值，此时到1970年的毫秒数值差
+
+function loop(){
+    for(let i=0;i < 100000;i++){}
+}
+
+const start = Date.now()
+loop()
+const end = Date.now()
+console.log(`loop执行了${end-start} 毫秒`)
+console.log(`loop执行了${(end-start)/1000} 秒`)
+
+// 常用的方法
+const date = new Date()
+
+console.log("getFullYear获取年份",date.getFullYear())
+console.log("getMonth获取月份",date.getMonth())    // 从0开始
+console.log("getDate获取月中的哪一天",date.getDate())
+console.log("getDay获取周中的哪一天",date.getDay()) // 从1开始0结束，周日为0
+
+const sepDate = new Date(2022,2,13)
+console.log("sep是哪一天",sepDate) //2022-3-8 00:00:00
+console.log("3月13日是一周的哪一天",sepDate.getDay()) //0
+</script>

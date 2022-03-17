@@ -1,0 +1,56 @@
+<script>
+    for(let i = 0 ; i < 3 ; i++){
+        setTimeout(function(){
+            console.log(i)
+        },500)
+    }
+
+    // 你希望的结果： 0 1 2
+    // 结果： 0 1 2
+
+    // 证明： let 比 var 更容易控制
+
+    /*
+        let 的缺点什么 
+            1.造成内存的浪费（过渡使用）
+            2.内存的泄漏
+    */ 
+  
+ 
+    /*
+    
+    {
+        let i = 0  //局部变量
+        // for循环体内要执行的内容
+        setTimeout(function(){
+            i = 0 // 快照
+            console.log(i)
+        },500)
+        i = i + 1
+    }
+
+    {
+        let i = 1
+        // for循环体内要执行的内容
+        setTimeout(function(){
+            i = 1 // 快照
+            console.log(i)
+        },500)
+        i = i + 1
+    }
+
+    {
+        let i = 2
+        // for循环体内要执行的内容
+        setTimeout(function(){
+            i = 2 // 快照
+            console.log(i)
+        },500)
+        i = i + 1
+    } 
+    
+    */
+    
+
+
+</script>

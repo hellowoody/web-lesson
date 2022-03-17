@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>dom 增删改</title>
+    </head>
+    <body>
+        <h1 class="classA">hello world</h1>
+        <h2 id="a01">标题二</h2>
+        <h2 id="a01">标题三</h2>
+        <button onclick="addNode()">增加节点</button>
+        <button class="replace-btn">修改节点</button>
+        <button>删除节点</button>
+    </body>
+</html>
+<script>
+// es语法
+// dom tree
+function addNode(){
+    // <a href="https://baidu.com"></a>
+    var a = document.createElement("a")
+    a.href = "https://baidu.com"
+    // 跳转
+    var text = document.createTextNode("跳转")
+    // <a href="http://baidu.com">跳转</a>
+    a.appendChild(text)  // ！！！ 转换思维
+    // 如何获取body
+    // 方式一：document.body // 写法比较省事-这种写法比较“新颖”
+    // var body = document.body
+    // body.appendChild(a)
+    // 方式二：document.querySelector("body")
+    // var body = document.querySelector("body")
+    // body.appendChild(a)
+    // 方式三：document.querySelector("body")
+    var body_arr = document.getElementsByTagName("body") // [body]
+    body_arr[0].appendChild(a)
+}
+
+// !!! 三个参数
+document.querySelector(".replace-btn").addEventListener("click",function(){
+    var h1 = document.getElementsByTagName("h1")[0]
+    var new_h1 = document.createElement("h1")            // <h1></h1>
+    var new_h1_text =document.createTextNode("你好 世界") // 你好 世界
+    new_h1.appendChild(new_h1_text)                      // <h1>你好 世界</h1>
+    // document.body.replaceChild(新节点,老节点)
+    document.body.replaceChild(new_h1,h1)
+}) 
+
+var btn_arr = document.getElementsByTagName("button") 
+// [button onclick,button class="replace-btn",button]
+btn_arr[2].addEventListener("click",function(){
+    var h2 = document.getElementById("a01") // 单个元素对象 ｜ null
+    document.body.removeChild(h2)
+})
+
+</script>

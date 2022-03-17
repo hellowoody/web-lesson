@@ -1,0 +1,62 @@
+<!--
+作业
+1. html，input，yyyy-mm-dd
+2. 根据yyyy-mm-dd转成指定date，获取星期几 getDay
+3. 再input 下方输出一句话，这个星期几是所在月份中的第几个星期几？
+-->
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>2022-3-8 作业</title>
+    </head>
+    <body>
+        <input id="input_el" placeholder="yyyy-MM-dd">
+        <button onclick="sub()">提交</button>
+    </body>
+</html>
+<script>
+    
+function sub(){
+    // const a = document.querySelector("input").value
+    // const b = document.querySelector("#input_el").value
+    // const c = document.getElementById("input_el").value
+    // console.log("a:",a)
+    // console.log("b:",b)
+    // console.log("c:",c)
+
+    const input_val = document.querySelector("#input_el").value
+    // "2022-03-09"
+    const arr_val = input_val.split("-") // [yyyy,MM,dd]
+    // console.log(arr_val)
+    // console.log(parseInt(arr_val[1],10)) // 将月份强制转成int
+    // console.log(parseInt(arr_val[2],10)) // 将天强制转成int
+    const month_int = parseInt(arr_val[1],10)
+    const date_int = parseInt(arr_val[2],10)
+    const date = new Date(arr_val[0],month_int-1,date_int)
+    // console.log(date)
+    const res_month = date.getMonth() + 1
+    const res_day =  date.getDay() === 0 ? "日" : date.getDay()
+
+    let count = 0;
+    // for(let i = date_int ; i>0 ; i = i - 7){
+    //     count++
+    // }
+
+    let tmp = date_int
+    while(tmp > 0){
+        count++;
+        tmp = tmp - 7
+    }
+
+    const check_p = document.querySelector("p")
+    if(check_p){
+        document.body.removeChild(check_p)
+    }
+
+    const p = document.createElement("p") // <p></p>
+    const text = document.createTextNode(`这个${res_month}月份中的第${count}个星期${res_day}`)
+    p.appendChild(text)
+    document.body.appendChild(p)
+}
+</script>

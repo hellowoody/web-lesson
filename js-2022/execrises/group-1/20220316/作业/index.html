@@ -1,0 +1,61 @@
+<!--
+作业
+
+checked 1.实现一个页面，这个页面需要有一个输入框和一个按钮
+            输入框中输入内容的格式 yyyy-MM-dd 2022-3-15
+checked 2.通过JS获取页面中的输入内容，并转成指定日期
+        3.需要获取指定日期是所在当前月份的第几个星期几  15是星期二，是3月份的第3个星期二
+checked 4.把第三步的内容拼接成一句话（指定日期是所在当前月份的第几个星期几），动态的增加到页面上。
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>3-15作业解析</title>
+    </head>
+    <body>
+        <input placeholder="yyyy-MM-dd" >
+        <button onclick="sub()">提交</button>
+    </body>
+</html>
+<script>
+function sub(){
+    // console.log("输入框值",document.querySelector("input").value)
+    const input_val = document.querySelector("input").value;
+    // 2022-3-16 or 2022-03-16
+    const arr_val = input_val.split("-") // ["2022","3/03","16"]
+    // console.log("arr_val",arr_val)
+    const year = parseInt(arr_val[0],10)     // 2022
+    const month = parseInt(arr_val[1],10)    // 3
+    const date = parseInt(arr_val[2],10)     // 16
+    const target_date = new Date(year,month-1,date)
+    // console.log("target_date",target_date)
+    const day = target_date.getDay() === 0 ? "日" : target_date.getDay()
+    // console.log("星期",day) 
+    let count = 0
+    // for(let i = date ; i > 0 ; i = i - 7){
+    //     // count = count + 1
+    //     count++
+    // }
+    let tmp = date
+    while(tmp > 0){
+        count++
+        tmp = tmp - 7
+    }
+
+    const res = `${input_val}是${month}月份的第${count}个星期${day}`;
+    console.log(res)
+
+    // 判断当前页面有没有这个段落标签
+    const check_p = document.querySelector("p") // null | undefined | object
+    if(check_p){ 
+        document.body.removeChild(check_p)
+    }
+    const p = document.createElement("p")     // <p></p>
+    const text = document.createTextNode(res) // 指定日期是所在当前月份的第几个星期几
+    p.appendChild(text)                       // <p>指定日期是所在当前月份的第几个星期几</p>
+    document.body.appendChild(p)
+}
+</script>
+
+

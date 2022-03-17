@@ -1,0 +1,80 @@
+<!-- 告诉浏览器从第三行开始，你要按照html5这个版本的标准进行解析 -->
+<!doctype html> 
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+            dom 增删改
+        </title>
+    </head>
+    <body>
+        <h1 class="myclass">hello world</h1>
+        <h2>标题二</h2>
+        <button onclick='addNode()'>增加节点</button>
+        <button onclick="updateNode()">修改节点</button>
+        <button id="delBtn">删除节点</button>
+    </body>
+</html>
+<script>
+function addNode(){
+    // <a href="https://baidu.com"></a>
+    var a = document.createElement("a") // <a></a>
+    a.href = "https://baidu.com"        // <a href="#"></a>
+    // 跳转
+    var text = document.createTextNode("跳转")
+    /*
+        <a href="https://baidu.com">
+            跳转
+        </a>
+    */
+    a.appendChild(text)
+    // 方法一： document.body ->这是获取body标签最简单方式->但不是所有浏览器都支持
+    // document.body.appendChild(a)
+    // 方法二:  document.querySelector("css选择器")
+    // var body = document.querySelector("body")
+    // body.appendChild(a)
+    // 方法三： document.getElementsByTagName("标签名字")
+    var body_arr = document.getElementsByTagName("body") // [body]
+    body_arr[0].appendChild(a)
+}
+
+function updateNode(){
+    // 第一步获取要被替换的节点
+    // document.querySelector(css选择器语法)
+    // var h1 = document.querySelector("h1")
+    var h1 = document.querySelector(".myclass")
+    // console.log("old ",h1)
+    // 第二步生成一个新的节点
+    var new_h1 = document.createElement("h1")          // <h1></h1>
+    var new_text = document.createTextNode("你好 世界") // 你好 世界
+    /*
+        <h1>
+            你好 世界
+        </h1>
+    */
+    new_h1.appendChild(new_text)                      // <h1>你好 世界</h1>
+    // console.log("new ",new_h1)
+    // 第三步 在父节点body上 将new_h1 替换老的 h1
+    // document.body.replaceChild(新的节点,老的节点)
+    document.body.replaceChild(new_h1,h1)
+}
+
+// var a = document.getElementById("delBtn")
+// var b = document.querySelector("#delBtn")
+// var c = document.getElementsByTagName("button")[2] // [button,button,button]
+// console.log(a,b,c)
+// console.log(a == b)
+// console.log(b == c)
+// console.log(a == c)
+
+var delBtn = document.getElementById("delBtn")
+delBtn.addEventListener("click",function(){
+    /*
+        1.找到要删除/移除的节点
+        2.找到这个节点的父节点
+        3.调用父节点的removeChild()方法,移除相应节点
+    */
+    var h2 = document.querySelector("h2")
+    document.body.removeChild(h2)
+})
+</script>

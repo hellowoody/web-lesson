@@ -1,0 +1,198 @@
+<script>
+    // const
+    // 1.声明时必须初始化
+    // const b; // error :Missing initializer in const declaration
+    // 0xfsdfdsfdsa 1 “字面量 1，true，‘hello’”
+    // const a = 1;
+    // console.log(a)
+    // // 2.const 一旦声明后，就不允许修改（不允许修改地址）
+    // // 0x13414100000 2
+    // // a = 2;   // error assignment constant varable
+    // // 3.当const 赋值的是引用对象时(json结构的数据，Array)，我们可以修改其属性
+    // // 0x13414111111 {name:"zhangsan"}
+    // const obj = {
+    //     name:"zhangsan"
+    // }
+    // // 不能再次赋值
+    // // obj = {
+    // //     name:"wangwu"
+    // // }
+    // // 0x13414222222 "wangwu"
+    // obj.name = "wangwu"
+    // obj.gender = "boy"
+    // console.log(obj)
+
+// var（不推荐） | ES6: let（次选）  const (首选)
+
+// 如果要声明引用类型（对象json，数组Array） const 声明
+// 其他 就是let 声明
+
+// 1.数据类型
+
+const a = true;
+const b = 3.14;
+const c = "hello";
+const d = {
+    name:"zhangsan"
+}
+// ==================
+const e = null;
+let f ;
+
+console.log(typeof a) // "boolean"
+console.log(typeof b) // "number"
+console.log(typeof(c))
+console.log(typeof(d))
+// if(typeof a == "boolean"){
+//     console.log("a 是 boolean")
+// }
+console.log(typeof e) // 不是"null"而是“object”
+console.log(typeof f) // "undefined"
+/*
+    js null
+       undefined
+
+    在实际开发中，我们遇到一个难题
+        “好像”没办法判断一个变量到底null还是undefined ？
+
+        String(null)       // "null"
+        String(undefined)  // "undefined"
+*/
+
+let abc;
+console.log(String(abc))
+console.log(String(abc) == "undefined")
+console.log(String(abc) === "undefined")
+
+abc = null;
+console.log(String(abc))
+console.log(String(abc) == "null")
+console.log(String(abc) === "null")
+
+// 2.NaN  not a number
+/*
+    1.NaN非常特殊，在js中唯一一个自己不等于自己
+    2.凡是有NaN参与的运算，结果都是NaN
+*/ 
+
+let aa = 0/0;         //NaN
+let bb = "hello" - 3  //NaN
+
+console.log(aa,bb);
+
+console.log(aa == bb)    // false
+console.log(aa != bb)    // true
+console.log(NaN != NaN)  // true
+console.log(NaN !== NaN) // true
+
+console.log("aa + 3:",aa + 3)
+console.log("bb * 10:",bb * 10)
+
+// 3.数值转型
+/*
+    字符串转数值
+    parseInt(string,radix?) 将字符串转整数
+    // 注意：parseInt返回值肯定是10进制。
+    radix 按这个基数的进制进行转型 [2,36]
+
+    parseFloat(string)
+
+*/ 
+
+let str = "3";
+console.log(str,typeof str); // "3"  string
+let num1 = parseInt(str);
+console.log(num1,typeof num1) // 3 number  
+
+let str2 = "10";
+console.log(parseInt(str2,2))   // 按2进制转10进制  2
+console.log(parseInt(str2,8))   // 把str2这个字符串看作8进制的表达，然后将其转成10进制并输出结果：8
+console.log(parseInt(str2,10))  // 10
+console.log(parseInt(str2,16))  // 16
+
+let str3 = "hello"
+console.log(parseInt(str3,10))  // NaN
+let str4 = "0a"
+console.log(parseInt(str4,10))  // 0
+let str5 = "0a100"
+console.log(parseInt(str5,10))  // 0
+
+// 注意使用parseInt 最好传第二个参数，要明确基数是多少，一般就传10
+// js 如何表示非10进制的数呢？就是在数值前加上特定的前缀
+console.log("不传第二参数测试16进制",parseInt("0x10"))      // 16
+console.log("不传第二参数测试16进制",parseInt("0000000x10")) // 0
+console.log("不传第二参数测试16进制",parseInt("1000000x10")) // 1000000
+console.log("第二参数测试10进制",parseInt("1000000x10",10)) // 1000000
+
+let str_f = "3.14";
+console.log(str_f,typeof str_f)
+let num2 = parseFloat(str_f);
+console.log(num2,typeof num2)
+
+// 3.Number 的最小值和最大值
+
+console.log("Number.MIN_VALUE最小值：",Number.MIN_VALUE)
+console.log("Number.MAX_VALUE最大值：",Number.MAX_VALUE)
+
+console.log(5/0)  // 无穷大
+console.log(-5/0) // 负无穷大
+
+console.log(isFinite(1000))  // true
+console.log(isFinite(1/0))   // false
+console.log(isFinite(-1/0))   // false
+
+// 4.反引号 模版引号 模板字面量
+let hw = "hello\nworld";
+console.log(hw);
+let hw_template = `
+    hello
+        world
+`
+console.log(hw_template)
+
+let aaa = 3, bbb =2;
+let sum_express = `${aaa} + ${bbb} = ${aaa+bbb}`
+console.log(sum_express)
+
+// 5.Object
+
+/*
+    1.object
+    {
+        key:value,
+        name:"zhang",
+        className:"1",
+        say:function(){
+            console.log("hello")
+        }
+    }
+    2.object -> 引用类型
+    3.建议使用const 声明
+*/
+
+const obj01 = new Object();
+const obj02 = new Object;   // 不太建议
+const obj03 = {}
+function MyObj(){}
+
+const obj04 = new MyObj()
+
+console.log(obj01)
+console.log(obj02)
+console.log(obj03)
+console.log(obj04)
+
+const person01 = {
+    name:"zhangsan"
+}
+
+function Person(){
+    this.name = "wangwu"
+}
+
+const person02 = new Person()
+console.log(person01)
+console.log(person02)
+
+
+</script>

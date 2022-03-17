@@ -1,0 +1,62 @@
+<script>
+
+// 基本类型 ｜ 简单类型    string number boolean
+
+let a = 100
+let b = a;
+a = 200;
+console.log(`a:${a} , b:${b}`) // 200 ,100
+
+// 引用类型 object array
+let obj1 = {
+    name:"zhangsan"
+}
+let obj2 = obj1
+obj1.name = "李"
+
+console.log(`obj1:? , obj2:?`,obj1,obj2) // {name:李}，{name:李}
+
+let o1 = {
+    name:"zhangsan"
+}
+
+let o2 = {
+    name:"zhangsan"
+}
+
+o1.name = "123"
+o2.name = true
+console.log("o1",o1)
+console.log("o2",o2)
+
+let A = {
+    name:"zhangsan"
+}
+
+let B = Object.assign({},A)
+
+A.score = 100
+A.name="wangwu"
+B.name = "123"
+
+console.log("A",A)
+console.log("B",B)
+
+// array
+
+let arr1 = [1,2,3]
+let arr2 = arr1
+
+arr1[0] = "hello"
+
+console.log("arr1",arr1)
+console.log("arr2",arr2)
+
+
+
+
+
+
+
+
+</script>

@@ -1,0 +1,69 @@
+<script>
+// 时间复杂度
+// fn1 O(1)  no 迭代 no 递归
+function fn1(a,b){
+    if(typeof a !== "number"){
+        return
+    }
+    if(typeof b !== "number"){
+        return
+    }
+    let sum = a+b;
+    return sum;
+}
+
+// fn2  O(n)  要执行一维循环
+function fn2(arr){
+    let res = 0
+    for(let i = 0;i<arr.length; i++){
+        res = res + arr[i]
+        //     0 + arr[0] 1 = 1
+        //     1 + arr[1] 2 = 3 
+    }
+    return res // 3
+}
+
+// console.log(fn2([1,2,3,4,5]))
+
+// fn3 O(n**2)
+function fn3(){
+
+    const arr1 = new Array(10000)
+    arr1.fill(1);
+
+    const arr2 = new Array(10000)
+    arr2.fill(2);
+    // n*m n*n  100*10000
+    for(let i = 0;i<arr1.length; i++){
+        // i = 1 ... 9999
+        // 10000 10000 ... 10000
+        //  10000*10000
+        for(let j = 0 ; j<arr2.length; j++){
+            // code
+            console.log("hello")
+        }
+    }
+}
+
+// fn4 O(logN)   
+function fn4(){
+    const arr1 = new Array(10000)
+    arr1.fill(1);
+
+    const arr2 = new Array(10000)
+    arr2.fill(2);
+
+    for(let i = 0;i<arr1.length; i++){
+        //i 0     1     2  ...  10000
+        // 10000 5000  3000  1500    1 
+        for(let j = 0 ; j<arr2.length; j = j+1+i){
+            // code
+            console.log("hello")
+        }
+    }
+}
+
+//性能排序  O(1)>O(N)>O(logN)>O(N**2)
+
+
+</script>

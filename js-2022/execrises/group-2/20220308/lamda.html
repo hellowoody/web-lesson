@@ -1,0 +1,20 @@
+<script>
+// 三元表达式 (lamda表达式)
+const res = 2-1
+if(res>0){
+    let msg = "2-1的结果是正数";
+    console.log(msg);
+}else{
+    console.log("111结果为负数或0")
+}
+// 表达式 ? 为真时执行 : 为假时执行
+let msg = "";
+res > 0 ? (test(),msg = "2-1的结果是正数",console.log(msg)) : console.log("结果为负数或0")
+
+function test(){
+    if(true){
+        console.log(111)
+        console.log(222)
+    } 
+}
+</script>

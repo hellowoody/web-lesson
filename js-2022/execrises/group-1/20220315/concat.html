@@ -1,0 +1,59 @@
+<script>
+/*
+    concat vs push
+
+    push
+    arr.push(元素)
+        a 将参数作为一个元素放到原数组中
+        b 修改原数组
+
+    concat
+        a 将参数先“平铺”flat，然后再一个一个追加
+        b 不修改原数组,会将新数组作为concat方法的返回值返回
+
+*/ 
+const arr1 = [1,2,3]
+console.log("原数组",arr1)
+arr1.push(4)
+console.log("push后的数组",arr1) // [1,2,3,4]
+arr1.push([5,6])
+console.log("push后的数组",arr1) // [1,2,3,4,[5,6]]
+
+
+const arr2 = [1,2,3]
+const arr2res = arr2.concat([4,5,6])
+console.log("原数组",arr2)      // [1,2,3]
+console.log("新数组",arr2res)   // [1,2,3,4,5,6]
+
+const arr2res2 = arr2.concat(4)
+console.log("原数组",arr2)      // [1,2,3]
+console.log("新数组",arr2res2)   // [1,2,3,4]
+
+const arr2res3 = arr2.concat(4,5,6,7)
+console.log("原数组",arr2)      // [1,2,3]
+console.log("新数组",arr2res3)   // [1,2,3,4,5,6,7]
+
+const arr2res4 = arr2.concat(4,[5,6],7,[8,9])
+console.log("原数组",arr2)      // [1,2,3]
+console.log("新数组",arr2res4)  // [1,2,3,4,5,6,7,8,9]
+
+/*
+ str1 = "i"
+ str2 = "miss"
+ str3 = "u"
+
+ str4 = "i miss u"
+ str5 = "u ssim i"
+*/
+const str1 = "i",
+    str2 = "miss", 
+    str3="u";
+const arrPart1 = Array.from(str1); // [i]
+const arrPart2 = Array.from(str2); // [m,i,s,s]
+const arrPart3 = Array.from(str3); // [u]
+const arr3 = arrPart1.concat(" ",arrPart2," ",arrPart3)
+// [i," ",m...s," ",u]
+const arr3Reverse = arr3.reverse()
+const res = arr3Reverse.join("")
+console.log("res:",res)
+</script>

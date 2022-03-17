@@ -1,0 +1,30 @@
+<script>
+    /*
+        some 有点类似之前的逻辑或||这个知识点
+        数组的some方法有一个参数,而这个参数是个匿名函数
+        这个匿名函数有3个参数
+        [a,b,c].some(function(p1,p2,p3){
+    
+        })
+    
+        p1:每次迭代的元素值：     a     b     c
+        p2:每次迭代的元素值索引：  0     1     2
+        p3:是原数组        [a,b,c]  [a,b,c]  [a,b,c]
+        
+        some方法返回值也是true ｜ false
+        很像之前的逻辑或||，数组中有一个元素符合你的规范，那么就返回true
+        
+        不会改变原数组
+    */  
+    const arr = [1,2,3,4,5,6]
+
+    const res = arr.some(function(item,i,obj){
+        console.log(`索引${i} 值${item}`)
+        return item % 7 === 0
+    })
+
+    console.log("arr数组中是否含有被5整除的数",res)
+
+
+  
+    </script>

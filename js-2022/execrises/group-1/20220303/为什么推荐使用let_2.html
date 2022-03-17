@@ -1,0 +1,61 @@
+<script>
+for(let i = 0 ; i < 3 ; i++){
+    setTimeout(function(){
+        console.log(i)
+    },100)
+}
+
+// 你期望的结果 0 1 2
+// 结果输出 0 1 2
+
+// let 的缺点：当使用不当时，会造成内存泄漏（让你的浏览器卡住或者崩溃）
+
+
+// {
+//     let i = 0;
+//     if(i < 3) {
+//         // 原for中代码块的内容 
+//         setTimeout(function(){
+//             i = 0 // 快照
+//             console.log(i)
+//         },500)
+        
+//         i = i + 1
+//     }
+// }
+
+// {
+//     let i = 1;
+//     if(i < 3) {
+//         // 原for中代码块的内容 
+//         setTimeout(function(){
+//             i = 1 // 快照
+//             console.log(i)
+//         },500)
+//         i = i + 1
+//     }
+// }
+
+// {
+//     let i = 2;
+//     if(i < 3) {
+//         // 原for中代码块的内容 
+//         setTimeout(function(){
+//             console.log(i)
+//         },500)
+//         i = i + 1
+//     }
+// }
+
+// {
+//     let i = 3;
+//     if(i < 3) {
+//         // 原for中代码块的内容 
+//         setTimeout(function(){
+//             console.log(i)
+//         },500)
+//         i = i + 1
+//     }
+// }
+
+</script>

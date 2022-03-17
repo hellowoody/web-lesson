@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>page 2</title>
+    </head>
+    <body>
+        <h1>page 2</h1>
+        <a href="./page3.html">跳转page 3</a>
+        <br>
+        <button onclick="goBack()">回退</button>
+        <button onclick="goForward()">前进</button>
+    </body>
+</html>
+<script>
+function goBack(){
+    history.go(-1)
+}
+
+function goForward(){
+    history.go(1)
+}
+</script>

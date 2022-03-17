@@ -1,0 +1,167 @@
+<script>
+// 1.concat
+/*
+    数组中push和concat区别
+    push 
+        a 将整个参数作为一个元素放到原数组中
+        b 修改原始数组
+
+    concat 
+        a 将参数先平铺flat，然后再一个一个追加
+        b 不会修改原始数组，但会将新的数组作为concat方法的返回值返回
+*/  
+const arr = [1,2,3]       // 原数组
+const append_part = [4,5,6]
+arr.push(append_part)     // push 有返回值，返回的是参数
+console.log("arr原数组",arr)  //[1,2,3,[4,5,6]]
+
+const arr2 = [1,2,3]
+const arr2_concat_res = arr2.concat(append_part)    // [1,2,3,4,5,6]
+console.log("concat结果",arr2_concat_res)
+console.log("arr2原数组",arr2)                       // 原始数组不变 [1,2,3]
+
+/*
+    str1 = “hello”
+    str2 = “concat”
+
+    str3 = “hello concat”
+*/ 
+const str1 = "hello";
+const str2 = "concat";
+const arr3 = Array.from(str1) // ["h"...."o"]
+const arr4 = Array.from(str2) // ["c"...."t"]
+console.log(arr3)
+console.log(arr4)
+const arr5 = arr3.concat(" ",arr4)
+console.log(arr5)
+const str3 = arr5.join("")
+console.log(str3) 
+
+// 2. 切片slice
+const arr6 = ["a","b","c","d","e"]
+//             0   1   2   3   4
+/*
+    切片slice 也不会改变原数组
+             新数组作为slice结果返回
+    数学中的范围  [1，5)
+    slice(1)  [1,5) [开始位置，数组的长度)
+
+    slice(1,3) [1,3) 1,2  [b,c]
+
+    slice(-1)
+*/
+console.log("slice 结果",arr6.slice(3)) // [3,5)  [d,e]
+console.log("原数组",arr6)
+
+console.log("slice 结果",arr6.slice(1,3)) // [1,3)  [b,c]
+console.log("原数组",arr6)
+
+console.log("slice 结果",arr6.slice(-3)) // [数组的长度-3,数组的长度) [2,5) 2 3 4 [c,d,e]
+console.log("原数组",arr6)
+
+console.log("slice 结果",arr6.slice(-3,-2)) // [2,3)  2  [c]
+console.log("原数组",arr6)
+
+// 3.splice
+/*
+    splice(p1,p2,p3...)
+
+    splice 是会修改原数组
+
+    p1（必传）  :定位数组的索引，开始操作的位置
+    p2（必传）  :需要删除的个数  [0,+infinite)
+    p3...(可选): p3可以传一个，也可以传多个，甚至不传
+*/
+const arr7 = ["a","b","c","d","e"]
+//             0   1   2   3   4
+// 增加
+const addspliceRes = arr7.splice(1,0,"w")
+console.log("addspliceRes",addspliceRes) // []
+console.log("splice 增加",arr7)          // [a,w,b,c,d,e]
+
+const addspliceRes2 = arr7.splice(2,0,"w","x","y","z")
+console.log("addspliceRes2",addspliceRes2) // []
+console.log("splice 增加",arr7)          // [a,w,w,x,y,z,b,c,d,e]
+
+const arr8 = Array.from("helloworld") //[h,.....,d]
+//                       0123456789
+const addspliceRes3 = arr8.splice(5,0," ")
+console.log("addspliceRes3",addspliceRes3) // []
+console.log("splice 增加",arr8)     
+console.log("splice 增加",arr8.join(""))   
+const arr9 = ["a","b","c","d","e"]
+//             0   1   2   3   4  
+// 删除
+const delspliceRes1 = arr9.splice(1,3)
+console.log("delspliceRes3",delspliceRes1)
+console.log("splice 删除",arr9)
+// 替换/修改
+const arr10 = ["a","b","c","d","e"]
+//              0   1   2   3   4  
+const replacespliceRes1 = arr10.splice(1,3,"1","2","3")
+console.log("replacespliceRes1",replacespliceRes1) // [b,c,d]
+console.log("splice 替换",arr10)
+const arr11 = ["a","b","c","d","e"]
+//              0   1   2   3   4  
+const replacespliceRes2 = arr11.splice(1,3,"!==")
+console.log("replacespliceRes2",replacespliceRes2) // [b,c,d]
+console.log("splice 替换",arr11)  // [a,!==,e]
+
+/*
+    JS增加语法
+
+    数组的平铺/展开
+*/ 
+
+/*
+    Array.from("i am man")
+    str => i am woman
+*/
+// 方法一
+const arr12 = Array.from("i am man")
+//                        01234567
+// arr12.splice(5,3,"w","o","m","a","n")
+// const arr_woman = Array.from("woman") // ["w","o","m","a","n"]
+// arr12.splice(5,3,...arr_woman)
+arr12.splice(5,3,...Array.from("woman"))
+console.log(arr12)
+console.log(arr12.join("")) // i am woman
+
+// 方法二
+const arr13 = Array.from("i am man")
+// arr13.splice(5,0,"w","o")
+arr13.splice(5,0,...["w","o"])
+console.log(arr13)
+console.log(arr13.join("")) // i am woman
+
+// indexOf lastIndexOf
+// "2022-3-11"  yyyy-MM-dd
+const str_time = "2022-3-11"
+const indexOfLine = str_time.indexOf("-") // 4
+console.log("indexOfLine",indexOfLine)
+// substring(start,end) [start,end)
+const year = str_time.substring(0,indexOfLine)
+console.log("year",year)
+// const rest = str_time.substring(indexOfLine+1,str_time.length) // 3-11 
+// console.log("rest",rest)
+const rest2 = str_time.substring(indexOfLine+1) // 3-11 
+console.log("rest2",rest2)
+const indexOfLine2 = rest2.indexOf("-") // 1
+console.log("indexOfLine2",indexOfLine2)
+console.log("month",rest2.substring(0,indexOfLine2)) //3
+console.log("date",rest2.substring(indexOfLine2+1))  //11
+
+// ///////////////////////////////////////////
+const str_time3 = "2022-3-11"
+//                 012345678
+const i = str_time3.indexOf("-",0) // 4
+console.log("i",i)
+const i2 = str_time.indexOf("-",i+1) // 6
+console.log("i2",i2)
+console.log(`
+             year:${str_time3.substring(0,i)}
+             month:${str_time3.substring(i+1,i2)}
+             date:${str_time3.substring(i2+1)}`)
+
+
+</script>

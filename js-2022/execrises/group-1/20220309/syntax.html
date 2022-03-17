@@ -1,0 +1,190 @@
+<script>
+// 函数(方法)
+// 如何使用：直接调用 test()
+function test(){
+    console.log("这是函数")
+}
+
+// 构造器 构造函数 constructor
+// 如何使用：new Test() 
+function Test(){
+    this.name = "测试构造器";
+    this.version = 1.0
+}
+
+const t = new Test();
+/*
+    {
+        name:"测试构造器"
+        version:1.0
+    }
+*/ 
+const t2 = {
+    name:"测试构造器",
+    version:1.0
+}
+const t3 = new Object()
+t3.name = "测试构造器"
+t3.version = 1.0
+
+console.log(t)
+console.log(t2)
+console.log(t3)
+
+// 什么原型 prototype
+// 原型是个对象，而且这个对象肯定有属性叫constructor
+/*
+    {
+        constructor:function 首字母大写(){
+
+        }
+    }
+*/
+// 如何获取原型
+// 构造器.prototype
+console.log("Test的原型",Test.prototype)
+console.log("Test的构造器",Test)
+console.log("Test的原型的构造器",Test.prototype.constructor)
+console.log(Test == Test.prototype.constructor)
+console.log(Test === Test.prototype.constructor)
+
+// 原型链 __proto__
+const tt = new Test() // jquery
+// 原型链的作用：当你只有实例信息时，能构通过原型链获取实例的原型
+// 原型链如何使用
+// 实例.__proto__ 
+console.log(tt.__proto__) // Test的原型
+console.log(tt.__proto__ === Test.prototype) 
+
+// syntax sugar语法糖 -> 省事的简便的写法
+// 1.一元操作符
+let a = 1;
+a = a + 1; 
+console.log("a=a+1",a) // 2
+// ++
+a++;
+console.log("a++",a) // 3
+++a;
+console.log("a++",a) // 4
+
+console.log("a++",a++); // 4
+// 5
+console.log("++a",++a) // 6
+// --
+let b = 6;
+b = b - 1; //5
+b--;
+console.log(b) //4
+--b;
+console.log(b) //3
+
+console.log("b--",b--); //3
+
+console.log("--b",--b); //1
+
+// 2.逻辑运算符
+// 取反，逻辑与，逻辑或
+const bool_express = true;
+const num_express = 1 < 0;
+
+console.log("取反:",!bool_express) // false
+console.log("取反:",!num_express)  // true
+
+console.log("并且 逻辑与",bool_express && num_express)   // false
+console.log("并且 逻辑与",!bool_express && !num_express) // false
+console.log("并且 逻辑与",bool_express && !num_express)  // true
+console.log("并且 逻辑与",false && 3 > 0 && 10 % 2 === 0 && -1 < 0)  // false
+
+console.log("或者 逻辑或",bool_express || num_express)   // true
+console.log("或者 逻辑或",bool_express || !num_express)  // true
+console.log("或者 逻辑或",!bool_express || num_express)  // false
+console.log("或者 逻辑或",false || 3 == 0 || 10%3 === 0 || -1 < 0)  // true
+
+// 3.全等 ===
+console.log("'123' == 123","123" == 123)    // true 只比较值，比较值的同时，如果可以通过自动转型转成相对应的类型时那么会自动转型
+console.log("'1' == true","1" == true)      // true 只比较值，比较值的同时，如果可以通过自动转型转成相对应的类型时那么会自动转型
+console.log("'123' == true","123" == true)  // false 只比较值，比较值的同时，如果可以通过自动转型转成相对应的类型时那么会自动转型
+console.log("=============")
+console.log("'123' === 123","123" === 123)    // false 先比较类型 再比较值 
+console.log("'1' === true","1" === true)      // false 先比较类型 再比较值 
+console.log("'123' === true","123" === true)  // false 先比较类型 再比较值 
+console.log("'123' === '123'","123" === "123")  // false 先比较类型 再比较值 
+
+// 4.三元表达式
+const res = 2 - 1;
+if(res > 0){
+    const msg = "if-else结果正数";
+    console.log(msg);
+}else{
+    console.log("if-else结果负数或零")
+}
+// 表达式 ? 为真时执行 : 为假时执行
+res > 0 ? console.log("000结果正数") : console.log("000结果负数或零")
+// 多行
+let msg
+res > 0 ? (msg = "111结果正数",console.log(msg)) : console.log("111结果负数或零")
+// 好多行 而且还有 if for 关键字
+res > 0 ? test() : console.log("结果负数或零")
+
+function test(){
+    if(true){
+        console.log(111)
+        console.log(222)
+        console.log(333)
+    }
+    const msg = "结果正数";
+    console.log(msg);
+}
+
+// 5 日期对象 Date
+/*
+    JS中时间的计算方式2中
+
+    GMT 格林威治时间 浏览器打印出来的时间 缺点：在计算机中它有点不准
+    UTC 1970-1-1 00:00:00 这个时间作为相对起点
+*/ 
+// 获取当前时间点
+const now = new Date();
+// 指定某一天 Date.parse()
+/*
+    Date.parse("英文的月份缩写 日期,年份")
+    Date.parse("月份/日期/年份")
+    Date.parse("yyyy-MM-ddTHH:mm:ss")
+*/
+const someDate01 = new Date(Date.parse("Mar 9,2022")) // 2022-3-9 00:00:00 GMT
+const someDate02 = new Date(Date.parse("3/9/2022"))   // 2022-3-9 00:00:00 GMT
+const someDate03 = new Date(Date.parse("2022-03-09T12:30:00"))   // 2022-3-9 12:30:00 GMT
+
+console.log("someDate01",someDate01)
+console.log("someDate02",someDate02)
+console.log("someDate03",someDate03)
+
+const someDate04 = new Date("Mar 9,2022")            // 2022-3-9 00:00:00 GMT
+const someDate05 = new Date("3/9/2022")              // 2022-3-9 00:00:00 GMT
+const someDate06 = new Date("2022-03-09T12:30:00")   // 2022-3-9 12:30:00 GMT
+
+console.log("someDate04",someDate04)
+console.log("someDate05",someDate05)
+console.log("someDate06",someDate06)
+// Date.UTC() 也是指定某一具体时间
+/*
+    注意 month 0-11
+    Date.UTC(year,month,date?,hour?,min?,sec?,ms?)
+
+    UTC的时间会比GMT的时间早8小时
+*/
+const d1 = new Date(Date.UTC(2022,2)) // 2022-3-1 00:00:00
+const d2 = new Date(Date.UTC(2022,2,9,17,30)) // 2022-3-10 1:30:00
+console.log("d1",d1)
+console.log("d2",d2)
+
+const d3 = new Date(2022,2,9,17,30) // 2022-3-9 17:30:00
+console.log("d3",d3)
+
+// 归纳
+const sd1 = new Date("Mar 9,2022")           
+const sd2 = new Date("3/9/2022")              
+const sd3 = new Date("2022-03-09T12:30:00")  
+const sd4 = new Date(2022,2,9,17,30)     // 最好用
+
+</script>

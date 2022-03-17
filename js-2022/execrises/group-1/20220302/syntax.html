@@ -1,0 +1,206 @@
+<script>
+// for(代码块第一次执行 ; 代码块开始执行 ; 代码块执行结束 ) {
+//     console.log(1000)
+// }
+
+for(var i = 0 ; i < 3 ; i = i + 1 ){
+    console.log(2000,i)
+}
+
+console.log("OUT:",i)
+
+/*
+
+{
+    var i = 0
+    if(i < 3)
+    // 原本的代码 start
+    console.log(2000)
+    // 原本的代码 end
+    i = i+1
+}
+
+{
+    i = 1
+    if(i < 3)
+    // 原本的代码 start
+    console.log(2000)
+    // 原本的代码 end
+    i = i+1
+}
+
+{
+    i = 2
+    if(i < 3)
+    // 原本的代码 start
+    console.log(2000 2)
+    // 原本的代码 end
+    i = i+1
+}
+
+{
+    i = 3
+    if(i < 3)
+    // 原本的代码 start
+    console.log(2000)
+    // 原本的代码 end
+    i = i+1
+}
+
+*/
+
+// 1. 简便/省事的赋值
+var person_name = "zhang";
+var conntry = "china";
+var gender = "female";
+
+var person_name_1 = "li",conntry_1 = "usa",gender_1="male";
+
+var person_name_2 = "wang",
+    conntry_2 = "jan",
+    gender_2="female";
+
+console.log(person_name,conntry,gender)
+console.log(person_name_1,conntry_1,gender_1)
+console.log(person_name_2,conntry_2,gender_2)
+
+// 2.var 声明提升/作用域提升
+
+/*
+
+function promotion(){
+    var a ; // undefined
+    console.log(a);    // undefined
+    a = 1200;          // var a = 1200;
+    console.log(a);    // 1200
+}
+
+*/ 
+
+
+
+// function promotion(){ 
+//     console.log(a,b,c);    // undefined
+//     var a = 1200;
+//     var b = "hello";
+//     var c = true;
+//     console.log(a,b,c);    // 1200
+// }
+
+
+
+function promotion(){
+    console.log(a,b,c);    // undefined
+    var a = 1200;
+    var b = "hello";
+    var c = true;
+    console.log(a,b,c);    // 1200
+}
+
+/*
+
+function promotion2(){
+    var a;
+    a = 1;
+    a = 2;
+    a = 3;
+    console.log(a);        // 3
+}
+
+*/
+
+function promotion2(){
+    var a = 1;
+    var a = 2;
+    var a = 3;
+    console.log(a);        // 3
+}
+
+promotion()
+promotion2()
+
+/*
+    注意：
+        1.当函数以命名方式声明时，会出现函数作用域提升
+        2.当函数以赋值方式声明时，会出现var作用域提升
+            但因为var提升之后，再定义函数之前，变量时undefined
+            所以这种情况下，不能提前调用
+*/
+
+promotion3()
+
+function promotion3(){
+    console.log("promotion3")
+}
+
+console.log(promotion4)   // 因为作用域提升 把提升的变量(未初始化)打印出来
+// promotion4()              // error not function
+var promotion4 = function(){
+    console.log("promotion4")
+}
+promotion4() 
+
+
+// let 
+
+/*
+    js 三种声明的关键字
+
+    var      ES5          2015年前
+
+    let      ES6(ES2015)  2015年后
+    const
+
+    总结：当我们学完let const 我们就不建议使用var
+*/ 
+
+// a.let的最小作用域代码块
+
+let let_out = "let_out"
+
+{
+    let let_in = "let_in"
+    console.log("IN:",let_out)
+    console.log("IN:",let_in)
+}
+
+// console.log("OUT:",let_in)
+
+
+if(2>1){
+    let if_res = "2 > 1"
+}
+
+// console.log("OUT:",if_res)
+
+function let_area(){
+    let let_area_a = 1000
+}
+
+// console.log("OUT:",let_area_a)
+
+
+/*
+    2.暂时性死区
+
+        var:声明提升
+        let:暂时性死区（没有声明提升）
+*/
+
+function noPromotion(){
+    console.log(a)    // error not access a before initalize
+    let a = 3000;
+    console.log(a)
+}
+
+noPromotion()
+
+/*
+
+    预习js中的计时器:
+            setTimeout
+            setInterval
+
+*/ 
+
+</script>

@@ -1,0 +1,183 @@
+<script>
+/*
+    归纳
+    在JS中，有一个约定俗成规则：
+        如果声明一个函数时小写字母开头，那么我们就把它当成函数
+            我们如何使用函数呢？ 直接调用 test() -> 函数名字+小括号
+        如果声明一个函数时大写字母开头，那么我们就把它叫做构造器 constructor
+            我们如何使用构造器呢？ 使用new这个操作符 new Test()
+*/
+// 普通函数 （方法）
+function test(){
+    console.log("this is test")
+}
+test()
+////////////////////////////////////////
+// 整个Test就是构造器
+function Test(){
+    this.name = "测试"
+    console.log("测试")
+}
+const t = new Test()
+
+/*
+    1.构造器 construtor
+        什么构造器？ 答：就是你定义的那个首字母大写的函数
+    2.构造器 vs 函数
+*/ 
+// 构造器
+function Cat(){
+    this.kind = "家猫"
+}
+/*
+    {
+        kind:"家猫"
+    }
+*/
+console.log(new Cat())
+
+// 原型 prototype
+const c = new Cat();  // 实例化 
+/*
+    1. new Cat() 创建了一个原型Prototype
+        prototype {
+                    constructor:function Cat(){}
+                  }
+    2.通过原型中的构造器实例化一个对象instance
+    3.将这个instance 赋值给 c
+*/ 
+console.log("c: ",c)
+console.log("原型prototype：",Cat.prototype)
+console.log(Cat.prototype.constructor == Cat) // true
+console.log(Cat.prototype.constructor === Cat) // true
+
+// 原型有什么用？ 
+/*
+    1.可以通过原型统一管理属性或者方法
+    2.更新后的原型，不仅会对即将new出来的对象有影响，同时对已经实例化的对象也有影响
+*/ 
+
+const c01 = new Cat()
+c01.name = "白猫"
+const c02 = new Cat()
+c02.name = "黑猫"
+
+Cat.prototype.health = true
+Cat.prototype.run = function(){
+    console.log(this.name,"is running")
+}
+
+console.log("c01",c01)
+console.log("c02",c02)
+console.log("c01 health",c01.health)
+console.log("c02 health",c02.health)
+c01.run()
+c02.run()
+
+// hasOwnProperty
+
+console.log("判断实例上是否存在name属性",c01.hasOwnProperty("name"))     // true
+console.log("判断实例上是否存在kind属性",c01.hasOwnProperty("kind"))     // true
+console.log("判断实例上是否存在health属性",c01.hasOwnProperty("health")) // false
+console.log("判断实例上是否存在aaa属性",c01.hasOwnProperty("aaa"))       // false
+console.log("Cat.hasOwnProperty('name')",Cat.hasOwnProperty("name"))       // true
+console.log("Cat.hasOwnProperty('health')",Cat.hasOwnProperty("health"))   // false
+
+// isPrototypeOf
+// 原型.isPrototypeOf(实例)
+console.log("判断c01的原型是不是Cat.prototype",Cat.prototype.isPrototypeOf(c01)) // true
+console.log("判断c02的原型是不是Cat.prototype",Cat.prototype.isPrototypeOf(c02)) // true
+console.log("判断t的原型是不是Cat.prototype",Cat.prototype.isPrototypeOf(t))     // false
+console.log("判断t的原型是不是Test.prototype",Test.prototype.isPrototypeOf(t))   // true
+
+c01.food = "有喵粮"
+/*
+    Object.defineProperty(实例,"food",{
+        value:"有喵粮",
+        enumerable:true,
+        writable:true,
+    })
+*/ 
+Object.defineProperty(c01,"water",{
+    value:"有水",
+    enumerable:true,
+    writable:true,
+})
+
+Object.defineProperty(c01,"box",{
+    value:"有箱子",
+    // enumerable:false,
+})
+
+// propertyIsEnumerable
+console.log("c01",c01)
+console.log(c01.propertyIsEnumerable("water"))   // true
+console.log(c01.propertyIsEnumerable("food"))    // true
+console.log(c01.propertyIsEnumerable("box"))     // false
+console.log(c01.propertyIsEnumerable("health"))  // false
+
+
+// toLocaleString
+const num = 1000;
+console.log(num)                       // 1000
+console.log(num.toLocaleString())      // 1,000
+console.log(num.toLocaleString("zh-Hans-CN-u-nu-hanidec"))  // 一，〇〇〇 
+
+// toString
+console.log("hello".toString())                              // "hello"
+console.log(3.14.toString(),typeof 3.14.toString())          // "3.14" string
+console.log(true.toString(),typeof true.toString())          // "true" string
+console.log(c01.toString())                                  // [object Object]
+// valueOf
+console.log("hello".valueOf())                               // "hello"
+console.log(3.14.valueOf(),typeof 3.14.valueOf())            // 3.14 number
+console.log(false.valueOf(),typeof false.valueOf())          // false boolean
+console.log(c01.valueOf())                                   // {name,kind,water,food ...}
+console.log(c01)                                   // {name,kind,water,food ...}
+
+// 原型链
+// 原型链干什么？ 可以通过实例获取原型
+// 构造器.prototype得到原型
+// 原型.constructor得到构造器
+// 如果只给你实例，你能得到什么？
+// 只给你实例，你可以实例.__proto__得到原型
+
+/*
+    构造器
+    原型
+    实例
+*/
+
+console.log(c01.__proto__) // 返回的原型
+console.log(Cat.prototype)
+console.log(Cat.prototype == c01.__proto__)  // true
+
+// 构造器
+function Foo(){
+
+}
+console.log("原型：",Foo.prototype)
+const f = new Foo() // f 是实例
+console.log("实例：",f)
+
+
+console.log(Foo.prototype.constructor == Foo) // true
+console.log(f.__proto__ == Foo.prototype)     // true
+
+// 原型链干什么？ 可以通过实例获取原型。
+// 那有什么用呢？
+
+class Animal{}
+
+class FourLegAnimal extends Animal {}
+
+class Dog extends FourLegAnimal{}
+
+const dog = new Dog()
+
+console.log(dog)
+
+
+
+
+</script>

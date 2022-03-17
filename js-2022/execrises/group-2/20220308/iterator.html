@@ -1,0 +1,149 @@
+<script>
+// while
+let step = 10
+while(step > 0){
+    console.log("此刻step的值为",step)
+    step--; // step = step - 1
+}
+
+// for-loop
+for(let i = 0 ; i < 3 ; i++){
+    console.log("for i :",i)
+}
+
+// 将for 改写成 while循环
+
+let i = 0 , target = 3;
+while(i < target){
+    console.log("while i : ",i)
+    i++
+}
+
+// for-in
+// 1.for-in 对象
+/*
+    for-in 可以迭代对象中的“可枚举的enumable”key(属性)
+    {
+        name:"zhangsan",
+        score:100,
+        work:true,
+        a:1,
+        b:2
+    }
+*/
+
+const objForIn = {
+    name:"zhangsan",
+    score:100,
+    work:true,
+    a:1,
+    b:2
+}
+
+/*
+    const objForIn = {}
+    objForIn.name = "zhangsan"
+
+    Object.defineProperty(objForIn,"name",{
+        value:"zhangsan",
+        writeable:true,
+        enumerable:true
+    })
+*/ 
+
+for(let key in objForIn){
+    console.log("objForIn:",key)
+}
+
+function ObjForIn2 (){
+    this.name = "wangwu";
+    this.score = 90
+    this.work = true
+}
+const objForIn2 = new ObjForIn2()
+
+Object.defineProperty(objForIn2,"a",{
+    value:1000,
+    enumerable:true // for-in 可迭代
+})
+
+Object.defineProperty(objForIn2,"b",{
+    value:2000,
+    enumerable:false // for-in 不可迭代
+})
+
+for(let key in objForIn2){
+    console.log("objForIn2:",key)  // name score a
+}
+
+// 1.for-in 数组的索引
+
+const arr = ["a","b","c","d","e"]
+//            0   1   2   3   4
+
+for(let i in arr){
+    console.log("arr的索引",i)
+}
+
+// 2.for-of 
+// for-of 只能迭代有iterable的属性的对象，但一般我们声明的对象是没有iterable属性，后面我们学到nodejs的时候有时间会讲
+// for-of 一般情况下，只能迭代数组
+const arrForOf = [
+    {a:1},
+    {b:2},
+    {c:3},
+    {d:4},
+    {e:5},
+]
+
+for(let val of arrForOf){
+    console.log("arrForOf的元素:",val)
+}
+
+// 总结：现在我们学了几种迭代方式？
+// while
+// for(;;)  for-loop
+// for-in
+// for-of
+// 我应该开发时用哪一个，或者说哪一个性能更好呢？
+// 我们想通过以上4中方式同时循环一个大数组，然后看一下哪个最快执行完？
+
+const testArr = []
+for(let i = 0 ; i < 10000000;i++){
+    testArr.push(i)
+}
+
+
+let start_while = Date.now()
+let while_step = 0;
+while(while_step < testArr.length){
+    while_step++
+}
+let duration_while = Date.now() - start_while;
+console.log(`while : ${duration_while} ms`)
+
+let start_for = Date.now()
+for(let i = 0; i<testArr.length; i++){}
+let duration_for = Date.now() - start_for;
+console.log(`for-loop : ${duration_for} ms`)
+
+let start_in = Date.now()
+for(let i in testArr){}
+let duration_in = Date.now() - start_in;
+console.log(`for-in : ${duration_in} ms`)
+
+let start_of = Date.now()
+for(let i of testArr){}
+let duration_of = Date.now() - start_of;
+console.log(`for-of : ${duration_of} ms`)
+
+/*
+作业
+
+1. html，input，yyyy-mm-dd
+2. 根据yyyy-mm-dd转成指定date，获取星期几 getDay
+3. 再input 下方输出一句话，这个星期几是所在月份中的第几个星期几？
+
+*/ 
+
+</script>

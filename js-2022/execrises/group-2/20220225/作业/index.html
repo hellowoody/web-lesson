@@ -1,0 +1,43 @@
+<script>
+
+
+/*
+    作业要求
+    1.声明一个函数方法
+    2.这个函数要实现4则运算
+    3.只实现一个函数，让这个函数同时满足4则运算
+    4.只对两个数字进行运算
+*/
+
+// 函数签名（函数的名字+形参） -> "认出"这是哪个方法
+
+// function myMath(rule,a,b){
+//     if(rule === "+"){
+//         return a+b
+//     }else if(rule === "-"){
+//         return a-b
+//     }else if(rule === "*"){
+//         return a*b
+//     }else if(rule === "/"){
+//         return a/b
+//     }
+//     return "调用方式错误";
+// }
+
+let myMath = function(rule,a,b){
+    if(rule === "+"){
+        return a+b
+    }else if(rule === "-"){
+        return a-b
+    }else if(rule === "*"){
+        return a*b
+    }else if(rule === "/"){
+        return a/b
+    }
+    return "调用方式错误";
+}
+
+var res = myMath("-",100,50) 
+console.log(res) 
+
+</script>

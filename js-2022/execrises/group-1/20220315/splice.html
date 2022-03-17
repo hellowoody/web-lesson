@@ -1,0 +1,46 @@
+<script>
+/*
+splice(p1,p2,p3...)
+
+p1(必传)：定位数组的索引，开始操作的位置
+p2(必传)：需要删除的个数 [0,+infinite)
+p3(可选):p3可以不传，也可以传一个，也可以传多个，p3代表插入的元素
+
+1.splice是会修改原数组
+2.可以新增，删除，替换
+*/
+// 新增
+const arr1 = ["a","b","c","d","e"]
+//索引index     0   1   2   3   4
+const addSpliceRes = arr1.splice(2,0,"w","x","y")
+console.log("addSpliceRes",addSpliceRes)
+console.log("原数组",arr1)
+
+// 删除
+const arr2 = ["a","b","c","d","e"]
+//索引index     0   1   2   3   4
+const delSpliceRes = arr2.splice(1,3)
+console.log("delSpliceRes",delSpliceRes) // 被删除的元素 [b,c,d]
+console.log("原数组",arr2)
+
+
+// 替换
+const arr3 = ["a","b","c","d","e"]
+//索引index     0   1   2   3   4
+const replaceSpliceRes = arr3.splice(2,2,"你","好")
+console.log("replaceSpliceRes",replaceSpliceRes) // 被删除的元素 [c,d]
+console.log("原数组",arr3) //[a,b,你,好,e]
+
+/*
+作业
+
+date for-loop array/string拼接
+
+1.实现一个页面，这个页面需要有一个输入框和一个按钮
+    输入框中输入内容的格式 yyyy-MM-dd 2022-3-15
+2.通过JS获取页面中的输入内容，并转成指定日期
+3.需要获取指定日期是所在当前月份的第几个星期几  15是星期二，是3月份的第3个星期二
+4.把第三步的内容拼接成一句话（指定日期是所在当前月份的第几个星期几），动态的增加到页面上。
+*/
+
+</script>

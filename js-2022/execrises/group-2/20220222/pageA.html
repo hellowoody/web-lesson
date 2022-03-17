@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>page 1</title>
+    </head>
+    <body>
+        <h1>Page 1</h1>
+        <a href="./pageB.html">跳转B</a>
+        <a href="./pageC.html">跳转C</a>
+        <br>
+        <button onclick="goForward()">向前一页</button>
+        <button onclick="goStepTwo()">向前两页</button>
+    </body>
+</html>
+<script>
+function goForward(){
+    history.go(1)
+}  
+function goStepTwo(){
+    history.go(2)
+}
+</script>

@@ -1,0 +1,93 @@
+<script>
+function sum(a,b){
+    return "1000"
+    const res = a+b
+    return res
+}
+console.log(sum(1,2)) // 1000
+
+function diff(num1, num2) { 
+ 	if (num1 < num2) { 
+ 		return num2 - num1; 
+ 	} else { 
+ 		return num1 - num2; 
+ 	} 
+}
+
+function diff2(num1, num2) { 
+    let res = 0; 
+ 	if (num1 < num2) { 
+ 		res = num2 - num1; 
+ 	} else { 
+ 		res = num1 - num2; 
+ 	} 
+    return res;
+}
+/*
+    3种声明函数的方法
+        1.函数声明
+            function sum(a,b){
+                return a+b
+            }
+
+        2.函数表达式
+            const sum = function(a,b){
+                return a+b
+            };
+
+        3. const sum =  new Function("a","b","return a+b")
+
+    函数名字其实是函数对象的地址
+
+            const sum2 = sum
+
+    在JS中，函数都有一个属性叫name
+
+*/ 
+
+function sum(a,b){
+    return a+b
+}
+const sum2 = new Function("a","b","b=10;return a+b")
+console.log(sum2(3,5))
+const sum3 = function(a,b){
+    return a+b
+};
+const sum3_1 = sum3
+console.log(sum.name)       // "sum"
+console.log(sum3.name)      // "sum3"
+console.log(sum3_1.name)    // "sum3"
+console.log(sum3_1(10,2))
+
+// argument 实参
+// arguments
+/*
+    在JS中声明一个普通函数时，那么这个函数内部就有一些内置变量,其中就有arguments
+
+    arguments 是一个类数组对象
+                可以使用length查看长度
+                还可以根据[]访问数组的某个元素
+
+    JS的函数因为有了arguments，
+    所有函数有了跟其他语言不一样的地方，
+    就是弱化了定义参数
+*/
+
+function foo(){
+    console.log("arguments",arguments)
+    console.log("arguments.length",arguments.length)
+    console.log("arguments[0]",arguments[0])
+    console.log("arguments[1]",arguments[1])
+}
+
+foo(123,"hello")
+
+function bar(p1,p2){
+    p2 = 100 
+    console.log("p1",p1)
+    console.log("p2",p2) // 100
+    console.log("arguments[0]",arguments[0])
+    console.log("arguments[1]",arguments[1]) // 2
+}
+
+</script>

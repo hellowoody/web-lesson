@@ -1,0 +1,32 @@
+<script>
+// const
+
+let a;  // undefined 未定义  未初始化
+a = 1
+a = 50
+console.log(a)
+
+// const 必须初始化 (初始化的地址) 0x14232134432 - 100
+const b = 100;
+console.log(b)
+// 一旦初始化，就不能更改 （不能更改地址）
+//  0x14232136666 - 200 
+// b = 200;
+// console.log(b)
+
+// 0x14232111111 -  {name:zhangsan}
+// 对象 - 引用对象
+const c = {
+    name:"zhangsan",
+    origin:"china"
+}
+console.log(c)
+
+c.name = "lisi"
+c.className = "1 level"
+
+console.log(c)
+
+
+
+</script>

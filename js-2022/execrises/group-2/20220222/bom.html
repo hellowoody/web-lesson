@@ -1,0 +1,68 @@
+<!-- w3c 定义dom的标准 下面这句话代表html5的标准 -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>bom 练习</title>
+    </head>
+    <body>
+        <button onclick="openNewWin()">弹出一个新窗口</button>
+        <button id="closeWin">关闭新窗口</button>
+        <button class="moveWin">移动新窗口</button>
+        <button onclick="getInfo()">获取硬件信息</button>
+        <button onclick="getPos()">获取定位信息</button>
+        <button onclick="getPosRes()">获取定位结果</button>
+    </body>
+</html>
+<script>
+var newwin  // 定义一个自己全局变量
+var pos
+function openNewWin(){
+    /*
+        键值对 key-value
+        {
+            key:value,
+            name:"zhangsan"
+        }
+        window是浏览器的唯一全局对象
+        window.document -> document
+        window.open     -> open
+    */ 
+    newwin = open("about:blank","_blank","height=200,width=200,top=300,left=300")
+}
+
+document.getElementById("closeWin").addEventListener("click",function(){
+    newwin.close()
+})
+
+document.querySelector(".moveWin").addEventListener("click",function(){
+    newwin.moveTo(100,100)
+})
+
+function getInfo(){
+    console.log(window.navigator.appName)
+    console.log(window.navigator.platform)
+    console.log(window.navigator.deviceMemory)
+    console.log(window.navigator.onLine)
+
+    navigator.getBattery().then(function(res){
+        console.log(res)
+    })
+}
+
+function getPos(){
+    navigator.geolocation.getCurrentPosition(function(res){
+        // console.log(res)
+        pos = res
+    })
+}
+
+function getPosRes(){
+    console.log(pos.timestamp)
+    console.log(pos.coords)
+    console.log(pos.coords.latitude,pos.coords.longitude)
+}
+
+
+
+</script>

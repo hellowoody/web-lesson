@@ -1,0 +1,140 @@
+<script>
+// 1.创建数组
+const arr1 = []                           // []
+const arr2 = new Array()                  // []
+const arr3 = new Array(3)                 // [empty,empty,empty]
+const arr4 = new Array("hello")           // ["hello"]
+const arr5 = new Array(1,2,3)             // [1,2,3]
+const arr6 = new Array("a","b","c")       // [a,b,c]
+const arr7 = Array.from("abc")            // [a,b,c]
+const arr8 = Array.from("hello",function(val){
+    switch(val){
+        case "h":
+            return "H"
+            break;
+        case "l":
+            return "L"
+            break;
+        default:
+            return val
+    }
+})
+/*
+    val*val = val**2
+    val*val*val = val**3
+*/ 
+const arr9 = Array.from([1,2,3],function(val){
+    return val**5
+})
+
+const arr10 = Array.of(6,"hello",true) 
+const arr102 = "abc".split("")  // [a,b,c]
+const arr103 = "hello array".split(" ")  // [hello,array]
+const arr104 = "hello,world".split(",")  // [hello,world]
+
+console.log("arr8",arr8)
+console.log("arr9",arr9)
+console.log("arr10",arr10)
+
+// 2.如何检测一个对象它是否是数组  instanceof
+/*
+    instanceof  true | false
+    typeof 是检测类型（Null，Undefined，String，Number，Bollean，Symbol，Object）
+*/
+class Animal {}
+class Person {}
+class Dog extends Animal {}
+
+const d = new Dog()                // d 是实例  instance
+
+console.log("d的原型的构造器",d.__proto__.constructor)                                // Dog
+console.log("d的原型的原型的构造器",d.__proto__.__proto__.constructor)                 // Animal
+console.log("d的原型的原型的原型的构造器",d.__proto__.__proto__.__proto__.constructor)  // Object
+
+//        d -> Dog -> Animal -> Object
+// instance of(Dog Animal Object)
+console.log(d instanceof Dog)     // true
+console.log(d instanceof Animal)  // true
+console.log(d instanceof Object)  // true
+console.log(d instanceof Array)   // false
+console.log(d instanceof Person)  // false
+console.log("======================")
+const arr11 = new Array()
+// Array 在js中是比较特殊的对象，一般我们称的引用类型指的就是Object，Array
+// arr11 -> Array -> Object
+console.log(arr11 instanceof Array)  // true
+console.log(arr11 instanceof Object) // true
+console.log(arr11 instanceof Dog)    // false
+console.log("arr11原型的构造器",arr11.__proto__.constructor)
+console.log("arr11原型的原型的构造器",arr11.__proto__.__proto__.constructor)
+
+// 3.转换方法
+const colors = ["red","green","blue"]
+// Object toString valueOf
+console.log("toString",colors.toString()); // string 数组转字符串，默认用逗号连接
+console.log("valueOf",colors.valueOf());   // 本身
+console.log("colors",colors);              // 本身
+
+// 4.push pop
+/*
+    push:从“进口”将元素推进去，进行“排队”
+    pop:从“进口”取数据，当前“排队”中的最后一名元素
+                      将最后一个push进去的元素取出来
+*/ 
+const arr12 = []
+arr12.push("a")
+arr12.push("b")
+arr12.push("c")
+console.log("arr12",arr12) //[a,b,c] 
+const popRes = arr12.pop() // c
+console.log("pop返回值",popRes)
+console.log("arr12",arr12) // [a,b]
+const popRes2 = arr12.pop() // b
+console.log("pop返回值",popRes2)
+console.log("arr12",arr12) // [a]
+
+// 5.shift unshift
+/*
+    shift     从“出口”获取第一个元素
+    unshift   从“出口”插入一个元素，类似“插队”
+*/
+const arr13 = []
+arr13.push("a")
+arr13.push("b")
+console.log("arr13",arr13) // [a,b]
+const shiftRes = arr13.shift()
+console.log("shift结果",shiftRes) // a
+console.log("arr13",arr13)       //[b]
+
+const arr14 = ["a","b"]
+console.log("arr14",arr14) //[a,b]
+arr14.unshift("c")         // “插队“
+console.log("arr14",arr14) //[c,a,b]
+const shiftRes2 = arr14.shift();
+console.log("shiftRes2",shiftRes2) // c
+console.log("arr14",arr14)
+
+// 6.数组反转 reverse()
+const arr15 = [1,2,3,4,5]
+const arr16 = ["a","b","c"]
+console.log(" [1,2,3,4,5] 反转",arr15.reverse())
+console.log(" [a,b,c] 反转",arr16.reverse())
+const str = "hello JS";
+const str_arr = Array.from(str) // [h,...S]
+const str_arr_reverse = str_arr.reverse() // [S,...h]
+console.log("原始的str",str) 
+console.log("反转之后的str",str_arr_reverse.join(""))
+
+// 7.join split
+const arr17 = Array.from("abc") // [a,b,c]
+console.log("arr17",arr17)
+console.log("arr17 join",arr17.join(";"))
+
+const str2 = "abc";
+console.log("split('')",str2.split("")) // [a,b,c]
+const str3 = "hello world a b";
+console.log("split(' ')",str3.split(" ")) // [hello,world,a,b]
+const str_date = "2022-3-14";
+console.log("split('-')",str_date.split("-")) // [2022,3,14]
+
+</script>

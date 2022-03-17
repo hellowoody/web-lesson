@@ -1,0 +1,102 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>定时器</title>
+    </head>
+    <body>
+        <h1>定时器</h1>
+        <button onclick="stopSetTimeout()">手动停止setTimeout</button>
+        <button onclick="stopSetInterval()">手动停止setInterval</button>
+    </body>
+</html>
+<script>
+/*
+
+1 second = 1000 millonsecond
+1 s = 1000 ms
+
+两种定时器： 1.setTimeout(function(){},sleeping)
+                隔多少sleeping毫秒之后，再运行第一个参数（运行匿名函数）
+
+                a:当启动一个定时器后，我们可以手动停止它
+                b:一般情况，我们常用setTimeout模拟异步事件
+
+           2.setInterval(function(){},sleeping)
+                每过多少sleeping毫秒之后，运行一下第一个参数（运行匿名函数）
+
+                a:当启动一个定时器后，我们可以手动停止它
+*/
+
+// 1.setTimout
+let ticket_setTimeout;  // 定时器的票据（就是一个数值）
+let ticket_setTimeout_2;  // 定时器的票据（就是一个数值）
+
+ticket_setTimeout = setTimeout(function(){
+    console.log("hello setTimeout 1")
+},5000)
+
+ticket_setTimeout_2 = setTimeout(function(){
+    console.log("hello setTimeout 2")
+},5000)
+
+console.log("setTimeout 定时器的票据:",ticket_setTimeout)
+console.log("setTimeout2 定时器的票据:",ticket_setTimeout_2)
+
+function stopSetTimeout(){
+    clearTimeout(ticket_setTimeout)
+}
+
+// setTimeout 模拟异步
+
+// step1 证明同步代码 是一种阻塞的，必须一行执行完再执行下一行
+// console.log("start...")
+// for(let i = 0 ; i < 100000000 ; i++){
+
+// }
+// console.log("the end.")
+
+// step2 演示异步
+
+console.log("start...")
+setTimeout(function(){
+    console.log("1000")
+},1000)
+setTimeout(function(){
+    console.log("50")
+},50)
+console.log("the end.")
+
+// 2.setInterval
+// 手动停止
+// let step = 0;
+// let ticket_setInterval = setInterval(function(){
+//     console.log("又到2s了",step)
+//     step = step + 1
+// },2000)
+
+// console.log("ticket_setInterval的票据：",ticket_setInterval)
+
+
+// function stopSetInterval(){
+//     clearInterval(ticket_setInterval)
+// }
+
+// 自动停止
+
+let step = 0;
+//  0 1 2 3 4 5
+let ticket_setInterval = setInterval(function(){
+    if(step > 5){
+        clearInterval(ticket_setInterval)
+        return 
+    }
+    console.log("又到2s了",step)
+    step = step + 1
+},2000)
+
+console.log("ticket_setInterval的票据：",ticket_setInterval)
+
+
+
+</script>

@@ -1,0 +1,20 @@
+<script>
+// const
+// 1.声明时必须初始化
+const a = 1;
+console.log(a)
+// 2.const 一旦声明后，就不允许修改
+// a = 2;
+// 3.当const 赋值的时对象时(json结构的数据)，我们可以修改其属性
+const obj = {
+    name:"zhangsan"
+}
+// 不能再次赋值
+// obj = {
+//     name:"wangwu"
+// }
+
+obj.name = "wangwu"
+obj.gender = "boy"
+console.log(obj)
+</script>

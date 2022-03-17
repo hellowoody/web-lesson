@@ -1,0 +1,45 @@
+<script>
+/*
+    数组的filter方法有一个参数,而这个参数是个匿名函数
+    这个匿名函数有3个参数
+    [a,b,c].filter(function(p1,p2,p3){
+
+    })
+
+    p1:每次迭代的元素值：     a     b     c
+    p2:每次迭代的元素值索引：  0     1     2
+    p3:是原数组        [a,b,c]  [a,b,c]  [a,b,c]
+    
+    filter方法返回值：新数组（过滤后的数组）
+    执行多次的匿名函数的返回值是：true ｜ false
+            返回true，代表当次迭代的元素符合标准，会加入到新数组中
+            返回false，代表不会加到新数组中   
+
+    不会改变原数组
+*/  
+const arr = [1,2,3,4,5,6]
+
+const res = arr.filter(function(item,i,obj){
+    return item % 2 === 0
+})
+
+console.log("过滤出偶数数组",res) //[2,4,6]
+console.log("原数组",arr)       //[1，2，3，4，5，6]
+
+
+const res2 = arr.filter(function(item,i,obj){
+    return item % 2 !== 0
+})
+
+console.log("过滤出奇数数组",res2) //[1,3,5]
+console.log("原数组",arr)       //[1，2，3，4，5，6]
+
+const res3 = arr.filter(function(item,i,obj){
+    return item % 3 === 0
+})
+
+console.log("过滤出被3整除数组",res3) //[3,6]
+console.log("原数组",arr)           //[1，2，3，4，5，6]
+
+
+</script>

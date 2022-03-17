@@ -1,0 +1,65 @@
+<script>
+const arr = [1,2,3,4,5,6];
+/*
+    数组的forEach方法的参数是一个匿名函数，回调函数callback
+
+    [a,b,c].forEach(function(p1,p2,p3){
+
+    })
+
+    p1:每次迭代的元素值        a    b    c
+    p2:每次迭代的元素值的索引   0    1    2
+    p3:原始数组         [a,b,c] [a,b,c] [a,b,c]
+
+    forEach就是迭代或循环数组的语法糖
+    for-loop while for-in for-of foreach
+
+    大数组（长度最起码在千万以上）
+    第一梯队 for-loop while
+    第二梯队 for-of foreach
+    特殊场景 for-in
+*/
+
+arr.forEach(function(item,i){
+    console.log(`索引${i},值${item}`)
+})
+
+
+const testArr = []
+for(let i = 0 ; i < 10000000;i++){
+    testArr.push(i)
+}
+
+let start_foreach = Date.now()
+testArr.forEach(function(){})
+let duration_foreach = Date.now() - start_foreach;
+console.log(`foreach : ${duration_foreach} ms`)
+
+let start_while = Date.now()
+let while_step = 0;
+while(while_step < testArr.length){
+    while_step++
+}
+let duration_while = Date.now() - start_while;
+console.log(`while : ${duration_while} ms`)
+
+let start_for = Date.now()
+for(let i = 0; i<testArr.length; i++){}
+let duration_for = Date.now() - start_for;
+console.log(`for-loop : ${duration_for} ms`)
+
+let start_in = Date.now()
+for(let i in testArr){}
+let duration_in = Date.now() - start_in;
+console.log(`for-in : ${duration_in} ms`)
+
+let start_of = Date.now()
+for(let i of testArr){}
+let duration_of = Date.now() - start_of;
+console.log(`for-of : ${duration_of} ms`)
+
+
+
+
+
+</script>

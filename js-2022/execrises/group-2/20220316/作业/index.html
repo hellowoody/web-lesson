@@ -1,0 +1,37 @@
+<script>
+/*
+    在0 ～ 1000 正整数中 (0,1000]，计算出反时能被5整除的元素的累加值
+
+    要求：用两种方案解决
+
+    100 % 5 === 0 100能被5整除 
+*/ 
+
+const arr = [];
+for(let i =1 ; i <= 1000; i++){
+    arr.push(i)
+}
+// console.log(arr)
+//  方法一
+const arr_filter = arr.filter(function(val){
+    return val % 5 === 0
+})
+// console.log(arr_filter)
+const sum = arr_filter.reduce(function(acc,val){
+    return acc+val
+},0)
+console.log(sum)
+
+// 方法二
+const sum2 = arr.reduce(function(acc,val){
+    if(val % 5 === 0){
+        return acc+val
+    }
+    return acc  
+},0)
+
+console.log(sum2)
+
+
+
+</script>

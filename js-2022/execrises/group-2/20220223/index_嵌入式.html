@@ -1,0 +1,51 @@
+<!-- h5 version  -->
+<!DOCTYPE html>
+<!-- xml -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>script标签 在嵌入式时的位置</title>
+        <script>
+            var a = window.document.getElementById("h1-01")
+            console.log("top pos ",a)
+            /*
+                1.不要在head script标签中获取或操作dom
+                2.可以在靠上的位置
+                                定义一些全局变量
+                                预处理一些内容
+                                动态生成一些节点
+                                引入一些第三方的库
+            */ 
+            var global = {
+                version:"1.0.1",
+                appname:"lesson",
+                gender:{
+                    male:"男",
+                    female:"女"
+                }
+            }
+
+            var p = {
+                name:"河北省",
+                list:[1,2,3,4,5]
+            }
+        </script>
+    </head>
+    <body>
+        <h1 id="h1-01">
+            script标签 在嵌入式时的位置
+        </h1>
+        省 市 区
+    </body>
+</html>
+<script>
+var b = window.document.getElementById("h1-01")
+console.log("bottom pos ",b)
+console.log(global.gender.male)
+</script>
+
+
+
+
+
+

@@ -1,0 +1,251 @@
+<script>
+// 1.js 区分大小写
+
+var a = 100;
+var A = 200;
+console.log("a:",a)
+console.log("A:",A)
+
+var Var = "hello"
+console.log("Var:",Var)
+
+console.log(typeof "hello") // "string"
+console.log(typeof 100)     // "number"
+console.log(typeof Var)     // "string"
+
+// 2. 标识符（我们自己起的变量名字） 规则
+/*
+    自己起变量名字时，首字母
+        a.26个字母大小写 a-z A-Z
+        b. _ 下划线  如果你想这个变量不被人获取或者不被人修改的话，前面可以加个_
+        c. $ 美元符  第三方工具库如jquery或其他，类或你自己写的工具类的东西想对外发布
+                    Symbal类型中会用到$$
+
+    Zxx _xx $xx 这三个后面 “xx”，它代表可以用字母、下划线、美元符号或数字
+*/ 
+
+var Zxx = "我的第一个变量"
+var _xx = "我的第二个变量"
+var $xx = "我的第三个变量"
+
+// 3.注释 comment
+
+// 单行注释 两个正斜杠
+// 多行注释
+
+/*
+    多行注释
+*/
+
+/**
+ * 带"边栏"的多行注释
+ * 
+*/
+
+// 4.严格模式
+/*
+    注意：
+        1.写法  "use strict"; 
+                'use strict'; 
+        2.必须写在当前作用域“头一行”
+*/
+
+aa = 100
+console.log(aa)
+
+function test_strict(){
+    "use strict";
+    bb = 200
+    console.log(bb)
+}
+
+// test_strict()
+
+// 5.语句
+var str = "hello";
+console.log(str);
+
+// 6.if语句 逻辑判断语句 条件语句
+    // if可以理解为一个“方法”
+    // if(表达式的真假){} ({} 是代码块)
+
+// 当if语句的代码块中只有一行代码时，下面三种写法都可以
+if(2>0) {
+    console.log("2 为正数");
+}
+
+if(2>0) 
+    console.log("2 为正数");
+
+if(2>0) console.log("2 为正数");
+
+// if 语句的三种情况
+
+// a. if() {}
+// 函数签名 （函数名字+需要传的参数）
+
+function sum01(a,b){
+    if(typeof a != "number"){
+        return "第一个参数类型不对";
+    }
+
+    if(typeof b != "number") return "第二个参数不是数值类型";
+
+
+    return a+b
+}
+
+// b. if() {} else {}
+
+function sub01(a,b){
+    if(a-b >=0){
+        return `${a}-${b}的结果是${a-b},为正数或零`
+    }else{
+        return `${a}-${b}的结果是${a-b},为负数`
+    }
+}
+
+
+// c. if(){} else if() {} else{}
+
+function sub02(a,b){
+    if(a - b > 0){
+        return "+"
+    }else if(a - b == 0){
+        return 0
+    }else if(a - b < 0){
+        return "-"
+    }else{
+        return NaN
+    }
+}
+
+function sub03(a,b){
+    if(a - b > 0){
+        return "+"
+    }else if(a - b == 0){
+        return 0
+    }else if(a - b < 0){
+        return "-"
+    }
+    return NaN
+}
+
+// 7.声明变量以及后续改写变量时不要改其类型
+
+var message = "hello js";
+message = "hello world";
+
+message = 1000; // 不建议
+
+message = true; // 不建议
+
+message = {name:"zhangssan"}; // 不建议
+
+// 8.作用域 (var)
+
+/*
+    代码块 {} (var)
+
+    1.帮助查看代码进行分类、规整
+    2.可以配合其他的关键字进行语法编写，如if(){},for(){}
+
+*/
+var OUT = "out"; // 全局变量
+
+{
+    var IN = "in";
+    console.log("我在代码块1中",OUT)
+    console.log("我在代码块1中",IN)
+}
+
+console.log("OUT: ",IN)
+
+{
+    console.log("我在代码块2中",IN)
+}
+
+{
+    console.log("我在代码块3中")
+}
+
+if(2>0){
+    var IN_if = "2为正数"
+}
+
+console.log("OUT：",IN_if)
+
+
+// for(代码块第一次执行 ; 代码块开始执行 ; 代码块执行结束 ) {
+//     console.log(1000)
+// }
+
+for(var i = 0 ; i < 3 ; i = i + 1 ){
+    console.log(2000,i)
+}
+
+console.log("OUT:",i)
+
+
+/*
+
+{
+    var i = 0
+    if(i < 3)
+    // 原本的代码 start
+    console.log(2000)
+    // 原本的代码 end
+    i = i+1
+}
+
+{
+    i = 1
+    if(i < 3)
+    // 原本的代码 start
+    console.log(2000)
+    // 原本的代码 end
+    i = i+1
+}
+
+{
+    i = 2
+    if(i < 3)
+    // 原本的代码 start
+    console.log(2000 2)
+    // 原本的代码 end
+    i = i+1
+}
+
+{
+    i = 3
+    if(i < 3)
+    // 原本的代码 start
+    console.log(2000)
+    // 原本的代码 end
+    i = i+1
+}
+
+*/
+
+
+// var声明的变量 最小作用域是函数
+// 最小作用域就是，在此空间内声明的代码时私有的（只有这个空间能访问，外层访问不了）
+
+function area(){
+    var area_a = "area_a"
+    console.log("area: "+area_a)
+    console.log("area: "+OUT)
+}
+
+console.log("OUT: ",area_a)  // !!!
+
+area()
+
+// 作业
+/*
+    1.创建一个函数，这个函数需要支持四则运算 + - * /
+    2.需要大家使用if
+    3.函数签名：参数 只对两个数做运算
+*/
+
+</script>

@@ -1,0 +1,73 @@
+<script>
+/*
+    归并方法 reduce
+
+    数组的reduce方法的参数有两个:匿名函数，初始值
+
+    [1,2,3].reduce(function(p1,p2,p3,p4){
+        return 本次运行结果
+    },初始值?)
+
+    p1:上一次的计算结果
+    p2:每次迭代的元素值        1    2    3
+    p3:每次迭代的元素值的索引   0    1    2
+    p4:原始数组         [a,b,c] [a,b,c] [a,b,c]
+
+    [1,2,3]将数组中的元素进行累加
+
+    const arr = [1,2,3,4,5,6]
+    let sum = 0;
+    for(let item of arr){
+        sum = sum + item
+    }
+    console.log("arr累加的结果",sum)
+*/ 
+const arr = [1,2,3,4,5,6]
+/*
+1
+2 
+3
+4
+5
+
+                   15  6  5  []
+                   10  5  4  []
+                    6  4  3  []
+                    3  3  2  []
+                    1  2  1  []
+                    0  1  0  []
+arr.reduce(function(p1,p2,p3,p4){
+    console.log("p1",p1)
+    console.log("p2",p2)
+    console.log("p3",p3)
+    console.log("p4",p4)
+    return p1+p2;
+},0)
+*/
+const res = arr.reduce(function(acc,item,i,obj){
+    console.log(`索引 ${i},值{item}`)
+    return acc + item
+},0)
+console.log("res数组的累加值",res)
+
+/*
+    当reduce不传第二个参数也就是初始值时，
+    我们把数组中索引为0的那个元素作为初始值
+    然后reduce的累加从索引为1的元素开始
+    明显的不同就是，不传第二个参数时，少便利了一次
+*/ 
+const res2 = arr.reduce(function(acc,item,i,obj){
+    console.log(`索引 ${i},值{item}`)
+    return acc + item
+})
+console.log("res2数组的累加值",res2)
+
+/*
+    在0 ～ 1000 正整数中 (0,1000]，计算出反时能被5整除的元素的累加值
+
+    要求：用两种方案解决
+
+    100 % 5 === 0 100能被5整除 
+*/ 
+
+</script>

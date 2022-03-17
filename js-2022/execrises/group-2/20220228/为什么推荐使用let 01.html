@@ -1,0 +1,44 @@
+<script>
+    for(var i = 0 ; i < 3 ; i++){
+        setTimeout(function(){
+            console.log(i)
+        },500)
+    }
+
+    // 你希望的结果： 0 1 2
+    // 结果： 3 3 3
+ 
+    /*
+    var i;  // 全局定义了变量 i
+    {
+        i = 0  
+        // for循环体内要执行的内容
+        setTimeout(function(){
+            console.log(i)
+        },500)
+        i = i + 1
+    }
+
+    {
+        i = 1
+        // for循环体内要执行的内容
+        setTimeout(function(){
+            console.log(i)
+        },500)
+        i = i + 1
+    }
+
+    {
+        i = 2
+        // for循环体内要执行的内容
+        setTimeout(function(){
+            console.log(i)
+        },500)
+        i = i + 1
+    } 
+    
+    */
+    
+
+
+</script>

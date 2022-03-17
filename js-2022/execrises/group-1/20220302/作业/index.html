@@ -1,0 +1,63 @@
+<script>
+// 作业
+/*
+    1.创建一个函数，这个函数需要支持四则运算 + - * /
+    2.需要大家使用if
+    3.函数签名：参数 只对两个数做运算
+*/
+
+// function 自己起的名字(用,分隔你想要的参数，当然也可以没有参数) {}
+
+
+// function myMath(rule){
+//     if(rule == "+"){
+//         return "+"
+//     }else if(rule == "-"){
+//         return "-"
+//     }else if(rule == "*"){
+//         return "*"
+//     }else if(rule == "/"){
+//         return "/"
+//     }
+//     return "调用方式不对"
+// }
+
+/*
+    参数：
+        1.形参  parameter  param  p
+        2.实参  argument   arg
+*/
+
+
+
+console.log(myMath)
+var res = myMath("*",0,1)
+console.log(res)
+
+function myMath(rule,a,b){
+    if(typeof rule != "string"){
+        return "参数不对";
+    }
+
+    if(typeof a != "number") return "数值的类型不对"
+
+    if(typeof b != "number") return "数值的类型不对"
+
+    if(rule == "+"){
+        return a+b
+    }else if(rule == "-"){
+        return a-b
+    }else if(rule == "*"){
+        return a*b
+    }else if(rule == "/"){
+        return a/b
+    }else{
+        return "调用方式不对"
+    } 
+}
+
+
+
+
+
+</script>

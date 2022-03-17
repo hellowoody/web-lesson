@@ -1,0 +1,65 @@
+<script>
+// 场景一
+function dict(val){
+    let res = ""
+    switch (val) {
+        case 0:
+            res = "订单创建成功"
+            break;
+        case 1:
+            res = "准备发货"
+            break;
+        case 2:
+            res = "运输中"
+            break;
+        case 3:
+            res = "送达"
+            break;
+        default:
+            res = "该值属于非法值"
+            break;
+    }
+    return res
+}
+// 场景二
+function checkNumOrRule(val){
+    switch(val){
+        // "+" || "-" || "*" || "/"
+        case "+":
+        case "-":
+        case "*":
+        case "/":
+            console.log("运算符号")
+            break;
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+            console.log("数值")
+            break;
+        default:
+            console.log("没有匹配上")
+            break
+    }
+}
+// 场景三
+function checkNumOrRule2(val){
+    switch(true){
+        case val === "+" || val === "-" || val === "*" || val === "/":
+            console.log("运算符号")
+            break;
+        case val >= 0 && val <=9:
+            console.log("数值")
+            break;
+        default:
+            console.log("没有匹配上")
+            break
+    }
+}
+</script>

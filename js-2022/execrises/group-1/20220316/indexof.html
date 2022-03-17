@@ -1,0 +1,31 @@
+<script>
+/*
+    indexOf  lastIndexOf
+
+1.如果匹配不到，返回-1
+2.返回的值是索引，是能匹配到的第一个值的索引
+3.函数签名是可以传两个参数的
+    indexOf(target,postion)
+        target: 你要匹配的目标值
+        postion: 从哪一个索引位开始找，如果不传默认为0
+*/    
+const arr = [1,2,3,2,1]
+// 索引       0 1 2 3 4
+console.log("匹配不到",arr.indexOf(5))     // -1
+console.log("匹配不到",arr.lastIndexOf(5)) // -1
+console.log("匹配到",arr.indexOf(1))       // 0
+console.log("匹配到",arr.lastIndexOf(1))   // 4
+
+const date_str = "2022-03-16";
+// 索引            0123456789 
+// 别用split 用indexOf
+const firstIndex = date_str.indexOf("-",0);              // 4
+// console.log("第一个‘-’号的索引位",firstIndex)
+const year = date_str.substring(0,firstIndex)            //  [start,end)
+console.log("year",year)
+const secondIndex = date_str.indexOf("-",firstIndex+1);  // 7
+// console.log("第二个‘-’号的索引位",secondIndex)
+console.log("month",date_str.substring(firstIndex+1,secondIndex))
+console.log("date",date_str.substring(secondIndex+1))
+
+</script>

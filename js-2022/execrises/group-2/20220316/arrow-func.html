@@ -1,0 +1,31 @@
+<script>
+/*
+    function vs arrow function
+
+    什么是箭头函数，使用“胖箭头” => 定义的函数就叫做箭头函数
+
+    箭头函数的声明方法只有函数表达式
+*/
+
+function sum(a,b){
+    return a+b
+}
+
+const sum_express = function(a,b){
+    return a+b
+}
+
+const sum_arrow = (a,b) => {
+    return a+b
+}
+
+const sum_arrow2 = (a,b) => a+b
+
+console.log(sum_arrow2(190,10))
+
+const foo = p1 => console.log(p1)
+const foo1 = () => console.log(1000)
+const foo2 = (p1,p2) => console.log(p1+p2)
+
+foo(1000)
+</script>

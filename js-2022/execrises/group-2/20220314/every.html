@@ -1,0 +1,39 @@
+<script>
+const arr = [1,2,3,4,5,6];
+/*
+    数组的every方法的参数是一个匿名函数，回调函数callback
+
+    [a,b,c].every(function(p1,p2,p3){
+
+    })
+
+    p1:每次迭代的元素值        a    b    c
+    p2:每次迭代的元素值的索引   0    1    2
+    p3:原始数组         [a,b,c] [a,b,c] [a,b,c]
+
+    根据数组的长度，准本循环执行匿名函数，
+    这个匿名函数需要一个boolean的返回值 true ｜ false，
+    如果执行的匿名函数返回true，则继续下一次循环
+                      false，直接退出every方法  
+*/
+
+// arr.every(function(p1,p2,p3){
+//     console.log("p1",p1)
+//     console.log("p2",p2)
+//     console.log("p3",p3)
+//     return true;
+// })
+
+const res1 = arr.every(function(item,i,obj){
+    return item > 0
+})
+
+console.log("arr中是否都大于0",res1)
+
+const res2 = arr.every(function(item,i){
+    console.log(`index ${i} value ${item}`)
+    return item < 5
+})
+
+console.log("arr中是否都小于5",res2)
+</script>

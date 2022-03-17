@@ -1,0 +1,65 @@
+<script>
+/*
+    数组的foreach方法有一个参数,而这个参数是个匿名函数
+    这个匿名函数有3个参数
+    [a,b,c].foreach(function(p1,p2,p3){
+
+    })
+
+    p1:每次迭代的元素值：     a     b     c
+    p2:每次迭代的元素值索引：  0     1     2
+    p3:是原数组        [a,b,c]  [a,b,c]  [a,b,c]
+    
+    forEach就是迭代或循环数组时的语法糖
+    for-loop while for-in for-of forEach
+
+    迭代大数组(千万以上)
+    第一梯队：for-loop while
+    第二梯队：for-of foreach
+    最慢：for-in
+
+    不会改变原数组
+*/  
+const arr = [1,2,3,4,5,6]
+
+arr.forEach(function(item,i,obj){
+    console.log(`索引${i} 值${item} 原数组 ${obj}`)
+})
+
+
+const testArr = new Array(100000)
+testArr.fill(1)
+
+
+const start_while = Date.now()
+let while_step = 0
+while(while_step < testArr.length){
+    while_step++
+}
+const end_while = Date.now()
+console.log(`while的运算时间${end_while-start_while} ms`)
+
+const start_forloop = Date.now()
+for(let i = 0;i<testArr.length;i++){}
+const end_forloop = Date.now()
+console.log(`for-loop的运算时间${end_forloop-start_forloop} ms`)
+
+const start_forin = Date.now()
+for(let i in testArr){}
+const end_forin = Date.now()
+console.log(`for-in的运算时间${end_forin-start_forin} ms`)
+
+const start_forof = Date.now()
+for(let item of testArr){}
+const end_forof = Date.now()
+console.log(`for-of的运算时间${end_forof-start_forof} ms`)
+
+const start_foreach = Date.now()
+testArr.forEach(function(){})
+const end_foreach  = Date.now()
+console.log(`foreach 的运算时间${end_foreach-start_foreach } ms`)
+
+
+
+
+</script>

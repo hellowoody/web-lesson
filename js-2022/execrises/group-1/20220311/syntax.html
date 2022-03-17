@@ -1,0 +1,156 @@
+<script>
+// new Date() 时间点  2022-3-11 14：14:xx
+// 1.Date.now() 时间戳  返回值是与1970年1月1日 零点零分零秒相差的毫秒数
+console.log("时间点",new Date())
+console.log("时间戳",Date.now())
+// 可以根据时间戳计算或者表达，一个方法或者一段逻辑运算的时长
+
+function loop(){
+    for(let i = 0;i < 10000000; i++){}
+}
+
+const startTime = Date.now();
+loop()
+const endTime = Date.now();
+console.log(`loop函数执行了${endTime - startTime}毫秒`)
+// 1 s = 1000 ms
+console.log(`loop函数执行了${(endTime - startTime)/1000}秒`)
+
+// 2.Date 常用的方法
+const date = new Date();
+
+console.log("获取年",date.getFullYear())    // 2022
+console.log("获取月",date.getMonth())       // 月 [0,11] 2
+console.log("获取月中的日期",date.getDate()) // 11 
+console.log("获取周中的日期",date.getDay())  // 5 周一是1，周日是0
+
+const sunday = new Date(2022,2,13,12,30,20)
+console.log("sunday 的年",sunday.getFullYear())
+console.log("sunday 的月",sunday.getMonth()+1)
+console.log("sunday 的日",sunday.getDate())
+console.log("sunday 的星期",sunday.getDay() === 0 ? "日" : sunday.getDay())
+
+// 3.迭代 loop
+// for-loop 
+for(let i = 0; i< 3 ;i++ ){
+    console.log("for-loop",i)
+}
+// while
+let step = 10;
+while(step > 0){
+    console.log("此刻step的值为",step)
+    step--;  // step = step - 1
+}
+
+let i = 0 , target = 3;
+while(i<target){
+    console.log("while i:",i)
+    i++
+}
+// for-in
+// a 使用for-in 迭代数组
+// ["a","b","c"]
+//   0   1   2
+const arr = ["a","b","c"]
+for(let i in arr){
+    console.log("for-in index",i)
+}
+// b 使用for-in 迭代对象的属性(键key)
+/*
+{
+    name:"zhangsan",
+    score:90,
+    a:10,
+    b:20
+}
+*/
+const obj = {
+    name:"zhangsan",
+    score:90,
+    a:10,
+    b:20 
+}
+for(let key in obj){
+    console.log("for-in obj key",key)
+}
+// 浏览器唯一全局变量 window
+// for(let prop in window){
+//     console.log("window的属性或方法:",prop)
+// }
+
+function ObjForIn(){
+    this.name = "wangwu"
+    this.score = 60
+}
+/*
+Object.defineProperty(objForIn,"name",{
+    value:"wangwu",
+    enumerable:true
+})
+*/
+
+const objForIn = new ObjForIn()
+Object.defineProperty(objForIn,"a",{
+    value:10,
+    enumerable:false
+})
+Object.defineProperty(objForIn,"b",{
+    value:20,
+    enumerable:true
+})
+console.log("objForIn",objForIn) // {name:"wangwu",score:60,a:10,b:20}
+for(let key in objForIn) {
+    console.log("objForIn key",key)
+}
+
+// for-of 
+// for-of 可以迭代数组，但不能迭代对象
+for(let item of arr){
+    console.log("for-of item",item)
+}
+// 下面写法错误，因为obj是普通对象，没有迭代属性 iterator
+// for(let val of obj){
+    
+// }
+
+/*
+for(;;){}
+while(){}
+for(let xx in xxx){}
+for(let xx of xxx){}
+
+如果你想快速获取某个对象的属性或方法，for-in
+如果使用4种方法循环同一个数组，那么谁最快，谁最慢
+遍历大数组时 for-loop >= while > for-of > for-in 
+*/
+const testArr = []
+for(let i=0; i < 100000; i++){
+    testArr.push(i)
+}
+
+const start_while = Date.now()
+let while_step = 0
+while(while_step < testArr.length){
+    while_step++
+}
+const end_while = Date.now()
+console.log(`while的运算时间${end_while-start_while} ms`)
+
+const start_forloop = Date.now()
+for(let i = 0;i<testArr.length;i++){}
+const end_forloop = Date.now()
+console.log(`for-loop的运算时间${end_forloop-start_forloop} ms`)
+
+const start_forin = Date.now()
+for(let i in testArr){}
+const end_forin = Date.now()
+console.log(`for-in的运算时间${end_forin-start_forin} ms`)
+
+const start_forof = Date.now()
+for(let item of testArr){}
+const end_forof = Date.now()
+console.log(`for-of的运算时间${end_forof-start_forof} ms`)
+
+
+
+</script>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>script 嵌入式</title>
+        <script>
+            var pic_1 = document.cloneNode(true)    // 把“此刻”的document 复制“快照”
+            console.log("top: ",pic_1)              // 打印上一行获得的快照(照片)
+            // console.log("top: ",document)        // document 链表 -》 引用
+            var h1 = document.getElementById("h01") // null
+            console.log(h1)  // null
+        </script>
+    </head>
+    <body>
+        <h1 id="h01">script 嵌入式</h1>
+    </body>
+</html>
+<script>
+var h1 = document.getElementById("h01")
+var pic_2 = document.cloneNode(true)        //把“此刻”的document 复制“快照”  true 深拷贝
+console.log("bottom : ",pic_2)
+// console.log("bottom : ",document)
+</script>

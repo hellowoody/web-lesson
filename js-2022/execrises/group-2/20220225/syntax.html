@@ -1,0 +1,209 @@
+<script>
+// 下划线命名
+function T (){
+    var _name = "zhangsan" // 私有变量
+    return {
+        name:_name
+    }
+}
+
+// 1.作用域
+var global = {
+    version:1.0,
+    appName:"讲义"
+}
+
+// 代码块
+{
+    console.log("代码块:",global)
+    var block = "形同虚设的代码块"
+}
+console.log("外部：",block)
+
+// 函数作用域
+function area(){
+    console.log("函数中:",global)
+    var area_a = "家里事"
+    console.log("函数中:",area_a)
+}
+area()
+
+// console.log("外部：",area_a)  // error
+
+function area_2(){
+    message = 100;
+    console.log("in",message);
+}
+area_2()
+console.log("out",message);
+console.log("out",window.message);
+
+// 简便/省事的赋值
+
+var person_name = "zhang";
+var country = "china";
+var age = 20;
+var gender = "female";
+
+var person_name_1 = "li",country_1 = "小樱花",age_1 = 25 , gender_1 = "girl";
+
+var person_name_2 = "wang",
+    country_2 = "usa",
+    age_2 = 30,
+    gender_2 = "male";
+
+console.log(person_name,person_name_1,person_name_2);
+console.log(country,country_1,country_2);
+
+
+// 2.作用域提升 - (var 声明)
+
+/*
+    function promotion(){
+        var a ; // undefined
+        console.log(a) // undefined 
+        a = 1200
+        console.log(a) // 1200
+    }
+*/
+
+function promotion(){
+    console.log(a); // undefined
+    var a = 1200;
+    console.log(a); // 1200
+}
+
+promotion()
+
+/*
+    function promotion_2(){
+        var b ;
+        b = 1;
+        b = 2;
+        b = 3;
+        b = 4;
+        b = 5;
+        console.log(b) ; // 5
+    }
+*/
+
+function promotion_2(){
+    var b = 1;
+    var b = 2;
+    var b = 3;
+    var b = 4;
+    var b = 5;
+    console.log(b);  // 5
+}
+
+promotion_2()
+
+console.log(c) ;
+var c = "hello";
+
+console.log("top:",i)  
+
+for(var i=0 ; i < 3 ; i++ ){
+    console.log(1000)
+}
+
+/*
+    {
+        var i = 0 
+        console.log(1000)
+        i = i +1
+    }
+
+    {
+        var i = 1
+        console.log(1000)
+        i = i + 1
+    }
+
+    {
+        var i = 2 
+        console.log(1000)
+        i = i + 1
+    }
+*/
+
+console.log("bottom:",i) // 3 
+
+/*
+    ES5： var
+    ES6： var let const
+
+    结论：当你会用 let 和 const 的时候，就不要再用var了
+*/ 
+
+// 3.let 关键字声明
+
+{
+    let aa = 100
+    console.log("let==代码块: ",aa)
+}
+
+// console.log("let==外部: ",aa)
+
+if(2>1){
+    let cc = "if内部的变量"
+    console.log(cc)
+}
+
+// console.log(cc)
+
+/*
+    var: 作用域提升
+    let: 暂时性死区（没有作用域提升）
+*/
+let globalOfLet = {
+    b:200
+}
+function noPromotion(){
+    console.log(globalOfLet) // {b:200}
+    // console.log(a)  // error not get "a" before initail
+    let a = 10000
+    // console.log(a)
+}
+noPromotion()
+
+// console.log("j top: ",j)      //error
+
+for(let j=0 ; j < 2 ; j++ ){
+    console.log("j:",j)
+}
+
+/*
+    {
+        let j = 0 
+        console.log("j:",j)  // 0
+        j = j + 1  // 1
+    }
+
+    {
+        let j = 1
+        console.log("j:",j)  // 1
+        j = j + 1  // 2
+    }
+
+*/
+// console.log("j bottom: ",j)
+
+// 4. 定时器
+/*
+    1s = 1000ms（ms 毫秒）
+    两种定时器：1：setTimeout(function(){},duration)  隔多少毫秒后，执行第一个参数（匿名函数）
+
+              2: setInterval(function(){},duration) 每多少毫秒后，执行第一个参数（匿名函数）
+*/ 
+
+setTimeout(function(){
+    console.log("setTimeout 执行了")
+},2000)
+
+// setInterval(function(){
+//     console.log("setInteral 执行了,又到2s了")
+// },2000)
+
+
+</script>

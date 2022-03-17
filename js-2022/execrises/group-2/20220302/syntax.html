@@ -1,0 +1,147 @@
+<script>
+// 1.数据类型：Undefined Null Boolean Number String Symbal Object
+
+const a = true;
+const b = 3.14;
+const c = "hello"
+const d = {
+    name:"zhangsan"
+}
+const e = null;
+let f;
+
+console.log(typeof a);
+console.log(typeof b);
+console.log(typeof(c))
+console.log(typeof(d))
+//======================
+console.log(typeof e);  // null       -> object
+console.log(typeof f);  // undefined  -> undefined
+
+/*
+    js null
+       undefined
+    
+    在实际开发时我们会遇到一个难题
+      好像没法办法判断一个对象到底是null 还是 undefined;
+
+    String(null)        // null
+    String(undefined)   // undefined
+*/ 
+
+let abc;
+console.log(String(abc))                  // "undefined"
+console.log(String(abc) == "undefined");  // true
+
+abc = null;
+console.log(String(abc))                  // "null"
+console.log(String(abc) == "null");       // true
+
+// 2.NaN  not a number
+/*
+    1.NaN非常特殊，它是唯一一个自己不等于自己的值
+    2.凡是有NaN参与的运算，返回值都是NaN
+*/
+
+let aa = 0/0;        // NaN
+let bb = "hello" - 3 // NaN
+
+console.log(aa,bb);
+
+console.log(aa == bb)   // false
+console.log(aa != bb)   // true
+console.log(NaN != NaN) // true
+
+console.log("aa + 3:",aa + 3)
+console.log("bb * 10:",bb * 10)
+
+// 3.数值转型
+/*
+    parseInt    将字符串转型成整数。
+        parseInt(string,radix?)
+            重点：返回值是10进制！！！
+        radix range: [2,36]
+
+    parseFloat  将字符串转型成浮点数
+        parseFloat(string)
+            重点：返回值是10进制！！！
+*/
+
+let str = "3"
+console.log(str,typeof str)   // "3"  string
+let num1 = parseInt(str)      // 第二个可选参数如果不传，parseInt会自动分析是哪种进制
+console.log(num1,typeof num1) // 3  number
+
+let str2 = "10";
+
+console.log(parseInt(str2,2))   //  按2进制解读 10  = 2
+console.log(parseInt(str2,8))   //  按8进制解读  10  = 8
+console.log(parseInt(str2,10))  //  按8进制解读  10  = 10
+console.log(parseInt(str2,16))  //  按16进制解读  10  = 16
+
+
+console.log("不传第二个参数:",parseInt("010"))        // 10
+console.log("第二个参数按8进制:",parseInt("010",8))   // 8
+
+
+console.log("不传第二个参数测试16进制:",parseInt("0x10"))         // 16 
+console.log("不传第二个参数测试16进制:",parseInt("0000000x10"))   // 0 
+console.log("第二个参数按10进制:",parseInt("0000000x10",10))     // 0 
+
+let str_f = "3.14";
+console.log(str_f,typeof str_f)
+let num2 = parseFloat(str_f)
+console.log(num2,typeof num2)
+
+/*
+    4.值的范围
+        a.Number.MIN_VALUE 和 Number.MAX_VALUE
+        b.如何得出无穷大,任何有效数值（除了0之外） 除以 0 = Infinty
+        c.如何判断一个值是否是有限大 isFinite
+*/
+console.log("Number.MIN_VALUE:",Number.MIN_VALUE)
+console.log("Number.MAX_VALUE:",Number.MAX_VALUE)
+
+console.log(1/0)
+console.log(-1/0)
+
+console.log(isFinite(1000))
+console.log(isFinite(1/0))
+console.log(isFinite(-1/0))
+
+
+// 5.反引号 摸板字面量
+
+let hw = "hello\nworld";
+console.log(hw)
+let hw_template = `
+    hello
+        world`
+console.log(hw_template)
+
+let aaa = 3 , bbb=2;
+let sum_express = `${aaa}+${bbb}=${aaa+bbb}`
+console.log(sum_express)
+
+// 6.Object
+/*
+    1.object -> 
+    {
+        key:value
+    }
+    2.object 对象 -> 引用类型/引用对象
+    3.建议使用const 声明对象
+*/ 
+
+const obj01 = new Object();
+const obj02 = new Object;   // 不建议
+const obj03 = {}
+
+console.log(obj01,obj02,obj03);
+
+/*
+    Prototype：  原型
+    __proto__:  原型链
+    两者不同
+*/ 
+</script>

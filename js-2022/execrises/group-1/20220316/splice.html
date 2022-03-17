@@ -1,0 +1,28 @@
+<script>
+
+/*
+JS 增强语法
+
+数组的平铺/展开 flat
+*/ 
+
+/*
+    str = "i am man"
+    str_new = "i am woman"
+*/
+const str = "i am man";
+//           01234567
+// 方法一 splice 替换
+const arr = Array.from(str) // [i ... n]
+arr.splice(5,3,...Array.from("woman"))
+console.log("arr",arr)
+console.log("方法一",arr.join(""))
+
+// 方法二 splice 新增
+const arr2 = Array.from(str); // [i ... n]
+// arr2.splice(5,0,"w","o")
+arr2.splice(5,0,...["w","o"])
+console.log("方法二",arr2.join(""))
+
+
+</script>

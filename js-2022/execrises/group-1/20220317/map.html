@@ -1,0 +1,64 @@
+<script>
+/*
+    数组的map方法有一个参数,而这个参数是个匿名函数
+    这个匿名函数有3个参数
+    [a,b,c].map(function(p1,p2,p3){
+
+    })
+
+    p1:每次迭代的元素值：     a     b     c
+    p2:每次迭代的元素值索引：  0     1     2
+    p3:是原数组        [a,b,c]  [a,b,c]  [a,b,c]
+
+    map方法返回值：新数组（新数组的长度和原数组的长度一样）
+    执行多次的匿名函数的返回值是：“加工”后的元素 
+    不会改变原数组
+    但是如果数组中元素是引用类型时，需要小心引用类型的特点
+*/ 
+const arr = [1,2,3,4,5,6]
+const res = arr.map(function(val){
+    return val*2;
+})
+
+console.log("map 加工后的",res)
+console.log("原数组",arr)
+
+const arr2 = [
+    {
+        name:"zhang",
+        className:"1"
+    },
+    {
+        name:"li",
+        className:"1"
+    },
+    {
+        name:"wang",
+        className:"2"
+    },
+]
+
+const res2 = arr2.map(function(val){
+    val.score = 90
+    val.health = true
+    return val;
+})
+
+console.log("map 加工后的",res2)
+console.log("原数组",arr2)
+
+const str = "hello"
+const obj = {
+    name:"zhang"
+}
+const arr3 = ["hello","js","world"]
+const res3 = arr3.map(function(val){
+    val = val + "123"
+    return val;
+})
+console.log("map 加工后的",res3)  // 【hello123，js123，world123】
+console.log("原数组",arr3)        //  【hello，js，world】
+
+
+
+</script>

@@ -1,0 +1,210 @@
+<script>
+
+// 函数 （方法）
+// 如何使用：函数直接调用 test()
+function test(){
+    console.log("测试函数")
+}
+
+// 构造器 constructor
+// 如何使用：new Test() 
+function Test(){
+    this.name = "测试"
+    this.verson = 1.0
+}
+
+const t = new Test()
+
+const t2 = {
+    name:"测试",
+    version:1.0
+}
+
+const t3 = new Object()
+t3.name = "测试"
+t3.version = 1.0
+
+console.log(t)
+console.log(t2)
+console.log(t3)
+
+// 什么是原型
+// 原型是个对象，而且这个对象肯定有个属性叫构造器constructor
+/*
+    {
+        constructor:function 首字母大写(){
+
+        }
+    }
+*/
+
+// 如何获取原型
+// 构造器.prototype
+console.log("Test的原型",Test.prototype)
+console.log("Test的构造器",Test)
+console.log("Test的原型的构造器",Test.prototype.constructor)
+console.log(Test == Test.prototype.constructor)
+
+// 原型链
+const tt = new Test()  // woody.js
+// 原型链的作用是，当你只有实例信息时，能通过实例获取原型和构造器信息
+// 原型链如何使用呢？
+// 实例.__proto__ 的返回结果就是原型
+console.log("通过实例获取原型",tt.__proto__)
+console.log(tt.__proto__ == Test.prototype)
+ 
+// （syntax sugar）语法糖 -> 省事的简便的写法 
+// 1.一元操作符
+let a = 1
+a = a + 1
+console.log(a)  // 2
+// ++
+a++; 
+console.log(a);  // 3
+++a;
+console.log(a);  // 4
+
+console.log(a++); // 先执行打印，再执行加法  结果 4 
+// 5
+console.log(++a); // 先执行加法，再执行打印  结果 6
+
+let b = 6
+b = b - 1  //5
+// --
+b--;
+console.log(b) // 4
+--b; 
+console.log(b) // 3
+
+console.log(b--) // 3
+//2
+console.log(--b) // 1
+
+// 2 位运算
+/*
+    在2进制中主要分为两大类，有符号和无符号
+    在有符号中，以18为例
+    +18
+    0000 0000 0000 0000 0000 0000 0001 0010
+    那-18
+    1000 0000 0000 0000 0000 0000 0001 0010
+
+    无符号中
+    概念：原码 一补数(反码) 二补数(补码) 
+    正数
+        原码，一补数(反码)，二补数(补码) 都是他自己
+    负数
+        以-18为例，假设在一台32位电脑上
+        
+        a.获取-18的绝对值18，下面是+18的32位2进制的表达
+        0000 0000 0000 0000 0000 0000 0001 0010
+        b.取一补数（反码）
+        1111 1111 1111 1111 1111 1111 1110 1101
+        c.在取二补数(补码)，补码是2进制中负数的表现形式
+        1111 1111 1111 1111 1111 1111 1110 1110
+
+        c得出结果就是-18在无符号中的表现形式
+
+    不太全面小总结：
+        一补数(反码)，二补数(补码)。它们是让计算机处理更大范围的数。 
+
+        一补数(反码)，二补数(补码)。用于减法计算。
+*/
+
+// 3.布尔操作符
+
+const boolean_express = true
+
+const num_express = 1 < 0;
+
+console.log("取反:",!boolean_express) // false
+console.log("取反:",!num_express)     // true
+
+console.log("并且，逻辑与：",boolean_express && !num_express) // true
+console.log("并且，逻辑与：",boolean_express && num_express)  // false
+console.log("并且，逻辑与：",!boolean_express && num_express)  // false
+
+console.log("或者，逻辑或: ",boolean_express || num_express)    // true
+console.log("或者，逻辑或: ",!boolean_express || !num_express)  // true
+console.log("或者，逻辑或: ",boolean_express || !num_express)   // true
+console.log("或者，逻辑或: ",!boolean_express || num_express)   // false
+
+// console.log(1>0 && 2>1 && 3>0 ) // true
+// console.log(1>0 && 2>1 && 3==0 ) // false
+
+// 4. 全等 ===
+
+console.log("123" == 123)   // true    只比较值，或者比较自动转型后的值
+console.log("123" === 123)  // false   先比较类型，再比较值
+
+console.log(1 == true)   // true  非零值自动转true
+console.log(1 === true)  // false
+console.log(0 == false)  // true  非零值自动转true
+console.log(0 === false) // false
+
+// 先在内存中创建了100，将100放在某个地址中，然后将该地址赋值给abc
+let abc = 100;
+
+console.log("========")
+const obj = {
+    name:"zhangsan"
+}
+
+const obj2 = {
+    name:"zhangsan"
+}
+
+
+console.log("引用类型比较 ==：",obj == obj2)    //false
+console.log("引用类型比较 ===：",obj === obj2)  //false
+
+const obj3 = {
+    a:1
+}
+
+const obj4 = obj3
+
+console.log("引用类型比较 ==：",obj3 == obj4)    //true
+console.log("引用类型比较 ===：",obj3 === obj4)  //true
+
+const middle = {
+    b:2
+}
+
+const obj5 = middle
+const obj6 = middle
+console.log("引用类型比较 ==：",obj5 == obj6)    //true
+console.log("引用类型比较 ===：",obj5 === obj6)  //true
+
+// 5.三元表达式 (lamda表达式)
+const res = 2-10
+if(res>0){
+    console.log("111结果正数")
+}else{
+    console.log("111结果为负数或0")
+}
+// 表达式 ? 为真时执行 : 为假时执行
+res > 0 ? console.log("结果正数") : console.log("结果为负数或0")
+
+// 6.Date对象
+/*
+    全球计时规则
+    1，格林威治：GMT              （不太准）
+    2，UTC，JS中底按UTC标准计算     (比较准)
+*/
+// 获取当前时间
+let now = new Date
+
+// 指定某一具体日期 Date.parse
+let someDate01 = new Date(Date.parse("Mar 1, 2022"));
+let someDate02 = new Date(Date.parse("3/1/2022"));
+let someDate05 = new Date(Date.parse("2021-03-01T17:20:00"))
+console.log(someDate01) // 2022-3-1 00:00:00
+console.log(someDate02) // 2022-3-1 00:00:00
+console.log(someDate05) // 2022-3-1 00:00:00
+let someDate03 = new Date("3/1/2021");
+let someDate04 = new Date("2021-03-01T17:20:00")
+console.log(someDate03)
+console.log(someDate04)
+
+</script>

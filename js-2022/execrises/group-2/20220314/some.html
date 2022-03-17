@@ -1,0 +1,29 @@
+<script>
+const arr = [1,2,3,4,5,6];
+
+/*
+    思政：
+        提倡大家使用正版软件，保护知识产权
+
+    数组的some方法的参数是一个匿名函数，回调函数callback
+
+    [a,b,c].some(function(p1,p2,p3){
+
+    })
+
+    p1:每次迭代的元素值        a    b    c
+    p2:每次迭代的元素值的索引   0    1    2
+    p3:原始数组         [a,b,c] [a,b,c] [a,b,c]
+
+    some 返回值为true ｜ false
+    很像逻辑或，数组中有一个元素符合定制规范，那么就返回true 
+
+*/
+
+const res = arr.some(function(val){
+    return val % 5 === 0;
+})
+
+console.log("数组中是否存在能被5整除的",res)
+
+</script>

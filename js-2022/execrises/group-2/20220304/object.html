@@ -1,0 +1,221 @@
+<script>
+const obj01 = new Object();
+const obj02 = new Object;    // 不太推荐
+const obj03 = {}
+
+function MyObject(){}
+
+const obj04 = new MyObject()
+const obj05 = new MyObject
+
+console.log(obj01)
+console.log(obj02)
+console.log(obj03)
+console.log(obj04)
+console.log(obj05)
+
+const person00 = new Object()
+person00.name = "wangwu"
+person00.say = function(){
+    return "i am wangwu"
+}
+
+console.log(person00.name)
+console.log(person00.say())
+
+console.log("==========================")
+const person01 = {
+    name:"zhangsan",
+    orgin:"china",
+    say:function(){
+        return "hello"
+    },
+    run:function(){
+        return "i am running"
+    }
+}
+
+console.log(person01.name)
+console.log(person01.say())
+console.log(person01.run())
+
+console.log("==========================")
+
+function Person(){
+    this.name = "zhaosi"
+    this.orgin = "usa"
+    this.say = function(){
+        return "i am zhaosi"
+    }
+}
+
+const person02 = new Person()
+
+console.log(person02.name)
+console.log(person02.orgin)
+console.log(person02.say())
+console.log(person02)
+console.log("==========================")
+
+/*
+    小总结
+    平时声明简单对象的时候，你可以使用{},Object就可以了
+    如果声明一些特殊的对象，或者需要定制化的对象时，
+        那么你需要定义自己的对象。
+    如何定义自己的对象
+    function 起一个合法的名称首字母大写(){
+
+    }  
+*/ 
+
+
+/*
+    1.构造器 constructor
+        什么构造器？就是你定义的那个首字母大写的函数
+
+    2.构造器 vs 函数
+*/ 
+// 构造器 constructor
+// 如果这是构造器(首字母大写的函数)，那么我们就new 它
+function Cat(){
+    this.kind="家猫"
+}
+console.log(new Cat())
+// 函数
+// 如果时函数，我们直接加小括号调用就行
+function cat(){
+    return "i am cat"
+}
+console.log(cat())
+
+// 原型 prototype
+
+const c = new Cat()
+/*
+    1.new Cat() 创建了一个原型Prototype
+        prototype {
+            health:true,
+            constructor:function Cat(){
+                            this.kind="家猫"
+                        }
+        }
+    2.通过构造器区实例化 instance
+    3.最后把 instance 赋值给 c
+*/ 
+
+console.log("c: ",c)
+console.log("原型prtotype:",Cat.prototype)
+console.log(Cat.prototype.constructor == Cat)
+console.log(Cat.prototype.constructor === Cat)
+
+const c01 = new Cat()
+c01.name = "小白"
+console.log("c01",c01)
+
+const c02 = new Cat()
+c02.name = "灰灰"
+console.log("c02",c02)
+
+const c03 = new Cat()
+c03.name = "胖胖"
+console.log("c03",c03)
+
+Cat.prototype.health = true
+
+console.log("c03 是否健康:",c03.health)
+
+/*
+    小总结
+    原型作用就是，动态的增加或修改属性或方法，
+        修改后的原型属性不仅对即将new的对象有影响，同时对已经实例化的对象也有影响
+*/
+
+// Object.defineProperty 给实例追加属性
+
+function Car() {}
+
+const car = new Car()
+car.wheel = "马牌"
+/*
+    Object.defineProperty(car,"wheel",{
+        enumerable:true,
+        writable:true,
+        value:"马牌"
+    })
+
+*/ 
+car.color = "red"
+Car.prototype.width = "2m"
+
+// Object.defineProperty(实例,属性名字,配置项)
+Object.defineProperty(car,"weight",{
+    // enumerable:false,
+    // writable:false,
+    value:"1.5t"
+})
+
+console.log(car)
+// hasOwnProperty
+console.log(car.hasOwnProperty("wheel"))   // true
+console.log(car.hasOwnProperty("color"))   // true
+console.log(car.hasOwnProperty("width"))   // false
+console.log(car.hasOwnProperty("weight"))  // true
+// isPrototypeOf  
+// 原型.isPrototypeOf(实例)  判断该实例是不是某个原型
+console.log("实例car的原型是Car吗？",Car.prototype.isPrototypeOf(car))  //true
+console.log("实例c03胖胖的原型是Car吗？",Car.prototype.isPrototypeOf(c03))  //false
+console.log("实例c03胖胖的原型是Cat吗？",Cat.prototype.isPrototypeOf(c03))  //true
+// propertyIsEnumerable
+console.log(car.propertyIsEnumerable("wheel"))  // true
+console.log(car.propertyIsEnumerable("color"))  // true
+console.log(car.propertyIsEnumerable("width"))  // false
+console.log(car.propertyIsEnumerable("weight")) // false
+// toLocaleString
+let num = 1000;
+console.log(num)                                             // 1000
+console.log(num.toLocaleString())                            // 1,000
+console.log(num.toLocaleString("zh-Hans-CN-u-nu-hanidec"))   // 一,〇〇〇
+// toString
+console.log("hello".toString())  //hello
+console.log(3.14.toString(),typeof 3.14.toString())     //"3.14"
+console.log(true.toString(),typeof 3.14.toString())     //"true"
+console.log(car.toString())     // [[object Object]]
+// valueOf
+console.log("hello".valueOf())  //"hello"
+console.log(3.14.valueOf())     //3.14
+console.log(false.valueOf())    //false
+console.log(car.valueOf())     // {wheel:"",color:"",...}
+
+/*
+    构造器  constructor
+    原型    prototype
+    原型链  __proto__
+
+    原型怎么获的？ constructor.prototype （点出来的）
+    原型链怎么获得？ 
+                    实例是new 出来的    
+                    实例.__proto__  
+
+
+    那这三者的关系呢？ 请看图
+*/ 
+function A(){
+
+}
+
+console.log("获的A的原型",A.prototype)
+
+const a = new A()
+
+console.log("获的原型链",a.__proto__)
+
+
+class Animal{}
+
+class Dog extends Animal {}
+
+const dog = new Dog()
+
+console.log(dog)
+
+</script>

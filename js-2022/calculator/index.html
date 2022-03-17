@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>calculator-计算器</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <h1>calculator-计算器</h1>
+        <div class="container">
+            <div class="display">
+                <div class="expression">0</div>
+                <div class="res">0</div>
+            </div>
+            <div class="keyboard">
+                <div class="row">
+                    <div class="btn btn-rule" data-value="c">
+                        <span>C</span>
+                    </div>
+                    <div class="btn btn-rule" data-value="+">
+                        <span>+</span>
+                    </div>
+                    <div class="btn btn-rule" data-value="-">
+                        <span>-</span>
+                    </div>
+                    <div class="btn btn-rule" data-value="x">
+                        <span>x</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="btn btn-num" data-value="1">
+                        <span>1</span>
+                    </div>
+                    <div class="btn btn-num" data-value="2">
+                        <span>2</span>
+                    </div>
+                    <div class="btn btn-num" data-value="3">
+                        <span>3</span>
+                    </div>
+                    <div class="btn btn-rule" data-value="/">
+                        <span>/</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="btn btn-num" data-value="4">
+                        <span>4</span>
+                    </div>
+                    <div class="btn btn-num" data-value="5">
+                        <span>5</span>
+                    </div>
+                    <div class="btn btn-num" data-value="6">
+                        <span>6</span>
+                    </div>
+                    <div class="btn btn-rule-disable"></div>
+                </div>
+                <div class="row">
+                    <div class="btn btn-num" data-value="7">
+                        <span>7</span>
+                    </div>
+                    <div class="btn btn-num" data-value="8">
+                        <span>8</span>
+                    </div>
+                    <div class="btn btn-num" data-value="9">
+                        <span>9</span>
+                    </div>
+                    <div class="btn btn-rule-disable"></div>
+                </div>
+                <div class="row">
+                    <div class="btn btn-num-disable"></div>
+                    <div class="btn btn-num" data-value="0">
+                        <span>0</span>
+                    </div>
+                    <div class="btn btn-num-disable"></div>
+                    <div class="btn btn-rule" data-value="=">
+                        <span>=</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+<script src="index.js"></script>
+<script>
+const cal = new Calculator();
+
+for(const btn of document.querySelectorAll(".btn")){
+    if(btn.className.indexOf("disable")<0){
+        btn.addEventListener("click",() => {
+            // console.log(btn.dataset.value)
+            cal.input(btn.dataset.value)
+            showRes()
+            showExpression(btn.dataset.value)
+        })
+    }
+}
+
+function showRes(){
+    document.querySelector(".res").innerHTML = cal.res.toString().length > 10 ? cal.res.toString().substring(0,8)  : cal.res;
+}
+
+function showExpression(){
+    // document.querySelector(".expression").innerHTML = cal.rule ? (cal.stack[0] + cal.rule) : cal.stack[0]
+    document.querySelector(".expression").innerHTML = cal.parseHistory().length > 10 ? cal.parseHistory().substring(0,8)  :  cal.parseHistory();
+}
+
+document.onkeydown = function(e){
+　  console.log(e.keyCode)
+}
+</script>

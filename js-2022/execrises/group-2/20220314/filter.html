@@ -1,0 +1,48 @@
+<script>
+const arr = [1,2,3,4,5,6]
+/*
+    数组的filter方法的参数是一个匿名函数，回调函数callback
+
+    [a,b,c].every(function(p1,p2,p3){
+
+    })
+
+    p1:每次迭代的元素值        a    b    c
+    p2:每次迭代的元素值的索引   0    1    2
+    p3:原始数组         [a,b,c] [a,b,c] [a,b,c]
+
+    filter这个方法返回的值过滤后的数组
+            匿名函数中需要按定制的需求实现一个判断标准
+            符合这个标准的元素，会放到过滤后的数组中，
+            不符合的则被“丢弃”
+
+    filter的匿名函数也是返回true ｜ false
+        true 代表符合标准
+        false 代表不符合标准
+*/
+
+const res = arr.filter(function(item,i,obj){
+    console.log(`${item} % 2 = ${item % 2}`)
+    return item % 2 === 0
+})
+
+console.log("filter 过滤偶数",res)
+console.log("原数组",arr)
+
+const res2 = arr.filter(function(item,i,obj){
+    // console.log(`${item} % 2 = ${item % 2}`)
+    return item % 2 !== 0
+})
+
+console.log("filter 过滤奇数",res2)
+console.log("原数组",arr)
+
+const res3 = arr.filter(function(item,i,obj){
+    // console.log(`${item} % 2 = ${item % 2}`)
+    return item % 3 === 0
+})
+
+console.log("filter 过滤3的倍数",res3)
+console.log("原数组",arr)
+
+</script>

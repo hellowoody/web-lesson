@@ -1,0 +1,106 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>定时器</title>
+    </head>
+    <body>
+        <h1>定时器</h1>
+        <button onclick="stop01()">手动停止setTimeout定时器</button>
+        <button onclick="stop02()">手动停止setInterval定时器</button>
+    </body>
+</html>
+<script>
+// 定时器
+    /*
+        1 second = 1000 millionsecond
+        1 s = 1000 ms
+        两种定时器： 1.setTimeout(function(){},sleeping)
+
+                        隔多少sleeping毫秒之后，再运行第一个参数（运行匿名函数）
+
+                        a:可以“中途”结束它
+                        b:一般用setTimeout模拟异步
+
+                   2.setInterval(function(){},sleeping)
+
+                        每过多少sleeping毫秒之后，运行一下第一个参数（运行匿名函数）
+
+                        a:可以“中途”结束它
+                        b:为什么不太推荐它？
+                            - 性能不高 setInterval 只能通过调整sleeping优化性能，当sleeping没法统一标准
+                              解决方法：当你需要“轮询”操作时，推荐使用RAF (requestAnimationFrame)
+                        
+
+    */  
+
+
+// 1.setTimeout
+
+// a.可以手动停止
+
+let timer01;         // undefined
+// let timer01 = null ; // null
+
+timer01 = setTimeout(function(){
+    console.log("hello setTimeout")
+},5000)
+
+console.log("票据 timer01 ：",timer01)
+
+function stop01(){
+    clearTimeout(timer01)
+}
+
+// b.模拟异步
+
+console.log("start...")
+
+setTimeout(function(){
+    console.log("我来模拟异步-500ms")
+},500)
+
+setTimeout(function(){
+    console.log("我来模拟异步-10ms")
+},10)
+
+console.log("the end.")
+
+// 2 setInerval
+
+// let step = 0  // 全局变量 计步器 
+
+// //  0 1 2 3 4 5
+// let timer02 = setInterval(function(){
+//     if(step > 5){
+//         clearInterval(timer02)
+//         return 
+//     }
+//     console.log("又到2s啦",step)
+//     step = step + 1
+// },2000)
+
+
+// function stop02(){
+//     clearInterval(timer02)
+// }
+
+// RAF
+
+let raf_step = 0
+let ticket 
+
+function render(){
+    if(raf_step > 200){
+        cancelAnimationFrame(ticket)
+        return
+    }
+    console.log(raf_step)
+    raf_step = raf_step + 1
+
+    ticket = requestAnimationFrame(render)
+}
+
+render()
+
+</script>
