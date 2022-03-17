@@ -482,7 +482,7 @@ IE 初次支持文档模式切换以后，其他浏览器也跟着实现了。�
 
 
 
-## 2.9 <noscript>元素
+## 2.9 &lt;noscript&gt;元素
 
 针对早期浏览器不支持 JavaScript 的问题，需要一个页面优雅降级的处理方案。最终，&lt;noscript&gt;元素出现，被用于给不支持JavaScript 的浏览器提供替代内容。虽然如今的浏览器已经 100%支持JavaScript，但对于禁用 JavaScript 的浏览器来说，这个元素仍然有它的用处。
 &lt;noscript&gt;元素可以包含任何可以出现在&lt;body&gt;中的 HTML 元素，&lt;script&gt;除外。在下列两种情况下，浏览器将显示包含在&lt;noscript&gt;中的内容：
