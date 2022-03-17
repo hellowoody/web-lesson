@@ -2173,3 +2173,164 @@ ECMAScript 的语法很大程度上借鉴了 C 语言和其他类 C 语言，如
 
 	$.foo()
 	```
+
+  ## 原型链（面试）
+
+   ```
+	//构造函数
+	function Foo(){}
+	//这时Foo会有一个属性prototype,这个属性指向Foo的原型对象
+	//同时这个原型对象的construtor 指向Foo也就是构造函数
+
+	//实例化构造函数
+	let foo = new Foo()
+	//foo会有个属性__proto__，这个属性指向Foo的原型对象
+	//同时Foo原型对象的construtor 就是Foo的构造函数
+   ```
+
+   ![image](https://raw.githubusercontent.com/hellowoody/web-lesson/master/%E5%8E%9F%E5%9E%8B/%E5%8E%9F%E5%9E%8B%E9%93%BE.png)
+
+  ## 20.Promise
+
+   Promise 对象用于表示一个异步操作的最终完成 (或失败), 及其结果值.
+   Promise构造函数接受一个函数作为参数，该函数的两个参数分别是resolve和reject。它们是两个函数，由JavaScript引擎提供，不用自己部署。
+   resolve作用是将Promise对象状态由“未完成”变为“成功”，也就是Pending -> Fulfilled，在异步操作成功时 调用，并将异步操作的结果作为参数传递出去；而reject函数则是将Promise对象状态由“未完成”变为“失败”，也就是Pending -> Rejected，在异步操作失败时调用，并将异步操作的结果作为参数传递出去。
+
+   ```
+	const promise1 = new Promise((resolve, reject) => {
+	setTimeout(() => {
+		resolve('foo');
+	}, 300);
+	});
+
+	promise1.then((value) => {
+	console.log(value);
+	// expected output: "foo"
+	});
+
+	console.log(promise1);
+   ```
+
+   ![image](https://mdn.mozillademos.org/files/8633/promises.png)
+
+   一个 Promise有以下几种状态: 
+   - pending: 初始状态，既不是成功，也不是失败状态。
+   - fulfilled: 意味着操作成功完成。
+   - rejected: 意味着操作失败。
+
+   pending 状态的 Promise 对象可能会变为fulfilled 状态并传递一个值给相应的状态处理方法，也可能变为失败状态（rejected）并传递失败信息。当其中任一种情况出现时，Promise 对象的 then 方法绑定的处理方法（handlers ）就会被调用（then方法包含两个参数：onfulfilled 和 onrejected，它们都是 Function 类型。当Promise状态为fulfilled时，调用 then 的 onfulfilled 方法，当Promise状态为rejected时，调用 then 的 onrejected 方法， 所以在异步操作的完成和绑定处理方法之间不存在竞争）。
+
+   因为 Promise.prototype.then 和  Promise.prototype.catch 方法返回promise 对象， 所以它们可以被链式调用。
+   then()方法用于指定当前实例状态发生改变时的回调函数。它返回一个新的Promise实例。
+   ```
+	Promise.prototype.then(onFulfilled, onRejected);
+   ```
+
+  ## 26.js如何改变this指向-call apply bind用法
+
+   - 在ES5语法中，如何判断this的指向问题
+
+     在ES5中，始终坚持一个原理："this永远指向最后调用它的那个对象！"
+
+     看一下下面的例子
+
+     ```
+		let name = "外面的名字"
+
+		var obj = {
+			name:"里面的名字",
+			fn:function(){
+				console.log(this.name)
+			},
+		}
+
+		obj.fn()  // 打印 里面的名字
+
+     ```
+
+     ```
+		let name = "外面的名字"
+
+		var obj = {
+			fn:function(){
+				console.log(this.name)
+			},
+		}
+
+		obj.fn()  // 打印 undefined
+
+     ```
+
+     ```
+		let name = "外面的名字"
+
+		var obj = {
+			name:"里面的名字",
+			fn:function(){
+				console.log(this.name)
+			},
+		}
+
+		var a = obj.fn
+		a.fn()  // 打印 外面的名字
+
+     ```
+
+     ```
+		let name = "外面的名字"
+
+		function f1(){
+			var name = "里面的名字"
+			innerFn()
+			function innerFn(){
+				console.log(this.name)
+			}
+		}
+		
+		f1()  // 外面的名字
+     ```
+
+   - 在ES5语法中,js可以使用call，apply，bind改变this的指向。
+
+	 看一下下面这个例子
+
+     ```
+		let name = "外面的名字"
+
+		var obj = {
+			name:"里面的名字",
+			fn:function(){
+				console.log(this.name)
+			},
+		}
+
+		var obj2 = {
+			name:"new name"
+		}
+
+		obj.fn.call(ob2)      //打印 new name
+		obj.fn.apply(obj2)    //打印 new name
+		obj.fn.bind(obj2)()   //打印 new name
+     ```
+  
+   - call apply bind 如何传参
+
+     ```
+		var name = "外面的名字"
+
+		var obj = {
+			name:"里面的名字",
+			fn:function(a,b){
+				console.log(a,b,"<=>",this.name)
+			},
+		}
+
+		var obj2 = {
+			name:"new name"
+		}
+
+		obj.fn.call(ob2,1,2)      //打印 1 2 <=> new name
+		obj.fn.apply(obj2,[3,4])    //打印 3 4 <=> new name
+		obj.fn.bind(obj2)(5,6)   //打印 5 6 <=> new name
+
+     ```
