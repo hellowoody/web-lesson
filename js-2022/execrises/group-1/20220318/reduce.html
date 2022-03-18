@@ -1,0 +1,115 @@
+<script>
+/*
+    reduce 归并
+
+    数组的reduce方法有两个参数：匿名函数，初始值（可选）
+    [1,2,3].reduce(function(p1,p2,p3,p4){
+
+    },初始值？)
+
+    p1:上一次的计算结果：     
+    p2:每次迭代的元素值：     1     2     3
+    p3:每次迭代的元素值索引：  0     1     2
+    p4:是原数组        [1,2,3]  [1,2,3]  [1,2,3]
+
+    [1,2,3]可以通过reduce进行元素的累加
+
+    const arr = [1,2,3,4,5,6]
+    let sum = 0; // 1 3 6 10 15 21
+    for(let val of arr){
+        sum = sum + val
+        //   1  =  0  +  1
+        //   3  =  1  +  2
+        //   6  =  3  +  3
+        //   10 =  6  +  4
+        //   15  =  10  +  5
+        //   21  =  15  +  6
+    }
+    console.log("sum",sum)  // 21
+*/ 
+
+const arr = [1,2,3,4,5,6]
+// p1 : acc prev 
+// reduce 把传统循环模式改成了lambda的编程方法
+const res = arr.reduce(function(acc,item,i,obj){
+    console.log(`loop ${i+1} res  ${acc}+${item} = ${acc + item}`)
+    return acc + item
+//loop 1 res  0+1 = 1
+//loop 2 res  1+2 = 3
+//loop 3 res  3+3 = 6
+//loop 4 res  6+4 = 10
+//loop 5 res 10+5 = 15
+//loop 6 res 15+6 = 21
+},0)
+console.log("reduce res",res)
+
+// [1,2,3,4,5,6]
+// init value : arr[0] 1
+// arr-> [2,3,4,5,6]
+const res2 = arr.reduce(function(acc,item,i,obj){
+    console.log(`loop ${i+1} res  ${acc}+${item} = ${acc + item}`)
+    return acc + item
+//loop 2 res  1+2 = 3
+//loop 3 res  3+3 = 6
+//loop 4 res  6+4 = 10
+//loop 5 res 10+5 = 15
+//loop 6 res 15+6 = 21
+})
+
+console.log("reduce res2",res2) // 21
+
+/*
+
+课堂练习题：
+
+    在 0 ～ 1000 正整数中 (0,1000],计算出凡是能被5整除的元素的累加值
+
+    要求：两种方案解决
+
+    提示：100%5 === 0 证明100能被5整除
+
+    给大家20分钟-30分钟
+
+*/
+const arr2 = []
+for(let i=1; i<=1000 ;i++ ){
+    arr2.push(i)
+}
+// 方法一  先过滤再累加
+
+const arr_filter = arr2.filter(function(item){
+    return item % 5 === 0
+})
+
+const res_reduce = arr_filter.reduce(function(acc,item){
+    return acc+item
+},0)
+
+console.log("res_reduce",res_reduce)
+
+// 方法二 直接累加
+// [1,2,3,4,5...1000]
+const res_reduce2 = arr2.reduce(function(acc,item){
+    if(item%5 === 0){
+        return acc+item
+    }
+    return acc;
+// loop 1  acc:0 item 1  1%5=1   0
+// loop 2  acc:0 item 2  2%5=2   0
+// loop 3  acc:0 item 3  3%5=3   0
+// loop 4  acc:0 item 4  4%5=4   0
+// loop 5  acc:0 item 5  5%5=0   acc+item=0+5=5
+// /////////////////////////////////////////////////////
+// loop 1  acc:0 item 1  1%5=1   undefined
+// loop 2  acc:undefined item 2  2%5=2   undefined
+// loop 3  acc:undefined item 3  3%5=3   undefined
+// loop 4  acc:undefined item 4  4%5=4   undefined
+// loop 5  acc:undefined item 5  5%5=0   acc+item=undefined+5=NaN
+},0)
+
+console.log("res_reduce2",res_reduce2)  // 100500
+
+
+
+
+</script>
