@@ -35,7 +35,7 @@ function diff2(num1, num2) {
                 return a+b
             };
 
-        3. const sum =  new Function("a","b","return a+b")
+        3. const sum = new Function("a","b","return a+b")
 
     函数名字其实是函数对象的地址
 
@@ -74,6 +74,7 @@ console.log(sum3_1(10,2))
 */
 
 function foo(){
+    // super "arguments" new.target
     console.log("arguments",arguments)
     console.log("arguments.length",arguments.length)
     console.log("arguments[0]",arguments[0])

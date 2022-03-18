@@ -1,0 +1,14 @@
+<script>
+// "use strict";
+// arguments.callee 不能再严格模式下执行
+function fn(str){
+    console.log(str)
+    // console.log(arguments)
+    if(str === "hello"){
+        arguments.callee("world")
+        // fn("world")
+    }  
+}
+
+fn("hello")
+</script>

@@ -1,0 +1,139 @@
+<script>
+/*
+    function vs arrow function  
+
+    箭头函数写法更简约，更偏向lamda（一句话编程），不绑定上下文
+    缺点：没有arguments super 
+
+
+    var let const
+    == ===
+*/
+
+const sum = (a,b) => {
+    // console.log(arguments)
+    return a+b
+}
+console.log(sum(1,2))
+
+/*
+      function   绑定上下文(this)
+arrow function   不绑定上下文 (this)
+
+    "上下文" this
+
+    function 绑定上下文(this) 规则是，
+    看最后是“谁”调用的，那么this就指向“谁”
+
+    由于上述的规则，我们得知使用function声明的函数中的this，
+    是在运行时调用的“一刹那”确定的
+
+
+    箭头函数绑定上下文(this)的优点：在书写代码时，就能确定上下文this指向的是谁。
+    永远指向的是箭头函数声明时，所在的作用域（scoped）。你可以用就近原则去找this就行
+*/
+
+// 场景一
+var name = "外面的名字";
+const obj = {
+    name:"里面的名字",
+    fn:() => console.log("场景一",this.name)
+}
+
+obj.fn()  // 外面 or 里面?  里面的名字   外面的名字
+
+// 场景二
+var name2 = "外面的名字";
+const obj2 = {
+    fn:() => {
+        console.log("场景二",this.name2);
+    }
+}
+
+obj2.fn()  // 外面 or null or undefined ?  undefined  外面的名字
+
+
+// 场景三
+var name3 = "外面的名字";
+const obj3 = {
+    name3:"里面的名字",
+    fn:() => {
+        console.log("场景三",this.name3);
+    }
+}
+
+const fn_tmp = obj3.fn
+fn_tmp()  // 外面 or 里面 or undefined?  外面  外面的名字
+
+
+// 场景四
+let name4 = "外面的名字";
+function fn4(){
+    var name4 = "里面的名字"
+    const innerFn = () => {
+        console.log("场景四",this.name4) // fn4.name4  123
+    }
+    innerFn();
+    
+}
+
+fn4()   // 外面的名字   里面的名字  undefined
+
+// 场景五
+
+window.identity = "i am window";
+const object = {
+    identity:"i am object",
+    getId:function(){
+        return function(){
+            return this.identity;
+        }
+    }
+}
+console.log("场景五",object.getId()())    // window 
+
+window.identity2 = "i am window";
+const object2 = {
+    identity2:"i am object",
+    getId:function(){
+        let that = this      // 这一步相当于把object做了一次快照，赋给that
+        return function(){
+            return that.identity2;
+        }
+    }
+}
+console.log("场景五",object2.getId()())    // object
+
+// 场景六 arrow function
+
+window.identity3 = "i am window";
+const object3 = {
+    identity3:"i am object333",
+    getId:function(){
+        return () => {
+            return this.identity3;
+        }
+    }
+}
+console.log("场景六",object3.getId()())    // object
+
+//  call apply bind 都可以明确指定函数中的this是谁
+function foo(a,b){
+    this.id = 1
+    console.log(this,a,b)
+}
+
+foo()
+const oo = {
+    pwd:123,
+    status:1
+}
+foo.call(oo,1,2)
+foo.apply(oo,[3,4])
+const foo_new = foo.bind(oo)
+foo_new(5,6)
+// 连起来写
+foo.bind({x:100,y:200})(7,8)
+
+
+</script>
