@@ -1,0 +1,22 @@
+1.xml
+<student>
+    <name>张三</name>
+    <score>100</score>
+</student>
+2.xml
+<person>
+    <name>张三</name>
+    <score>100</score>
+</person>
+
+html document -> html
+
+html
+ -head
+ -body
+    -div
+
+<html>
+    <head></head>
+    <body></body>
+</html>

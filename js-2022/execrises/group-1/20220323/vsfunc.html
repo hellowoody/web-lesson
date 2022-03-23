@@ -1,0 +1,166 @@
+<script>
+/*
+    JS 上下文 this
+
+    a = 100;
+    // window.a = 100;
+    console.log(this)
+
+    function Outer(){
+        this.name = "123"
+        this.score = 100
+        this.inner = function(){
+            console.log(this)
+        }
+    }
+    const o = new Outer()
+    o.inner()
+*/
+/*
+    function （ES5） vs arrow function （ES6 ES2015）
+
+    1.普通和箭头函数不像之前的var let const 以及 == ===
+    2.普通函数 会绑定上下文this    (会有歧义)
+      箭头函数 不会绑定上下文this （不绑定上下文会让代码更易理解）
+    
+    3.箭头函数内没有内置对象，arguments
+
+    普通函数分析绑定的上下文this的规则：谁最后调用的函数，那么上下文this就是谁。
+    箭头函数中的上下文指向的时，箭头函数声明时所在的作用域/上下文
+*/
+// 场景一
+var name = "外面的名字";
+const obj = {
+    name:"里面的名字",
+    fn:function(){
+        console.log("场景一",this.name)
+    }
+}
+obj.fn() // ? 里面的名字
+
+// 场景二
+var name2 = "外面的名字";
+const obj2 = {
+    fn:function(){
+        console.log("场景二",this.name2)
+    }
+}
+obj2.fn() // ? undefined
+
+// 场景三
+var name3 = "外面的名字";
+const obj3 = {
+    name3:"里面的名字",
+    fn:function(){
+        console.log("场景三",this.name3)
+        // console.log("场景三",this)
+    }
+}
+const fn3_tmp = obj3.fn;
+fn3_tmp() // ? 外面的名字
+// window.fn3_tmp() // ? 外面的名字
+
+// 场景四
+var name4 = "外面的名字";
+
+function fn4(){
+    var name4 = "里面的名字"
+    const innerFn = function(){
+        console.log("场景四",this.name4)
+    }
+    // this window
+    innerFn()
+}
+
+fn4() // ? 外面的名字
+
+// 场景五
+window.identity = "i am window";
+const object = {
+    indentity:"i am object",
+    // getId 这种函数套函数就是 闭包 closure
+    getId:function(){
+        return function(){
+            return this.identity
+        }
+    }
+}
+/*
+    object.getId()()
+    ||
+    (function(){
+        return this.identity
+    })()
+*/
+console.log("场景五",object.getId()()) // ?  i am window
+
+
+
+// 场景一
+var name_arrow = "外面的名字";
+const obj_arrow = {
+    name_arrow:"里面的名字",
+    fn:() => {
+        console.log("场景一 arrow",this.name_arrow)
+    }
+}
+obj_arrow.fn() // ? 外面的名字
+
+// 场景二
+var name_arrow2 = "外面的名字";
+const obj_arrow2 = {
+    fn:() => {
+        console.log("场景二 arrow",this.name_arrow2)
+    }
+}
+obj_arrow2.fn() // ? 外面的名字
+
+// 场景三
+var name_arrow3 = "外面的名字";
+const obj_arrow3 = {
+    name_arrow3:"里面的名字",
+    fn:() => {
+        console.log("场景三 arrow",this.name_arrow3)
+    }
+}
+const fn3_tmp_arrow = obj_arrow3.fn;
+fn3_tmp_arrow() // ? 外面的名字
+// 场景四
+var name_arrow4 = "外面的名字";
+function fn_arrow4(){
+    // this -> window
+    var name_arrow4  = "里面的名字"
+    const innerFn = () => {
+        console.log("场景四 arrow",this.name_arrow4 )
+    }
+    // this window
+    innerFn()
+}
+
+fn_arrow4() // ? 外面的名字
+
+// 场景五
+window.identity_arrow = "i am window";
+const object_arrow = {
+    identity_arrow:"i am object",
+    // getId 这种函数套函数就是 闭包 closure
+    getId:function(){
+        // this -> object_arrow
+        return () => {
+            return this.identity_arrow
+        }
+    }
+}
+
+console.log("场景五 arrow",object_arrow.getId()()) // ? i am object
+
+
+const normal = function(){
+    console.log(arguments) // 类数组对象
+}
+
+const arrow = () => console.log(arguments) // error arguments is not defined 
+
+normal()
+arrow()
+</script>

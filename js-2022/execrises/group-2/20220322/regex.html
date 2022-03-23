@@ -1,0 +1,85 @@
+<script>
+/*
+    使用正则
+
+    1.exec
+        调用者是正则表达式
+        一次完整的查询完后，会从头再次执行
+    2.test
+        调用者是正则表达式
+        返回值是boolean布尔值：true ｜ false
+    3.match
+        调用者是目标字符串
+        返回值是将所匹配到的结果一次性通过数组返回
+*/
+// exec
+// 正则表达式.exec(要搜索的目标字符串)
+const pattern = /o/g;
+const exec_res1 = pattern.exec("hello world");
+console.log("exec_res1",exec_res1)
+const exec_res2 = pattern.exec("hello world");
+console.log("exec_res2",exec_res2)
+const exec_res3 = pattern.exec("hello world");
+console.log("exec_res3",exec_res3)
+const exec_res4 = pattern.exec("hello world");
+console.log("exec_res4",exec_res4)
+const exec_res5 = pattern.exec("hello world");
+console.log("exec_res5",exec_res5)
+const exec_res6 = pattern.exec("hello world");
+console.log("exec_res6",exec_res6)
+
+const pattern2 = /o/;
+const exec_res_noglobal_1 = pattern2.exec("hello world");
+console.log("exec_res_noglobal_1",exec_res_noglobal_1)
+const exec_res_noglobal_2 = pattern2.exec("hello world");
+console.log("exec_res_noglobal_2",exec_res_noglobal_2)
+const exec_res_noglobal_3 = pattern2.exec("hello world");
+console.log("exec_res_noglobal_3",exec_res_noglobal_3)
+
+// exec 配合 while循环
+const str = "i am abc,hello world.i love the game."
+const pattern3 = /am/g
+let res_while = pattern3.exec(str)
+while(res_while !== null){
+    console.log("res_while",res_while)
+    res_while = pattern3.exec(str)
+}
+
+for(let res = pattern3.exec(str);res !== null;res = pattern3.exec(str)){
+    console.log("res_forloop",res)
+}
+
+// test
+// 正则表达式.test(要搜索的目标字符串)
+const patternOfTest1 = /^我/g
+const res_test1 = patternOfTest1.test("我是张三")
+console.log("res_test1",res_test1)
+
+const patternOfTest2 = /\.$/g
+const res_test2 = patternOfTest2.test(`我是张三.`)
+console.log("res_test2",res_test2)
+
+const patternOfTest3 = /包*/g
+const patternOfTest3_1 = /包+/g
+const patternOfTest3_2 = /包?/g
+const res_test3 = patternOfTest3.test(`我要买衣服`)
+console.log("res_test3",res_test3)
+
+// match
+// 要搜索的目标字符串.match(正则表达式)
+const patternOfMatch1 = new RegExp("^[A-z][0-9]+$","g")
+const patternOfMatch2 = new RegExp("^[A-z]\\d+$","g")
+const patternOfMatch3 = /^[A-z]\d+$/g
+console.log("patternOfMatch1 ","A123".match(patternOfMatch1))
+console.log("patternOfMatch2 ","i000".match(patternOfMatch2))
+console.log("patternOfMatch3 ","z678".match(patternOfMatch3))
+
+const patternOfMatch4 = new RegExp("a","g")
+console.log("patternOfMatch4","Allen,u are ok?u like game.".match(patternOfMatch4))
+const patternOfMatch5 = new RegExp("a","gi")
+console.log("patternOfMatch5","Allen,u are ok?u like game.".match(patternOfMatch5))
+const patternOfMatch6 = new RegExp("like","gi")
+console.log("patternOfMatch6","Allen,u are ok?u like game.".match(patternOfMatch6))
+const patternOfMatch7 = new RegExp("a") // indexOf
+console.log("patternOfMatch7","Allen,u are ok?u like game.".match(patternOfMatch7))
+</script>

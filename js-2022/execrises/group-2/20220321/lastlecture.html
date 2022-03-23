@@ -1,0 +1,33 @@
+<script>
+// window
+window.name="init data"
+const obj = {
+    name:"zhang",
+    fn:() => console.log("场景一",this)      // window
+}
+
+//window
+function foo(){
+    this.name = "li"
+
+    return {
+        name:"wang",
+        fn:() => console.log("场景二",this)  //window {name:li} 
+    }
+}
+
+const bar = () => {
+    this.name = 1000
+    return {
+        name:2000,
+        fn:() => console.log("场景三",this)  // window {name:1000} 
+    }
+}
+
+obj.fn()
+
+foo().fn()
+
+bar().fn()
+
+</script>

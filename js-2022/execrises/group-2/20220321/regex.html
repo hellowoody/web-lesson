@@ -1,0 +1,110 @@
+<script>
+/*
+    正则表达式 Regex Expression
+    根据正则的语法可以达到很方便的模糊查询
+
+    在JS中如何声明
+
+    let express = /正则的语法/宽容度 ;
+    let express = /pattern/flags ;
+    let express = new RegExp(pattern,flags)
+
+    flags 是可传可不传
+
+    flags
+        g - global;     (掌握)
+        i - 大小写不敏感  (了解)
+        m - 支持换行    
+        y- 粘附模式 lastIndex
+        u - unicode
+        s 
+*/ 
+
+const pattern1 = /l/g;
+const res1 = "hello".match(pattern1)
+console.log("res1",res1)
+
+const pattern2 = /l/;
+const res2 = "hello".match(pattern2)
+console.log("res2",res2)
+
+const pattern3 = new RegExp("l","g")
+const res3 = "HELLO".match(pattern3)
+console.log("res3",res3)
+
+const pattern4 = new RegExp("l","i")
+const res4 = "HELLO".match(pattern4)
+console.log("res4",res4)
+
+const pattern5 = new RegExp("l","gi")
+const res5 = "HELLO".match(pattern5)
+console.log("res5",res5)
+
+const pattern6 = /[HEL]/g
+const res6 = "HELLO".match(pattern6)
+console.log("res6",res6)
+
+const pattern7 = /[^HEL]/g
+const res7 = "HELLO".match(pattern7)
+console.log("res7",res7)
+
+const pattern8 = /[0-9]/g
+const res8 = "hello123456".match(pattern8)
+console.log("res8",res8)
+
+const pattern9 = /./g
+const res9 = `
+!
+`.match(pattern9)
+console.log("res9",res9)
+
+
+const pattern10 = /\w/g
+const res10 = "hello123456!.,".match(pattern10)
+console.log("res10",res10)
+
+const pattern11 = /\W/g
+const res11 = "hello123456!.,".match(pattern11)
+console.log("res11",res11)
+
+/*
+    ^:匹配任何开头为 n 的字符串
+    $:匹配任何结尾为 n 的字符串。
+
+*/ 
+/*
+    target 15812345678
+    ^1：第一位是1
+    \d{9}$：最后9位是0-9
+    [3456789]：第二位 3-9
+*/ 
+const pattern12 = /^1[3456789]\d{9}$/
+/*
+    target 1 5 812345678
+    ^1：第一位是1
+    d{9}$：最后9位是0-9
+    (3|4|5|6|7|8|9)：第二位 3-9
+*/ 
+const pattern13 = /^1(3|4|5|6|7|8|9)\d{9}$/
+/*
+    target 022-2319xxxx
+    ^((d{3,4})|d{3,4}-|s)：
+        (d{3,4})  3-4个数字     022x？
+        d{3,4}-   3-4个数字和-  022x-？
+        s         空格         空格？               
+    d{7,14}$  结尾7-14个数字
+    (3|4|5|6|7|8|9)：第二位 3-9
+*/ 
+const pattern14 = /^((\d{3,4})|\d{3,4}-|\s)?\d{7,14}$/
+
+// const target = "15812345678"
+const target = "022-23191234"
+const res12 = target.match(pattern12)
+const res13 = target.match(pattern13)
+const res14 = target.match(pattern14)
+console.log("res12",res12)
+console.log("res13",res13)
+console.log("res14",res14)
+
+
+</script>

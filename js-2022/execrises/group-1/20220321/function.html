@@ -1,0 +1,141 @@
+<script>
+/*
+1.如何声明一个函数
+    a.函数声明
+        function sum(a,b){
+            return a,b
+        }
+    
+    b.函数表达式
+        const sum = function(a,b){
+            return a+b
+        }
+    
+    c.函数构造器
+        const sum = new Function("a","b","return a+b")
+
+    上述3种声明的函数，以后就叫普通函数        
+*/
+
+// 实例化
+const sum = new Function("a","b","console.log('+ 加法');return a+b;");
+// 解析最后一个参数
+// eval()
+console.log(sum(1,2)) //3
+
+/*
+2.普通函数特点
+   返回值return
+        任何一个函数都会有一个返回值，
+        如果没有明确写出return的话，那么系统会自动在函数最后增加一个return;
+
+        return; 和 return undefined;等价
+
+        函数中一旦遇到return那么return后面的代码不会执行
+*/
+
+function sum2(a,b){
+    return 1000;
+    console.log("还会执行吗？") 
+    const res = a+b;
+    return res;
+}
+
+console.log(sum2(10,20))
+
+function diff(num1,num2){
+    if(num1 < num2){
+        return num2 - num1;
+    }else{
+        return num1 - num2;
+    }
+}
+
+function diff2(num1,num2){
+    let res = 0;
+    if(num1 < num2){
+        res = num2 - num1;
+    }else{
+        res = num1 - num2;
+    }
+    return res; 
+}
+//3.声明的普通函数，系统会在这个函数中加上一个只读的属性“name”
+function sum2(a,b,c){
+    return a+b+c
+}
+const sum3 = function(){
+    return 1+2
+}
+const sum3_1 = sum3
+
+console.log(sum2.name)          // "sum2"
+console.log(sum3.name)          // "sum3"
+console.log("sum3",sum3())      // 3
+console.log("sum3_1",sum3_1())  // 3
+console.log(sum3_1.name)        // "sum3"
+
+/*
+4.arguments对象 实参对象
+    在JS中声明一个普通函数，那么这个函数内部就有一个内置的变量arguments
+
+    arguments 是一个类数组对象
+    arguments.length 实际传了参数的个数
+    arguments[index] 可以通过索引获取某一个参数
+
+    JS中的函数因为有了arguments，
+    其普通函数又了跟其他语言不一样的地方：弱化了参数定义。
+*/
+
+function foo(){
+    console.log(arguments)
+    console.log(arguments.length)
+    console.log("arguments[0]",arguments[0])
+    console.log("arguments[1]",arguments[1])
+    console.log("arguments[2]",arguments[2])
+    console.log("arguments[3]",arguments[3])
+}
+foo();
+foo(1);
+foo(1,"hello");
+foo(1,"hello",true);
+foo(1,"hello",true,{a:1});
+
+function sum4(a,b){
+    // return arguments[0]+arguments[1];
+    return a+b;
+}
+console.log(sum4(10,5))
+
+function bar(p1,p2){
+    p1 = 3.14
+    console.log("p1",p1)                     // 3.14
+    console.log("p2",p2)
+    console.log("arguments[0]",arguments[0]) // 3.14
+    console.log("arguments[1]",arguments[1])
+}
+
+bar(100,200)
+
+/*
+5.arguments对象中的callee属性
+ callee属性就是其所在的函数本身
+ callee的作用是解耦合
+
+递归：
+    函数调用本身，
+    写递归函数需要有一个“边界”（跳出无限调用自己的循环）
+*/
+
+function recursion(p1){
+    console.log(p1,arguments)
+    if(p1 === "hello"){
+        // recursion("world")
+        arguments.callee("world")
+    } 
+}
+
+recursion("hello")
+
+
+</script>

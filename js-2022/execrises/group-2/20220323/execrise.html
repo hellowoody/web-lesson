@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>课堂练习</title>
+    </head>
+    <body>
+        <button onclick="add()">增加</button>
+        <br>
+        <input placeholder="要删除第几行"><button onclick="del()">删除</button>
+        <br>
+        大类
+        <ul>
+            <li>小类1</li>
+            <li>小类2</li>
+            <li>小类3</li>
+        </ul>
+    </body>
+</html>
+<script>
+// your code
+// 时间 20-25分钟
+
+function add(){
+    /*
+        1.获取操作节点的父节点
+        2.创建li标签
+        3.创建文本节点
+    */
+    const ul = document.getElementsByTagName("ul")[0]                      // ul
+    const li = document.createElement("li")                                // <li></li>
+    // 方案一
+    // let oldLiCount = 0
+    // ul.childNodes.forEach(item => {
+    //     if(item.nodeType === Node.ELEMENT_NODE) oldLiCount++ 
+    // })
+    // const text = document.createTextNode("小类"+(oldLiCount+1))             // 小类n
+    // 方案二
+    // console.log(Array.from(ul.childNodes) instanceof Array)
+    // console.log(Array.from(ul.childNodes).filter(item => item.nodeType === Node.ELEMENT_NODE))
+    // const text = document.createTextNode("小类"+(Array.from(ul.childNodes).filter(item => item.nodeType === Node.ELEMENT_NODE).length+1))             // 小类n
+    // 方案三
+    // console.log("ul.children",ul.children)
+    const text = document.createTextNode("小类"+(ul.children.length+1))  
+    li.appendChild(text)                                                   // <li>小类n</li>
+    ul.appendChild(li)
+}
+
+
+const del = function(){
+    const rowNum = document.getElementsByTagName("input")[0].value
+    // console.log(rowNum)
+    const ul = document.getElementsByTagName("ul")[0]
+    // index  rowNum-1
+    // ul.children[index]
+    const delLi = ul.children[rowNum-1] 
+    ul.removeChild(delLi)
+}
+
+/*
+"1"+1 = "11"
+"1"-1 = 0
++加法运算 自动按字符串转型
+-减法运算 自动按数值转型
+*/ 
+
+</script>

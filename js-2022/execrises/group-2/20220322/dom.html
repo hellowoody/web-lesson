@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>dom</title>
+    </head>
+    <body>
+        <div id="app">
+            <p id="p_id" name="p_name" style="color:blue;">hello dom</p>
+        </div>
+    </body>
+</html>
+<script>
+const app = document.getElementById("app");
+// console.log(app.childNodes)
+
+for(const item of app.childNodes){
+    console.log(`
+        nodeType:${item.nodeType}
+        nodeValue:${item.nodeValue}
+        nodeName:${item.nodeName}
+    `)
+    if(item.nodeType === Node.ELEMENT_NODE){
+        console.log("p标签的子元素",item.childNodes)
+    }
+}
+</script>

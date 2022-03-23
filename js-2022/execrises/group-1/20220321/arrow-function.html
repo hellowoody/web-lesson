@@ -1,0 +1,38 @@
+<script>
+/*
+箭头函数 lamda
+
+箭头函数是一种写法更简单的，更偏向lamda编程(一句话编程)方式的一种语法。
+是通过“胖箭头”=>将 参数和代码块连接起来的语法
+箭头函数只有函数表达式一种声明方式
+*/
+const sum = function(a,b){
+    return a+b
+}
+
+// const sum_arrow = 参数 => 代码块
+const sum_arrow = (a,b) => {
+    return a+b
+}
+
+console.log("sum",sum(1,2))
+console.log("sum_arrow",sum_arrow(1,2))
+
+// 如果箭头函数中的代码块只有一句话时，可以写成下面的形式
+const sum_arrow_1 = (a,b) => a+b
+// 如果箭头函数的参数有且只有一个时，可以省略小括号
+const fn = (a) => {
+    return 100+a
+}
+const fn_1 = a => {
+    return 100+a
+}
+const fn_2 = a => 100+a
+
+console.log("fn",fn(5))
+console.log("fn_1",fn_1(15))
+console.log("fn_2",fn_2(25))
+
+
+</script>
+
