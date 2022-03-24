@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>write写入</title>
+    </head>
+    <body>
+        <p>原本的内容</p>
+        <script>
+            // onload 等页面全部加载完，再执行里面的内容
+            window.onload = () => {
+                if(Math.random()*10 > 5){
+                    document.write("<h1>新增的内容</h1>")
+                }else{
+                    document.write("<h1>new context</h1>")
+                }
+            }
+        </script>
+        <div>hello write</div>
+    </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>打字机效果</title>
+        <style>
+            /* 关键字 */
+            .keyword { 
+                color:#7f0055;
+                font-weight:bold;
+            }
+            /* 行缩进 */
+            .placeholder {
+                margin-left:15px
+            }
+            /* 空格 */
+            .space {
+                margin-left:7px;
+            }
+            /* 注释 */
+            .comments {
+                color:#3f7f5f;
+            }
+        </style>
+        <script src="./jquery.js"></script>
+    </head>
+    <body>
+        <div class="typewriter">
+            <span class="comments">/**</span><br />
+            <span class="space"/><span class="comments">* 这是注释 </span><br />
+            <span class="space"/><span class="comments">*/</span><br />
+            <span class="keyword">var</span> str = "hello world".<span class="keyword">substr</span>(6)<br />
+            <span class="keyword">console.log</span>(str);<br />
+            <span class="comments">// world</span><br />
+            <span class="keyword">if</span>(1===1) {<br />
+            <span class="placeholder"/>str = "你好 世界" <br />
+            }<br />
+        </div>
+    </body>
+</html>
+<script>
+const element = $(".typewriter")  // 使用jq语法获取.wrapper-left 是个类数组
+// console.log(element)
+const str = element.html()
+// console.log(str)  
+element.html("")                    // 使用jq语法将element 下的内容置空，不用怕，因为已经用str存储了
+// element.html(str)                // 验证
+let progress = 0;                   // 进度条
+const timer = setInterval(() => {
+    const current = str.substr(progress,1);
+    if(current === "<"){
+        progress = str.indexOf(">",progress) + 1  // 如果是< 我们要获取与之配对的结尾 > 的索引，目的是打印时索引直接移到标签结束，一是增加效率减少调用次数，二是去掉打印时<的闪现
+    } else{
+        progress++
+    }
+    element.html(str.substring(0, progress) + (progress & 1 ? '_' : ''));  // 位运算(或取余) 让 _ 闪烁
+    // element.html(str.substring(0, progress) + (progress % 2 ? '_' : ''));  // 位运算(或取余) 让 _ 闪烁
+    if(progress >= str.length){
+        clearInterval(timer)
+    }
+},35)
+
+</script>

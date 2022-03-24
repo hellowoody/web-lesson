@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>innerHtml innerText</title>
+    </head>
+    <body>
+        <div id="app">
+            123456
+            <p>我是段落</p>
+            <a href="https://baidu.com">跳转</a>
+        </div>
+        <button onclick="modApp()">修改app内容的内容</button> 
+        <br>  
+        <button onclick="modP()">修改p内容的内容</button> 
+        <br>  
+        <button onclick="modPByText()">修改p内容的内容innerText</button>   
+    </body>
+</html>
+<script>
+const app = document.getElementById("app")
+console.log("innerHtml")
+console.log(app.innerHTML) // 把app内的childNodes 所有元素打印出来
+console.log("innerText")
+console.log(app.innerText) // 把app内的childNodes 所有文本元素打印出来
+
+function modApp(){
+    app.innerHTML = `
+    <h1>标题一</h1>
+    <h2>标题二</h2>
+    `
+}
+
+function modP(){
+    document.querySelector("p").innerHTML = `<h2>new paragrah</h2>`
+}
+
+function modPByText(){
+    document.querySelector("p").innerText = `<h2>new paragrah</h2>`
+}
+
+</script>

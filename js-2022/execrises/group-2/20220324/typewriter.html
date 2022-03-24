@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>打字机typewriter</title>
+        <style>
+            .keyword {
+                color:#7f0055;
+                font-weight: bold;; 
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <span class="keyword">var</span> str = "hello world".<span class="keyword">substr</span>(6)
+        </div>
+    </body>
+</html>
+<script>
+/*
+      <span class="keyword">var</span> str = "hello world".<span class="keyword">substr</span>(6)
+0123456...                1920
+  
+*/
+const app = document.getElementById("app")
+const pic = app.innerHTML;
+app.innerHTML = ""
+console.log(pic)
+let step = 0
+const id = setInterval(() => {
+    /*
+        substring(startIndex,endIndex) [startIndex,endIndex)
+        substr(startIndex,len) 
+    */
+    const currentChar = pic.substr(step,1) 
+    if(currentChar === "<"){
+        step = pic.indexOf(">",step)+1
+    }else{
+        step++
+    }
+    const newContext = pic.substring(0,step)
+    // app.innerHTML = newContext + ( Math.random()*5 < 3 ? "_" : "" )
+    app.innerHTML = newContext + ( step % 2 === 0 ? "_" : "" )
+    if(step >= pic.length){
+        clearInterval(id)
+    }
+},35)
+// 60Hz  1000/60 = 17
+
+</script>
