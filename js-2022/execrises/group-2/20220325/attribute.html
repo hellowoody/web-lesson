@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>attribute</title>
+        <style>
+            .rect {
+                width: 100px;
+                height: 200px;
+            }
+            .rect-pink {
+                width: 100px;
+                height: 100px;
+                background-color: pink !important;
+                /* 10 */
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 1000 -->
+        <div id="app" class="rect" style="background-color: red;">
+            你好
+        </div>
+        <button onclick="changeColor()">改变颜色</button>
+        <button onclick="changeColor2()">改变颜色2</button>
+        <button onclick="test()">创建属性</button>
+    </body>
+</html>
+<script>
+/*
+css权重
+!important  +infinity
+行内样式      1000
+id            100
+class tag      10
+*               1
+*/ 
+const app = document.getElementById("app")
+console.log("getAttribute id",app.getAttribute("id"));
+console.log("getAttribute class",app.getAttribute("class"));
+console.log("getAttribute style",app.getAttribute("style"));
+
+const changeColor = function(){
+    app.setAttribute("style","background-color:blue;")
+}
+
+const changeColor2 = function(){
+    app.setAttribute("class","rect-pink")
+}
+
+function test(){
+    const attr = document.createAttribute("align"); 
+    attr.value = "center"; 
+    app.setAttributeNode(attr); 
+    // alert(element.attributes["align"].value); // "left" 
+    // alert(element.getAttributeNode("align").value); // "left" 
+    // alert(element.getAttribute("align")); // "left"
+}
+
+</script>

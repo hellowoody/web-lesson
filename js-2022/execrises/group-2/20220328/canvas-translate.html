@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>画板 canvas</title>
+    </head>
+    <body>
+        <canvas id="c" style="background-color: yellow;"></canvas>
+    </body>
+</html>
+<script>
+const canvas = document.getElementById("c")
+if(!canvas.getContext){
+    // 不支持的时候
+    const div = document.createElement("div")
+    div.innerHTML = "你的浏览器不支持canvas"
+    document.body.appendChild(div)
+}else{
+    const w = 500 ,h = 500;
+    canvas.width = w;
+    canvas.height = h;
+    canvas.style.width = w+"px";
+    canvas.style.height = h+"px";
+    const ctx = canvas.getContext("2d");
+
+    ctx.translate(w/2,h/2);
+
+    ctx.beginPath();
+    // ctx.arc(x,y,r,startRadius,redRadius)
+    ctx.arc(0,0,90,0,Math.PI*2)
+    ctx.stroke()
+    ctx.fillStyle="orange"
+    ctx.fill()
+
+    ctx.beginPath();
+    ctx.moveTo(150,150)
+    ctx.lineTo(240,150)
+    ctx.moveTo(150,150)
+    ctx.arc(150,150,90,0,Math.PI/2)
+    ctx.closePath()
+    ctx.strokeStyle="orange"
+    ctx.stroke()
+    ctx.fillStyle="orange"
+    ctx.fill()
+
+    ctx.beginPath();
+    ctx.moveTo(0,0);
+    ctx.lineTo(-120,-120);
+    ctx.lineWidth = 10
+    ctx.strokeStyle = "#e1e1e1";
+    ctx.stroke();
+}
+
+
+</script>

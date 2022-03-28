@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>画板 canvas</title>
+    </head>
+    <body>
+        <canvas id="c" style="background-color: yellow;"></canvas>
+    </body>
+</html>
+<script>
+const canvas = document.getElementById("c")
+if(!canvas.getContext){
+    // 不支持的时候
+    const div = document.createElement("div")
+    div.innerHTML = "你的浏览器不支持canvas"
+    document.body.appendChild(div)
+}else{
+    const w = 500 ,h = 500;
+    canvas.width = w;
+    canvas.height = h;
+    canvas.style.width = w+"px";
+    canvas.style.height = h+"px";
+    const ctx = canvas.getContext("2d");
+
+    ctx.translate(w/2,h/2);
+    // ctx.scale(x轴的系数,y轴的系数)
+    ctx.scale(1,-1)
+    
+    ctx.beginPath()
+    ctx.moveTo(0,0)
+    ctx.lineTo(100,-100)
+    ctx.lineWidth = 10
+    ctx.lineCap = "round"
+    ctx.strokeStyle="#ff11aa"
+    ctx.stroke()
+}
+
+
+</script>

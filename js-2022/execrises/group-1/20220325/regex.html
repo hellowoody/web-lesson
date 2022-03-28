@@ -1,0 +1,139 @@
+<script>
+/*
+    正则表达式 Regex Expression
+    可以提供一种灵活的语法(规则)，方便我们查询/判断内容
+
+    在JS中如何声明
+    const exp = /正则的语法/配置参数;
+    const exp = /pattern/flags;
+    const exp = new RegExp(pattern,flags);
+    注意：flags是可选
+
+    flags:
+           g - global
+           i - 大小写不敏感
+           m
+           y
+           u
+           s
+*/
+const pattern1 = /l/ ;
+const res1 = "hello".match(pattern1);
+console.log("res1",res1)
+
+const pattern2 = /l/g ;
+const res2 = "hello".match(pattern2);
+console.log("res2",res2)
+
+const pattern3 = new RegExp("l","gi") ; // /l/gi
+const res3 = "heLlo".match(pattern3);
+console.log("res3",res3)
+
+const pattern4 = /[eowl]/g ;
+const res4 = "hello".match(pattern4);
+console.log("res4",res4)
+
+// const pattern5 = /[A-Z]/g ;
+// const pattern5 = /[a-z]/g ;
+// const pattern5 = /[A-z]/g ;
+// const pattern5 = /[a-z]/gi ;
+const pattern5 = /[0-9]/g ;
+const res5 = "123 Hello World 456".match(pattern5);
+console.log("res5",res5)
+
+const pattern6 = /./g ;
+const res6 = `123 Hello World 456`.match(pattern6);
+// const res6 = `
+// !`.match(pattern6);
+console.log("res6",res6)
+
+// 正则中的反斜杠 \,还原字符的本身含义
+// 在字符的前面加上一个反斜杠
+const pattern7 = /\./g ;
+const res7 = `i love the game.`.match(pattern7);
+console.log("res7",res7)
+
+const pattern8 = /[^hwd]/g ;
+const res8 = "hello world".match(pattern8);
+console.log("res8",res8)
+
+// const pattern9 = /l{2}/g ;
+// const pattern9 = /l{2,}/g ;
+const pattern9 = /l{2,3}/g ;
+const res9 = "helllllo world".match(pattern9);
+console.log("res9",res9)
+
+const pattern10 = /[0-9]{11}/g ;
+const res10 = "15812345678".match(pattern10);
+console.log("res10",res10)
+
+// [0-9] 等价于 \d
+// const pattern11 = /\d{11}/g ;
+// JS 规则：在字符串中反斜杠\ 代表转义（还原）
+const pattern11 = new RegExp("\\d{11}","g");
+const res11 = "15812345678".match(pattern11);
+console.log("res11",res11)
+
+/*
+    ^: ^n 匹配任何开头为n的字符串 
+    $: n$ 匹配任何结尾为n的字符串 
+*/ 
+const pattern12 = /^1/g;
+const res12 = "123123".match(pattern12);
+console.log("res12",res12)
+
+const pattern13 = /[.!?]$/g;
+const res13 = "i love the game!".match(pattern13);
+console.log("res13",res13)
+
+/*
+    座机 022-2319xxxx
+
+    tel 11位   [0-9]{11}  \d{11}
+    ^1\d{10}
+*/
+// const pattern14 = /^1[356789]\d{9}$/g;
+const pattern14 = /^1[^124]\d{9}$/g;
+// const res14 = "15812345678".match(pattern14);
+const res14 = "13612345679".match(pattern14);
+console.log("res14",res14)
+
+
+const pattern15 = /^(\d{3,4}|\d{3,4}(-|\s))?[0-9]{7,8}$/g;
+// const res15 = "23191234".match(pattern15);
+// const res15 = "02223191234".match(pattern15);
+// const res15 = "022-23191234".match(pattern15);
+const res15 = "022 23191234".match(pattern15);
+console.log("res15",res15)
+
+/*
+    regex 使用方式
+
+    1.exec 
+        调用者是正则表达式
+        每次只返回一个类数组，一次完整查询后，会从头开始。
+        配合while使用
+    2.test
+        调用者是正则表达式
+        返回值boolean： true ｜ false
+    3.match
+        调用者是目标字符串
+        返回值是将所有匹配到的结果一次性通过数组返回。
+*/ 
+const pattern16 = /l/g
+console.log("res16",pattern16.exec("hello"))  // frist
+console.log("res16",pattern16.exec("hello"))
+console.log("res16",pattern16.exec("hello"))  // null
+
+const pattern17 = /[0-9]/g ;
+const str= "123 Hello World 456";
+let res_while = pattern17.exec(str)
+while(res_while !== null){
+    console.log("res_while",res_while)
+    res_while = pattern17.exec(str)
+}
+
+const pattern18 = /^我/g
+const res18 = pattern18.test("我是张三");
+console.log("res18",res18)  // true
+</script>

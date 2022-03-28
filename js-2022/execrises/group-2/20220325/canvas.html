@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>画板 canvas</title>
+    </head>
+    <body>
+        <canvas id="c" style="background-color: yellow;"></canvas>
+    </body>
+</html>
+<script>
+const canvas = document.getElementById("c")
+if(!canvas.getContext){
+    // 不支持的时候
+    const div = document.createElement("div")
+    div.innerHTML = "你的浏览器不支持canvas"
+    document.body.appendChild(div)
+}
+const w = 500 ,h = 500;
+canvas.width = w;
+canvas.height = h;
+canvas.style.width = w+"px";
+canvas.style.height = h+"px";
+const ctx = canvas.getContext("2d");
+
+ctx.beginPath();      // 开始操作
+ctx.moveTo(100,50);   // 找起点 抬起笔然后移动到起点位置
+ctx.lineTo(300,50);   // 终点
+ctx.lineWidth = 20;
+ctx.stroke();         // 开始画 描边
+
+ctx.beginPath();      // 开始操作
+/*
+butt    默认。向线条的每个末端添加平直的边缘。
+round   向线条的每个末端添加圆形线帽。
+square  向线条的每个末端添加正方形线帽
+*/
+ctx.moveTo(100,100);  // 找起点
+ctx.lineTo(300,100);  // 终点
+ctx.lineCap = "round"
+ctx.lineWidth = 20;
+ctx.stroke();         // 开始画 描边
+
+ctx.beginPath();      // 开始操作
+ctx.moveTo(100,150);  // 找起点
+ctx.lineTo(300,150);  // 终点
+ctx.lineCap = "square";
+ctx.lineWidth = 20;
+ctx.stroke();         // 开始画 描边
+
+// 三角形
+ctx.beginPath();
+ctx.lineWidth = 5;
+ctx.moveTo(200,200);
+ctx.lineTo(260,280);
+ctx.lineTo(180,350);
+// ctx.lineTo(200,200);
+ctx.closePath();
+// ctx.stroke();            //  描边 
+// ctx.fillStyle = "red"
+// ctx.fillStyle = "#0000ff"
+ctx.fillStyle = "rgba(100,200,300,0.6)"
+ctx.strokeStyle = "#ff0000"
+ctx.fill();            //  填充内容
+ctx.stroke();          //  描边
+
+</script>

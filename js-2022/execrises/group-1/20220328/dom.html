@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>dom</title>
+        <script>
+            // console.log(document.childNodes[1].childNodes)
+            const pic = document.cloneNode(true) // 快照 把这一瞬间的值暂存起来
+            console.log("快照",pic)
+            console.log("实时活动节点",document)
+            const app_top = document.getElementById("app")
+            console.log(app_top)  // null
+        </script>
+    </head>
+    <body>
+        <div id="app">
+           <p id="p_id" name="p_name" style="color:blue;">hello dom</p>
+        </div>
+        <div id="app2"></div>
+        <ul id="ulist">
+            <li>子项1</li>
+            <li>子项2</li>
+            <li>子项3</li>
+        </ul>
+        <button onclick="hasNode()">校验是否有子节点</button><br>
+        <button onclick="addNode()">insertBefore</button><br>
+        <button onclick="removeNode()">removeNode</button><br>
+        <button onclick="replaceNode()">replaceNode</button><br>
+    </body>
+</html>
+<script>
+const app = document.getElementById("app")
+console.log(app)
+console.log(app.childNodes)  // 返回的类数组
+console.log(app.parentNode)  // 返回的父节点
+
+for(const item of app.childNodes){
+    console.log(`
+        nodeType:${item.nodeType}
+        nodeValue:${item.nodeValue}
+        nodeName:${item.nodeName}
+    `)
+    if(item.nodeType === Node.ELEMENT_NODE){
+        // console.log("p标签的子元素",item.childNodes)
+        console.log("p标签的子元素内的文本节点类型",item.childNodes[0].nodeType)
+        console.log("p标签的子元素内的文本节点类型",item.childNodes.item(0).nodeType)
+        console.log("p标签的子元素内的文本节点",item.childNodes[0].nodeValue)
+        console.log("p标签的属性节点",item.attributes)
+        console.log("p标签的属性节点id",item.attributes[0].nodeValue)
+        console.log("p标签的属性节点id",item.attributes.id.nodeValue)
+        console.log("判断name属性",item.attributes.name === item.attributes[1])
+        for(const attr of item.attributes){
+            console.log(attr)
+            console.log(attr.nodeType === Node.ATTRIBUTE_NODE)
+        }
+    }
+}
+
+const ul = document.getElementById("ulist")
+console.log(ul.childNodes)  // 获取所有的node节点
+console.log(ul.children)    // 获取所有的html标签
+
+
+function hasNode(){
+    console.log("app hashChildNodes",app.hasChildNodes())
+    const app2 = document.getElementById("app2")
+    console.log("app2 hashChildNodes",app2.hasChildNodes())
+}
+
+function addNode(){
+    /*
+        父.appendChild(新)
+        父.insertBefore(新,在哪个节点之前插入)
+    */ 
+    const div = document.createElement("div")      // <div></div>
+    // console.log(div.cloneNode(true))
+    // console.log(div)
+    // document.body.insertBefore(div,document.querySelector("ul"))
+    const text = document.createTextNode("新节点")  // 新节点
+    div.appendChild(text)                          // <div>新节点</div>
+    // app.insertBefore(div,document.getElementById("p_id"))
+    document.body.insertBefore(div,document.querySelector("ul"))
+}
+
+function removeNode(){
+    // 父.removeChild(被移除的节点)
+    app.removeChild(document.getElementById("p_id"))
+}
+
+function replaceNode(){
+    // 父.replaceChild(新,被替换的)
+    const div = document.createElement("div")      // <div></div>
+    const text = document.createTextNode("新节点")  // 新节点
+    div.appendChild(text)                          // <div>新节点</div>
+    app.replaceChild(div,document.getElementById("p_id"))
+}
+</script>

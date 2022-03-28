@@ -1,0 +1,22 @@
+<student>
+    <name></name>
+    <score>100</score>
+    <className>1班</className>
+</student>
+
+xml 文档结构
+html  文档结构
+
+document xml: student teacher person
+        html: html
+
+<html>
+    <head></head>
+    <abc></abc>
+    <body></body>
+</html>
+
+const student = {
+    name:""
+}
+
