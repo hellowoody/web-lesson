@@ -1690,3 +1690,143 @@
    })
    ``` 
 
+
+## Express
+
+### 安装Express的可执行程序
+
+   > 创建一个工程：
+
+   ```
+   npm init -y
+   ```
+
+   > 用npm安装Express：
+
+   ```
+   npm i --save express
+   ```
+
+### 简单的http web服务器
+
+   > 在项目根目录创建app.js文件。app.js 是工程的入口，我们先看看其中有什么内容：  
+
+   ```
+    const express = require('express')
+    const app = express()
+    const port = 3000
+
+    app.get('/', (req, res) => {
+        res.send('Hello World!')
+    })
+
+    app.listen(port, () => console.log(`express app listening on port ${port}`))
+   ```
+
+### Routing
+
+   ```
+    const express = require('express')
+    const app = express()
+    const port = 3000
+
+    app.get('/', (req, resp) => resp.send('Hello World!'))
+
+    // POST method route
+    app.post('/', (req, resp) => resp.send('POST request to the homepage'))
+
+    app.delete('/', (req, resp) => resp.send('DELETE request to the homepage'))
+
+    app.delete('/', (req, resp) => resp.send('DELETE request to the homepage'))
+
+    app.get('/about', (req, resp) => resp.send('about'))
+
+    app.get('/random.text', (req, resp) => resp.send('random.text'))
+
+    app.get('/ab?cd', (req, resp) => resp.send('ab?cd'))  // match acd and abcd.
+
+    app.get('/ab+cd', (req, resp) => resp.send('ab+cd'))  // match abcd, abbcd, abbbcd, and so on
+
+    app.get('/ab*cd', (req, resp) => resp.send('ab*cd'))  // match abcd, abxcd, abRANDOMcd, ab123cd, and so on.
+
+    app.get('/ab(cd)?e', (req, resp) => resp.send('ab(cd)?e'))  // match /abe and /abcde.
+
+    app.get(/w/, (req, resp) => resp.send('/w/'))    // match anything with an “w” in it.
+
+    app.get(/.*fly$/, (req, resp) => resp.send('/.*fly$/'))  // match butterfly and dragonfly, but not butterflyman, dragonflyman, and so on.
+
+    app.get('/users/:userId/books/:bookId', (req, resp) => resp.send(req.params)) // http://localhost:3000/users/34/books/8989
+
+    app.get('/flights/:from-:to', (req, resp) => resp.send(req.params)) // http://localhost:3000/flights/LAX-SFO
+
+    app.get('/example/b', (req, resp, next) => {
+        console.log('the response will be sent by the next function ...')
+        next()
+    }, (req, resp) => {
+        resp.send('Hello from B!')
+    })
+
+    const cb0 = function (req, resp, next) {
+        console.log('CB0')
+        next()
+    }
+
+    const cb1 = function (req, resp, next) {
+        console.log('CB1')
+        next()
+    }
+
+    const cb2 = function (req, resp) {
+        resp.send('Hello from C!')
+    }
+
+    app.get('/example/c', [cb0, cb1, cb2])
+
+    app.listen(port, () => console.log(`express app listening on port ${port}`))
+    
+   ```
+
+   curl测试
+
+   ```
+   // test get
+   curl http://localhost:3000 
+   // test post
+   curl -d "" http://localhost:3000
+   // test delete
+   curl -X DELETE http://localhost:3000 
+   ```
+
+
+
+
+
+
+     
+
+### 中间件middleware 
+
+   ```
+   const express = require('express')
+
+    const app = express()
+    const port = 3000
+
+    const myLogger = function (req, resp, next) {
+        console.log('LOGGED')
+        next()
+    }
+
+    const requestTime = function (req, resp, next) {
+        console.log('requestTime')
+        req.requestTime = Date.now()
+        next()
+    }
+
+    app.use(myLogger)
+    app.use(requestTime)
+
+    app.get('/', (req, resp) => resp.send('Hello World!'+req.requestTime))
+
+    app.listen(port, () => console.log(`express app listening on port ${port}`))
+   ```
