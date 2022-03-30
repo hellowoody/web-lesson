@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>打字机</title>
+        <style>
+            .keyword {
+                color:#7f0055;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <span class="keyword">let</span> str = "hello world".<span class="keyword">substr</span>(6)
+        </div>
+    </body>
+</html>
+<script>
+const app = document.getElementById("app")
+// 快照
+// console.log(app.innerHTML) 
+const pic = app.innerHTML
+app.innerHTML = ""
+let i = 0
+const id = setInterval(() => {
+    /*
+        substring(startIndex,endIndex) [startIndex,endIndex)
+        substr(startIndex,len)
+    */
+    const currentChar = pic.substr(i,1)
+    if(currentChar === "<"){
+        i = pic.indexOf(">",i)+1
+    }else{
+        i++
+    }
+    console.log(currentChar)
+    const newContent = pic.substring(0,i)
+    // app.innerHTML = newContent + (Math.random() > 0.3 ? "_" : "")
+    app.innerHTML = newContent + (i%2 === 0 ? "_" : "")
+    // console.log(i,pic.length)
+    if(i > pic.length){
+        clearInterval(id)
+    }
+},100)
+</script>

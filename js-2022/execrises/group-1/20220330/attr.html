@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>attribute</title>
+        <style>
+            .rect {
+                width:100px;
+                height: 200px;
+            }
+
+            .rect-pink {
+                border-radius: 10px;
+                background-color: pink !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app" class="rect">
+            你好
+        </div>
+        <button onclick="changeClass()">修改样式类名</button>
+        <button onclick="removeStyle()">移除style</button>
+        <button onclick="createAttr()">创建属性</button>
+    </body>
+</html>
+<script>
+const app = document.getElementById("app")
+
+console.log(app.getAttribute("id"))
+console.log(app.getAttribute("class"))
+
+app.setAttribute("style","background-color:red")
+
+function changeClass(){
+    app.setAttribute("class",app.getAttribute("class")+" rect-pink")
+}
+function removeStyle(){
+    app.removeAttribute("style")
+}
+
+function createAttr(){
+    /*
+        node 常见3种类型
+
+        标签类型   document.createElement    Node.ELEMENT_NODE - 1
+        属性类型   document.createAttribute  Node.ATTRIBUTE_NODE - 2
+        文本类型   document.createTextNode   Node.TEXT_NODE - 3
+        
+    */
+    const attr = document.createAttribute("align")   // align="left"
+    attr.value = "center"                            // align="center"
+    app.setAttributeNode(attr)
+}
+
+</script>

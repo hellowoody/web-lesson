@@ -1,0 +1,39 @@
+<script>
+/*
+    JS内置的对象Math
+
+    在JS中使用随机数
+*/
+//随机数
+console.log(Math.random())   // [0,1)
+// 平常使用时经常用一个倍数*随机数
+console.log(Math.random()*5) // [0*5,1*5) => [0,5)
+console.log(Math.random()*10) // [0*10,1*10) => [0,10)
+
+
+/*
+    Math中提供了两个方法：
+    向下取整  Math.floor()
+    向上取整  Math.ceil()
+*/ 
+console.log(Math.floor(1.9))  // 1
+console.log(Math.floor(1.5))  // 1
+console.log(Math.floor(1.1))  // 1
+
+console.log(Math.ceil(1.9))  // 2
+console.log(Math.ceil(1.5))  // 2
+console.log(Math.ceil(1.1))  // 2
+
+console.log("========随机整数============")
+// [0,10)的随机整数
+console.log(Math.floor(Math.random()*10))
+// [5,10)
+// [0,1) => [0*5,1*5) => [0+5,5+5) => [5,10)的随机整数
+console.log("[5,10)",Math.floor(Math.random()*5 + 5)) 
+//  [50,55)
+// [x,y)   之间的随机整数
+// [50,50+5)
+// [m,m+n) 之间的随机整数
+// Math.floor(Math.random()*n+m)
+console.log("[50,55)",Math.floor(Math.random()*5+50))
+</script>

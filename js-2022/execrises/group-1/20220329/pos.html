@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>定位练习</title>
+    </head>
+    <body>
+        <a name="a1">a1</a>
+        <a href="#">abc1</a>
+        <a name="a2">a2</a>
+        <a href="#">abc2</a>
+        <a name="a3">a3</a>   
+        <a href="#">abc3</a>
+        <img src="https://t7.baidu.com/it/u=1595072465,3644073269&fm=193&f=GIF">
+        <form>
+            <input placeholder="form1 input">
+        </form>
+        <img src="https://t7.baidu.com/it/u=4198287529,2774471735&fm=193&f=GIF">
+        <form>
+            <input placeholder="form2 input">
+        </form>
+    </body>
+</html>
+<script>
+console.log("document.anchors")
+console.log(document.anchors)   // [a1,a2,a3]
+console.log(document.anchors[0])   // a1
+console.log(document.anchors.a1)   // a1
+console.log("document.links")
+console.log(document.links)   // [abc1,abc2,abc3]
+console.log("document.forms")
+console.log(document.forms)
+console.log("document.images")
+console.log(document.images)
+
+</script>
