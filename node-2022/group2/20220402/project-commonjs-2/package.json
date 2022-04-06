@@ -1,0 +1,13 @@
+{
+  "name": "project-commonjs-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type":"commonjs",
+  "scripts": {
+    "start":"node main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
