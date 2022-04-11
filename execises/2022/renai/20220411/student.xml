@@ -1,0 +1,15 @@
+<stu>
+    <name>张三</name>
+    <age>19</age>
+    <start_year>2021</start_year>
+</stu>
+
+
+<stu>
+    <name value="张三"></name>
+    <age value="19"></age>
+    <start_year value="2021"></start_year>
+</stu>
+
+
+

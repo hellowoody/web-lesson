@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>demo页面</title>
+        <style>
+            div {
+                width:100px;
+                height:100px;
+                background-color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>第一个页面</h1>
+        <!-- 块标签 -->
+        <div></div>
+        <!-- 行标签 -->
+        <span></span>
+        <button onclick="change()">改变颜色</button>
+    </body>
+</html>
+<script>
+function change(){
+    document.querySelector("div").setAttribute("style","background-color:blue;")
+}
+</script>
