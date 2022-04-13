@@ -1,8 +1,8 @@
 /*
     ESM
-    import                导入
-    export                导出-命名导出 
-    export default        导出-默认导出
+    import                导入        不是一个方法，写在文件的最上方
+    export                导出-命名导出 import {} from xxx
+    export default        导出-默认导出 import xxx from xxx 最多使用一次
 */
 
 // require("./a")  // commonJS
