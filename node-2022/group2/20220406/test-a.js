@@ -1,1 +1,0 @@
-exports.msg = "i am a file"

@@ -1,6 +1,0 @@
-你好，writeFileSync同步方法
-你好，writeFileSync同步方法
-你好，writeFileSync同步方法
-你好，writeFileSync同步方法
-你好，writeFileSync同步方法
-
