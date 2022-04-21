@@ -10,7 +10,7 @@ const {mkdir} = require("fs")
         mode:权限 0o777 默认的 window下 ?
     }
 */
-mkdir("../fs-esm/parent/son/child",{recursive:true,mode:0o444},err => {
+mkdir("../fs-esm/parent/son/child",{recursive:true,mode:0o777},err => {
     if(err){
         console.log("创建失败:",err)
         return
