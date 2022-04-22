@@ -756,3 +756,13 @@
       }
       ```
 ## DevServer 配置 DevServer
+
+   > 开发服务器devServer:用来自动化编译，打开浏览器，自动刷新浏览器  
+
+   > 安装   
+
+   ```
+   npm install -D webpack-dev-server
+   ```
+
+   
