@@ -37,7 +37,7 @@
    > entry 是配置模块的入口，可抽象成输入， Webpack 执行构建的第 步将从入 口开始，搜寻及递归解析出所有入口依赖的模块。  
    > entry 配置是必填的，若不填则将导致 Webpack 报错、退出 。
 
-   ```
+   ```js
    const path = require('path');
 
    module.exports = {
@@ -216,7 +216,7 @@
 
       > output.chunkFilename 配置无入口的 Chunk 在输出时的文件名称。 chunkFilename和上面的 filename 非常类似，但 chunkFilename 只用于指定在运行过程中生成的 Chunk 在输出时的文件名称。会在运行时生 Chunk 的常见场景包括：使用 CommonChunkPlugin 、使用import （"path/to/module"） 动态加载等。 chunkFilename 支持和 filename 一致的内置变量。  
 
-      ```
+      ```js
       export default {
          // js执行入口文件
          entry:{
@@ -231,7 +231,7 @@
       };
       ```
 
-      ```
+      ```js
       import(/* webpackChunkName:"common" */"./common.js").then(res => console.log(res.name))
       ```
 
@@ -280,7 +280,7 @@
       >> name 模块名称  
       >> type: var | this | window | global | commonjs | module | commonjs2
 
-      ```
+      ```js
       export default {
          // js执行入口文件
          entry: "./src/index.js",
@@ -295,7 +295,7 @@
       };
       ```
 
-      ```
+      ```html
       <!DOCTYPE html>
       <html>
          <head>
@@ -310,7 +310,16 @@
       console.log(demo)
       </script>
       ```
+   
+   - clean
 
+      > 每次编译前先删除上一次的编译记录
+
+      ```js
+      output: {
+         clean: true, // Clean the output directory before emit.
+      }
+      ```
 ## Module 配置处理模块的规则
 
    > module 配置处理模块的规则
@@ -322,7 +331,7 @@
       > 条件匹配: 通过 test include exclude 三个配置项来选中 Loader 要应用则的文件。  
       > 应用规则: 对选中的文件通过 use 配置项来应用 Loader ，可以只应用 Loader或者按照从后往前的顺序应用一组 Loader ，同时可以分别向 Loader 传入参数。     
 
-      ```
+      ```js
       export default {
          entry:"./src/main.js",
          output:{
@@ -351,7 +360,7 @@
 
    - alias 别名
 
-      ```
+      ```js
       import path from "path";
       import {fileURLToPath} from "url";
 
@@ -386,7 +395,7 @@
       }
       ```
 
-      ```
+      ```js
       import "@/css/common.css"
 
       function component(){
@@ -424,7 +433,7 @@
       npm i -D html-webpack-plugin
       ```
 
-      ```
+      ```js
       import path from "path";
       import {fileURLToPath} from "url";
       import HtmlWebpackPlugin from "html-webpack-plugin";        //把html文件打包
@@ -475,7 +484,7 @@
       npm i -D mini-css-extract-plugin
       ```
 
-      ```
+      ```js
       import path from "path";
       import {fileURLToPath} from "url";
       import HtmlWebpackPlugin from "html-webpack-plugin";        //把html文件打包
@@ -765,4 +774,44 @@
    npm install -D webpack-dev-server
    ```
 
+   > 修改配置文件
+
+   ```js
+   devServer: {
+        static: {
+          directory: path.join(__dirname, 'public'),
+        },
+        compress: true,
+        port: 3000,
+        open:true, //自动开发默认浏览器
+        hot:true //开启hmr服务
+   }
+   ```
+
+   ```js
+   if (import.meta.webpackHot) {
+      console.log("===============================")
+      import.meta.webpackHot.accept(() => console.log('Accepting the updated printMe module!'));
+      console.log("===============================")
+   }
+   ```
+
+
    
+
+
+## Devtool
+
+   > dev tool 配置 Webpack 如何生成 Source Map 默认值是 false ，即不生成 SourceMap ，若想为构建出的代码生成 Source Map 以方便调试，则可以这样配置：
+
+   ```js
+
+   {
+      devtool:'source-map'
+   }
+
+   ```
+
+   > 在开发环境下将 devtool 设置成 cheap-module-eval-source-map 因为生成这种 Source Map 的速度最快，能加速构建。由于在开发环境下不会做代码压缩，所以在 Source Map 中即使没有列信息，也不会影响断点调试。  
+
+   > 在生产环境下将 devtool 设置成 hidden-source-map ，意思是生成最详细的Source Map ，但不会将 Source Map 暴露出去。由于在生产环境下会做代码压缩，一个JavaScript 文件只有一行，所以需要列信息。  

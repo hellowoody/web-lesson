@@ -8,6 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 export default {
     entry:"./src/main",
     output:{
+        clean:true,
         filename:"built.js",
         // assetModuleFilename:"./imgs/[name][ext]"
     },

@@ -8,6 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 export default {
     entry:"./src/main",
     output:{
+        clean:true,
         filename:"built.js",
         // assetModuleFilename:"./imgs/[name][ext]"
     },
@@ -37,7 +38,7 @@ export default {
                 },
                 generator:{ 
                     //与output.assetModuleFilename是相同的,这个写法引入的时候也会添加好这个路径
-                    filename:'./imgs/[name].[hash:6][ext]',
+                    filename:'./imgs/[name].[hash:8][ext]',
                 },
             },
             {
@@ -69,14 +70,15 @@ export default {
         },
         extensions:[".js",".json"]
     },
-    mode:"none",
+    mode:"development",
     devServer: {
+        // static: './dist',
         static: {
           directory: path.join(__dirname, 'public'),
         },
         compress: true,
         port: 3000,
-        open:true, //自动开发默认浏览器
+        open:false, //自动开发默认浏览器
         hot:true //开启hmr服务
     },
     devtool:'source-map'
