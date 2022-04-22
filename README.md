@@ -313,8 +313,446 @@
 
 ## Module 配置处理模块的规则
 
+   > module 配置处理模块的规则
+
+   - 配置 Loader
+
+      rules 配置模块的读取和解析规则，通常用来配置 Loader 。其类型是一个数组，数组的每一项都描述了如何处理部分文件。配置一项 rules 时大致可通过以下方式来完成。
+
+      > 条件匹配: 通过 test include exclude 三个配置项来选中 Loader 要应用则的文件。  
+      > 应用规则: 对选中的文件通过 use 配置项来应用 Loader ，可以只应用 Loader或者按照从后往前的顺序应用一组 Loader ，同时可以分别向 Loader 传入参数。     
+
+      ```
+      export default {
+         entry:"./src/main.js",
+         output:{
+            filename:"built.js",
+         },
+         module:{
+            rules:[
+                  {
+                     test:/\.css$/,
+                     //include:path.resolve(__dirname,"./src/css"),
+                     //use数组中loader执行顺序，是从下到上依次执行
+                     use:[
+                        "style-loader", //创建<style>标签，将js中样式插入进行，添加到head中
+                        "css-loader",   //将css文件加载到js中，里面内容是样式字符串
+                     ]
+                  }
+            ]
+         },
+         mode:"none"
+      }
+      ```
+
 ## Resolve 配置寻找模块的规则
+
+   > Webpack 在启动后会从配置的入口模块出发找出所有依赖的模块， Resolve 配置 Webpack如何寻找模块所对应的文件。 Webpack 内置 JavaScript 模块化语法解析功能，默认会采用模块化标准里约定的规则去寻找，但我们也可以根据自己的需要修改默认的规则。
+
+   - alias 别名
+
+      ```
+      import path from "path";
+      import {fileURLToPath} from "url";
+
+      const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+      export default {
+         entry:"./src/main.js",
+         output:{
+            filename:"built.js",
+         },
+         module:{
+            rules:[
+                  {
+                     // test:/\.css$/,
+                     include:path.resolve(__dirname,"./src/css"),
+                     //use数组中loader执行顺序，是从下到上依次执行
+                     use:[
+                        "style-loader", //创建<style>标签，将js中样式插入进行，添加到head中
+                        {
+                              loader:"css-loader",
+                        }
+                     ]
+                  }
+            ]
+         },
+         resolve:{
+            alias:{
+                  "@":path.resolve(__dirname,"./src")
+            }
+         },
+         mode:"none"
+      }
+      ```
+
+      ```
+      import "@/css/common.css"
+
+      function component(){
+         const el = document.createElement("div");
+
+         el.innerHTML = "hello webpack"
+
+         return el
+      }
+
+      document.body.appendChild(component())
+      ```
+
+
+   - extensions 扩展名
+
+      > 在导入语句没带文件后缀时， Webpack 会自动带上后缀后去尝试访问文件是否存在。resolve.extensions 用于配置在尝试过程中用到的后缀列表，默认是：
+
+      ```
+      extensions: ['.js','.json']
+      ```
+
+      > 注意：如果package.json中type设置是“module”,import语句还是需要后缀名的，但是在webpack.config.js中的后缀可以省略。
+
 
 ## Plugins 配置扩展插件
 
+   > Plugin 用于扩展 Webpack 的功能 各种各样的 Plugin 几乎可以让 Webpack 做任何与构建相关的事情。  
+   > Plugin 的配置很简单， plugins 配置项接收一个数组，数组里的每一项都是一个要使用Plugin 的实例， Plugin 需要的参数通过构造函数传入。  
+   > 使用 Plugin 难点在于掌握 Plugin 本身提供的配置项 而不是如何在 Webbpack中接入Plugin。  
+
+   - 把html文件打包
+
+      ```
+      npm i -D html-webpack-plugin
+      ```
+
+      ```
+      import path from "path";
+      import {fileURLToPath} from "url";
+      import HtmlWebpackPlugin from "html-webpack-plugin";        //把html文件打包
+
+      const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+      export default {
+         entry:"./src/main",
+         output:{
+            filename:"built.js"
+         },
+         module:{
+            rules:[
+                  {
+                     test:/\.css$/,
+                     //use数组中loader执行顺序，是从下到上依次执行
+                     use:[
+                        "style-loader", //创建<style>标签，将js中样式插入进行，添加到head中
+                        {
+                              loader:"css-loader",
+                        }
+                     ]
+                  }
+            ]
+         },
+         plugins:[
+            new HtmlWebpackPlugin({
+                  template:"./public/index.html",
+                  minify:{
+                     collapseWhitespace:false, //移出空格
+                     removeComments:false, //移出注释
+                  }
+            }),
+         ],
+         resolve:{
+            alias:{
+                  "@":path.resolve(__dirname,"./src")
+            },
+            extensions:[".js",".json"]
+         },
+         mode:"none"
+      }
+      ```
+   
+   - 将css样式单独打包出独立文件
+
+      ```
+      npm i -D mini-css-extract-plugin
+      ```
+
+      ```
+      import path from "path";
+      import {fileURLToPath} from "url";
+      import HtmlWebpackPlugin from "html-webpack-plugin";        //把html文件打包
+      import MiniCssExtractPlugin from "mini-css-extract-plugin"
+
+      const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+      export default {
+         entry:"./src/main",
+         output:{
+            filename:"built.js"
+         },
+         module:{
+            rules:[
+                  {
+                     test:/\.css$/,
+                     //use数组中loader执行顺序，是从下到上依次执行
+                     use:[
+                        {
+                              loader:MiniCssExtractPlugin.loader, //取代style-loader，作用:提取js中的css成单独文件
+                              options:{
+                                 publicPath:"../",
+                              }
+                        },
+                        "css-loader"
+                     ]
+                  }
+            ]
+         },
+         plugins:[
+            new HtmlWebpackPlugin({
+                  template:"./public/index.html",
+                  minify:{
+                     collapseWhitespace:false, //移出空格
+                     removeComments:false, //移出注释
+                  }
+            }),
+            new MiniCssExtractPlugin({
+                  filename:'css/build.[contenthash:10].css',
+            }),
+         ],
+         resolve:{
+            alias:{
+                  "@":path.resolve(__dirname,"./src")
+            },
+            extensions:[".js",".json"]
+         },
+         mode:"none"
+      }
+      ```
+   
+   - 打包图片
+
+      > 在assets文件夹下创建imgs文件夹，并放入测试图片  
+
+      ```
+      src
+        - imgs
+           - 1.jpg
+           - 2.png
+           - 3.jpg
+      ```
+
+      > 修改css文件  
+
+      ```css
+      #img1 {
+         width: 100px;
+         height:100px;
+         background-image: url('../imgs/1.jpg') ;
+         background-repeat: no-repeat;
+         background-size: cover;
+      }
+      #img2 {
+         width: 100px;
+         height:100px;
+         background-image: url('../imgs/2.png');
+         background-repeat: no-repeat;
+         background-size: cover;
+      }
+      #img3 {
+         width: 100px;
+         height:100px;
+         background-image: url('../imgs/3.jpg');
+         background-repeat: no-repeat;
+         background-size: cover;
+      }
+      ```
+
+      > 修改index.html  
+
+      ```html
+      <div id="img1"></div>
+      <div id="img2"></div>
+      <div id="img3"></div>
+      ```
+
+      > 之前的处理方式
+      >> 下载url-loader file-loader
+
+      ```
+      npm i -D url-loader file-loader
+      ```
+
+      > 修改配置文件
+
+      ```js
+      import path from "path";
+      import {fileURLToPath} from "url";
+      import HtmlWebpackPlugin from "html-webpack-plugin";        //把html文件打包
+      import MiniCssExtractPlugin from "mini-css-extract-plugin"
+
+      const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+      export default {
+         entry:"./src/main",
+         output:{
+            filename:"built.js"
+         },
+         module:{
+            rules:[
+                  {
+                     test:/\.css$/,
+                     //use数组中loader执行顺序，是从下到上依次执行
+                     use:[
+                        {
+                              loader:MiniCssExtractPlugin.loader, //取代style-loader，作用:提取js中的css成单独文件
+                              options:{
+                                 publicPath:"../",
+                              }
+                        },
+                        "css-loader"
+                     ]
+                  },
+                  {
+                     test:/\.(jpg|png)$/, //处理图片资源
+                     //下载url-loader file-loader
+                     loader:'url-loader',
+                     //不配置options时 默认会把图片转为base64
+                     options:{
+                        //图片大小小于8kb，就会被base64处理
+                        //有点：减少请求数量（减轻服务器压力）
+                        //缺点：图片体积会更大（文件请求速度变慢）
+                        limit:5 * 1024,
+                        //给图片重命名，【hash:10】取图片hash前10位，[ext]取文件原来扩展名
+                        name:'[hash:10].[ext]',
+                        outputPath:"./imgs",
+                        esModule:false,
+                     },
+                     type:"javascript/auto"
+                  },
+            ]
+         },
+         plugins:[
+            new HtmlWebpackPlugin({
+                  template:"./public/index.html",
+                  minify:{
+                     collapseWhitespace:false, //移出空格
+                     removeComments:false, //移出注释
+                  }
+            }),
+            new MiniCssExtractPlugin({
+                  filename:'css/build.[contenthash:10].css',
+            }),
+         ],
+         resolve:{
+            alias:{
+                  "@":path.resolve(__dirname,"./src")
+            },
+            extensions:[".js",".json"]
+         },
+         mode:"none"
+      }
+      ```
+
+      > webpack v5 推荐写法
+      >> 使用内置的assets-module
+
+      ```js
+      import path from "path";
+      import {fileURLToPath} from "url";
+      import HtmlWebpackPlugin from "html-webpack-plugin";        //把html文件打包
+      import MiniCssExtractPlugin from "mini-css-extract-plugin"
+
+      const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+      export default {
+         entry:"./src/main",
+         output:{
+            filename:"built.js",
+            // assetModuleFilename:"./imgs/[name][ext]"
+         },
+         module:{
+            rules:[
+                  {
+                     test:/\.css$/,
+                     //use数组中loader执行顺序，是从下到上依次执行
+                     use:[
+                        {
+                              loader:MiniCssExtractPlugin.loader, //取代style-loader，作用:提取js中的css成单独文件
+                              options:{
+                                 publicPath:"../",
+                              }
+                        },
+                        "css-loader"
+                     ]
+                  },
+                  {
+                     test:/\.(jpe?g|png)$/,
+                     type:"asset",
+                     parser: {
+                        //转base64的条件
+                        dataUrlCondition: {
+                           maxSize: 8 * 1024, //8kb
+                        }
+                     },
+                     generator:{ 
+                        //与output.assetModuleFilename是相同的,这个写法引入的时候也会添加好这个路径
+                        filename:'./imgs/[name].[hash:6][ext]',
+                     },
+                  },
+                  {
+                     test:/\.txt$/,
+                     type:"asset/source"
+                  }
+            ]
+         },
+         plugins:[
+            new HtmlWebpackPlugin({
+                  template:"./public/index.html",
+                  minify:{
+                     collapseWhitespace:false, //移出空格
+                     removeComments:false, //移出注释
+                  }
+            }),
+            new MiniCssExtractPlugin({
+                  filename:'css/build.[contenthash:10].css',
+            }),
+         ],
+         resolve:{
+            alias:{
+                  "@":path.resolve(__dirname,"./src")
+            },
+            extensions:[".js",".json"]
+         },
+         mode:"none"
+      }
+      ```
+
+
+
+   - 打包html引入图片
+
+      > 修改index.html
+
+      ```html
+      <img style="width:100px" src="../src/imgs/3.png">
+      ```
+
+      > 安装html-loader
+
+      ```
+      //处理html文件的img图片(负责引入img 从而被url-loader进行处理)
+      npm i -D html-loader
+      ```
+
+      > 修改webpack配置文件
+
+      ```js
+      module:{
+         rules:[
+               {
+                  test:/\.html$/,
+                  //处理html文件的img图片(负责引入img 从而被url-loader进行处理)
+                  loader:"html-loader"
+               },
+         ]
+      }
+      ```
 ## DevServer 配置 DevServer
