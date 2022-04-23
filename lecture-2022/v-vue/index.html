@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>vue-demo</title>
+        <script src="https://unpkg.com/vue@3"></script>
+    </head>
+    <body>
+        <div id="app">{{ message }}</div>
+    </body>
+</html>
+<script>
+    Vue.createApp({
+      data() {
+        return {
+          message: 'Hello Vue!'
+        }
+      }
+    }).mount('#app')
+</script>

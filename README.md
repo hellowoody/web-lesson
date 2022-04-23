@@ -320,6 +320,7 @@
          clean: true, // Clean the output directory before emit.
       }
       ```
+
 ## Module 配置处理模块的规则
 
    > module 配置处理模块的规则
@@ -764,6 +765,7 @@
          ]
       }
       ```
+
 ## DevServer 配置 DevServer
 
    > 开发服务器devServer:用来自动化编译，打开浏览器，自动刷新浏览器  
@@ -796,9 +798,14 @@
    }
    ```
 
+   > 修改package.json
 
-   
-
+   ```json
+   "scripts": {
+    "build": "webpack",
+    "dev": "npx webpack serve"
+   }
+   ```
 
 ## Devtool
 
