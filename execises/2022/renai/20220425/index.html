@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>html tag</title>
+    </head>
+    <body>
+        <h2>无序列表</h2>
+        <ul>
+            <li>篮球</li>
+            <li>足球</li>
+            <li>排球</li>
+        </ul>
+        <h2>有序列表</h2>
+        <ol>
+            <li>金牌</li>
+            <li>银牌</li>
+            <li>铜牌</li>
+        </ol>
+        <h2>自定义列表</h2>
+        <dl>
+            <dt>联系方式</dt>
+            <dd>电话</dd>
+            <dd>微信</dd>
+            <dd>邮箱</dd>
+        </dl>
+        <h2>表单 form</h2>
+        <form action="https://baidu.com" method="post" name="form_1">
+            <!-- input 行块级标签 -->
+           ID <input style="width:300px" placeholder="请输入英文字母以及数组组合，不要输入空格">
+           <br>
+           <input type="text" >
+           <br>
+           <input type="button" value="按钮1">
+           <br>
+           <button onclick="showid()">按钮2</button>
+           <br>
+           <input type="checkbox" name="hobby" >音乐
+           <input type="checkbox" name="hobby" >电影
+           <br>
+           <input type="radio" name="gender" value="male" >男
+           <input type="radio" name="gender" value="female" >女
+           <input type="radio" name="gender" value="x" >第三性别
+           <br>
+           <input type="file" accept="image/jpeg,image/png">
+           <br>
+           <input id="userid" type="hidden" value="zhangsan">
+           <br>
+           <input type="password" placeholder="请输入6位密码" >
+           <br>
+           <input type="reset" value="重置">
+           <input type="submit" value="提交">
+        </form>
+        <form>
+            <label for="username">用户名:</label>
+            <input id="username" placeholder="输入用户名">
+        </form>
+        <h2>下拉菜单</h2>
+        <select>
+            <option>请选择</option>
+            <option >中文</option>
+            <option selected>英文</option>
+        </select>
+        <h2>文本域</h2>
+        <textarea rows="20" cols="50"></textarea>
+    </body>
+</html>
+<script>
+function showid(){
+    alert(document.getElementById("userid").value)
+}
+</script>
