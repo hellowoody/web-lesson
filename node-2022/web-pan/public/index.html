@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>网PAN</title>
+        <style>
+            .wrapper-left {
+                width: 300px;
+                height: 100vh;
+                border-right: 1px solid #000;
+            }
+            .wrapper-right {
+                margin-left:8px;
+                height: 100vh;
+                width: calc(100vw - 300px);
+                padding:16px;
+                box-sizing: border-box;
+                border: 1px dotted #e1e1e1;
+                overflow-y:auto;
+            }
+            .menus li:hover{
+                cursor:pointer;
+            }
+        </style>
+        <script charset="UTF-8" src="./xlsx.full.min.js"></script>
+        <script src="./pdf.min.js"></script>
+        <script src="./pdf.worker.min.js"></script>
+    </head>
+    <body>
+        <h1>目录</h1>
+        <div style="display: flex;">
+            <div class="wrapper-left"></div>
+            <div class="wrapper-right"></div>
+        </div>
+    </body>
+</html>
+<script>
+fetch("http://localhost:3000/dir")
+    .then(resp => resp.json())
+    .then(data => {
+        // console.log(data)
+        appendTag(document.querySelector(".wrapper-left"),data.dir,"menus",data.path)
+    })
+
+function appendTag(parentNode,dir,name,basePath){
+    const ul = document.createElement("ul")
+    ul.setAttribute("class",name)
+    dir.forEach((item,index) => {
+        const li = document.createElement("li")
+        li.id = "i_"+index
+        if(typeof item === "string"){
+            li.innerHTML = item
+            li.style = "list-style:circle;"
+            li.setAttribute("data-path",basePath+"/"+item)
+            li.addEventListener("click",e => {
+                e.preventDefault()
+                e.stopPropagation()
+                const suffix = item.slice(item.lastIndexOf(".")+1)
+                if(suffix === "xls" || suffix === "xlsx"){
+                    getExcel(e.currentTarget.dataset.path)
+                }else if(suffix === "pdf"){
+                    const index = e.currentTarget.dataset.path.lastIndexOf("assets")
+                    const filepath = e.currentTarget.dataset.path.slice(index+6)
+                    getPdf(filepath)
+                }else{
+                    getFile(e.currentTarget.dataset.path)
+                }
+            },false)
+        }else{
+            li.innerHTML = item.name
+            li.style = "list-style:square;"
+            li.addEventListener("click",e => {
+                // console.log(e.currentTarget)
+                e.preventDefault()
+                e.stopPropagation()
+                const id = e.currentTarget.id
+                const index = parseInt(id.slice(2),10)
+                const son_dir = dir[index]
+                // console.log(son_dir)
+                appendTag(li,son_dir.dir,"menus_"+son_dir.name,son_dir.path)
+            },false)
+        }
+        ul.appendChild(li)
+
+    }) 
+    parentNode.appendChild(ul)
+}
+
+function getFile(filename){
+    fetch("http://localhost:3000/getfile?path="+filename)
+        .then(res => res.text())
+        .then(res => {
+            // console.log(res)
+            const old = document.querySelector(".wrapper-right div")
+            if(old){
+                document.querySelector(".wrapper-right").removeChild(old)
+            }
+            const pre = document.createElement("div")
+            pre.innerHTML = `<pre>${res}</pre>`
+            document.querySelector(".wrapper-right").appendChild(pre)
+        })
+}
+
+function getExcel(filename){
+    fetch("http://localhost:3000/getfile?path="+filename)
+        .then(res => res.arrayBuffer())
+        .then(res => {
+            const data = new Uint8Array(res);
+            const workbook = XLSX.read(data,{type:"array"})
+            // console.log(workbook)
+            const htmlstr = XLSX.write(workbook,{sheet:workbook.SheetNames[0], type:'string',bookType:'html'});
+            // console.log(htmlstr.toString())
+            const old = document.querySelector(".wrapper-right div")
+            if(old){
+                document.querySelector(".wrapper-right").removeChild(old)
+            }
+            const div = document.createElement("div")
+            div.innerHTML = htmlstr
+            document.querySelector(".wrapper-right").appendChild(div)
+            document.querySelector(".wrapper-right table").border = 1
+            document.querySelector(".wrapper-right table").style = "border-spacing:0px;"
+        })
+}
+
+function getPdf(filename){
+    const old = document.querySelector(".wrapper-right div")
+    if(old){
+        document.querySelector(".wrapper-right").removeChild(old)
+    }
+    const div = document.createElement("div")
+    div.innerHTML = `
+        <div>
+            <button id="prev">Previous</button>
+            <button id="next">Next</button>
+            &nbsp; &nbsp;
+            <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+        </div>
+    `
+    document.querySelector(".wrapper-right").appendChild(div)
+
+    const url = `${window.location.href}files${filename}`;
+    //
+    // The workerSrc property shall be specified.
+    //
+    pdfjsLib.GlobalWorkerOptions.workerSrc ='./pdf.worker.min.js';
+
+    //
+    // Asynchronous download PDF
+    //
+
+    const canvas = document.createElement("canvas");
+    div.appendChild(canvas)
+    canvas.id = "the-canvas"
+    canvas.style = "border: 1px solid black; direction: ltr;"
+    var pdfDoc = null,
+        pageNum = 1,
+        pageRendering = false,
+        pageNumPending = null,
+        scale = 1.5,
+        ctx = canvas.getContext('2d');
+
+    function renderPage(num) {
+        pageRendering = true;
+        // Using promise to fetch the page
+        pdfDoc.getPage(num).then(function(page) {
+            var viewport = page.getViewport({ scale: scale, });
+            // Support HiDPI-screens.
+            var outputScale = window.devicePixelRatio || 1;
+
+            canvas.width = Math.floor(viewport.width * outputScale);
+            canvas.height = Math.floor(viewport.height * outputScale);
+            canvas.style.width = Math.floor(viewport.width) + "px";
+            canvas.style.height =  Math.floor(viewport.height) + "px";
+
+            var transform = outputScale !== 1
+                ? [outputScale, 0, 0, outputScale, 0, 0]
+                : null;
+
+            // Render PDF page into canvas context
+            var renderContext = {
+                canvasContext: ctx,
+                transform: transform,
+                viewport: viewport,
+            };
+            var renderTask = page.render(renderContext);
+
+            // Wait for rendering to finish
+            renderTask.promise.then(function () {
+                pageRendering = false;
+                if (pageNumPending !== null) {
+                // New page rendering is pending
+                renderPage(pageNumPending);
+                pageNumPending = null;
+                }
+            });
+        });
+
+        // Update page counters
+        document.getElementById('page_num').textContent = num;
+    }
+
+    function queueRenderPage(num) {
+        if (pageRendering) {
+        pageNumPending = num;
+        } else {
+        renderPage(num);
+        }
+    }
+
+    function onPrevPage() {
+        if (pageNum <= 1) {
+        return;
+        }
+        pageNum--;
+        queueRenderPage(pageNum);
+    }
+    document.getElementById('prev').addEventListener('click', onPrevPage);
+
+
+    function onNextPage() {
+        if (pageNum >= pdfDoc.numPages) {
+        return;
+        }
+        pageNum++;
+        queueRenderPage(pageNum);
+    }
+    document.getElementById('next').addEventListener('click', onNextPage);
+
+    var loadingTask = pdfjsLib.getDocument(url);
+    loadingTask.promise.then(function(pdfDoc_) {
+    pdfDoc = pdfDoc_;
+    document.getElementById('page_count').textContent = pdfDoc.numPages;
+
+    // Initial/first page rendering
+    renderPage(pageNum);
+    });
+    
+}
+</script>

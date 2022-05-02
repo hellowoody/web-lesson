@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Todo-List</title>
+    </head>
+    <body>
+        <h1>Todo List</h1>
+        <ul>
+        </ul>
+        <form action="/add" method="post">
+            <input name="todo" placeholder="请输入内容">
+            <input type="submit" value="提交">
+        </form>
+    </body>
+</html>
+<script>
+// promise
+// fetch("http://localhost:3000/getdata")
+//     .then(function(res){
+//         return res.text()
+//     })
+//     .then(function(data){
+//         console.log(data)
+//     })
+fetch("http://localhost:3000/getdata")
+    .then(res => res.text())
+    .then(data => {
+        // console.log(data)
+        if(data === "") return
+        const arr = data.split(",")
+        const ul = document.querySelector("ul")
+        for(const item of arr){
+            const li = document.createElement("li")
+            li.innerHTML = item
+            ul.appendChild(li)
+        }
+    })
+</script>

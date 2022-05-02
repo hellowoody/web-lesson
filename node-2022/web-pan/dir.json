@@ -1,0 +1,29 @@
+{
+  "name": "assets",
+  "path": "/Users/admin/Documents/code/lesson/web-lesson/node-2022/web-pan/assets",
+  "dir": [
+    {
+      "name": "filesdir01",
+      "path": "/Users/admin/Documents/code/lesson/web-lesson/node-2022/web-pan/assets/filesdir01",
+      "dir": [
+        "1.md",
+        "a.docx",
+        "b.xlsx",
+        "c.pdf",
+        "hello.js",
+        "常用的命令.md"
+      ]
+    },
+    {
+      "name": "filesdir02",
+      "path": "/Users/admin/Documents/code/lesson/web-lesson/node-2022/web-pan/assets/filesdir02",
+      "dir": [
+        "1.md",
+        "a.docx",
+        "b.xlsx",
+        "hello.js",
+        "常用的命令.md"
+      ]
+    }
+  ]
+}
