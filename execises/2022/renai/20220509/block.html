@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>块级元素</title>
+        <style>
+            .box {
+                width:300px;
+                height: 300px;
+                background-color: #00ff00;
+                position: absolute;
+                display: flex;
+            }
+
+            .box-half {
+                flex-shrink: 0;
+                width: 150px;
+                height: 150px;
+                background-color: #0000ff;
+                /* margin-top: 30px;
+                margin-right: 50px;
+                margin-left: 20px; */
+                margin: 30px 50px 0px 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box">
+            <div class="box-half"></div>
+            <div class="box-half"></div>
+        </div>
+    </body>
+</html>
