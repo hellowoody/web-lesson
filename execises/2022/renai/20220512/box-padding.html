@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>padding</title>
+        <style>
+            .parent-1 {
+                width:100px;
+                height:100px;
+                background-color: blue;
+                padding-top:30px;
+            }
+            .parent-2 {
+                width:100px;
+                height:100px;
+                background-color: blue;
+                padding-top:30px;
+                box-sizing: border-box;
+            }
+            .child {
+                width:50px;
+                height:50px;
+                background-color: green;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="parent-1">
+            <div class="child"></div>
+        </div>
+        <hr>
+        <div class="parent-2">
+            <div class="child"></div>
+        </div>
+    </body>
+</html>
