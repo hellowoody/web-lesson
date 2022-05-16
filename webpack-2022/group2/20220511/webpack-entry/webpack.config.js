@@ -43,7 +43,7 @@ module.exports = {
     entry:{
         home:{
             import:"./src/home.js",
-            filename:"./pages/home.js"
+            filename:"./pages/home.js" // entry中filename 会比 output中filename优先级更高
         },
         about:"./src/about.js"
     },
@@ -53,3 +53,4 @@ module.exports = {
         path:resolve(__dirname,"dist") //必须是绝对路径 
     }
 }
+// 以参数的方式设置filename 

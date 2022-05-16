@@ -17,6 +17,6 @@ module.exports = {
         // filename:"[hash].js" // !important  hash是这一次构建生成的hash值，也就是多个chunk都是同一个hash
         filename:"[name].[chunkhash:6].js",
         chunkFilename:"[name].js",  // 可以修改动态加载文件的名字 
-        clean:true
+        clean:true // default false  
     }
 }

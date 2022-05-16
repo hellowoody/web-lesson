@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>webpack output lib</title>
+        <script src="./dist/myjq.js"></script>
+    </head>
+    <body>
+        <div id="div1">hello div</div>
+        <div id="div2">
+            <p>hello p</p>
+        </div>
+    </body>
+</html>
+<script>
+console.log($.id)
+console.log("div1:",$.html("#div1"))
+console.log("div2:",$.html("#div2"))
+</script>
