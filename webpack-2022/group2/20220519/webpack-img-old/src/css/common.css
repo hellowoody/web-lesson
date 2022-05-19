@@ -1,0 +1,28 @@
+* {
+    color:blue;
+    font-size: 60px;
+}
+
+#img01 {
+    width: 100px;
+    height: 100px;
+    background-image: url(../img/1.jpeg);
+    background-repeat: no-repeat;
+    background-size: contain;  /* important! */ 
+}
+
+#img02 {
+    width: 100px;
+    height: 100px;
+    background-image: url(../img/2.png);
+    background-repeat: no-repeat;
+    background-size: contain;  /* important! */ 
+}
+
+#img03 {
+    width: 100px;
+    height: 100px;
+    background-image: url(../img/3.gif);
+    background-repeat: no-repeat;
+    background-size: contain;  /* important! */ 
+}

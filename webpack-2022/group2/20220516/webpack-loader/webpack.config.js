@@ -28,7 +28,7 @@ module.exports = {
                     /*
                     创建style标签，
                     将刚才的css-loader拿到的内容拼在一起，
-                    注入到html标签中
+                    注入到document.head标签中
                     */
                     "style-loader",  // 只用loader 
                     {
@@ -40,7 +40,7 @@ module.exports = {
     },
     resolve:{
        alias:{
-           "@":path.resolve(__dirname,"src")
+           "@":path.resolve(__dirname,"src") // D:/code/project/src
        } 
     }
 }
