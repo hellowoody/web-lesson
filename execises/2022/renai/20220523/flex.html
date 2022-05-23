@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>flex</title>
+        <style>
+            /* 
+                一旦父标签设置了flex 
+                那么子标签都变成了行块级元素
+
+
+                flex 重点 有主轴和交叉轴之分，默认主轴是水平
+                控制主轴的排版：   justify-content
+                控制交叉轴的排版： align-items
+            */
+            #app {
+                display: flex;
+                width: 500px;
+                height: 500px;
+                border: 1px solid #363636;
+                justify-content: center;
+                align-items: center;
+                /* flex-direction: row; 默认值  默认主轴是水平 */
+                flex-direction: column;  /*   主轴是垂直方向 交叉轴是水平方向 */
+            }
+
+            #app div {
+                width: 100px;
+                height: 100px;
+            }
+
+            #app div:first-child {
+                background-color: red;
+            }
+
+            #app div:nth-child(2) {
+                background-color: green;
+            }
+
+            #app div:last-child {
+                background-color: blue;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </body>
+</html>
