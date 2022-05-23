@@ -1,0 +1,12 @@
+* {
+    color:pink;
+    font-size:30px;
+}
+
+#d01 {
+    width: 110px;
+    height: 110px;
+    background-image: url(../img/1.jpeg);
+    background-repeat: no-repeat;
+    background-size: contain;
+}

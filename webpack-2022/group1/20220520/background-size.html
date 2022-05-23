@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>模版</title>
+        <style>
+            /*
+                background-size: cover | contain
+                
+                cover: 参照目标标签的宽高中最大的值,进行等比方法或缩小
+                最终有可能导致图片显示不全
+
+                contain: 参照目标标签的宽高中最小的值,进行等比方法或缩小
+                最终图片肯定能显示全，但是目标元素可能会“填不满”
+            */
+            #img01 {
+                width: 300px;
+                height: 500px;
+                background-color: blue;
+                background-image: url(./webpack-img/src/img/1.jpeg);
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            #img02 {
+                width: 200px;
+                height: 230px;
+                background-color: red;
+                background-image: url(./webpack-img/src/img/2.png);
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="img01"></div>
+        <div id="img02"></div>
+    </body>
+</html>

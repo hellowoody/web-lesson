@@ -1,0 +1,1 @@
+select * from user where score > 60;
