@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> point 5</title>
+        <style>
+
+            body {
+                display: flex;
+                justify-content: center;
+                margin-top: 50px;
+            }
+
+            .bg {
+                display: flex;
+                width:500px;
+                height:500px;
+                border-radius: 12px;
+                background-color: #fff;
+                box-shadow: 0px 2px 8px rgb(0 0 0 / 0.5);
+                padding:20px;
+                box-sizing: border-box;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            .point {
+                width: 100px;
+                height: 100px;
+                border-radius: 50px;
+                background-color: red;
+            }
+
+            .row {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .row:nth-child(2) {
+                justify-content: center;
+            }
+
+            
+        </style>
+    </head>
+    <body>
+        <div class="bg">
+            <div class="row">
+                <div class="point"></div>
+                <div class="point"></div>
+            </div>
+            <div class="row">
+                <div class="point"></div>
+            </div>
+            <div class="row">
+                <div class="point"></div>
+                <div class="point"></div>
+            </div>
+        </div>
+    </body>
+</html>
