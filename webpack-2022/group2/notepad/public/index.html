@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>记事本</title>
+    </head>
+    <body>
+        <div id="app">
+            <a-layout class="layout">
+                <a-layout-header class="top-bar">{{title}}</a-layout-header>
+                <a-layout-content class="content">
+                    <part-left>left-card</part-left>
+                    <part-right>right-card</part-right>
+                </a-layout-content>
+                <a-layout-footer class="footer-bar">
+                    <a-input-search
+                        v-model:value="searchContent"
+                        placeholder="请输入要过滤的内容"
+                        enter-button
+                        @search="onSearch"
+                    />
+                </a-layout-footer>
+            </a-layout>
+        </div>
+    </body>
+</html>

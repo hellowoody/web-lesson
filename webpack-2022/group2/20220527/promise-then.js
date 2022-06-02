@@ -13,3 +13,9 @@ p.then((res) => {
     console.log(6000,"res:",res)
 })
 console.log(5000)
+
+// fetch("http://localhost:3000/getusername")
+//  .then((res) => res.json())
+//  .then((name) => {
+//      console.log(name)
+//  })
