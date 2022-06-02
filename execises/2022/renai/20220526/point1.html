@@ -3,17 +3,18 @@
     <head>
         <title>point 1</title>
         <style>
-
+            /* 让骰子的面水平居中，上外边距-离顶端有一定的距离 */
             body {
-                display: flex;
-                justify-content: center;
+                display: flex;             /* 开启弹性布局 */
+                justify-content: center;   /* justify-content 控制主轴居中 */
                 margin-top: 50px;
             }
 
             .bg {
-                display: flex;
+                display: flex;           /* 开启弹性布局 */
                 justify-content: center; /* 默认 主轴是水平方向 */
-                align-items: center;
+                align-items: center;     /* align-items 是控制交叉轴方向的 */
+                /* 下面是背景的外观样式 */
                 width:500px;
                 height:500px;
                 border-radius: 12px;
