@@ -9,8 +9,13 @@
             <a-layout class="layout">
                 <a-layout-header class="top-bar">{{title}}</a-layout-header>
                 <a-layout-content class="content">
-                    <part-left>left-card</part-left>
-                    <part-right>right-card</part-right>
+                    <part-left 
+                        v-bind:list="listData"
+                    ></part-left>
+                    <part-right 
+                        v-bind:formdata="formData"
+                        v-on:on-sub="sub"
+                    ></part-right>
                 </a-layout-content>
                 <a-layout-footer class="footer-bar">
                     <a-input-search
