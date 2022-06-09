@@ -1,0 +1,26 @@
+.layout {
+    height:100vh;
+}
+
+.top-bar {
+    color:#fff;
+}
+
+.content {
+    background-color: #fafafa;
+    display: flex;
+    justify-content: space-between;
+    padding:24px;
+    box-sizing: border-box;
+}
+
+.card {
+    height:100%;
+    flex:1;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0px 1px 8px rgb(50 50 50 /0.2);
+    padding:16px;
+    box-sizing: border-box;
+    margin: 0px 8px;
+}

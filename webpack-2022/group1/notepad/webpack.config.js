@@ -1,5 +1,6 @@
 const {resolve} = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = {
     entry:"./src/index.js",
@@ -19,6 +20,10 @@ module.exports = {
     plugins:[
         new HtmlWebpackPlugin({
             template:"./public/index.html"
+        }),
+        new MiniCssExtractPlugin({
+            filename:"./css/[name].css",
+            chunkFilename: "./css/[id].css",
         })
     ],
     resolve:{
@@ -31,5 +36,16 @@ module.exports = {
             "vue":"vue/dist/vue.esm-bundler.js",
             "@":resolve(__dirname,"src")
         }
+    },
+    module:{
+        rules:[
+            {
+                test:/\.css$/,
+                use:[
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                ]
+            }
+        ]
     }
 }

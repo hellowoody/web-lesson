@@ -11,10 +11,13 @@
                 <a-layout-content class="content">
                     <part-left 
                         v-bind:list="listData"
+                        @on-edit="edit"
+                        @on-del="del"
                     ></part-left>
                     <part-right 
                         v-bind:formdata="formData"
                         v-on:on-sub="sub"
+                        @on-update="update"
                     ></part-right>
                 </a-layout-content>
                 <a-layout-footer class="footer-bar">

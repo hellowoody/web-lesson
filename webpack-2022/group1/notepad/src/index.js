@@ -1,8 +1,20 @@
+import 'ant-design-vue/dist/antd.css'; 
+import "@/css/common.css"
+
+import Antd from 'ant-design-vue';
 import {createApp} from "vue"
-import Counter from "./component/Counter.js"
+import App from "@/component/App.js"
 
 // createApp的参数其实是组件的入口
-createApp(Counter).mount("#app")
+/*
+    const app = createApp(Counter);
+    app.use(Antd)
+    app.mount("#app")
+*/
+createApp(App)
+    .use(Antd)
+    .mount("#app")
+
 
 
 if(import.meta.webpackHot){

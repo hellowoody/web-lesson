@@ -1,5 +1,4 @@
 import {ref} from "vue";
-console.log(3227)
 // 计步器组件
 export default {
     // vue3.x
@@ -24,27 +23,11 @@ export default {
             decrease
         }
     },
-    // vue2.x
-    // data(){
-    //     return {
-    //         title:"计步器",
-    //         count:0
-    //     }
-    // },
-    // methods:{
-    //     increase(){
-    //         this.count++
-    //     },
-    //     decrease(){
-    //         this.count--
-    //     },
-    // },
     template:`
-        <div>
-            <h2>{{title}}</h2>
+        <a-card :title="title" style="width: 300px">
             <div>count:{{count}}</div>
-            <button v-on:click="increase">+</button>
-            <button @click="decrease">-</button>
-        </div>
+            <a-button type="primary" v-on:click="increase">+</a-button>
+            <a-button type="dashed" @click="decrease">-</a-button>
+        </a-card>
     `
 }
