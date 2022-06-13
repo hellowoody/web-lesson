@@ -1,0 +1,6 @@
+{
+  "usingComponents": {},
+  "navigationBarBackgroundColor":"#0000ff",
+  "enablePullDownRefresh":false,
+  "navigationBarTitleText":"index页面"
+}

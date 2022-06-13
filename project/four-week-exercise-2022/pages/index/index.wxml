@@ -1,0 +1,16 @@
+<!--index.wxml-->
+<view class="container">
+  Weixin
+</view>
+<view class="box">
+  <text>{{name}}</text>
+  <text bindtap="increase">+</text>
+  <text>{{count}}</text>
+  <text bindtap="decrease">-</text>
+</view>
+<button type="primary" size="mini" bindtap="goto">跳转</button>
+<button type="primary" size="mini">
+  <navigator url="../demo/demo">行内跳转</navigator>
+</button>
+
+

@@ -1,0 +1,13 @@
+{
+    "desc": "外卖,天津外卖,大学城外卖",
+    "rules": [
+      {
+        "action": "allow",
+        "page": "*"
+      },
+      {
+        "action": "disallow",
+        "page": "pages/login"
+      }
+    ]
+}

@@ -1,0 +1,19 @@
+// app.js
+App({
+  onLaunch:function(){
+    console.log("100000000",this.globalData)
+  },
+  globalData:{
+    userInfo:{
+      name:"张三",
+      avatar:"http://avatar.png"
+    },
+    wallet:{
+      money:1000
+    }
+  },
+  abc:{
+    a:1,
+    b:2
+  }
+})
