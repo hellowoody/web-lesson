@@ -1,0 +1,17 @@
+<top-bar>
+  <input 
+    slot="middle" 
+    placeholder-style="color:rgb(255 255 255 / 0.8);left:0px;" 
+    class="search-input search-input-extend" 
+    placeholder="请输入内容" 
+    model:value="{{content}}"
+    cursor="-10"
+    />
+  <view slot="right" class="iconfont icon-sousuo" style="font-weight: 600;font-size:18px;" bindtap="search" ></view>
+</top-bar>
+<view>
+  <view wx:for="{{list}}" wx:key="id">
+    {{item.name}}
+  </view>
+</view>
+

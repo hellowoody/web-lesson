@@ -1,0 +1,28 @@
+<view>if 例子页面</view>
+
+<view wx:if="{{flag}}">hello if demo</view>
+<button size="mini" bindtap="toggleFlag">切换状态</button>
+
+
+<view style="display:flex;align-items: center;">
+  <text>年龄</text>
+  <input style="height: 80rpx;background-color: antiquewhite;width:60rpx" model:value="{{age}}"/>
+  <text>属于：</text>
+  <text wx:if="{{age >= 60}}">老年</text>
+  <text wx:elif="{{age >= 30 && age < 60}}">中年</text>
+  <text wx:else>青年</text>
+</view>
+
+
+<!-- <view>
+  <view>单向绑定</view>
+  <input style="height: 80rpx;background-color: antiquewhite;width:50rpx" value="{{a}}" />
+  <text>{{a}}</text>
+  <button bindtap="changeVal">改变变量</button>
+</view>
+<view>
+  <view>双向绑定</view>
+  <input style="height: 80rpx;background-color: antiquewhite;width:50rpx" model:value="{{a}}" />
+  <text>{{a}}</text>
+  <button bindtap="changeVal">改变变量</button>
+</view> -->

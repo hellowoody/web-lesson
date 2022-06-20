@@ -1,0 +1,5 @@
+.search-input-extend {
+  color:rgb(255 255 255 / 0.8) !important;
+  padding-left:32rpx;
+  box-sizing: border-box;
+}

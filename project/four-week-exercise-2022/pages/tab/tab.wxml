@@ -1,0 +1,6 @@
+<Tabs tabs="{{tabs}}" bindtabsItemChange="changeIndex">
+  <view>
+    <text>内容说明:</text>
+    <text>{{tabs[activeIndex].content}}</text>
+  </view>
+</Tabs>

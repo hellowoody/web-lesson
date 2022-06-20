@@ -1,7 +1,7 @@
-<!--index.wxml-->
-<view class="container">
-  Weixin
-</view>
+<TopBar></TopBar>
+<block-test></block-test>
+<for-test></for-test>
+<if-test></if-test>
 <view class="box">
   <text>{{name}}</text>
   <text bindtap="increase">+</text>
@@ -10,7 +10,23 @@
 </view>
 <button type="primary" size="mini" bindtap="goto">跳转</button>
 <button type="primary" size="mini">
-  <navigator url="../demo/demo">行内跳转</navigator>
+  <navigator url="../demo/demo?a=1000&b=2000&c=3000">行内跳转</navigator>
 </button>
+<button type="primary" size="mini">
+  <navigator url="../userinfo/userinfo">跳转用户信息</navigator>
+</button>
+<PubComp 
+  name="组件参数val" 
+  arr="{{['a','b','c']}}" 
+  bindhandleIncrease="increase" 
+  bindhandleDecrease="decrease" 
+  ></PubComp>
+<SlotTest>
+  <view>插槽内容</view>
+  <text>123</text>
+  <button>插槽按钮</button>
+  <view slot="right">右侧命名插槽</view>
+  <view slot="left">左侧命名插槽</view>
+</SlotTest>
 
 

@@ -1,0 +1,17 @@
+@import "/assets/iconfonts/iconfont.wxss";
+
+page {
+  --themeColor:#916FF2;
+  --themeFontSize: 26rpx;
+  --themeFontColor: #363636;
+  --themeTopBarInputColor:#7B5ECF;
+}
+
+.search-input {
+  height: 50rpx;
+  width: 100%;
+  background-color: var(--themeTopBarInputColor);
+  border-radius: 36rpx;
+  font-size: var(--themeFontSize);
+  color:rgb(255 255 255 / 0.8);
+}

@@ -1,0 +1,10 @@
+<view>slot页面</view>
+<slot></slot>
+<view style="display: flex;">
+  <view class="item" style="background-color: red;">
+    <slot name="left"></slot>
+  </view>
+  <view class="item" style="background-color: blue;">
+    <slot name="right" ></slot>
+  </view>
+</view>

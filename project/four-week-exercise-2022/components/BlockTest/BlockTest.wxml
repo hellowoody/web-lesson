@@ -1,0 +1,13 @@
+<view>Block 使用例子</view>
+
+<block wx:if="{{flag}}">
+  <view>view 1</view>
+  <view>view 2</view>
+</block>
+
+<button bindtap="toggle">切换</button>
+
+<block wx:for="{{arr}}" wx:key="*this">
+  <text>索引：{{index}};</text>
+  <text>元素：{{item}};</text>
+</block>

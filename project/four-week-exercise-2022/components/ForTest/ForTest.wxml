@@ -1,0 +1,19 @@
+<view>for-loop 例子</view>
+<view wx:for="{{arr}}" wx:key="id"  wx:for-item="obj" wx:for-index="i">
+    <view>{{i}} - {{obj.name}}</view>
+</view>
+
+<view>
+  <switch wx:for="{{arr}}" wx:key="id" style="display: block;"> 
+  {{item.name}} 
+  </switch>
+</view>
+<button bindtap="switch">改变顺序</button>
+<view>
+  <input wx:for="{{arr}}" wx:key="id"  style="height: 80rpx;background-color: antiquewhite;width:100rpx" value="{{item.name}}" data-idx="{{index}}" bindinput="changeItem"/>
+</view>
+<button bindtap="addArr">追加数组</button>
+
+
+
+

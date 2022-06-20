@@ -1,7 +1,10 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/demo/demo"
+        "pages/demo/demo",
+        "pages/search/search",
+        "pages/tab/tab",
+        "pages/userinfo/userinfo"
     ],
     "window": {
         "backgroundTextStyle": "dark",

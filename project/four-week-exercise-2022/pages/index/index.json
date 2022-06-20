@@ -1,5 +1,12 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "TopBar":"../../components/TopBar/TopBar",
+    "PubComp":"../../components/PubComp/PubComp",
+    "SlotTest":"../../components/SlotTest/SlotTest",
+    "if-test":"../../components/IfTest/IfTest",
+    "for-test":"../../components/ForTest/ForTest",
+    "block-test":"../../components/BlockTest/BlockTest"
+  },
   "navigationBarBackgroundColor":"#0000ff",
   "enablePullDownRefresh":false,
   "navigationBarTitleText":"index页面"

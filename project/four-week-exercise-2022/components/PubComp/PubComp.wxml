@@ -1,0 +1,8 @@
+<view>
+  <text>参数name:{{name}}</text>
+</view>
+<view>
+  <text>参数arr:{{arr}}</text>
+</view>
+<button bindtap="increase">+</button>
+<button bindtap="decrease">-</button>

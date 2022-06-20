@@ -1,0 +1,7 @@
+<top-bar>
+  <view slot="left" class="iconfont icon-saoyisao" style="font-weight: 600;font-size:18px;"></view>
+  <view slot="middle" class="search-input search-input-extend" bindtap="goto" data-url="/pages/search/search">
+    巨无霸套餐
+  </view>
+  <view slot="right" class="iconfont icon-sousuo" style="font-weight: 600;font-size:18px;" bindtap="goto" data-url="/pages/search/search"></view>
+</top-bar>

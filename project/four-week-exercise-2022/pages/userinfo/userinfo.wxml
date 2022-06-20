@@ -1,0 +1,5 @@
+<button bindtap="getUserProfile">获取用户信息</button>
+<view class="userProfile" wx:if="{{avatar !== ''}}">
+  <image class="avatar" src="{{avatar}}" mode="aspectFit"></image>
+  <text>{{nickname}}</text>
+</view>

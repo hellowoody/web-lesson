@@ -1,0 +1,45 @@
+{
+    "pages": [
+        "pages/home/home",
+        "pages/cart/cart",
+        "pages/profile/profile",
+        "pages/search/search",
+        "pages/searchresult/searchresult"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#916FF2",
+        "navigationBarTitleText": "美食",
+        "navigationBarTextStyle": "white",
+        "enablePullDownRefresh": true,
+        "backgroundColor": "#916FF2"
+    },
+    "tabBar":{
+      "color":"#A1A1A1",
+      "selectedColor": "#FF5B69",
+      "backgroundColor": "#ffffff",
+      "borderStyle": "white",
+      "list":[
+        {
+          "pagePath": "pages/home/home",
+          "text": "首页",
+          "iconPath": "assets/imgs/home.png",
+          "selectedIconPath": "assets/imgs/home-selected.png"
+        },
+        {
+          "pagePath": "pages/cart/cart",
+          "text": "购物车",
+          "iconPath": "assets/imgs/cart.png",
+          "selectedIconPath": "assets/imgs/cart-selected.png"
+        },
+        {
+          "pagePath": "pages/profile/profile",
+          "text": "我的",
+          "iconPath": "assets/imgs/profile.png",
+          "selectedIconPath": "assets/imgs/profile-selected.png"
+        }
+      ]
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
+}

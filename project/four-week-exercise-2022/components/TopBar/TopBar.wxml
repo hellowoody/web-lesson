@@ -1,0 +1,4 @@
+<view class="search-input">
+  <navigator class="navigator-class" url="/pages/search/search">跳转搜索页面</navigator>
+  <text class="search-btn" bindtap="search">搜索</text>
+</view>

@@ -1,2 +1,38 @@
 <!--pages/demo/demo.wxml-->
-<text>demo page</text>
+<text>当前日期：{{currentDate}}</text>
+<view>
+  <button bindtap="getSum" size="mini">1+2=?</button>
+  <text>{{sumRes}}</text>
+</view>
+<view>
+  <button bindtap="getSub" size="mini">1-2=?</button>
+  <text>{{subRes}}</text>
+</view>
+<view>
+  <input class="input-class" model:value="{{inputVal}}" />
+</view>
+<text>{{inputVal}}</text>
+<view class="cal-view">
+  <input class="cal" model:value="{{varA}}" /> 
+  <text>+</text>
+  <input class="cal" model:value="{{varB}}" />
+  <text>={{sumRes2}}</text>
+  <button bindtap="getSum2" size="mini">获取</button>
+</view>
+<view>
+  <text>双向绑定</text>
+  <input class="input-class" model:value="{{A}}" /> 
+  <text>{{A}}</text>
+</view>
+<view>
+  <text>单项绑定</text>
+  <input class="input-class" value="{{a}}" /> 
+  <text>{{a}}</text>
+  <button size="mini" bindtap="changeVar">改变单项绑定的值</button>
+</view>
+<view>
+  <view>上一个页面的传来的参数</view>
+  <text>a:{{params.a}}</text>
+  <text>b:{{params.b}}</text>
+  <text>c:{{params.c}}</text>
+</view>

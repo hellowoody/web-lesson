@@ -1,1 +1,14 @@
-/* pages/demo/demo.wxss */
+.input-class {
+  width: 300rpx;
+  height: 80rpx;
+  background-color: #f0f0f0;
+}
+.cal {
+  width: 80rpx;
+  height: 50rpx;
+  background-color: #f0f0f0;
+}
+
+.cal-view {
+  display: flex;
+}

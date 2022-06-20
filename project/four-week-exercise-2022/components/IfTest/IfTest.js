@@ -1,0 +1,19 @@
+Component({
+  data:{
+    flag:true,
+    a:"a",
+    age:16
+  },
+  methods:{
+    toggleFlag(){
+      this.setData({
+        flag:!this.data.flag
+      })
+    },
+    changeVal(){
+      this.setData({
+        a:"123"
+      })
+    }
+  }
+})

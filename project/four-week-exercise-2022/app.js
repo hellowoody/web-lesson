@@ -5,8 +5,8 @@ App({
   },
   globalData:{
     userInfo:{
-      name:"张三",
-      avatar:"http://avatar.png"
+      name:"",
+      avatar:""
     },
     wallet:{
       money:1000

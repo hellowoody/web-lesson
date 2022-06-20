@@ -1,0 +1,26 @@
+.search-input {
+  height:90rpx;
+  padding:16rpx;
+  background-color: blue;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.search-input .navigator-class {
+  flex:1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#a1a1a1;
+  background-color: #fff;
+  border-radius: 16rpx;
+  font-size:26rpx;
+  height: 100%;
+}
+
+.search-btn {
+  color: #fff;
+  margin-left: 10rpx;
+  align-self: center;
+  font-size:28rpx;
+}
