@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>JS 基础</title>
+    </head>
+    <body></body>
+</html>
+<script>
+// 1.声明变量的修饰符 var
+
+var num = 10; // num的类型 number
+console.log(typeof num)
+var msg = "hello JS"; // msg的类型 string
+console.log(typeof msg)
+var flag = true // flag的类型 boolean
+console.log(typeof flag)
+
+// 2.声明变量不给初始值和初始值是空值的区别
+
+var count01;         // count 是 undefined
+var count02 = null;  // count 是 null
+console.log("count01:",count01)  // undefined
+console.log("count02:",count02)
+
+var count03 = undefined; // 不推荐 - “废话文学”
+
+// 3.虽然js中弱化类型，但并提倡随意该类型
+
+var message = "hello world"; // string
+message = "你好，世界";        // string
+var step = 0;   // number
+step = 1;       // number
+step = 2;
+// 下面的赋值语句不推荐。修改类型会使js引擎作出更多的“工作”，你的代码的性能就降低了。
+var value = 3.14;  // number
+value = "圆周率"    // string
+
+console.log("message:",message)
+console.log("step:",step)
+console.log("value:",value)
+
+// 4 代码块：用大括号包裹的区域就叫代码块
+//   代码块对var这个修饰符无效
+
+{
+    var a = 1000
+}
+
+if(3>2){
+    var b = 2000
+}
+
+console.log("a:",a,"b:",b)
+
+// 5 var的最小作用域是函数
+
+var outside_val = "外面的值" // 全局变量
+
+function sum(){
+    // 作用域 
+    var inside_val = "内部的值"  // 局部变量
+    console.log("内部可以访问外部的值:",outside_val)
+}
+sum()
+console.log("外部不可以访问内部的值:",inside_val)
+
+// 6.声明变量的简便方式
+
+// var name01 = "zhang";
+// var name02 = "li";
+// var name03 = "wang";
+
+var name01 = "zhang",
+    name02 = "li",
+    name03 = "wang";
+
+
+
+
+</script>
