@@ -1,4 +1,6 @@
-const baseUrl = "http://localhost:3000"
+const baseUrl = "http://192.168.31.182:3000"
+
+export const assetsUrl = "http://192.168.31.182:3000/assets/"
 
 export const fetch = (api,data) => {
 

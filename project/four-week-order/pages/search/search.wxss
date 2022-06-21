@@ -5,7 +5,7 @@
 }
 
 .search-history {
-  padding:20rpx;
+  padding:var(--themePadding);
   box-sizing:border-box;
   font-size:var(--themeFontSize);
 }

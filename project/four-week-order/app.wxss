@@ -5,6 +5,7 @@ page {
   --themeFontSize: 26rpx;
   --themeFontColor: #363636;
   --themeTopBarInputColor:#7B5ECF;
+  --themePadding:20rpx;
 }
 
 .search-input {

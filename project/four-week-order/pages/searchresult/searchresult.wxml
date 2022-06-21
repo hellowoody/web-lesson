@@ -9,9 +9,16 @@
     />
   <view slot="right" class="iconfont icon-sousuo" style="font-weight: 600;font-size:18px;" bindtap="search" ></view>
 </top-bar>
-<view>
-  <view wx:for="{{list}}" wx:key="id">
-    {{item.name}}
+<view class="list">
+  <view wx:for="{{list}}" wx:key="id" class="list-item">
+    <image class="list-item-img" mode="heightFix" src="{{assetsUrl+item.img}}"></image>
+    <view class="list-item-desc">
+      <view class="list-item-title">
+        <text>{{item.name}}</text>
+        <text class="list-item-hot">{{item.type === "hot" ? "热销产品" : ""}}</text>
+      </view>
+      <view class="list-item-price ">{{item.price + " ¥"}}</view>
+    </view>
   </view>
 </view>
 

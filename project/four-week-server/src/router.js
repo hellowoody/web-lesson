@@ -6,4 +6,6 @@ export const useRouter = app => {
 
     app.post("/queryfood",api.QueryFood)
 
+    app.post("/hometoplist",api.HomeTopList)
+
 }

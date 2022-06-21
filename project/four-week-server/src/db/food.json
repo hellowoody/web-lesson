@@ -4,41 +4,55 @@
         "name":"巨无霸套餐",
         "price":10.0,
         "status":1,
-        "type":"hot"
+        "type":"hot",
+        "img":"imgs/burger.png",
+        "category":"01"
     },
     {
         "id":2,
         "name":"麦辣鸡腿汉堡",
         "price":20.0,
         "status":1,
-        "type":"normal"
+        "type":"normal",
+        "img":"imgs/burger.png",
+        "category":"01"
+        
     },
     {
         "id":3,
         "name":"披萨",
         "price":30.0,
         "status":1,
-        "type":"normal"
+        "type":"normal",
+        "img":"imgs/pizza.png",
+        "category":"02"
     },
     {
         "id":4,
         "name":"美式披萨",
         "price":40.0,
         "status":1,
-        "type":"hot"
+        "type":"hot",
+        "img":"imgs/pizza.png",
+        "category":"02"
     },
     {
         "id":5,
         "name":"薯条",
         "price":50.0,
         "status":1,
-        "type":"hot"
+        "type":"hot",
+        "img":"imgs/pizza.png",
+        "category":"03"
     },
     {
         "id":6,
         "name":"可乐",
         "price":60.0,
         "status":1,
-        "type":"normal"
+        "type":"normal",
+        "img":"imgs/pizza.png",
+        "category":"03"
+        
     }
 ]
