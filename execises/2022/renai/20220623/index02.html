@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>JS 基础</title>
+    </head>
+    <body></body>
+</html>
+<script>
+// JS中的数据类型 7种
+/*
+    String
+    Number
+    Boolean
+    Null
+    Undefined
+    Object
+    Symbal   (高级用法)
+*/
+
+const a = true;
+const b = 3.14;
+const c = "hello";
+const d = {
+    name:"zhangsan"
+}
+const e = null
+let f;
+
+// typeof 可以获得变量的类型
+// typeof 变量
+// typeof(变量)
+
+console.log(typeof a)   // "boolean"
+console.log(typeof(b))  // "number"
+console.log(typeof c)   // "string"
+console.log(typeof d)   // "object"
+console.log(typeof f)   // "undefined"
+// ==================================
+console.log(typeof e)   // "null" -> "object"
+console.log(String(e))  // "null"
+
+
+// 实战中判断一个对象是否是null 还是 undefined
+let abc;
+console.log(String(abc))   // "undefined"
+console.log(String(abc) == "undefined")   // true
+
+abc = null;
+console.log(String(abc))   // "null"
+console.log(String(abc) == "null")    // true
+</script>

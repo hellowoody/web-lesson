@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>JS 基础</title>
+    </head>
+    <body></body>
+</html>
+<script>
+// 1.var 作用域提升 （注意：只有var声明的变量才有作用域提升效果）
+
+/*
+
+function promition(){
+    // 作用域提升
+    var a;            // undefined
+    console.log(a);   // undefined
+    a = 1000;
+    console.log(a);   // 1000
+}
+
+*/
+
+function promition(){
+    // 作用域提升
+    console.log(a);   // undefined
+    var a = 1000;
+    console.log(a);   // 1000
+}
+
+promition();
+
+// 2.let 和 const 也可以定义变量
+//   这两个修饰符是ES6推出的
+let b = 2000;
+const c = 3000;
+
+// let与var的不同之处 
+// let没有作用域提升这个特性 （官方管这种现象叫暂时性死区）
+
+function temperal_dead(){
+    // 暂时性死区
+    console.log(a);   // error：Cannot access 'a' before initialization
+    let a = 1000;
+    console.log(a);   // 1000
+}
+
+// temperal_dead() // 会报错
+
+// 代码块对let声明的变量有“封闭”作用
+
+let outside_val = "外部变量";
+
+{
+    let inside_val = "内部变量"
+    console.log("outside_val:",outside_val)
+}
+
+// console.log("inside_val:",inside_val)  // error: inside_val is not defined
+
+// const 的特点不仅代码块有“封闭”作用，
+// 而且变量用const声明时要有初始值，然后一旦定义初始值就不能被修改
+
+const e = 5000;
+
+e = 6000;      // error: Assignment to constant variable.
+
+/*
+    总结: var let const
+
+    var:        ES5版本推出的语法
+    let const:  ES6版本推出的语法
+
+    我们推荐使用较新的语法
+*/ 
+</script>
