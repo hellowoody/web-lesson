@@ -4,7 +4,8 @@
         "pages/cart/cart",
         "pages/profile/profile",
         "pages/search/search",
-        "pages/searchresult/searchresult"
+        "pages/searchresult/searchresult",
+        "pages/editaddress/editaddress"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -39,6 +40,9 @@
           "selectedIconPath": "assets/imgs/profile-selected.png"
         }
       ]
+    },
+    "useExtendedLib": {
+      "weui": true
     },
     "style": "v2",
     "sitemapLocation": "sitemap.json"

@@ -11,15 +11,15 @@
       "list": [
         {
           "name": "",
-          "pathName": "pages/search/search",
+          "pathName": "pages/profile/profile",
           "query": "",
           "launchMode": "default",
           "scene": null
         },
         {
           "name": "",
-          "pathName": "pages/searchresult/searchresult",
-          "query": "content=披萨",
+          "pathName": "pages/editaddress/editaddress",
+          "query": "",
           "launchMode": "default",
           "scene": null
         }

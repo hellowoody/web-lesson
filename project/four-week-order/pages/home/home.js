@@ -3,6 +3,7 @@ import {fetch,assetsUrl} from "../../utils/http.js"
 Page({
   data:{
     homeTopList:[],
+    homeCards:[],
     assetsUrl
   },
   onLoad(){
@@ -21,6 +22,19 @@ Page({
         // console.log(res)
         this.setData({
           homeTopList:res.data
+        })
+      })
+      .catch(reason => {
+        wx.showToast({
+          title:reason,
+          icon:"none"
+        })
+      })
+
+    fetch("/homecards")
+      .then(res => {
+        this.setData({
+          homeCards:res.data
         })
       })
       .catch(reason => {

@@ -22,10 +22,35 @@
   <view class="content-top-bar">
     <view class="content-top-bar-title">今日推荐</view>
     <view class="content-top-bar-icon">
-      <view class="icon-item"></view>
-      <view class="icon-item"></view>
+      <view class="icon-item">
+        <text class="iconfont icon-yingyongshezhi icon-item-rotate"></text>
+      </view>
+      <view class="icon-item">
+        <text class="iconfont icon-guolv"></text>
+      </view>
     </view>
   </view>
-  <view class="content-card">
+  <view class="content-card" wx:for="{{homeCards}}" wx:key="id">
+    <image mode="widthFix" class="card-img" src="{{assetsUrl+item.img}}"></image>
+    <view class="card-desc">
+      <view style="display: flex;justify-content: space-between;font-size: 36rpx;">
+        <text>{{item.name}}</text>
+        <text style="color:#FF374B;" class="iconfont icon-aixin"></text>
+      </view>
+      <view class="card-line"></view>
+      <view class="card-detail">
+        <view class="card-detail-item">
+          <text style="color:#FF374B;">{{"¥ "+item.price}}</text>
+        </view>
+        <view class="card-detail-item">
+          <text class="iconfont icon-pinglun" style="font-size:34rpx;margin-right:8rpx;"></text>
+          <text style="font-size:var(--themeFontSize);">{{item.commentNum}}</text>
+        </view>
+        <view class="card-detail-item">
+          <text class="iconfont icon-shoucang1" style="font-size:34rpx;margin-right:8rpx;color:#F4A625"></text>
+          <text style="font-size:var(--themeFontSize);">{{item.rating}}</text>
+        </view>
+      </view>
+    </view>
   </view>
 </view>

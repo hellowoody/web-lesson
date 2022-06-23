@@ -1,1 +1,48 @@
-/* pages/profile/profile.wxss */
+.top-bar{
+  background-color: #84B6CF;
+  height:360rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size:var(--themeFontSize);
+}
+
+/* 伪元素 */
+.top-bar::after {
+  content:"";
+  position: absolute;
+  left:-27%;
+  width: 150%;
+  height: 490rpx;
+  background-color: #84B6CF;
+  z-index: -1;
+  border-radius: 0 0 50% 50%;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width:120rpx;
+  border-radius: 50%;
+  box-shadow: 0rpx 2rpx 16rpx rgb(100 100 100 / 0.2);
+  margin-bottom: 20rpx;
+}
+
+.icon-menu {
+  display: flex;
+  justify-content: space-around;
+  margin-top:36rpx;
+  color:#fff;
+}
+
+.icon-menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height:90rpx;
+  justify-content: space-between;
+}

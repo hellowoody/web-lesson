@@ -16,3 +16,7 @@ page {
   font-size: var(--themeFontSize);
   color:rgb(255 255 255 / 0.8);
 }
+
+::-webkit-scrollbar {
+  display: none; /* Chrome Safari */
+}

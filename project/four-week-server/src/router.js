@@ -8,4 +8,6 @@ export const useRouter = app => {
 
     app.post("/hometoplist",api.HomeTopList)
 
+    app.post("/homecards",api.HomeCards)
+
 }

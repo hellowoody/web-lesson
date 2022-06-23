@@ -21,12 +21,13 @@
 
 .content {
   background-color: #fff;
-  height:calc(100vh - 86rpx - 160rpx);
+  height:calc(100vh - 86rpx - 160rpx - 100rpx);
   margin-top:-30rpx;
   border-top-left-radius: 32rpx;
   border-top-right-radius: 32rpx;
   padding:50rpx 32rpx;
   color:var(--themeFontColor);
+  overflow-y: auto;
 }
 
 .content-top-bar {
@@ -51,4 +52,75 @@
   border-radius: 50%;
   margin-left:24rpx;
   box-shadow: 0rpx 2rpx 16rpx rgb(255 0 0 / 0.3);
+  color:#fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 
+
+animation  ：  动画
+
+transition ：  过渡
+
+transform  ：  变形
+
+*/
+
+.icon-item-rotate {
+  transform: rotateZ(90deg);
+  font-weight: 600;
+}
+
+.content-card {
+  height: 460rpx;
+  border-radius: 24rpx;
+  margin-top: 36rpx;
+  box-shadow: 0rpx 2rpx 16rpx rgb(0 0 0 / 0.1);
+  position: relative;
+}
+
+.card-img {
+  width:100%;
+  border-top-left-radius: 24rpx;
+  border-top-right-radius: 24rpx;
+}
+
+.card-desc {
+  background-color: #fff;
+  height:230rpx;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-radius: 24rpx;
+  padding:36rpx;
+  box-sizing: border-box;
+}
+
+.card-line {
+  width:100%;
+  height: 2rpx;
+  background-color: #F3F3F3;
+  margin-top:32rpx;
+}
+
+.card-detail {
+  display: flex;
+  margin-top:24rpx;
+}
+
+.card-detail-item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60rpx;
+  border-right: 2rpx solid #F3F3F3;
+}
+
+/* .card-detail-item:last-child */
+.card-detail-item:nth-last-child(1) {
+  /* border:none; */
+  border:unset;
 }

@@ -29,4 +29,14 @@ export const HomeTopList = (req,resp) => {
     }
 }
 
+export const HomeCards = (req,resp) => {
+    try {
+        const list = get("food")
+        const res = list.filter(item => item.todayFood ? true : false)
+        resp.send(res)
+    } catch (e) {
+        resp.status(500).send(e.message)
+    }
+}
+
 

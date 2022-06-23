@@ -1,2 +1,20 @@
-<!--pages/profile/profile.wxml-->
-<text>pages/profile/profile.wxml</text>
+<view class="top-bar">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo}}" bindtap="login">登陆</button>
+    <block wx:else>
+      <image class="userinfo-avatar" mode="widthFix" src="{{userInfo.avatarUrl}}"></image>
+      <text style="color:#fff;">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="icon-menu" wx:if="{{hasUserInfo}}" >
+    <view class="icon-menu-item" bindtap="goto" data-name="父" data-url="/pages/editaddress/editaddress">
+      <text class="iconfont icon-bianji" style="font-size:38rpx;"></text>
+      <text data-name="子">编辑地址</text>
+    </view> 
+    <view class="icon-menu-item" bindtap="logout">
+      <text class="iconfont icon--dengchu" style="font-size:38rpx;"></text>
+      <text>退出登陆</text>
+    </view>
+  </view>
+</view>
+

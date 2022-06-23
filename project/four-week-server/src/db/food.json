@@ -6,7 +6,10 @@
         "status":1,
         "type":"hot",
         "img":"imgs/burger.png",
-        "category":"01"
+        "category":"01",
+        "rating":19,
+        "commentNum":20,
+        "todayFood":true
     },
     {
         "id":2,
@@ -15,7 +18,10 @@
         "status":1,
         "type":"normal",
         "img":"imgs/burger.png",
-        "category":"01"
+        "category":"01",
+        "rating":19,
+        "commentNum":20,
+        "todayFood":false
         
     },
     {
@@ -25,7 +31,10 @@
         "status":1,
         "type":"normal",
         "img":"imgs/pizza.png",
-        "category":"02"
+        "category":"02",
+        "rating":19,
+        "commentNum":20,
+        "todayFood":true
     },
     {
         "id":4,
@@ -34,7 +43,10 @@
         "status":1,
         "type":"hot",
         "img":"imgs/pizza.png",
-        "category":"02"
+        "category":"02",
+        "rating":19,
+        "commentNum":20,
+        "todayFood":false
     },
     {
         "id":5,
@@ -43,7 +55,10 @@
         "status":1,
         "type":"hot",
         "img":"imgs/pizza.png",
-        "category":"03"
+        "category":"03",
+        "rating":19,
+        "commentNum":20,
+        "todayFood":false
     },
     {
         "id":6,
@@ -52,7 +67,10 @@
         "status":1,
         "type":"normal",
         "img":"imgs/pizza.png",
-        "category":"03"
+        "category":"03",
+        "rating":19,
+        "commentNum":20,
+        "todayFood":false
         
     }
 ]
