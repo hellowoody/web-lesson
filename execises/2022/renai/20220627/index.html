@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>JS 基础</title>
+    </head>
+    <body></body>
+</html>
+<script>
+// number类型
+let a = 10     // number类型
+let b = 1.5    // number类型
+// NaN  =》 not a number
+let aa = "hello"-1
+console.log("aa",aa) ;   // NaN
+let bb = 0/0 
+console.log("bb",bb)
+// NaN 是唯一一个自己不等于自己的值
+console.log("10 == 10",10 == 10) // true
+console.log("-1 == -1",-1 == -1) // true
+console.log("hello == hello","hello" == "hello") // true
+console.log("aa == bb",aa == bb) // false
+console.log("aa != bb",aa != bb) // true
+console.log("NaN != NaN",NaN != NaN) // true
+// 数值转型
+let c = "10"
+// 字符串转浮点小数
+// "10" -> 10.0
+console.log(typeof c) // string
+let c_float = parseFloat(c)
+console.log(c_float)
+console.log(typeof c_float)
+
+let d = "3.14"
+console.log("d type",typeof d)
+let d_float = parseFloat(d)
+console.log(d_float,typeof d_float)
+
+// 字符串转整型
+let e = "10";
+console.log("2进制的10",parseInt(e,2)) // 将e这个字符串当成2进制的“10”，然后换算成10进制
+console.log("8进制的10",parseInt(e,8)) // 将e这个字符串当成8进制的“10”，然后换算成10进制
+console.log("10进制的10",parseInt(e,10)) // 将e这个字符串当成10进制的“10”，然后换算成10进制
+console.log("16进制的10",parseInt(e,16)) // 将e这个字符串当成16进制的“10”，然后换算成10进制
+
+// parseInt不传第二个参数的情况
+console.log("不传第二个参数:",parseInt("010"))       // 10
+console.log("第二个参数传8进制:",parseInt("010",8))  // 8
+
+console.log("不传第二个参数测试16进制:",parseInt("0x10"))        // 16
+console.log("不传第二个参数测试16进制:",parseInt("0000000x10"))  // 0
+console.log("传第二个参数:",parseInt("0000000x10",10))         // 0
+
+// number的取值范围
+console.log("Number最小值:",Number.MIN_VALUE)
+console.log("Number最大值:",Number.MAX_VALUE)
+
+// 数值的正无穷大 ， 负无穷大
+console.log("正无穷大",1/0) 
+console.log("负无穷大",-1/0) 
+
+console.log(isFinite(1000))
+console.log(isFinite(1/0))
+</script>
