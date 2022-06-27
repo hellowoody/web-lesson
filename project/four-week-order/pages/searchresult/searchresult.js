@@ -32,5 +32,10 @@ Page({
         duration:3000
       })
     })
-  }
+  },
+  goto(e){
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url,
+    })
+  },
 })

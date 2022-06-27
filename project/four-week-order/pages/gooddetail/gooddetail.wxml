@@ -1,0 +1,9 @@
+<view>
+  {{food.id}}
+  {{food.name}}
+  {{food.price}}
+  {{food.img}}
+  {{food.category}}
+  {{food.rating}}
+  {{food.commentNum}}
+</view>

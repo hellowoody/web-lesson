@@ -5,7 +5,8 @@
         "pages/profile/profile",
         "pages/search/search",
         "pages/searchresult/searchresult",
-        "pages/editaddress/editaddress"
+        "pages/editaddress/editaddress",
+        "pages/gooddetail/gooddetail"
     ],
     "window": {
         "backgroundTextStyle": "light",

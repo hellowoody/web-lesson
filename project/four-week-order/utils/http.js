@@ -14,7 +14,23 @@ export const fetch = (api,data) => {
       data,
       success: res => {
         if(res.statusCode === 200){
-          resolve(res)
+          switch (res.data.code) {
+            case "03":
+              wx.removeStorageSync('userInfo')
+              wx.removeStorageSync('hasUserInfo')
+              wx.removeStorageSync('tokenId')
+              wx.switchTab({
+                url: '/pages/profile/profile'
+              })
+              reject(res.data.data)
+              break;
+            case "02":
+              reject(res.data.data)
+              break;
+            default:
+              resolve(res)
+              break;
+          }
         }else{
           reject("请求失败")
         }

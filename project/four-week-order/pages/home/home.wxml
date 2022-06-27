@@ -31,7 +31,7 @@
     </view>
   </view>
   <view class="content-card" wx:for="{{homeCards}}" wx:key="id">
-    <image mode="widthFix" class="card-img" src="{{assetsUrl+item.img}}"></image>
+    <image bindtap="goto" data-url="{{'/pages/gooddetail/gooddetail?id='+item.id}}" mode="widthFix" class="card-img" src="{{assetsUrl+item.img}}"></image>
     <view class="card-desc">
       <view style="display: flex;justify-content: space-between;font-size: 36rpx;">
         <text>{{item.name}}</text>

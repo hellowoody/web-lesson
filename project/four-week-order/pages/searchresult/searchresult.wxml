@@ -10,7 +10,7 @@
   <view slot="right" class="iconfont icon-sousuo" style="font-weight: 600;font-size:18px;" bindtap="search" ></view>
 </top-bar>
 <view class="list">
-  <view wx:for="{{list}}" wx:key="id" class="list-item">
+  <view wx:for="{{list}}" wx:key="id" class="list-item" bindtap="goto" data-url="{{'/pages/gooddetail/gooddetail?id='+item.id}}"> 
     <image class="list-item-img" mode="heightFix" src="{{assetsUrl+item.img}}"></image>
     <view class="list-item-desc">
       <view class="list-item-title">

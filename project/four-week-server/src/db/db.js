@@ -6,18 +6,27 @@ const filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(filename)
 
 export const get = (filename) => {
+    let file = ""
     switch (filename) {
         case "food":
-            return food()
+            file = "food.json"
+            break;
         case "homeTopList":
-            return homeTopList()
+            file = "homeTopList.json"
+            break;
+        case "user":
+            file = "user.json"
+            break;
+        case "session":
+            file = "session.json"
+            break;
+        case "userAddress":
+            file = "userAddress.json"
+            break;
         default:
             break;
     }
-}
-
-const food = () => {
-    const filepath = resolve(__dirname,"food.json")
+    const filepath = resolve(__dirname,file)
     try {
         const content = fs.readFileSync(filepath,"utf-8")
         return JSON.parse(content)
@@ -26,12 +35,28 @@ const food = () => {
     }
 }
 
-const homeTopList = () => {
-    const filepath = resolve(__dirname,"homeTopList.json")
+export const update = (filename,list) => {
+    let file = ""
+    switch (filename) {
+        case "user":
+            file = "user.json"
+            break;
+        case "session":
+            file = "session.json"
+            break;
+        case "userAddress":
+            file = "userAddress.json"
+            break;
+        default:
+            break;
+    }
+
+    const filepath = resolve(__dirname,file)
     try {
-        const content = fs.readFileSync(filepath,"utf-8")
-        return JSON.parse(content)
+        fs.writeFileSync(filepath,JSON.stringify(list),{flag:"w"})
     } catch (error) {
-        return error
+        console.log(error)
+        throw(error)
     }
 }
+
