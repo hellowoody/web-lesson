@@ -1,0 +1,17 @@
+<view class="root">
+  <view class="card" wx:for="{{list}}" wx:key="id">
+    <view class="date-line">
+      <view>{{item.createTimeShow}}</view>
+      <view class="line"></view>
+    </view>
+    <view class="card-desc"> 
+      <view class="card-desc-detail" wx:for="{{item.list}}" wx:key="foodId" wx:for-item="food">
+        <image class="card-desc-img" mode="widthFix" src="{{assetsUrl + food.img}}"></image>
+        <view>{{food.name}}</view>
+        <view>{{food.count}}</view>
+        <view style="color:#FF374B;">{{"¥ " + food.price}}</view>
+      </view> 
+      <text style="color:#F4A625;font-size:var(--themeFontSize);">订单状态:创建成功</text>
+    </view>
+  </view>
+</view>

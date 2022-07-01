@@ -23,6 +23,12 @@ export const get = (filename) => {
         case "userAddress":
             file = "userAddress.json"
             break;
+        case "cart":
+            file = "cart.json"
+            break;
+        case "order":
+            file = "order.json"
+            break;
         default:
             break;
     }
@@ -46,6 +52,12 @@ export const update = (filename,list) => {
             break;
         case "userAddress":
             file = "userAddress.json"
+            break;
+        case "cart":
+            file = "cart.json"
+            break;
+        case "order":
+            file = "order.json"
             break;
         default:
             break;

@@ -1,3 +1,8 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "counter":"../../components/Counter/Counter"
+  },
+  "navigationBarTitleText": "购物车",
+  "backgroundColor": "#fff",
+  "backgroundTextStyle": "dark"
 }

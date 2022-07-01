@@ -5,6 +5,8 @@ export const useRouter = app => {
     
     app.get("/",api.DefaultApi)
 
+    app.get("/pingdb",api.PingDb)
+
     app.post("/queryfood",api.QueryFood)
 
     app.post("/gooddetail",api.GoodDetail)
@@ -20,5 +22,15 @@ export const useRouter = app => {
     app.post("/editaddress",ifLogin,api.EditAddress)
 
     app.post("/getaddress",ifLogin,api.GetAddress)
+
+    app.post("/addcart",ifLogin,api.AddCart)
+
+    app.post("/cart",ifLogin,api.Cart)
+
+    app.post("/updatecart",ifLogin,api.UpdateCart)
+
+    app.post("/createorder",ifLogin,api.CreateOrder)
+
+    app.post("/order",ifLogin,api.Order)
 
 }

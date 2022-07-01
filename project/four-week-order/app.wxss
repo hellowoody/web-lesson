@@ -18,5 +18,5 @@ page {
 }
 
 ::-webkit-scrollbar {
-  display: none; /* Chrome Safari */
+  display: none !important; /* Chrome Safari */
 }

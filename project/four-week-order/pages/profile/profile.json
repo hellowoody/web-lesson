@@ -1,5 +1,8 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "order-list":"../../components/OrderList/OrderList"
+  },
   "navigationBarBackgroundColor": "#84B6CF",
+  "backgroundColor": "#84B6CF",
   "navigationBarTitleText": "个人设置"
 }

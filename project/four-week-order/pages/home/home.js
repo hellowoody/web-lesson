@@ -7,7 +7,7 @@ Page({
     assetsUrl
   },
   onLoad(){
-    this.initData()
+    this.initData(false)
   },
   goto(e){
     // console.log(e.target.dataset.url)
@@ -16,7 +16,7 @@ Page({
       url: e.target.dataset.url,
     })
   },
-  initData(){
+  initData(ifPullAction){
     fetch("/hometoplist")
       .then(res => {
         // console.log(res)
@@ -29,6 +29,9 @@ Page({
           title:reason,
           icon:"none"
         })
+      })
+      .finally(() => {
+        this.stopPullState(ifPullAction)
       })
 
     fetch("/homecards")
@@ -43,5 +46,16 @@ Page({
           icon:"none"
         })
       })
+      .finally(() => {
+        this.stopPullState(ifPullAction)
+      })
+  },
+  onPullDownRefresh(){
+    this.initData(true)
+  },
+  stopPullState(flag){
+    if(flag){
+      wx.stopPullDownRefresh()
+    }
   }
 })

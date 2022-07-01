@@ -1,2 +1,23 @@
-<!--pages/cart/cart.wxml-->
-<text>pages/cart/cart.wxml</text>
+<view class="root">
+  <view>
+    <text class="remove-all" bindtap="removeAll">清空购物车</text>
+  </view>
+  <checkbox-group bindchange="checkboxChange">
+    <view class="order" wx:for="{{list}}" wx:key="foodId">
+      <view class="order-desc">
+        <checkbox class="cb" color="#916FF2" value="{{item.foodId}}" checked="{{item.checked}}"/>
+        <image bindtap="goto" data-url="{{'/pages/gooddetail/gooddetail?id='+item.foodId}}" class="order-img" mode="heightFix" src="{{assetsUrl+item.img}}"></image>
+        <view class="order-food">
+          <text style="font-size:var(--themeFontSize);font-weight: 500;">{{item.name}}</text>
+          <text style="color:#FF374B">{{"¥ "+item.price}}</text>
+        </view>
+      </view>
+      <counter 
+        bindcountEvent="onCount" 
+        num="{{item.count}}" 
+        foodId="{{item.foodId}}"
+        style="margin-right: 12rpx;"/>
+    </view>
+  </checkbox-group>
+</view>
+<button class="btn" bindtap="order">总价{{totalPrice}}元,创建订单</button>

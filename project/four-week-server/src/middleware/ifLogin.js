@@ -1,9 +1,11 @@
-import {get} from "../db/db.js"
+// import {get} from "../db/db.js"
+import {get} from "../db/api.js"
 
-export default (req,resp,next) => {
+export default async (req,resp,next) => {
     const params = req.body
     const tokenId = params.tokenId
-    const sessionList = get("session")
+    const sessionList = await get("session")
+    // console.log(sessionList)
     for(const session of sessionList){
         if(session.tokenId === tokenId){
             const diff = Date.now() - session.actionTime

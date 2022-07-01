@@ -17,4 +17,7 @@
     </view>
   </view>
 </view>
+<view style="margin-top:120rpx;">
+  <order-list />
+</view>
 

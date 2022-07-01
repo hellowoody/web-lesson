@@ -1,1 +1,58 @@
-/* pages/cart/cart.wxss */
+.root {
+  padding: 56rpx 32rpx;
+  box-sizing: border-box;
+}
+
+.order {
+  height: 160rpx;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+  /* box-shadow: x-offset y-offset blur color; */
+  box-shadow: 0rpx 4rpx 16rpx rgb(0 0 0 / 0.1);
+  border-radius: 24rpx;
+}
+
+.order-desc {
+  display: flex;
+  align-items: center;
+}
+
+.order-food {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 16rpx;
+}
+
+.order-img {
+  height: 130rpx;
+  border-radius: 24rpx;
+}
+
+.btn {
+  background-color: var(--themeColor);
+  color:#fff;
+  position: fixed;
+  bottom:50rpx;
+  left:0rpx;
+  right:0rpx;
+  width: 600rpx !important;
+  z-index:2;
+  border-radius: 24rpx;
+}
+
+.cb {
+  margin-left: 12rpx;
+  transform: scale(0.7,0.7);
+}
+
+.remove-all {
+  float: right;
+  font-size:var(--themeFontSize);
+  font-weight: 500;
+  color:var(--themeColor);
+  margin-bottom: 16rpx;
+}
