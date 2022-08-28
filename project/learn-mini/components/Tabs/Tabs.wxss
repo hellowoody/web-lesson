@@ -1,0 +1,17 @@
+.tabs-title {
+  display: flex;
+  height: 64rpx;
+}
+
+.tabs-title-item {
+  flex:1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tabs-title-item.active {
+  border-bottom:1px solid blue;
+  color:blue;
+  font-weight: bold;
+}

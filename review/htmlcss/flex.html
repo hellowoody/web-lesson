@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>flex 基础</title>
+        <style>
+            .container {
+                display: flex;
+                /* justify-content:space-around; */
+                justify-content:space-between;
+                /* justify-content:center; */
+                /* justify-content:flex-start; */
+                /* justify-content:space-end; */
+                border:1px solid black;
+            }
+
+            .box-1 {
+                background-color: red;
+                width: 100px;
+                height: 100px;
+            }
+            .box-2 {
+                background-color: blue;
+                width: 100px;
+                height: 100px;
+            }
+            .box-3 {
+                background-color: purple;
+                width: 100px;
+                height: 100px;
+            }
+
+            .container-2 {
+                margin-top: 16px;
+                display: flex;
+                border: 1px solid grey;
+                height:300px;
+                align-items: center;
+                /* align-items: flex-start;
+                align-items: flex-end; */
+            }
+
+            .container-3 {
+                margin-top: 16px;
+                display: flex;
+                flex-direction: column;
+                border: 1px solid green;
+                height:500px;
+                justify-content: space-between;
+                align-items: center;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- flex 有两个轴：主轴 交叉轴 -->
+        <!-- 两个轴：主轴 交叉轴 -->
+        <!-- 默认 水平方向是主轴，垂直方向就是交叉轴  -->
+        <!-- 主轴：justify-content:从起点对齐 从终点对齐 居中对齐 均匀分布1 均匀分布2  -->
+        <!-- 交叉轴：align-items:从起点对齐 从终点对齐 居中对齐   -->
+        <!-- 凡是在flex布局内部的元素 都自动会变成行块级元素 -->
+        <!-- 切换默认情况下主轴的方向：flex-direction:column -->
+        <h1>flex 基础</h1>
+        <!-- 构建出一个弹性布局场景 1.需要一个嵌套结构 -->
+        <!-- 构建出一个弹性布局场景 2.在父节点上通过css中display:flex -->
+        <div class="container">
+            <div class="box-1"></div>
+            <span class="box-2"></span>
+            <span class="box-3"></span>
+        </div>
+
+        <div class="container-2">
+            <div class="box-1"></div>
+            <span class="box-2"></span>
+            <span class="box-3"></span>
+        </div>
+
+        <div class="container-3">
+            <div class="box-1"></div>
+            <span class="box-2"></span>
+            <span class="box-3"></span>
+        </div>
+    </body>
+</html>

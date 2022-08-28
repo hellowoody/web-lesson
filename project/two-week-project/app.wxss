@@ -1,0 +1,14 @@
+@import "assets/iconfont/iconfont.wxss";
+
+page {
+  --themeColor:#8E6EF0;
+}
+
+.search-input {
+  height:50rpx;
+  width: 100%;
+  background-color: #7D5ED1;
+  border-radius: 36rpx;
+  color:rgb(255 255 255 / 0.8);
+  font-size:26rpx;
+}

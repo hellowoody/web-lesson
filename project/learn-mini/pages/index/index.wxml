@@ -1,0 +1,20 @@
+<top-bar></top-bar>
+<for-comp></for-comp>
+<block-comp></block-comp>
+<if-comp></if-comp>
+<view class="box">块标签1</view>
+<view>块标签2</view>
+<view>块标签3</view>
+<text>行标签1</text>
+<text>行标签2</text>
+<text>行标签3</text>
+<button bindtap="goto" >跳转</button>
+<button>
+  <!-- <navigator url="../userinfo/userinfo">跳转个人页面</navigator> -->
+  <navigator url="/pages/userinfo/userinfo?name=wang">跳转个人页面</navigator>
+</button>
+<comp01></comp01>
+<comp-for-test></comp-for-test>
+<comp-for-test />
+<text class="iconfont icon-sousuo"></text>
+

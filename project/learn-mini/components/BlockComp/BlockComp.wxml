@@ -1,0 +1,12 @@
+<view>block 例子</view>
+
+<block wx:if="{{flag}}">
+  <view style="background-color: blue;color:#fff">根据条件动态显示</view>
+</block>
+
+<button bindtap="toggle">切换显示状态</button>
+
+
+<block wx:for="{{list}}" wx:key="*this">
+  <view>{{index}}:{{item}}</view>
+</block>

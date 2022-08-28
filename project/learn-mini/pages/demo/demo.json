@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "comp-for-test":"../../components/CompForTest/CompForTest",
+    "top-bar":"../../components/TopBar/TopBar",
+    "msg-comp":"../../components/MsgComp/MsgComp",
+    "slot-comp":"../../components/SlotComp/SlotComp"
+  },
+  "navigationBarTitleText":"demo",
+  "navigationBarBackgroundColor":"#8E70F1"
+}

@@ -1,0 +1,17 @@
+<view>父子组件传值</view>
+
+<view>
+  <view>从父组件拿到的p1值:{{p1}}</view>
+  <view>从父组件拿到的p2值:{{p2}}</view>
+  <view>从父组件拿到的p3值:{{p3}}</view>
+  <view>从父组件拿到的p4值:{{p4}}</view>
+  <view>从父组件拿到的p5值:{{p5}}</view>
+</view>
+
+<view>
+  <button bindtap="increase">+</button>
+  <text>{{count}}</text>
+  <button bindtap="decrease">-</button>
+</view>
+
+

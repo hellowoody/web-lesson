@@ -1,0 +1,29 @@
+<top-bar></top-bar>
+<slot-comp>
+  <view style="background-color: red;">hello slot</view>
+  <view style="background-color: orange;">你好 slot</view>
+  <view slot="right">右侧部分</view>
+  <view slot="left">左侧部分</view>
+</slot-comp>
+<msg-comp 
+  p1="欢迎" 
+  p2="{{100}}"
+  p3="{{false}}"
+  p4="123"
+  p5="{{['a','b']}}"
+  count="{{count}}"
+  bindhandleAdd="increase"
+  bindhandleSub="decrease"
+></msg-comp>
+<view>demo 页面</view>
+<view>双向绑定</view>
+<!-- {{}} 差值表达法 -->
+<!-- <input class="input-class" value="{{val}}" />
+<view>绑定的值：{{val}}</view>
+<button bindtap="changeVal">改变input中的值</button>
+<input class="input-class" bindinput="inputVal"/> -->
+
+<input class="input-class" value="{{val}}" bindinput="inputVal" />
+<view>{{val}}</view>
+<comp-for-test></comp-for-test>
+

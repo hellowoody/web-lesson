@@ -1,0 +1,60 @@
+<top-bar>
+  <view slot="left" class="iconfont icon-gengduo"></view>
+  <view 
+    slot="middle" 
+    class="search-input search-input-extend" 
+    bindtap="goto"
+    data-url="/pages/search/search"
+  >巨无霸套餐</view>
+  <view 
+    slot="right" 
+    class="iconfont icon-sousuo" 
+    style="font-weight: bold;font-size:36rpx;"
+    bindtap="goto"  
+    data-url="/pages/search/search"
+  ></view>
+</top-bar>
+
+<scroll-view scroll-x="true" class="top-scroll" enable-flex="true">
+  <view style="display: flex;margin-top: -8rpx;">
+    <view wx:for="{{homeTopList}}" wx:key="id" class="top-item">
+      <image mode="widthFix" style="width: 90rpx;" src="{{item.img}}"></image>
+      <text style="margin-top: 6rpx;">{{item.name}}</text>
+    </view>
+  </view>
+</scroll-view>
+
+<view class="content">
+  <view class="content-top-bar">
+    <view class="content-topbar-title">今日推荐</view>
+    <view class="content-topbar-icon">
+      <view class="icon-item">
+        <text class="iconfont icon-shezhi"></text>
+      </view>
+      <view class="icon-item">
+        <text class="iconfont icon-shaixuan" style="margin-top:6rpx;"></text>
+      </view>
+    </view>
+  </view>
+  <view class="content-card" wx:for="{{homeCards}}" wx:key="id">
+    <image bindtap="goto" data-url="{{'/pages/detail/detail?id='+item.id}}" class="card-img" mode="widthFix" src="{{item.img}}"></image>
+    <view class="card-desc">
+      <view style="display: flex;justify-content: space-between;font-size:36rpx;">
+        <text>{{item.name}}</text>
+        <text style="color:#FF3549;" class="iconfont icon-guanzhu"></text>
+      </view>
+      <view class="card-line"></view>
+      <view class="card-detail">
+        <view class="card-detail-item" style="color:#FF3549;">{{"¥ "+item.price}}</view>
+        <view class="card-detail-item">
+          <text class="iconfont icon-pinglun" style="margin-right:8rpx;margin-top:4rpx;"></text>
+          <text>{{item.commentNum}}</text>
+        </view>
+        <view class="card-detail-item" style="color:#FEBA2A;">
+          <text class="iconfont icon-shoucang" style="margin-right:8rpx;margin-top:-4rpx;"></text>
+          <text>{{item.rating}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

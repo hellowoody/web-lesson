@@ -1,0 +1,5 @@
+.item {
+  height:200rpx;
+  flex:1;
+  color:#fff;
+}

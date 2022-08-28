@@ -1,0 +1,7 @@
+{
+    "desc": "美食,点餐",
+    "rules": [{
+    "action": "allow",
+    "page": "*"
+    }]
+}

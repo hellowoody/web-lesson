@@ -1,0 +1,10 @@
+.btn {
+  padding:2rpx 16rpx 4rpx 16rpx;
+  box-shadow: 0rpx 2rpx 12rpx rgb(0 0 0 / 0.1);
+  border-radius: 16rpx;
+}
+
+.num {
+  margin:0 16rpx;
+  font-size: 32rpx;
+}

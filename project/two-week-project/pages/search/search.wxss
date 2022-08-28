@@ -1,0 +1,30 @@
+.search-input-extend {
+  padding-left:32rpx;
+  box-sizing: border-box;
+}
+
+.search-history {
+  padding:20rpx;
+  box-sizing: border-box;
+  font-size:26rpx;
+}
+
+.search-history-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-history-content {
+  display: flex;
+  margin-top:20rpx;
+  flex-wrap:wrap;
+}
+
+.search-history-item {
+  flex-shrink: 0;
+  margin-right:24rpx;
+  margin-top:20rpx;
+  padding:8rpx 24rpx;
+  box-shadow: 0rpx 4rpx 16rpx rgb(0 0 0 / 0.1);
+  border-radius: 16rpx;
+}

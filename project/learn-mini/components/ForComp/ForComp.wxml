@@ -1,0 +1,19 @@
+<view>wx:for 例子</view>
+
+<view 
+  wx:for="{{list01}}" 
+  wx:key="*this" 
+  wx:for-item="val" 
+  wx:for-index="i">
+  <view>{{i}} : {{val}}</view>
+</view>
+
+<view 
+  wx:for="{{list01}}" 
+  wx:key="*this" >
+  <view>{{index}} : {{item}}</view>
+</view>
+
+<view wx:for="{{list02}}" wx:key="id">
+  <view>{{index}} : {{item.id}},{{item.name}}</view>
+</view>

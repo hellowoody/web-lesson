@@ -1,0 +1,12 @@
+<view>userinfo page</view>
+<view>双向绑定</view>
+<input model:value="{{msg}}"/>
+<view>只读：{{msg}}</view>
+<view>加法</view>
+<view class="container">
+  <input class="input-class" model:value="{{aa}}"/>
+  <text>+</text>
+  <input class="input-class" model:value="{{bb}}"/>
+  <text bindtap="getSumRes">获取结果：</text>
+  <view>{{sumRes}}</view>
+</view>

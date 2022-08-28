@@ -1,0 +1,28 @@
+<top-bar>
+  <input 
+    slot="middle"
+    placeholder="请输入内容"
+    placeholder-style="color:rgb(255 255 255 / 0.8);"
+    class="search-input search-input-extend"
+    model:value="{{content}}"
+  />
+  <view 
+    slot="right" 
+    class="iconfont icon-sousuo" 
+    style="font-weight: bold;font-size:36rpx;"
+    bindtap="search"  
+    data-url="/pages/searchresult/searchresult"
+  ></view>
+</top-bar>
+
+<view class="search-history">
+  <view class="search-history-title">
+    <view>搜索历史</view>
+    <view style="color:var(--themeColor);" bindtap="clear">清除</view>
+  </view>
+  <view class="search-history-content">
+    <view class="search-history-item" wx:for="{{searchHistory}}" wx:key="*this">
+    {{item }}
+    </view>
+  </view>
+</view>

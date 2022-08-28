@@ -1,0 +1,77 @@
+<script>
+
+// 1.声明方式
+// var 
+// let const
+
+/*
+
+var a = 1;
+let b = 2;
+const c = 3;
+
+*/ 
+
+var a = 1;
+
+if(2 > 1){
+    a = 2
+}
+
+console.log("a:",a) // 2
+
+if(3 > 0) {
+    var b = "JavaScript"
+    console.log("inner b:",b)   // JavaScript
+}
+
+b = "js"
+
+console.log("outter b:",b)    // js
+
+
+function test(){
+    // var 作用域提升
+    console.log("c:",c)
+    var c = 100
+    console.log("c:",c)
+}
+
+test();
+
+// let vs const
+
+let d = 100;
+
+const e = 200; // constant 不可变的
+
+let dd;
+
+dd = 1000;
+
+console.log("dd:",dd);
+
+const ee = 2000;
+
+console.log("ee:",ee)
+
+const A = "100"
+const B = "90"
+
+const C = {
+    name:"zhangsan",
+    score:100
+}
+
+console.log("C:",C)
+
+C.name = "lisi"
+C.address = "TJ"
+
+console.log("C:",C)
+
+
+
+
+
+</script>

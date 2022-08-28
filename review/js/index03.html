@@ -1,0 +1,53 @@
+<script>
+// iterator 遍历语句
+// 1.for-loop
+// 无限循环
+// for(;;){
+//     console.log(1000)
+// }
+
+/*
+    epression01 ： 赋值或初始化语句
+    epression02 ： 边界判断语句
+    epression03 ： 每次迭代后的“收尾工作”
+*/ 
+const arr = ["a","b","c"]
+
+for(let i = 0,len = arr.length;i < len;i++){
+    console.log("item:",arr[i])
+    arr.push("d")
+}
+console.log(arr)
+
+// 2.while
+const arr2 = ["a","b","c"]
+let index = 0
+while(index < arr2.length){
+    console.log(arr2[index])
+    // index = index + 1
+    index++;
+}
+console.log("=============")
+// 3.for-of 
+const arr3 = ["a","b","c"]
+for(let item of arr3){
+    item = item+"!"
+    console.log(item)
+}
+console.log("=============")
+// 4.for-in
+const arr4 = ["a","b","c"]
+for(let index in arr4){
+    console.log(index,arr4[index])
+}
+
+const obj = {
+    name:1,
+    address:2,
+    tel:3
+}
+for (let key in obj) {
+    console.log(key,obj[key])
+}
+
+</script>

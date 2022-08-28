@@ -1,0 +1,50 @@
+.root {
+  padding:56rpx 32rpx;
+  box-sizing: border-box;
+}
+
+.order {
+  height:160rpx;
+  width: 100%;
+  box-shadow: 0rpx 4rpx 16rpx rgb(0 0 0 /0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+  border-radius: 24rpx;
+  padding:0 16rpx;
+  box-sizing: border-box;
+}
+
+.order-img {
+  height:130rpx;
+  border-radius: 24rpx;
+}
+
+.order-desc {
+  display: flex;
+  align-items: center;
+}
+
+.order-food {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 16rpx;
+}
+
+.btn {
+  position: fixed;
+  bottom:50rpx;
+  left:0;
+  right:0;
+  background-color: var(--themeColor);
+  color:#fff;
+  border-radius: 24rpx;
+  z-index:2;
+  width:80% !important;
+}
+
+.cb {
+  transform: scale(0.7,0.7);
+}

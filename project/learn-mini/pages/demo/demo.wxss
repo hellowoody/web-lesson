@@ -1,0 +1,5 @@
+.input-class {
+  width:300rpx;
+  height:60rpx;
+  background-color: #f0f0f0;
+}

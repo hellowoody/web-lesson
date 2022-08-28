@@ -1,0 +1,20 @@
+<view>if条件判断</view>
+
+<view wx:if="{{flag}}">
+  <view>hello if comp</view>
+</view>
+<button bindtap="toggleFlag">flag 切换</button>
+
+<view wx:if="{{flag}}">切换状态true</view>
+<view wx:else>切换状态false</view>
+<button bindtap="toggleFlag">flag 切换</button>
+
+<view>
+  <button bindtap="increase">+</button>
+  <text>计步器：{{count}} </text>
+  <text wx:if="{{count > 10}}">运动达人</text>
+  <text wx:elif="{{count > 5 && count <= 10}}">上班族</text>
+  <text wx:elif="{{count > 0 && count <= 5}}">宅男</text>
+  <text wx:else>躺平</text>
+  <button bindtap="decrease">-</button>
+</view>

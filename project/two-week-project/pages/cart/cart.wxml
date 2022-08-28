@@ -1,0 +1,20 @@
+<view class="root">
+  <checkbox-group bindchange="checkboxChange">
+    <view class="order" wx:for="{{list}}" wx:key="id">
+      <view class="order-desc">
+        <checkbox color="#8E6EF0" class="cb" value="{{item.id}}" checked="{{item.checked}}" />
+        <image class="order-img" mode="heightFix" src="{{item.img}}"></image>
+        <view class="order-food">
+          <text style="font-size: 26rpx;">{{item.name}}</text>
+          <text style="color: #FE0303;">{{"¥ "+item.price}}</text>
+        </view>
+      </view>
+      <counter 
+        num="{{item.count}}"
+        foodId="{{item.id}}"
+        bindcountEvent="onCount"
+      />
+    </view>
+  </checkbox-group>
+</view>
+<button class="btn" bindtap="order">总价{{totalPrice}}元，创建订单</button>

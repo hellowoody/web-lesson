@@ -1,0 +1,31 @@
+@import "/assets/iconfont/iconfont.wxss";
+
+.search-input {
+  height: 90rpx;
+  background-color: #8E70F1;
+  color:#fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding:16rpx;
+  box-sizing: border-box;
+  font-size:26rpx;
+}
+
+.input {
+  height: 60rpx;
+  border-radius: 36rpx;
+  width: 300rpx;
+  background-color: #7B5CCD;
+  margin-left: 26rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(255 255 255 / 0.8);
+}
+
+.wrapper-left {
+  display: flex;
+  align-items: center;
+  flex:1;
+}

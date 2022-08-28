@@ -1,0 +1,8 @@
+<tabs 
+  tabs="{{tabList}}"
+  bindtabsItemChange="changeTab"
+>
+  <view>
+    <text>{{tabList[activeIndex].content}}</text>
+  </view>
+</tabs>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "tabs":"../../components/Tabs/Tabs"
+  },
+  "navigationBarTitleText": "自定义选项卡"
+}

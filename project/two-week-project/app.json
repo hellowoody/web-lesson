@@ -1,0 +1,44 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/profile/profile",
+        "pages/search/search",
+        "pages/searchresult/searchresult",
+        "pages/cart/cart",
+        "pages/detail/detail"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#8E6EF0",
+        "navigationBarTitleText": "2周项目",
+        "navigationBarTextStyle": "white"
+    },
+    "tabBar": {
+      "backgroundColor": "#ffffff",
+      "borderStyle": "white",
+      "color": "#a1a1a1",
+      "selectedColor": "#8E6EF0",
+      "list":[
+        {
+          "text":"首页",
+          "pagePath": "pages/index/index",
+          "iconPath": "assets/imgs/home.png",
+          "selectedIconPath": "assets/imgs/homeSelected.png"
+        },
+        {
+          "text":"购物车",
+          "pagePath": "pages/cart/cart",
+          "iconPath": "assets/imgs/cart.png",
+          "selectedIconPath": "assets/imgs/cartSelected.png"
+        },
+        {
+          "text":"我的",
+          "pagePath": "pages/profile/profile",
+          "iconPath": "assets/imgs/profile.png",
+          "selectedIconPath": "assets/imgs/profileSelected.png"
+        }
+      ]
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
+}

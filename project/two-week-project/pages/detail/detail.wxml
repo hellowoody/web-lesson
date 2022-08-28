@@ -1,0 +1,10 @@
+<!--pages/detail/detail.wxml-->
+<view>{{good.name}}</view>
+<view>{{good.price}}</view>
+
+<view style="display:flex;">
+  <button bindtap="decrease">-</button>
+  <text>{{count}}</text>
+  <button bindtap="increase">+</button>
+</view>
+<button bindtap="addCart">加入购物车</button>

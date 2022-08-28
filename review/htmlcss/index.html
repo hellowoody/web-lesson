@@ -1,0 +1,69 @@
+<!-- 告知浏览器 按h5的标准渲染 -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>html css 知识点复习</title>
+        <style>
+            /* .div01 是样式选择器 */
+            .div01 {
+                background-color: red;
+                height: 50px;
+                width: 50px;
+            }
+            .div02 {
+                background-color: blue;
+                height: 50px;
+                width: 50px;
+            }
+            .outter {
+                width:500px;
+                height:500px;
+                background-color: aqua;
+                overflow: hidden;
+            }
+            .inner {
+                width:200px;
+                height:200px;
+                background-color: yellow;
+                /* margin-top: 50px;  */
+                margin-left: 50px;
+                /* margin: 50px; */
+                /* margin: 50px 10px 20px 300px; */
+            }
+
+            .outter-padding {
+                width:500px;
+                height:500px;
+                background-color: red;
+                /* padding-top:50px;
+                padding-left:50px; */
+                /* padding:50px; */
+                padding:100px 0px 0px 100px;
+                box-sizing: border-box;
+            }
+            .inner-padding {
+                width:200px;
+                height:200px;
+                background-color: blue;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1>知识点复习</h1>
+        <h3>块级元素 block </h3>
+        <div class="div01">
+            hello
+        </div>
+        <div class="div02">
+            world
+        </div>
+        <div class="outter">
+            <div class="inner"></div>
+        </div>
+        <div class="outter-padding">
+            <div class="inner-padding"></div>
+        </div>
+    </body>
+</html>

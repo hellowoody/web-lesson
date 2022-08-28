@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "comp01":"../../components/Comp01/Comp01",
+    "comp-for-test":"../../components/CompForTest/CompForTest",
+    "top-bar":"../../components/TopBar/TopBar",
+    "if-comp":"../../components/IfComp/IfComp",
+    "block-comp":"../../components/BlockComp/BlockComp",
+    "for-comp":"../../components/ForComp/ForComp"
+  },
+  "navigationBarTitleText":"首页",
+  "navigationBarBackgroundColor":"#8E70F1",
+  "backgroundColor":"#8E70F1"
+}

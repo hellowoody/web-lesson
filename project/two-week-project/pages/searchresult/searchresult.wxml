@@ -1,0 +1,26 @@
+<top-bar>
+  <input 
+    slot="middle"
+    placeholder="请输入内容"
+    placeholder-style="color:rgb(255 255 255 / 0.8);"
+    class="search-input search-input-extend"
+    model:value="{{content}}"
+  />
+  <view 
+    slot="right" 
+    class="iconfont icon-sousuo" 
+    style="font-weight: bold;font-size:36rpx;"
+    bindtap="search"  
+  ></view>
+</top-bar>
+
+<view class="list">
+  <view bindtap="goto" data-id="{{item.id}}" data-url="/pages/detail/detail" wx:for="{{list}}" wx:key="id" class="list-item">
+    <image mode="heightFix" class="list-item-img" src="{{item.img}}"></image>
+    <view class="list-item-desc">
+      <view style="font-size:36rpx;">{{item.name}}</view>
+      <view style="color:#FF3549;">{{"¥ "+item.price}}</view>
+    </view>
+  </view>
+</view>
+

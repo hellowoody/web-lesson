@@ -1,0 +1,77 @@
+const list = [
+  {
+    id:1,
+    name:"全部",
+    img:"/assets/offline/american_image.png"
+  },
+  {
+    id:2,
+    name:"主食",
+    img:"/assets/offline/Chinese_image.png"
+  },
+  {
+    id:3,
+    name:"小食",
+    img:"/assets/offline/French_image.png"
+  },
+  {
+    id:4,
+    name:"套餐",
+    img:"/assets/offline/Indian_image.png"
+  },
+  {
+    id:5,
+    name:"冷饮",
+    img:"/assets/offline/Chinese_image.png"
+  },
+  {
+    id:6,
+    name:"热饮",
+    img:"/assets/offline/French_image.png"
+  },
+  {
+    id:7,
+    name:"热销",
+    img:"/assets/offline/Indian_image.png"
+  },
+]
+
+const cardList = [
+  {
+      "id":1,
+      "name":"巨无霸套餐",
+      "price":10.0,
+      "status":1,
+      "type":"hot",
+      "img":"/assets/offline/burger.png",
+      "category":"01",
+      "rating":19,
+      "commentNum":20,
+      "todayFood":true
+  },
+  {
+      "id":2,
+      "name":"麦辣鸡腿汉堡",
+      "price":20.0,
+      "status":1,
+      "type":"normal",
+      "img":"/assets/offline/pizza.png",
+      "category":"01",
+      "rating":19,
+      "commentNum":20,
+      "todayFood":false
+      
+  }
+]
+
+Page({
+  data:{
+    homeTopList:list,
+    homeCards:cardList
+  },
+  goto(e){
+    wx.navigateTo({
+      url: e.target.dataset.url,
+    })
+  }
+})

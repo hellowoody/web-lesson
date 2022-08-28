@@ -1,0 +1,4 @@
+.box {
+  color:red;
+  font-size: 36rpx;
+}

@@ -1,0 +1,24 @@
+.top-bar {
+  display: flex;
+  height: 86rpx;
+  background-color: var(--themeColor);
+  color:#fff;
+}
+
+.top-bar-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-bar-item.left {
+  flex:1;
+}
+
+.top-bar-item.middle {
+  flex:6;
+}
+
+.top-bar-item.right {
+  flex:1;
+}

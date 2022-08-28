@@ -1,0 +1,95 @@
+.top-bar {
+  background-color: #79AFC9;
+  height:360rpx;
+  position: relative;
+  padding-top:80rpx;
+  box-sizing: border-box;
+}
+
+/* 伪元素 */
+.top-bar::after {
+  content: "";
+  height:500rpx;
+  width: 180%;
+  background-color: #79AFC9;
+  position: absolute;
+  z-index:-1;
+  border-radius: 50%;
+  left:-40%;
+  top:-10%;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width:120rpx;
+  border-radius: 50%;
+  margin-bottom: 20rpx;
+  box-shadow: 0rpx 4rpx 16rpx rgb(100 100 100 / 0.1);
+}
+
+.icon-menu {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 36rpx;
+  color:#fff;
+}
+
+.order-list {
+  margin-top:110rpx;
+  height: calc(100vh - (500rpx - 500rpx * 0.1) - 20rpx);
+  padding:24rpx;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.card {
+  height:200rpx;
+  width:100%;
+  padding:0 72rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
+
+.date-line {
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color:#fff;
+}
+
+.card-desc{
+  flex:2
+}
+
+.date-line .cal {
+  background-color: #FFBE2A;
+  padding:6rpx 10rpx;
+  border-radius: 12rpx;
+  font-size:26rpx;
+}
+
+.date-line .line {
+  height:100%;
+  width:2rpx;
+  background-color: #e5e5e5;
+}
+
+.card-desc-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size:26rpx;
+  margin-bottom:16rpx;
+}
+
+.card-desc-img {
+  width:100rpx;
+  border-radius: 12rpx;
+}

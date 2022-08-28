@@ -1,0 +1,24 @@
+<script>
+// 测试js中多种循环的执行效率（只考虑时间）
+// for-loop for-of for-in while forEach map filter
+
+const arr = new Array(20000000)
+arr.fill(0) // !important
+
+const start01 = Date.now() // int  从1970-1-1 00:00:00距此时的毫秒差值数
+for(let i = 0; i < arr.length;i++){}
+const end01 = Date.now();
+console.log("for-loop的执行时间：",end01-start01,"ms")
+
+
+const arr2 = [1,2,3,4,5,6,7,8,9,10]
+
+arr2.reduce((acc,item) => {
+    if(item%2 === 0){
+        return acc+item
+    }else{
+        return acc
+    }
+},0)
+
+</script>

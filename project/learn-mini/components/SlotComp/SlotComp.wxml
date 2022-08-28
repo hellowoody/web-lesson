@@ -1,0 +1,14 @@
+<view>
+  <view style="background-color: aqua;">头部</view>
+  <slot></slot>
+  <view style="background-color: brown;">底部</view>
+</view>
+
+<view style="display: flex;">
+  <view class="item" style="background-color: red;">
+    <slot name="left"></slot>
+  </view>
+  <view class="item" style="background-color: blue;">
+    <slot name="right"></slot>
+  </view>
+</view>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "top-bar":"../../components/TopBar/TopBar"
+  },
+  "navigationBarTitleText": "搜索结果"
+}

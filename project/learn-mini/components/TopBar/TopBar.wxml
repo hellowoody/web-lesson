@@ -1,0 +1,9 @@
+<view class="search-input">
+  <view class="wrapper-left">
+    <text class="iconfont icon-gengduo"></text>
+    <navigator class="input" url="/pages/demo/demo">
+      麦辣鸡腿汉堡
+    </navigator>
+  </view>
+  <text class="iconfont icon-sousuo" style="font-weight: bold;font-size: 36rpx;"></text>
+</view>

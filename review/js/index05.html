@@ -1,0 +1,82 @@
+<script>
+// 4.数组 Array
+
+// 声明数组
+const arr01 = [] 
+const arr02 = new Array()
+// const arr03 = Array.from()
+// const arr04 = Array.of()
+
+// JS 数组中常用的方法 push() pop() shift() unshift()
+const arr03 = [1,2,3,4,5]
+console.log("arr03:",arr03)
+arr03.push(6)
+arr03.push(7)
+arr03.push(8)
+console.log("arr03:",arr03)  // [12345678]
+const lastOne01 = arr03.pop()
+console.log("lastOne01:",lastOne01) // 8
+console.log("arr03:",arr03)  // [1234567]
+const lastOne02 = arr03.pop()
+console.log("lastOne02:",lastOne02) // 7
+console.log("arr03:",arr03)  // [123456]
+
+const earlestOne01 = arr03.shift() // 1
+console.log("earlestOne01:",earlestOne01)
+console.log("arr03:",arr03)  // [23456]
+const earlestOne02 = arr03.shift() // 1
+console.log("earlestOne02:",earlestOne02)
+console.log("arr03:",arr03)  // [3456]
+
+arr03.unshift("a")
+console.log("arr03:",arr03)  // ["a"3456]
+arr03.unshift("b")
+arr03.unshift("c")
+console.log("arr03:",arr03)  // ["c","b","a"3456]
+
+// filter 过滤
+const arr04 = [1,2,3,4,5,6,7,8,9,10]
+
+/*
+const arr04_filter = arr04.filter(function(item){
+    // 符合标准的就返回true
+    // 不符合标准的就返回false
+    
+    // if(item % 2 === 0){
+    //     return true
+    // }else{
+    //     return false
+    // }
+
+    return item % 2 !== 0 ? true : false
+})
+*/
+
+const arr04_filter = arr04.filter(item => item % 2 !== 0 ? true : false)
+
+console.log("arr04_filter:",arr04_filter)
+console.log("arr04:",arr04)
+
+// forEach 简单的遍历
+const arr05 = [1,2,3,4,5]
+
+arr05.forEach(function(val,i){
+    console.log(val,i)
+})
+
+arr05.forEach((val,i) => {
+    console.log(val,i)
+})
+
+arr05.forEach((val,i) => console.log(val,i))
+
+// map 迭代
+const arr06 = [1,2,3,4,5]
+
+const arr06_map = arr06.map((item) => {
+    return item ** 3
+})
+
+console.log(arr06_map)
+console.log(arr06)
+</script>

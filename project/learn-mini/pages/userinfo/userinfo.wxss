@@ -1,0 +1,8 @@
+.container {
+  display: flex;
+}
+
+.input-class {
+  width:100rpx;
+  background-color: #f0f0f0;
+}

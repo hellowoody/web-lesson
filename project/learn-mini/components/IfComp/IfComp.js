@@ -1,0 +1,23 @@
+Component({
+  data:{
+    flag:true,
+    count:0
+  },
+  methods:{
+    toggleFlag(){
+      this.setData({
+        flag: !this.data.flag
+      })
+    },
+    increase(){
+      this.setData({
+        count:this.data.count+1
+      })
+    },
+    decrease(){
+      this.setData({
+        count:this.data.count-1
+      })
+    }
+  }
+})
