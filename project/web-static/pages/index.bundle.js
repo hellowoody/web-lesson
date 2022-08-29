@@ -1,3 +1,0 @@
-const A = {
-    name:"li"
-}
