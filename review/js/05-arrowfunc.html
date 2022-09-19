@@ -1,0 +1,89 @@
+<script>
+// 匿名函数和箭头函数的区别
+    //  区别之一就是this上下文绑定（指向）问题 
+    //  匿名函数的this永远指向最后调用者的上下文 （this只有在最终运行时才能明确指向）
+    //  箭头函数的this指向所在函数声明时的作用域 （在编写时就能确定this的指向）
+// 面试题一
+var name = "全局的变量";
+var object = {
+    name:"局部的变量",
+    getName:function(){
+        console.log(this)     // object
+        return function(){
+            return this.name;
+        }
+    }
+}
+
+console.log("面试题一:",object.getName()())  // 全局
+/*
+    1.object.getName()返回的函数
+
+    var name = "全局的变量";  // window.name = 全局的变量
+    var abc = function(){   // window.abc = func
+        return this.name;
+    }
+    window.abc()            // 全局 
+*/ 
+
+var object2 = {
+    name:"局部的变量",
+    getName:() => {
+        console.log(this)                       // 全局
+        return () => {
+            return this.name;
+        }
+    }
+}
+console.log("面试题一(2):",object2.getName()())  // 全局
+
+
+// 面试题二
+var m = function(){
+    console.log(this)
+}
+
+var obj = {
+    a:m,
+    b:function(){
+        // this 局部
+        // console.log("no.50:",this)
+        return m()
+    },
+    c:function(){
+        // this 局部
+        var m2 = () => {
+            console.log(this)
+        }
+        m2()
+    }
+}
+
+obj.a() // ?  局部作用域 因为最后是obj调用的，索引this指向obj
+obj.b() // ?  全局      window.m() 
+obj.c() // ?  局部      因为m2是箭头函数，所以在声明时就已经确定了this的指向（c所代表的匿名函数的作用域）
+                    //  又因为obj.c(),所以c的作用域是object 
+
+// 面试题三
+var m2 = () => {
+    console.log(this)
+}
+
+var obj2 = {
+    a:m2,
+    b:function(){
+        return m2()
+    },
+    c:function(){
+        var m3 = () => {
+            console.log(this)
+        }
+        m3()
+    }
+}
+
+obj2.a() // ?  全
+obj2.b() // ?  全
+obj2.c() // ?  局部
+
+</script>

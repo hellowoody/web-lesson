@@ -1,0 +1,122 @@
+<script>
+// 声明
+/*
+    ES5：var
+    ES6：let const （推荐日常使用）
+*/ 
+
+// 原因一
+// 非函数的“代码块” 对var修饰的变量不起作用（保护，隔离，壁垒）
+// 在js中 {} 就叫做代码块 code-block
+/*
+    var a = 10  // outter delare 
+    if(2 > 1){
+        console.log("inner a:",a) // 10
+    }
+    console.log("outter a:",a)    // 10
+*/ 
+if(2 > 1) {
+    var a = 10                // inner delaration
+    console.log("inner a:",a) // 10
+}
+console.log("outter a:",a)    // 10
+a = 20 
+console.log("outter changed a:",a)    // 20
+
+var count = 0
+while(count < 3) {
+    var b = 10+count
+    count++
+}
+console.log("b:",b)       // 12
+
+for(var val of [1,2,3]){
+    setTimeout(() => console.log("val:",val),10) // 打印了三次 3
+}
+
+/*
+    {
+        var val = 1
+        setTimeout(() => console.log("val:",val),10)  
+    }
+
+    {
+        var val = 2
+        setTimeout(() => console.log("val:",val),10) 
+    }
+
+    {
+        var val = 3
+        setTimeout(() => console.log("val:",val),10) 
+    }
+
+*/
+
+function fn1(){
+    var c = 30
+    console.log("inner c:",c)  // 30
+}
+fn1() 
+// console.log("outter c:",c)     // error c not defined
+
+// 原因二
+// var修饰的变量有个特点：作用域提升
+
+function fn2(){
+    console.log("No.66 d:",d) // error ? 没有报错。打印：undefined
+    var d = 50  // 1.声明 2.初始化
+    console.log("No.68 d:",d) // 会被执行么？ 会被执行。打印：50
+}
+
+/*
+function fn2(){
+    var d; // var的提升 1.声明
+    console.log("No.66 d:",d) // error ? 没有报错。打印：undefined
+    d = 50  //  2.赋值
+    console.log("No.68 d:",d) // 会被执行么？ 会被执行。打印：50
+}
+*/
+
+fn2()
+
+// let ， const
+
+if(2 > 1) {
+    let aa = 10                  // inner delaration
+    console.log("inner aa:",aa)  // 10
+}
+// console.log("outter aa:",aa)     // 10? error：not defined
+
+for(let val of [1,2,3]){
+    setTimeout(() => console.log("val:",val),10) // 打印了三次 3 ？ 分别打印 1，2，3
+}
+
+/*
+    {
+        let val = 1; // 这个val变成了一个闭包（closure）的变量，快照（照了一张照片）
+        setTimeout(() => console.log("val:",val),10)  
+    }
+
+    {
+        let val = 2
+        setTimeout(() => console.log("val:",val),10) 
+    }
+
+    {
+        let val = 3
+        setTimeout(() => console.log("val:",val),10) 
+    }
+
+*/
+
+
+// let const修饰的变量有个特点：暂时性死区
+
+function fn3(){
+    console.log("No.66 d:",d) // error ? 会 error：Cannot access 'd' before initialization
+    let d = 50                // 会被执行么？不会
+    console.log("No.68 d:",d) // 会被执行么？不会
+}
+
+fn3()
+</script>

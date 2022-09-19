@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>vue3-reactive语法糖</title>
+        <script src="https://unpkg.com/vue@3"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+const Main = {
+    setup(){
+        const data = Vue.reactive({
+            name:"张三",
+            province:"河北省",
+            school:{
+                name:"大软",
+                address:"西青"
+            }
+        })
+
+        // Vue.toRefs(data.name)
+        console.log(data)
+        console.log(Vue.toRefs(data))
+        return {
+            // js增强语法 flat平铺
+            // 注意：这种写法虽然可以在页面上以较短的形式显示数据，但reactive的双向绑定效果就没有了
+            // ...data
+            // name:data.name,
+            // province:data.province,
+            // school:{
+            //     name:"大软",
+            //     address:"西青"
+            // }
+            // 下面这种方式既可以在template的语法简洁，同时也保持了双向绑定，但是在setup中会多转"两次"数据类型
+            ...Vue.toRefs(data)
+        }
+    },
+    template:`
+        <h1>vue3-reactive语法糖</h1>
+        <div>姓名:{{name}}</div>
+        <div>省份:{{province}}</div>
+        <div>学校:{{school.name}}</div>
+        <div>学校地址:{{school.address}}</div>
+        <input v-model="name" />
+    `
+}
+const app = Vue.createApp(Main)
+app.mount("#app")
+</script>

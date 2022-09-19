@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>vue3-reactive</title>
+        <script src="https://unpkg.com/vue@3"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+const Main = {
+    setup(){
+        // Vue3中的reactive，其实就是对Proxy的一层定制化的封装。
+        // reactive就可以当成Proxy
+        // reactive 不需要new
+        // reactive 不需要方法的实现(也就是Proxy的第二个参数)
+        // reactive 在使用时只能接收对象或数组
+        const obj = Vue.reactive({
+            name:"张三",
+            province:"河北省"
+        })
+
+        const arr = Vue.reactive(["a","b","c"])
+
+        console.log("obj:",obj)
+        console.log("obj.name:",obj.name,"obj.province",obj.province)
+        console.log("arr:",arr)
+        console.log("arr[0]:",arr[0])
+        console.log("arr[1]:",arr[1])
+        console.log("arr[2]:",arr[2])
+        for(let item of arr){
+            console.log("for-of item:",item)
+        }
+        for(let i in arr){
+            console.log("for-in index:",i)
+        }
+
+        return {
+            obj,
+            arr
+        }
+    },
+    template:`
+        <h1>vue3-reactive</h1>
+        <div>obj:{{obj}}</div>
+        <span>obj.name:{{obj.name}}</span>
+        <span>obj.province:{{obj.province}}</span>
+        <div>arr:{{arr}}</div>
+        <span v-for="item in arr">{{item}};</span>
+    `
+}
+const app = Vue.createApp(Main)
+app.mount("#app")
+</script>

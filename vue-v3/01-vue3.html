@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>vue3-安装</title>
+        <script src="https://unpkg.com/vue@3"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+// Vue3 没有通过new 进行实例化，而是使用Vue对象静态方法创建一个实例对象
+// 入口组件
+const MainComponent = {
+    template:`<h1>main component</h1>`
+}
+
+const app = Vue.createApp(MainComponent)
+app.mount("#app")
+
+</script>

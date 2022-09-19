@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>vue3-computed</title>
+        <script src="https://unpkg.com/vue@3"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+const Main = {
+    computed:{
+        oldComputed(){
+            return "old computed"
+        }
+    },
+    setup(){
+        const newComputed = Vue.computed(() => {
+            return "new Computed"
+        })
+
+        const price = Vue.ref(100.00);  // {value:100.00}
+        const yuan = Vue.computed(() => "¥" + price.value / 1)
+        const dollar = Vue.computed(() => "$" + (price.value / 6).toFixed(2))
+        const priceUnit = Vue.computed(() => {
+            return country => {
+                switch (country) {
+                    case "zh":
+                        return "¥" + price.value / 1
+                        break;
+                    case "usa":
+                        return "$" + (price.value / 6).toFixed(2)
+                        break;
+                    case "jan":
+                        return "¥" + (price.value * 20).toFixed(2)
+                        break;
+                    default:
+                        return "暂不支持该汇率"
+                        break;
+                }
+            }
+        })
+
+        return {
+            newComputed,
+            yuan,
+            dollar,
+            priceUnit
+        }
+    },
+    template:`
+        <h1>vue3-computed</h1>
+        <div>Vue2方式声明的计算属性：{{oldComputed}}</div>
+        <div>Vue3 setup中声明的计算属性：{{newComputed}}</div>
+        <hr>
+        <div>人民币:{{yuan}}</div>
+        <div>美元:{{dollar}}</div>
+        <div>人民币：{{priceUnit("zh")}}</div>
+        <div>美元：{{priceUnit("usa")}}</div>
+        <div>日元：{{priceUnit("jan")}}</div>
+    `
+}
+const app = Vue.createApp(Main)
+app.mount("#app")
+</script>

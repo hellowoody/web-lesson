@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>vue3-watch侦听深度属性</title>
+        <script src="https://unpkg.com/vue@3"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+const Main = {
+    setup(){
+
+        const obj = Vue.reactive({
+            a:1,
+            b:2
+        })
+
+        Vue.watch(() => Object.assign({},obj),(curr,prev) => {
+            console.log(curr,prev)
+        })
+        
+        const data = Vue.reactive({
+            name:"张三",
+            province:"河北省",
+            school:{
+                name:"大软",
+                address:"西青"
+            }
+        })
+
+        Vue.watch(
+            () => Object.assign({},data),
+            (curr,prev) => {
+                console.log(curr,prev)
+            },
+        )
+
+        Vue.watch(
+            () => Object.assign({},data.school),
+            (curr,prev) => {
+                console.log(curr,prev)
+            },
+        )
+       
+
+        return {
+            obj,
+            data
+        }
+    },
+    template:`
+        <h1>vue3-watch侦听深度属性</h1>
+        <input v-model="data.name" >
+        <br>
+        <input v-model="data.school.name" >
+        <br>
+        <input v-model="obj.a">
+        <br>
+        <input v-model="obj.b">
+    `
+}
+const app = Vue.createApp(Main)
+app.mount("#app")
+</script>

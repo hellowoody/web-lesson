@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>html 事件绑定</title>
+    </head>
+    <body>
+       <!-- <button onclick="window.a = 100;decrease();console.log(1000);console.log('a:',window.a)">-</button> -->
+       <button id="btn">-</button>
+    </body>
+</html>
+<script>
+function decrease(){
+    console.log("html5 -")
+}
+window.document.getElementById("btn").addEventListener("click",function(){
+    window.a = 100;
+    decrease();
+    console.log(1000);
+    console.log('a:',window.a)
+})
+</script>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>弹性布局</title>
+        <style>
+            .container {
+                display:flex;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 弹性布局有两个轴：主轴，交叉轴 -->
+        <!-- 这两个轴的关系：垂直的 -->
+        <!-- 在默认情况下：主轴是水平方向，交叉轴是垂直方向 -->
+        <!-- 如何设置主轴：justify-content -->
+        <!-- 如何设置交叉轴：align-items -->
+        <!-- 主轴设置的布局情况：从开始对齐；从结束对齐；居中对齐；均匀分布（1，2） -->
+        <!--                 flex-start；flex-end；center；space-around space-between -->
+        <!-- 交叉轴设置的布局情况：从开始对齐；从结束对齐；居中对齐； -->
+        <!--                 flex-start；flex-end；center；   -->
+        <!-- 可以在父标签中使用flex-direction:column;(默认值：row) 将主轴指定垂直方向，交叉轴是水平方向 -->
+        <!-- justify-content和align-items是在父节点中设置的 -->
+        <!-- align-self 是在子节点中可以设置自己在交叉轴时的位置 -->
+        <!-- 弹性布局的所有的子元素会沿主轴的方向排列 -->
+        <div style="display:flex;border:1px solid #000;height:500px">
+            <div style="width: 100px;height: 100px;background-color: red;align-self: flex-end;"></div>
+            <div style="width: 100px;height: 100px;background-color: green;"></div>
+            <div style="width: 100px;height: 100px;background-color: blue;"></div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>vue3-ref</title>
+        <script src="https://unpkg.com/vue@3"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+const Main = {
+    data(){
+        return {
+            b:10
+        }
+    },
+    setup(){
+        const a = Vue.ref("hello")
+        const c = Vue.ref([1,2,3,4,5])
+        const d = Vue.ref({
+            name:"张三",
+            score:90
+        })
+
+        console.log("a:",a)
+        console.log("a value:",a.value)  // ref绑定的变量，在js中需要.value
+        console.log("c value:",c.value)  // ref绑定的变量，在js中需要.value
+        console.log("d value:",d.value)  // ref绑定的变量，在js中需要.value
+
+        return {
+            a,
+            c,
+            d
+        }
+    },
+    template:`
+        <h1>vue3-ref</h1>
+        <!-- ref绑定的变量，在标签中不需要.value -->
+        <div>a:{{a}}</div>
+        <div>b:{{b}}</div>
+        <div>c:{{c}}</div>
+        <ul>
+            <li v-for="(item,idx) in c" >{{idx}}-{{item}}</li>
+        </ul>
+        <div>d:{{d}}</div>
+    `
+}
+const app = Vue.createApp(Main)
+app.mount("#app")
+</script>

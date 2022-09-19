@@ -1,0 +1,41 @@
+<script>
+/*
+    const arr = []
+    for(let i = 0 ; i < 100000 ; i++){
+        arr.push(i)
+    }
+    // [0,1,2,3...]
+*/
+const arr = new Array(5000000); // 创建了一个10w个空位置的数组
+arr.fill(0)
+// [0,0,0...]
+console.log(arr.length)
+
+const startTime_1 = Date.now()
+for(let i = 0 ; i < arr.length ; i++){}
+const endTime_1 = Date.now()
+console.log("for duration:",endTime_1-startTime_1,"ms")
+
+const startTime_2 = Date.now()
+let step = 0;
+while(step < arr.length){
+    step++
+}
+const endTime_2 = Date.now()
+console.log("while duration:",endTime_2-startTime_2,"ms")
+
+const startTime_3 = Date.now()
+for(let v of arr){}
+const endTime_3 = Date.now()
+console.log("for-of duration:",endTime_3-startTime_3,"ms")
+
+const startTime_4 = Date.now()
+for(let idx in arr){}
+const endTime_4 = Date.now()
+console.log("for-in duration:",endTime_4-startTime_4,"ms")
+
+const startTime_5 = Date.now()
+arr.forEach(() => {})
+const endTime_5 = Date.now()
+console.log("forEach duration:",endTime_5-startTime_5,"ms")
+</script>

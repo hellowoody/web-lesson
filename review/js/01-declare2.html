@@ -1,0 +1,65 @@
+<script>
+
+// let vs const
+// let 就是严谨性更强的 var
+// 当要声明一个对象或数组时，更建议使用const
+    // 在js中一提到对象，就应该想起json格式的数据
+    /*
+        {
+            key:value
+        }
+    */
+
+// const的注意事项
+//  1.声明是必须初始化
+//  2.一旦初始化后，这个变量的“地址”就不能变了
+
+const obj = {
+    name:"张三"
+}
+
+obj.name = "李四"
+obj.addr = "西青区"
+obj.className = "2班"
+delete obj.name
+
+console.log("obj:",obj)
+
+
+const objA = {
+    a:1,
+    b:2
+}
+
+const objB = objA
+
+
+objA.a = 100
+objB.c = 200
+
+console.log("objA:",objA)
+console.log("objB:",objB)
+
+
+const objAA = {
+    a:1,
+    b:2
+}
+
+/*
+    // 手动拷贝
+    const objBB = {}
+    for(let key in objAA){
+        objBB[key] = objAA[key]
+    }
+*/
+// 无论是手动拷贝还是Object.assign()拷贝，都是浅拷贝
+const objBB = Object.assign({},objAA)
+
+objAA.a = 100
+objBB.c = 200
+
+console.log("objAA:",objAA)
+console.log("objBB:",objBB)
+
+</script>

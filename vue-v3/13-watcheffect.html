@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>vue3-watcheffect</title>
+        <script src="https://unpkg.com/vue@3"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+
+const getData = () => {
+    return new Promise(function(resolve,reject){
+        // 通过setTimeout模拟网络的延迟
+        setTimeout(() => {
+            resolve(["a","b","c"])
+        },1000)
+    })
+}
+
+const Main = {
+    setup(){
+        
+        const list = Vue.ref([])
+        const page = Vue.ref(1)
+
+        const load = () => {
+            console.log("加载更多数据")
+            page.value++
+            // getData().then(res => {
+            //     console.log(3000)
+            //     list.value = list.value.concat(res)
+            // })
+        }
+        // watchEffect 在执行时 主动执行一次参数（回调函数）
+        // watchEffect 会根据我们在参数中的代码，自动分析该侦听哪个几个变量
+        // watchEffect 补充 在watchEffect回调函数中的异步回调函数内的代码是不会自动分析和侦听
+        Vue.watchEffect(() => {
+            console.log("watchEffect 当前页面:",page.value)
+            // console.log("我还会被执行吗？")
+            getData().then(res => {
+                console.log(3000)
+                list.value = list.value.concat(res)
+            })
+        })
+
+        return {
+            list,
+            load
+        }
+    },
+    template:`
+        <h1>vue3-watcheffect</h1>
+        <div v-for="item in list">
+            {{item}}    
+        </div>
+        <button @click="load">加载更多</button>
+    `
+}
+const app = Vue.createApp(Main)
+app.mount("#app")
+</script>

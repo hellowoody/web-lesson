@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>vue3-生命周期</title>
+        <script src="https://unpkg.com/vue@3"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+
+const ParentComp = {
+    setup(){
+        const count = Vue.ref(0)
+
+        console.log("Vue3 setup")
+        Vue.onBeforeMount(() => console.log("Vue3 onBeforeMount"))
+        Vue.onMounted(() => console.log("Vue3 onMounted"))
+        Vue.onBeforeUpdate(() => console.log("Vue3 onBeforeUpdate"))
+        Vue.onUpdated(() => console.log("Vue3 onUpdated"))
+        Vue.onBeforeUnmount(() => console.log("Vue3 onBeforeUnmount"))
+        Vue.onUnmounted(() => console.log("Vue3 onUnmounted"))
+
+        setTimeout(() => count.value++,2000)
+
+        return {
+            count,
+        }
+    },
+    template:`
+        <h1>vue3-生命周期</h1>
+        <div>{{count}}</div>
+        
+    `,
+}
+
+
+Vue.createApp(ParentComp)
+    .mount("#app");
+
+</script>

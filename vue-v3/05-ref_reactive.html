@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>vue3-ref和reactive区别</title>
+        <script src="https://unpkg.com/vue@3"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+const Main = {
+    setup(){
+        // Proxy是js在ES7中推出的新语法
+        // reactive是Vue3在Proxy基础上做了一层封装
+        // ref是Vue3在reactive基础上做了一层封装
+        // 一句话总结： ref-》reactive-》Proxy； 在日常使用中更推荐ref。
+        const target = {
+            name:"张"
+        }
+        const handler = {
+            get(obj,key){
+                return obj[key]+"，我拦截了"
+            }
+        }
+        const a = new Proxy(target,handler)
+        console.log("a by Proxy:",a)
+
+        const b = Vue.reactive({name:"李"})
+        console.log("b by reactive:",b)
+
+        const c = Vue.ref({name:"王"})
+        console.log("c by ref:",c)
+
+        /*
+            const c_v2 = Vue.reactive({
+                value:{name:"王"}
+            })
+            console.log("c_v2 by reactive:",c_v2)
+        */
+        const modfyB = () => {
+            b.name = "Li"
+        }
+        const modfyC = () => {
+            // 虽然在使用时，感觉ref绑定的对象操作时有些“麻烦”（需要.value）
+            // 但是在实际使用中，ref带来的好处会更多一点
+            c.value.name = "Wang"
+        }
+
+        return {  
+            b,
+            c,
+            modfyB,
+            modfyC
+        }
+    },
+    template:`
+        <h1>vue3-ref和reactive区别</h1>
+        <div>b.name:{{b.name}}</div>
+        <button @click="modfyB">修改b的name</button>
+        <div>c.name:{{c.name}}</div>
+        <button @click="modfyC">修改c的name</button>
+    `
+}
+const app = Vue.createApp(Main)
+app.mount("#app")
+</script>

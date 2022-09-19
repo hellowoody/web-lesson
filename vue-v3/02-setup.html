@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>vue3-setup函数</title>
+        <script src="https://unpkg.com/vue@3"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+/*
+    Vue2属于约定式编程
+    Vue3新增了函数式编程
+
+    区别
+
+    1.Vue3 不再使用new Vue，用Vue.createApp()
+    2.Vue3 建议尽量讲所有的操作都写在setup()
+    3.Vue3 setup()的声明周期时间包含了原来的beforeCreate和created
+        在setup中我们还可以使用Vue.onMounted是操作标签挂载后的行为
+    4.Vue3 在template模版中不再强制写根标签
+    5.Vue3 setup中不再使用上下文this，而是使用Vue这个全局对象
+    6.Vue3 setup中建议多使用箭头函数
+
+
+*/
+// vue2的语法
+const SyntaxOld = {
+    data(){
+        return {
+            count:0
+        }
+    },
+    methods:{
+        decrease(){
+            this.count -= 1
+        },
+        increase(){
+            this.count += 1
+        },
+    },
+    template:`
+        <h2>vue2的语法</h2>
+        <button @click="decrease">-</button>
+        <span>{{count}}</span>
+        <button @click="increase">+</button>
+    `
+}
+// vue3的语法
+const SyntaxNew = {
+    // composition api 组合api
+    // 在Vue3.2版本中，在setup中 this强制指向window
+    setup(){
+        console.log("new setup")
+        const step = Vue.ref(10) 
+
+        const add = () => step.value += 1
+
+        const decrease = () => step.value -= 1
+        // console.log("this:",this) // 全局变量：window
+
+        Vue.onMounted(() => {
+            // 重点！ Vue3.2 Vue.getCurrentInstance().refs =》 this.$refs
+            console.log("new Mounted",Vue.getCurrentInstance().refs.h2title)
+        })
+
+        return {
+            // js的增强语法
+            step,  // "step":step
+            increase:add,
+            decrease
+        }
+    },
+    // beforeCreate(){
+    //     console.log("old beforeCreate")
+    // },
+    // created(){
+    //     console.log("old created")
+    // },
+    beforeMount(){
+        console.log("old beforeMount")
+    },
+    mounted(){
+        console.log("old mounted",this.$refs.h2title)
+    },
+    template:`
+        <h2 ref="h2title">vue3的语法</h2>
+        <button @click="decrease">-</button>
+        <span>{{step}}</span>
+        <button @click="increase">+</button>
+    `
+}
+
+
+// 入口组件
+const Main = {
+    template:`
+        <h1>Hello Vue3.x</h1>
+        <syntax-old />
+        <syntax-new />    
+    `,
+    components:{
+        "syntax-old":SyntaxOld,
+        "syntax-new":SyntaxNew
+    }
+}
+
+const app = Vue.createApp(Main)
+app.mount("#app")
+
+</script>

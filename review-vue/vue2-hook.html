@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>vue2 声明周期勾子函数</title>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+new Vue({
+    el:"#app",
+    data:{
+        msg:"hello"
+    },
+    methods:{
+        fn1(){
+            console.log("this is fn1")
+            return "this is fn1 res"
+        }
+    },
+    created(){
+        /*
+            保证你通过上下文this拿到 props/data/methods中的内容
+            但不能保证你访问页面的内容
+        */ 
+       console.log("在created的肯定能拿到data的值",this.msg) 
+       console.log("在created的肯定能拿到methods的方法",this.fn1()) 
+    //    console.log("box 存不存在?",document.getElementById("box")) // 重点！因为template中的标签不是真正的标签（不是真正的document）
+       console.log("box 存不存在?",this.$refs.box)                    //  但不能保证你访问页面的内容 
+    },
+    mounted(){
+        /*
+            保证你通过上下文this拿到 props/data/methods/template中的内容
+        */ 
+        console.log("mountd box 存不存在?",this.$refs.box) 
+    },
+    template:`
+        <div>
+            <div ref="box" style="width:200px;height:200px;background-color:red;"></div>    
+        </div>
+    `
+})
+</script>

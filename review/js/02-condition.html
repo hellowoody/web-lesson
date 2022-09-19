@@ -1,0 +1,81 @@
+<script>
+// 逻辑判断
+// 第一种 if
+let num = 10;
+if(num>0){
+    //  正数情况
+}
+
+if(num>0){
+    //  正数情况
+}else{
+    //  负数或零情况
+}
+
+if(num>0){
+    //  正数情况
+}else if(num === 0){
+    //  零情况
+}else{
+    //  负数情况
+}
+
+// 第二种 switch-case
+
+switch (1===1) {
+    case num > 0:
+        //  正数情况
+        break;
+    case num < 0:
+        //  负数情况
+        break;
+    default:
+        //  零情况
+        break;
+}
+
+let keyCode = ""
+switch (keyCode) {
+    case 0:
+        // 输入的是0
+        break;
+    case 1:
+        // 输入的是1
+        break;
+    case 2:
+        // 输入的是2
+        break;
+    default:
+        // 输入的是“非法”
+        break;
+}
+
+switch (keyCode) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 9:
+        // 输入的是数值
+        break;
+    case "+":
+    case "-":
+    case "*":
+    case "/":
+        // 输入的是操作符
+        break;
+    default:
+         // 输入的是“非法”
+        break;
+}
+
+if(keyCode === 0 || keyCode === 1 || keyCode === 2 || keyCode ===9){
+    // 输入的是数值
+}else if (keyCode === "+" || keyCode === "-" || keyCode === "*" || keyCode === "/"){
+    // 输入的是操作符
+}else{
+    // 输入的是操作符
+}
+</script>

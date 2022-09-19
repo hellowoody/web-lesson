@@ -1,0 +1,47 @@
+<script>
+// js 中常用的迭代方式
+const arr = [1,2,3]
+
+// 1:for-loop
+for(let i = 0 ; i < arr.length; i++){
+    console.log("type 1:",arr[i])
+}
+// 2:while
+let i = 0;
+while(i < arr.length){
+    console.log("type 2:",arr[i])
+    i++
+}
+// 3:for-of
+for(let val of arr){
+    console.log("type 3:",val)
+}
+// 4:for-in
+for(let idx in arr){
+    console.log("type 4:",arr[idx])
+}
+// 5:forEach
+arr.forEach(v => console.log("type 5:",v))
+// 6:map
+arr.map(v => console.log("type 6:",v))
+// 7:some
+arr.some(v => console.log("type 7:",v))
+// 8:filter
+arr.filter(v => console.log("type 8:",v))
+// 9:reduce 归并方法
+
+// 备注：
+// for-in 除了可以迭代数组，还可以迭代对象中的key(属性)
+const obj = {
+    name:1,
+    address:2,
+    className:3,
+    a:4,
+    b:5
+}
+for(let key in obj){
+    console.log("key:",key,";val:",obj[key])
+}
+
+
+</script>

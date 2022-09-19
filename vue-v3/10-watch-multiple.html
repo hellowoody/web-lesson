@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>vue3-watch侦听多个属性</title>
+        <script src="https://unpkg.com/vue@3"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+const Main = {
+    setup(){
+        
+        const count1 = Vue.ref(0);
+        const count2 = Vue.ref(0);
+        const count3 = Vue.ref(0);
+
+        //  侦听ref绑定的变量
+        Vue.watch([count1,count2,count3],(curr,prev) => {
+            console.log("Vue3 当前的最新值：",curr)
+            console.log("Vue3 之前的值：",prev)
+        })
+
+        const person = Vue.reactive({
+            name:"zhang",
+            gender:"male"
+        })
+
+        Vue.watch(() => [person.name,person.gender],(curr,prev) => {
+            console.log("Vue3 当前的最新值：",curr)
+            console.log("Vue3 之前的值：",prev)
+        })
+
+        const arr = Vue.reactive([1,2,3])
+
+        Vue.watch(() => [arr[0],arr[1],arr[2]],(curr,prev) => {
+            console.log("Vue3 当前的最新值：",curr)
+            console.log("Vue3 之前的值：",prev)
+        })
+       
+
+        return {
+            count1,
+            count2,
+            count3,
+            person,
+            arr
+        }
+    },
+    template:`
+        <h1>vue3-watch侦听多个属性</h1>
+        <input v-model="count1" >
+        <br>
+        <input v-model="count2" >
+        <br>
+        <input v-model="count3" >
+        <br>
+        <input v-model="person.name" >
+        <br>
+        <input v-model="person.gender" >
+        <br>
+        <input v-model="arr[0]" >
+        <br>
+        <input v-model="arr[1]" >
+    `
+}
+const app = Vue.createApp(Main)
+app.mount("#app")
+</script>

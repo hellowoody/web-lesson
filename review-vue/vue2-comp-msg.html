@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>vue2 组件与组件通讯</title>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+// 组件一 
+const Comp1 = {
+    // props:{
+    //     status4C1:Number
+    // },
+    template:`
+        <div style="border:1px solid #00ff00;">
+            <h2>组件一</h2> 
+            <!-- {{status4C1}} -->
+            <button @click="send">+1</button>  
+        </div>
+    `,
+    methods:{
+        send(){
+            // this.$emit("自定义的事件名")
+            this.$emit("modifyStatus")
+        }
+    }
+}
+
+// 组件二
+const Comp2 = {
+    props:["status4C2"],
+    template:`
+        <div style="border:1px solid #0000ff;">
+            <h2>组件二</h2> 
+            {{status4C2}}      
+        </div>
+    `
+}
+const app = new Vue({
+    el:"#app",
+    data:{
+        status:0
+    },
+    methods:{
+        updateStatus(){
+            this.status += 1
+        }
+    },
+    components:{
+        "comp1":Comp1,
+        "comp2":Comp2,
+    },
+    template:`
+        <div style="border:1px solid #ff0000;">
+            <h1>父组件</h1>
+            <div style="display:flex;justify-content:space-around;">
+                <!--
+                    <comp1 :status4C1="status" @modifyStatus="updateStatus"/>    
+                -->
+                <comp1 @modifyStatus="updateStatus"/>    
+                <comp2 :status4C2="status"/>    
+            </div>    
+        </div>
+    `
+})
+</script>

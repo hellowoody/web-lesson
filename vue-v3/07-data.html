@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>vue3-变量的新用法</title>
+        <script src="https://unpkg.com/vue@3"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+const Main = {
+    setup(){
+        const count = Vue.ref(0)
+        const logo = "https://img95.699pic.com/element/40129/6387.png_300.png"
+        let tel = "15812345678"
+        const add = () => count.value++
+
+        const updateTel = () => {
+            tel = "13712345678"
+        }
+
+        const getTel = () => {
+            console.log("tel:",tel)
+        }
+
+        return {
+            count,
+            add,
+            logo,
+            tel,
+            updateTel,
+            getTel
+        }
+    },
+    template:`
+        <h1>vue3-变量的新用法</h1>
+        <div>count:{{count}}</div>
+        <button @click="add">+</button>
+        <div>静态的值：{{tel}}</div>
+        <button @click="updateTel">修改电话</button>
+        <button @click="getTel">获取电话</button>
+        <img :src="logo">
+    `
+}
+const app = Vue.createApp(Main)
+app.mount("#app")
+</script>

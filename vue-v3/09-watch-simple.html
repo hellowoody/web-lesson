@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>vue3-watch</title>
+        <script src="https://unpkg.com/vue@3"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+const Main = {
+    data(){
+        return {
+            a:0
+        }
+    },
+    watch:{
+       a:function(curr,prev){
+            console.log("当前的最新值：",curr)
+            console.log("之前的值：",prev)
+       }
+    },
+    setup(){
+        
+        const count = Vue.ref(0);
+
+        const person = Vue.reactive({
+            name:"zhang",
+            gender:"male"
+        })
+        //  侦听ref绑定的变量
+        Vue.watch(count,(curr,prev) => {
+            console.log("Vue3 当前的最新值：",curr)
+            console.log("Vue3 之前的值：",prev)
+       })
+       //  侦听reactive绑定的变量
+       Vue.watch(() => person.name,(curr,prev) => {
+            console.log("Vue3 reactive 当前的最新值：",curr)
+            console.log("Vue3 reactive 之前的值：",prev)
+       })
+       Vue.watch(() => person.gender,(curr,prev) => {
+            console.log("Vue3 reactive 当前的最新值：",curr)
+            console.log("Vue3 reactive 之前的值：",prev)
+       })
+
+        return {
+            count,
+            person
+        }
+    },
+    template:`
+        <h1>vue3-watch</h1>
+        <input v-model="a" >
+        <br>
+        <input v-model="count" >
+        <br>
+        <input v-model="person.name" >
+        <input v-model="person.gender" >
+    `
+}
+const app = Vue.createApp(Main)
+app.mount("#app")
+</script>

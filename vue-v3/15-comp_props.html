@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>vue3-父传子</title>
+        <script src="https://unpkg.com/vue@3"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+
+const ChildComp = {
+    // props:["a","b","c"],
+    props:{
+        a:Number,
+        b:String,
+        c:{
+            type:Boolean,
+            default:false
+        }
+    },
+    setup(props,context){
+        console.log("props:",props)
+        console.log("context:",context)
+        console.log("context.attrs:",context.attrs)
+    },
+    template:`
+        <h2>子组件</h2>
+        <div>b:{{b}}</div>
+    `
+}
+
+const ParentComp = {
+    setup(){
+        let num = Vue.ref(3.14);
+        const str = Vue.ref("你好")
+        const flag = Vue.reactive({
+            value:true
+        })
+
+        return {
+            num,
+            str,
+            flag
+        }
+    },
+    template:`
+        <h1 style="color:blue">vue3-父传子</h1>
+        <h2 style="color:blue">父组件</h2>
+        <!-- child-comp v-bind:a="1" :b="'hello'" :c="true"/ -->
+        <input v-model="str"/>
+        <child-comp class="myStyle" id="c01" name="myComp" v-bind:a="num" :b="str" :c="flag.value"/>
+        
+    `,
+    components:{
+        // "child-comp":ChildComp
+        ChildComp
+    }
+}
+
+
+Vue.createApp(ParentComp)
+    .mount("#app");
+
+</script>

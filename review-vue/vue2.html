@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>vue2 复习知识点</title>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script> -->
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+// 定义组件
+const childComp = {
+    name:"childComp",
+    props:{
+        a:String,
+        b:{
+            type:Number,
+            default:-1
+        }
+    },
+    data:function(){
+        return {
+            msg:"我是子组件"
+        }
+    },
+    template:`
+        <div>
+            <h5>{{msg}}</h5>
+            <div>
+                <span>从父组件接收的参数：a-{{a}},b-{{b}}</span>    
+            </div>
+        </div>
+    `
+}
+
+// 定义组件:双向绑定的例子
+const bindDataComp = {
+    name:"bindDataComp",
+    data(){
+        return {
+            msg:""
+        }
+    },
+    template:`
+        <div>
+            <div>{{msg}}</div>
+            <!-- input v-bind:value="msg" @input="handleMsg"/ -->
+            <input :value="msg" @input="handleMsg"/>
+            <button @click="updateMsg">修改输入框中的默认值</button>
+        </div>
+    `,
+    methods:{
+        updateMsg(){
+            this.msg += "1"
+        },
+        // 事件句柄 event
+        handleMsg(e){
+            // console.log(e.target.value)
+            this.msg = e.target.value
+        }
+    }
+}
+
+// 定义组件:双向绑定的例子（语法糖）
+const bindModelComp = {
+    name:"bindModelComp",
+    data(){
+        return {
+            str:""
+        }
+    },
+    template:`
+        <div>
+            <div>{{str}}</div>
+            <input v-model="str" />    
+        </div>
+    `
+}
+
+// 创建了一个实例
+// 在Vue2.x中 尽量不要写箭头函数
+const app = new Vue({
+    el:"#app",
+    data:{
+        msg:"hello vue2.0",
+        param02:3.14,
+        param04:1000,
+        count:0
+    },
+    template:`
+        <div>
+            <h2>{{msg}}</h2>   
+            <child-comp a="param01" v-bind:b="param02"></child-comp> 
+            <child-comp a="param03" :b="param04"></child-comp>
+            <h2>计数器</h2>
+            <button v-on:click="decrease">-</button>
+            <span>{{count}}</span>
+            <button @click="increase">+</button>
+            <bind-data-comp />
+            <bind-model-comp />
+        </div>
+    `,
+    components:{
+        // key:value
+        "child-comp":childComp,
+        "bind-data-comp":bindDataComp,
+        "bind-model-comp":bindModelComp
+    },
+    methods:{
+        // js 增加语法
+        decrease(){
+            // this.count = this.count - 1
+            console.log(this) // Vue
+            this.count -= 1
+        },
+        increase:function(){
+            // console.log("+")
+            console.log(this) // 如果是箭头函数的话， this 指向的是 window
+            this.count += 1
+        }
+    }
+})
+</script>

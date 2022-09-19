@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>仿vue3.x手写一个双向绑定例子</title>
+    </head>
+    <body>
+        <!-- argument 实参 -->
+        <input id="ip" oninput="handleMsg(event)" />
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+/*
+    // 函数名字建议首字母是小写
+    // 函数
+    function test(){}
+    test()     // 调用或执行
+    // 如果你的函数名字首字母是大写，那么在js中我们就当做构造器
+    // 构造器
+    function Test(){}
+    new Test() // 生成了一个实例（对象 -> {}）
+*/ 
+/*
+    Proxy 的使用方式
+    1.Proxy 是个构造器,索引我们使用它时就需要new一个实例
+        new Proxy()
+
+    2.Proxy 在实例化时会接受两个参数
+        new Proxy(p1,p2)
+
+        p1:需要代理的对象（{}）
+
+        p2:就是操作p1时的各种“拦截器”,p2本身也是一个对象({}),这个对象里面都是各种的方法
+*/ 
+
+const data = {
+    msg:"hello proxy"
+}
+
+document.getElementById("app").innerText = data.msg
+document.getElementById("ip").value = data.msg
+
+// parameter 形参
+function handleMsg(e){
+    console.log(e.target.value)
+    document.getElementById("app").innerText = e.target.value
+    document.getElementById("ip").value = e.target.value
+}
+
+</script>

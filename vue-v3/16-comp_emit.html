@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>vue3-子调用父</title>
+        <script src="https://unpkg.com/vue@3"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+
+const ChildComp = {
+    emits:["handleAdd","handleSub"],
+    setup(props,context){
+        const increase = () => context.emit("handleAdd")
+
+        const decrease = () => context.emit("handleSub")
+
+        return {
+            increase,
+            decrease
+        }
+    },
+    template:`
+        <h2>子组件</h2>
+        <button @click="decrease">-</button>
+        <button @click="increase">+</button>
+    `
+}
+
+const ParentComp = {
+    setup(){
+        const count = Vue.ref(0)
+
+        const add = () => count.value++
+        const sub = () => count.value--
+
+        return {
+            count,
+            add,
+            sub
+        }
+    },
+    template:`
+        <h1 style="color:blue">vue3-子调用父</h1>
+        <h2 style="color:blue">父组件</h2>
+        <div style="color:blue">{{count}}</div>
+        <!-- child-comp 自己定义的事件名字="add" /-->
+        <child-comp @handleAdd="add" v-on:handleSub="sub"/>
+        
+    `,
+    components:{
+        ChildComp
+    }
+}
+
+
+Vue.createApp(ParentComp)
+    .mount("#app");
+
+</script>
