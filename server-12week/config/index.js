@@ -4,5 +4,6 @@ module.exports =  {
     ip:"127.0.0.1",
     port:3000,
     assets_url:"/static",
-    imgs_url:"/static/upload"
+    imgs_url:"/static/upload",
+    secretOrPrivateKey:"hello"
 }

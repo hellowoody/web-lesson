@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>scrollTop</title>
+    </head>
+    <body>
+        <div id="level01" style="height:100px;background-color: #7f7f7f;"></div>
+        <div id="level02" style="height:500px;background-color: green;overflow-y: auto;">
+            <div style="margin:20px;height:100px;background-color: red;">item1</div>
+            <div style="margin:20px;height:100px;background-color: red;">item2</div>
+            <div style="margin:20px;height:100px;background-color: red;">item3</div>
+            <div style="margin:20px;height:100px;background-color: red;">item</div>
+            <div style="margin:20px;height:100px;background-color: red;">item</div>
+            <div style="margin:20px;height:100px;background-color: red;">item</div>
+            <div style="margin:20px;height:100px;background-color: red;">item</div>
+            <div style="margin:20px;height:100px;background-color: red;">item4</div>
+            <div style="margin:20px;height:100px;background-color: red;">item5</div>
+            <div style="margin:20px;height:100px;background-color: red;">item6</div>
+        </div>
+        <button onclick="backTop()">回到顶端</button>
+    </body>
+</html>
+<script>
+    const level02 = document.getElementById("level02")
+    level02.addEventListener("click",()=>{
+        console.log(level02.scrollTop)
+    },{
+        passive:true
+    })
+
+
+    function backTop(){
+        level02.scrollTop = 0
+    }
+</script>

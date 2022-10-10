@@ -1,4 +1,25 @@
 import {Connect} from "./db/mongo";
+const {protocal,ip,port,imgs_url} = require("../config");
+
+export const Good = async (parent:any, args:any) => {
+    try {
+        const client = await Connect()
+        try {
+            const db = client.db("twelve_weeks");
+            const query:any = {
+                id:args.id
+            }
+            const result = await db.collection("goods").findOne(query)
+            return result
+        } catch (err) {
+            return err
+        } finally {
+            client.close();
+        }
+    } catch (e) {
+        return e
+    }
+}
 
 export const Goods = async (parent:any, args:any, context:any, info:any) => {
     // console.log("parent:",parent);
@@ -9,8 +30,24 @@ export const Goods = async (parent:any, args:any, context:any, info:any) => {
         const client = await Connect()
         try {
             const db = client.db("twelve_weeks");
-            const query:any = {
-                name:{
+            const query:any = {}
+            // switch (1===1) {
+            //     case args.type != null:
+            //         query.type = args.type
+            //         break;
+            //     case args.name != null:
+            //         query.name = {
+            //             $regex:args.name
+            //         }
+            //         break;
+            //     default:
+            //         break;
+            // }
+            if(args.type) {
+                query.type = args.type
+            }
+            if(args.name) {
+                query.name = {
                     $regex:args.name
                 }
             }
@@ -60,6 +97,99 @@ export const GoodType = async (parent:any, args:any) => {
             ]
             const res = await db.collection("dict").aggregate(aggregate).toArray()
             return res[0].items
+        } catch (err) {
+            return err
+        } finally {
+            client.close()
+        }
+    } catch (e) {
+        return e
+    }
+}
+
+export const HomeImgs = () => {
+    // url 
+    const baseUrl = `${protocal}://${ip}:${port}${imgs_url}`
+    return [
+        baseUrl+"/home01.png",
+        baseUrl+"/home02.png",
+        baseUrl+"/home03.png",
+    ]
+}
+
+export const Categorys = async (parent:any, args:any) => {
+    try {
+        const client = await Connect()
+        try {
+            const db = client.db("twelve_weeks");
+            const aggregate:any = [
+                {$unwind:"$items"},
+                {$match:{
+                    id:args.id, // 大类的id,
+                    "items.id":{
+                        $in:args.type   // ["03","04"]  id in ("03","04")
+                    }
+                }},
+                {$project:{"items":1}},
+            ]
+            const result = await db.collection("dict").aggregate(aggregate).toArray()
+            const res:any = []
+            result.forEach(item => {
+                res.push(item.items)
+            })
+            return res
+        } catch (err) {
+            return err
+        } finally {
+            client.close()
+        }
+    } catch (error) {
+        return error
+    }
+}
+
+export const GoodsCategory = async (parent:any, args:any) => {
+    /*
+        上一步的结果是
+        [
+            {id:"03",name:"鞋类"}，
+            {id:"04",name:"潮服"}
+        ]
+        所以这个方法执行时，第一额参数parent的值
+        {id:"03",name:"鞋类"}
+    */ 
+    // console.log("parent:",parent)
+    try {
+        const client = await Connect()
+        try {
+            const db = client.db("twelve_weeks");
+            const query:any = {
+                type:parent.id
+            }
+            const res = await db.collection("goods").find(query).skip(args.start).limit(args.count).toArray()
+            return res
+        } catch (err) {
+            return err
+        } finally {
+            client.close()
+        }
+    } catch (error) {
+        return error
+    }
+}
+
+export const Cart = async (parent:any, args:any, context:any, info:any) => {
+    try {
+        if(!context.checkToken()) throw new Error('Unauthorized');
+        
+        const client = await Connect()
+        try {
+            const db = client.db("twelve_weeks");
+            const query:any = {
+                userId:args.userId
+            }
+            const res = await db.collection("cart").find(query).toArray()
+            return res
         } catch (err) {
             return err
         } finally {

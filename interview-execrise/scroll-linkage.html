@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <!-- 适配移动端 -->
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>菜单联动</title>
+        <style>
+            body {
+                margin:0px;
+            }
+
+            .content-el {
+                display: flex;
+                background-color: #e5e5e5;
+                height: 100vh;
+            }
+
+            .left-wrapper {
+                flex:1;
+                background-color: #E8ACAC;
+            }
+            .right-wrapper {
+                flex:3;
+                padding:10px;
+                box-sizing: border-box;
+                overflow-y: auto;
+            }
+
+            .menu-item {
+                height: 60px;
+                color:#fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .menu-item-active {
+                height: 60px;
+                color:blue;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: bold;
+            }
+
+            .content {
+                height:calc(100vh - 100px);
+                background-color: #8370DE;
+                margin-bottom: 8px;
+                color:#fff;
+            }
+
+            ::-webkit-scrollbar {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content-el">
+            <div class="left-wrapper">
+                <div class="menu-item-active">大类1</div>
+                <div class="menu-item ">大类2</div>
+                <div class="menu-item">大类3</div>
+                <div class="menu-item">大类4</div>
+                <div class="menu-item">大类5</div>
+                <div class="menu-item">大类6</div>
+            </div>
+            <div class="right-wrapper">
+                <div class="content">大类1的小类内容</div>
+                <div class="content">大类2的小类内容</div>
+                <div class="content">大类3的小类内容</div>
+                <div class="content">大类4的小类内容</div>
+                <div class="content">大类5的小类内容</div>
+                <div class="content">大类6的小类内容</div>
+            </div>
+        </div>
+    </body>
+</html>
+<script>
+const leftWrapper = document.querySelector(".left-wrapper")
+const rightWrapper = document.querySelector(".right-wrapper")
+function menu_proxy(target){
+    return new Proxy(target,{
+        set(obj,prop,new_val){
+            // console.log(obj,prop,new_val)
+            switch (prop) {
+                case "index":
+                    for(let i = 0 ; i < obj.arr.length ; i++){
+                        if(i === new_val){
+                            obj.arr[i].setAttribute("class","menu-item-active")
+                        }else{
+                            obj.arr[i].setAttribute("class","menu-item")
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+            obj[prop] = new_val
+        }
+    })
+}
+
+const menu_state = menu_proxy({
+    arr:leftWrapper.children,
+    index:0,
+})
+
+let distance = 0;
+let rightScrollFlag = true
+
+
+// console.log(leftWrapper.children)
+for(let idx = 0 ; idx < leftWrapper.children.length ; idx++){
+    leftWrapper.children[idx].addEventListener("click",(e) => {
+        rightScrollFlag = false
+        // console.log(`我点击了索引${idx}菜单：`,e.target.innerText)
+        menu_state.index = idx
+
+        // 100vh - 100px
+        const blueHeight = document.body.clientHeight - 100
+        const finalDistance = idx * blueHeight
+
+        // rightWrapper.scrollTop = finalDistance
+
+        const step = blueHeight / 10
+        let rafId = ""
+        const scrollAnimation = () => {
+            // raf版本
+            if (finalDistance - distance > -10 && finalDistance - distance < 10) {
+                rightScrollFlag = true
+                cancelAnimationFrame(rafId)
+            }else{
+                if(distance < finalDistance){
+                    distance += step
+                    rightWrapper.scrollTop = distance
+                    rafId = requestAnimationFrame(scrollAnimation)
+                }else if(distance > finalDistance){
+                    distance -= step
+                    rightWrapper.scrollTop = distance
+                    rafId = requestAnimationFrame(scrollAnimation)
+                }
+            }
+            // 手动定时器版本
+            // setTimeout(() => {
+            //     if (finalDistance - distance > -10 && finalDistance - distance < 10) {
+            //         rightScrollFlag = true
+            //     }else{
+            //         if(distance < finalDistance){
+            //             distance += step
+            //             rightWrapper.scrollTop = distance
+            //             scrollAnimation()
+            //         }else if(distance > finalDistance){
+            //             distance -= step
+            //             rightWrapper.scrollTop = distance
+            //             scrollAnimation()
+            //         }
+            //     }
+                
+            // },50)
+        }
+
+        scrollAnimation()
+
+    },{passive:true})
+}
+
+rightWrapper.addEventListener("scroll",(e) => {
+    // console.log("滚动右侧区域")
+    // console.log("移动的多少距离:",rightWrapper.scrollTop)
+    // 100vh 的高度 在js中可以通过document.body.clientHeight获取
+    // document.body.clientHeight - 100
+    if(rightScrollFlag){
+        const n = rightWrapper.scrollTop / (document.body.clientHeight - 150)
+        const index = Math.floor(n) // 向下取整 0.1 => 0   1.8 => 1
+        menu_state.index = index
+    }
+},{passive:true})
+</script>

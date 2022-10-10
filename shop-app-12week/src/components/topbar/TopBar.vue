@@ -57,12 +57,14 @@
     box-shadow: 0px 1px 2px rgb(0 0 0 / 0.2);
     background-color: #fff;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    padding:0 12px;
+    box-sizing: border-box;
 }
 
 .middle {
-    width:80%;
+    width:82%;
 }
 
 .ant-input-affix-wrapper {

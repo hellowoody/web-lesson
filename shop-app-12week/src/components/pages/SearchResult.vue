@@ -2,6 +2,7 @@
 import {ref,inject} from "vue"
 import TopBar from "@/components/topbar/TopBar.vue"
 import ProductCard from "@/components/product/ProductCard.vue"
+import Content from "@/components/content/Content.vue"
 import {useRouter,useRoute} from "vue-router"
 import {useState} from "@/store/pageDirection"
 import {gql} from "@/kits/HttpKit"
@@ -13,7 +14,8 @@ const route = useRoute()
 const state = useState()
 const message = inject("$message")
 
-let route_query_searchCotnent = route.query.searchContent
+let route_query_searchCotnent = route.query.searchContent ? route.query.searchContent : ""
+const route_query_type = route.query.type ? route.query.type : ""
 const data = ref([])
 const loadingMore = ref(false)
 let start = 0 , count = 6;
@@ -31,19 +33,20 @@ const searchContentChange = content => route_query_searchCotnent = content
 const search = () => {
     data.value = [];
     start = 0;
-    searchData(route_query_searchCotnent)
+    searchData(route_query_searchCotnent,route_query_type)
 }
 
-const searchData = async (query) => {
+const searchData = async (query,type) => {
     try {
         const dictId = "goods_type"
         const p = {
             query:`
                 {
-                    goods (name:"${query}",start:${start},count:${count}){
+                    goods (name:"${query}",type:"${type}",start:${start},count:${count}){
                         id
                         count
                         type (id:"${dictId}") {
+                            id
                             name
                         }
                         name
@@ -59,21 +62,41 @@ const searchData = async (query) => {
         console.log("start:",start)
         if(res.data.goods && res.data.goods.length > 0){
             data.value = data.value.concat(res.data.goods)
-            start += count
+            // start += count
+            start += res.data.goods.length
+        }
+        return {
+            code:"ok"
         }
     } catch (e) {
         console.log("查询失败",e)
         message.warning(e.message)
+        return {
+            code:"failed"
+        }
     }
 }
 
 const onLoadMore = async () => {
     loadingMore.value = true;
-    await searchData(route_query_searchCotnent)
+    await searchData(route_query_searchCotnent,route_query_type)
     loadingMore.value = false;
 }
+// refresh 返回的结果是个promise对象，是异步的
+// const refresh = () => {
+//     return new Promise((resolve,reject) => {
+//         setTimeout(() => {
+//             resolve([1,2,3,4,5,6])
+//         },1000)
+//     })
+// }
+const refresh = () => {
+    data.value = [];
+    start = 0;
+    return searchData(route_query_searchCotnent,route_query_type)
+}
 
-searchData(route_query_searchCotnent)
+searchData(route_query_searchCotnent,route_query_type)
 
 </script>
 
@@ -87,7 +110,7 @@ searchData(route_query_searchCotnent)
                 <span @click="search">搜索</span>
             </template>
         </top-bar>
-        <div class="list">
+        <content :refreshFunc="refresh" :pull="true">
             <div class="title">有{{data.length}}个商品符合要求</div>
             <a-list :data-source="data">
                 <template #renderItem="{item}">
@@ -100,16 +123,11 @@ searchData(route_query_searchCotnent)
                     </div>
                 </template>
             </a-list>
-        </div>
+        </content>
     </div>
 </template>
 
-<style>
-.list {
-    padding:0px 18px;
-    box-sizing: border-box;
-}
-
+<style scoped>
 .title {
     color:#7f7f7f;
     font-weight:bold;

@@ -15,5 +15,8 @@ export default defineConfig({
       // "@":__dirname+"/src"
       "@":fileURLToPath(new URL("./src",import.meta.url))
     }
+  },
+  server:{
+    host:"0.0.0.0"
   }
 })

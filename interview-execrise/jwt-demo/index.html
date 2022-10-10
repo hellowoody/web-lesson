@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>index</title>
+    </head>
+    <body>
+        <button onclick="send()">send</button>
+    </body>
+</html>
+<script>
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiemhhbmdzYW4iLCJpYXQiOjE2NjQyNzM5MTcsImV4cCI6MTY2NDI3NDAxN30.yLMTG4uzpvmj0bJ2MonGOBE1GHrJSYDGn6AMA6QBwzo"
+function send(){
+    fetch("http://localhost:3000",{
+        method:"post",
+        headers:{
+            "Content-Type":"application/json",
+            "Authorization":"Bearer "+token
+        }
+    })
+    .then(data => data.json())
+    .then(res => console.log(res))
+}
+</script>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>事件监听时，第三个参数的passive属性</title>
+    </head>
+    <body>
+        <a href="https://baidu.com" onclick="event.preventDefault()">百度</a>
+        <div style="height:200vh;background-color: #7f7f7f7f;"></div>
+    </body>
+</html>
+<script>
+const app = document.querySelector("div");
+
+/*
+    event.preventDefault()
+
+    preventDefault阻止事件的默认行为
+    那么什么默认行为？
+    类似<a>标签的跳转行为
+    <a href="https://baidu.com" onclick="event.preventDefault()">百度</a>
+    从这段代码我们可以测试preventDefault()会阻止a标签的默认跳转事件
+*/
+/*
+    addEventListener(p1,p2,p3)
+    p1:eventName click change input blur touchmove touchstart touchend
+    p2:callback
+    p3:options object 
+                        {
+                            capture,
+                            once,
+                            passive,
+                            signal    
+                        }
+    
+    1.passive 在mozilla官网https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener中没有明确默认值
+      所以使用addEventListener方式时，我们需要明确passive的值
+    2.passive本意为”消极的“，我们可以理解为浏览器不作为
+    3.touchmove的默认行为是scroll屏幕滚动
+    4.passive：false时，说明浏览器会对第二个回调函数中的preventDefault()方法有作为（让preventDefault()生效），页面会不滚动
+    5.passive：true时，说明浏览器会对第二个回调函数中的preventDefault()方法不作为（让preventDefault()不生效）
+                        官方说明：当passive为true时，就不要在第二个回调函数中使用preventDefault()方法了！！！
+                        因为passive为true时“消积怠慢”，也就是会忽略preventDefault()方法。
+                        如果你将passive:true,又同时在回调函数中使用preventDefault()，那么chrome浏览器会报错，其他浏览器不一定报错。
+
+    总结：passive不是必须设置false，如果你本身不想阻止默认行为（不使用 e.preventDefault()），那么就推荐设置为true，这样会提高浏览器的性能和页面交互
+*/ 
+app.addEventListener("touchmove",(e) => {
+    // e.preventDefault() // 阻止屏幕滚动默认行为
+    console.log("touchmove")
+},{
+    passive:true // true | false
+})
+</script>

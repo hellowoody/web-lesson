@@ -17,7 +17,7 @@ const imgStyle = computed(() => {
 })
 
 const goto = () => {
-    console.log("product:",props.product)
+    // console.log("product:",props.product)
     state.setDirection("forward") // 页面跳转到明细页面
     router.push({
         name:"gooddetail",
@@ -33,35 +33,32 @@ const goto = () => {
     <div class="product-card" @click="goto">
         <div class="product-img" :style="imgStyle"></div>
         <div class="product-desc">
-            <div style="color:#7F7F7F;font-size: 16px;">{{product.name}}</div>
-            <div style="color:#F57418;margin-top:12px;">¥ {{product.price}}</div>
+            <div style="color:rgb(0 0 0 / 0.5)">{{product.name}}</div>
+            <div style="color:#FA6400">¥{{product.price}}</div>
         </div>
     </div>
 </template>
 
 <style scoped>
 .product-card {
-    display:flex;
-    background-color: #fff;
-    box-shadow: 0px 1px 8px #e3e3e3;
-    height:100px;
-    border-radius:16px;
-    margin-top:18px;
-    align-items: center;
+    width:138px;
+    height:167px;
+    background-color: #E5E5E5;
+    border-radius:15px;
+    flex-shrink: 0;
+    box-shadow: 0px 2px 8px #e3e3e3;
 }
 
 .product-img {
     height:100px;
-    width: 130px;
-    background-color: #e5e5e5;
-    border-top-left-radius:15px;
-    border-bottom-left-radius:15px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
 
 .product-desc {
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-left:20px;
+    height:calc(167px - 100px);
+    background-color: #fff;
+    padding:12px;
+    box-sizing: border-box;
 }
 </style>

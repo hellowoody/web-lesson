@@ -1,6 +1,13 @@
 import {Request,Response} from "express";
 import {Connect} from "./db/mongo";
+import jwt from "jsonwebtoken"
+import { UpdateResult } from "mongodb";
+import { join } from "path"
 
+// 导入commonjs语法的配置文件
+const {protocal,ip,port,imgs_url,secretOrPrivateKey} = require("../config");
+
+const session:any = {}
 /*
     Post请求无论是成功还是失败
     我们都返回给页面同一个数据结构
@@ -59,5 +66,297 @@ export const PingDb = async (req:Request,resp:Response) => {
     } catch (e) {
         console.log(e)
         resp.send("数据库连接失败")
+    }
+}
+
+export const Register = async (req:Request,resp:Response) => {
+    const p = req.body;
+    try {
+        const client = await Connect();
+        try {
+            const db = client.db("twelve_weeks")
+            const query = {
+                id:p.id
+            }
+            const insert = {
+                ...p,
+                status:"1",
+                avatar:"./mockavatar.png",
+                role:"c"
+            }
+            const options = {
+                upsert:true
+            }
+            const res:UpdateResult = await db.collection("user").updateOne(query,{
+                "$setOnInsert":insert,
+            },options) 
+            // console.log(res)
+            if(res.upsertedCount === 1){
+                resp.json({
+                    code:1,
+                    msg:"注册成功",
+                    data:{}
+                })
+            }else if(res.upsertedCount === 0 && res.matchedCount > 0){
+                resp.json({
+                    code:4,
+                    msg:"该用户已存在",
+                    data:{}
+                })
+            }else{
+                resp.json({
+                    code:5,
+                    msg:"未知原因,注册失败",
+                    data:{}
+                })
+            }
+        } catch (err) {
+            resp.json({
+                code:3,
+                msg:"数据问题导致注册失败",
+                data:{}
+            })
+        } finally {
+            client.close()
+        }
+    } catch (e) {
+        resp.json({
+            code:2,
+            msg:"数据库连接失败",
+            data:{}
+        })
+    }
+}
+
+export const Login = async (req:Request,resp:Response) => {
+    const p = req.body
+    try {
+        const client = await Connect();
+        try {
+            const db = client.db("twelve_weeks");
+            const user = await db.collection("user").findOne({id:p.id})
+            if(user){
+                if(user.pwd === p.pwd){
+                    // JWT 编码
+                    const token = jwt.sign({id:user.id,role:user.role},secretOrPrivateKey,{
+                        expiresIn:"24h"
+                        // expiresIn:"10000ms"
+                    })
+                    // console.log("avatar:",`${protocal}://${ip}:${port}${imgs_url}`+join(user.avatar),)
+                    resp.json({
+                        code:1,
+                        msg:"登陆成功",
+                        data:{
+                            userId:user.id,
+                            userName:user.username,
+                            // avatar:user.avatar, // "./xxx.png"
+                            avatar:`${protocal}://${ip}:${port}${imgs_url}/`+join(user.avatar), // http://ip:port/static/upload/xxx.png
+                            role:user.role,
+                            token
+                        }
+                    })
+                }else{
+                    resp.json({
+                        code:5,
+                        msg:"密码不正确",
+                        data:{}
+                    })
+                }
+            }else{
+                resp.json({
+                    code:4,
+                    msg:"无此用户",
+                    data:{}
+                })
+            }
+        } catch (err) {
+            resp.json({
+                code:3,
+                msg:"用户输入信息问题",
+                data:{}
+            })
+        } finally {
+            client.close()
+        }
+    } catch (e) {
+        resp.json({
+            code:2,
+            msg:"数据库连接失败",
+            data:{}
+        })
+    }
+    
+}
+
+// 有状态token的方式
+export const LoginByState = async (req:Request,resp:Response) => {
+    const p = req.body
+    console.log("login的参数:",p)
+    try {
+        const client = await Connect();
+        try {
+            const db = client.db("twelve_weeks");
+            const user = await db.collection("user").findOne({id:p.id})
+            if(user){
+                if(user.pwd === p.pwd){
+
+                    const tokenId = user.id+Date.now()
+                    const userState = {
+                        id:user.id,
+                        role:user.role
+                    }
+                    session[tokenId] = userState
+
+                    resp.json({
+                        code:1,
+                        msg:"登陆成功",
+                        data:{
+                            userId:user.id,
+                            avatar:user.avatar,
+                            role:user.role,
+                            token:tokenId
+                        }
+                    })
+                }else{
+                    resp.json({
+                        code:5,
+                        msg:"密码不正确",
+                        data:{}
+                    })
+                }
+            }else{
+                resp.json({
+                    code:4,
+                    msg:"无此用户",
+                    data:{}
+                })
+            }
+        } catch (err) {
+            resp.json({
+                code:3,
+                msg:"用户输入信息问题",
+                data:{}
+            })
+        } finally {
+            client.close()
+        }
+    } catch (e) {
+        resp.json({
+            code:2,
+            msg:"数据库连接失败",
+            data:{}
+        })
+    }
+    
+}
+
+export const AddCart = async (req:Request,resp:Response) => {
+    const p = req.body
+    try {
+        // console.log("addCart p：",p)
+        const client = await Connect()
+        try {
+            const db = client.db("twelve_weeks")
+            const query = {
+                id:p.good.id,             // 商品id
+                userId:p.userId
+            }
+            const insert = {
+                ...p.good,
+                userId:p.userId,
+                sysdate:new Date(),
+            }
+            const update = {
+                count:p.ifIncrease ? 1 : -1
+            }
+            const options = {
+                upsert:true
+            }
+            const res:UpdateResult = await db.collection("cart").updateOne(query,{
+                "$setOnInsert":insert,
+                "$inc":update
+            },options) 
+            if(res.upsertedCount === 1 || res.modifiedCount === 1 ){
+                resp.json({
+                    code:1,
+                    msg:"添加成功",
+                    data:{}
+                })
+            }else{
+                resp.json({
+                    code:4,
+                    msg:"添加购物车失败",
+                    data:{}
+                })
+            }
+        } catch (e:any) {
+            resp.send({
+                code:3,
+                msg:e.message,
+                data:{}
+            })
+        } finally {
+            client.close()
+        }
+    } catch (error:any) {
+        resp.send({
+            code:2,
+            msg:error.message,
+            data:{}
+        })
+    } 
+}
+
+export const UploadImg = async (req:Request,resp:Response) => {
+    const p = req.body;
+    const file = req.file
+    // console.log("file:",file)
+    try {
+        const client = await Connect();
+        try {
+            const db = client.db("twelve_weeks")
+            const query = {
+                id:p.userId
+            }
+            const avatarPath = file ? "./avatar/"+file.filename : "./mockavatar.png"
+            const update = {
+                $set:{
+                    // avatar:file?.filename
+                    avatar:avatarPath
+                }
+            }
+            const res = await db.collection("user").updateOne(query,update)
+            // console.log("update res:",res)
+            if(res.modifiedCount === 1 && res.matchedCount === 1){
+                const avatar = `${protocal}://${ip}:${port}${imgs_url}/`+join(avatarPath)
+                resp.send({
+                    code:1,
+                    msg:"上传成功",
+                    data:{
+                        avatar
+                    }
+                }) 
+            }else{
+                resp.send({
+                    code:4,
+                    msg:"上传失败",
+                    data:{}
+                }) 
+            }
+        } catch (err) {
+            resp.json({
+                code:3,
+                msg:"更新数据库失败",
+                data:{}
+            })
+        } finally {
+            client.close()
+        }
+    } catch (e) {
+        resp.json({
+            code:2,
+            msg:"数据库连接失败",
+            data:{}
+        })
     }
 }

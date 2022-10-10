@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" >
+        <title>虚拟列表</title>
+        <style>
+            body {
+                margin:0px;
+            }
+
+            .top-bar {
+                height:64px;
+                background-color: #d9d9d9;
+            }
+
+            .content {
+                height:calc(100vh - 64px);
+                background-color: #FDE4E4;
+                padding:16px;
+                box-sizing: border-box;
+                overflow-y: auto;
+            }
+
+            .item {
+                height:72px;
+                border-radius: 10px;
+                background-color: #E88383;
+                margin-bottom:12px;
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                color:#fff;
+                font-size:18px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="top-bar"></div>
+        <div class="content"></div>
+    </body>
+</html>
+<script>
+const arr = new Array(100)
+
+for(let i = 1 ; i <= arr.length ; i++){
+    arr[i-1] = i
+}
+
+const content = document.querySelector(".content")
+
+for(const data of arr){
+    const itemHtml = `${data} item`
+    const item = document.createElement("div") // <div></div>
+    item.setAttribute("class","item")          // <div class="item"></div>
+    item.innerHTML = itemHtml                  // <div class="item">1 item</div>
+    content.appendChild(item)
+}
+</script>

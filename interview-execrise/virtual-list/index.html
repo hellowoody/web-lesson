@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" >
+        <title>虚拟列表</title>
+        <style>
+            body {
+                margin:0px;
+            }
+
+            .top-bar {
+                height:64px;
+                background-color: #d9d9d9;
+            }
+
+            .content {
+                height:calc(100vh - 64px);
+                background-color: #FDE4E4;
+                padding:16px;
+                box-sizing: border-box;
+                overflow-y: auto;
+            }
+
+            .item {
+                height:72px;
+                border-radius: 10px;
+                background-color: #E88383;
+                margin-bottom:12px;
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                color:#fff;
+                font-size:18px;
+            }
+
+            .item:nth-last-child(1) {
+                background-color: blue;
+            }
+        </style>
+        <script src="./data.js"></script>
+    </head>
+    <body>
+        <div class="top-bar"></div>
+        <div class="content"></div>
+    </body>
+</html>
+<script>
+const content = document.querySelector(".content")
+const contentHeight = document.documentElement.clientHeight - 64
+const itemHeight = 72
+let dataList = [],
+    start = 0,
+    pageCount = Math.ceil(contentHeight / itemHeight), // 向上取整
+    last_scrollTop = 0 
+    arr_start = 0
+    arr_end = pageCount - 1
+    loading = false;
+    push_mutex = true;
+    ;
+
+
+content.addEventListener("scroll",e => {
+    e.preventDefault()
+    if(e.target.scrollTop > 0 && e.target.scrollTop - last_scrollTop > 0 ){
+        // 向上滑动
+        if(!loading){
+            const lastItem = document.querySelector(".item:nth-last-child(1)")
+            const vh = document.documentElement.clientHeight;
+            const lastItemToClientTop = lastItem.getBoundingClientRect().bottom
+            if(lastItemToClientTop - vh < itemHeight){
+                if(arr_end === dataList.length - 1){
+                    loadData(start,start+pageCount).then(res => {
+                        renderItem("pull")
+                    }) 
+                }else{
+                    renderItem("pull")
+                }
+            }
+        }
+    }
+    if(e.target.scrollTop > 0 && e.target.scrollTop - last_scrollTop < 0 ){
+        // 向下滑动
+        if(arr_start > 0 && e.target.scrollTop <= itemHeight/2){
+            if(push_mutex){
+                push_mutex = false
+                renderItem("push")
+            }
+        }
+        
+    }
+
+    last_scrollTop = e.target.scrollTop // 我记录最新一次顶部溢出的距离
+},{
+    passive:false
+})
+
+
+function init(){
+    loadData(start,pageCount).then(() => {
+        for(const data of dataList){
+            const itemHtml = `${data} item`
+            const item = document.createElement("div") // <div></div>
+            item.setAttribute("class","item")          // <div class="item"></div>
+            item.innerHTML = itemHtml                  // <div class="item">1 item</div>
+            content.appendChild(item)
+        }
+    })
+}
+
+init()
+
+
+function renderItem(gesture){
+    switch (gesture) {
+        case "pull":
+            arr_end++
+            const itemHtml = `${dataList[arr_end]} item`    
+            const item = document.createElement("div") // <div></div>
+            item.setAttribute("class","item")          // <div class="item"></div>
+            item.innerHTML = itemHtml          
+            content.appendChild(item)
+            //*************************
+            content.children[0].remove()
+            arr_start++
+            // ************************
+            content.scrollTop = itemHeight*2
+            break;
+        case "push":
+            content.children[content.children.length - 1].remove()
+            arr_end--
+            //*************************
+            arr_start--
+            const firstHtml = `${dataList[arr_start]} item`    
+            const first = document.createElement("div") // <div></div>
+            first.setAttribute("class","item")          // <div class="item"></div>
+            first.innerHTML = firstHtml          
+            content.insertBefore(first,content.children[0])
+            push_mutex = true
+            break;
+        default:
+            break;
+    }
+}
+
+function loadData(from,to){
+    loading = true
+    return mockHttp(from,to).then(res => {
+        dataList = dataList.concat(res)
+        console.log(dataList)
+        start += res.length
+        loading = false
+        return res
+    })
+}
+
+function mockHttp(start,end){
+    return new Promise((resolve,reject) => {
+        // arr = [1,2,3]
+        // arr.slice(0,2)  [0,2) 索引取 0 1 => [1,2]
+        setTimeout(() => resolve(arr.slice(start,end)),1000)
+    })
+}
+</script>
