@@ -180,7 +180,10 @@ export const GoodsCategory = async (parent:any, args:any) => {
 
 export const Cart = async (parent:any, args:any, context:any, info:any) => {
     try {
-        if(!context.checkToken()) throw new Error('Unauthorized');
+        // console.log(context)
+        if(!context.checkToken()){
+            throw new Error('非法token');
+        }
         
         const client = await Connect()
         try {

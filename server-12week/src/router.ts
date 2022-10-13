@@ -19,5 +19,10 @@ export const useRouter = (app:Express) => {
 
     app.post("/api/addcart",checkToken,api.AddCart)
 
+    app.post("/api/removecart",checkToken,api.RemoveCart)
+
     app.post("/api/uploadimg",uploadImg.single("file"),checkToken,api.UploadImg)
+
+    app.post("/api/createorder",checkToken,api.CreateOrder)
+
 }

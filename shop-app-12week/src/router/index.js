@@ -15,10 +15,20 @@ import BlankPage from "@/components/pages/BlankPage.vue";
 import UploadAvatar from "@/components/pages/UploadAvatar.vue";
 import Cart from "@/components/pages/Cart.vue";
 
-import {getItem} from "@/kits/LocalStorageKit"
+import { getItem } from "@/kits/LocalStorageKit"
 
 // firstOpen 为“”空字符串时，代表用户“第一次”打开或使用
 const firstOpen = getItem("firstOpen")
+
+const checkLogin = (to,from) => {
+    // 校验是否登陆
+    const token = getItem("token")
+    if(token && token !== ""){
+        return 
+    }else{
+        return {path:"/login"}
+    }
+}
 
 export const router = createRouter({
     history:createWebHashHistory(),
@@ -76,7 +86,8 @@ export const router = createRouter({
         },
         {
             path:"/cart",
-            component:Cart
+            component:Cart,
+            beforeEnter:checkLogin
         },
     ]
 })

@@ -157,7 +157,7 @@ const moreContentStyle = computed(() => {
                 <span class="iconfont icon-saoyisao" style="font-size:20px;"></span>
             </template>
             <template v-slot:right>
-                <span class="iconfont icon-gouwuche" style="font-size:20px;"></span>
+                <span class="iconfont icon-gouwuche" style="font-size:20px;" @click="goto('/cart')"></span>
                 <!-- <shopping-cart-outlined style="font-size:20px;color:red;" /> -->
             </template>
         </top-bar>

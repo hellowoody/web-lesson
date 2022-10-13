@@ -261,6 +261,8 @@ export const AddCart = async (req:Request,resp:Response) => {
                 id:p.good.id,             // 商品id
                 userId:p.userId
             }
+            delete p.good.count // 移除good对象中的count属性
+            delete p.good.checked
             const insert = {
                 ...p.good,
                 userId:p.userId,
@@ -286,6 +288,56 @@ export const AddCart = async (req:Request,resp:Response) => {
                 resp.json({
                     code:4,
                     msg:"添加购物车失败",
+                    data:{}
+                })
+            }
+        } catch (e:any) {
+            resp.send({
+                code:3,
+                msg:e.message,
+                data:{}
+            })
+        } finally {
+            client.close()
+        }
+    } catch (error:any) {
+        resp.send({
+            code:2,
+            msg:error.message,
+            data:{}
+        })
+    } 
+}
+
+export const RemoveCart = async (req:Request,resp:Response) => {
+    const p = req.body
+    try {
+        const client = await Connect()
+        try {
+            const db = client.db("twelve_weeks")
+            const goodIds = p.cart.reduce((acc:any,item:any) => {
+                acc.push(item.id)
+                return acc
+            },[])
+            const filter = {
+                id:{
+                    "$in":goodIds
+                },
+                userId:p.userId
+            }
+         
+            const res = await db.collection("cart").deleteMany(filter)
+            // console.log(res)
+            if(res.deletedCount > 0){
+                resp.json({
+                    code:1,
+                    msg:"删除成功",
+                    data:{}
+                })
+            }else{
+                resp.json({
+                    code:4,
+                    msg:"删除失败",
                     data:{}
                 })
             }
@@ -359,4 +411,53 @@ export const UploadImg = async (req:Request,resp:Response) => {
             data:{}
         })
     }
+}
+
+export const CreateOrder = async (req:Request,resp:Response) => {
+    const p = req.body;
+    try {
+        const client = await Connect();
+        const id = "OR"+Date.now();
+        try {
+            // client.db() 不需要await 是因为并没有和数据库通讯，仅仅是做了一个预先配置
+            const order = {
+                ...p.order,
+                id,
+                sysdate:new Date()
+            }
+            const db = client.db("twelve_weeks"); 
+            const res = await db.collection("order").insertOne(order)
+            // console.log(res);
+            if(res.acknowledged){
+                resp.send({
+                    code:1,
+                    msg:"创建订单成功",
+                    data:{
+                        id
+                    }
+                })
+            }else{
+                resp.send({
+                    code:4,
+                    msg:"订单创建失败",
+                    data:{}
+                })
+            }
+        } catch (err:any) {
+            resp.send({
+                code:3,
+                msg:err.message,
+                data:{}
+            })
+        } finally {
+            client.close()
+        }
+    } catch (e:any) {
+        resp.send({
+            code:2,
+            msg:e.message,
+            data:{}
+        })
+    }
+    
 }

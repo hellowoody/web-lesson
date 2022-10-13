@@ -60,7 +60,7 @@ const resolvers = {
     },
     Good:{
         // imgpath:(parent:any) => `http://localhost:3000/static/upload/`+parent.imgpath,
-        imgpath:(parent:any) => `${protocal}://${ip}:${port}${imgs_url}/`+parent.imgpath,
+        imgpath:(parent:any) => parent.imgpath.indexOf("http") >= 0 ? parent.imgpath : `${protocal}://${ip}:${port}${imgs_url}/`+parent.imgpath,
         type:gr.GoodType
     },
     Category:{
@@ -70,7 +70,11 @@ const resolvers = {
 
 const context:ContextFunction = ({req}) => {
     return {
-        checkToken:() => {
+        a:1,
+        b:2,
+        // checkToken 返回的是 true 证明token有效
+        // checkToken 返回的是 false 证明token有问题（没传token token失效 token中的userid和参数的userid不匹配）
+        checkToken:():Boolean => {
             // console.log("gql token:",req.body)
             const p = req.body
             let res = false

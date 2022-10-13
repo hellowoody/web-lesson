@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>pseduo-elements</title>
+        <style>
+            /* 
+                CSS3
+                :伪类      hover active focus nth-xxx 
+                ::伪元素     before after placeholder first-letter first-line
+                注意：在为了浏览器兼容性问题上，可以用单冒号既表示伪类也表示伪元素
+                    但定位在2022年这个时间，推荐使用单双冒号进行区分使用
+            */
+            .box {
+                width:100px;
+                height:100px;
+                background-color: red;
+                margin:8px;
+            }
+
+            .box:nth-child(2) {
+                background-color: blue;
+            }
+
+            .box:nth-child(3) {
+                background-color: green;
+            }
+
+            a:link {
+                color:#FF0000;
+            }
+
+            /* *************  伪元素  ******************* */
+
+            input::placeholder {
+                color:blue;
+                font-size: 12px;
+                opacity:0.2;
+            }
+
+            .a::before {
+                content:"《"
+            }
+
+            .a::after {
+                content:"》"
+            }
+
+            .b::before {
+                content:"<<"
+            }
+
+            .b::after {
+                content:">>"
+            }
+            /* 
+                伪元素before和after中的content，
+                在渲染"真元素"会在之前或之后插入一个文本节点（TextNode）（会防止XSS攻击）
+                插入的文本内容默认是一个行标签（行元素，行内标签） display:inline
+                伪元素中要插入的content内容，是从“真元素”盒子模型中的padding左上角开始插入
+            */
+            .box2::before {
+                content:"<div class='box2'></div>"
+            }
+            /* ******************** 自定义复选框 *********************** */
+            /* 
+                1.把默认的复选框隐藏
+            */
+
+            .custom-cb {
+                position: relative;
+            }
+
+            .custom-cb input[type="checkbox"] {
+                visibility: hidden;
+                /* opacity: 0; */
+                width:0;
+                height: 0;
+            }
+
+            .custom-cb label::before {
+                content:"";
+                position: absolute;
+                top:0;
+                left:0;
+                width:16px;
+                height:16px;
+                border: 1px solid blue;
+                border-radius: 6px;
+            }
+
+            /* 注意：不是不能设置“真元素”的样式，是在真元素中不能设置边框border高度 */
+            .custom-cb label {
+                position: absolute;
+                top:0;
+                left:0;
+                width:16px;
+                height:16px;
+                /* border: 1px solid blue; */
+                border-radius: 6px;
+            }
+
+            .custom-cb input[type="checkbox"]:checked+label::after{
+                content:"a";
+                position: absolute;
+                top:0;
+                left:0;
+                width:16px;
+                height:16px;
+                border: 1px solid blue;
+                border-radius: 6px;
+                background-color: blue;
+                color:#fff;
+                line-height: 15px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="custom-cb">
+            <input id="cb" type="checkbox" />
+            <label for="cb"></label>
+        </div>
+        <hr/>
+        <div class="box2"></div>
+        <hr/>
+        <div>
+            我最近常看的著作有：
+            <span class="b">西游记</span>
+            <span class="b">水浒</span>
+        </div>
+        <hr/>
+        <div>
+            我最近常看的书有：
+            <span class="a">西游记</span>
+            <span class="a">水浒</span>
+        </div>
+        <hr/>
+        <input placeholder="请输入内容..."/>
+        <hr>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <a href="#">跳转</a>
+    </body>
+</html>
