@@ -2,7 +2,8 @@ import {Request,Response} from "express";
 import {Connect} from "./db/mongo";
 import jwt from "jsonwebtoken"
 import { UpdateResult } from "mongodb";
-import { join } from "path"
+import { join } from "path";
+import moment from "moment"
 
 // 导入commonjs语法的配置文件
 const {protocal,ip,port,imgs_url,secretOrPrivateKey} = require("../config");
@@ -359,6 +360,50 @@ export const RemoveCart = async (req:Request,resp:Response) => {
     } 
 }
 
+export const RemoveCartSingle = async (req:Request,resp:Response) => {
+    const p = req.body
+    try {
+        const client = await Connect()
+        try {
+            const db = client.db("twelve_weeks")
+            const filter = {
+                userId : p.userId,
+                id : p.goodId
+            }
+         
+            const res = await db.collection("cart").deleteOne(filter)
+            // console.log(res)
+            if(res.deletedCount > 0){
+                resp.json({
+                    code:1,
+                    msg:"删除成功",
+                    data:{}
+                })
+            }else{
+                resp.json({
+                    code:4,
+                    msg:"删除失败",
+                    data:{}
+                })
+            }
+        } catch (e:any) {
+            resp.send({
+                code:3,
+                msg:e.message,
+                data:{}
+            })
+        } finally {
+            client.close()
+        }
+    } catch (error:any) {
+        resp.send({
+            code:2,
+            msg:error.message,
+            data:{}
+        })
+    } 
+}
+
 export const UploadImg = async (req:Request,resp:Response) => {
     const p = req.body;
     const file = req.file
@@ -423,7 +468,7 @@ export const CreateOrder = async (req:Request,resp:Response) => {
             const order = {
                 ...p.order,
                 id,
-                sysdate:new Date()
+                sysdate:moment().format("YYYY-MM-DD HH:mm:ss")
             }
             const db = client.db("twelve_weeks"); 
             const res = await db.collection("order").insertOne(order)
@@ -460,4 +505,16 @@ export const CreateOrder = async (req:Request,resp:Response) => {
         })
     }
     
+}
+
+export const CreateOrderByTx = async (req:Request,resp:Response) => {
+    // CreateOrderPure 
+    // RemoveCartPure
+    
+    // Promise.all([CreateOrderPure,RemoveCartPure]).then((res) => {
+    //     console.log(res)
+    // }).catch(e => {
+    //     console.log(e)
+    //     // todo
+    // })
 }

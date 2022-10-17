@@ -14,6 +14,7 @@ import Register from "@/components/pages/Register.vue";
 import BlankPage from "@/components/pages/BlankPage.vue";
 import UploadAvatar from "@/components/pages/UploadAvatar.vue";
 import Cart from "@/components/pages/Cart.vue";
+import OrderDetail from "@/components/pages/OrderDetail.vue";
 
 import { getItem } from "@/kits/LocalStorageKit"
 
@@ -51,7 +52,7 @@ export const router = createRouter({
             children:[
                 {path:"home",component:Home},
                 {path:"category",component:Category},
-                {path:"order",component:Order},
+                {path:"order",component:Order,beforeEnter:checkLogin},
                 {path:"account",component:Account},
             ]
         },
@@ -88,6 +89,10 @@ export const router = createRouter({
             path:"/cart",
             component:Cart,
             beforeEnter:checkLogin
+        },
+        {
+            path:"/orderdetail",
+            component:OrderDetail,
         },
     ]
 })

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>钩子 回调</title>
+    </head>
+    <body>
+        <button>click</button>
+    </body>
+</html>
+<script>
+/*
+    钩子函数（hook）     ：一般在“所在函数”的最前的位置执行，目的是在执行“所在函数”核心业务之前拦截一下，处理某些事情
+    回调函数（callback） ：一般在“所在函数”的偏后的位置执行，回调函数还有一个特性可以拿到“所在函数”的上下文（this）
+
+    const fn_param = () => {
+        // log.write(user login actiontime)
+    }
+    
+    // 修改用户信息
+    function updateUserInfo(fn){
+        fn()  // hook 校验用户是否有权限或是否登陆
+        // db
+        // update
+        // resp 页面
+    }
+
+    // login登陆业务
+    function login(fnForLog){
+        // db 
+        // check valid
+        // resp 页面
+        // 记录一个业务日志
+        // callback 一般在“所在函数”的偏后的位置执行，回调函数还有一个特性可以拿到“所在函数”的上下文（this）
+        fnForLog() 
+    }
+
+    login(fn_param)
+*/ 
+
+const btn = document.querySelector("button")
+
+
+// callback
+btn.addEventListener("click",function(){
+    console.log("callback ***** start")
+    // console.log(btn.onclick)
+    // console.log(this)          // this =>  btn
+    console.log(this.onclick)  // this
+    console.log("callback ***** end")
+})
+
+btn.onclick = () => console.log("this is hook")
+
+
+
+
+
+
+</script>

@@ -33,6 +33,10 @@ const decrease = () => {
 }
 
 const increase = () => {
+    if(props.product.count === 9){
+        message.warning("最多只能购买9个")
+        return
+    }
     state.addCart({
         token,
         userId,
@@ -41,6 +45,18 @@ const increase = () => {
     }).then(res => {
         if(res.code !== 1){
             message.warning(res.msg)
+        }
+    })
+}
+
+const delConfirm = () => {
+    state.delCartSingle({
+        userId,
+        token,
+        goodId:props.product.id
+    }).then(res => {
+        if(res.code === 1) {
+            message.success(res.msg)
         }
     })
 }
@@ -58,7 +74,16 @@ const increase = () => {
             <div style="font-weight: bold;">{{product.name}}</div>
             <div style="color:rgb(250, 100, 0)">{{product.price}}</div>
             <div style="display:flex;">
-                <div class="btn" @click="decrease">-</div>
+                <a-popconfirm
+                    v-if="product.count <= 1"
+                    title="是否移除该商品?"
+                    ok-text="移除"
+                    cancel-text="取消"
+                    @confirm="delConfirm"
+                >
+                    <div class="btn">-</div>
+                </a-popconfirm>
+                <div v-else class="btn" @click="decrease">-</div>
                 <div style="margin:auto 8px;">{{product.count}}</div>
                 <div class="btn" @click="increase">+</div>
             </div>

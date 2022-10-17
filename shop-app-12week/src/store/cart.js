@@ -26,6 +26,14 @@ export const useState = defineStore("cart",{
                 return res
             })
         },
+        delCartSingle(p){
+            return restHttp("/api/removecartsingle",p).then((res) => {
+                if(res.code === 1){
+                    this.cart = this.cart.filter(item => item.id !== p.goodId)
+                }
+                return res
+            })
+        },
         async getCart(userId){
             const p = {
                 // 这里的token和userId的目的是让gql的checkToken方法返回true

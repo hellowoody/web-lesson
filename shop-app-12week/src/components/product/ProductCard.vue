@@ -23,7 +23,7 @@ const goto = () => {
         name:"gooddetail",
         params:{
             id:props.product.id,
-            type:props.product.type.id
+            type:props.product.type ? props.product.type.id : "1"
         }
     })
 }

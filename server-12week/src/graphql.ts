@@ -14,6 +14,7 @@ type Query {
     homeImgs:[String]
     categorys (id:String!,type:[String]!):[Category]
     cart (userId:String!):[Good]
+    orderList (userId:String!,start:Int!,count:Int!):[Order]
 }
 
 type Good {
@@ -39,6 +40,14 @@ type Category {
     goods (start:Int!,count:Int!):[Good]
 }
 
+type Order {
+    id:String,
+    sysdate:String,
+    userId:String,
+    status (id:String) : Dict
+    list:[Good]
+}
+
 `
 
 const resolvers = {
@@ -56,7 +65,8 @@ const resolvers = {
         goods:gr.Goods,
         homeImgs:gr.HomeImgs,
         categorys:gr.Categorys,
-        cart:gr.Cart
+        cart:gr.Cart,
+        orderList:gr.OrderList
     },
     Good:{
         // imgpath:(parent:any) => `http://localhost:3000/static/upload/`+parent.imgpath,
@@ -65,6 +75,9 @@ const resolvers = {
     },
     Category:{
         goods:gr.GoodsCategory
+    },
+    Order:{
+        status:gr.OrderStatus
     }
 }
 

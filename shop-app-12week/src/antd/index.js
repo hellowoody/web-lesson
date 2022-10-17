@@ -7,6 +7,7 @@ import Skeleton from 'ant-design-vue/lib/skeleton';
 import Form from 'ant-design-vue/lib/form';
 import Avatar from 'ant-design-vue/lib/avatar';
 import Upload from 'ant-design-vue/lib/upload';
+import Popconfirm from 'ant-design-vue/lib/popconfirm';
 import message from "ant-design-vue/lib/message"
 import ConfigProvider from "ant-design-vue/lib/config-provider"
 // import 'ant-design-vue/dist/antd.css';
@@ -31,4 +32,5 @@ export const useAntd = (app) => {
     app.use(Form)
     app.use(Avatar)
     app.use(Upload)
+    app.use(Popconfirm)
 }

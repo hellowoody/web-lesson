@@ -202,3 +202,52 @@ export const Cart = async (parent:any, args:any, context:any, info:any) => {
         return e
     }
 }
+
+export const OrderList = async (parent:any, args:any, context:any, info:any) => {
+    try {
+        // console.log(context)
+        // if(!context.checkToken()) throw new Error('非法token');
+
+        const client = await Connect()
+        try {
+            const db = client.db("twelve_weeks");
+            const query:any = {
+                userId:args.userId
+            }
+            const res = await db.collection("order").find(query).limit(args.count).skip(args.start).toArray()
+            return res
+        } catch (err) {
+            return err
+        } finally {
+            client.close()
+        }
+    } catch (e) {
+        return e
+    }
+}
+
+export const OrderStatus = async (parent:any, args:any) => {
+    try {
+        const client = await Connect()
+        try {
+            const db = client.db("twelve_weeks");
+    
+            const aggregate:any = [
+                {$unwind:"$items"},
+                {$match:{
+                    id:args.id, // 大类的id,
+                    "items.id":parent.status
+                }},
+                {$project:{"items":1}},
+            ]
+            const res = await db.collection("dict").aggregate(aggregate).toArray()
+            return res[0].items
+        } catch (err) {
+            return err
+        } finally {
+            client.close()
+        }
+    } catch (e) {
+        return e
+    }
+}

@@ -129,6 +129,7 @@ const addCart = () => {
 
 const order = () => {
     // 将当前商品加入购物车
+    addCart()
     // 再跳转页面
     goto("/cart")
 }
