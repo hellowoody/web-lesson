@@ -1,7 +1,7 @@
 import {Express} from "express"
 import * as api from "./api"
 import {checkToken} from "./middleware/token"
-import {uploadImg} from "./middleware/upload"
+import {uploadImg,uploadProductImg} from "./middleware/upload"
 
 export const useRouter = (app:Express) => {
     app.get("/",(req,resp) => resp.send("hello ts"))
@@ -28,5 +28,7 @@ export const useRouter = (app:Express) => {
     app.post("/api/createorder",checkToken,api.CreateOrder)
 
     app.post("/api/createorderbytx",checkToken,api.CreateOrderByTx)
+
+    app.post("/api/modifyproduct",uploadProductImg.single("file"),api.ModifyProduct)
 
 }

@@ -15,6 +15,7 @@ import BlankPage from "@/components/pages/BlankPage.vue";
 import UploadAvatar from "@/components/pages/UploadAvatar.vue";
 import Cart from "@/components/pages/Cart.vue";
 import OrderDetail from "@/components/pages/OrderDetail.vue";
+import VrRoom from "@/components/pages/VrRoom.vue";
 
 import { getItem } from "@/kits/LocalStorageKit"
 
@@ -93,6 +94,10 @@ export const router = createRouter({
         {
             path:"/orderdetail",
             component:OrderDetail,
+        },
+        {
+            path:"/vrroom",
+            component:VrRoom,
         },
     ]
 })

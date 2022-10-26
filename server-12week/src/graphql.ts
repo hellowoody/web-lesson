@@ -17,6 +17,15 @@ type Query {
     orderList (userId:String!,start:Int!,count:Int!):[Order]
 }
 
+type Mutation {
+    delGood (id:String!) : ResData
+}
+
+type ResData {
+    code:Int,
+    msg:String
+}
+
 type Good {
     id:String,
     name:String,
@@ -67,6 +76,9 @@ const resolvers = {
         categorys:gr.Categorys,
         cart:gr.Cart,
         orderList:gr.OrderList
+    },
+    Mutation:{
+        delGood:gr.delGood
     },
     Good:{
         // imgpath:(parent:any) => `http://localhost:3000/static/upload/`+parent.imgpath,

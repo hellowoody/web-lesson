@@ -135,7 +135,7 @@ export const Login = async (req:Request,resp:Response) => {
         const client = await Connect();
         try {
             const db = client.db("twelve_weeks");
-            const user = await db.collection("user").findOne({id:p.id})
+            const user = await db.collection("user").findOne({id:p.id,role:p.role})
             if(user){
                 if(user.pwd === p.pwd){
                     // JWT 编码
@@ -151,7 +151,7 @@ export const Login = async (req:Request,resp:Response) => {
                             userId:user.id,
                             userName:user.username,
                             // avatar:user.avatar, // "./xxx.png"
-                            avatar:`${protocal}://${ip}:${port}${imgs_url}/`+join(user.avatar), // http://ip:port/static/upload/xxx.png
+                            avatar:user.role === "a" ? "" : `${protocal}://${ip}:${port}${imgs_url}/`+join(user.avatar), // http://ip:port/static/upload/xxx.png
                             role:user.role,
                             token
                         }
@@ -497,6 +497,62 @@ export const CreateOrder = async (req:Request,resp:Response) => {
         } finally {
             client.close()
         }
+    } catch (e:any) {
+        resp.send({
+            code:2,
+            msg:e.message,
+            data:{}
+        })
+    }
+    
+}
+
+export const ModifyProduct = async (req:Request,resp:Response) => {
+    const p = req.body;
+    const file = req.file
+    console.log(p)
+    try {
+        resp.send({
+            code:1,
+            msg:"ok",
+            data:{}
+        })
+        // const client = await Connect();
+        // const id = "OR"+Date.now();
+        // try {
+        //     // client.db() 不需要await 是因为并没有和数据库通讯，仅仅是做了一个预先配置
+        //     const order = {
+        //         ...p.order,
+        //         id,
+        //         sysdate:moment().format("YYYY-MM-DD HH:mm:ss")
+        //     }
+        //     const db = client.db("twelve_weeks"); 
+        //     const res = await db.collection("order").insertOne(order)
+        //     // console.log(res);
+        //     if(res.acknowledged){
+        //         resp.send({
+        //             code:1,
+        //             msg:"创建订单成功",
+        //             data:{
+        //                 id
+        //             }
+        //         })
+        //     }else{
+        //         resp.send({
+        //             code:4,
+        //             msg:"订单创建失败",
+        //             data:{}
+        //         })
+        //     }
+        // } catch (err:any) {
+        //     resp.send({
+        //         code:3,
+        //         msg:err.message,
+        //         data:{}
+        //     })
+        // } finally {
+        //     client.close()
+        // }
     } catch (e:any) {
         resp.send({
             code:2,

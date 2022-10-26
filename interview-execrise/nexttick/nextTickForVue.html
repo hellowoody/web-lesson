@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>vue nexttick</title>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script setup>
+const { createApp,ref,nextTick } = Vue
+
+const Comp = {
+    setup(){
+        const count = ref(0)
+
+        async function increment() {
+            count.value++
+
+            // DOM not yet updated
+            console.log(document.getElementById('counter').textContent) // 0
+            await nextTick() // 在下一次渲染之后马上执行后面的代码
+            // DOM is now updated
+            console.log(document.getElementById('counter').textContent) // 1
+        }
+
+        // function increment() {
+        //     count.value++
+
+        //     // DOM not yet updated
+        //     console.log(document.getElementById('counter').textContent) // 0
+        //     nextTick(() => {
+        //         // DOM is now updated
+        //         console.log(document.getElementById('counter').textContent) // 1
+        //     })
+
+        // }
+
+        return {
+            count,
+            increment
+        }
+    },
+    template:`<button id="counter" @click="increment">{{ count }}</button>`
+}
+
+createApp(Comp).mount("#app")
+
+
+</script>

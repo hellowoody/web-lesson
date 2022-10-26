@@ -251,3 +251,37 @@ export const OrderStatus = async (parent:any, args:any) => {
         return e
     }
 }
+
+export const delGood = async (parent:any, args:any) => {
+    try {
+        const client = await Connect()
+        try {
+            const db = client.db("twelve_weeks");
+            const res = await db.collection("goods").deleteOne({id:args.id})
+            // console.log(res)
+            if(res.deletedCount > 0){
+                return {
+                    code:1,
+                    msg:"删除成功"
+                }
+            }else{
+                return {
+                    code:2,
+                    msg:"删除失败"
+                }
+            }
+        } catch (err:any) {
+            return {
+                code:3,
+                msg:err.message
+            }
+        } finally {
+            client.close()
+        }
+    } catch (e:any) {
+        return {
+            code:4,
+            msg:e.message
+        }
+    }
+}
