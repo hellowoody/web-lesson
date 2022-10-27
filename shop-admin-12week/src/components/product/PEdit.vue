@@ -15,7 +15,7 @@ const initForm = () => {
         price:0.00,
         imgpath:"",
         count:0,
-        status:0,
+        status:"off",
         status_show:false,
         date_show:dayjs(dayjs(), dateFormat),
         date:dayjs().format(dateFormat),
@@ -55,10 +55,12 @@ watch(() => productState.selected,(curr) => {
     form.count = curr.count
     form.gooddesc = curr.gooddesc
     form.type = curr.type.id
-    form.status = curr.status >= 0 ? curr.status : 1
-    form.status_show = form.status === 1 ? true : false
+    form.status = (curr.status && curr.status !== "" ) ? curr.status : "on"
+    form.status_show = form.status === "on" ? true : false
     form.date = curr.date ? curr.date : dayjs().format(dateFormat)
     form.date_show = dayjs(form.date, dateFormat)
+    form.imgpath_filename = "",
+    form.imgpath_blob = ""
 })
 
 const uploadImg = e => {
@@ -117,14 +119,23 @@ const sub = async () => {
             key,
             content:"操作中..."
         })
+        if(form.id === "" && form.imgpath_blob === ""){
+            message.warning({
+                key,
+                content:"新增商品时需传图片"
+            })
+            return
+        }
 
         const formData = new FormData()
-        formData.append('file', form.imgpath_blob,form.imgpath_filename);
+        if(form.imgpath_blob !== ""){
+            formData.append('file', form.imgpath_blob,form.imgpath_filename);
+        }
         const formObj = toRaw(form)
         for(const key in formObj){
             if(key.indexOf("_") < 0 ){
                 if(key === "status"){
-                    formData.append(key, form.status_show ? 1 : 0);
+                    formData.append(key, form.status_show ? "on" : "off");
                 }else{
                     formData.append(key, formObj[key]);
                 }
@@ -139,6 +150,7 @@ const sub = async () => {
                 duration:2
             }) 
             // 修改 store 中的 selected ！！！！！
+            productState.refreshCountAdd()
         }else{
             message.error({
                 key,

@@ -508,51 +508,67 @@ export const CreateOrder = async (req:Request,resp:Response) => {
 }
 
 export const ModifyProduct = async (req:Request,resp:Response) => {
-    const p = req.body;
-    const file = req.file
-    console.log(p)
+    // const p = req.body;
+    // const file = req.file
+    const { body:p,file } = req
+    // console.log(p)
+    // console.log(file)
     try {
-        resp.send({
-            code:1,
-            msg:"ok",
-            data:{}
-        })
-        // const client = await Connect();
-        // const id = "OR"+Date.now();
-        // try {
-        //     // client.db() 不需要await 是因为并没有和数据库通讯，仅仅是做了一个预先配置
-        //     const order = {
-        //         ...p.order,
-        //         id,
-        //         sysdate:moment().format("YYYY-MM-DD HH:mm:ss")
-        //     }
-        //     const db = client.db("twelve_weeks"); 
-        //     const res = await db.collection("order").insertOne(order)
-        //     // console.log(res);
-        //     if(res.acknowledged){
-        //         resp.send({
-        //             code:1,
-        //             msg:"创建订单成功",
-        //             data:{
-        //                 id
-        //             }
-        //         })
-        //     }else{
-        //         resp.send({
-        //             code:4,
-        //             msg:"订单创建失败",
-        //             data:{}
-        //         })
-        //     }
-        // } catch (err:any) {
-        //     resp.send({
-        //         code:3,
-        //         msg:err.message,
-        //         data:{}
-        //     })
-        // } finally {
-        //     client.close()
-        // }
+        const client = await Connect()
+        try {
+            const db = client.db("twelve_weeks")
+            const id = p.id === "" ? "GO"+Date.now() : p.id
+            const query = {
+                id,             // 商品id
+            }
+            const insert = {
+                id
+            }
+            // update
+            delete p.id
+            const update = {
+                ...p,
+                imgpath:file?.path.substring(14),   //  product/1666833643106.png 
+            }
+            if(!file){
+                delete update.imgpath
+            }
+            const options = {
+                upsert:true
+            }
+            const res:UpdateResult = await db.collection("goods").updateOne(query,{
+                "$setOnInsert":insert,    // 当query 没有匹配到时，会执行setOnInsert和$set对应的update的插入动作
+                "$set":update             // 当query 匹配到时，会执行$set的更新动作
+            },options) 
+            if(res.upsertedCount === 1){
+                resp.json({
+                    code:1,
+                    msg:"新增成功",
+                    data:{}
+                })
+            }else if(res.modifiedCount === 1 ){
+                resp.json({
+                    code:1,
+                    msg:"更新成功",
+                    data:{}
+                })
+            }else{
+                resp.json({
+                    code:4,
+                    msg:"操作失败",
+                    data:{}
+                })
+            }
+        } catch (e:any) {
+            console.log(e)
+            resp.send({
+                code:3,
+                msg:e.message,
+                data:{}
+            })
+        } finally {
+            client.close()
+        }
     } catch (e:any) {
         resp.send({
             code:2,

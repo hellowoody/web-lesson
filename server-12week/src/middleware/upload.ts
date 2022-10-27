@@ -24,7 +24,6 @@ export const uploadProductImg = multer({
     storage:multer.diskStorage({
         destination:"assets/upload/product",
         filename:(req,file,callback) => {
-            console.log(10000000,file)
             const ext:string = path.extname(file.originalname)
             callback(null,Date.now()+ext);
         }

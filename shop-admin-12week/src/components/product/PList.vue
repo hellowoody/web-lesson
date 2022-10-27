@@ -24,6 +24,8 @@ const fetchData = async (handler) => {
                     gooddesc
                     price
                     count
+                    date
+                    status
                     type (id:"${dictId}"){
                         id
                     }
@@ -118,6 +120,9 @@ const resetSearch = () => {
 }
 
 initData()
+
+watch(() => productState.refreshCount,() => resetSearch() )
+
 </script>
 
 <template>

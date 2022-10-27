@@ -34,7 +34,9 @@ type Good {
     gooddesc:String,
     count:Int,
     type (id:String):Dict
-    userId:String
+    userId:String,
+    date:String,
+    status:String
 }
 
 type Dict {
