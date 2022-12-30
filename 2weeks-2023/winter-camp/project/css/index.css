@@ -1,0 +1,51 @@
+body {
+    margin:0;
+}
+
+.content {
+    height:100vh;
+    background: #1d3557;
+    display: flex;
+    position: relative;
+}
+
+.left-wrapper {
+    /* flex:1; */
+    width: 450px;
+    background: #111;
+    padding-left:80px;
+    padding-top: 110px;
+    box-sizing: border-box;
+    font-size:23px;
+    color:#fff;
+}
+
+.right-wrapper {
+    flex:1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    /* width: 50px; */
+    /* height: 50px; */
+    /* border-radius: 50%; */
+    /* background: red; */
+    /* line-height: 50px; */
+    /* text-align: center; */
+    color:#e49c65;
+    animation: music-play 3s linear infinite;
+    animation-play-state: paused;
+    z-index:2;
+}
+
+@keyframes music-play {
+    100%{
+        transform: rotate(360deg);
+    }
+}
+

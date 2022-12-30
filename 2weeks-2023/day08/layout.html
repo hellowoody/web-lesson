@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>layout</title>
+        <style>
+            body {
+                margin:0;
+            }
+
+            .by-bg {
+                background:grey;
+            }
+
+            .by-border {
+                border:1px solid grey;
+            }
+            
+            .header {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .header .by-bg {
+                flex:1;
+                height: 180px;
+            }
+
+            .header .by-bg:nth-child(2) {
+                flex:3;
+                margin:0 8px;
+            }
+
+            .nav {
+                height:60px;
+                margin:8px 0;
+            }
+
+            .content {
+                display: flex;
+            }
+
+            .content .left-wrapper {
+                flex:3;
+                height:500px;
+                margin-right: 8px;
+            }
+
+            .content .left-wrapper .row {
+                height:250px;
+            }
+
+            .content .left-wrapper .row:nth-child(1) {
+                display:flex;
+                gap:8px;
+                margin-bottom: 8px;
+            }
+
+            .content .left-wrapper .row:nth-child(1) .by-border {
+                flex:1;
+                height: 250px;
+            }
+
+            .content .left-wrapper .row:nth-child(2) {
+                display:flex;
+                gap:8px;
+            }
+
+            .content .left-wrapper .row:nth-child(2) .by-border {
+                flex:1;
+                height: 240px;
+            }
+
+            .content .right-wrapper {
+                flex:1;
+                height:500px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            .content .right-wrapper .by-border {
+                height:150px;
+            }
+            
+            .footer {
+                height:200px;
+                margin-top:8px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <div class="by-bg"></div>
+            <div class="by-bg"></div>
+            <div class="by-bg"></div>
+        </div>
+        <div class="nav by-bg"></div>
+        <div class="content">
+            <div class="left-wrapper">
+                <div class="row">
+                    <div class="by-border"></div>
+                    <div class="by-border"></div>
+                </div>
+                <div class="row">
+                    <div class="by-border"></div>
+                    <div class="by-border"></div>
+                    <div class="by-border"></div>
+                    <div class="by-border"></div>
+                </div>
+            </div>
+            <div class="right-wrapper">
+                <div class="by-border"></div>
+                <div class="by-border"></div>
+                <div class="by-border"></div>
+            </div>
+        </div>
+        <div class="footer by-bg"></div>
+    </body>
+</html>

@@ -1,0 +1,182 @@
+.icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
+body {
+    margin:0;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+}
+
+.left-wrapper {
+    background: url(../imgs/bg.jpg);
+    background-size: cover;
+    background-position: 50%;
+}
+
+@media screen and (min-width: 1200px){
+    .left-wrapper {
+        width:375px;
+    }
+}
+
+@media screen and (min-width:1000px) and (max-width: 1200px){
+    .left-wrapper {
+        width:200px;
+    }
+}
+
+
+.right-wrapper {
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    height:40px;
+    padding:20px;
+}
+
+.logo {
+    display:flex;
+    justify-items: center;
+    width:154px;
+    justify-content: space-between;
+}
+
+.logo-text {
+    font-size: 26px;
+    font-weight: 500;
+    color: #333;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    height: 40px;
+    margin: 0;
+    line-height: 40px;
+}
+
+ul li {
+    color: #838383;
+    font-size:14px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+ul li:nth-last-child(2) {
+    display: flex;
+    align-items: center;
+}
+
+ul li .v-line {
+    width:1px;
+    height: 14px;
+    background: #838383;
+}
+
+ul li .trangle{
+    display: inline-block;
+    width:0;
+    height: 0;
+    border-top: 7px solid #838383;
+    border-top-color: inherit;
+    border-left: 6px solid #fff;
+    border-right: 6px solid #fff;
+    transition: all 0.3s ease;
+}
+
+ul li:last-child {
+    position: relative;
+}
+
+ul li:last-child:hover {
+    color:#838383;
+}
+
+ul li:last-child:hover {
+    color:#ff6900;
+}
+
+ul li .lang-panel {
+    position: absolute;
+    width:110%;
+    top: 43px;
+    left: 0;
+    box-shadow: 1px 2px 8px rgb(0 0 0 / 0.1);
+    color:#333;
+    overflow: hidden;
+    height:0px;
+    /* opacity: 0; */
+    transition: all 0.3s ease ;
+}
+
+ul li .lang-panel div {
+    text-align: center;
+}
+
+.footer {
+    color:#999;
+    font-size:12px;
+    padding-bottom: 20px;
+    white-space: nowrap;
+}
+
+.card {
+    width:450px;
+    height: 570px;
+    box-shadow: 1px 2px 8px rgb(0 0 0 / 0.05);
+    border-radius: 8px;
+    padding:40px 45px;
+    box-sizing: border-box;
+}
+
+.third-login {
+    font-size:36px;
+}
+
+.card .form_input {
+    border:none;
+    background:rgb(249,249,249);
+    padding: 20px;
+    height:60px;
+    width:100%;
+    box-sizing: border-box;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.card .form_input:focus {
+    outline:none;
+    border: 1px solid #f04645;
+    box-shadow: 0px 1px 8px #ff5e0053;
+}
+
+/*
+    : 伪类（pesudo-class） hover active focus nth-xxx
+    :: 伪元素 (pesudo-element) before after placeholder first-letter
+
+    伪元素是后出的，之前的浏览器为了兼容会用单冒号代替双冒号
+    现在浏览器基本已达成统一，建议大家伪类和伪元素的冒号要区分开
+*/
+
+.card .form_input::placeholder {
+    color:#f04645;
+}
+
+
+
+

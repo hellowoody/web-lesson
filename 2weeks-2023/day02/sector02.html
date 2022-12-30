@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>选择器</title>
+        <style>
+            #_d01 {
+                height: 50px;
+                background: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="_d01" ></div>
+        <!-- 100 -->
+        <!-- 
+            一个页面中同一个id名称只出现一次
+            如果同一个id出现多次，可能会出现不可控性
+             <div id="d01" ></div>
+         -->
+    </body>
+</html>
+<script>
+    // js
+    // 变量的首字母 a-zA-Z _ $
+    let a = 100
+    let _b = 200
+    let $c = 300
+    console.log(a,_b,$c)
+//    const div = document.querySelector("#d01")
+   const div = document.getElementById("d01")
+   console.log(div)
+</script>

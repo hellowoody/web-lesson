@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>cover qcode</title>
+        <style>
+            .box {
+                width:200px;
+                height: 200px;
+                border: 1px solid #333;
+            }
+
+            .box:nth-child(1) {
+                
+                background: 
+                    linear-gradient(225deg,transparent 50% ,#fff 50%),
+                    url(./p1.jpeg) 100% 100% / 100% 100%;
+                
+            }
+
+            .box:nth-child(2) {
+                /* background: linear-gradient(180deg,red,blue); */
+                background: linear-gradient(red 40%, yellow 40% 65%, blue 65%);
+            }
+
+            img {
+                filter:grayscale(0.5) hue-rotate(10deg);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box"></div>
+        <div class="box"></div>
+        <img src="./p3.jpeg">
+    </body>
+</html>

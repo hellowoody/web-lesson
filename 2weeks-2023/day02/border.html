@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>边框</title>
+        <style>
+            .box {
+                height: 100px;
+                width:100px;
+                background: #f1f1f1;
+                margin:8px;
+            }
+
+            .box01 {
+                border: 1px solid #333;
+            }
+
+            .box02 {
+                border: 10px dotted red;
+            }
+
+            .box03 {
+                /* border-right: 1px solid #000; */
+                border-right: 1px solid rgb(0,0,0);
+                display: inline-block;
+                margin:unset;
+                text-align: center;
+                line-height: 100px;
+            }
+
+            .box03:last-child {
+                border:unset;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box box01">box</div>
+        <div class="box box02">box</div>
+        <div style="display: flex;">
+            <div class="box box03">首页</div>
+            <div class="box box03">产品</div>
+            <div class="box box03">关于</div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+* {
+    margin:0px;
+    padding:0px;
+    --themeMinWidth:1226px
+}
+
+ul,li {
+	list-style:none;
+}
+a {
+	text-decoration:none;
+}
+a img {
+	border:none;
+	display:block;
+}
+
+body {
+    font-size:12px;
+}
+
+.icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+

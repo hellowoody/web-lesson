@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>box</title>
+    </head>
+    <body>
+        <!-- 
+            块标签特点 (div,p,h1-h6,ul,ol,li...都是常用的块元素)
+            1.独占一行
+            2.可以通过css设置宽高
+            3.宽度默认是容器（父级容器）的100%
+            4.里面可以放块元素和行元素
+        -->
+        <div style="width:200px;height:200px;background: red;">
+            <p style="width:50px;background: blue;">block tag</p>
+            <span>span tag</span>
+            <span>span tag</span>
+        </div>
+        <!-- 
+            也叫行内元素，内联元素 a,span都是常用的行元素
+            1.相邻行内元素在一行上，一行显示多个
+            2.高，宽度直接设置是无效的
+            3.默认宽度就是它本身内容的宽度
+            4.只能容纳文本和其他行元素
+         -->
+        <span style="width:100px;height:100px;background:green;">
+            inline tag fdasfdsafdas
+            <a>a</a>
+            <div>123</div>
+        </span>
+        <!-- 自定义一个按钮 -->
+        <button>按钮</button>
+        <a href="#" style="text-decoration: unset;background: #f1f1f1;padding: 5px 8px 5px 8px;color: #333333;border-radius: 8px;box-shadow: 0px 1px 8px rgb(0 0 0 / 20%);">自定义按钮</a>
+    </body>
+</html>

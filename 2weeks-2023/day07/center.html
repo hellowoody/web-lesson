@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>center</title>
+        <style>
+            /* 
+                1.文本节点/行标签
+                    水平方向 text-align:center
+                    垂直方向 line-height:父节点的高度
+                1.块标签
+                    margin:auto; 可以让块标签水平居中。
+
+            */
+            * {
+                --h:300px;
+            }
+
+            .box {     
+                width:200px;
+                height:var(--h);
+                background: #f1f1f1;  
+                margin:8px;
+            }
+
+            .box:nth-child(1){
+                text-align:center;
+                line-height: var(--h);
+            }
+
+            .child {
+                width:50px;
+                height:50px;
+                background-color: red;
+                margin:auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box">
+            center
+        </div>
+        <div class="box">
+            <div class="child"></div>
+        </div>
+    </body>
+</html>

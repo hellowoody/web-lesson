@@ -1,0 +1,93 @@
+<!-- 文档类型 告诉浏览器该页面按照H5的标准去渲染 -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 把一些配置项放在head中 -->
+        <meta charset="utf-8" >
+        <title>打印机效果</title>
+        <!-- 可以给默认的标签定制化的样式效果 -->
+        <style>
+            /* css语法 */
+            /* 标签选择器 */
+            body {
+                margin:0;
+            }
+
+            /* 类选择器 */
+            .container {
+                background: #333; 
+                height:100vh; /* view height */
+                font-size:20px;
+                color:#fff;
+            }
+
+            .keyword {
+                color:#7f0055;
+                font-weight:500;
+            }
+
+            .comments {
+                /* 0-9 a b c d e f */
+                /* red green blue */
+                /* color:#红绿蓝;  00-ff 00-ff 00-ff */
+                /* color:#ff0000;
+                color:#00ff00; */
+                /* color:#0000ff; */
+                /* color:#00f; */
+                /* color:red; */
+                color:#3f7f5f;
+            }
+
+        </style>
+        <!-- <script src="相对路径"></script> -->
+        <!-- <script src="./jquery.min.js"></script> -->
+        <script src="./jquery.js"></script>
+    </head>
+    <body>
+        <!-- 把需要浏览器显示的内容放在body中 -->
+        <!-- div span 行间/内的属性-->
+        <!-- div : block tag -->
+        <!-- span : inline tag -->
+        <div class="container">
+            <span class="comments">/* 声明语句 */</span><br>
+            <span>
+                <span class="keyword">var</span> 
+                a = 100;
+            </span>
+        </div>
+    </body>
+</html>
+<script>
+    // js javascript : ES语法 DOM BOM
+    // EcmaScript ES6
+    // Document Object Model DOM
+    // Brower object model   BOM
+    // 接下来涉及的知识点
+    // ES5和一点点ES6的语法
+    // DOM操作
+// console.log(document.querySelector(".container").innerHTML)
+// console.log("************")
+// console.log($(".container").html())
+// $(() => console.log("jq uncompressed is ready"))
+const app = $(".container")  // 获得class="container"的标签对象
+const str = app.html()       // 把获得的标签中的html标签
+app.html("")                 // 把获得的对象中的标签清空
+
+// ES语法中提供了定时器 setTimeout setInterval
+let progress = 0
+const ticket = setInterval(function(){
+    const current = str.substr(progress,1)
+    if(current == "<"){
+        progress = str.indexOf(">",progress) + 1
+    }else{
+        progress++
+    }
+    // console.log(progress,str.substring(0,progress))
+    // progress = progress + 1
+    // 三元表达式 lamda  表达式 ? 表达式1 : 表达式2  
+    app.html(str.substring(0,progress) + (progress % 5 === 0 ? "_" : ""))
+    if(progress >= str.length){
+        clearInterval(ticket)
+    }
+},35)
+</script>

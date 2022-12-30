@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>弹性布局</title>
+        <style>
+            /*
+                如何构建flex弹性布局
+                1.标签需要嵌套
+                2.在嵌套的父标签中用display 开启弹性布局
+
+                导致：
+                    1.所有的子节点（无论什么标签）都会变成行块级标签
+                    2.在父节点“可视”空间内，会有两个轴，一个叫主轴，一个叫交叉轴，两个轴是相互垂直的
+                    3.在默认设置下，主轴指的水平方向，交叉轴必然就是垂直方向。
+                      在主动设置后，我们可以将主轴指向垂直方向，这时交叉轴就指向水平方向。
+                    4.所有的子节点永远沿着主轴的方向排列
+
+                使用：
+                    1.控制主轴的css属性：justify-content
+                    2.控制交叉轴的css属性：align-items
+                    3.justify-content还是align-items都是在父标签上做设置
+
+                注意：
+                    1.justify-content:flex-start flex-end center space-bewteen space-around space-evenly
+                    2.align-items:flex-start flex-end center 
+
+
+            */
+
+            .outter {
+                display: flex;
+                width: 300px;
+                height: 300px;
+                background: red;
+                margin:8px;
+            }
+
+            .inner {
+                width:100px;
+                height: 100px;
+                background: blue;
+            }
+
+            .outter a {
+                width:50px;
+                height: 80px;
+                background: yellow;
+            }
+
+            .outter p {
+                width:20px;
+                height: 60px;
+                background: pink;
+                margin: 0;
+            }
+
+            .demo1 {
+                justify-content: center;
+                align-items: center;
+            }
+
+             .demo2 {
+                justify-content: space-around;
+                align-items: center;
+            }
+
+            .demo3 {
+                justify-content: space-between;
+                align-items: flex-end;
+            }
+
+            .demo4 {
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="outter demo1">
+            <div class="inner"></div>
+            <a></a>
+            <p></p>
+        </div>
+
+        <div class="outter demo2">
+            <div class="inner"></div>
+            <a></a>
+            <p></p>
+        </div>
+
+        <div class="outter demo3">
+            <div class="inner"></div>
+            <a></a>
+            <p></p>
+        </div>
+
+        <div class="outter demo4">
+            <div class="inner"></div>
+            <a></a>
+            <p></p>
+        </div>
+    </body>
+</html>

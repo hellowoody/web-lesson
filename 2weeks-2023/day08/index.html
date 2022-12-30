@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>img position</title>
+        <style>
+            .container {
+                width:200px;
+                height:200px;
+                background: url(./p.jpeg);
+                background-size: auto 100%;
+                animation: move 10s linear infinite alternate;
+                animation-play-state: paused;
+            }
+
+            @keyframes move {
+                0% {
+                    background-position: 0 0;
+                }
+                100% {
+                    background-position: 100% 0;
+                }
+            }
+
+            .container:hover {
+                animation-play-state: running;
+            }
+
+            .container-2 {
+                width:200px;
+                height:200px;
+                background: url(./p.jpeg);
+                background-position: 100% 100%;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="container"></div>
+        <div class="container-2"></div>
+    </body>
+</html>

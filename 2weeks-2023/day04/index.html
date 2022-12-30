@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>js</title>
+        <style>
+            /*  */
+        </style>
+        <script src="./index.js"></script>
+    </head>
+    <body>
+        <!--  -->
+    </body>
+</html>
+<script>
+// 1.打印语句
+console.log("hello script js")
+var val = 1+2
+console.log("1+2=",val,"4+6",10)
+// 2.区分大小写
+var a = 100;
+var A = 200;
+var Var = 300;
+var If = 3;
+console.log("a:",a,"A:",A,"Var:",Var,"If:",If)
+// 3.变量命名
+var abc = 400;
+var _abc = 500;
+var $abc = 600;
+// 4.注释
+// 单行注释
+/*
+    多行注释
+*/
+/**
+ * 多行注释
+ * 
+*/
+// 5.statement 语句或表达式的结尾的分号并不强制
+var stmt = 10+20; 
+// 6.声明变量的修饰符 var let const
+var v1 = "one";
+let v2 = "two";
+const v3 = "three";
+// 结论： 推荐使用 let 和 const
+// 不推荐var的原因：因为var有一个特性，作用域提升，这个提升往往会带来“副作用”
+// let 和 const 没有“提升”，这两个有暂时性死区
+function fn(){
+    console.log("变量aa：",aa);  // undefined
+    var aa = 3.14;
+    console.log("变量aa：",aa)  // 3.14
+}
+
+/*
+    function fn(){
+        var aa;
+        console.log("变量aa：",aa);  // undefined
+        aa = 3.14; // 赋值
+        console.log("变量aa：",aa)  // 3.14
+    }
+*/
+
+fn();
+
+</script>
+<script src="./for.js"></script>
+<script src="./if.js"></script>

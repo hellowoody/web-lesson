@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>选择器</title>
+        <style>
+            .parent .child {
+                width:20px;
+                height:20px;
+                background: blue;
+            }
+
+            .parent > .child {
+                width:30px;
+                height:30px;
+                background: green;
+            }
+
+            /* .child {
+                width:200px;
+                height:200px;
+                background: orange;
+            } */
+
+            .box01 {
+                height:10px;
+                background: red;
+            }
+
+            .box02 {
+                width: 50px;
+            }
+
+            .box03 {
+                border-radius: 5px;
+            }
+
+            ul li {
+                color:red;
+            }
+
+            ol li {
+                color:blue;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box01 box02 box03"></div>
+        <div class="parent">
+            <div>
+                <div class="xxx">
+                    <div class="child"></div>
+                </div>
+            </div>
+        </div>
+        <div class="parent">
+            <div class="child"></div>
+        </div>
+
+        <ul>
+            <li>item01</li>
+            <li>item02</li>
+            <li>item03</li>
+        </ul>
+
+        <ol>
+            <li>item01</li>
+            <li>item02</li>
+            <li>item03</li>
+        </ol>
+    </body>
+</html>

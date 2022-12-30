@@ -1,0 +1,71 @@
+<style>
+.firework {
+    margin-top:100px;
+    margin-left: 100px;
+    width:200px;
+    height: 200px;
+    border: 1px solid grey;
+    position: relative;
+}
+
+.mock-fw,
+.mock-fw::before,
+.mock-fw::after {
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    opacity: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.mock-fw {
+    border: 5px dotted blue;
+    animation: show 1.2s ease infinite 1s;
+}
+
+.mock-fw::before {
+    content: "";
+    border: 5px dotted red;
+    animation: show-b 1.2s ease infinite 1.2s;
+}
+
+.mock-fw::after {
+    content: "";
+    border: 5px dotted green;
+    animation: show-a 1.2s ease infinite 1.4s;
+}
+
+@keyframes show {
+    0%,100% { width: 10px; height: 10px; opacity: 0; }
+    50%{
+        height: 100px;
+        width: 100px;
+        opacity: 1;
+    }
+}
+
+@keyframes show-b {
+    0%,100% {  width: 10px; height: 10px; opacity: 0; }
+    50%{
+        height: 130px;
+        width: 130px;
+        opacity: 1;
+    }
+}
+
+@keyframes show-a {
+    0%,100% { width: 10px; height: 10px; opacity: 0; }
+    50%{
+        height: 160px;
+        width: 160px;
+        opacity: 1;
+    }
+}
+</style>
+
+<div class="firework">
+    <div class="mock-fw"></div>
+</div>

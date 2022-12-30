@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>2点</title>
+        <style>
+            body {
+                margin: 0;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .container {
+                display: flex;
+                width: 500px;
+                height: 500px;
+                justify-content: space-between;
+                border-radius: 12px;
+                box-shadow: 1px 2px 8px rgb(0 0 0 / 30%);
+                padding: 12px;
+                box-sizing: border-box;
+            }
+
+            .point {
+                width:100px;
+                height: 100px;
+                background: red;
+                border-radius: 50%;
+                box-shadow: 1px 2px 8px rgb(0 0 0 / 30%) inset;
+            }
+
+            /* .two {
+                align-self: flex-end;
+            } */
+
+            /* .point:nth-child(2) {
+                align-self: flex-end;
+            } */
+
+            .point:last-child {
+                align-self: flex-end;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="point"></div>
+            <div class="point"></div>
+        </div>
+    </body>
+</html>

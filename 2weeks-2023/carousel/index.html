@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>轮播图/走马灯</title>
+        <link rel="stylesheet" href="./font/iconfont.css">
+        <style>
+            .carousel {
+                position: relative;
+                width:600px;
+                height: 400px;
+                overflow: hidden;
+                display: flex;
+            }
+
+            .carousel ul {
+                position: absolute;
+                list-style: none;
+                display: flex;
+                padding: 0;
+                margin: 0;
+                top: 0;
+                left: 0;
+                transition: all 0.5s ease;
+            }
+
+            .carousel .arrow_left {
+                width: 20px;
+                height:17px;
+                border-bottom:3px solid #fafafa;
+                border-left:3px solid #fafafa;
+                position: absolute;
+                align-self: center;
+                left:16px;
+                transform: rotate(30deg) skewX(-30deg);
+            }
+
+            .carousel .arrow_right {
+                width: 20px;
+                height:17px;
+                border-bottom:3px solid #fafafa;
+                border-left:3px solid #fafafa;
+                position: absolute;
+                align-self: center;
+                right:16px;
+                transform: rotate(210deg) skewX(-30deg);
+            }
+
+            .carousel .arrow {
+                position: absolute;
+                align-self: center;
+                z-index: 1;
+                color: #fff;
+                font-size: 25px;
+            }
+
+            .A.B.C {
+                width:100px;
+                height:100px;
+                background: red;
+                z-index: 10;
+            }
+
+        </style>
+        <script src="./js/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="carousel">
+            <ul>
+                <li><img src="imgs/p1.jpeg"></li>
+                <li><img src="imgs/p2.jpeg"></li>
+                <li><img src="imgs/p3.jpeg"></li>
+            </ul>
+            <!-- <div class="A B C"></div> -->
+            <div id="left" class="iconfont icon-xiangzuojiantou arrow" style="left:8px;"></div>
+            <div id="right" class="iconfont icon-xiangyoujiantou arrow" style="right:8px;"></div>
+        </div>
+    </body>
+</html>
+<script>
+const left = $("#left")
+const ul = $(".carousel ul")
+const step = 600
+let count = 1
+let distance = 0
+left.click(function(){
+    console.log("向左")
+    if(count === 1){
+        console.log("已经是第一张了")
+    }else{
+        distance = distance + 600
+        ul.css("transform",`translateX(${distance}px)`)
+        count--
+    }
+})
+
+const right = $("#right")
+right.click(function(){
+    console.log("向右")
+    if(count === 3){
+        console.log("已经是最后一张了")
+    }else{
+        distance = -step*count
+        ul.css("transform",`translateX(${distance}px)`)
+        // count = count + 1
+        count++
+    }
+})
+</script>

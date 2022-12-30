@@ -1,0 +1,23 @@
+<style>
+    .box {
+        width:200px;
+        height:200px;
+        background: red;
+        /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+        /* animation: move 2s ease infinite alternate; */
+        animation: move 2s cubic-bezier(.59,.14,.38,1.39) infinite alternate;
+    }
+
+    @keyframes move {
+        0% {
+            transform: translateX(0);
+        }
+        100%{
+            transform: translateX(500px);
+            background: blue;
+            width:100px;
+        }
+    }
+
+</style>
+<div class="box"></div>

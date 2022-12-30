@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>背景</title>
+        <style>
+            .box {
+                height: 100px;
+                width:100px;
+                margin:8px;
+                background: #f1f1f1;
+                /* background-color: red; */
+            }
+
+            
+
+            .box01 {
+                --h:320px;
+                --h1:200px;
+                --h2:300px;
+                /* background: url(地址); */   
+                /* background:url('../day01/p1.jpeg'); */
+                /* background:url("../day01/p1.jpeg"); */
+                background:url(../day01/p1.jpeg);
+                height: var(--h);
+            }
+
+            .box02 {
+                width:500px;
+                height: 500px;
+                background:url(../day01/p1.jpeg) repeat-y red;
+            }
+            /* 
+                <img src="" width="" height=""> 本质就是针对css中background属性的一种“易用”的表现
+            */
+            
+        </style>
+    </head>
+    <body>
+        <div class="box box01">box</div>
+        <div class="box box02">box</div>
+    </body>
+</html>

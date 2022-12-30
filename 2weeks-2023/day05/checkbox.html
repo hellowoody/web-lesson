@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>checkbox</title>
+        <style>
+            /* 
+                自定义复选框的方法
+                1.将原本复选框元素隐藏
+                2.自己从头实现一个复选框
+                3.label可以将自己绑定到原本的复选框上
+            */
+
+            /*
+                : 伪类 hover focus active checked nth-xxx
+                :: 伪元素
+                 before after
+                 浏览器在绘制任何标签的时候,可以在绘制之前或之后自定义一些内容
+            */
+
+            .cb {
+                position: relative;
+            }
+
+            .cb input {
+                /* opacity: 0; */
+                display: none;
+            }
+
+            .cb label::before {
+                content:"";
+                position: absolute;
+                display: inline-block;
+                width:16px;
+                height:16px;
+                border:1px solid #ddd;
+                border-radius: 4px;
+                background-color: #f9f9f9;
+                top:0;
+                left: 0;
+                color:#fff;
+                text-align: center;
+                line-height: 16px;
+                font-size:12px;
+            }
+
+            .cb input:checked + label::before {
+                content:"\2713";
+                background: #ff6900;
+                border: 1px solid #ff6900;
+            }
+
+            /* .ttt::before {
+                content:"<<"
+            }
+             .ttt::after {
+                content:">>"
+            } */
+        
+        </style>
+    </head>
+    <body>
+        <!-- <div class="ttt">西游记</div> -->
+        <div class="cb">
+            <input type="checkbox" id="hidden_cb"  >
+            <label for="hidden_cb"></label>
+        </div>
+    </body>
+</html>
+
