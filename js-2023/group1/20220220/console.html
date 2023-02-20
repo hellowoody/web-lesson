@@ -1,0 +1,44 @@
+<script>
+// 打印语句 console.log
+// 浏览器的运行时环境中有一个全局对象window
+
+window.console.log("hello console");
+console.log("hello console sugar");
+
+/*
+    js对象
+    {
+        name:"zhangsan",
+        gender:"male"
+    }
+*/
+
+// 打印语句的使用方式
+// 方式一
+console.log("1000")
+console.log(1000)
+console.log(3.14)
+console.log({a:1,b:2})
+console.log([1,2,3])
+// 方式二
+console.log("1000",100,3.1,{a:1},[1,2])
+console.log("1+2=",1+2)
+
+// 打印语句没有返回值 undefined
+/*
+    function sum(a,b){
+        return a+b
+    }
+
+    sum(10,1)  
+    11
+*/ 
+var res = console.log("hello")
+console.log("res:",res) //  res: undefined
+
+// 其他的打印方式
+console.info("this is info")
+console.warn("this is warn")
+console.error("this is error")
+console.debug("this is debug")
+</script>

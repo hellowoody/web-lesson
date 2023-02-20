@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>声明</title>
+        <script>
+            console.log(1000)
+            // 在head中的js 无法进行dom操作
+            console.log(document.querySelector("h1"))  // null
+            console.log(document.querySelector("h1").innerHTML)
+            /*
+                Cannot read properties of null (reading 'innerHTML')
+
+                对象
+                {
+                    name:"zhang",
+                    age:70,
+                    innerHTML:"xxxxx"
+                }
+                name age 是键   key
+                name age 是属性 property
+            */
+        </script>
+    </head>
+    <body>
+        <h1>声明js</h1>
+        <script>
+            console.log(3000)
+            console.log(document.querySelector("h1").innerHTML)
+        </script>
+    </body>
+</html>
+<script>
+    console.log(2000)
+    console.log(document.querySelector("h1").innerHTML)
+</script>

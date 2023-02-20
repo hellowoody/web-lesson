@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>页面</title>
+        <script>
+            // dom = document object model
+            // 如果你的script在head中 是无法获取dom的
+            console.log(1000)
+            console.log(document.querySelector("h1").innerHTML)
+        </script>
+    </head>
+    <body>
+        <h1>hello</h1>
+    </body>
+</html>
+<script>
+    // dom = document object model
+    // 如果你的script在head中 是无法获取dom的
+    console.log(2000)
+    console.log(document.querySelector("h1").innerHTML)
+</script>
