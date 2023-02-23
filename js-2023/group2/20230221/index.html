@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>js引入</title>
+        <!-- 外部引入js文件 -->
+        <!-- 先放在head中 试运行一下 -->
+        <!-- 先放在head中不行 移到</html>下面 -->
+        <!-- 当浏览器遇到script 会“停住” -->
+        <!-- 浏览器“停住“后 -->
+        <!-- 1.将a.js下载 -->
+        <!-- 2.要执行a.js -->
+        <!-- 提供了延后的属性 defer async -->
+        <script src="a.js"></script>
+        <script src="b.js"></script>
+        <!-- https://ip:port/website/login.html -->
+        <!-- https://ip:port/website/a.js -->
+    </head>
+    <body>
+        <h1>js引入</h1>
+    </body>
+</html>
+<script>
+//如果内嵌js代码 那么就写在最下面 
+console.log("内嵌的输出")
+</script>
+

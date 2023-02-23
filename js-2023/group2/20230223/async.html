@@ -1,0 +1,32 @@
+<script>
+/*
+    两个定时器中，日常我们用setTimeout比较多
+
+    用setTimeout比较多的原因是因为它可以模拟异步事件
+
+    异步事件
+        main event主事件代码继续执行
+        主事件全部执行完之后再去执行异步事件的callback
+
+*/  
+
+console.log("start...")
+// setTimeout(function(){
+//     console.log("异步事件1")
+// },1500)
+// setTimeout(function(){
+//     console.log("异步事件2")
+// },500)
+setTimeout(function(){
+    console.log(1000)
+},0)
+console.log("end.")
+
+/*
+start...
+1000 ？？？
+end.
+1000 ？？？ 执行
+
+*/
+</script>

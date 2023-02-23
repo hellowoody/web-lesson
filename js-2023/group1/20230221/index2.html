@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>js引入</title>
+        <script src="a.js"></script>
+        <script src="b.js"></script>    
+        <script src="c.js"></script> 
+        <!-- 市面第三方库 jquery vuejs 没有dom操作 -->
+        <!-- 第三方的代码库可以放在head标签中，因为这些库中基本没有dom操作 -->
+        <!-- 我们自己写的代码因为经常需要和h5标签进行交互（dom操作）所以推荐写在页面下方 -->    
+    </head>
+    <body>
+        <h1>js引入</h1>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+console.log("潜入式引入");
+</script>

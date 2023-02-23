@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>js引入</title>
+        <!-- 引入外部js文件 -->
+        <!-- 1.浏览器遇见<script src="url">先“停住” -->
+        <!-- 2.下载 a.js -->
+        <!-- 3.执行下载后的a.js -->
+        <!-- 浏览器提供给我们两个延迟的属性 defer async -->
+        <script src="a.js"></script>
+        <script src="b.js"></script>    
+    </head>
+    <body>
+        <h1>js引入</h1>
+    </body>
+</html>
+<script>
+console.log("潜入式引入");
+</script>

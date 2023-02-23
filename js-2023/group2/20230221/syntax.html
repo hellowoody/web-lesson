@@ -1,0 +1,118 @@
+<script>
+// 1.区分大小写
+var a = "hello";
+var A = "你好";
+var Console = "123";
+// var 关键字
+var VAR = "123"
+
+console.log("a:",a)
+console.log("A:",A)
+console.log("Console:",Console)
+console.log("console:",console)
+console.log("VAR:",VAR)
+
+// 2.声明变量规则 
+/*
+变量/标识符
+
+    首字母： a-zA-Z_$
+    后面其他:a-zA-Z_$0-9
+*/
+var _a = "1000"
+var $abc = "2000"
+// var +abc = "2000"
+// var 1abc = "2000"
+var a1bc = "3000"
+var ab2c = "4000"
+var ab2c3 = "5000"
+
+// 3.注释 来源于c语言
+
+// 单行注释
+
+/*
+    多行注释
+
+*/
+
+/**
+ * 多行注释
+ * 
+ * 
+*/
+
+// 4.严格模式 strict
+/*
+    "use strict"; 必须放在作用域头一行
+*/
+
+function foo() {
+    "use strict";
+    ss = 3.14;
+    console.log("ss:",ss)
+}
+// foo() 
+
+// 5.作用域
+/*
+全局作用域 <script> 这里的范围就是全局作用域 <\/script>
+
+代码块 code block
+{
+
+}
+代码块会跟关键字组合 if for while
+if() {
+
+}
+
+for(){
+
+}
+
+while(){
+
+}
+
+当代码块和function配合时
+声明函数时，代码块区域就变成了局部作用域
+function sum(){
+    var a = 1;
+    var b = 2;
+    console.log("a+b=",a+b)
+}
+*/
+
+{
+    var text = "文本"
+    console.log("text:",text)
+}
+
+var OUT = "out" // 全局变量
+
+{
+    var IN = "in"
+    console.log("IN:",IN)
+    console.log("OUT:",OUT)
+}
+
+console.log("IN:",IN) // ??? 能访问的
+
+if(2>1){
+    var msg = "2>1是对的"
+}
+console.log("msg:",msg);
+
+function sum(){
+    var sum_a = 1; // 局部变量
+    var sum_b = 2;
+    console.log("1+2=",sum_a+sum_b)
+    console.log("OUT:",OUT) // ??? 可以访问，作用域中内部可以访问外部
+}
+
+sum();
+console.log("sum_a",sum_a) // ??? 不能访问，函数的代码块起到了作用域保护变量的效果
+
+// 引入外部的库 lib
+</script>

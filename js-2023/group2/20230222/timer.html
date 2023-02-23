@@ -1,0 +1,25 @@
+<script>
+/*
+    5.定时器
+
+    两种定时器
+    1.setTimeout(callback,duration)
+        隔多少毫秒（duration），执行第一个参数（callback）
+        setTimeout的callback只会执行一次
+
+    2.setInterval(callback,duration)
+        每隔多少毫秒（duration），执行第一个参数（callback）
+        setInterval的callback会执行多次
+*/ 
+
+
+setTimeout(function(){
+    console.log("2s后我被执行")
+},2000)
+
+let count = 0;
+setInterval(function(){
+    console.log("我又执行了",count)
+    count = count + 1
+},2500)
+</script>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>js引入</title>
+        <!-- 引入外部js文件 -->
+        <!-- defer 推迟 -->
+        <!-- 1.还要下载a.js，在下载的同时浏览器继续执行下面的代码 -->
+        <!-- 2.a.js下载完，先不执行 -->
+        <!-- 3.等浏览器所有的动作都执行完，再执行a.js -->
+        <script defer src="a.js"></script>
+        <script src="b.js"></script>    
+    </head>
+    <body>
+        <h1>js引入</h1>
+    </body>
+</html>
+<script>
+for(let i = 0 ; i < 500000000 ; i++){
+
+}
+console.log("潜入式引入");
+</script>

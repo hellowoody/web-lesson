@@ -1,0 +1,41 @@
+<script>
+
+
+
+for(let i = 0 ; i < 3; i++){
+    setTimeout(function(){
+        console.log("i:",i)
+    },100)
+}
+/*
+0
+1
+2
+*/
+// loop 1
+
+{
+    let i = 0
+    setTimeout(function(){
+        console.log("i:",i) // capture
+    },100)
+    i++
+}
+// loop 2
+{
+    let i = 1
+    setTimeout(function(){
+        console.log("i:",i)
+    },100)
+    i++
+}
+// loop 3
+{
+    let i = 2
+    setTimeout(function(){
+        console.log("i:",i)
+    },100)
+    i++
+}
+
+</script>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>js引入</title>
+        <!-- . 是一个命令：当前文件所在文件夹 -->
+        <!-- .. 是一个命令：上一次所在文件夹 -->
+        <!-- / 是一个命令：list 列出目录    -->
+        <!-- 如果相对路径是当前文件夹下的某一个文件，我们可以省略 ./ ,系统会帮我们补齐 -->
+        <!-- nodejs 自带有一个path包，resolve join 这两个方法 -->
+        <script src="b.js"></script>
+        <script src="./b.js"></script>
+        <!-- 下面是错的 -->
+        <!-- <script src=".b.js"></script> -->
+    </head>
+    <body>
+        <h1>js引入</h1>
+    </body>
+</html>
+
+

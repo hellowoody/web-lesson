@@ -1,0 +1,103 @@
+<!-- <script src="https://code.jquery.com/jquery-3.6.3.js"></script> -->
+<script src="./mock-jquery.js"></script>
+<div>hello mock</div>
+<script>
+// js ES 中是区分大小写
+var a = "hello";
+var A = "你好";
+var Var = "123";
+var VAR = "var";
+var If = "if statment";
+
+console.log("a:",a)
+console.log("A:",A)
+console.log("Var:",Var)
+console.log("VAR:",VAR)
+console.log("If:",If)
+
+// 2.声明变量规则
+/*
+    变量/标识符
+
+    首字母    :a-zA-z_$
+    剩下的字母: a-zA-z_$0-9
+*/
+var _ = "下滑线"
+var _a = "下滑线"
+// var $ = "$$$$"
+var $1a = "$1a"
+var $a1 = "$a1"
+var a1bc = "a1bc"
+var ab2c = "ab2c"
+var abc3 = "abc3"
+
+console.log("_",_)
+
+// 3.注释 
+
+// 单行注释
+/*
+    多行注释
+*/
+
+/**
+ * 多行注释
+ * 
+ * 
+ * 
+*/
+
+// 4.作用域
+/*
+    1.全局作用域 <script>标签中的范围就是全局作用域
+        变量如果实在全局作用域声明的，就是全局变量
+    2.函数作用域/局部作用域 
+        function foo(){
+            
+        }
+        变量如果实在函数作用域声明的，就是局部变量
+
+    a.在函数作用域里我们可以访问全局变量
+    b.在全局作用域中不能访问局部变量
+*/
+
+var outter = "全局变量"
+
+function sum(){
+    var num1 = 1;
+    var num2 = 2;
+    console.log("outter:",outter) // 全局变量
+    return num1+num2;
+}
+
+sum()
+
+// console.log("num1:",num1)   // error num1 not defined
+
+// 代码块
+if(2>1){
+    var txt = "2大于1"
+}
+
+console.log("txt:",txt)    // ??? "2大于1"
+
+// 严格模式  strict
+/*
+    "use strict";
+
+    必须写在作用域的第一行
+*/
+
+function foo(){
+    "use strict";
+    aaa = 3.14
+    console.log("aaa:",aaa)
+}
+
+// foo();
+
+
+// console.log("jquery文件中的class2type",class2type) //??? 不能
+console.log("mock-jq文件中的$",$) //???
+console.log("mock-jq文件中的$",$("div")) //???
+</script>

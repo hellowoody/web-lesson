@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>js引入</title>
+    </head>
+    <body>
+        <h1>js引入</h1>
+    </body>
+</html>
+<script>
+console.log("潜入式引入");
+</script>
+<script src="a.js">
+    // 在引入式中 再嵌入式写js代码 并不报错
+    // 浏览器会忽略嵌入式的内容
+    // 浏览器只会执行引入式文件
+    console.log("123")
+</script>
+<script src="b.js"></script>

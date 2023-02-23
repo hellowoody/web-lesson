@@ -1,0 +1,25 @@
+<script>
+/*
+    定时器
+
+    两种定时器
+    1.setTimeout(callback,sleeping)
+        隔多少毫秒（sleeping）后，执行第一个参数（callback）
+        callback只会执行一次
+
+    2.setInterval(callback,sleeping)
+        每隔多少毫秒（sleeping）后，执行第一个参数（callback）
+        callback会执行多次
+*/
+
+
+setTimeout(function(){
+    console.log("2s之后我被打印了")
+},2000)
+
+let count = 0
+setInterval(function(){
+    console.log("执行",count)
+    count = count + 1
+},1500);
+</script>

@@ -1,0 +1,50 @@
+<script>
+
+// for(var i = 0 ; i < 5; i++){
+//     console.log("i:",i)
+// }
+/*
+0
+1
+2
+3
+4
+*/
+
+for(var i = 0 ; i < 3; i++){
+    setTimeout(function(){
+        console.log("i:",i)
+    },100)
+}
+/*
+3
+3
+3
+*/
+// loop 1
+var i ;
+{
+    i = 0
+    setTimeout(function(){
+        console.log("i:",i)
+    },100)
+    i++
+}
+// loop 2
+{
+    i = 1
+    setTimeout(function(){
+        console.log("i:",i)
+    },100)
+    i++
+}
+// loop 3
+{
+    i = 2
+    setTimeout(function(){
+        console.log("i:",i)
+    },100)
+    i++
+}
+
+</script>

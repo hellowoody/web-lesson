@@ -1,0 +1,225 @@
+<script>
+// 1.代码块 {}
+
+{
+    var abc = 1000;
+    console.log("inner abc:",abc)
+}
+console.log("outter abc:",abc)
+
+// 2.下划线开头的变量 
+// 约定俗称的规则，下划线开头的变量（可以看成私有变量），不要使用
+var _a = "1"
+var _b = "2"
+
+// 3.声明变量
+var id;               // 声明变量
+var name = "张三";     // 初始化
+console.log("name:",name)
+name = "李四";         // 赋值
+console.log("name:",name)
+
+var a1 = 1;
+var a2 = 2;
+var a3 = 3;
+
+var b1 = 10 , b2 = 20 , b3 = 30 ;
+
+// var d1,
+//     d2,
+//     d3 = 3000;
+
+var c1 = 100,
+    c2 = 200,
+    c3 = 300;
+
+/*
+{key:value}
+{name:"zhang"} 有属性的对象
+{}             空对象
+
+var a = {name:"zhang"}
+
+console.log() 打印对象引用 active  
+*/
+
+/*
+var obj = {}
+// console.log("obj:",obj)
+console.log("obj:",JSON.parse(JSON.stringify(obj))) // 快照
+obj.a = 100;
+obj.b = 200;
+console.log("obj:",obj)
+
+
+var obj2 = {
+    prop1:"hello",
+    prop2:"你好"
+}
+console.log("obj2:",JSON.parse(JSON.stringify(obj2))) // 快照
+obj2.prop1 = "hi"
+obj2.prop3 = "1000"
+console.log("obj2:",obj2)
+*/
+
+// 4.没有用关键字var 声明的变量可以被打印
+
+// window.console.log()
+
+abcd = 1000;
+// window.abcd = 1000;
+console.log("abcd:",abcd)               // 1000
+console.log("window.abcd:",window.abcd) // 1000
+
+
+/*
+    5.var关键字的两个副作用 side effect
+    
+     a. 用var声明的变量 会自动增在window全局变量中
+     b. 作用域提升 promotion
+*/ 
+
+var aaa10 = 3.14;
+
+function promotion(){
+    console.log("promotion a:",a)   // undefined
+    var a = -100
+    console.log("promotion a:",a)   // -100
+}
+
+/*
+
+function promotion(){
+    var a;
+    console.log("promotion a:",a)  // undefined
+    a = -100
+    console.log("promotion a:",a)  // -100
+}
+*/
+
+promotion()
+
+
+function promotion2(){
+    var b = 1;
+    var b = 2;
+    var b = 3;
+    var b = 4;
+    var b = 5;
+    console.log("b:",b)
+}
+
+/*
+function promotion2(){
+    var b ;
+    b = 1;
+    b = 2;
+    b = 3;
+    b = 4;
+    b = 5;
+    console.log("b:",b)
+}
+
+*/
+
+promotion2(); 
+
+/*
+
+    6.let const
+
+    ES5：2009-2014  var
+    ES6：2015       let const
+
+    结论： 当讲完let const之后，就不要用var
+          官方建议：优先使用const  再使用let
+
+
+    let
+    let a = 100;
+    1.let声明的变量 不会加到window对象中 ("净化"window这个对象)
+    2.let 没有作用域提升 官方解释：暂时性死区
+    3.会把{}代码块 拥有“作用域”的特点 
+
+*/
+
+var global_a = 1000;
+let global_b = 2000;
+
+console.log(global_a,global_b)
+console.log(window.global_a,window.global_b)
+
+function nopromotion(){
+    console.log("c:",c);
+    let c = 1;  
+    console.log("c:",c);
+}
+
+// nopromotion()
+
+// function nopromotion2(){
+//     let c1 = 1;
+//     let c1 = 2;
+//     let c1 = 3;
+// }
+
+
+if(true){
+    var if_a = "if_a"
+}
+for(var i = 0 ; i < 3 ; i++){
+    var for_a = "for_a"
+}
+console.log("if_a:",if_a)
+console.log("for_a:",for_a)
+if(true){
+    let if_b = "if_b"
+}
+for(var i = 0 ; i < 3 ; i++){
+    let for_b = "for_b"
+}
+// console.log("if_b:",if_b)  // error
+// console.log("for_b:",for_b)  // error
+/*
+    let vs var
+
+    好处
+    1.let 没有"提升"概念
+    2.let 会让之前的if for等代码块也有“作用域”的特点：保护局部变量
+    3.let 声明的变量不会自动加到window对象中，不会和window对象的属性混淆
+*/
+
+/*
+
+    const 关键字
+
+    1.声明必须初始化
+    2.一旦初始化完，就不能修改了
+
+    const PI = 3.14;
+    const male = "男"
+    const female = "女"
+
+    literal 字面量/常量  1000 3.14 “hello” true false
+    object  引用对象     {}   []
+
+    我们不能修改字面量的值
+    但是我们可以修改引用对象中的属性或元素
+*/
+
+
+const txt = "hello";
+// txt = "你好";
+
+const const_obj = {
+    name:"zhang"
+}
+const_obj.name = "LI"
+const_obj.gender = "male"
+console.log("const_obj:",const_obj)
+
+const const_arr = ["a","b"]
+const_arr[0] = "A"
+const_arr.push("C")
+console.log("const_arr:",const_arr)
+</script>

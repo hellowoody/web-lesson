@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>定时器</title>
+    </head>
+    <body>
+        <!-- <button onclick="执行命令" >按钮</button> -->
+        <button onclick="fn1();" >停止setTimeout</button>
+        <button id="btn">停止setInterval</button>
+    </body>
+</html>
+<script>
+/*
+    定时器
+
+    两种定时器
+    1.setTimeout(callback,duration)
+        隔多少毫秒（duration），执行第一个参数（callback）
+        setTimeout的callback只会执行一次
+
+    2.setInterval(callback,duration)
+        每隔多少毫秒（duration），执行第一个参数（callback）
+        setInterval的callback会执行多次
+
+    这两个定时器返回值称作票据 ticket
+    可以拿ticket取消开启的定时器
+
+    clearTimeout(ticket)
+    clearInterval(ticket)
+*/ 
+let ticket1;
+let ticket2;
+let count = 0 ;
+
+function fn1(){
+    console.log("取消了刚才的setTimeout")
+    clearInterval(ticket1)
+}
+
+// document.querySelector("css选择器")
+// const btn = document.querySelector("button:nth-child(2)")
+const btn = document.querySelector("#btn")
+// console.log("btn:",btn)
+
+// addEventListener(事件名称,callback)
+btn.addEventListener("click",function(){
+    console.log("取消了刚才的setInterval")
+    clearInterval(ticket2)
+})
+
+ticket1 = setTimeout(function(){
+    console.log("3s后")
+},3000)
+
+console.log("ticket1:",ticket1)
+
+ticket2 = setInterval(function(){
+    console.log("定时器执行",count)
+    // count = count + 1;
+    count++;
+},1000)
+
+console.log("ticket2:",ticket2)
+
+
+</script>

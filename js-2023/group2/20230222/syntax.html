@@ -1,0 +1,226 @@
+<script>
+// 1.下划线命名
+var _name = "zhang";
+var _msg = "abc";
+// 下滑线命名的变量，代表私有变量，是个约定俗称的习惯
+
+// 2.声明变量
+var id;            // 声明一个叫id的变量
+var name = "张三";  // 初始化
+console.log("name:",name)
+name = "李四";      // 赋值
+console.log("name:",name)
+
+var a1 = 1;
+var a2 = 2;
+var a3 = 3;
+
+var b1 = 10 , b2 = 20 , b3 = 30;
+var c1 = 100 , 
+    c2 = 200 ,
+    c3 = 300 ;
+
+
+// 3.var 声明变量时，会有一种效果：作用域提升 promotion
+
+/*
+
+{
+    name:“张三”
+}
+
+{
+
+}
+
+var obj = {
+}
+
+动态给对象增加属性
+
+obj.name = "张三"
+
+
+
+*/ 
+
+/*
+    var obj = {}
+    console.log("obj:",JSON.parse(JSON.stringify(obj)))
+    // console.log() 引用
+    // console.log("obj:",obj)
+    obj.a = 100
+    obj.b = 200
+    console.log("obj:",obj)
+
+    var obj2 = {
+        prop1:"hello",
+        prop2:"你好"
+    }
+    console.log("obj2:",JSON.parse(JSON.stringify(obj2)))
+    obj2.prop1 = "hi";
+    obj2.prop3 = "1000";
+    console.log("obj2:",obj2)
+*/
+
+// abc = 1000;
+// // window.abc = 1000;
+// console.log("abc:",abc);
+// console.log("abc:",window.abc);
+
+function promotion(){
+    console.log("promotion a:",a); // 不会报错
+    var a = 1200
+    console.log("promotion a:",a)
+}
+
+/*
+    function promotion(){
+        var a; // var 变量的提升效果
+        console.log("promotion a:",a); // undefined
+        a = 1200
+        console.log("promotion a:",a)
+    }
+
+*/
+
+promotion()
+
+
+function promotion2(){
+    var b = 1;
+    var b = 2;
+    var b = 3;
+    var b = 4;
+    var b = 5;
+    console.log("b:",b);
+}
+
+/*
+    function promotion2(){
+        var b;
+        b = 1;
+        b = 2;
+        b = 3;
+        b = 4;
+        b = 5;
+        console.log("b:",b);
+    }
+
+*/
+
+promotion2();
+
+// var effect side 副作用
+/*
+    ES5： var        2009-2014
+    ES6： let const  2015
+
+    结果：学完let const 之后 不再用var
+
+         优先const 再用let
+
+    let 是var 的最好的替代品，let没有作用域提升 
+    let没有作用域提升 书面说法：暂时性死区
+
+    let 让代码块有了"作用域"的特点：起到局部变量保护的作用
+*/
+
+function nopromotion(){
+    console.log("c:",c)
+    let c = 1000
+    console.log("c:",c)
+}
+
+// nopromotion()
+
+
+// function nopromotion2(){
+//     let c = 100;
+//     let c = 1000
+//     console.log("c:",c)
+// }
+
+if(2 > 1){
+    var msg = "var 2 > 1"
+}
+
+for(var i = 0 ; i < 3; i++){
+    var loop1 = 10
+}
+
+console.log("if msg:",msg);  // var 2 > 1
+console.log("for loop1:",loop1);  // 10
+
+if(1 === 1){
+    let msg2 = "let 1 === 1"
+}
+
+for(var i = 0 ; i < 3; i++){
+    let loop2 = "100"
+}
+
+// console.log("if msg2:",msg2) // error msg2 not be defined
+// console.log("for loop2:",loop2);  // error
+
+
+var global_a = 100; // 会自动将变量增加在window中
+let global_b = 200;
+console.log("==>",global_a,global_b)
+console.log("window==>",window.global_a,window.global_b)
+// 因为用let 声明时，会“净化”全局window对象
+
+/*
+    let vs var
+
+    好处
+    1.let 没有"提升"概念
+    2.let 会让之前的if for等代码块也有“作用域”的特点：保护局部变量
+    3.let 声明的变量不会自动加到window对象中，不会和window对象的属性混淆
+*/
+
+/*
+    constant
+    const 关键字 
+    const msg = "hello";
+
+    1.使用const 必须同时初始化
+    2.一旦变量被const初始化后就不能改变
+
+    const PI = Math.PI
+    const Male = "男"
+    const Female = "女"
+
+    1.const因为不能修改，所以会让代码执行效率更快，起到了一定的保护作用
+    
+
+    literal 字面量   1000 “hello” 3.14 true false
+    object  引用对象 {} 对象  [] 数组
+
+    2.const 是没办法修改字面量
+            可以修改引用对象中的属性/元素
+    
+*/ 
+
+const literal1 = "100";
+// literal1 = "1000"
+const const_obj = {
+    name:"zhang"
+}
+const_obj.name = "LI"
+const_obj.gender = "男"
+// const_obj = 1000
+console.log("const_obj:",const_obj)
+const const_arr = ["a","b"]
+// const_arr = []
+const_arr[0] = "A"
+const_arr.push("C")
+console.log("const_arr",const_arr);
+
+// const const_a = 3.14;
+// const_a = 10;
+
+
+
+
+</script>
