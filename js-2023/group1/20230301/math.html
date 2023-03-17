@@ -1,0 +1,72 @@
+<script>
+/*
+js中的内置对象 Math
+window.Math
+
+Math.random()    [0,1) 随机数
+Math.floor()     向下取整     注：小数有进位的情况
+Math.ceil()      向上取整     
+Math.abs()       绝对值
+Math.sqrt()      开平方
+...
+
+js *  乘法
+js ** 幂运算
+
+2**2  2的平方
+2**3  2的立方
+
+*/
+
+console.log("random()",Math.random())
+console.log("1.1",Math.floor(1.1))
+console.log("1.9",Math.floor(1.9))
+console.log("3.14",Math.floor(3.14))
+console.log("-3.14",Math.floor(-3.14))
+console.log("-2.8",Math.floor(-2.8))
+console.log("-2.1",Math.floor(-2.1))
+
+console.log("1.1",Math.ceil(1.1))
+console.log("1.9",Math.ceil(1.9))
+console.log("3.14",Math.ceil(3.14))
+console.log("-3.14",Math.ceil(-3.14))
+console.log("-2.8",Math.ceil(-2.8))
+console.log("-2.1",Math.ceil(-2.1))
+
+
+console.log("-1",Math.abs(-1))
+console.log("100",Math.abs(100))
+console.log("-100",Math.abs(-100))
+
+
+console.log("64",Math.sqrt(64))
+console.log("16",Math.sqrt(16))
+
+console.log("4**2",4**2)
+console.log("4**3",4**3)
+
+/*
+思考题
+
+如何获取 [m,n) 随机整数
+
+[0,10)   Math.floor(Math.random()*10)
+[5,10)   Math.floor(Math.random()*5+5)
+[3,5)    Math.floor(Math.random()*2+3)
+
+1.先乘 (n-m)
+2.在加 m
+
+如何获取 [m,n] 随机整数
+
+1.先乘 (n-m+1)
+2.在加 m
+
+*/
+
+console.log(Math.floor(Math.random()*10))
+console.log(Math.floor(Math.random()*5+5))
+console.log(Math.floor(Math.random()*2+3))
+
+
+</script>

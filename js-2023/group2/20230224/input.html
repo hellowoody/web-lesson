@@ -1,0 +1,13 @@
+<input onclick="fn1()" oninput="fn2(this)">
+
+<script>
+function fn1(){
+    console.log("click event")
+}
+
+function fn2(e){
+    console.log("事件句柄:",e.value)
+    // console.log(e)
+    // console.dir(e)
+}
+</script>

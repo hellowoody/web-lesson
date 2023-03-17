@@ -1,0 +1,85 @@
+<script>
+/*
+字符串 转 数值(整数 浮点数)
+
+parseInt("",几进制) 
+    1.返回值永远是10进制
+    2.第二参数约束的是第一个参数，而不是结果
+
+parseFloat("3.14")
+*/ 
+
+const f1 = "3.14"
+const f2 = ".14"
+const f3 = "1."
+const f4 = "1e-1"
+console.log("f1:",parseFloat(f1))
+console.log("f2:",parseFloat(f2))
+console.log("f3:",parseFloat(f3))
+console.log("f4:",parseFloat(f4))
+console.log("f1:",typeof parseFloat(f1))
+console.log("f2:",typeof parseFloat(f2))
+console.log("f3:",typeof parseFloat(f3))
+console.log("f4:",typeof parseFloat(f4))
+
+
+const int1 = "3";
+const int2 = "10";
+const int3 = "0xf1"; // 15*16 + 1 = 241
+const int4 = "10xf1";
+
+console.log("int1:",parseInt(int1)) // 3
+console.log("int2:",parseInt(int2)) // 10
+console.log("int3:",parseInt(int3)) // 241
+console.log("int4:",parseInt(int4)) // 10
+
+console.log("int1:",parseInt(int1,10)) // 3
+console.log("int2:",parseInt(int2,10)) // 10
+// 字符串转number
+// "10abc"   10
+// "abc10"   NaN
+// "10abc",8   8
+console.log(parseInt("10abc",10))
+console.log(parseInt("abc10",10))
+console.log(parseInt("10abc",8))
+
+console.log("int3:",parseInt(int3,10)) // 0
+console.log("int4:",parseInt(int4,10)) // 10
+
+// "10" 当作8进制的数去转型 转成10进制
+console.log("int2:",parseInt(int2,8)) // 8
+
+/*
+010
+parseInt("010",10)
+parseInt("010",2)
+parseInt("010",8)
+
+0x10
+parseInt("0x10")
+parseInt("010",10)
+
+000000000x10
+parseInt("000000000x10")
+parseInt("000000000x10",10)
+
+*/ 
+
+const str = "10"
+
+console.log(parseInt(str))       // 10
+console.log(parseInt(str,2))     // 2
+console.log(parseInt(str,8))     // 8
+console.log(parseInt(str,10))    // 10
+console.log(parseInt(str,16))    // 16
+
+
+//  Boolean 转型 Number
+
+console.log("true to number:",Number(true))   // 1
+console.log("false to number:",Number(false)) // 0
+
+
+
+
+</script>

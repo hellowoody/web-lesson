@@ -1,0 +1,69 @@
+<script>
+/*
+    实参 vs 型参
+
+    实参(调用函数时):argument     actual argument or actual parameter 
+    形参(定义函数时):parameter    formal argument or formal parameter 
+
+    num1,num2  parameter 形参(定义函数时)
+    10,-1      argument  实参(调用函数时)
+*/
+
+function sum(num1,num2){
+    return num1+num2
+}
+
+sum(10,-1)
+
+/*
+    argument 实参
+    在JS中声明一个普通函数时，那么这个函数内部就有一些内置变量,其中就有arguments
+
+    arguments 是一个类数组对象
+                可以使用length查看长度
+                还可以根据[]访问数组的某个元素
+
+    JS的函数因为有了arguments，
+    所有函数有了跟其他语言不一样的地方，
+    就是弱化了定义参数
+*/
+
+function foo(){
+    console.log(arguments)
+    return arguments[0]-arguments[1]
+}
+
+console.log(foo(1,2))
+
+
+function sub(a,b){
+    console.log(arguments)
+    return a-b-arguments[2]
+}
+
+console.log(sub(1,2,3))
+
+
+bar("a","b",1000)
+
+function bar(p1,p2){
+    p2 = 2000
+    arguments[1] = 3000
+    console.log("p1",p1)
+    console.log("p2",p2)                      // 2000
+    console.log("arguments[0]",arguments[0])
+    console.log("arguments[1]",arguments[1])  // 2000
+    console.log("arguments[2]",arguments[2])
+}
+
+
+function fn(){
+    for(const p of arguments){
+        console.log("===",p)
+    }
+}
+
+fn(1,2,3,4,5)
+
+
+</script>

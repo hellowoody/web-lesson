@@ -1,0 +1,96 @@
+<script>
+/*
+数组排序sort
+
+[3,1,0,9,2,5,7].sort(callback)
+
+callback是可传可不传的
+不传时，数组默认按照字符串的asc做排序
+
+// TimSort !!!
+
+function callback(backend,frontend){
+    //  默认是递增/升序的“趋势”
+    return 大于零   是不变换位置的 
+            0      不操作
+          小于零   是变换位置的 
+
+    简单理解：  大于零和0：是不变换位置的
+              只有小于零：是变换位置的
+
+    习惯： 1代表 大于零
+         -1代表 小于零
+
+                1和0：是不变换位置的
+                -1 ： 是变换位置的
+}
+*/
+
+const arr = [3,1,0,9,2,5,7]
+//          "3" "1" "0" "9"
+console.log("arr sort",arr.sort())
+const arr2 = [3,1,0,9,2,5,7,10]
+//          "3" "1" "0" "9"   "10"
+//           3   1   0   9     1
+
+console.log("arr2 sort",arr2.sort())
+
+const arr3 = [3,1,0,9,2,5,7,10]
+
+// 升序
+arr3.sort(function(backend,frontend){
+    // console.log(p1,p2)
+    if(backend > frontend){
+        return 1
+    }else if(backend < frontend){
+        return -1
+    }else{
+        return 0
+    }
+})
+
+console.log("arr3 sort",arr3)
+
+const arr4 = [3,1,0,9,2,5,7,10]
+// 降序
+arr4.sort(function(backend,frontend){
+    // console.log(p1,p2)
+    if(backend < frontend){
+        return 1
+    }else if(backend > frontend){
+        return -1
+    }else{
+        return 0
+    }
+})
+
+console.log("arr4 sort",arr4)
+
+/*
+
+js中Array.sort()的内部排序算法
+
+    chrome V8引擎 老版本的算法algorithm  插入排序 和 快速排序
+    老版本V8引擎的源码地址：https://github.com/v8/v8/blob/ad82a40509c5b5b4680d4299c8f08d6c6d31af3c/src/js/array.js
+
+    chrome V8引擎 version7版本之后的算法   TimSort (python内部的算法)
+    2023年V8引擎的源码地址：https://github.com/v8/v8/blob/main/third_party/v8/builtins/array-sort.tq
+
+    ArrayTimSortImpl
+        CountAndMakeRun() callback
+        BinaryInsertionSort() callback
+*/ 
+
+const arr5 = [0,1,10,2,3,9,5,7]
+console.log("arr5",arr5)
+arr5.sort(function(a,b){
+    console.log("a:",a,"b:",b)
+    if(a > b){
+        return 1
+    }else if(a < b ){
+        return -1
+    }else{
+        return 0
+    }
+})
+</script>

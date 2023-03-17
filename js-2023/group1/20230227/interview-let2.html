@@ -1,0 +1,44 @@
+<script>
+/*
+    loop
+    iterator 迭代
+
+    function iterator(){
+        return {
+            next(){
+                return next_val
+            }
+        }
+    }
+*/ 
+for(let i = 0 ; i < 3 ; i++){
+    setTimeout(function(){
+        console.log("for i:",i)
+    },0)
+}
+// v = 0;
+function next1(v){
+    let i = v
+    setTimeout(function(){
+        console.log("next i:",i)
+    },0)
+    return i + 1
+}
+function next2(v){
+    let i = v //1
+    setTimeout(function(){
+        console.log("next i:",i)
+    },0)
+    return i + 1
+}
+function next3(v){
+    let i = v //2
+    setTimeout(function(){
+        console.log("next i:",i)
+    },0)
+    return i + 1
+}
+
+
+next3(next2(next1(0)))
+</script>

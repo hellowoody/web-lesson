@@ -1,0 +1,124 @@
+<script>
+/*
+NaN -> not a number
+
+    1.NaN非常特殊， 它是唯一一个自己不等于自己的值
+    2.凡是有NaN参与的运算，返回值都是NaN
+
+    如何产生NaN
+
+        0/0 NaN
+
+        Number("123")   123
+        Number("hello")  NaN
+
+*/
+
+console.log("NaN != NaN :",NaN != NaN) // true
+console.log("NaN !== NaN :",NaN !== NaN) // true
+console.log("NaN == NaN :",NaN == NaN) // false
+console.log("NaN === NaN :",NaN === NaN) // false
+
+const expr = 3 + ((2-(1+1))/(3-(1+2)))*2
+
+console.log("expr:",expr)
+
+console.log("0/0:",0/0)
+
+const str = "123.1"
+console.log(typeof str) // string
+console.log(Number(str),typeof Number(str)) // 123.1 number
+const str1 = "hello"
+console.log(Number(str1),typeof Number(str1)) // NaN number
+
+
+/*
+
+用Number(字符串)将字符串转数字的方式其实并不推荐
+官方比较推荐字符串转数值类型的方式时下面两个方法
+
+字符串 转 数值(整数 浮点数)
+
+parseInt("",几进制)  可以接受两个参数 
+    注意，虽然第二个参数可选，但是建议咱必传
+    1.返回值永远是10进制
+    2.第二参数约束的是第一个参数，而不是结果
+
+parseFloat("3.14")  只能接受一个参数
+
+*/
+console.log("===========")
+const f1 = "3.14";
+const f2 = ".14";
+const f3 = "3."; // 3.0
+const f4 = "3e-2";
+
+console.log(parseFloat(f1),typeof parseFloat(f1))
+console.log(parseFloat(f2),typeof parseFloat(f2))
+console.log(parseFloat(f3),typeof parseFloat(f3))
+console.log(parseFloat(f4),typeof parseFloat(f4))
+
+
+/*
+
+JS/ES 字符串转number时的规则
+
+"hello"     NaN
+"hello123"  NaN
+"123hello"  123
+"12h3ello"  12
+
+
+10
+0o10  0O10  八进制
+0x10  0X10  十六进制
+
+"0xf1"      ?
+15*16+1=241
+*/
+
+console.log("hello",Number("hello"),parseInt("hello"))
+console.log("hello123",Number("hello123"),parseInt("hello123"))
+console.log("123hello",Number("123hello"),parseInt("123hello"))
+console.log("12h3ello",Number("12h3ello"),parseInt("12h3ello"))
+
+console.log("0xf1",parseInt("0xf1")) // 0 or 241 ?
+console.log("0xf1",parseInt("0xf1",10)) // 0  
+console.log("0xf1",parseInt("0xf1",16)) // 241
+
+const int1 = 10
+console.log("10",parseInt(int1))    // 10
+console.log("10",parseInt(int1,2))  // 2
+console.log("10",parseInt(int1,8))  // 8
+console.log("10",parseInt(int1,16)) // 16
+
+const int2 = "0xaf1"
+const int3 = "10xa1"
+console.log("0xaf1",parseInt(int2))
+console.log("0xaf1",parseInt(int2,2))
+console.log("0xaf1",parseInt(int2,8))
+console.log("0xaf1",parseInt(int2,16))
+
+console.log("10xa1",parseInt(int3))
+console.log("10xa1",parseInt(int3,2))
+console.log("10xa1",parseInt(int3,8))
+console.log("10xa1",parseInt(int3,16))
+
+console.log(parseInt("010",10))  // 10
+console.log(parseInt("010",2))   // 2
+console.log(parseInt("010",8))   // 8
+
+console.log(parseInt("00000000x10",16))   // 0
+console.log(parseInt("00000000x10",10))   // 0
+
+/*
+Boolean 转 Number
+
+Number(true)   1
+Number(false)  0
+*/
+
+console.log("true to number:",Number(true))    // 1
+console.log("false to number:",Number(false))  // 0
+
+</script>

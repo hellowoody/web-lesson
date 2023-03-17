@@ -1,0 +1,166 @@
+<script>
+// 1.字符串类型
+const a1 = "hello"
+const a2 = 'hi'
+const a3 = `你好`
+/*
+    反引号特点
+        1.可以换行，有一些格式
+        2.可以接受参数
+*/ 
+const a4 = `第一章
+    xxxxx
+第二章
+    asfdsafdsa
+`
+
+const a5 = "第1章\n    xxxxx\n第二章\n    asfdsafdsa"
+
+console.log("a4:",a4)
+console.log("a5:",a5)
+
+const a6 = `
+第一章
+
+`
+console.log("a6:",a6)
+
+const year = "2023"
+const m = "02"
+const d = "24"
+const H = "9"
+const M = "08"
+const S = "10"
+
+// yyyy-mm-dd HH:MM:SS
+// month 01-12 Oct
+// hour  HH 24进制 hh 12进制
+const timestamp = year + "-" + m + "-" + d + " " + 
+                    H + ":" + M + ":" + S
+console.log("timestamp:",timestamp)
+
+const timestamp2 = `${year}-${m}-${d} ${H}:${M}:${S}`
+console.log("timestamp2:",timestamp2)
+
+// 反引号 进阶用法
+
+function quotTemplate(msg,param1,param2){
+    console.log(msg,param1,param2)
+}
+
+quotTemplate("123")
+const p1 = ";"
+const p2 = ":"
+quotTemplate `a${p1}b${p2}c`
+quotTemplate("123",p1,p2)
+
+// 字符串的重要知识点！
+
+// window.String()
+// String() 全局方法
+console.log("null的类型：",String(null))
+const obj = null;
+console.log("obj is null ?",String(null) == "null")
+console.log("obj is null ?",String(null) === "null")
+
+let obj2 ;
+console.log("typeof obj2:",typeof obj2) // undefind
+console.log("typeof obj3:",typeof obj3) // undefind
+console.log("String obj2:",String(obj2)) // undefind
+// console.log("String obj3:",String(obj3)) // error
+console.log("obj2 is undefined?",String(obj2) == "undefined") 
+console.log("obj2 is undefined?",String(obj2) === "undefined") 
+
+// 结论：undefined 和 null 要用String() 获取类型 
+
+
+/*
+容易混淆的几点：
+    window.String()是全局方法
+
+    String 是对象构造器 constructor
+    构造器的使用方式：配合new修饰符使用
+    new String() 返回一个实例对象 instance
+
+    const str = "abc";
+    str.length  // 3
+    console.log(str.length)
+    console.log(str) // abc
+
+    // 包装对象
+    const strObj = new String(str) 
+    console.log(strObj.length) // 3
+    console.log(strObj)
+    console.log(strObj.valueOf()) // "abc"
+
+    {
+        0:a,
+        1:b,
+        2:c,
+        length:3
+    }
+
+
+    字符串的转型  Object.toString()
+    7中类型 除了null undefined这两，其他都起源于object
+
+    "abc".toString()
+    true.toString()
+    console.log("abc".toString())
+    console.log(true.toString())
+    console.log(1..toString())
+
+    100.toString() // error
+
+    {a:1}.toString()  // [object Object]
+    JSON.stirnify({a:1}) // "{a:1}"
+    [1,2,3].toString()
+
+
+*/ 
+
+const str = "abc";
+console.log(str.length) // 3
+console.log(str) // abc
+
+// 包装对象
+const strObj = new String(str) 
+console.log(strObj.length) // 3
+console.log(strObj) // {}
+console.log(strObj.valueOf()) // "abc"
+
+console.log(typeof "abc".toString())
+console.log(typeof true.toString())
+console.log(typeof 1..toString())
+const aa = {a:1}
+console.log(aa.toString())
+console.log(JSON.stringify(aa))
+console.log(typeof JSON.stringify(aa))
+console.log([1,2,3].toString())
+console.log(typeof [1,2,3].toString())
+
+/*
+    转不同的进制 toString(radix)
+
+    3   10进制的3
+    0o3 8进制的3
+    0x3 16进制的3
+*/
+
+const num = 3;
+console.log(num.toString(2)) // 10进制转2进制 11
+const num2 = 12;
+console.log(num2.toString(8)) // 10进制转8进制 14
+console.log(num2.toString(16)) // 10进制转16进制 c
+
+const num3 = 0o14
+console.log(num3.toString(10)) // 8进制转10进制 
+const num4 = 0X14
+console.log(num4.toString(10)) // 16进制转10进制
+
+
+
+
+
+
+</script>

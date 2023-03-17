@@ -1,0 +1,35 @@
+<script>
+/*
+push unshift的补充
+
+可以一次传多个参数
+*/ 
+const arr = []
+
+arr.push(1,2,3,4,5)
+
+console.log("push:",arr)  // [1,2,3,4,5]
+
+arr.unshift(6,7,8,9,10)  
+
+console.log("unshift",arr)  // [6,7,8,9,10,1,2,3,4,5]
+
+const arr2 = []
+
+arr2.push(1)
+arr2.push(2)
+arr2.push(3)
+arr2.push(4)
+arr2.push(5)
+
+console.log("push:",arr2)    // [1,2,3,4,5]
+
+arr2.unshift(6)             // [6,1,2,3,4,5]
+arr2.unshift(7)            // [7,6,1,2,3,4,5]
+arr2.unshift(8)
+arr2.unshift(9)
+arr2.unshift(10)
+
+console.log("unshift:",arr2)  // [1,2,3,4,5]
+
+</script>

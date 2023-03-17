@@ -1,0 +1,46 @@
+<script>
+// splice 增删改
+/*
+    splice(p1,p2,p3...)
+
+    splice 是会修改原数组
+
+    p1（必传）  :定位数组的索引，开始操作的位置
+    p2（必传）  :需要删除的个数  [0,+infinite)
+    p3...(可选): p3可以传一个，也可以传多个，甚至不传
+
+    返回 原数组被修改的内容。
+*/
+
+const arr = ["a","b","c","d","e"]
+//            0   1   2   3   4
+
+// 增加
+const addstr = arr.splice(2,0,"HELLO")
+console.log("addstr:",addstr) // []
+console.log(arr)
+
+const arr2 = ["a","b","c","d","e"]
+//             0   1   2   3   4
+const addstr2 = arr2.splice(2,0,..."HELLO")
+console.log("addstr2:",addstr2) // []
+console.log(arr2)
+// ['a', 'b', 'H', 'E', 'L', 'L', 'O', 'c', 'd', 'e']
+//   0    1    2
+// 删除
+const delstr = arr2.splice(2,5)
+console.log("delstr",delstr)
+console.log(arr2)
+
+// 替换
+const replacestr = arr2.splice(2,2,"C","D")
+console.log("replacestr",replacestr)
+console.log(arr2)
+
+const str2 = "hell word"  // hello world
+//            01234
+const arr3 = Array.from(str2)
+const replacestr2 = arr3.splice(4,4,..."o worl")
+console.log("replacestr2",replacestr2)
+console.log(arr3.join(""))
+</script>

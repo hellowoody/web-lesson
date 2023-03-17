@@ -1,0 +1,76 @@
+<script>
+// ES5
+
+function Foo(p){
+    this.a = p;
+    this.fn = function(){
+
+    }
+}
+Foo.prototype.b = 2
+Foo.prototype.fn2 = function(){}
+
+// ES6
+class Bar {
+    constructor(p){
+        this.a = p;
+        this.fn = function(){}
+    }
+
+    fn2(){
+
+    }
+}
+
+Bar.prototype.b = 2;
+
+const foo = new Foo(1)
+const bar = new Bar(1)
+
+console.log(foo)
+console.log(bar)
+
+
+/*
+    instanceof
+
+    A instanceof B
+
+    A 必须是实例
+    B 必须是构造器
+
+    数组 -> Array -> Object
+
+    旺财 -> Dog -> Animal -> Object
+*/ 
+
+const arr = [1,2]
+
+console.log("[1,2] instanceof Array",arr instanceof Array)
+console.log("[1,2] instanceof Object",arr instanceof Object)
+console.log("[1,2] instanceof Date",arr instanceof Date)
+console.log("[1,2] instanceof String",arr instanceof String)
+
+class Animal {
+
+}
+
+class Dog extends Animal {
+
+}
+const dog = new Dog()
+
+console.log("dog instanceof Dog",dog instanceof Dog)
+console.log("dog instanceof Animal",dog instanceof Animal)
+console.log("dog instanceof Object",dog instanceof Object)
+console.log("dog instanceof Array",dog instanceof Array)
+
+
+// typeof       返回的6种 string number boolean undefined symbol 
+// A instanceof B    true/false
+
+console.log(123 instanceof String)   //false
+console.log("123" instanceof String) //false "123"
+console.log(String("123") instanceof String)  // false
+console.log(new String("123") instanceof String)  // true
+</script>

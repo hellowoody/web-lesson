@@ -1,0 +1,65 @@
+<script>
+/*
+    arrow function 中的 this 规则
+
+    箭头函数的this 有没有被另一个函数包裹，如果有，就是那个函数的this
+
+    call apply bind 无法改变箭头函数的this
+
+*/
+
+var a = 1
+let b = 2
+const c = 3
+const foo = () => console.log("a:",this.a,"b:",this.b,"c:",this.c)
+
+foo(); // 1 undefined undefined
+
+const obj = {
+    a:10,
+    b:20,
+    c:30,
+    foo:() => {
+        console.log("a",this.a)
+        console.log("b",this.b)
+        console.log("c",this.c)
+    }
+}
+
+obj.foo() // 1 undefined undefined
+const fn = obj.foo
+fn()      // 1 undefined undefined
+
+var name = "外面的名字";
+const o = {
+    name:"里面的名字",
+    fn:() => console.log("场景一",this.name)
+}
+
+o.fn() // 外
+
+let name2 = "外面的名字";
+function fn2(){
+    var name2 = "里面的名字"
+    const innerFn = () => {
+        console.log("场景二this",this) 
+        console.log("场景二",this.name2) 
+        
+    }
+    innerFn();  
+}
+
+fn2() // undefined 
+
+window.identity3 = "i am window";
+const object3 = {
+    identity3:"i am object",
+    getId:function(){
+        //this console.log(this.identity3)
+        return () => {
+            return this.identity3;
+        }
+    }
+}
+console.log("场景三",object3.getId()())  //  i am object"
+</script>

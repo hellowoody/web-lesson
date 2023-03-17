@@ -1,0 +1,65 @@
+<script>
+/*
+条件判断语句
+
+1. if
+    if
+    if-else
+    if-else-if
+
+    stmt表达式的返回值如果不是boolean
+    那么，if旁边的小括号会将 stmt 表达式的返回值 自动转成boolean类型
+    if(stmt){
+        当这个代码块有且只有一句话时，可以省略代码块的花括号
+    }
+    
+    [0,2) 0 1
+
+    if(Math.floor(Math.random()*2) === 1){
+        console.log("随机数为1")
+    }else{
+        console.log("随机数为0")
+    }
+
+2. 三元表达式
+
+3. switch-case
+
+*/
+
+if( 2 > 1 ){
+    console.log(1000)
+}
+
+if(1){
+    console.log("将1自动转成boolean的true")
+}
+if(0){
+    console.log("将0自动转成boolean的true")
+}
+if("hello") console.log("将hello自动转成boolean的true")
+
+if({}) console.log("将对象自动转成boolean的true")
+
+if(!null)
+    console.log("将!null对象自动转成boolean的true")
+
+if(false) 
+    console.log(2000)
+    console.log(3000)
+
+/*
+if(false)  console.log(2000)
+console.log(3000)
+*/
+
+if(Math.floor(Math.random()*2) === 1){
+    console.log("随机数为1")
+}else{
+    console.log("随机数为0")
+}
+
+
+
+
+</script>

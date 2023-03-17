@@ -1,0 +1,97 @@
+<script>
+/*
+3.构造器/构造函数  constructor
+
+const obj = {}
+或者
+const obj = new Object()
+
+obj我们一般称为实例对象
+这种创建对象都是，利用内部提供的Object构造器创建实例对象
+
+那我们能不能自己定义属于我们自己的构造器或构造函数呢？
+可以
+构造器/构造函数：官方并没有给出严格的界线，但约定俗成的鉴别方式是看首字母是否大写
+
+a.首字母小写的函数就是普通函数
+
+    普通函数就是直接调用
+
+    function sum(a,b){
+        return a+b
+    }
+
+    sum(1,2)  // 3
+
+b.首字母大写的函数就“当成”构造函数
+
+    构造函数需要通过new操作符，创建实例对象
+    // Person构造器
+    function Person(){
+        this.a = 1
+        this.b = 2
+        this.c = function(){
+            console.log("我是一个方法")
+        }
+        // 构造器不能用return
+    }
+
+    const p = new Person() // 自定义的对象
+    console.log("p:",p)
+*/ 
+function Person(){
+    this.a = 1
+    this.b = 2
+    this.c = function(){
+        console.log("我是一个方法")
+    }
+    // 构造器不能用return
+}
+
+// const obj = {
+//     a:1,
+//     b:2,
+//     c:function(){
+//         console.log("我是一个方法")
+//     }
+// }
+const obj = new Object()
+obj.a = 1;
+obj.b = 2;
+obj.c = function(){
+    console.log("我是一个方法")
+}
+
+const p = new Person() // 自定义的对象
+console.log("p:",p)
+console.log("obj:",obj)
+
+/*
+注意：
+    正常的构造函数不能有return
+    如果 构造函数有return，那它自动被当作普通函数对待
+*/ 
+
+function Foo(){
+    this.a = 1;
+    this.b = 2;
+}
+
+function Bar(){
+    this.a = 1;
+    this.b = 2;
+
+    return {
+        name:"zhangsan"
+    }
+}
+
+const foo = new Foo()
+const bar = new Bar()
+
+console.log("foo:",foo)     // {a:1,b:2}
+console.log("foo.a:",foo.a)
+console.log("bar:",bar)     // {name:"zhangsan "}
+console.log("bar.name:",bar.name)
+console.log("bar.a:",bar.a)  // undefined
+</script>

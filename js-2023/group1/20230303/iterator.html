@@ -1,0 +1,180 @@
+<script>
+/*
+循环/迭代
+
+1.for-loop
+
+    exp1 会执行一次初始化
+    exp2 一个返回boolean类型的表达式，false时退出循环
+    exp3 更新语句,每次循环最后一步的操作
+    
+    for-loop 语法里的必要元素
+    // 无限循环
+    for(;;){
+
+    }
+
+    for(exp1;exp2;exp3){
+
+    }
+
+    for(初始化;判断条件;更新语句){
+
+    }
+
+2.while
+
+    while(判断条件){
+        更新语句   
+    }
+
+小总结：for while
+    for    是这循环多少次，循环数组
+    while  不太确定要循环多少次
+
+3.do-while  不常用
+
+    do{
+        更新语句
+    } while(判断条件)
+
+
+结论：
+    推荐使用for-loop和while 这种入口条件循环
+
+        for-loop适合循环数组或固定次数的场景
+        while   合适循环次数不一定的场景
+*/ 
+
+
+for(let i = 0 ; i < 3 ; i++){
+    console.log("i:",i)
+}
+
+let j = 0;
+for(;j < 3;){
+    console.log("j:",j)
+    j++
+}
+
+for(let i = 3 ; i > 0 ;){
+    console.log("i:",i)
+    i--
+}
+
+
+let step = 0
+while(step < 3){
+    console.log("step:",step)
+    step++
+}
+
+
+let a ;
+let count = 1
+while(a < 4){
+    console.log(`loop${count} a:`,a)
+    a = Math.floor(Math.random()*5)  // 0 1 2 3 4
+    count++
+}
+
+let b ;
+let count2 = 1
+do {
+    console.log(`loop${count2} b:`,b)
+    b = Math.floor(Math.random()*5)  // 0 1 2 3 4
+    count2++
+} while(b < 4)
+
+
+/*
+for-of
+    循环数组
+
+for-in
+    可以循环对象中的属性
+    可以循环数组中对应元素的索引
+*/ 
+
+const arr = ["a","b","c"]
+
+for(let i = 0 ; i < arr.length ; i++){
+    console.log("arr[i]:",arr[i])
+}
+
+for(const item of arr){
+    console.log("item:",item)
+}
+
+const obj = {
+    a:1,
+    b:3.14,
+    name:"zhang"
+}
+
+for(const key in obj){
+    console.log("key:",key,"value:",obj[key])
+}
+
+for(const idx in arr){
+    console.log("idx:",idx,"item:",arr[idx])
+}
+
+/*
+
+思考题：
+
+    for-loop
+    while
+    for-in
+    for-of
+    这四种循环谁的效率更块？ （提示可以用Date.now()）
+
+第一步 创建一个大数组
+// const bigArr = []
+// for(let i = 0 ; i < 10000000 ; i++){
+//     bigArr.push(0)
+// }
+
+const bigArr = new Array(10000000)
+bigArr.fill(0)
+第二步 Date.now() 获取开始时间戳
+第三步 循环
+第四步 Date.now() 获取结束时间戳
+第五步 两个时间戳相减得出运行时间
+*/
+
+const bigArr = new Array(500000)
+bigArr.fill(0)
+
+const s4 = Date.now()
+for(const key in bigArr){}
+const e4 = Date.now()
+console.log(`for-in duration ${(e4-s4)/1000} s`)
+
+const s3 = Date.now()
+for(const item of bigArr){}
+const e3 = Date.now()
+console.log(`for-of duration ${(e3-s3)/1000} s`)
+
+const s1 = Date.now()
+for(let i = 0 ; i< bigArr.length ; i++){}
+const e1 = Date.now()
+console.log(`for-loop duration ${(e1-s1)/1000} s`)
+
+const s2 = Date.now()
+let w = 0
+while(w < bigArr.length){
+    w++
+}
+const e2 = Date.now()
+console.log(`while duration ${(e2-s2)/1000} s`)
+
+
+
+
+
+
+
+
+</script>

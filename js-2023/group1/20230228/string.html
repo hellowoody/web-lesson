@@ -1,0 +1,210 @@
+<script>
+/*
+String 字符串类型 
+
+const str = "hello"
+const str = '你好'
+const str = `你好`
+
+const stmt = 'xxxxxxx,"卖鱼"'
+const stmt = "xxxxxxx,'卖鱼'"
+
+模版引号/反引号
+
+1.保留格式
+2.传参
+3.可以调用函数（了解）
+
+*/
+
+const str = `
+    你好
+        我是xxx
+                此致
+`
+
+console.log("str:",str)
+
+const str2 = "\n" + 
+            "    你好\n" + 
+            "        我是xxx\n" + 
+            "                此致\n"
+
+console.log("str2:",str2)
+
+// YYYY-MM-DD HH:mm:ss
+const Y = "2023"
+const M = "02"
+const D = "28"
+const H = "9"
+const m = "11"
+const s = "20"
+
+const timestamp = Y + "-" + M + "-" + D + 
+                    " " + 
+                    H + ":" + m + ":" + s
+console.log("timestamp:",timestamp)
+
+const timestamp_quote = `${Y}-${M}-${D} ${H}:${m}:${s}`
+console.log("timestamp_quote:",timestamp_quote)
+
+function quoteTemplate(msg,p1,p2){
+    console.log(msg)
+    console.log("p1:",p1,"p2:",p2)
+}
+
+quoteTemplate("hello");
+quoteTemplate("hello",3,3.14);
+
+quoteTemplate `hello`;
+
+const a = 1+1;
+const b = true
+quoteTemplate `h${a}ell${b}o`;
+
+// 下面是重点了
+/*
+window.String()
+
+String(xxx) 将xxx强制转成字符串
+
+*/ 
+
+console.log("abc 强转字符串",String("abc"))
+console.log("3.14 强转字符串",String(3.14))
+console.log("3.14 强转字符串",typeof String(3.14))
+console.log("true 强转字符串",String(true))
+console.log("true 强转字符串",typeof String(true))
+console.log("{a:1} 强转字符串",String({a:1}))  // 对象用String() 强转失败
+console.log("{a:1} 强转字符串",typeof String({a:1}))
+console.log("{a:1} 序列化成字符串",JSON.stringify({a:1}))  
+console.log("{a:1} 序列化成字符串",typeof JSON.stringify({a:1}))  
+
+// String(null)  null
+const obj = null;
+console.log("obj type:",String(obj)) // null
+console.log("null type:",String(null)) // null
+
+// String(undefined) undefined
+console.log("typeof undefined:",typeof undefined)
+console.log("String强转 undefined:",String(undefined))
+
+let aa;
+console.log("typeof aa:",typeof aa) // undefined
+console.log("typeof bb:",typeof bb) // undefined
+
+console.log("String aa:",String(aa)) // undefined
+// console.log("String bb:",String(bb)) // error
+
+// null or undefined 推荐用String() 获取类型
+
+/*
+容易混淆的知识点
+window.String()
+String(xxx) 强制转型
+
+const str = new String() 
+包装对象 or 创建一个实例对象
+const str1 = "hello";
+
+当用字面量.方法时，浏览器帮我做了一步包装对象的操作,
+当调用完方法后，浏览器会把tmp自动销毁
+const tmp = new String(str1)
+{
+    0:"h",
+    1:"e",
+    2:"l",
+    3:"l",
+    4:"0",
+    length:5,
+    ...
+}
+*/
+const str1 = "hello";
+// index索引   01234
+console.log("toString",str1.toString())
+console.log("valueOf",str1.valueOf())
+console.log("indexOf",str1.indexOf("e"))
+
+const num = 3.14;
+console.log("number toString",num.toString())
+
+const str1_obj = new String(str1)
+console.log("str1_obj:",str1_obj)
+const num_obj = new Number(num)
+console.log("num_obj:",num_obj)
+
+/*
+valueOf()和toString()
+除了null和undefined之外，其他几个基本类型都有这两个方法
+
+valueOf()我们一般不常用
+
+const num1 = 123;
+const num1_obj = new Number(num1)
+console.log(num1_obj.valueOf())
+console.log(typeof num1_obj.valueOf())
+
+toString()
+
+"abc".toString()
+true.toString()
+1.toString() error
+(1).toString()
+1..toString()
+{a:1}.toString() [object Object]
+[1,2,3].toString() "1,2,3"
+["a","b","c"].toString() "a,b,c"
+*/
+
+const num1 = 123;
+const num1_obj = new Number(num1)
+console.log(num1_obj.valueOf())
+console.log(typeof num1_obj.valueOf())
+const str3 = "123";
+const str3_obj = new String(str3)
+console.log(str3_obj)
+console.log(str3_obj.valueOf())
+console.log(typeof str3_obj.valueOf())
+
+
+console.log("123".toString())
+console.log(typeof "123".toString())
+console.log(true.toString())
+console.log(typeof true.toString())
+console.log(1..toString())
+console.log((1).toString())
+console.log(typeof 1..toString())
+console.log({a:1}.toString())
+console.log([1,2,3].toString())
+console.log(["a","b","c"].toString())
+
+/*
+
+js中可以在数值前加上前缀表示不同的进制数
+
+10
+0o10 0O10  八进制
+0x10 0X10  十六进制
+
+number.toString(radix进制) 
+可以转成不同的进制
+
+*/
+
+const num_1 = 3
+console.log(num_1.toString())  // 3
+console.log(num_1.toString(2)) // 11
+console.log(num_1.toString(8)) // 3
+console.log(num_1.toString(16)) // 3
+const num_2 = 12
+console.log(num_2.toString())  // 12
+console.log(num_2.toString(2)) // 
+console.log(num_2.toString(8)) // 14
+console.log(num_2.toString(16)) // c
+
+const num_3 = 0o14
+console.log(num_3.toString(10))  //12
+const num_4 = 0x14
+console.log(num_4.toString(10))  //20
+</script>

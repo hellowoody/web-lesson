@@ -1,0 +1,139 @@
+<script>
+/*
+数组的方法
+
+我们可以把js数组看作栈 push() pop()
+*/ 
+
+const arr1 = [1,2]
+console.log("arr1",arr1)
+arr1.push(3)
+console.log("arr1",arr1)
+let num = arr1.pop()
+console.log("pop num:",num)
+num = arr1.pop()
+console.log("pop num:",num)
+console.log("arr1",arr1)
+
+/*
+我们还可以把js数组看作队列(queue) 
+放元素
+push()       
+unshift()
+
+取元素
+shift() ·
+*/
+
+const arr2 = [];
+
+arr2.push(1);
+console.log("arr2",arr2) // [1]
+arr2.push(2);
+console.log("arr2",arr2) // [1,2]
+num = arr2.shift()       // “出口”取元素
+console.log("num:",num)  // 1
+console.log("arr2",arr2) // [2]
+arr2.push(3);
+console.log("arr2",arr2) // [2,3]
+const length = arr2.unshift(1)         // 从出口放元素
+// const length = arr2.push(1)         // 从入口放元素
+console.log("new length",length)  // 3
+console.log("arr2",arr2) // [1,2,3]  [2,3,1]
+
+/*
+    push方法是往数组中加数据
+    pop方法是获取最后一次调用push方法的那个元素，同时把该元素从数组中删除
+    unshift方法“插队”作用，将参数直接放在“队列”最靠近出口的位置
+
+    shift方法是获取
+                最后一次调用unshift方法的那个元素，同时把该元素从数组中删除
+                如果没有调用过unshift
+                那么最先调用push方法的那个元素，同时把该元素从数组中删除     
+
+
+    当数组只有一个元素是，pop(),shift()都可以取出改唯一的元素        
+*/ 
+
+const arr3 = []
+arr3.push(1)
+arr3.push(2)
+arr3.push(3)
+console.log("arr3",arr3)  // [1,2,3]
+arr3.unshift("-1")        // 4
+console.log("arr3",arr3)  // [-1,1,2,3]
+console.log("arr3.shift()",arr3.shift())  // -1
+console.log("arr3",arr3)  // [1,2,3]
+console.log("arr3.pop()",arr3.pop())      // 3
+console.log("arr3",arr3)  // [1,2]
+console.log("arr3.shift()",arr3.shift())  // 1
+console.log("arr3",arr3)  // [2]
+// console.log("arr3.shift()",arr3.shift())  // 2
+// or
+// console.log("arr3.shift()",arr3.pop())    // 2
+
+
+/*
+数组翻转  reverse()
+
+是否修改原数组？ 会修改原素组
+*/   
+
+const arr4 = [1,2,3]
+const arr5 = [1,"hello",3,true]
+
+console.log("arr4.reverse() ",arr4.reverse() )
+console.log("arr5.reverse() ",arr5.reverse() )
+console.log("arr4 ",arr4 )
+console.log("arr5 ",arr5 )
+
+const str = "i miss u"
+const str_arr = Array.from(str) // []
+str_arr.reverse() 
+const str2 = str_arr.join("")
+console.log("str reverse:",str2)
+
+
+/*
+
+数组排序 sort
+
+sort(callback)
+
+function callback(backend,frontend){
+    return 1，0 是不变换位置的
+          -1   是变换位置的 
+}
+
+*/
+
+const arr6 = [3,1,0,9,2,5,7]
+console.log("arr6 sort",arr6.sort())
+const arr7 = [3,1,0,9,2,5,7,10]
+console.log("arr7 sort",arr7.sort())
+
+const arr7_sort = arr7.sort(function(backend,frontend){
+    if(backend > frontend){
+        return 1
+    }else if(backend < frontend){
+        return -1
+    }else{
+        return 0
+    }
+})
+
+console.log(arr7_sort)
+
+const arr8 = [0, 1, 10, 2, 3, 5, 7, 9]
+console.log(arr8)
+arr8.sort(function(a,b){
+    console.log("a:",a,"b:",b)
+    if(a > b){
+        return 1
+    }else if(a < b){
+        return -1
+    }else {
+        return 0
+    }
+})
+</script>

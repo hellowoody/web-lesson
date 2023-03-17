@@ -1,0 +1,89 @@
+<script>
+/*
+
+布尔类型
+
+Number to Boolean
+
+Boolean(0)   false
+Boolean(!0)  true
+
+只有0转boolean是false
+非0值转boolean都是true
+
+*/
+console.log("0:",Boolean(0))          // false
+console.log("1:",Boolean(1))          // true
+console.log("-1:",Boolean(-1))        // true
+console.log("3.14:",Boolean(3.14))    // true
+console.log("-100:",Boolean(-100))    // true
+
+/*
+String to Boolean
+
+空字符串 为 false
+非空    为  true
+*/
+
+console.log("'':",Boolean(""))
+console.log("123:",Boolean("123"))
+console.log("hello:",Boolean("hello"))
+console.log("'0':",Boolean("0"))
+
+/*
+null / undefined to Boolean 
+
+都是false
+*/
+console.log("null:",Boolean(null))
+console.log("undefined:",Boolean(undefined))
+
+/*
+引用对象（Object对象，Array数组） to Boolean
+
+都为true
+*/
+
+console.log("{}:",Boolean({}))
+console.log("{a:1}:",Boolean({a:1}))
+console.log("new Object():",Boolean(new Object()))
+console.log("[]:",Boolean([]))
+console.log("[1,2,3]:",Boolean([1,2,3]))
+console.log("new Array():",Boolean(new Array()))
+
+
+/*
+逻辑运算符
+
+取反          !
+
+    !true == false
+    !false == true
+    !true === false
+    !false === true
+
+逻辑与(并且)  &&
+
+    expr1 && expr2 && expr3 && ...
+    2>1 && 1==1 && 0.1+0.2==0.3 && ...
+
+    所有表达式为真，结果为真
+    只要有一个为假，结果为假
+
+逻辑或(或者)  ||
+
+    expr1 || expr2 || expr3 || ...
+
+    所有表达式都为假，结果为假
+    只要有一个为真，结果为真
+*/
+
+console.log("!true == false",!true == false)
+console.log("!false == true",!false == true)
+console.log("!true === false",!true === false)
+console.log("!false === true",!false === true)
+console.log("2>1 && 1==1 && 0.1+0.2==0.3",2>1 && 1==1 && 0.1+0.2!=0.3)
+console.log("-0 < +0 || 0.1+0.2==0.3 || !null",-0 < +0 || 0.1+0.2==0.3 || !null)
+
+
+</script>

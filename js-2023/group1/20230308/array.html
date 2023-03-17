@@ -1,0 +1,99 @@
+<script>
+/*
+数组
+
+    1.创建数组
+
+    const arr1 = []                     // []  推荐
+    const arr2 = new Array();           // []
+    const arr3 = new Array(3);          // [empty,empty,empty]
+    const arr4 = new Array("hello");    // ["hello"]
+    const arr5 = new Array("a","b","c") // ["a","b","c"]
+    const arr6 = new Array(1,2,3)       // [1,2,3]
+*/
+
+const arr1 = new Array(5) // 一个参数并且number类型
+console.log("arr1",arr1)
+arr1.fill("")
+console.log("arr1 fill",arr1)
+
+const arr2 = new Array("a") // 一个参数不是number类型
+const arr3 = new Array(true) // 一个参数不是number类型
+const arr4 = new Array(Symbol("a")) // 一个参数不是number类型
+
+console.log(arr2,arr3,arr4)
+
+const arr5 = new Array(1,2)              // 不止一个参数
+const arr6 = new Array("a","b")          // 不止一个参数
+const arr7 = new Array(true,false)       // 不止一个参数
+// 数据：同一类型内存地址连续的数据结构
+const arr8 = new Array(1,"hello",true,{a:1}) // 可以不同类型，不止一个参数
+console.log("arr5",arr5)
+console.log("arr6",arr6)
+console.log("arr7",arr7)
+console.log("arr8",arr8)
+
+/*
+
+数组静态方法of
+
+    Array.of(1,"a",3.12,true)   // [1,"a",3.12,true]
+    Array.of(1)                 // [1] 
+
+*/
+
+const arr9 = Array.of(1,"a",3.12,true) 
+const arr10 = Array.of(1)
+
+console.log("arr9:",arr9)
+console.log("arr10:",arr10)
+
+/*
+数组静态方法from
+Array.from(string,?callback)
+
+    a. Array.from("abc")            // ["a","b","c"]
+    b. Array.from("abc",callback)   // 可以拦截并自定义处理
+        callback回调函数的参数是 "a","b","c"
+        callback回调函数的返回值是 最终生成数组的元素
+*/
+
+const arr11 = Array.from("abc")      // ["a","b","c"]
+const arr11_1 = Array.from("你好")      // ["a","b","c"]
+const arr11_2 = Array.from("你a好")      // ["a","b","c"]
+
+console.log("arr11",arr11)
+console.log("arr11_1",arr11_1)
+console.log("arr11_2",arr11_2)
+
+const arr12 = Array.from("abc",function(item){
+    console.log("item:",item)
+    return "_"
+})
+
+const arr13 = Array.from("abcde",function(item){
+    switch (item) {
+        case "a":
+            return "A"
+        case "b":
+            return "B"
+        case "c":
+            return "C"
+        default:
+            return item
+    }
+})
+
+const arr14 = Array.from("123",function(item){
+    return item**2
+})
+
+console.log("arr12",arr12)
+console.log("arr13",arr13)
+console.log("arr13.join()",arr13.join("")) // ABCde
+console.log("arr14",arr14)
+console.log("arr14",arr14.join(""))
+
+
+
+</script>

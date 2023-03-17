@@ -1,0 +1,130 @@
+<script>
+/*
+    1.对象数组的最后一个元素可以保留都好
+*/
+
+const obj = {
+    a:1,
+    b:2,
+    c:3,
+}
+
+const arr = [
+    1,
+    2,
+    3,
+]
+
+console.log(obj)
+console.log(arr)
+
+/*
+    const o = {
+        a:1,
+        b:2,
+        my_name:3
+    }
+
+    o.a    // 1
+    o["a"] // 1
+    let k = "a"
+    o[k]   // 1
+
+    后两种方法可以将带有空格的key取到
+
+    o["my_name"]  //3
+    k = "my_name"
+    o[k]          //3
+
+*/
+
+const o = {
+        a:1,
+        b:2,
+        "my name!":3
+}
+
+console.log("a:",o.a)
+console.log("a:",o["a"])
+let k = "a"
+console.log("a:",o[k])
+console.log("a:",o["my name!"])
+k = "my name!"
+console.log("a:",o[k])
+
+
+/*
+    如果key的字符串值和value的变量是同名的，那么可以简写成一个
+
+    const a = 1;
+    const b = 2;
+
+    const o2 = {
+        a,
+        b
+    }
+
+    const o2 = {
+        "a":a,
+        "b":b
+    }
+
+    const o2 = {
+        a:a,
+        b:b
+    }
+*/
+
+const a = 1;
+const b = 2;
+
+const o2 = {
+    a,
+    b
+}
+
+console.log("o2",o2)
+
+
+/*
+    const o3 = {
+        a:1,
+        b:2
+    }
+
+    const {a,b} = o3
+
+    console.log("a:",a,"b:",b)
+*/
+const o3 = {
+    a1:1,
+    b1:2
+}
+
+const {a1:a1_1,b1:b1_1} = o3
+// const {a1:a1,b1:b1} = o3
+const {a1,b1} = o3
+
+console.log("a1:",a1_1,"b1:",b1_1)
+console.log("a1:",a1,"b1:",b1)
+
+/*
+    补充几个字符串的方法
+
+    "a".toUpperCase()  转大写
+    "A".toLowerCase()  转小写
+
+    "2023-3-14".split("-")  按参数切割  ["2023","3","14"]
+
+    "2023-3-14".replace(regex,替换的内容)
+
+    "2023-3-14".replace("-",";")  将一个匹配的值替换
+    new RegExp("-","g")
+    /-/
+
+    "2023-3-14".replace(/-/g,";")  将一个匹配的值替换
+    "2023-3-14".replace(new RegExp("-","g"),";")  将一个匹配的值替换
+*/
+
+
+</script>

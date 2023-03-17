@@ -1,0 +1,73 @@
+<script>
+/*
+
+    this 函数作用域的上下文 (难点)
+
+    A. this 指向全局对象window
+    B. this 指向所属对象
+    C. call,apply,bind 强制指定执行上下文
+
+    总结：优先级  C > B > A
+
+    注意：function this 执行不要在声明/定义的代码中去判断
+            从调用的那个一句分析
+*/
+
+var a = 1; // let const 不行 
+let b = 2;
+const c = 3;
+
+function foo(){
+    console.log("a",this.a)
+    console.log("b",this.b)
+    console.log("c",this.c)
+}
+// foo();
+foo.call({a:1.1,b:2.2})
+foo.apply({a:10.1,c:30.3})
+
+function foo1(){
+    let a = 0.1
+    console.log("a",this.a) // window.a
+    console.log("b",this.b)
+    console.log("c",this.c)
+}
+foo1();
+
+const obj = {
+    a:10,
+    b:20,
+    c:30,
+    foo(){
+        console.log("a",this.a)
+        console.log("b",this.b)
+        console.log("c",this.c)
+        // function bar(){
+        //     console.log("bar a",this.a)  // 1
+        //     console.log("bar b",this.b)  // undefined
+        //     console.log("bar c",this.c)  // undefined
+        // }
+        // bar()
+        return function(){
+            console.log("anonymous a",this.a)  // -1
+            console.log("anonymous b",this.b)  
+            console.log("anonymous c",this.c)
+        }
+    }
+}
+
+// const fn2 = obj.foo()
+const fn2 = obj.foo.call({a:-10,b:-20,c:-30})
+fn2.apply({a:-1000,b:-2000,c:-3000})
+// const obj2 = {
+//     a:-1,
+//     b:-2,
+//     c:-3,
+//     fn2,
+// }
+
+// obj2.fn2() 
+
+// const fn = obj.foo
+// fn() // !!!
+</script>

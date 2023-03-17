@@ -1,0 +1,99 @@
+<script>
+/*
+内置对象日期类型 Date
+
+const date = new Date() 
+创建了一个实例对象date
+*/
+
+// const date1 = new Date;  不推荐
+const date = new Date();
+console.log("date:",date)
+
+// 指定某一时间
+const someDate01 = new Date(Date.parse("Mar 1, 2023"))
+const someDate02 = new Date(Date.parse("3/1/2023"))
+const someDate03 = new Date(Date.parse("2023-03-01T17:20:00"))
+
+console.log("someDate01:",someDate01)
+console.log("someDate02:",someDate02)
+console.log("someDate03:",someDate03)
+
+const someDate04 = new Date("Mar 1, 2023")
+const someDate05 = new Date("3/1/2023")
+const someDate06 = new Date("2023-03-01T17:20:00")
+
+console.log("someDate04:",someDate04)
+console.log("someDate05:",someDate05)
+console.log("someDate06:",someDate06)
+
+// const someDate07 = new Date(year,month(0开始),day,h,m,s,ms)
+const someDate07 = new Date(2023,1,28,16,8,20,200)
+const someDate08 = new Date(2023,1)
+const someDate09 = new Date(2023,1,28,16,8)
+console.log("someDate07:",someDate07)
+console.log("someDate08:",someDate08)
+console.log("someDate09:",someDate09)
+
+/*
+作为了解
+1.GMT 和 UTC 的时差是8小时
+2.new Date(year,month(0开始),day,h,m,s,ms)
+  其实是 new Date(Date.UTC(year,month(0开始),day,h-8,m,s,ms))
+*/
+const d1 = new Date(Date.UTC(2023,2))
+const d1_1 = new Date(Date.UTC(2023,1,28,16))
+console.log("d1 UTC->GMT:",d1)
+console.log("d1_1 UTC->GMT:",d1_1)
+const d2 = new Date(Date.UTC(2023,2,8,9,0,0))
+console.log("d2 UTC->GMT:",d2)
+
+/*
+静态方法是 不需要new （实例化）就可以直接用的方法
+Date.now() 返回此刻到1970-1-1 00:00:00之间的毫秒差
+
+一般用它计算某一个方法的运行时间
+*/ 
+
+
+function loop(){
+    for(let i =0;i<50000000 ; i++){
+
+    }
+}
+
+let start = Date.now()
+loop();
+let end = Date.now()
+console.log(`loop()执行了${end-start}毫秒`)
+console.log(`loop()执行了${(end-start)/1000}秒`)
+
+
+/*
+单独获取年月日时分秒
+
+const date = new Date()
+
+date.getFullYear()
+date.getMonth()   从0开始
+date.getDate()   一个月中的几号  [1,31]
+date.getDay()   一个周中的星期几  周一是1 周日是0
+
+date.getHours()
+date.getMinutes()
+date.getSeconds()
+*/
+
+console.log(date.getFullYear())
+console.log(date.getMonth())
+console.log(date.getDate())
+console.log(date.getDay())
+console.log(date.getHours())
+console.log(date.getMinutes())
+console.log(date.getSeconds())
+
+date.setDate(26)
+console.log("date:",date)
+console.log("day:",date.getDay())
+
+</script>

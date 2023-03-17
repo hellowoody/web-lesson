@@ -1,0 +1,179 @@
+<script>
+/*
+对象 Object
+
+声明对象
+a.对象字面量 （推荐）
+    const obj = {
+        name:"123"
+    }
+    obj.a = 1;
+    obj.b = 2
+b.构造函数创建实例对象
+    const obj = new Object()
+    const obj = new Object （不推荐）
+    Object.defineProperty(obj,"a",{
+        configurable:true,
+        writable:true,
+        enumerable:true,
+        value:1
+    })
+    Object.defineProperty(obj,"b",{
+        configurable:true,
+        writable:true,
+        enumerable:true,
+        value:2
+    })
+
+*/
+
+const o1 = {}
+o1.a = 1
+const o2 = new Object()
+o2.b = 2
+// const o2 = new Object
+console.log("o1:",o1)
+console.log("o2:",o2)
+
+// Object.defineProperty(目标对象,属性名字,配置对象)
+Object.defineProperty(o2,"c",{
+    value:3,
+    writable:true,
+    enumerable:true,
+    configurable:true,
+    
+})
+
+console.log("o2:",o2)
+o2.b = 20
+o2.c = 30 // 不报错 也不生效
+console.log("o2:",o2)
+
+for(const key in o2){
+    console.log(key)
+}
+
+delete o1.a
+console.log("o1:",o1)
+delete o2.b
+delete o2.c
+console.log("o2:",o2)
+
+/*
+JS中的对象就是一组数据和方法的集合
+
+const obj = {
+    a:1,
+    b:[1,2,3],
+    c:true,
+    d:{name:"张三"},
+    e:function(){
+        console.log("this is func")
+    }  
+}
+*/
+
+const obj = {
+    a:1,
+    b:[1,2,3],
+    c:true,
+    d:{name:"张三"},
+    e:function(){
+        console.log("this is func")
+    }  
+}
+
+console.log("obj:",obj)
+
+/*
+函数 vs 构造器/构造函数
+官方并没有给出严格的界线，但约定俗成的鉴别方式是看首字母是否大写
+
+a.首字母小写的函数就是普通函数
+
+    普通函数就是直接调用
+
+    function sum(a,b){
+        return a+b
+    }
+
+    sum(1,2)  // 3
+
+b.首字母大写的函数就“当成”构造函数
+
+    构造函数需要通过new操作符，创建实例对象
+    // Person构造器
+    function Person(){
+        this.a = 1
+        this.b = 2
+        this.c = function(){
+            console.log("我是一个方法")
+        }
+    }
+
+    const p = new Person() // 自定义的对象
+    console.log("p:",p)
+
+
+*/
+
+function Person(){
+    this.a = 1
+    this.b = 2
+    this.c = function(){
+        console.log("我是一个方法")
+    }
+}
+
+const p = new Person() // 自定义的对象
+console.log("p:",p)
+console.log("p.a",p.a)
+p.c()
+
+/*
+注意：定义构造器时，不要使用return
+
+function Foo(){
+    this.a = 1
+    this.b = 2
+
+    return {
+        name:123
+    }
+}
+
+当你写return时，new Foo()会当成普通函数进行调用
+*/
+
+function Foo(){
+    this.a = 1
+    this.b = 2
+    return {
+        name:123
+    }
+}
+
+const foo = new Foo()
+console.log("foo:",foo)
+
+/*
+三个重要的概念
+
+构造器contructor： 首字母大写的函数
+    function Foo(){
+
+    }
+实例instance：    new 构造器 的返回值
+    const foo = new Foo()
+    foo 就是实例
+原形prototype：   构造器的一个属性 构造器.prototype
+    Foo.prototype
+*/
+
+function Bar(){
+
+}
+console.log("Bar的原形:",Bar.prototype)
+
+console.log(Bar.prototype.constructor === Bar)
+</script>

@@ -1,0 +1,52 @@
+<script>
+/*
+ 正则表达式 Regex Expression
+ 根据正则的语法可以达到很方便的模糊查询
+
+ 正则表达式的声明
+
+    let express = /正则的语法/宽容度 ;
+    
+    let express = /pattern/flags ;
+    let express = new RegExp(pattern_str,flags)
+
+    flags 是可传可不传
+
+    flags
+        g - global;     (掌握)
+        i - 大小写不敏感  (了解)
+        m - 支持换行    
+        y- 粘附模式 lastIndex
+        u - unicode
+        s 
+*/ 
+
+const pattern1 = /l/g;
+
+let res;
+while(res = pattern1.exec("hello")){
+    console.log(res)
+}
+
+const pattern2 = /l/;
+
+console.log("s",pattern2.exec("hello"))
+console.log("s",pattern2.exec("hello"))
+console.log("s",pattern2.exec("hello"))
+
+const pattern3 = new RegExp("l","g")
+
+while(res = pattern3.exec("hello")){
+    console.log("new",res)
+}
+
+const target = "===1===="
+
+const pattern4 = /\d/
+console.log("推荐",pattern4.exec(target)) 
+const pattern5 = new RegExp("\\d")
+console.log("构造函数",pattern5.exec(target)) 
+
+
+
+</script>

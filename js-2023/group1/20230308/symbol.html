@@ -1,0 +1,58 @@
+<script>
+/*
+常用的内置符号 （有很多，这里只介绍迭代内置符号）
+
+for-of 遍历 数组 
+
+问题：为什么只能遍历 数组
+
+因为ES 内部提供了一个变量名称 Symbol.iterator
+
+数组对象有Symbol.iterator属性，所以可以for-of
+
+for-of 强行遍历 对象 {}
+
+
+for-in
+    enumable:true
+for-of
+    Symbol.iterator
+
+*/
+
+const arr = [1,2,3]
+console.log(arr[Symbol.iterator])
+const it = arr[Symbol.iterator]()
+console.log(it)
+console.log(it.next())
+console.log(it.next())
+console.log(it.next())
+console.log(it.next())
+console.log(it.next())
+console.log(it.next())
+console.log(it.next())
+
+
+const obj = {}
+console.log(obj[Symbol.iterator])
+obj[Symbol.iterator] = function(){
+    let count = 5
+    return {
+        next:function(){
+            if(count > 0){
+                return {value:count--,done:false}
+            }else{
+                return {done:true}
+            }
+        }
+    }
+}
+
+for(const _ of obj){
+    console.log(_)
+}
+
+
+
+
+</script>

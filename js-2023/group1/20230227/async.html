@@ -1,0 +1,69 @@
+<script>
+/*
+    两个定时器中，日常我们用setTimeout比较多
+
+    用setTimeout比较多的原因是因为它可以模拟异步事件
+
+    main  主事件/主函数
+        let a = 100;
+        console.log(a);
+        
+    async 异步事件/异步函数
+        setTimeout()
+        不阻塞
+        主事件全部执行完之后，再会执行异步事件
+
+    <script>
+        主事件/主函数 main event    
+    <\/script>
+*/  
+
+// console.log("start")
+// setTimeout(function(){
+//     console.log("async event")
+// },1500)
+// console.log("end")
+
+/*
+start
+end
+async event
+*/
+
+// setTimeout(function(){
+//     console.log(1000)
+// },3000)
+// console.log("start")
+// setTimeout(function(){
+//     console.log(2000)
+// },1500)
+// setTimeout(function(){
+//     console.log(3000)
+// },500)
+// console.log("end")
+// setTimeout(function(){
+//     console.log(4000)
+// },1000)
+
+/*
+start
+end
+3000
+4000
+2000
+1000
+*/
+
+console.log("start")
+setTimeout(function(){
+    console.log(1000)
+},0)
+console.log("end")
+
+/*
+start
+end
+1000 
+*/
+
+</script>

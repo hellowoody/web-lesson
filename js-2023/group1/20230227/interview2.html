@@ -1,0 +1,71 @@
+<script>
+/*
+经典面试题
+一道包含var,let,作用域,代码块,异步事件知识点的面试题
+
+for(var i = 0 ; i < 3; i++){
+    console.log("i:",i);
+}
+
+i:0
+i:1
+i:2
+
+for(let j = 0 ; j < 3; j++){
+    console.log("j:",j);
+}
+
+j:0
+j:1
+j:2
+
+*/ 
+for(let i = 0 ; i < 3; i++){ 
+    setTimeout(function(){
+        console.log("i:",i)  // 快照
+    },100)
+}
+
+/*
+i:0
+i:1
+i:2
+*/
+// loop1
+{
+    let i = 0;
+    setTimeout(function(v){
+        let t = v
+        console.log("t:",t) // 快照 
+    },100,i)
+    i = i + 1;
+    // return i
+}
+// loop2
+{
+    let i = 1;
+    setTimeout(function(v){
+        let t = v
+        console.log("t:",t)  
+    },100,i)
+    i = i + 1;
+    // return i
+}
+// loop3
+{
+    let i = 2;
+    setTimeout(function(v){
+        let t = v
+        console.log("t:",t)
+    },100,i)
+    i = i + 1;
+    // return i
+}
+
+/*
+1
+2
+3
+*/
+
+</script>

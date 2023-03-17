@@ -1,0 +1,89 @@
+<script>
+
+function sc1(key){
+    switch (key) {
+        case 10:
+            console.log("十")
+            break;
+        case 20:
+            console.log("贰十")
+            break;
+        default:
+            console.log("其他")
+            break;
+    }
+}
+
+sc1(10)
+
+
+function checkNumOrOp(v){
+    switch (v) {
+        case "+":
+        case "-":
+        case "*":
+        case "/":
+            console.log("输入的操作符号")
+            break;
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+            console.log("输入0-9")
+            break;
+        default:
+            console.log("非法输入")
+            break;
+    }
+}
+
+checkNumOrOp("*")
+checkNumOrOp(9)
+checkNumOrOp(1)
+checkNumOrOp("_")
+checkNumOrOp(0.1)
+
+/*
+if(这里的表达式==，会帮我们自动转型){
+
+}
+
+if(1){
+    console.log(1000)
+}
+if("hello"){
+    console.log(2000)
+}
+
+switch(这里的表达式===，不会帮我们自动转型){}
+*/
+
+
+
+function checkNumOrOp2(v){
+    switch (true) {
+        case v === "+" || v === "-" || v === "*" || v==="/":
+            console.log("输入的操作符号")
+            break;
+        case v >=0 && v <=9:
+            console.log("输入0-9")
+            break;
+        default:
+            console.log("非法输入")
+            break;
+    }
+
+}
+
+checkNumOrOp2("*")
+checkNumOrOp2(9)
+checkNumOrOp2(1)
+checkNumOrOp2("_")
+checkNumOrOp2(0.1)
+</script>

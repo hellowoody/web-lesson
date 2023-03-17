@@ -1,0 +1,29 @@
+<script>
+for(let i = 0 ; i< 3 ; i++){
+    setTimeout(function(){
+        console.log("for i:",i)
+    },0)
+}
+
+{
+    let i = 0;
+    setTimeout(function(v){
+        console.log("v:",v)
+    },0,i)
+    i = i + 1
+}
+{
+    let i = 1;
+    setTimeout(function(v){
+        console.log("v:",v)
+    },0,i)
+    i = i + 1
+}
+{
+    let i = 2;
+    setTimeout(function(v){
+        console.log("v:",v)
+    },0,i)
+    i = i + 1
+}
+</script>

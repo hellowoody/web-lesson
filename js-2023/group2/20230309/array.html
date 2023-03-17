@@ -1,0 +1,107 @@
+<script>
+/*
+const arr = [1,2,3]
+
+arr.join();
+*/
+
+const arr = [1,2,3]
+console.log('arr.join("")',arr.join("")) // 一定要传一个参数
+console.log('arr.join(",")',arr.join(",")) 
+console.log('arr.join(";")',arr.join(";")) 
+console.log('arr.join("+++")',arr.join("+++")) 
+console.log('arr.toString()',arr.toString())
+
+/*
+
+arr.indexOf(需要匹配的字符,?从哪个索引位置开始找);
+
+const date = "2023-03-09"
+//            01234567
+const arr2 = Array.from(date)
+arr2.indexOf("-") 返回的是从左数，第一次出现字符“-”的索引值
+
+第二个参数不传时，默认为0
+如果找不到目标值 返回-1
+
+*/
+
+const date = "2023-03-09"
+const arr2 = Array.from(date)
+console.log('arr2.indexOf("-")',arr2.indexOf("-"))     // 4
+console.log('arr2.indexOf("a")',arr2.indexOf("a"))     // -1
+console.log('arr2.indexOf("-",5)',arr2.indexOf("-",5)) // 7
+let idx = 0;
+while(1){
+    idx = arr2.indexOf("0",idx) // 1  5  8
+    console.log("target 0 index:",idx)
+    if(idx >= 0){
+        idx++
+    }else{
+        break;
+    } 
+}
+
+console.log('date.indexOf("-")',date.indexOf("-"))     // 4
+console.log('date.indexOf("a")',date.indexOf("a"))     // -1
+console.log('date.indexOf("-",5)',date.indexOf("-",5)) // 7
+idx = 0;
+while(1){
+    idx = date.indexOf("0",idx) // 1  5  8
+    console.log("target 0 index:",idx)
+    if(idx >= 0){
+        idx++
+    }else{
+        break;
+    } 
+}
+
+/*
+    数组实例.length 获取数组的长度
+    字符串.length   获取字符串的长度
+*/
+
+console.log("arr2.length",arr2.length)
+console.log("date.length",date.length)
+
+/*
+lastIndexOf() 和 indexOf() 的使用差不多，只不过是从右往左查找
+
+lastIndexOf 的第二个参数如果不传，默认时数组的长度-1（arr.length-1）
+
+arr.lastIndexOf("3")
+
+"2023-03-09"
+
+*/
+
+
+console.log('arr2.lastIndexOf("-")',arr2.lastIndexOf("-"))     // 7
+console.log('arr2.lastIndexOf("a")',arr2.lastIndexOf("a"))     // -1
+console.log('arr2.lastIndexOf("-",5)',arr2.lastIndexOf("-",5)) // 4
+idx = arr2.length-1;
+while(1){
+    idx = arr2.lastIndexOf("0",idx) // 8 5 1
+    console.log("target 0 index:",idx)
+    if(idx >= 0){
+        idx--
+    }else{
+        break;
+    } 
+}
+
+console.log('date.lastIndexOf("-")',date.lastIndexOf("-"))     // 7
+console.log('date.lastIndexOf("a")',date.lastIndexOf("a"))     // -1
+console.log('date.lastIndexOf("-",5)',date.lastIndexOf("-",5)) // 4
+idx = date.length - 1;
+while(1){
+    idx = date.lastIndexOf("0",idx) // 8 5 1
+    console.log("target 0 index:",idx)
+    if(idx >= 0){
+        idx--
+    }else{
+        break;
+    } 
+}
+
+</script>

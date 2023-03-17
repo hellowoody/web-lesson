@@ -1,0 +1,77 @@
+<script>
+/*
+“继承”
+
+ES5 语法
+function Animal(){
+    this.heart = 90
+}
+
+function Dog(){
+    this.swimming = function(){
+        console.log("i am swimming")
+    }
+}
+
+Dog.prototype = new Animal()        // 将Animal的属性/方法给了Dog
+Dog.prototype.constructor = Dog     // 让原型链完整
+
+const dog = new Dog()
+console.log(dog)
+console.log(dog.heart)
+console.log(dog.swimming())
+
+*/
+
+// ES6
+
+class Animal {
+    constructor(){
+        this.heart = 90 // funciton 代码块中的代码
+    }
+}
+
+class Dog extends Animal {
+    constructor(){
+        console.log("======")
+        super() // constructor写了 那么super必写 
+        this.name = "123"
+    }
+
+    swimming(){
+        console.log("i am swimming")
+    }
+
+}
+
+const dog = new Dog()
+console.log(dog)
+console.log(dog.heart)
+console.log(dog.name)
+console.log(dog.swimming())
+
+/*
+
+class 语法
+
+function Foo(p1,p2){
+    this.a = p1
+    this.b = p2
+    this.fn = function(){
+        console.log(1000)
+    }
+}
+
+class Foo {
+    constructor(p1,p2){
+        this.a = p1
+        this.b = p2
+    }
+
+    fn(){
+         console.log(1000)
+    }
+}
+*/ 
+
+</script>

@@ -1,0 +1,29 @@
+<script>
+/*
+
+js中Array.sort()的内部排序算法
+
+    chrome V8引擎 老版本的算法algorithm  插入排序 和 快速排序
+    老版本V8引擎的源码地址：https://github.com/v8/v8/blob/ad82a40509c5b5b4680d4299c8f08d6c6d31af3c/src/js/array.js
+
+    chrome V8引擎 v7版本之后的算法       TimSort
+    2023年V8引擎的源码地址：https://github.com/v8/v8/blob/main/third_party/v8/builtins/array-sort.tq
+
+    ArrayTimSortImpl
+        CountAndMakeRun() callback
+        BinaryInsertionSort() callback
+*/ 
+
+const arr8 = [0, 1, 10, 2, 3, 5, 7, 9]
+console.log(arr8)
+arr8.sort(function(a,b){
+    console.log("a:",a,"b:",b)
+    if(a > b){
+        return 1
+    }else if(a < b){
+        return -1
+    }else {
+        return 0
+    }
+})
+</script>

@@ -1,0 +1,62 @@
+<script>
+/*
+    arrow function
+
+    什么是箭头函数，使用“胖箭头” => 定义的函数就叫做箭头函数
+
+    箭头函数的声明方法只有函数表达式
+
+    缺点：没arguments，super
+*/
+
+function sum(a,b){
+    return a+b
+}
+
+const sum1 = function(a,b){
+    return a+b
+}
+
+const sum_arrow = (a,b) => {
+    return a+b
+}
+
+console.log("sum_arrow(1,2)",sum_arrow(1,2)) 
+
+// 箭头函数的函数体， 有且只有一句表达式，而且还是return，可以省略花括号和return
+
+const sum_arrow_sugar = (a,b) => a+b
+
+console.log("sum_arrow_sugar(10,20)",sum_arrow_sugar(10,20)) 
+
+
+// 箭头函数的参数有且仅有一个，可以省略小括号
+
+const print = (msg) => {
+    console.log(msg)
+}
+
+const print2 = (msg) => console.log(msg)
+
+const print3 = msg => console.log(msg)
+
+print(1000)
+print2(2000)
+print3(3000)
+
+const fn = a => b => c => d => a+b+c+d
+
+const fn2 = function(a){
+    return function(b){
+        return function(c){
+            return function(d){
+                return a+b+c+d
+            }
+        }
+    }
+}
+
+console.log("fn(1)(2)(3)(4)",fn(1)(2)(3)(4))
+console.log("fn2(1)(2)(3)(4)",fn2(1)(2)(3)(4))
+
+</script>

@@ -1,0 +1,125 @@
+<script>
+/*
+数组的方法
+
+push() pop() shift() unshift()
+
+
+我们可以把js数组看作栈 push() pop()
+*/ 
+
+const arr1 = [1,2]
+
+console.log("arr1",arr1); // [1,2]
+
+console.log(arr1.push(3)) // 3
+console.log(arr1.push(4)) // 4
+
+console.log("arr1",arr1); // [1,2,3,4]
+
+let item = arr1.pop()     // 4
+console.log("item:",item)  // 4
+console.log("arr1",arr1); // [1,2,3]
+
+/*
+
+我们还可以把js数组看作队列(queue) 
+    放元素
+        push()       
+        unshift()
+
+    取元素
+        shift() 
+
+*/
+
+const arr2 = []
+arr2.push(1)
+arr2.push(2)
+console.log("arr2",arr2) // [1,2]
+
+item = arr2.shift() // 1
+console.log("item",item)
+console.log("arr2",arr2)
+// arr2.push(-1)
+arr2.unshift(-1)
+console.log("arr2",arr2)
+
+// item = arr2.shift() // 2
+// or
+// item = arr2.pop() // 2
+
+/*
+    push方法是往数组中加数据 [b,c,d] d
+    pop方法是获取最后一次调用push方法的那个元素，同时把该元素从数组中删除
+    unshift方法“插队”作用，将参数直接放在“队列”最靠近出口的位置
+
+    shift方法是获取
+                最后一次调用unshift方法的那个元素，同时把该元素从数组中删除
+                如果没有调用过unshift
+                那么最先调用push方法的那个元素，同时把该元素从数组中删除     
+
+
+    当数组只有一个元素是，pop(),shift()都可以取出改唯一的元素        
+*/
+
+const arr3 = []
+arr3.push(1)
+arr3.push(2)
+arr3.push(3)
+
+console.log("arr3",arr3) // [1,2,3]
+arr3.unshift(4)          // [4,1,2,3]
+console.log("arr3",arr3) // [4,1,2,3]
+console.log("arr3.shift()",arr3.shift())  //4
+console.log("arr3",arr3) // [1,2,3]
+console.log("arr3.pop()",arr3.pop())  // 3
+console.log("arr3",arr3) // [1,2]
+console.log("arr3.shift()",arr3.shift())  //1
+console.log("arr3",arr3) // [2]
+
+/*
+练习题
+const str = "hell word"
+如何通过数组的方法转成 "hello world"
+*/ 
+
+const str = "hell word"
+const str_arr = Array.from(str)
+console.log(str_arr)
+let step = 4
+while(step > 0){
+    str_arr.shift()
+    step--
+}
+console.log(str_arr)
+for(const item of Array.from("olleh")){
+    str_arr.unshift(item)
+}
+console.log(str_arr)
+
+str_arr.pop()
+console.log(str_arr)
+str_arr.push("l")
+str_arr.push("d")
+console.log(str_arr.join(""))
+
+/*
+数组翻转  reverse()
+
+是否修改原数组？ 
+会修改原数组
+*/ 
+
+const arr4 = [1,2,3]
+const arr5 = [1,"hello",3,true]
+console.log("arr4.reverse() ",arr4.reverse() )
+console.log("arr5.reverse() ",arr5.reverse() )
+console.log("arr4 ",arr4 )
+console.log("arr5 ",arr5 )
+
+const s = "i miss u";
+const s_arr = Array.from(s)
+s_arr.reverse()
+console.log(s_arr.join("")) 
+</script>

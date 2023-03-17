@@ -1,0 +1,193 @@
+<script>
+/*
+循环/迭代
+
+1.for-loop
+
+    exp1 会执行一次初始化
+    exp2 一个返回boolean类型的表达式，false时退出循环
+    exp3 每次循环最后一步的操作
+    for(exp1;exp2;exp3){
+
+    }
+  
+*/
+
+for(let i = 0 ; i < 10 ; i++){
+    console.log("i:",i)
+}
+for(let j = 0 ; j < 10 ; ){
+    console.log("j:",j)
+    if(j < 5){
+        j++
+    }else{
+        j += 2
+    }
+}
+
+/*
+2.while循环
+
+a.入口条件循环
+
+    while(exp){
+
+    }
+
+b.出口条件循环
+
+    do {
+
+    } while(exp)
+
+*/ 
+
+// 0 1 2 3 4
+let a = 0
+let count = 1
+while(a < 4){
+    console.log(`loop${count} a:`,a)
+    a = Math.floor(Math.random()*5)
+    count++
+}
+
+let b = 5
+let step = 1
+do {
+    console.log(`loop${step} b:`,b)
+    // b = Math.floor(Math.random()*5)
+    step++
+} while(b < 4)
+
+
+/*
+结论： while 推荐使用入口条件循环
+1.入口条件循环 和 for-loop 是可以互相替换
+2.出口条件循环 无论退出循环的条件满不满足，都会执行一遍代码块中的代码
+*/
+
+for(let m = 0 ; m< 3 ; m++){
+    console.log("m:",m)
+}
+
+let n = 0;
+while(n<3){
+    console.log("n:",n)
+    n++
+}
+
+/*
+无限循环
+
+for(;;){
+
+}
+
+while(true){
+
+}
+
+*/
+
+/*
+for-of 和 for-in
+
+for-of 可以很方便的循环数组的元素
+for-in 可以很方便的循环“对象”的属性(key)
+
+*/ 
+
+const arr = ["a","b","c"]
+for(let i = 0 ; i < arr.length ; i++){
+    console.log("item:",arr[i])
+}
+
+for(let item of arr){
+    console.log("for-of item:",item)
+}
+for(const item of arr){
+    console.log("for-of const item:",item)
+}
+
+const obj = {
+    a:1,
+    b:.14,
+    name:"zhangsan"
+}
+
+for(const key in obj){
+    console.log(`obj的key：${key} value:${obj[key]}`)
+}
+
+for(const key in arr){
+    console.log(`arr的index：${key} item:${arr[key]}`)
+}
+
+/*
+for-in 数组和对象都可以循环
+
+for-of 只能循环数组
+*/
+
+
+/*
+
+思考题：
+
+for-loop
+while
+for-in
+for-of
+这四种循环谁的效率更块？
+
+*/
+
+// 第一步 创建一个大数组
+// const array = new Array(50000000)
+// array.fill(0)
+// const arr2 = []
+// for(let i = 0 ; i < 500000000 ;i++){
+//     arr2.push(0)
+// }
+// 第二步 Date.now() 获取开始时间戳
+// const start1 = Date.now()
+// 第三步 循环
+// for(let i = 0 ; i<array.length ;i++){}
+// for(const t of array){}
+// for(const t in array){}
+// 第四步 Date.now() 获取结束时间戳
+// const end1 = Date.now()
+// 第五步 两个时间戳相减得出运行时间
+// console.log(`for-loop duration ${(end1-start1)/1000} s`)
+
+const array = new Array(100000)
+array.fill(0)
+
+
+const start4 = Date.now()
+for(let i in array){}
+const end4 = Date.now()
+console.log(`for-in duration ${(end4-start4)/1000} s`)
+
+const start3 = Date.now()
+for(const i of array){}
+const end3 = Date.now()
+console.log(`for-of duration ${(end3-start3)/1000} s`)
+
+const start1 = Date.now()
+for(let i = 0 ; i<array.length ;i++){}
+const end1 = Date.now()
+console.log(`for-loop duration ${(end1-start1)/1000} s`)
+
+const start2 = Date.now()
+let i = 0 ; 
+while(i<array.length){
+    i++
+}
+const end2 = Date.now()
+console.log(`while duration ${(end2-start2)/1000} s`)
+
+
+
+
+</script>

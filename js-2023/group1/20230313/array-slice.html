@@ -1,0 +1,62 @@
+<script>
+/*
+    切片slice 也不会改变原数组
+             新数组作为slice结果返回
+    
+    slice(startIndex,?endIndex)  [startIndex,endIndex)
+    当只传第一个参数时，浏览器提我们传了第二个参数（arr.length）
+
+    数学中的范围  [1，5)
+    slice(1)  [1,5) [开始位置，数组的长度)  index  1,2,3,4
+
+    slice(1,3) [1,3) 1,2  [b,c]
+
+    slice(-1)  [length-1,lenght)  [4,5)  4  
+
+    slice(-4,-2)  [length-4,lenght-2)  [1,3)  1 2  
+
+    注意， 参数1 < 参数2，如果时大于等于，返回空字符串
+*/ 
+
+const arr = ["a","b","c","d","e"]
+//             0   1   2   3   4
+
+console.log("slice(1)",arr.slice(1))              // [b,c,d,e]
+console.log("slice(1,5)",arr.slice(1,5))          // [b,c,d,e]
+console.log("slice(1,5)",arr.slice(1,arr.length)) // [b,c,d,e]
+
+console.log("slice(1,3)",arr.slice(1,3))          // [b,c]
+
+console.log("slice(-1)",arr.slice(1))          // [e]
+console.log("slice(4,5)",arr.slice(4,5))       // [e]
+console.log("slice(4)",arr.slice(4))           // [e]
+
+console.log("slice(-4,-2)",arr.slice(-4,-2))           // [b,c]
+console.log("slice(-4,-2)",arr.slice(-4,-2))           // [b,c]
+console.log("slice(1,3)",arr.slice(1,3))               // [b,c]
+
+console.log("slice(3,1)",arr.slice(3,1))               // []
+console.log("slice(-2,-4)",arr.slice(-2,-4))           // []
+console.log("slice(2,2)",arr.slice(2,2))               // []
+
+
+/*
+    [1,2,3].length
+    "123".length
+    
+    字符串的截取 substring(startIndex,endIndex)  [startIndex,endIndex）
+               substr(startIndex,count)  // 不维护了
+*/
+
+const str = "hello 世界"
+//           0123456 7
+
+
+console.log("str.substring(4,7)",str.substring(4,7))     // o 世
+console.log(str)
+console.log("str.substring(-4,-1)",str.substring(-4,-1)) // [0,0) ""
+console.log("str.substring(-4)",str.substring(-4))       // [0,8) hello 世界
+console.log("substr(4,3)",str.substr(4,3))               // o 世
+
+
+</script>

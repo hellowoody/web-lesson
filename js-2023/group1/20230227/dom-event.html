@@ -1,0 +1,43 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>dom event</title>
+        <script>
+
+            function fn1(){
+                console.log("this is fn1")
+            }
+            
+        </script>
+    </head>
+    <body>
+        <!-- <button onxxx="不是字符串，可以看成一个函数作用域">click me</button> -->
+        <!-- <button onclick="console.log(1000);fn1();console.log(2000);">click me</button> -->
+        <!-- 浏览器在渲染button时 不会值执行=号右侧的内容的 -->
+        <button onclick="fn1();">click me</button>
+        <button>btn2 click me</button>
+        <br>
+        <input oninput="input(this);" onchange="change(this);">
+
+    </body>
+</html>
+<script>
+// window.document
+// document.querySelector("css选择器")
+// nth-child nth-of-type
+const btn = document.querySelector("button:nth-child(2)")
+// console.log("btn:",btn)
+// btn.addEventListener("事件名称",callback)
+btn.addEventListener("click",function(){
+    console.log("fn2!!!")
+})
+
+function input(e){
+    // console.log("e:",e)
+    console.log("input:事件句柄的value:",e.value)
+}
+
+function change(e){
+    console.log("change:e:",e.value)
+}
+</script>

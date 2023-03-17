@@ -1,0 +1,45 @@
+<script>
+/*
+    两种平铺/展开 flat
+
+    flat() 一般适用于二维数组   (不常用)
+        const arr5 = [1,2,3]
+        arr5.push(append_part)
+        console.log(arr5.flat())
+
+    ... 三个点(数组的左侧) 一般用于传参数  （比较常用）
+*/
+
+const append_part = [4,5,6]
+append_part.push([7,8,9])
+const arr = [1,2,3]
+arr.push(append_part)    // [1,2,3,[4,5,6,[7,8,9]]] 
+console.log(arr.flat()) // [1,2,3,4,5,6,[7,8,9]]
+
+const arr2 = [1,2,3]
+console.log(arr2[0],arr2[1],arr2[2]) // 1 2 3
+
+console.log(...arr2)
+
+const arr3 = [1,2,3,[4,5,6]]
+console.log(...arr3)
+
+
+/*
+数组.concat(数组)
+等价于
+push(...数组)
+
+注意：concat 不改变数组
+     push   改变原数组
+*/ 
+
+const arr4 = [1,2,3]
+console.log("arr4:",arr4.concat([4,5,6]))
+
+const arr5 = [1,2,3]
+arr5.push(...[4,5,6])  // arr5.push(4,5,6)
+console.log("arr5:",arr5)
+
+
+</script>

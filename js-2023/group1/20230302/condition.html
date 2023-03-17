@@ -1,0 +1,166 @@
+<script>
+// if-else-if
+
+const age = Math.floor(Math.random()*100+1)  // [1,101)
+
+if(age <= 20){
+    console.log(age,"少年")
+}else if(age > 20 && age <= 40){
+    //  20 < age <= 40
+    console.log(age,"青壮年")
+}else if(age > 40 && age <= 60){
+    console.log(age,"中年")
+}else{
+    console.log(age,"老年")
+}
+
+switch (true) {
+    case age <= 20:
+        console.log("sc:",age,"少年")
+        break;
+    case age > 20 && age <= 40:
+        console.log("sc:",age,"青壮年")
+        break;
+    case age > 40 && age <= 60:
+        console.log("sc:",age,"中年")
+        break;
+    default:
+        console.log("sc:",age,"老年")
+        break;
+}
+
+/*
+if-else-if 语句虽然是多条件判断语句
+但是当条件分支过多时，写的代码“很难看”，不太容易维护
+所以，一般多条件在5个分支以内的可以用if-else-if
+如果分支更多，推荐用下面的switch-case语句
+*/
+// [63，72]
+const num = Math.floor(Math.random()*6+65);
+
+// switch 旁边的小括号不会将返回值不是boolean自动转成boolean
+// break 退出swtich-case语句
+switch (num) {
+    case 65:
+        console.log("A")
+        break;
+    case 66:
+        console.log("B")
+        break;
+    case 67:
+        console.log("C")
+        break;
+    case 68:
+        console.log("D")
+        break;
+    case 69:
+        console.log("E")
+        break;
+    case 70:
+        console.log("F")
+        break;
+    default:
+        console.log("其他字符")
+        break;
+}
+
+/*
+很容易发现，在标准形式下的switch-case和if-else语句并不能互换
+因为标准形式下的switch-case中的分支是判断是否等于某个目标值
+而不是某一个范围
+
+那么switch-case可以解决判断某一范围的问题么
+*/
+
+// +-*/ 0-9
+
+function checkChar(v){
+    switch (v) {
+        // "+" || "-" || "*" || "/"
+        case "+":
+        case "-":
+        case "*":
+        case "/":
+            console.log("输入的运算符")
+            break;
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+            console.log("输入的是0～9")
+            break;
+        default:
+            console.log("非法输入")
+            break;
+    }
+}
+
+checkChar(0)
+checkChar(2)
+checkChar("+")
+checkChar("/")
+checkChar("a")
+
+
+function checkChar2(v){
+    // switch (true)
+    switch (true) {
+        // "+" || "-" || "*" || "/"
+        case v === "+" || v === "-" || v ===  "*" || v === "/":
+            console.log("输入的运算符")
+            break;
+        case v >= 0 && v<=9 :
+            console.log("输入的是0～9")
+            break;
+        default:
+            console.log("非法输入")
+            break;
+    }
+}
+console.log("===========")
+checkChar2(0)
+checkChar2(2)
+checkChar2("+")
+checkChar2("/")
+checkChar2("a")
+
+/*
+三元表达式
+
+if(判断表达式){
+    语句1;
+}else{
+    语句2;
+}
+
+判断表达式 ? 语句1 : 语句2;
+
+*/ 
+
+const num2 = Math.floor(Math.random()*2)
+if(num2 === 1){
+    console.log("随机数为1")
+}else{
+    console.log("随机数为0")
+}
+
+num2 === 1 ? console.log("lamda随机数为1") : console.log("lamda随机数为0");
+num2 === 1 ? fn1() : fn2();
+
+
+function fn1(){
+    console.log("fn1 lamda随机数为1")
+    console.log("fn1 lamda随机数为1")
+}
+
+function fn2(){
+    console.log("fn2 lamda随机数为0")
+    console.log("fn2 lamda随机数为0")
+}
+</script>

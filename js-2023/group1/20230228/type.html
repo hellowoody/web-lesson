@@ -1,0 +1,37 @@
+<script>
+/*
+    ES语法几种基本类型：7种
+
+    String
+    Number （整数，小数）
+    Boolean （true，false）
+    Null
+    Undefined
+    Object  {}
+    Symbol
+
+    typeof 不是一个方法，是一个操作符
+    typeof "123"
+    typeof("123")
+*/ 
+const a = "hello"
+const b = 100;
+const c = false;
+const d = null;
+let e ;  // 不要这么写 let e = undefined
+const f = {}
+const g = Symbol(); 
+
+console.log("a type is:",typeof a)    // "string"
+console.log("a type is:",typeof(a))   // "string"
+console.log("typeof的返回值是字符串类型:",typeof typeof(a))   // "string"
+console.log("b type is:",typeof b)     // number
+console.log("c type is:",typeof c)     // boolean
+console.log("d type is:",typeof d)     // object   比较奇怪
+console.log("e type is:",typeof e)     // undefined
+console.log("f type is:",typeof f)     // object
+console.log("g type is:",typeof g)     // symbol
+
+console.log("null type is:",String(d))     // null
+
+</script>

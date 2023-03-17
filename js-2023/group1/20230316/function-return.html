@@ -1,0 +1,133 @@
+<script>
+/*
+    1.函数中，return 会退出该函数
+    2.return后面的代码不会被执行
+    3.不写return ，浏览器会自动补上一个return
+*/
+
+function sum(a,b){
+    return 1000
+    console.log(a,b)
+}
+
+console.log(sum(1,2))
+
+
+function sum2(a,b){
+    return 1000
+    console.log(a,b)
+    return a+b
+}
+
+console.log(sum2(1,2))
+
+function diff(num1,num2){
+    let res = ""
+    if(num1 < num2){
+        res = "第二个参数大"
+    }else if(num1 > num2){
+        res = "第一个参数大"
+    }else{
+        res = "相等"
+    }
+    return res
+}
+
+function diff(num1,num2){
+    if(num1 < num2){
+        return "第二个参数大"
+    }else if(num1 > num2){
+        return "第一个参数大"
+    }else{
+        return "相等"
+    }
+}
+
+function print(msg){
+    console.log(msg)
+    return ;
+    // return undefined;  // 不推荐
+}
+
+console.log("print",print(2000))
+
+
+/*
+    break; 语句退出离它“最近”的循环
+*/
+
+function loop1(len){
+    for(let i = 0 ; i< len ; i++){
+        if(i >1){
+            break;
+        }
+        console.log(i)
+    }
+}
+
+loop1(3)
+
+function loop2(len){
+    for(let i = 0 ; i< len ; i++){
+        for(let j = 0 ; j < 2 ; j++){
+            if(i >1){
+                break;
+            }
+            console.log("j",i)
+        }
+        console.log(i) // 0 1 2 
+    }
+}
+
+loop2(3)
+
+/*
+return break练习题
+*/
+
+function foo(){
+    console.log(1000)
+    for(let i = 0 ; i< 3 ; i++){
+        if(i>0){
+            break
+        }else if(i > 1){
+            return
+        }
+        console.log(2000)
+    }
+    console.log(3000)
+}
+
+foo()
+
+/*
+
+1000
+2000
+3000
+
+*/
+console.log("**********")
+function foo2(){
+    for(let i = 0 ; i< 3 ; i++){
+        console.log(1000)
+        for(let j = 0 ; j < 2 ; j++){
+            if(j ==1){
+                break;
+            }
+            if(i == 1){
+                return
+            }
+            console.log(2000)
+        }
+    }
+}
+foo2()
+
+/*
+1000
+2000
+1000
+*/
+
+</script>

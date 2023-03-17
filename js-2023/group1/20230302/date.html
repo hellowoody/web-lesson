@@ -1,0 +1,54 @@
+<script>
+/*
+内置对象日期类型 Date
+window.Date
+
+const date = new Date() 
+创建了一个实例对象date
+*/
+// const date1 = new Date; // 不推荐
+const date = new Date();
+console.log("date:",date)
+
+// 指定某一时间
+// Date静态方法parse
+const someDate01 = new Date(Date.parse("Mar 1, 2023"))
+const someDate02 = new Date(Date.parse("3/1/2023"))
+const someDate03 = new Date(Date.parse("2023-03-01T17:20:00"))
+
+console.log("someDate01:",someDate01)
+console.log("someDate02:",someDate02)
+console.log("someDate03:",someDate03)
+
+const someDate04 = new Date("Mar 1, 2023")
+const someDate05 = new Date("3/1/2023")
+const someDate06 = new Date("2023-03-01T17:20:00")
+
+console.log("someDate04:",someDate04)
+console.log("someDate05:",someDate05)
+console.log("someDate06:",someDate06)
+
+/*
+更灵活的指定日期的形式
+new Date(year,month,day,h,m,s,ms)
+注意：month 从0开始，也就是 0～11
+     ms    的取值范围是0～999
+
+所谓“灵活”：可以单独指定年，或者年-月，或者年-月-日 时 等等
+但要注意，参数的顺序，如果需要精确到天，
+那么前面的“年”，“月”是不能少的
+
+注意：至少要传年，月
+*/ 
+const someDate07 = new Date(2024,0)
+console.log("someDate07:",someDate07)
+const someDate08 = new Date(2023,2,8,12)
+console.log("someDate08:",someDate08)
+const someDate09 = new Date(2023,2,3,12,30,10,200)
+console.log("someDate09:",someDate09)
+console.log("someDate09.getMilliseconds:",someDate09.getMilliseconds())
+
+
+
+
+</script>

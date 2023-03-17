@@ -1,0 +1,164 @@
+<script>
+/*
+归并方法 reduce
+
+    数组的reduce方法的参数有两个:匿名函数，初始值
+
+    [1,2,3].reduce(function(p1,p2,p3,p4){
+        return 本次运行结果
+    },初始值?)
+
+    p1:上一次的计算结果
+    p2:每次迭代的元素值        1    2    3
+    p3:每次迭代的元素值的索引   0    1    2
+    p4:原始数组         [a,b,c] [a,b,c] [a,b,c]
+
+    [1,2,3]将数组中的元素进行累加
+
+    const arr = [1,2,3,4,5,6]
+    let sum = 0;
+    for(let item of arr){
+        sum = sum + item
+    }
+    console.log("arr累加的结果",sum)
+*/
+
+const arr = [1,2,3,4,5,6]
+let sum = 0;
+for(let item of arr){
+    sum = sum + item
+}
+console.log("arr累加的结果",sum)
+
+let count = 0
+
+const res = arr.reduce(function(acc,item){
+    console.log(count,"acc",acc,"item",item)
+    count++
+    return acc + item
+},0)
+
+console.log(res)
+
+/*
+    当reduce不传第二个参数也就是初始值时，
+    我们把数组中索引为0的那个元素作为初始值
+    然后reduce的累加从索引为1的元素开始
+    明显的不同就是，不传第二个参数时，少遍历了一次
+*/ 
+count = 0
+const res2 = arr.reduce(function(acc,item){
+    console.log(count,"acc",acc,"item",item) // loop1:  acc:1 item:2
+    count++
+    return acc+item
+})
+
+console.log("res2:",res2)
+
+/*
+    练习题
+    在0 ～ 1000 正整数中 [0,1000]，计算出反时能被5整除的元素的累加值
+*/ 
+
+const arr2 = []
+for(let i = 0 ; i < 1001 ; i++){
+    arr2.push(i)
+}
+
+const res3 = arr2.reduce(function(acc,item){
+    return item % 5 === 0 ? acc + item : acc;
+},0)
+
+
+console.log("res3",res3)
+
+// reduce 取代 filter map
+
+/*
+    [3,132,30,100,12,11,42,5]
+
+    >30 **2
+
+    reduce
+*/ 
+
+const arr4 = [3,132,30,100,12,11,42,5]
+//  [17424, 10000, 1764]
+const res4 = arr4.reduce(function(acc,item){
+    if(item > 30){
+        acc.push(item**2)
+    }
+    return acc
+},[])
+
+console.log("res4",res4)
+
+/*
+    [red,green,blue,red,green,red,blue,black]
+
+    reduce
+
+    const obj = {
+        "red":1
+    }
+    key = red | green | blue
+
+    obj.red // 1
+    obj[key] // undefined
+
+*/
+
+const arr5 =  ["red","green","blue","red","green","red","blue","black"]
+
+const res5 = arr5.reduce(function(acc,item){
+    // if(acc[item]){
+    //     acc[item] += 1
+    // }else{
+    //     acc[item] = 1
+    // }
+    // return acc 
+
+    return acc[item] ? (acc[item]+=1,acc) : (acc[item] = 1,acc)
+},{})
+
+
+
+console.log("res5",res5)
+
+
+/*
+    [
+        {name:"china",state:"Asia"},
+        {name:"jan",state:"Asia"},
+        {name:"usa",state:"North America"}
+        {name:"uk",state:"Europe"}
+        {name:"italy",state:"Europe"}
+    ]
+
+    {
+        Asia:[china,jan],
+        Europe:[uk,italy],
+        North America:[usa]
+    }
+
+*/
+
+const arr6 = [
+        {name:"china",state:"Asia"},
+        {name:"jan",state:"Asia"},
+        {name:"usa",state:"North America"},
+        {name:"uk",state:"Europe"},
+        {name:"italy",state:"Europe"}
+    ]
+
+const res6 = arr6.reduce(function(acc,item){
+    if(acc[item.state]){
+        acc[item.state].push(item.name)
+    }else{
+        acc[item.state] = [item.name]
+    }
+    return acc
+},{})
+
+console.log(res6)
+</script>

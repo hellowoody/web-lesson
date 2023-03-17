@@ -1,0 +1,150 @@
+<script>
+/*
+Symbol 类型
+
+Symbol（符号）是 ECMAScript 6 2015年新增的数据类型。
+符号是原始值，且符号实例是唯一、不可变的。
+符号的用途是确保对象属性使用唯一标识符，不会发生属性冲突的危险。
+尽管听起来跟私有属性有点类似，但符号并不是为了提供私有属性的行为才增加的（尤其是因为Object API 提供了方法，可以更方便地发现符号属性）。
+相反，符号就是用来创建唯一记号，进而用作非字符串形式的对象属性。
+
+简单理解：
+    a.ES6推出的语法，但是2023年这个时间点，基本所有浏览器都支持了。
+    b.它是浏览器帮我们维护一套不可能重复的值
+
+注意: Symbol 不是构造器/构造函数，所以不能new Symbol
+
+*/
+
+// 基本使用
+
+const s1 = Symbol()
+console.log(typeof s1) // "symbol"
+console.log("s1:",s1)  // Symbol()
+try {
+    new Symbol()  //error:Symbol is not a constructor
+} catch (e) {
+    console.log("我捕获的异常/错误:",e)
+}
+
+// Symbol 产生的值不会重复
+
+const s1_cp = Symbol()
+console.log("s1 === s1_cp ",s1 === s1_cp)  // false
+
+const s2 = Symbol("s2")
+const s2_cp = Symbol("s2")
+console.log("s2 === s2_cp ",s2 === s2_cp)  // false
+
+
+/*
+    Symbol.for() 全局符号注册
+
+    和Symbol()的区别是Symbol.for() 是“幂等”的
+*/ 
+
+const s3 = Symbol.for("s3")
+console.log(typeof s3)  // symbol
+console.log("s3:",s3)
+
+const s3_cp = Symbol.for("s3")
+
+console.log("s3 === s3_cp ",s3 === s3_cp) // true 幂等
+
+const s4 = Symbol.for()
+
+console.log("s4:",s4) // Symbol(undefined)
+
+/*
+Symbol("123")       基本使用
+Symbol.for("123")   全局符号注册
+
+这两种操作是不一样的
+*/ 
+
+let s5_basic = Symbol('foo'); 
+let s5_global = Symbol.for('foo'); 
+console.log("s5_basic",s5_basic)
+console.log("s5_global",s5_global)
+console.log(s5_basic === s5_global); // false
+
+
+/*
+    Symbol.keyFor()来查询全局注册表
+    这个方法接收符号，返回该全局符号对应的字符串键。
+    如果查询的不是全局符号，则返回 undefined
+*/ 
+
+// 创建全局符号
+let s6 = Symbol.for('foo'); 
+console.log(Symbol.keyFor(s6)); // foo 
+// 创建普通符号
+let s7 = Symbol('bar'); 
+console.log(Symbol.keyFor(s7)); // undefined 
+// 如果传给 Symbol.keyFor()的不是符号，则该方法抛出 TypeError：
+try {
+    Symbol.keyFor(123); // TypeError: 123 is not a symbol
+} catch (e) {
+    console.log(e)
+}
+
+/*
+总结：
+    1.Symbol("a")
+    2.Symbol.for("b")
+    3.Symbol.keyFor(Symbol.for("c"))   // "c"
+
+
+Symbol 的作用:使用符号作为属性
+*/
+
+
+const s8 = Symbol("p1"),
+      s9 = Symbol("p2");
+
+const obj = {
+    [s8]:"hello s8",
+}
+
+console.log("obj:",obj)
+console.log("obj[s8]:",obj[s8]) // "hello s8"
+
+console.log("s8 config:",Object.getOwnPropertyDescriptor(obj,s8))
+
+Object.defineProperty(obj,s9,{
+    value:"你好 s9",
+    configurable:true,
+    enumerable:true,
+    writable:true,
+})
+
+console.log("obj:",obj)
+console.log("obj[s9]:",obj[s9]) //你好 s9
+
+
+// 不要这样用symbol， 因为不太好取到属性值
+const obj2 = {
+    [Symbol("p3")]:123
+}
+
+console.log("obj2:",obj2)
+
+
+/*
+    一个对象上既有普通属性，也有符号属性
+*/
+let s10 = Symbol('foo'), 
+    s11 = Symbol('bar'); 
+let o = { 
+    [s10]: 'foo val', 
+    [s11]: 'bar val', 
+    baz: 'baz val', 
+    qux: 'qux val' 
+};
+
+console.log("all symbol keys :",Object.getOwnPropertySymbols(o)) // [Symbol(foo), Symbol(bar)] 
+console.log("all normal keys :",Object.getOwnPropertyNames(o))   // ["baz","qux"] 
+console.log("all normal keys :",Object.keys(o))                  // ["baz","qux"] 
+console.log("all keys :",Reflect.ownKeys(o))                     // ["baz", "qux", Symbol(foo), Symbol(bar)]
+
+</script>

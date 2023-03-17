@@ -1,0 +1,111 @@
+<script>
+/*
+== vs ===
+==   值相等
+===  类型和值相等
+
+=== 也称作 全等
+
+123 == "123"   true
+123 === "123"  false
+*/
+
+console.log(`123 == "123"`,123 == "123")
+console.log(`123 === "123"`,123 === "123")
+
+console.log(1 == true)   // true
+console.log(1 === true)  // false
+console.log(0 == false)  // true
+console.log(0 === false) // false
+
+/*
+一元操作符
+
++3
+-3
+代表正/负的+/-
+
+let i = 0
+i = i+1; 
+i++;     //推荐
+++i;
+
+let a = 0
+a = a-1; 
+a--;
+--a;
+*/
+
+let count = 10;
+count++  
+console.log("count:",count) // 11
+++count
+console.log("count:",count) // 11
+
+console.log("count++:",count++) // 12
+
+console.log("++count:",++count) // 14
+
+let b = 6
+b = b - 1;       // 5
+
+b--              // 4
+console.log(b--) // 4
+--b;             // 2
+console.log(b)   // 2
+console.log(++b) // 3
+
+
+let a1 = "123"
+let b1 = a1
+
+console.log(a1 == b1)  //  true
+console.log(a1 === b1) //  true
+
+let a2 = "123"
+let b2 = "123"
+
+console.log(a2 == b2)  //  true
+console.log(a2 === b2) //  true
+
+// 字面量（string number boolean） 字面量本身去比较
+
+const obj1 = {
+    name:"zhangsan"
+}
+
+const obj2 = {
+    name:"zhangsan"
+}
+
+console.log(obj1 == obj2)  //  false
+console.log(obj1 === obj2) //  false
+
+// 引用对象（对象，数组）比较时，比的时地址
+
+const obj3 = {
+    a:1,
+    b:2
+}
+
+const obj4 = obj3
+
+obj4.a = 100
+obj4.c = 3.14
+
+console.log("obj3==obj4",obj3 == obj4)
+console.log("obj3===obj4",obj3 === obj4)
+console.log("obj3:",obj3)
+console.log("obj4:",obj4)
+
+/*
+
+下面是按C语言分析变量的取地址和取值
+
+var a = "123"
+&a ip
+*&a "123"
+
+*/
+
+</script>

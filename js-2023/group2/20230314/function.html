@@ -1,0 +1,70 @@
+<script>
+/*
+    3种声明函数的方法
+        1.函数声明 （提升）
+            function sum(a,b){
+                return a+b
+            }
+
+        2.函数表达式
+            const sum = function(a,b){
+                return a+b
+            };
+
+        3. const sum = new Function("a","b","return a+b")   // 不推荐
+
+    函数名字其实是函数对象的地址
+
+            const sum2 = sum
+
+    在JS中，函数都有一个属性叫name
+*/
+
+/*
+    定义函数时 参数 形参 parameter
+    1,2          实参  argument
+*/ 
+
+console.log(sum(1,2))
+
+function sum(a,b,c){
+    return a+b
+}
+
+// console.log(sum2(10,20))
+
+const sum2 = function(a,b){
+    return a+b
+}
+
+console.log(sum2(10,20))
+
+const sum3 = new Function("a","b","return a+b") 
+console.log(sum3(-1,-2))
+
+
+console.dir(sum)
+console.dir(sum2)
+console.dir(sum3)
+
+const sum4 = sum2
+
+console.dir(sum4)
+
+const obj = {
+    a:function(a,b){
+        return a-b
+    }
+}
+
+const obj2 = {
+    b:1,
+    a(a,b){
+        return a-b
+    }
+}
+
+console.log("obj2.a(1,2)",obj2.a(1,2))
+
+
+</script>

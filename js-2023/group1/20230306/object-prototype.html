@@ -1,0 +1,163 @@
+<script>
+/*
+4.对象中三个重要的概念
+
+构造器contructor： 首字母大写的函数
+    function Foo(){
+        this.a = 1
+        this.b = 2
+    }
+实例instance：    new 构造器 的返回值
+    const foo = new Foo()
+    foo 就是实例/实例对象
+
+    {
+        a:1,
+        b:2
+    }
+
+原型prototype：   构造器的一个属性 构造器.prototype，原型就是一个对象{constructor:指向构造器}
+    Foo.prototype
+
+证明构造器就是 function Foo(){  的方法
+
+             }
+
+console.log("Foo的构造器",Foo.prototype.constructor)
+
+注意：什么叫原型对象，只要含有一个属性名为construrtor的对象，就可以称为原型对象
+     console中打印Foo.prototype.constructor，显示的就是函数本身
+*/
+
+function Foo(){
+    this.a = 1,
+    this.b = 2,
+    this.fn = function(){
+        console.log("this is func")
+    }
+}
+
+console.log("Foo的原型",Foo.prototype)
+console.log("Foo的构造器",Foo.prototype.constructor)
+
+/*
+
+5.构造器constructor，实例instance，原型prototype三者的关系
+
+constructor                          一般是我们创建或定义的（首字母大写的函数）
+instance                             是new constructor的返回值
+instance.__proto__                   __proto__是实例的属性，可以帮我们获得“原型链”上的原型对象
+constructor.prototype                prototype是构造器的属性，可以帮我们构造器的原型对象
+constructor.prototype.constructor    原型对象上的构造器属性，是一开始的构造函数。（原型对象上的构造器属性和构造器互为引用）
+
+// constructor.prototype.constructor === constructor
+Foo.prototype.constructor === Foo
+
+*/
+
+function Bar(){}
+
+console.log(Bar.prototype.constructor === Bar) // true
+
+
+function Person(){
+    this.speak = function(){
+        console.log("speaking")
+    };
+    this.age = -1;
+    this.name = ""
+}
+
+const p = new Person()
+
+/*
+{
+    age:-1,
+    name:"",
+    speak:function(){
+
+    }
+}
+*/
+
+console.log(Person.prototype)
+console.log(Person.prototype.constructor)
+console.log(Person.prototype.constructor === Person) // true
+console.log(p.__proto__)
+console.log(p.__proto__.constructor)
+console.log(p.__proto__.constructor === Person)      // true
+
+
+/*
+
+6.原型prototype的用途
+
+    可以在程序运行时增加属性和方法
+
+*/
+
+function Model(a,b){
+    this.a = a
+    this.b = b
+    this.desc = function(){
+        console.log(`a:${a},b:${b}`)
+    }
+}
+
+const m1 = new Model(1,2)
+const m2 = new Model("哈哈","呵呵")
+
+m1.desc()
+m2.desc()
+
+m1.sum = function (n1,n2){
+    console.log(n1+n2)
+}
+
+m1.sum(1,2)
+
+Model.prototype.sub = function(n1,n2){
+    console.log(n1-n2)
+}
+// m2.sum(10,20) // is not a function 
+
+m1.sub(1,2)   // -1
+m2.sub(10,20) // -10
+const m3 = new Model("aaa","bbb")
+m3.sub(0,-3)  // 3
+
+
+/*
+原型和原型链不一样。
+7.原型链（__proto__）的用途呢？
+
+    const arr = new Array("a","b")
+    // const arr = ["a","b"]
+
+    把原型链想象成一条“绳子”
+
+     "绳子"的一端          "绳子"的另一端
+        arr  ->  Array -> Object
+
+            Array原型上没有valueOf方法
+            Object原型上有valueOf方法
+            所以 arr.valueOf() 可以调用
+
+            Array原型上有toString()方法
+            Object原型上也有toString()方法
+            所以 arr.toString() 调用的是Array原型上的方法
+
+    原型链的作用就是实例arr可以调用这条“绳子”上的任意原型对象上的方法
+    注意：如果方法有重名情况，按就近原则（距离实例最近）获取方法
+*/ 
+
+const arr = new Array("a","b")
+console.log(arr)
+console.log(arr.__proto__) // Array 原型对象
+console.log(arr.__proto__.__proto__) // Object 原型对象
+
+console.log(arr.join("-"))           // Array方法
+console.log(arr.valueOf())           // Object的方法
+console.log(arr.toString())           // "就近原则" Array的toString()
+
+</script>

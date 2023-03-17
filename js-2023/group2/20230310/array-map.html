@@ -1,0 +1,24 @@
+<script>   
+/*
+    数组的map方法的参数是一个匿名函数，回调函数callback
+
+    [a,b,c].map(function(p1,p2,p3){
+
+    })
+
+    p1:每次迭代的元素值        a    b    c
+    p2:每次迭代的元素值的索引   0    1    2
+    p3:原始数组         [a,b,c] [a,b,c] [a,b,c]
+
+    map方法的返回值也是个数组，这个数组的长度和原数组的长度一样
+    map方法加工后的元素一定要return
+    map方法不会修改原数组
+*/
+const arr = [1,2,3,4,5,6];
+const res = arr.map(function(item){
+    return item**2
+})
+
+console.log("map 加工后的",res)
+console.log("原数组",arr)
+</script>
