@@ -1,0 +1,33 @@
+<script>
+/*
+正则-分组  ()
+
+
+座机号码
+022-23190010
+0933-2321033
+0933 2321033
+     23211234
+     2123123
+
+15812345678
+*/
+
+const reg = /\d{3}-\d{8}/
+const reg1 = /\d{4}-\d{7}/
+const reg2 = /\d{5}-\d{8}/
+const reg3 = /\d{8}/
+const reg4 = /\d{7}/
+
+// const reg5 = /(\d{3,5})?[- ]?\d{7,8}/
+const reg5 = /^(\d{3,5}[- ])?\d{7,8}$/
+
+console.log(reg5.exec("022-23190010")[0])
+console.log(reg5.exec("0933-2321033")[0])
+console.log(reg5.exec("0933 2321033")[0])
+console.log(reg5.exec("23211234")[0])
+console.log(reg5.exec("2123123")[0])
+console.log(reg5.exec("022 2123123")[0])
+// console.log(reg5.exec(" 2123123")[0])
+console.log(reg5.test("-2123123"))
+</script>

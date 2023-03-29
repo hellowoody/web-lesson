@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>dom-create</title>
+    </head>
+    <body>
+        <div id="app">
+           <h1>dom-增删改</h1>
+        </div>
+        <button onclick="addTag1()">追加标签</button>
+        <button onclick="addTag2()">追加标签</button>
+        <button onclick="addTag3()">在xx标签前插入新标签</button>
+        <button onclick="delTag()">删除标签</button>
+        <button onclick="delTag2()">删除标签（批量）</button>
+        <button onclick="replaceTag()">修改标签</button>
+    </body>
+</html>
+<script>
+function addTag1(){
+    // 父.appendChild(新)
+    const app = document.querySelector("#app")
+
+    const div = document.createElement("div")       // <div></div>
+    app.appendChild(div)  // 追加元素 和 设置元素属性 是没有先后顺序的
+
+    const text = document.createTextNode("新块标签") // 新块标签
+    div.appendChild(text)                           // <div>新块标签</div>
+    div.setAttribute("style","color:red;")          // <div style="color:red">新块标签</div>
+    
+    // app.appendChild(div)
+}
+
+function addTag2(){
+    const app = document.querySelector("#app")
+    const div = document.createElement("div")       // <div></div>
+    div.innerHTML = `<span style="color:blue;font-size:24px;">新标签2</span>`
+    // div.innerText = `<span style="color:blue;font-size:24px;">新标签2</span>`
+    /*
+        <div>
+            <span style="color:blue;font-size:24px;">新标签2</span>
+        </div>
+    */ 
+    app.appendChild(div)   
+}
+let count = 0
+function addTag3(){
+    // 父.insertBefore(新,在哪个标签之前插入)
+    const app = document.getElementById("app")         // 父
+    const h1 = document.getElementsByTagName("h1")[0]  // 在哪个标签之前插入
+    const a = document.createElement("a") // <a></a>
+    a.setAttribute("href","#")             // <a href="#"></a>
+    a.innerText = "锚点标签"+count++                // <a href="#">锚点标签</a>
+    app.insertBefore(a,h1)
+}
+
+function delTag(){
+    // 父.removeChild(要被删除的标签)
+    const app = document.querySelector("#app")
+    const a = document.querySelector("a")  // 当页面有多个同名的 选择器,返回第一次匹配的（或事页面最上方的那个选择器）     
+    if(a){
+        app.removeChild(a)
+    }
+}
+
+function delTag2(){
+    const app = document.querySelector("#app")
+    const a_arr = document.querySelectorAll("a")
+    // console.log(a_arr)
+    for(const a of a_arr){
+        app.removeChild(a)
+    }
+}
+
+function replaceTag(){
+    // 父.replaceChild(新,老)
+    const app = document.getElementById("app")
+    const h2 = document.createElement("h2")  // <h2></h2>
+    h2.innerText = "新标题"
+    const h1 = document.querySelector("h1")
+    app.replaceChild(h2,h1)
+}
+</script>

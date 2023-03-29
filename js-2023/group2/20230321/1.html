@@ -1,0 +1,10 @@
+<input type="password" id="_id" >
+<button onclick="check()">校验密码</button>
+<script>
+function check(){
+    const input = document.querySelector("#_id")
+    const pwd = input.value
+    const reg = /^[A-Z]{1,}[a-z]{1,}[0-9]{1,}$/
+    console.log(reg.exec(pwd))
+}
+</script>

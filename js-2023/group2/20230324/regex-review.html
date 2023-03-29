@@ -1,0 +1,43 @@
+<script>
+/*
+环视
+    往右看
+    (?=xxx)
+    (?!xxx)
+    往左看
+    (?<=xxx)
+    (?<!xxx)
+
+注意
+    a.环视的特别之处是不占位
+    b.环视的小括号不算分组的索引
+
+*/
+
+// 匹配四个数字，但不能是连续3个9
+// /\d{4}/
+
+const reg1 = /(?!999)\d{4}/
+console.log(reg1.test("1234"))
+console.log(reg1.test("1299"))
+console.log(reg1.test("9299"))
+console.log(reg1.test("999a")) // false
+console.log(reg1.test("9991")) // false
+console.log(reg1.test("1999")) // true
+console.log("=============================")
+const reg2 = /\d{4}(?!999)/
+console.log(reg2.test("1234"))
+console.log(reg2.test("1299"))
+console.log(reg2.test("9299"))
+console.log(reg2.test("999a"))
+console.log(reg2.test("9991"))
+console.log(reg2.test("1999"))
+console.log("=============================")
+const reg3 = /\d{4}(?<!999)/
+console.log(reg3.test("1234")) 
+console.log(reg3.test("1299"))
+console.log(reg3.test("9299"))
+console.log(reg3.test("999a")) 
+console.log(reg3.test("9991")) // true
+console.log(reg3.test("1999")) // false
+</script>

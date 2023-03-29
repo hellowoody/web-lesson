@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <button onclick="add()">add</button>
+        <table width="300" border="1" cellspacing="0">
+            <thead align="center">
+                <tr>
+                    <td>操作</td>
+                    <td>col 1</td>
+                    <td>col 2</td>
+                </tr>
+            </thead>
+            <tbody align="center">
+                <tr></tr>
+            </tbody>
+        </table>        
+    </body>
+</html>
+<script>
+/*
+1.写一个页面，实现一个table表格，让这个表格可以动态增加行
+*/
+
+function add(){
+    /*
+        1.获取tbody
+        2.create tr
+        3. tbody.appendChild(tr)
+    */ 
+    // const tbody = document.querySelector("tbody")
+    const tbody = document.getElementsByTagName("tbody")[0]
+    const tr = document.createElement("tr")  // <tr></tr>
+    tr.innerHTML = `
+        <td><a href="#">删除</a></td>
+        <td>${Math.floor(Math.random()*10)}</td>
+        <td>${Math.floor(Math.random()*10)}</td>
+    `
+    tbody.appendChild(tr)
+
+}
+</script>

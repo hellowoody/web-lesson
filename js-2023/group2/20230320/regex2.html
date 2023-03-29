@@ -1,0 +1,40 @@
+<script>
+// 正则 集合 []
+// const exp1 = /1[0123456789]/
+const exp1 = /1[0-9]/
+const exp2 = /1[5-9]/
+const exp3 = /[a-zA-Z]/
+
+console.log(exp2.exec("张三的年龄是13"))
+console.log(exp3.exec("你好，世界。。。world"))
+
+// \d  等价 [0-9]             \D [^0-9]
+// \w  等价 [A-Za-z0-9_]      \W [^A-Za-z0-9_]
+const exp4 = /1\d/
+console.log(exp4.exec("张三的年龄是13"))
+const exp5 = /\w/g
+let res5 
+while(res5 = exp5.exec("A你w_9。")){
+    console.log(res5[0])
+}
+
+const exp6 = /[^0-9]/g
+let res6 
+while(res6 = exp6.exec("张三的年龄是13")){
+    console.log(res6[0])
+}
+
+const exp7 = /\W/g
+let res7 
+while(res7 = exp7.exec("A你w_9。")){
+    console.log(res7[0])
+}
+
+// 通配符 .   空白字符
+const exp8 = /[\d\D]/g
+let res8
+while(res8 = exp8.exec("A你w_9。")){
+    console.log(res8[0])
+}
+
+</script>

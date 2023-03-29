@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <body></body>
+</html>
+<script>
+/*
+    1.使用canvas绘制一个等边梯形，边框灰色，内部粉色
+*/
+
+const canvas = document.createElement("canvas");
+if(!canvas.getContext){
+    const p = document.createElement("p")
+    p.innerText = "该浏览器不支持canvas"
+    document.documentElement.appendChild(p)
+}else{
+    document.body.appendChild(canvas)
+
+    const w = 500 , h = 500;
+    canvas.width = w
+    canvas.height = h
+
+    canvas.style.width = w
+    canvas.style.height = h
+    canvas.style.background = "blue"
+
+    const ctx = canvas.getContext("2d")
+
+    ctx.beginPath()
+    ctx.moveTo(200,200) 
+    ctx.lineTo(300,200)
+    ctx.lineTo(350,300)
+    ctx.lineTo(150,300)    
+    ctx.closePath()  
+    ctx.strokeStyle = "grey"
+    ctx.lineWidth = 10;
+    ctx.stroke()
+    ctx.fillStyle = "pink"
+    ctx.fill()
+
+    ctx.moveTo(50,50)
+    ctx.lineTo(100,100)
+    ctx.lineWidth = 10
+    ctx.stroke()
+}
+</script>

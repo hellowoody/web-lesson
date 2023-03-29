@@ -1,0 +1,33 @@
+<script>
+/*
+
+String
+    match
+    replace 不会修改原字符串
+    split
+    search  
+*/
+
+const reg = /(\d{4})-(\d{1,2})-(\d{1,2}) (\d{1,2}):(\d{1,2}):(\d{1,2})/
+const timestamp = "2023-3-22 9:03:50"
+
+console.log(timestamp.match(reg))
+
+
+const str = "hello world"
+console.log(str.match(/o/))     // ["o"]
+console.log(str.match(/o/g))    // ["o","o"]
+console.log(str.match(/\wo/g))  // ["lo","wo"]
+console.log(str.match(/l/g))    // [l,l,l]*3
+console.log(str.match(/\wl/g))  // [el,rl]*2
+
+const str1 = "helLo worLd, today i go to     class"
+//            01234567890
+
+console.log(str1.replace(/L/g,"l").replace(/ {2,}/g," "))
+console.log(str1.split(/,? +/))
+
+console.log(str1.search(/,? +/)) //5
+
+
+</script>

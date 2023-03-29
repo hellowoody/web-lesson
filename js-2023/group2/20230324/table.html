@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>table</title>
+        <style>
+            tr {
+                text-align: center;
+                height:50px;
+            }
+
+            td a {
+                text-decoration:none;
+                color:#000;
+                padding:2px 6px;
+                background:#fafafa;
+                box-shadow:1px 2px 8px rgb(0 0 0 / 0.2)
+            }
+        </style>
+    </head>
+    <body>
+        <button onclick="add()"  style="margin-bottom: 12px;">add</button>
+        <table border="1" width="500" cellspacing="0">
+            <thead>
+                <tr>
+                    <td>操作</td>
+                    <td>col1</td>
+                    <td>col2</td>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </body>
+</html>
+<script>
+function add(){
+    const tbody = document.querySelector("table tbody")
+    const tr = document.createElement("tr")
+    tr.innerHTML = `
+        <td><a href="#" onclick="del(this);">del</a></td>
+        <td>${Math.floor(Math.random()*10)}</td>
+        <td>${Math.floor(Math.random()*10)}</td>
+    `
+
+    tbody.appendChild(tr)
+}
+
+
+function del(e){
+    console.log("del",e)
+    console.dir(e)
+    const tr = e.parentElement.parentElement
+    console.log(tr)
+    const tbody = document.querySelector("table tbody")
+    tbody.removeChild(tr)
+}
+</script>

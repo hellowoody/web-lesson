@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>课堂练习</title>
+    </head>
+    <body>
+        <button onclick="add()">增加</button>
+        <br>
+        <input placeholder="要删除第几行" ><button onclick="del()">删除</button>
+        <br>
+        大类
+        <ul>
+            <li>小类1</li>
+            <li>小类2</li>
+            <li>小类3</li>
+        </ul>
+    </body>
+</html>
+<script>
+function add(){
+    // 1.获取父节点 ul
+    // 2.create li
+    // 3.文本 
+    // 4.append
+    const ul = document.querySelector("ul")
+    const li = document.createElement("li")
+    // 方案一
+    // let oldLiCount = 0;
+    // ul.childNodes.forEach(item => {
+    //     if(item.nodeType === Node.ELEMENT_NODE){
+    //         oldLiCount++
+    //     }
+    // })
+    // 方案二
+    // ul.children
+    // li.innerText = `小类${ul.children.length+1}`
+    // 方案三
+    console.log(ul.children[ul.children.length-1].innerText)
+    const reg = /(\d+)$/
+    const lastSeq = parseInt(reg.exec(ul.children[ul.children.length-1].innerText)[1],10)
+    li.innerText = `小类${lastSeq+1}`
+    ul.appendChild(li)
+}
+
+function del(){
+    // 父.remove(删)
+    const ul = document.querySelector("ul")
+    const input = document.querySelector("input")
+    const line = parseInt(input.value,10)
+    // console.log(ul.children)
+    ul.removeChild(ul.children[line-1])
+
+}
+</script>

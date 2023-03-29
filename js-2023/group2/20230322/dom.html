@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>dom</title>
+    </head>
+    <body>
+        <div id="app">
+           <p id="p_id" name="p_name" style="color:blue;">hello dom</p>
+        </div>
+        <div id="app2"></div>
+        <ul id="ulist">
+            <li>子项1</li>
+            <li>子项2</li>
+            <li>子项3</li>
+        </ul>
+ 
+    </body>
+</html>
+<script>
+// const app = document.querySelector("#app")
+const app = document.getElementById("app")
+console.log(app) // <div>...</div> 
+console.dir(app) // {}
+console.log(app.childNodes) // 返回类数组的对象
+console.log(app.parentNode) // 返回父节点
+
+console.log("Node.ELEMENT_NODE",Node.ELEMENT_NODE) //1
+console.log("Node.TEXT_NODE",Node.TEXT_NODE)       //3
+
+for(const item of app.childNodes){
+    console.log(`
+        nodeType:${item.nodeType}
+        nodeName:${item.nodeName}
+        nodeValue:${item.nodeValue}
+    
+    `)
+    // if(item.nodeType === 1){
+    if(item.nodeType === Node.ELEMENT_NODE){
+        console.log("p标签的子元素",item.childNodes)
+        console.log("p标签的子元素内的文本节点类型",item.childNodes[0].nodeType)
+        console.log("p标签的子元素内的文本节点类型",item.childNodes.item(0).nodeType)
+        console.log("p标签的子元素内的文本节点",item.childNodes[0].nodeValue)
+        console.log("p标签的属性节点",item.attributes)
+        console.log("p标签的属性节点id",item.attributes[0].nodeValue)
+        console.log("p标签的属性节点id",item.attributes.id.nodeValue)
+        console.log("name属性",item.attributes.name )
+        console.log("name属性",item.attributes[1] )
+        console.log("判断name属性",item.attributes.name === item.attributes[1])
+    }
+}
+</script>

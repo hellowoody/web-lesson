@@ -1,0 +1,34 @@
+<script>
+/*
+[0-9]          /d
+[^0-9]         /D
+
+[A-Za-z0-9_]   /w
+[^A-Za-z0-9_]  /w
+
+[ \t\r\n\v\f]    \s  空白字符
+[^ \t\r\n\v\f]   \S
+
+所有字符
+[\s\S]
+[\d\D]
+[\w\W]
+
+通配符 . 是不包含空白字符的
+
+^ 如果在正则的开头代表开头配置        /^/
+^ 如果在字符组开头代表取反           /[^]/
+^ 如果在字符组非开头的位置代表本身    /[a^]/
+
+*/
+
+// 全部字符
+// const reg7 = /[\s\S]/  // 全部字符
+const reg7 = /./          // 通配符 不包含空白字符
+console.log("reg7",reg7.test("1"))
+console.log("reg7",reg7.test("2"))
+console.log("reg7",reg7.test("a"))
+console.log("reg7",reg7.test(" "))
+console.log("reg7",reg7.test("\n"))  // "换行"
+console.log("reg7",reg7.test("\\n")) // \n
+</script>

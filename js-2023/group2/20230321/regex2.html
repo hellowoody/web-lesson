@@ -1,0 +1,66 @@
+<script>
+/*
+    const html = `
+        <div>123</div><div>abc</div><div>一二三</div>
+    `
+*/
+
+const html = `
+        <div>123</div><div>abc</div><div>一二三</div>
+`
+
+
+const html2 = `
+        <div>123</div>
+        <div>abc</div>
+        <div>一二三</div>
+`
+
+const reg = /<div>.*<\/div>/
+const reg1 = /<div>.*?<\/div>/g
+const reg2 = /<div>[\s\S]*?<\/div>/g
+
+console.log(reg.exec(html2))
+console.log(reg2.exec(html2))
+console.log(reg2.exec(html2))
+console.log(reg2.exec(html2))
+
+const html3 = `
+<ul class="list-a" style="display: block;" data-sudaclick="blk_top2B_news">
+<li><a target="_blank" href="http://news.sina.com.cn/o/2017-10-04/doc-ifymkwwk8402944.shtml">台官员称若解放军攻台可撑超2周 网友:哪来自信</a></li>
+
+<li><a target="_blank" href="http://news.sina.com.cn/w/zx/2017-10-04/doc-ifymrcmm8351947.shtml">利比亚法院审判IS成员时遭袭 4名安全人员死亡</a></li>
+
+<li><a target="_blank" href="http://news.sina.com.cn/w/zx/2017-10-04/doc-ifymmiwm5396687.shtml">俄官员:IS等组织组建黑客部队 世界面临威胁</a></li><li><a target="_blank" href="http://news.sina.com.cn/s/wh/2017-10-05/doc-ifymmiwm5474297.shtml">影视剧资源现网售利益链 售卖用“暗语”防屏蔽</a></li>
+
+
+<li><a target="_blank" href="http://news.sina.com.cn/o/2017-10-05/doc-ifymmiwm5480699.shtml">英国首相：重塑英国梦 承诺未来要保障社会公平</a></li>
+
+
+
+<li><a target="_blank" href="http://news.sina.com.cn/w/zx/2017-10-05/doc-ifymrcmm8375602.shtml">联合国秘书长呼吁国际社会帮助连遭飓风袭击的地区</a></li>
+
+
+
+<li><a target="_blank" href="http://news.sina.com.cn/w/zx/2017-10-05/doc-ifymmiwm5489602.shtml">叙利亚哈马省IS武装清除完毕 军方：重要进展</a></li>
+
+
+
+<li><a target="_blank" href="http://news.sina.com.cn/w/zx/2017-10-05/doc-ifymmiwm5492566.shtml">MH370最终搜寻报告:花1.6亿美元 仅找到3块残片</a></li>    
+
+<a>1111111111</a>
+<a href="#">2222222</a>
+<a  >3333333333333</a>
+<a 
+    href="http://baidu.com"
+ >44444444</a>
+<a</a>
+<a 555555555</a>
+`
+
+const reg3 = /<a[>\s][\s\S]*?<\/a>/g
+let res3 
+while(res3 = reg3.exec(html3)){
+    console.log("res3",res3[0])
+}
+</script>

@@ -1,0 +1,14 @@
+<script>
+function sum(a,b){
+    console.log(this)
+    console.log(a+b)
+}
+
+sum(1,2)  // windowd 3
+
+const sum_new = sum.bind({c:1000})
+
+sum_new(1,2) // {c:1000} 3
+
+
+</script>

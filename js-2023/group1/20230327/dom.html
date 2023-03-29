@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>dom</title>
+    </head>
+    <body>
+        <div id="app">12
+           <p id="p_id" name="p_name" style="color:blue;">hello dom</p>34
+        </div>
+
+        <div id="app2"> </div>
+        
+        <button onclick="checkHasChild('app')">校验app下面有没有子节点</button>
+        <button onclick='checkHasChild("app2")'>校验app2下面有没有子节点</button>
+    </body>
+</html>
+<script>
+// const app = document.querySelector("#app")
+const app = document.getElementById("app") // div 
+console.log(app) // <div>...</div> 
+console.dir(app) // {}
+console.log(app.childNodes) // 返回类数组的对象
+console.log(app.children)   // 返回类型是标签的节点
+console.log(app.parentNode) // 返回父节点
+
+console.log("Node.ELEMENT_NODE",Node.ELEMENT_NODE)      //1 <tag>
+console.log("Node.ATTRIBUTE_NODE",Node.ATTRIBUTE_NODE)  //2 id=xxx
+console.log("Node.TEXT_NODE",Node.TEXT_NODE)            //3 
+
+// app.childNodes.forEach(() => {
+//     console.log("forEach")
+// })
+
+for(const item of app.childNodes){
+    console.log(`
+        nodeType:${item.nodeType} 
+        nodeName:${item.nodeName}
+        nodeValue:${item.nodeValue}
+    
+    `)
+    // if(item.nodeType === 1){
+    if(item.nodeType === Node.ELEMENT_NODE){
+        console.dir(item)
+        console.dir(item.attributes)
+
+        for(const attr of item.attributes){
+            console.log(`
+                nodeType:${attr.nodeType} 
+                nodeName:${attr.nodeName}
+                nodeValue:${attr.nodeValue}
+            
+            `)
+        }
+
+        console.log("p标签的子元素内的文本节点类型",item.childNodes[0])      //  #text
+        console.log("p标签的子元素内的文本节点类型",item.childNodes.item(0)) //  #text
+
+        console.log("p标签的属性节点id",item.attributes[0]) // id=xxx
+        console.log("p标签的属性节点id",item.attributes.id) // id=xxx
+
+
+    }
+}
+
+
+function checkHasChild(id){
+    const el = document.getElementById(id)
+    console.log(el.hasChildNodes())
+}
+
+</script>

@@ -1,0 +1,26 @@
+<script>
+/*
+String
+    match
+    replace
+    split
+    search
+*/
+
+const reg1 = /\d{4}-\d{1,2}-\d{1,2} \d{1,2}:\d{1,2}:\d{1,2}/
+const reg2 = /(\d{4})-(\d{1,2})-(\d{1,2}) (\d{1,2}):(\d{1,2}):(\d{1,2})/
+const timestamp = "2023-3-22 9:03:50"
+
+console.log(timestamp.match(reg1))
+console.log(timestamp.match(reg2))
+
+const str = "hello world"
+
+console.log(str.match(/\wl/g)) // [el,rl]
+
+const str1 = "helLo worLd, today i go to   class"
+str1.replace(/L/g,"l")
+console.log(str1.replace(/L/g,"l"))
+
+console.log(str1.split(/ +/))
+</script>

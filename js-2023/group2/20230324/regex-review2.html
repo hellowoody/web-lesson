@@ -1,0 +1,29 @@
+<script>
+
+// 环视 多选 可以是两个数字，但不能是一个字母和一个数字
+
+// const reg1 = /\w{2}/
+const reg2 = /(?=\d{2})|(?![A-Za-z]\d)\w{2}/
+
+console.log(reg2.test("12"))
+console.log(reg2.test("a2"))
+console.log(reg2.test("2a"))
+
+const reg3 = /(?=\.\d)|(?![A-Za-z]\d)\w{2}/ 
+
+
+// 正则校验密码规则为长度最少8位，只能包含大小写字母和数字
+
+const pwd = /([A-Z][a-z][0-9]){8,}/ 
+
+const pwd2 = /(?![A-Za-z]{8,})(?![A-Z\d]{8,})(?![a-z\d]{8,})(?!\d{8,})[A-Za-z0-9]{8,}/
+console.log("=====================")
+console.log(pwd2.test("12345678"))
+console.log(pwd2.test("A12345678"))
+console.log(pwd2.test("1234567890"))
+console.log(pwd2.test("asdfghjkl"))
+console.log(pwd2.test("asdfghjkla"))
+console.log(pwd2.test("ASDFGHJKLA"))
+console.log(pwd2.test("aASDFGHJKLA"))
+console.log(pwd2.test("1aASDFGHJKLA"))
+</script>

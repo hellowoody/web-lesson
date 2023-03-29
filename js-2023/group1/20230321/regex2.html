@@ -1,0 +1,82 @@
+<script>
+const html = `
+        <div>123</div><div>abc</div><div>一二三</div>
+`
+const html2 = `
+        <div>123</div>
+        <div>abc</div>
+        <div>一二三</div>
+`
+
+const reg = /<div>.*?<\/div>/g
+
+let res 
+while(res = reg.exec(html)){
+    console.log(res)
+}
+
+// console.log(reg.exec(html2))
+// console.log(reg.exec(html2))
+// console.log(reg.exec(html2))
+
+const reg2 = /<div>[\s\S]*?<\/div>/g
+
+const html3 = `
+        <div>
+            <a>123</a>
+        </div>
+        <div>abc</div>
+        <div>一二三</div>
+`
+
+
+const sina = `
+<ul>
+    <li>
+      <a href="https://news.sina.com.cn/" target="_blank"><b>新闻</b></a>
+    </li>
+    <li>
+      <a href="https://mil.news.sina.com.cn/" target="_blank">军事</a>
+    </li>
+    <li>
+      <a href="https://news.sina.com.cn/china/" target="_blank">国内</a>
+    </li>
+    <li>
+      <a href="https://news.sina.com.cn/world/" target="_blank">国际</a>
+    </li>
+  </ul>
+  <ul>
+    <li>
+      <a href="https://finance.sina.com.cn/" target="_blank"><b>财经</b></a>
+    </li>
+    <li>
+      <a href="https://finance.sina.com.cn/stock/" target="_blank">股票</a>
+    </li>
+    <li>
+      <a href="https://finance.sina.com.cn/fund/" target="_blank">基金</a>
+    </li>
+    <li>
+      <a href="https://finance.sina.com.cn/forex/" target="_blank">外汇</a>
+    </li>
+  </ul>
+  <ul>
+<a 11111</a>
+<a></a>
+<a href
+`
+// const reg2 = /<div>[\s\S]*?<\/div>/g
+
+// const reg3 = /<a[\s\S]*?<\/a>/g
+const reg3 = /<a[>\s][\s\S]*?<\/a>/g
+let res3
+
+while(res3 = reg3.exec(sina)){
+    console.log("res3",res3[0])
+}
+
+
+
+
+
+
+</script>

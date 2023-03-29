@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>canvas 画板</title>
+    </head>
+    <body></body>
+</html>
+<script>
+const canvas = document.createElement("canvas") // <canvas></canvas>
+if(!canvas.getContext){
+    // 该浏览器不支持canvas
+    const div = document.createElement("div")
+    div.innerHTML = "当前浏览器不支持canvas"
+    document.body.appendChild(div)
+}else{
+   document.body.appendChild(canvas)
+   const w = 500,h = 500;
+    // 相框尺寸
+    canvas.width = w
+    canvas.height = h
+    // 相纸尺寸
+    canvas.style.width = w + "px"
+    canvas.style.height = h + "px" 
+    canvas.style.background = "yellow"
+    // 获取canvas的执行上下文
+    const ctx = canvas.getContext("2d")
+
+    let endAngle = Math.PI/180
+
+    ctx.translate(w/2,h/2)
+    ctx.beginPath();
+    ctx.strokeStyle = "red"
+    ctx.arc(-150,-150,100,0,Math.PI*2)
+    ctx.stroke()
+
+    ctx.strokeStyle = "#000"
+
+    const render = () => {
+        // ctx.clearRect(startx,starty,w,h)
+        ctx.clearRect(-w/2,-h/2,w,h)
+        ctx.beginPath();
+        ctx.arc(0,0,100,0,endAngle)
+        ctx.stroke()
+        ctx.closePath()
+
+        if(endAngle < Math.PI*2){
+            requestAnimationFrame(render)
+        }
+
+        endAngle += Math.PI/180
+    }
+    render()
+}
+</script>

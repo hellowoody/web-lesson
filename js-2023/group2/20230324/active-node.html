@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <script>
+        const pic_early = document.cloneNode(true)
+        console.log(pic_early)
+    </script>
+    <head>
+        <meta charset="utf-8">
+        <title>dom</title>
+        <script>
+            // dom 是活动节点
+            console.log(document)
+            console.log(document.childNodes[1])
+            const pic = document.cloneNode(true)
+            console.log(pic)
+            console.log(document.querySelector("#app")) // null
+            console.log(document.getElementById("app")) // null
+        </script>
+    </head>
+    <body>
+        <div id="app">
+           <p id="p_id" name="p_name" style="color:blue;">hello dom</p>
+        </div>
+        <div id="app2"> </div>
+    </body>
+</html>
+<script>
+    console.log("==============================")
+    console.log(document)
+    console.log(document.childNodes[1])
+    console.log(document.querySelector("#app"))
+    console.log(document.getElementById("app"))
+</script>

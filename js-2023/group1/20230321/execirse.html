@@ -1,0 +1,24 @@
+<script>
+const path_linux = "/usr/code/local/bin/login.js"
+const path_win = "d:\\code\\local\\bin\\login.js"
+
+/*
+    [\d\D]
+    [\s\S]  全部
+
+    .  全部（除了空白字符\s）
+
+*/
+
+const win_path = /.*\\/
+const win_filename = /[^\\]*$/
+console.log("path_win",win_path.exec(path_win)[0])
+console.log("win_filename",win_filename.exec(path_win)[0])
+
+const linux_path = /.*\//
+const linux_filename = /[^\/]*$/
+console.log("linux_path",linux_path.exec(path_linux)[0])
+console.log("linux_filename",linux_filename.exec(path_linux)[0])
+
+
+</script>

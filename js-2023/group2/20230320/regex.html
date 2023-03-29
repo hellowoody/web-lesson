@@ -1,0 +1,55 @@
+<script>
+/*
+    正则
+*/ 
+
+// ^
+
+const exp = /world/
+const exp_start = /^world/
+const exp_end = /world$/
+
+console.log(exp.exec("hello world"))
+console.log(exp_start.exec("hello world"))
+console.log(exp_start.exec("world hello"))
+
+// $
+console.log(exp.exec("hello world."))
+console.log(exp_end.exec("hello world."))
+console.log(exp_end.exec("hello world"))
+
+// 多行下的匹配开头结尾
+
+const statement = `
+第一行,第第xx.
+第二行,x第xx.
+第三行,x第xx.
+`
+const exp1 = /^第/gm
+let res1
+while(res1 = exp1.exec(statement)){
+    console.log(res1)
+}
+
+const exp2 = /。$/gm
+let res2
+while(res2 = exp2.exec(statement)){
+    console.log("$",res2)
+}
+
+// . （小数点）默认匹配除换行符之外的任何单个字符
+
+const exp3 = /./g
+const exp4 = /\./g
+let res3 
+while(res3 = exp3.exec(statement)){
+    // console.log(".",res3)
+    console.log(".",res3[0])
+}
+
+while(res4 = exp4.exec(statement)){
+    // console.log(".",res3)
+    console.log("\\.",res4[0])
+}
+
+</script>

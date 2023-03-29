@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>dom</title>
+    </head>
+    <body>
+        <div id="app">
+           <p id="p_id" name="p_name" style="color:blue;">hello dom</p>
+        </div>
+        <div id="app2"> </div>
+
+        <button onclick="checkHasChildNode('app')">校验app下面有没有子节点</button>
+        <button onclick="checkHasChildNode('app2')">校验app2下面有没有子节点</button>
+    </body>
+</html>
+<script>
+// const app = document.querySelector("#app")
+const app = document.getElementById("app") // div 
+console.log(app) // <div>...</div> 
+console.dir(app) // {}
+console.log(app.childNodes) // 返回类数组的对象
+console.log(app.parentNode) // 返回父节点
+
+console.log("Node.ELEMENT_NODE",Node.ELEMENT_NODE)      //1
+console.log("Node.ATTRIBUTE_NODE",Node.ATTRIBUTE_NODE)  //2
+console.log("Node.TEXT_NODE",Node.TEXT_NODE)            //3
+
+for(const item of app.childNodes){
+    console.log(`
+        nodeType:${item.nodeType} 
+        nodeName:${item.nodeName}
+        nodeValue:${item.nodeValue}
+    
+    `)
+    // if(item.nodeType === 1){
+    if(item.nodeType === Node.ELEMENT_NODE){
+        console.dir(item)
+        // attributes是一个类数组对象
+        for(const attr of item.attributes){
+            console.log("attr:",attr,attr.nodeName,attr.nodeValue) // xx="xxx"
+            console.dir(attr)         // {}
+        }
+        console.log("p标签的子元素内的文本节点类型",item.childNodes[0])      //  #text
+        console.log("p标签的子元素内的文本节点类型",item.childNodes.item(0)) //  #text
+        // console.log("p标签的子元素内的文本节点",item.childNodes[0].nodeValue)
+        // console.log("p标签的属性节点",item.attributes)
+        console.log("p标签的属性节点id",item.attributes[0]) // id=xxx
+        console.log("p标签的属性节点id",item.attributes.id) // id=xxx
+        // console.log("name属性",item.attributes.name )
+        // console.log("name属性",item.attributes[1] )
+        // console.log("判断name属性",item.attributes.name === item.attributes[1])
+    }
+}
+
+function checkHasChildNode(id){
+    const el = document.getElementById(id)
+    console.log("hasChildNodes",el.hasChildNodes()) 
+}
+</script>

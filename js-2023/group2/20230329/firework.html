@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>firework</title>
+        <style>
+            body {
+                margin:0;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>123</h1>
+    </body>
+</html>
+<script>
+let render
+const canvas = document.createElement("canvas")
+canvas.style.position = "fixed"
+canvas.style.left = 0
+canvas.style.top = 0
+if(!canvas.getContext){
+    const p = document.createElement("p")
+    p.innerText = "不支持"
+    document.body.appendChild(p)
+}else{
+    document.body.appendChild(canvas)
+    // const w = window.innerWidth,h = window.innerHeight;
+    let w,h
+    const resizeHandle = () => {
+        w = document.documentElement.clientWidth ;
+        h = document.documentElement.clientHeight ;
+        canvas.height = h
+        canvas.width = w
+        canvas.style.width = w+"px"
+        canvas.style.height = h+"px"
+        canvas.style.zIndex = -1
+    }
+    resizeHandle()
+
+    window.addEventListener("resize",resizeHandle)
+    
+    const ctx = canvas.getContext("2d")
+    
+    ctx.fillStyle = "transparent"
+    ctx.fillRect(0,0,canvas.width,canvas.height)
+
+
+
+    const particles = []
+
+    function buildFireworks(x,y){
+        const count = 100
+        const setColor = p => {
+            p.hue = Math.floor(Math.random()*360)
+            p.l = 50 + Math.floor(Math.random()*20)
+            p.a = (50 + Math.floor(Math.random()*60))/100
+        }
+
+        for(let i = 0 ; i < count ; i++){
+            const p = {}
+            p.x = x
+            p.y = y
+            p.r = 50
+            const angle = (360/100)*i
+            // 1 弧度 = PI / 180
+            const radians = angle*(Math.PI / 180)
+            p.x_offset = p.r*Math.cos(radians)
+            p.y_offset = p.r*Math.sin(radians)
+            p.px = x + p.x_offset
+            p.py = y + p.y_offset
+            p.acc = (50 + Math.floor(Math.random()*60))/100
+            p.speed = 0.5 + Math.random()*5
+            p.size = 1 + Math.random()*2
+            setColor(p)
+            particles.push(p)
+        }
+    }
+
+    function drawFireworks(){
+        for(let i = 0; i<particles.length ; ){
+            const p = particles[i]
+            p.x += p.x_offset / 20
+            p.y += p.y_offset / 20 + p.speed * (1 - p.acc)
+
+            p.acc -= 0.01
+            p.a -= 0.01
+
+            if(p.a <=0 ){
+                particles.splice(i,1) // 删掉该透明的例子
+                continue
+            }
+
+            ctx.beginPath()
+            ctx.arc(p.x,p.y,p.size,0,Math.PI*2)
+            ctx.closePath()
+            ctx.fillStyle = `hsla(${p.hue},100%,${p.l}%,${p.a})`
+            ctx.fill()
+            i++
+        }
+    }
+
+    let lastStamp = 0 
+    render = (stamp) => {
+        if(stamp - lastStamp > 1000){
+            lastStamp = stamp
+            buildFireworks(Math.random()*canvas.width,Math.random()*canvas.height)
+        }
+        
+        ctx.globalCompositeOperation = "destination-out"
+        ctx.fillStyle = 'rgba(0,0,0,0.1)'
+        ctx.fillRect(0,0,canvas.width,canvas.height)
+        
+        
+        ctx.globalCompositeOperation = "lighter"
+        // ctx.fillStyle = "#000"
+        ctx.fillStyle = "transparent"
+        ctx.fillRect(0,0,canvas.width,canvas.height)
+
+        drawFireworks()
+        requestAnimationFrame(render)
+    }
+
+    // render(0)
+}
+
+let cd = 5
+
+const timer = setInterval(() => {
+    if(cd === 0){
+        clearInterval(timer)
+        render(0)
+    }
+    const h1 = document.querySelector("h1")
+    h1.innerText = cd 
+    cd--
+},1000)
+
+
+
+</script>

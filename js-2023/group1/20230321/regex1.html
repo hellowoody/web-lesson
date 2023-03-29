@@ -1,0 +1,80 @@
+<script>
+/*
+增则-断言 assert
+
+^ 匹配开头 以xxx开头
+
+$ 匹配结尾 以xxx结尾
+
+*/
+
+const exp = /world/
+const exp_start = /^world/
+const exp_end = /world$/
+
+console.log(exp.exec("hello world")) 
+console.log("exp_start",exp_start.exec("hello world")) // null
+console.log("exp_start",exp_start.exec("world hello")) // []
+
+console.log(exp.exec("hello world."))
+console.log("exp_end",exp_end.exec("hello world.")) // null
+console.log("exp_end",exp_end.exec("hello world"))  // []
+
+// 多行下的匹配开头结尾
+const statement = `
+第一行,xxx.
+注意。。。。
+第二行,xxx.
+第三行,xxx.
+`
+const reg = /^第.*/gm
+let res
+while(res = reg.exec(statement)){
+    console.log("^",res)
+}
+const reg_end = /.*\.$/gm
+let res_end
+while(res_end = reg_end.exec(statement)){
+    console.log("$",res_end)
+}
+
+// 单词边界  \b
+// 这组字符相当有限：它只包括大写和小写的罗马字母，十进制数字和下划线字符。
+
+// row
+
+const s1 = "tomorrow"
+const s2 = "brown"
+const s3 = "row"
+const s4 = "rowdy"
+const s5 = "row!"
+
+console.log(/\brow\b/.exec(s1))
+console.log(/\brow\b/.exec(s2))
+console.log(/\brow\b/.exec(s3))
+console.log(/\brow\b/.exec(s4))
+console.log(/\brow\b/.exec(s5))
+
+console.log("****************")
+
+console.log(/\brow/.exec(s1)) // null
+console.log(/\brow/.exec(s2)) // null
+console.log(/\brow/.exec(s3)) 
+console.log(/\brow/.exec(s4))
+console.log(/\brow/.exec(s5))
+
+console.log("****************")
+
+console.log(/row\b/.exec(s1))  // 
+console.log(/row\b/.exec(s2))  // null
+console.log(/row\b/.exec(s3))
+console.log(/row\b/.exec(s4))  // null
+console.log(/row\b/.exec(s5))
+
+const s6 = "迅雷不及掩耳盗铃"
+const s7 = "迅雷"
+console.log(/\b迅雷\b/.exec(s6))
+console.log(/\b迅雷\b/.exec(s7))
+
+
+</script>

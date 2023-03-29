@@ -1,0 +1,116 @@
+<script>
+/*
+    正则-分组  ()
+
+    const reg1 = /^\d{7,8}$/
+    const reg2 = /^0\d{2,3}[ -]?\d{7,8}$/
+
+    23191234
+    2123123
+    022-23191234
+    0533-23191234
+    022-2123123
+    0533-2123123
+    0533 2123123
+
+    2123123
+*/
+
+const reg = /^(0\d{2,3}[ -]?)?\d{7,8}$/
+
+console.log(reg.exec("23191234")[0])
+console.log(reg.exec("2123123")[0])
+console.log(reg.exec("022-23191234")[0])
+console.log(reg.exec("0399-23191234")[0])
+console.log(reg.exec("022-2123123")[0])
+console.log(reg.exec("0399-2123123")[0])
+console.log(reg.exec(",2123123"))
+console.log(reg.exec("2123123abc"))
+
+// yyyy-mm-dd hh:mm:ss
+// 2023-3-22 9:03:50
+
+const reg1 = /\d{4}-\d{1,2}-\d{1,2} \d{1,2}:\d{1,2}:\d{1,2}/
+const reg2 = /(\d{4})-(\d{1,2})-(\d{1,2}) (\d{1,2}):(\d{1,2}):(\d{1,2})/
+
+console.log(reg2.exec("2023-3-22 9:03:50"))
+console.log(reg2.exec("2023-3-22 9:03:50")[1])
+console.log(reg2.exec("2023-3-22 9:03:50")[2])
+console.log(reg2.exec("2023-3-22 9:03:50")[3])
+
+/*
+正则结果的类数组对象
+index:0
+index:1
+index:2
+*/ 
+
+const reg3 = /^((0\d{2,3})[ -]?)?(\d{7,8})$/
+
+/*
+index:0
+index:1
+*/
+
+console.log(reg3.exec("0399-23191234")[1])
+console.log(reg3.exec("022-2123123")[1])
+console.log(reg3.exec("0399-23191234")[2])
+console.log(reg3.exec("022-2123123")[2])
+console.log(reg3.exec("0399-23191234")[3])
+console.log(reg3.exec("022-2123123")[3])
+
+console.log(reg3.exec("2123123")[1])
+console.log(reg3.exec("2123123")[2])
+
+const reg4 = /(\d{4})-(\d{1,2})-(\2)/
+console.log(reg4.exec("2023-03-03"))
+console.log(reg4.exec("2023-03-13"))
+
+const d = new Date()
+console.log("d",d.toString())
+// Wed Mar 22 2023 09:27:44 GMT+0800 (中国标准时间)
+/*
+1
+9
+10
+20
+25
+05
+
+    \d
+[12]\d
+3   [01]
+0   [1-9]
+
+[0-5]?\d
+
+
+*/ 
+const reg5 = /([A-Z][a-z]{2}) ([A-Z][a-z]{2}) ([0-3]?\d) (\d{4}) ([0-2]?\d):([0-5]?\d):([0-5]?\d)/
+for(const i in reg5.exec(d.toString())){
+    console.log(i,reg5.exec(d.toString())[i])
+}
+
+/*
+    手机号
+    13\d
+    15\d
+    16\d
+    17\d
+    18\d
+
+    1[35-8]\d{9}
+*/
+
+const tel = /1[35-8]\d{9}/
+// const reg = /^(0\d{2,3}[ -]?)?\d{7,8}$/
+
+// |
+
+const contact = /1[35-8]\d{9}|(0\d{2,3}[ -]?)?\d{7,8}/
+const contact1 = /(1[35-8]\d{9})|((0\d{2,3}[ -]?)?\d{7,8})/
+console.log(contact.exec("022-23191234"))
+console.log(contact.exec("15812345678"))
+
+
+</script>

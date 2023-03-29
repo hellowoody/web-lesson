@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            div {
+                width: 200px;
+                height:200px;
+                background: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div></div>
+    </body>
+</html>
+<script>
+let count = 0
+const div = document.querySelector("div")
+
+// const timer = setInterval(renderByInterval,20)
+
+function renderByInterval(){
+    div.style.transform = `translateX(${++count}px)`
+    if(count > 500){
+        clearInterval(timer)
+    }
+}
+
+// requsetAnimationFrame
+function render(d){
+    // console.log(d)
+    div.style.transform = `translateX(${++count}px)`
+    if(count < 500){
+        requestAnimationFrame(render)
+    }
+}
+render()
+</script>

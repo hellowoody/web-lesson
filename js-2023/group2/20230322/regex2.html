@@ -1,0 +1,56 @@
+<script>
+const reg = /ab|cd/
+const reg2 = /^(ab|cd)$/
+const reg3 = /^ab|cd$/
+// const reg = /(ab)|(cd)/
+// const reg3 = /(^ab)|(cd$)/
+console.log(reg.exec("abc"))   // ["ab"]
+console.log(reg2.exec("abc"))  // null
+console.log(reg3.exec("abc"))  // ["ab"]
+console.log(reg.exec("abcd"))  // ["ab"]
+console.log(reg2.exec("abcd")) // null 
+console.log(reg3.exec("abcd")) // ["ab"]
+console.log(reg.exec("cd"))    // [cd]
+console.log(reg2.exec("cd"))   // [cd,cd]
+console.log(reg3.exec("cd"))   // [cd]
+console.log(reg.exec("bcd"))   // [cd]
+console.log(reg2.exec("bcd"))  // null 
+console.log(reg3.exec("bcd"))  // [cd]
+console.log(reg.exec("acd"))   // [cd]
+console.log(reg2.exec("acd"))   // null
+console.log(reg3.exec("acd"))   // [cd]
+console.log(reg.exec("abd"))    // [ab]
+console.log(reg2.exec("abd"))   // null
+console.log(reg3.exec("abd"))   // [ab]
+
+/*
+[abc]
+(a|b|c)
+*/
+const reg4 = /[abc]/ // [a-c] [0-9] 
+const reg5 = /a|b|c/  // 
+const reg6 = /[a|b]/
+// [] 和 ｜ 都是或者，但是不能嵌套
+console.log(reg6.exec("a"))
+console.log(reg6.exec("|"))
+console.log(reg6.exec("b"))
+
+/*
+e-mail
+mailname@hostname.com
+{1,63}            {1,63}
+*/ 
+
+
+
+const emailRegex = /[-\w\.]{1,63}@([-a-zA-Z0-9]{1,63}\.)*[-a-zA-Z0-9]{2,63}/
+
+
+console.log(emailRegex.test("abc@com"))
+console.log(emailRegex.test("abc@hostname.com"))
+console.log(emailRegex.test("abc@some-host.com"))
+console.log(emailRegex.test("123@somehost.cn"))
+console.log(emailRegex.test("abc123@somehost.com"))
+console.log(emailRegex.test("abc@sub.somehost.com"))
+console.log(emailRegex.test("abc@m-s.sub.somehost.com"))
+</script>

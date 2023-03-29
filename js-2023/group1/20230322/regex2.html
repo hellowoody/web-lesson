@@ -1,0 +1,38 @@
+<script>
+// 分组 补充
+// yyyy-mm-dd hh:mm:ss
+// 2023-3-22 9:03:50
+const reg1 = /\d{4}-\d{1,2}-\d{1,2} \d{1,2}:\d{1,2}:\d{1,2}/
+const reg2 = /(\d{4})-(\d{1,2})-(\d{1,2}) (\d{1,2}):(\d{1,2}):(\d{1,2})/
+
+console.log(reg1.exec("2023-3-22 9:03:50")) 
+console.log(reg2.exec("2023-3-22 9:03:50")[0])
+console.log(reg2.exec("2023-3-22 9:03:50")[1])
+console.log(reg2.exec("2023-3-22 9:03:50")[2])
+console.log(reg2.exec("2023-3-22 9:03:50")[3])
+console.log(reg2.exec("2023-3-22 9:03:50")[4])
+console.log(reg2.exec("2023-3-22 9:03:50")[5])
+console.log(reg2.exec("2023-3-22 9:03:50")[6])
+
+const group = /abc/
+const group1 = /(a)bc/
+const group2 = /(a)b(c)/
+console.log(group.exec("abc")) //["abc"]
+console.log(group1.exec("abc")) //["abc","a"]
+console.log(group2.exec("abc")) //["abc","a","c"]
+
+
+// 座机正则表达式
+// const reg3 = /^(0\d{2,3}[ -]?)?\d{7,8}$/
+const reg3 = /^((0\d{2,3})[ -]?)?(\d{7,8})$/
+
+console.log(reg3.exec("010-23111234"))
+
+// 分组引用  （值而不是模式）
+// yyyy-mm-dd
+const reg4 = /(\d{4})-(\d{1,2})-(\2)/
+console.log(reg4.exec("2023-03-03")) // []*4
+console.log(reg4.exec("2023-03-13")) // null
+console.log(reg4.exec("2023-9-09"))  // null
+console.log(reg4.exec("2023-9-9"))   // []*4
+</script>
