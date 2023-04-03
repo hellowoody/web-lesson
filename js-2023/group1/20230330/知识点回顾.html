@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>123</title>
+    </head>
+    <body></body>
+</html>
+<script>
+/*
+    使用canvas绘制一个等边梯形，边框灰色，内部粉色
+    
+    1.create div
+    2.div.innerHTML = `<canvas></canvas>`
+    3.
+    4.querySelector("canvas")
+*/
+
+const canvas = document.createElement("canvas")
+if(!canvas.getContext){
+    alert("浏览器不支持")
+}else{
+    // document.documentElement   <html></html>
+    // document.body              <body></body>
+    // document.head              <head></head>
+    // document.querySelector("body").appendChild(div)
+    document.body.appendChild(canvas)
+
+    const w = 300 ,h = 300
+    canvas.width = w
+    canvas.height = h
+    canvas.style.width = w+"px"
+    canvas.style.height = h+"px"
+    const ctx = canvas.getContext("2d")
+
+    ctx.beginPath()
+    ctx.moveTo(20,20)
+    ctx.lineTo(220,20)
+    ctx.lineTo(160,190)
+    ctx.lineTo(90,190)
+    ctx.closePath()
+    ctx.strokeStyle = "grey"
+    ctx.lineWidth = 10
+    ctx.stroke()
+    ctx.fillStyle = "pink"
+    ctx.fill()
+}
+
+
+
+</script>

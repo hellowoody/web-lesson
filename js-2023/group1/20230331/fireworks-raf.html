@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>fireworks</title>
+        <style>
+            body {
+                margin:0;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div>12</div>
+    </body>
+</html>
+<script>
+const canvas = document.createElement("canvas")
+canvas.style.position = "fixed"
+canvas.style.top = 0
+canvas.style.left = 0
+let render
+
+if(!canvas.getContext){
+    const p = document.createElement("p")
+    p.innerText = "该浏览器不支持canvas"
+    document.body.appendChild(p)
+}else{
+    document.body.appendChild(canvas)
+    let w,h;
+   
+    const ctx = canvas.getContext("2d") // webgl
+
+    const fillHandler = () => {
+        // ctx.fillStyle = "#000"
+        ctx.fillStyle = "transparent"
+        ctx.fillRect(0,0,canvas.width,canvas.height)
+    }
+
+    fillHandler()
+
+    const resizeHandler = () => {
+        w = document.documentElement.clientWidth;
+        h = document.documentElement.clientHeight;
+        canvas.width = w
+        canvas.height = h
+        canvas.style.height = h+"px"
+        canvas.style.width = w+"px"
+        fillHandler()
+    }
+
+    resizeHandler()
+
+    window.addEventListener("resize",resizeHandler)
+
+    const particles = []
+
+    function buildParticles(startX,startY){
+        const count = 100
+        for(let i = 0 ; i < count ; i++){
+            const p = {}
+            const angle = (360/count)*i
+            const radians = (Math.PI / 180) * angle
+            p.r = 50
+            p.startX = startX
+            p.startY = startY
+
+            p.offsetX = p.r*Math.cos(radians)
+            p.offsetY = p.r*Math.sin(radians)
+
+            p.endX = p.startX + p.offsetX
+            p.endY = p.startY + p.offsetY
+
+            p.speed = 0.5 + Math.random()*5
+            p.acc =  (50 + Math.floor(Math.random()*60))/100        
+
+            p.size = Math.random()*2 + 1
+
+            p.h = Math.floor(Math.random()*360)
+            p.s = "100%"
+            p.l = (Math.floor(Math.random()*20) + 50) + "%"
+            p.a = (Math.floor(Math.random()*30) + 50)/100
+
+            particles.push(p)
+        }
+    }
+
+    function drawParticles(){
+        for(let i = 0 ; i < particles.length ;){
+            const p = particles[i]
+            p.startX += p.offsetX / 20
+            p.startY += p.offsetY / 20 + p.speed * (1 - p.acc)
+            
+            p.acc -= 0.01
+            p.a -= 0.01
+
+            if(p.a <= 0){
+                particles.splice(i,1)
+                continue
+            }
+
+            ctx.beginPath()
+            ctx.arc(p.startX,p.startY,p.size,0,Math.PI*2)
+            ctx.closePath()
+            ctx.fillStyle = `hsla(${p.h},${p.s},${p.l},${p.a})`
+            ctx.fill()
+            i++
+        }
+    }
+    let lastBuildStamp = 0
+
+    render = () => {
+        if(Date.now() - lastBuildStamp > 1000){
+            lastBuildStamp = Date.now()
+            buildParticles(Math.random()*canvas.width,Math.random()*canvas.height)
+        }
+
+        ctx.globalCompositeOperation = "destination-out"
+        ctx.fillStyle = "rgba(0,0,0,0.1)"
+        ctx.fillRect(0,0,canvas.width,canvas.height)
+
+     
+        ctx.globalCompositeOperation = "lighter"
+        ctx.fillStyle = "transparent"
+        ctx.fillRect(0,0,canvas.width,canvas.height)
+        
+        drawParticles()
+        requestAnimationFrame(render)
+    }
+
+}
+// raf requestAnimationFrame
+
+
+let cd = 3
+
+const ticket = setInterval(() => {
+    if(cd === 0){
+        clearInterval(ticket)
+        render()
+        return 
+    }
+    const div = document.querySelector("div")
+    div.innerHTML = `<h1>${cd}</h1>`
+    cd--
+},1000)
+
+
+
+</script>

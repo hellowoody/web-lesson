@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            div {
+                width:200px;
+                height: 200px;
+                background: red;
+            }
+
+            div:nth-of-type(2){
+                background: blue;
+            }
+            div:nth-of-type(3){
+                background: pink;
+            }
+            div:nth-of-type(4){
+                background: cyan;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box1"></div>
+        <button onclick="start()">run</button>
+        <div id="box2"></div>
+        <button onclick="start2()">run setInterval</button>
+        <div id="box3"></div>
+        <button onclick="start3()">run raf</button>
+        <div id="box4"></div>
+        <button onclick="start4()">run raf 丢帧</button>
+    </body>
+</html>
+<script>
+function start(){
+    const div = document.querySelector("#box1")
+    div.style.transform = `translateX(500px)`
+}
+
+function start2(){
+    const div = document.querySelector("#box2")
+    let distance = 0
+    const ticket = setInterval(() => {
+        div.style.transform = `translateX(${++distance}px)`
+        if(distance === 500){
+            clearInterval(ticket)
+        }
+    },25)
+}
+
+function start3(){
+    const div = document.querySelector("#box3")
+    let distance = 0
+//    1s/30   1s/60 
+//    33ms    16ms  
+    const render = () => {
+        div.style.transform = `translateX(${++distance}px)`
+        
+        if(distance < 500){
+            requestAnimationFrame(render)
+        }
+    }
+    render()
+}
+
+function start4(){
+    const div = document.querySelector("#box4")
+    let distance = 0
+//    1s/30   1s/60 
+//    33ms    16ms  
+    let lastStamp = 0
+    const render = (d) => {
+        // console.log(d,lastStamp)
+        ++distance
+        if(!d || d - lastStamp > 100){
+            lastStamp = d ? d : 0 
+            div.style.transform = `translateX(${distance}px)`
+        }
+        
+        if(distance < 500){
+            requestAnimationFrame(render)
+        }
+    }
+    render()
+}
+</script>
