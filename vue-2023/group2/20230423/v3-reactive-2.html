@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>watch</title>
+        <script src="../vue3_lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+
+const Main = {
+    setup(){
+        // Vue3中的reactive，其实就是对Proxy的一层定制化的封装。
+        // Vue3中的ref,     是对reactive的一层封装
+
+        // reactive 在使用时只能接收对象或数组  {} / []
+
+        const obj = Vue.reactive({
+            name:"张三",
+            province:"河北省"
+        })
+
+        const arr = Vue.reactive(["a","b","c"])
+
+        console.log("obj:",obj) // Proxy {}
+        console.log("obj.name:",obj.name,"obj.province",obj.province)
+        console.log("arr:",arr)
+        console.log("arr[0]:",arr[0])
+        console.log("arr[1]:",arr[1])
+        console.log("arr[2]:",arr[2])
+        for(let item of arr){
+            console.log("for-of item:",item)
+        }
+        for(let i in arr){
+            console.log("for-in index:",i)
+        }
+
+        const obj_ref = Vue.ref({
+            name:"张三",
+            province:"河北省"
+        }) 
+
+        /*
+            {
+                value:{
+                    name:"张三",
+                    province:"河北省"
+                }
+            
+            }
+        */ 
+
+        return {
+            obj_ref,
+            obj,
+            arr,
+        }
+    },
+    template:`
+        <h1>vue3-reactive</h1>
+        <div>obj:{{obj}}</div> 
+        <span>obj.name:{{obj.name}}</span>
+        <span>obj.province:{{obj.province}}</span>
+        <div>arr:{{arr}}</div> 
+        <span v-for="item in arr">{{item}};</span>
+        <h2>
+            <p>{{obj_ref.name}}</p>    
+            <p>{{obj_ref.province}}</p>    
+        </h2>
+    `
+}
+const app = Vue.createApp(Main)
+app.mount("#app")
+</script>

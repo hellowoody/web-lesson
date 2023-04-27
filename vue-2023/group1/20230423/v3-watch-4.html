@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>watch</title>
+        <script src="../vue3/vue.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+const Main = {
+    setup(){    
+        const stu = Vue.reactive({
+            name:"zhang",
+            p1:"1",
+            p2:"2",
+            p3:"3",
+            p4:"4",
+            p5:"5",
+            p6:"6",
+        })
+        // shallow copy 
+        Vue.watch(() => Object.assign({},stu),(curr,prev) => {
+            console.log("curr",curr)
+            console.log("prev",prev)
+        })
+        
+        const data = Vue.reactive({
+            name:"张三",
+            province:"河北省",
+            school:{
+                name:"大软",
+                address:"西青"
+            }
+        })
+        // watch侦听：data里的name province
+        Vue.watch(
+            () => Object.assign({},data),
+            (curr,prev) => {
+                console.log(curr,prev)
+            },
+        )
+         // watch侦听：scholl 里的name address
+        Vue.watch(
+            () => Object.assign({},data.school),
+            (curr,prev) => {
+                console.log(curr,prev)
+            },
+        )
+
+
+        return {
+            stu,
+            data
+        }
+    },
+    template:`
+        <h1>vue3-watch deep</h1>
+        <input v-model="stu.name" >
+        <br>
+        <input v-model="stu.p1" >
+        <br>
+        <input v-model="stu.p2" >
+        <br>
+        <input v-model="stu.p3" >
+        <br>
+        <input v-model="data.name" >
+        <br>
+        <input v-model="data.province" >
+        <br>
+        <input v-model="data.school.name" >
+        <input v-model="data.school.address" >
+     
+        
+    `
+}
+const app = Vue.createApp(Main)
+app.mount("#app")
+</script>

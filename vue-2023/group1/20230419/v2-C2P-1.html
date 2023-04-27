@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue2/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <parent-comp />
+        </div>
+    </body>
+</html>
+<script>
+const ChildComp = {
+    props:{
+        num:Number
+    },
+    template:`
+        <div>
+            <h5>{{num}}</h5>
+            <button @click="add">+</button>
+        </div>
+    `,
+    methods:{
+        add(){
+            console.log(1000,"子组件的方法")
+            // vue 子组件调用父组件中方法
+            // gof 广播设计范式 emit 
+            // this.$emit(父组件调用子组件时的事件名称,需要传递参数<可传可不传>)
+            this.$emit("increment",this.num+1)
+        }
+    }
+}
+
+const ParentComp = {
+    data(){
+        return {
+            count:0,
+        }
+    },
+    methods:{
+        add(newval){
+            console.log(2000,"父组件的add")
+            this.count = newval
+        }
+    },
+    template:`
+        <div>
+            <h2>父组件:计数器</h2>
+            <counter :num="count" v-on:increment="add"></counter>
+        </div>
+    `,
+    components:{
+        "counter":ChildComp
+    }
+}
+
+new Vue({
+    el:"#app",
+    components:{
+        // "parent-comp":ParentComp
+        ParentComp
+    }
+})
+</script>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue3/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <parent-comp></parent-comp>
+        </div>
+    </body>
+</html>
+<script>
+const ChildComp = {
+    // props:["param01","param02"],
+    props:{
+        param01:String,
+        param02:String,
+        param03:Array,
+        param04:{
+            type:Number,
+            default:-10
+        }
+    },
+    setup(p){
+        // not use this 
+        console.log(p) // {param01:xxx,....}
+        console.log("p3:",p.param03,typeof p.param03)
+        console.log("p4:",p.param04,typeof p.param04)
+
+
+        const show = Vue.computed(() => {
+            return p.param01 + "!!!"
+        })
+        return {
+            show
+        }
+    },
+    template:`
+        <h6>{{param02 + "," + show + " " + param03 + " " + param04 }}</h6>
+    `
+}
+
+const ParentComp = {
+    setup(){
+        const p1 = Vue.ref("子组件")
+        const p3 = [1,2,3]
+
+        return {
+            p1,
+            p2:"你好",
+            p3
+        }
+    },
+    template:`
+        <div>
+            <h2>父组件</h2>
+            <child-comp :param01="p1" :param02="p2" :param03="p3" :param04="100"></child-comp>
+        </div>
+    `,
+    components:{
+        ChildComp
+    }
+}
+
+Vue.createApp({
+    components:{
+        // "parent-comp":ParentComp
+        ParentComp
+    }
+}).mount("#app")
+</script>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>vue3</title>
+        <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+        <script src="./vue3/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+        </div>
+    </body>
+</html>
+<script>
+    
+console.log(Vue)
+// 组件
+const Component = {
+    // data:function(){
+    //     return {
+    //         msg:"hello vue3!!!"
+    //     }
+    // },
+    data(){
+        return {
+            msg:"hello vue3!!!"
+        }
+    },
+    methods:{
+        // vue3 如果用的还是vue2的语法，还是不能用箭头函数
+        update(){
+            this.msg = "你好,vue3."
+        }
+    },
+    // vue3 template 可以是多标签
+    template:`
+        <h1>{{msg}}</h1>
+        <button v-on:click="update">修改msg</button>
+        <button @click="update">修改msg111</button>
+    `
+}
+
+const app = Vue.createApp(Component)
+app.mount("#app")
+</script>

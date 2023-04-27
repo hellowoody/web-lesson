@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- <script src="../vue2/vue.js"></script> -->
+        <script src="../vue3/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <p>{{msg}}</p>
+            <p v-if="rmsg !== ''">{{rmsg}}</p>
+            <button @click="reverse">reverse</button>
+            <button @click="getMsg">msg</button>
+        </div>
+    </body>
+</html>
+<script>
+Vue.createApp({
+    setup(){
+        let msg = "hello world!"
+        const rmsg = Vue.ref("")
+
+        const reverse = () => {
+            rmsg.value = msg.split("").reverse().join("")
+            msg = "你好"
+        }
+
+        const getMsg = () => console.log(msg)
+
+        return {
+            msg,
+            rmsg,
+            reverse,
+            getMsg
+        }
+    }
+    // data(){
+    //     return {
+    //         msg:"hello world!",
+    //         rmsg:""
+    //     }
+    // },
+    // methods:{
+    //     reverse(){
+    //         // this.rmsg = this.msg.split("").reverse().join("")
+    //         this.rmsg = Array.from(this.msg).reverse().join("")
+    //     }
+    // }
+}).mount("#app")
+</script>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue2/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <main-comp />
+        </div>
+    </body>
+</html>
+<script>
+const Home = {
+    template:`<h2>首页</h2>`
+}
+
+const Cart = {
+    template:"<h2>购物车</h2>"
+}
+
+const MainComp = {
+    template:`
+    <div>
+        <h1>入口组件</h1>
+        <home  />
+        <cart  />
+    </div>
+    `,
+    components:{
+        Home,
+        Cart
+    }
+}
+
+new Vue({
+    el:"#app",
+    // 注册组件 局部注册组件
+    components:{
+        // 入口组件 Main 
+        MainComp
+    },
+})
+
+</script>

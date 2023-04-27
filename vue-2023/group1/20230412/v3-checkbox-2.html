@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="../vue3/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <input type="checkbox" v-model="msg">复选框
+            <div>{{msg}}</div>
+            <button @click="toggle">切换</button>
+        </div>
+    </body>
+</html>
+
+<script>
+Vue.createApp({
+    setup(){
+        const msg = Vue.ref("")
+        
+        const toggle = () => msg.value = !msg.value
+
+        return {
+            msg,
+            toggle
+        }
+    }
+}).mount("#app")
+
+</script>

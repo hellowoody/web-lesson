@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue3_lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app1">
+            {{msg}}
+            <my-comp></my-comp>
+        </div>
+
+        <div id="app2">
+            {{msg}}
+            <my-comp></my-comp>
+        </div>
+    </body>
+</html>
+<script>
+//声明了一个组件
+const MyComp = Vue.defineComponent({
+    template:"<h1>hello , 组件</h1>"
+})
+
+
+Vue.createApp({
+    data(){
+        return {
+            msg:"this is app1"
+        }
+    },
+    // 注册组件
+    components:{
+        MyComp
+        // "my-comp":MyComp
+    }
+}).mount("#app1")
+
+Vue.createApp({
+    data(){
+        return {
+            msg:"this is app2"
+        }
+    },
+    components:{
+        MyComp
+    }
+}).mount("#app2")
+</script>

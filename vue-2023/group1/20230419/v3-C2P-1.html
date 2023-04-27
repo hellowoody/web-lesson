@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue3/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <parent-comp />
+        </div>
+    </body>
+</html>
+<script>
+const ChildComp = {
+    props:{
+        num:Number
+    },
+    template:`
+        <div>
+            <h5>{{num}}</h5>
+            <button @click="sub">-</button>
+            <button @click="add">+</button>
+        </div>
+    `,
+    setup(props,context){
+        // not use this
+        // note use $emit
+        console.log(context)
+        const add = () => {
+            context.emit("increment",props.num+1)
+        }
+        const sub = () => context.emit("decrement")
+
+        return {
+            add,
+            sub
+        }
+    }
+}
+
+const ParentComp = {
+    setup(){
+        const count = Vue.ref(0)
+
+        const add = v => {
+            count.value = v
+        }
+
+        const decrease = () => count.value--
+
+        return {
+            count,
+            add,
+            decrease
+        }
+    },
+    template:`
+        <div>
+            <h2>父组件:计数器</h2>
+            <counter :num="count" @increment="add"  v-on:decrement="decrease"></counter>
+        </div>
+    `,
+    components:{
+        "counter":ChildComp
+    }
+}
+
+Vue.createApp({
+    components:{
+        // "parent-comp":ParentComp
+        ParentComp
+    }
+}).mount("#app")
+</script>

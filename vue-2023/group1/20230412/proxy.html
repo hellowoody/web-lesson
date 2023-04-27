@@ -1,0 +1,53 @@
+<html>
+    <body>
+        <input oninput="handle(this);"/> 
+    </body>
+</html>
+<script>
+/*
+Vue3 中如何实现的变量绑定？
+       如何实现的双向绑定？
+
+Vue2 和 Vue3 对变量绑定的底层不同，
+    Vue2 用的是观察者模式  Observer Pattern
+    Vue3 用的是代理模式    Proxy
+
+ES5 Math Date Array RegExp
+ES6 Proxy
+*/ 
+
+// new Proxy(被代理的原始对象,配置对象)
+
+const obj = {
+    name:"张三",
+    score:100
+}
+
+const config = {
+    get(obj,prop){
+        // console.log(obj,prop)
+        return typeof obj[prop] === "number" ? obj[prop]+".00" : obj[prop]
+    },
+    set(obj,prop,new_value){
+        // console.log("set",obj)
+        // console.log("set",prop)
+        // console.log("set",new_value)
+        document.querySelector("input").value = new_value
+        obj[prop] = new_value
+    }
+}
+
+const obj_p = new Proxy(obj,config)
+
+
+console.log(obj_p.name) 
+
+obj_p.score = 50
+
+document.querySelector("input").value = obj_p.name
+
+
+function handle(e){
+    obj_p.name = e.value
+}
+</script>

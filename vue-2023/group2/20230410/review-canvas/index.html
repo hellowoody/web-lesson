@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body></body>
+</html>
+<script>
+const canvas = document.createElement("canvas")
+
+if(!canvas.getContext){
+    console.log("!!!")
+}else{
+    document.body.appendChild(canvas)
+
+    const w = 500 , h = 500
+
+    canvas.width = w
+    canvas.height = h
+    canvas.style.width = w
+    canvas.style.height = h
+    canvas.style.border = "1px solid #000"
+
+    const ctx = canvas.getContext("2d")
+    
+    const txt = "1"
+    ctx.textBaseline = "top"
+    ctx.fillText(txt,0,0)
+
+    ctx.beginPath()
+    ctx.moveTo(300,300.5)
+    ctx.lineTo(312,300.5)
+    ctx.strokeStyle = "red"
+    ctx.stroke()
+
+    const imageData = ctx.getImageData(300,300,12,1)
+    console.log(imageData)
+
+    for(let i = 0 ; i < imageData.data.length ; i+=4 ){
+        imageData.data[i] = 0
+        imageData.data[i+1] = 255
+    } 
+    ctx.putImageData(imageData,300,310.5)
+}
+</script>

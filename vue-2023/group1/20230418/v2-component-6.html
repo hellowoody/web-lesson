@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue2/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <counter></counter>
+            <counter></counter>
+            <counter></counter>
+        </div>
+    </body>
+</html>
+<script>
+let num = 1
+const Counter = {
+    data(){
+        console.log(1000)
+        const o = new Object()
+        o.count = num
+        num++
+        return o
+    },
+    template:`
+        <div>
+            <h5>{{count}}</h5>
+            <button @click="add">+</button>
+        </div>
+    `,
+    methods:{
+        add(){
+            this.count++
+        }
+    }
+}
+
+console.log("在全局new o")
+const o = new Object()
+ o.count = num
+const obj = o
+num++
+
+const CounterRef = {
+    data:function(){
+        console.log(2000)
+        return obj
+    },
+    template:`
+        <div>
+            <h5>{{count}}</h5>
+            <button @click="add">+</button>
+        </div>
+    `,
+    methods:{
+        add(){
+            this.count++
+        }
+    }
+}
+
+new Vue({
+    el:"#app",
+    // 注册组件 局部注册组件
+    components:{
+        // Counter
+        "counter":CounterRef
+    },
+})
+
+</script>

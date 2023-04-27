@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue3_lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <main-comp />
+        </div>
+
+        <script type="text/x-template" id="home">
+            <div>
+                <h6>首页</h6>
+            </div>
+        </script>
+
+        <script type="text/x-template" id="cart">
+            <div>
+                <h6>购物车</h6>
+            </div>
+        </script>
+        
+        <script type="text/x-template" id="MainComp">
+            <div>
+                <h1>入口组件</h1>
+                <home  />
+                <cart  />
+            </div>
+        </script>
+    </body>
+</html>
+<script>
+const Home = {
+    template:"#home"
+}
+
+const Cart = {
+    template:"#cart"
+}
+
+const MainComp = {
+    template:"#MainComp",
+    components:{
+        Home,
+        Cart
+    }
+}
+
+Vue.createApp({
+    // 注册组件 局部注册组件
+    components:{
+        MainComp
+    },
+}).mount("#app")
+
+</script>

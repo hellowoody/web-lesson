@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue2/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <parent-comp />
+        </div>
+    </body>
+</html>
+<script>
+
+const ParentComp = {
+    data(){
+        return {
+            count:0
+        }
+    },
+    methods:{
+        add(){
+            this.count++
+        }
+    },
+    template:`
+        <div>
+            <h1 ref="id01">{{count}}</h1>
+            <button @click="add">+</button>
+        </div>
+    `,
+    created(){
+        // 保证你在这个钩子函数中，data，methods，computed
+        // template渲染完
+        console.log("parent created")
+        console.log(this.count)
+        this.add()
+        console.log(this.count)
+        console.log(this.$refs.id01) 
+    },
+    mounted(){
+        // 保证你在这个钩子函数中，data，methods，computed，template
+        console.log("parent mounted")
+        console.log(this.$refs.id01)
+    },
+}
+
+new Vue({
+    el:"#app",
+    components:{
+        ParentComp
+    }
+})
+</script>

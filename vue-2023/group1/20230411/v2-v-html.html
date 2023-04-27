@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="../vue2/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <span v-text="msg"></span>
+            <span v-html="msg"></span>
+            <span v-text="txt"></span>
+            <span v-html="txt"></span>
+            <span v-html="str"></span>
+            <!-- <span><abc>1000</abc></span> -->
+        </div>
+    </body>
+</html>
+
+<script>
+new Vue({
+    el:"#app",
+    data:{
+        msg:"<h1>你好</h1>",
+        txt:"<abc>1000</abc>",
+        str:"hello"
+    }
+})
+
+/*
+    v-text  innerText
+    v-html  innerHtml
+*/ 
+</script>

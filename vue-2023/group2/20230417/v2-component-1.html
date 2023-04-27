@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue2_lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app1">
+            {{msg}}
+            <comp></comp>
+        </div>
+
+        <div id="app2">
+            {{msg}}
+            <comp />
+        </div>
+    </body>
+</html>
+<script>
+// 定义一个组件
+const Comp = Vue.extend({
+    template:`<h1>我是组件</h1>`
+})
+
+new Vue({
+    el:"#app1",
+    data:{
+        msg:"this is app1"
+    },
+    // 注册组件 局部注册组件
+    components:{
+        // "自定义标签名字":组件
+        // "comp":Comp
+        // "Comp":Comp
+        // Comp:Comp
+        Comp
+    } 
+})
+
+new Vue({
+    el:"#app2",
+    data:{
+        msg:"this is app2"
+    },
+    components:{
+        // "自定义标签名字":组件
+        "comp":Comp
+    } 
+})
+</script>

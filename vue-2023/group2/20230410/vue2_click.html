@@ -1,0 +1,46 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>vue2</title>
+        <script src="./vue2_lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+
+const config = {
+    el:"#app", // element link =》 css 选择器
+    data:{
+        msg:"hello vue2",
+    },
+    methods:{
+        // changeTxt:function(){
+            
+        // }
+        changeTxt(){
+            // console.log(1000)
+            this.msg = "你好,vue2!!!"   
+        }
+        // vue2中不能使用箭头函数
+        // changeTxt:() => {
+        //     console.log(1000)
+        //     console.log(this) // window
+        //     this.msg = "你好,vue2!!!"   
+        // }
+    },
+    template:`
+        <div>
+            <h1>{{msg}}</h1>
+            <!-- button onclick="xxx()">click me!</button-->
+            <button v-on:click="changeTxt">click me!</button>
+            <button @click="changeTxt">click me sugar syntax</button>
+        </div>
+    `,
+}
+
+const instance = new Vue(config) // 配置参数
+
+</script>
+

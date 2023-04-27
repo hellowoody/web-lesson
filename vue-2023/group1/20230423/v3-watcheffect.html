@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>watch</title>
+        <script src="../vue3/vue.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+/*
+1.构建出50条数数据
+2.模拟网络请求异步操作
+3.如果请求正确范围的值
+4.加到变量/页面中
+*/
+const database = []
+for(let i = 0 ; i < 16 ; i++){
+    database.push("item "+i)
+}
+// mock http post
+const mockHttp = (start,offset) => {
+    return new Promise((resolve,reject) => {
+        console.log(`从${start}索引开始,往后取${offset}个`)
+        const mockResData = database.slice(start,start+offset)
+        setTimeout(() => resolve(mockResData),800)
+    })
+}
+
+const Main = {
+    setup(){    
+        const pageCount = 10
+        const list = Vue.ref([])
+        // const page = Vue.ref(0)
+        const postCount = Vue.ref(0)
+        let startIdx = 0
+
+        // Vue.watch(startIdx,curr => {
+        //     console.log("curr")
+        //     mockHttp(curr,pageCount).then(newData => {
+        //         console.log("返回数据啦",newData)
+        //         list.value = list.value.concat(newData)  // 数组追加数组
+        //         if(newData.length > 0){
+        //             page.value++
+        //         }
+        //     })
+        // })
+
+        const load = () => {
+            postCount.value++
+            console.log(postCount.value)
+            // console.log("加载更多")
+            // startIdx = pageCount*page.value
+
+            // mockHttp(startIdx,pageCount).then(newData => {
+            //     console.log("返回数据啦",newData)
+            //     list.value = list.value.concat(newData)  // 数组追加数组
+            //     if(newData.length > 0){
+            //         page.value++
+            //     }
+            // })
+        }
+
+        // load() // 页面初始化先请求前10条
+
+        Vue.watchEffect(() => {
+            console.log("请求的次数",postCount.value)
+            mockHttp(startIdx,pageCount).then(newData => {
+                console.log("返回数据啦",newData)
+                list.value = list.value.concat(newData)  // 数组追加数组
+                if(newData.length > 0){
+                    startIdx += newData.length
+                }
+            })
+        })
+
+        const insertDatabase = () => {
+            database.push("item 16")
+            database.push("item 17")
+            database.push("item 18")
+            database.push("item 19")
+            database.push("item 20")
+            database.push("item 21")
+            database.push("item 22")
+            database.push("item 23")
+        }
+
+        return {
+            list,
+            load,
+            insertDatabase
+        }
+    },
+    
+    template:`
+        <h1>vue3-watchEffect</h1>
+        <div v-for="item in list">
+            {{item}}    
+        </div>
+        <button @click="load">加载更多</button>
+        <button @click="insertDatabase">模拟业务订单在增加</button>
+        
+    `
+}
+const app = Vue.createApp(Main)
+app.mount("#app")
+</script>

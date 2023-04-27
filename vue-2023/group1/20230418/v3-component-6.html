@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue3/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <counter></counter>
+            <counter></counter>
+            <counter></counter>
+        </div>
+        
+    </body>
+</html>
+<script>
+const Counter = {
+    data:function(){
+        return {
+            count:0
+        }
+    },
+    template:`
+        <div>
+            <h5>{{count}}</h5>
+            <button @click="add">+</button>
+        </div>
+    `,
+    methods:{
+        add(){
+            this.count++
+        }
+    }
+}
+
+const obj = {
+    count:0
+}
+
+const CounterRef = {
+    data:function(){
+        return obj
+    },
+    template:`
+        <div>
+            <h5>{{count}}</h5>
+            <button @click="add">+</button>
+        </div>
+    `,
+    methods:{
+        add(){
+            this.count++
+        }
+    }
+}
+
+Vue.createApp({
+    // 注册组件 局部注册组件
+    components:{
+        Counter
+        // "counter":CounterRef
+    },
+}).mount("#app")
+
+</script>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>vue2</title>
+        <script src="./vue2/vue.min.js"></script>
+    </head>
+    <body>
+        <div id="app">
+        </div>
+    </body>
+</html>
+<script>
+console.log("Vue2",Vue)
+
+const config = {
+    el:"#app", // element link  css selector
+    data:{
+        msg:"hello vue"
+    },
+    methods:{
+        update:function() {
+            console.log("update:",this) // ? window   new Vue()后的实例对象
+            this.msg = "hello,vue2."
+        }
+    },
+    // vue2 template 不能是多标签,必须被一个根标签包裹
+    template:`
+        <div>
+            <p>
+                你好,{{msg}}
+            </p>
+            <button @click="update">修改msg111</button>
+        </div>
+    `
+}
+
+const instance = new Vue(config)
+console.log("instance:",instance)
+
+
+</script>

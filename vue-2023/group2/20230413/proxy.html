@@ -1,0 +1,52 @@
+<html>
+    <body>
+    </body>
+</html>
+<script>
+/*
+Vue3 中如何实现的变量绑定？
+       如何实现的双向绑定？
+
+Vue2 和 Vue3 对变量绑定的底层不同，
+    Vue2 用的是观察者模式  Observer Pattern
+    Vue3 用的是代理模式    Proxy
+
+ES5 Math Date Array RegExp
+ES6 Proxy
+
+new Proxy(被代理的对象,config配置对象)
+*/
+
+const obj = {
+    name:"张三",
+    score:90
+}
+
+const config = {
+    get(o,k){
+        console.log("get",o)
+        console.log("get",k)
+        return o[k]
+    },
+    set(o,k,v){
+        console.log("set",o)
+        console.log("set",k)
+        console.log("set",v)
+        return o[k] = v
+    }
+}
+
+const obj_p = new Proxy(obj,config)
+
+
+const oo = {}
+
+const oo_p = new Proxy(oo,{})
+
+oo.name = "1000"
+oo_p.score = 90
+
+console.log(oo)
+console.log(oo_p)
+
+</script>

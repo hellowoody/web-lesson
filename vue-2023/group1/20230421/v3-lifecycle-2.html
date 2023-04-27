@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue3/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <parent-comp />
+        </div>
+    </body>
+</html>
+<script>
+
+const ChildComp = {
+    setup(){
+        console.log("0,1,2 setup")
+        const num = Vue.ref(0)
+
+        const add = () => num.value++
+
+        Vue.onBeforeMount(() => console.log("3 onBeforeMount"))
+        Vue.onMounted(() => console.log("4 onMounted"))
+        Vue.onBeforeUpdate(() => console.log("5 onBeforeUpdate"))
+        Vue.onUpdated(() => console.log("6 onUpdated"))
+        Vue.onBeforeUnmount(() => console.log("7 onBeforeUnmount"))
+        Vue.onUnmounted(() => console.log("8 onUnmounted"))
+
+        return {
+            num,
+            add
+        }
+    },
+    template:`
+        <h1>vue3生命周期</h1>
+        <h2>{{num}}</h2>
+        <button @click="add">+</button>
+    `,
+}
+
+const ParentComp = {
+    setup(){
+        const flag = Vue.ref(true)
+        const toggle = () => flag.value = !flag.value
+
+        return {
+            flag,
+            toggle
+        }
+    },
+    template:`
+        <button @click="toggle">toggle</button>
+        <child-comp v-if="flag"></child-comp>
+    `,
+    components:{
+        ChildComp
+    }
+}
+
+Vue.createApp({
+    components:{
+        ParentComp
+    }
+}).mount("#app")
+</script>

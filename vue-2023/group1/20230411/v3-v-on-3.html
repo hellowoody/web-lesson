@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="../vue3/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <input 
+                @input="inputHandle"
+                @change="changeHandle" />
+        </div>
+    </body>
+</html>
+
+<script>
+Vue.createApp({
+    setup(){
+        const inputHandle = e => {
+            console.log("input:",e.data)
+            console.log("input:",e.target.value)
+        }
+
+        const changeHandle =e => console.log("change:",e.target.value)
+
+        return {
+            inputHandle,
+            changeHandle,
+        }
+    }
+}).mount("#app")
+</script>

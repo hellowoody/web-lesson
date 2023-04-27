@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="../vue2/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <button @click="handle1">调用方法1</button>
+            <button @click="handle2($event)">调用方法2</button>
+            <button @click="handle3(100)">调用方法3</button>
+            <button @click="handle4(108,$event,200,300)">调用方法4</button>
+        </div>
+    </body>
+</html>
+
+<script>
+new Vue({
+    el:"#app",
+    methods:{
+        handle1(e){
+            console.log(e)
+            console.log(e.target)
+        },
+        handle2(e){
+            console.log(e)
+            console.log(e)
+        },
+        handle3(e){
+            console.log(e) // 100
+        },
+        handle4(e,p1,p2,p3){
+            console.log(e,p1,p2,p3)
+        }
+    }
+})
+</script>

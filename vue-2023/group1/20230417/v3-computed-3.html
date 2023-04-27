@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>v-for</title>
+        <script src="../vue3/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div>{{msg}}</div>
+            <div>普通方法 {{reversed()}}</div>
+            <!-- 计算属性使用时，你就把它当作属性 -->
+            <div>计算属性 {{reverseMsg}}</div>
+            <button @click="handle">测试computed的set</button>
+        </div>
+    </body>
+</html>
+<script>
+Vue.createApp({
+    setup(){
+        const msg = Vue.ref("! u ssim I")
+
+        const reversed = () => msg.value.split("").reverse().join("")
+
+        const handle = () => {
+            console.log(reverseMsg)
+            reverseMsg.value = "i love the game !"
+        }
+
+        const reverseMsg = Vue.computed({
+            get:function(){
+                return Array.from(msg.value).reverse().join('')
+            },
+            set:function(v){
+                console.log("===",v)
+                msg.value = v
+            }
+        })
+
+        return {
+            msg,
+            reversed,
+            handle,
+            reverseMsg
+        }
+    }
+}).mount("#app")
+</script>

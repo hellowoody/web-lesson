@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>step 计步器</title>
+        <script src="../vue3/vue.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+Vue.createApp({
+    setup(){
+        const num = Vue.ref(10) // 被绑定
+        const msg = "hello"     // 
+
+        console.log(num) // Vue.ref(10) 对象永远显示最新的
+
+        num.value = num.value + 1 
+        return {
+            num,
+            msg
+        } 
+    },
+    template:`
+        <div>{{num}}</div>
+        <div>{{msg}}</div>
+    `
+}).mount("#app")
+</script>

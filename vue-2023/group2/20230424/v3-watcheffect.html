@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>watch</title>
+        <script src="../vue3_lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+/*
+    场景：列表分页
+    a:总共50条数据 item 1 ～ item 50
+    b:每页显示10条，一上来需要先查10条数据
+    c:模拟网络请求（异步请求）
+    d:实现分页
+*/
+
+/*
+1.构建出50条数数据
+2.模拟网络请求异步操作
+3.如果请求正确范围的值
+4.加到变量/页面中
+*/
+
+const database = []
+for(let i = 1 ; i <= 16 ; i++){
+    database.push("item "+i)
+}
+
+// setTimeout promise
+const mockHttp = (startIdx,offset,context) => {
+    // 用Promise的目的是为了，方便用链式调用实现异步事件，避免“回调地狱”
+    return new Promise((resolve,reject) => {
+        // setTimeout 模拟网络延迟
+        console.log(`从第${startIdx}索引开始,往后取${offset}条`)
+        let resData
+        if(context !== ""){
+            console.log("请求网络时，追加上模糊查询的词条",context)
+            resData = database.filter(item => item.indexOf(context) >= 0)
+            resData.slice(startIdx,startIdx+offset)
+        }else{
+            resData = database.slice(startIdx,startIdx+offset)
+        }
+        setTimeout(() => resolve(resData),500)
+    })
+}
+
+const Main = {
+    setup(){    
+        const list = Vue.ref([])
+        const postCount = Vue.ref(0)
+        const searchContext = Vue.ref("")
+        let startIndex = 0,
+            offset = 10
+        const load = () => {
+            console.log("加载更多")
+            postCount.value++
+        }
+
+        const mockInsert = () => {
+            database.push("item 17")
+            database.push("item 18")
+            database.push("item 19")
+            database.push("item 20")
+            database.push("item 21")
+            database.push("item 22")
+        }
+
+        // load() 
+
+        Vue.watch(searchContext,() => {
+            startIndex = 0
+            list.value = []
+        })
+
+        Vue.watchEffect(() => {
+            console.log(`第${postCount.value}次调用onload`)
+            console.log(`想查询关于${searchContext.value}的所有商品`)
+            
+            mockHttp(startIndex,offset,searchContext.value).then(res => {
+                console.log(res)
+                if(res.length > 0){
+                    list.value = list.value.concat(res)
+                    // startIndex += offset
+                    startIndex += res.length
+                }
+            })
+        })
+
+        return {
+            list,
+            load,
+            mockInsert,
+            searchContext
+        }
+    },
+    
+    template:`
+        <h1>列表分页例子-watchEffect </h1>
+        <input v-model="searchContext" />
+        <div v-for="item in list">
+            {{item}}    
+        </div>
+        <button @click="load">加载更多</button>
+        <button @click="mockInsert">模拟同一事件database在增加</button>
+    `
+}
+const app = Vue.createApp(Main)
+app.mount("#app")
+</script>

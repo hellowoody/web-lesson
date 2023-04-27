@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>v-show</title>
+        <script src="./vue2_lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div v-show="flag">{{msg}}</div>
+
+            <button @click="show">显示</button>
+            <button @click="hide">隐藏</button>
+            <button @click="toggle">切换</button>
+        </div>
+    </body>
+</html>
+<script>
+new Vue({
+    el:"#app",
+    data:{
+        msg:"你好。",
+        flag:false
+    },
+    methods:{
+        show(){
+            this.flag = true 
+        },
+        hide(){
+            this.flag = false 
+        },
+        toggle(){
+            this.flag = !this.flag
+        }
+    }
+})
+</script>

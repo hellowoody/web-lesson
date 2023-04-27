@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue3/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <parent-comp />
+        </div>
+    </body>
+</html>
+<script>
+const ChildComp = {
+    setup(){
+        console.log("0,1,2 setup")
+        const num = Vue.ref(0)
+
+        const add = () => num.value++
+
+        const app = Vue.getCurrentInstance()
+
+        console.log("1000 setup",app.refs.id01) // undefined
+
+        Vue.nextTick(() => {
+            console.log("2000 setup nextTick",app.refs.id01) // <h1>
+        })
+
+        Vue.onMounted(() => {
+            console.log("4 onMounted")
+            console.log("3000 mounted",app.refs.id01) // <h1>
+        })
+
+        return {
+            num,
+            add
+        }
+    },
+    template:`
+        <h1 ref="id01">vue3生命周期</h1>
+        <h2>{{num}}</h2>
+        <button @click="add">+</button>
+    `,
+}
+
+const ParentComp = {
+    setup(){
+        const flag = Vue.ref(true)
+        const toggle = () => flag.value = !flag.value
+
+        return {
+            flag,
+            toggle
+        }
+    },
+    template:`
+        <button @click="toggle">toggle</button>
+        <child-comp v-if="flag"></child-comp>
+    `,
+    components:{
+        ChildComp
+    }
+}
+
+Vue.createApp({
+    components:{
+        ParentComp
+    }
+}).mount("#app")
+</script>

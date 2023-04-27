@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>v-if</title>
+        <script src="./vue3/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div v-if="flag">{{msg}}</div>
+
+            <button @click="show">显示</button>
+            <button @click="hide">隐藏</button>
+            <button @click="toggle">切换</button>
+        </div>
+    </body>
+</html>
+<script>
+
+const OldSyntax = {
+    data(){
+       return {
+            msg:"你好。",
+            flag:false
+       }
+    },
+    methods:{
+        show(){
+            this.flag = true 
+        },
+        hide(){
+            this.flag = false 
+        },
+        toggle(){
+            this.flag = !this.flag
+        }
+    }
+}
+
+const NewSyntax = {
+    setup(){
+        const msg = Vue.ref("你好。")
+        const flag = Vue.ref(false)
+
+        const show = () => flag.value = true 
+
+        const hide = () => flag.value = false 
+
+        const toggle = () => flag.value = !flag.value 
+        
+        return {
+            msg,
+            flag,
+            show,
+            hide,
+            toggle,
+        }
+    }
+}
+
+
+// Vue.createApp(OldSyntax).mount("#app")
+Vue.createApp(NewSyntax).mount("#app")
+</script>

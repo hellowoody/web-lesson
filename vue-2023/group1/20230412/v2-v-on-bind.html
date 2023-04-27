@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="../vue2/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- <input v-bind:value="msg" v-on:input="update($event)"> -->
+            <!-- <input :value="msg" @input="update($event)"> -->
+            <input :value="msg" @input="update">
+            <!-- <input v-bind:value="msg">
+            <input v-on:input="update"> -->
+            <br>
+            {{msg}}
+        </div>
+    </body>
+</html>
+<script>
+/*
+双向绑定：
+方向A: js 可以获取 v-dom中输入的内容
+方向B: v-dom 中可以获取Vue中变量最新的内容
+
+*/ 
+new Vue({
+    el:"#app",
+    data:{
+        msg:"你好"
+    },
+    methods:{
+        update(e){
+            // console.log(1000)
+            // console.log(e)
+            this.msg = e.target.value
+        }
+    }
+})
+</script>

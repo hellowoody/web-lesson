@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="../vue3/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <input v-model="msg">
+            <br>
+            {{msg}}
+        </div>
+    </body>
+</html>
+
+<script>
+
+Vue.createApp({
+    data(){
+        return {
+            msg:"你好"
+        }
+    }
+}).mount("#app")
+</script>

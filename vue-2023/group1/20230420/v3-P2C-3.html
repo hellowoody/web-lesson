@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue3/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <parent-comp></parent-comp>
+        </div>
+    </body>
+</html>
+<script>
+const ChildComp = {
+    props:{
+        p1:{
+            type:Array,
+            default:() => []
+        },
+    },
+    setup(props,ctx){
+        const app = Vue.getCurrentInstance()
+
+        const append = () => {
+            ctx.emit("pushHandle")
+            console.log(app.refs.title01)
+        }
+        return {
+            append
+        }
+    },
+    template:`
+        <div>
+            <h6 ref="title01">{{p1}}</h6>
+            <button @click="append">push</button>    
+        </div>
+    `
+}
+
+const ParentComp = {
+    data(){
+        return {
+            p1:[1,2,3],
+        }
+    },
+    methods:{
+        append(){
+            this.p1.push(Math.floor(Math.random()*10))
+            console.log(this.p1)
+        }
+    },
+    template:`
+        <div>
+            <h2>父组件</h2>
+            <child-comp :p1="p1"  @pushHandle="append"></child-comp> 
+            <child-comp :p1="p1"  @pushHandle="append"></child-comp> 
+        </div>
+    `,
+    components:{
+        ChildComp
+    }
+}
+
+
+
+Vue.createApp({
+    components:{
+        // "parent-comp":ParentComp
+        ParentComp
+    }
+}).mount("#app")
+
+
+</script>

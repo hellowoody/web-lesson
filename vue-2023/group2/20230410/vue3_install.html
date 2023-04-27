@@ -1,0 +1,38 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>vue3</title>
+        <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+        <script src="./vue3_lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+console.log(Vue)
+
+// Vue3 不需要new 也就是不需要实例化
+// createApp这个方法接受的参数不是配置对象，而是组件component
+
+const Comp = {
+    // data:function(){
+    //     return {
+    //         msg:"hello vue3"
+    //     }
+    // }
+    data(){
+        return {
+            msg:"hello vue3"
+        }
+    },
+     // template中的标签其实是虚拟标签 v-dom
+    template:`
+        <p>{{msg}}</p>
+        <button>click me</button>
+    `
+}
+
+const app = Vue.createApp(Comp) // 传的是组件
+app.mount("#app")               // 挂载入口标签节点
+</script>

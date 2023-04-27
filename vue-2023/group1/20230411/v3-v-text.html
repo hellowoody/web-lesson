@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="../vue3/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- <span v-text="msg">,世界</span>  错误或无效-->
+            <!-- <span v-text="msg,世界"></span>  错误或无效-->
+            <span v-text="msg + ',世界'"></span>  
+            <!-- <span v-text="msg"></span>,世界   这是可以的-->
+            <br>
+            <!-- {{msg}},世界 -->
+            <span>{{msg + ",世界"}}</span>
+        </div>
+    </body>
+</html>
+
+<script>
+const Comp = {
+    data(){
+        return {
+            msg:"你好"
+        }
+    }
+}
+const CompComposite = {
+    setup(){
+        // const msg = "你好"
+        const msg = Vue.ref("你好")
+        return {
+            msg
+        }
+    }
+}
+
+// Vue.createApp(Comp).mount("#app")
+Vue.createApp(CompComposite).mount("#app")
+</script>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue2/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <parent-comp />
+        </div>
+    </body>
+</html>
+<script>
+const ChildComp = {
+    data(){
+        return {
+            val:10000
+        }
+    },
+    props:["idx"],
+    template:`
+        <h5>子组件{{idx}}</h5>
+    `,
+}
+
+const ParentComp = {
+    methods:{
+        getAllComp(){
+            // this.$children //拿到当前页面的所有子组件 
+            for(let item of this.$children){
+                console.log(item.idx)
+                // console.log(item)
+            }
+        },
+        getTargetComp(){
+            console.log(this.$refs)
+            console.log(this.$refs.c0) // <h2>xxx</h2>
+            console.dir(this.$refs.c0) // {}
+            console.log(this.$refs.c1) // VueCompontent {}
+            console.log(this.$refs.c2.val)
+            console.log(this.$refs.c3.idx)
+        }
+    },
+    template:`
+        <div>
+            <h2 ref="c0">父组件</h2>
+            <child-comp ref="c1" idx="1"></child-comp>
+            <child-comp ref="c2" idx="2"></child-comp>
+            <child-comp ref="c3" idx="3"></child-comp>
+            <button @click="getAllComp">获取所有的子组件</button>
+            <button @click="getTargetComp">获取特定的子组件,比如c2</button>
+        </div>
+    `,
+    components:{
+        ChildComp
+    }
+}
+
+new Vue({
+    el:"#app",
+    components:{
+        // "parent-comp":ParentComp
+        ParentComp
+    }
+})
+</script>

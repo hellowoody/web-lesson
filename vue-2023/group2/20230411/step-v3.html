@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>step 计步器</title>
+        <script src="./vue3_lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+const Comp = {
+    data(){
+        return {
+            step:0
+        }
+    },
+    methods:{
+        increase(){
+            this.step++
+            // this.step += 1
+            // this.step = this.step + 1
+        },
+        decrease(){
+            this.step--
+        }
+    },
+    template:`
+        <div>
+            <h1>{{step}}</h1>
+            <button v-on:click="decrease">-</button>
+            <button @click="increase">+</button>
+        </div>
+    `
+}
+
+const CompComposite = {
+    // setup 不要去使用this
+    setup(){
+        // this => window
+        const step = Vue.ref(0)
+        // console.log(step) // {value:0}
+
+        const increase = () => step.value++
+
+        const decrease = () => step.value--
+
+        return {
+            step,
+            increase,
+            decrease,
+        }
+    },
+    template:`
+        <div>
+            <h1>{{step}}</h1>
+            <button v-on:click="decrease">-</button>
+            <button @click="increase">+</button>
+        </div>
+    `
+}
+
+const CompMix = {
+    data(){
+        return {
+            data_var:1000,
+            show:""
+        }
+    },
+    setup(){
+        const setup_var = Vue.ref(2000)
+
+        return {
+            setup_var
+        }
+    },
+    methods:{
+        getData(){
+            console.log(this.data_var)
+            this.show = this.data_var
+        },
+        getSetup(){
+            console.log(this.setup_var)
+            this.show = this.setup_var
+        }
+    },
+    template:`
+        <h2>{{show}}</h2>
+        <button @click="getData">getData</button>
+        <button @click="getSetup">getSetup</button>
+    `
+}
+
+// const app = Vue.createApp(Comp)
+// const app = Vue.createApp(CompComposite)
+const app = Vue.createApp(CompMix)
+app.mount("#app")
+</script>

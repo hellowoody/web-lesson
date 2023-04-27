@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body></body>
+</html>
+<script>
+const canvas = document.createElement("canvas")
+
+if(!canvas.getContext){
+    console.log("!!!")
+}else{
+    document.body.appendChild(canvas)
+
+    const w = 500 , h = 500
+
+    canvas.width = w
+    canvas.height = h
+    canvas.style.width = w
+    canvas.style.height = h
+    canvas.style.border = "1px solid #000"
+
+    const ctx = canvas.getContext("2d")
+    
+    const txt = "as"
+    ctx.font = "35px serif"
+    ctx.textBaseline = "top"
+    ctx.fillText(txt,0,0)
+
+    const m_Text =ctx.measureText(txt)
+    // console.log(m_Text)
+    const text_w = Math.floor(m_Text.width)
+
+    const {data,width,height} = ctx.getImageData(0,0,text_w,35)
+    console.log(data)
+    console.log(width)
+    console.log(height)
+    const nums = []
+    for(let i =0 ; i< data.length ; i +=4){
+        if(data[i+3] != 0){
+            const x = Math.floor(((i+3)/4)%text_w)
+            const y = Math.floor(((i+3)/4)/text_w)
+
+            nums.push([x*10,y*10])
+        }
+    }
+
+    console.table(nums)
+    // for(let i =0 ; i< data.length/4 ; i++){
+
+    // }
+
+    function Particle(x,y){
+        this.x = x
+        this.y = y
+    }
+
+    Particle.prototype.draw = function(){
+        // console.log("draw")
+        ctx.beginPath()
+        ctx.arc(this.x,this.y,5,0,Math.PI*2)
+        ctx.fill()
+    }
+
+    const particles = []
+
+    nums.forEach(p => particles.push(new Particle(p[0],p[1])))
+
+    particles.forEach(p => p.draw())
+
+
+   
+}
+</script>

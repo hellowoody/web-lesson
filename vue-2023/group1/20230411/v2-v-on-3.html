@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="../vue2/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <input 
+                @input="inputHandle"
+                @change="changeHandle" />
+        </div>
+    </body>
+</html>
+
+<script>
+new Vue({
+    el:"#app",
+    methods:{
+        inputHandle(e){
+            console.log("input:",e.data)         // 1,2,3
+            console.log("input:",e.target.value) // 1,12,123
+        },
+        changeHandle(e){
+            console.log("change:",e.target.value) // 123
+        },
+    }
+})
+</script>

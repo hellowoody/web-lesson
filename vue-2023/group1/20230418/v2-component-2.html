@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue2/vue.js"></script>
+    </head>
+    <body>
+        <div id="app1">
+            {{msg}}
+            <div>
+                <global-comp></global-comp>
+                <global-comp-simple />
+            </div>
+        </div>
+
+        <div id="app2">
+            {{msg}}
+            <div>
+                <global-comp></global-comp>
+                 <global-comp-simple />
+            </div>
+        </div>
+
+        <div id="app3">
+            {{msg}}
+            <div>
+                <global-comp></global-comp>
+                 <global-comp-simple />
+            </div>
+        </div>
+    </body>
+</html>
+<script>
+// 定义一个组件
+const Comp = Vue.extend({
+    template:`<h1>我是组件</h1>`
+})
+
+const CompSimple = {
+    template:`<h1>我是组件simple</h1>`
+}
+
+
+// 全局注册组件
+Vue.component("global-comp",Comp)
+Vue.component("global-comp-simple",CompSimple)
+
+new Vue({
+    el:"#app1",
+    data:{
+        msg:"this is app1"
+    },
+})
+
+new Vue({
+    el:"#app2",
+    data:{
+        msg:"this is app2"
+    }
+})
+new Vue({
+    el:"#app3",
+    data:{
+        msg:"this is app3"
+    }
+})
+</script>

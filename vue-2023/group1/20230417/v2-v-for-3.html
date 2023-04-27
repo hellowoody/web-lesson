@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>v-for</title>
+        <script src="../vue2/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <ul>
+                <li v-for="(v,i) in list" :key="i">{{v}}</li>
+            </ul>
+            <input v-model="newVal" placeholder="需要增加的内容">
+            <button @click="add">增加</button>
+            <br>
+            <input v-model="delRowNum" placeholder="需要删除的行数">
+            <button @click="del">删除</button>
+        </div>
+    </body>
+</html>
+<script>
+
+new Vue({
+    el:"#app",
+    data:{
+        list : ["a","b","c"],
+        newVal:"",
+        delRowNum:-1
+    },
+    methods:{
+        add(){
+            this.list.push(this.newVal)
+        },
+        del(){
+            this.list.splice(this.delRowNum-1,1)
+        }
+    }
+})
+</script>

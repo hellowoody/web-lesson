@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue2/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <parent-comp />
+        </div>
+    </body>
+</html>
+<script>
+
+/* 
+    Promise    异步  微任务 mirco task
+    setTimeout 异步  宏任务 macro task
+*/
+
+const ParentComp = {
+    data(){
+        return {
+            count:0,
+            flag:false
+        }
+    },
+    methods:{
+        add(){
+            this.count++
+        },
+        toggle(){
+            this.flag  = !this.flag
+            console.log(this.$refs.id02)
+            this.$nextTick(() => {
+                console.log("nexttick",this.$refs.id02)
+            })
+        }
+    },
+    template:`
+        <div>
+            <h1 ref="id01">{{count}}</h1>
+            <button @click="add">+</button>
+            <button @click="toggle">toggle</button>
+            <h2 ref="id02" v-if="flag">动态显示</h2>
+        </div>
+    `,
+    created(){
+        // 保证你在这个钩子函数中，data，methods，computed
+        // template渲染完
+        console.log("parent created")
+        console.log(this.count)
+        this.add()
+        console.log(this.count)
+        console.log(1000,this.$refs.id01)  // undeinfed
+        /*
+            vue中的nextTick和nodejs的nextTick不一样，但是设计的初衷是“差不多”的
+
+            vue中的nextTick方法的参数是一个回调函数，这个回调函数什么什么时候执行呢？
+            
+            a.就是在当前该组件生命周期函数走完"1，2，3，4"之后，在该组件再次刷新之前执行
+            b.或者在当前该组件生命周期函数走完“5，6”之后的mounted之后，在下一次beforeUpdate之前执行
+
+        */ 
+        this.$nextTick(() => {
+            console.log(2000,this.$refs.id01) 
+        })
+    },
+    mounted(){
+        // 保证你在这个钩子函数中，data，methods，computed，template
+        console.log("parent mounted")
+        this.count = 100
+        console.log(3000,this.$refs.id01)
+    },
+}
+
+new Vue({
+    el:"#app",
+    components:{
+        ParentComp
+    }
+})
+</script>

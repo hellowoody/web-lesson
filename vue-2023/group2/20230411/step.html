@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>step 计步器</title>
+        <script src="./vue2_lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+        </div>
+    </body>
+</html>
+<script>
+
+// Vue.extend()
+const CompAbc = {
+    data(){
+        return {
+            step:0
+        }
+    },
+    methods:{
+        increase(){
+            this.step++
+            // this.step += 1
+            // this.step = this.step + 1
+        },
+        decrease(){
+            this.step--
+        }
+    },
+    template:`
+        <div>
+            <h1>{{step}}</h1>
+            <button v-on:click="decrease">-</button>
+            <button @click="increase">+</button>
+        </div>
+    `
+}
+const config = {
+    el:"#app",
+    // 注册组件 （注册局部组件）
+    components:{
+        // k:v
+        "comp-abc":CompAbc
+    },
+    template:`
+        <comp-abc></comp-abc>
+    `
+}
+
+new Vue(config)
+</script>

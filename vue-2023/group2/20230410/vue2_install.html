@@ -1,0 +1,48 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>vue2</title>
+        <script src="./vue2_lib/vue.js"></script>
+    </head>
+    <body>
+        <h1>111 {{msg}}</h1>
+        <!-- <div></div> -->
+        <!-- <div id="app"></div> -->
+        <!-- <div class="my_app"></div> -->
+        {{msg}}
+        <div id="app" class="my_app">
+            <!-- vue 只会影响el匹配标签的内部内容 -->
+            <!-- 插值表达法  -->
+            <a href="#">baidu.com</a>
+            {{msg}}
+        </div>
+        {{msg}}
+        <h2>222 {{msg}}</h2>
+    </body>
+</html>
+<script>
+console.log(Vue)
+
+const config = {
+    // el:"div", // element link =》 css 选择器
+    el:"#app", // element link =》 css 选择器
+    // el:".my_app", // element link =》 css 选择器
+    data:{
+        msg:"hello vue2",
+        a_text:"超链接标签"
+    },
+    // Vue2中 template 必须是单标签节点
+    // template中的标签其实是虚拟标签 v-dom
+    template:`
+        <div>
+            <a href="#">{{a_text}}</a>
+            <button>click me!</button>
+        </div>
+    `
+}
+
+const instance = new Vue(config) // 配置参数
+
+console.log(instance) // {}
+</script>
+

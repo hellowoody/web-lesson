@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>watch</title>
+        <script src="../vue3_lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+
+const Main = {
+    setup(){    
+       
+        const num = Vue.ref(0)
+        const count = Vue.ref(100)
+
+        const stu = Vue.reactive({
+            name:"张三",
+            score:90
+        })
+
+        // setup在执行时 watchEffect主动执行一次参数（回调函数）
+        // watchEffect 会根据我们在参数中的代码，自动分析该侦听哪个几个变量 (值)
+        // watchEffect 补充 在watchEffect回调函数中的异步回调函数内的代码是不会自动分析和侦听
+
+        Vue.watchEffect(() => {
+            console.log("watchEffect num:",num.value)
+            console.log("watchEffect stu:",stu.name)
+
+            setTimeout(() => {
+                console.log("watchEffect count:",count.value)
+            },1000)
+        })
+
+        return {
+            stu,
+            num,
+            count
+        }
+    },
+    
+    template:`
+        <h1>vue3-watch effect</h1>
+        学生的名字：<input v-model="stu.name" >
+        <br>
+        学生的成绩：<input v-model="stu.score" >
+        <br>
+        num:<input v-model="num" >
+        <br>
+        count:<input v-model="count" >
+        <br>
+        
+    `
+}
+const app = Vue.createApp(Main)
+app.mount("#app")
+</script>

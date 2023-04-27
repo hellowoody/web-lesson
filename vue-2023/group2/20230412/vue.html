@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>v-if</title>
+        <script src="../vue3_lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <h1>num_trace:{{num_trace}}</h1>
+            <h1>num:{{num}}</h1>
+            <button @click="update">update</button>
+            <button v-on:click="getVar">getVar</button>
+        </div>
+    </body>
+</html>
+<script>
+
+const Comp = {
+    data(){
+        return {
+            num1:1,
+            num2:2
+        }
+    }
+}
+
+
+const CompSetup = {
+    setup(){
+        const num_trace = Vue.ref(1)
+        let num = -1
+
+        const update = () => {
+            num_trace.value = 2000
+            num = -1000
+        }
+        
+        const getVar = () => {
+            console.log("num_trace",num_trace)
+            console.log("num",num)
+        }
+
+        return {
+            num_trace,
+            num,
+            update,
+            getVar
+        }
+    }
+}
+
+const Reverse = {
+    data(){
+        return {
+            str:"hello world!",
+            str_r:""
+        }
+    },
+    methods:{
+        handle(){
+            // this.str_r = this.str.split("").reverse().join("")
+            this.str_r = Array.from(this.str).reverse().join("")
+
+        }
+    },
+    template:`
+        <div>
+            <h1>{{str}}</h1>
+            <h1 v-if="str_r !== ''">{{str_r}}</h1>
+            <button @click="handle">翻转</button>
+        </div>
+    
+    `
+}
+
+// Vue.createApp(Comp).mount("#app")
+Vue.createApp(Reverse).mount("#app")
+</script>

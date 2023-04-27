@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>step计步器</title>
+        <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+        <script src="./vue3/vue.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+
+const Comp = {
+    data(){
+        return {
+            step:0
+        }
+    },
+    methods:{
+        increase(){
+            this.step++
+            // this.step += 1
+            // this.step = this.step + 1
+        },
+        decrease(){
+            this.step--
+        }
+    },
+    template:`
+        <div>
+            <h1>{{step}}</h1>
+            <button @click="decrease">-</button>
+            <button @click="increase">+</button>
+        </div>
+    `
+}
+
+
+const CompNewSyntax = {
+    // vue3的新语法 叫组合/混合api
+    setup(){
+        const step = Vue.ref(0)
+
+        const increase = () => {
+            console.log(step)
+            step.value++
+        }
+
+        const decrease = () => step.value--
+
+        return {
+            step,
+            increase,
+            decrease
+        }
+    },
+    template:`
+        <div>
+            <h1>{{step}}</h1>
+            <button @click="decrease">-</button>
+            <button @click="increase">+</button>
+        </div>
+    `
+}
+
+
+const CompMix = {
+    data(){
+        return {
+            count:0
+        }
+    },
+    setup(){
+        const idx = Vue.ref(1)
+        return {
+            idx
+        }
+    },
+    methods:{
+        getCount(){
+            console.log(this.count)
+        },
+        getIdx(){
+            console.log(this.idx)
+        }
+    },
+    template:`
+        <button @click="getCount">count</button>
+        <button @click="getIdx">idx</button>
+    `
+}
+
+// const app = Vue.createApp(Comp)
+// const app = Vue.createApp(CompNewSyntax)
+const app = Vue.createApp(CompMix)
+
+app.mount("#app")
+</script>

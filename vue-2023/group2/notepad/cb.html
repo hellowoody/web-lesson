@@ -1,0 +1,41 @@
+<style>
+
+    input[type="checkbox"] {
+        visibility: hidden;
+        width:0;
+        height:0;
+    }
+
+    label {
+        position: relative;
+    }
+
+    label::before{
+        content: "";
+        position: absolute;
+        width:20px;
+        height:20px;
+        border: 1px solid red;
+        border-radius:3px;
+    }
+
+    input[type="checkbox"]:checked+label::after{
+        content: "✔";
+        position: absolute;
+        width:20px;
+        height:20px;
+        border: 1px solid red;
+        background: red;
+        border-radius:3px;
+        color:#fff;
+        text-align: center;
+        line-height: 20px;
+    }
+
+    
+</style>
+
+<input id="id01" type="checkbox" />
+<label for="id01"></label>
+
+

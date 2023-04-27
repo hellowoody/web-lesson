@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue2/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <parent-comp />
+        </div>
+    </body>
+</html>
+<script>
+const ChildComp = {
+    data(){
+        return {
+            num:10000000
+        }
+    },
+    props:["idx"],
+    template:`
+        <h5>子组件{{idx}}</h5>
+    `,
+}
+
+const ParentComp = {
+    methods:{
+        getAllComp(){
+            // this.$children //拿到当前页面的所有子组件 
+            for(let item of this.$children){
+                console.log("idx:",item.idx,"num:",item.num)
+                // console.log(item)
+            }
+        }
+    },
+    template:`
+        <div>
+            <h2>父组件</h2>
+            <child-comp idx="1"></child-comp>
+            <child-comp idx="2"></child-comp>
+            <child-comp idx="3"></child-comp>
+            <button @click="getAllComp">获取所有的子组件</button>
+        </div>
+    `,
+    components:{
+        ChildComp
+    }
+}
+
+new Vue({
+    el:"#app",
+    components:{
+        // "parent-comp":ParentComp
+        ParentComp
+    }
+})
+</script>

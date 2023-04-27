@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="../vue3/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <span v-text="msg"></span>
+            <span v-html="msg"></span>
+        </div>
+    </body>
+</html>
+
+<script>
+const Comp = {
+    data(){
+        return {
+            msg:"<h1>你好</h1>"
+        }
+    }
+}
+const CompComposite = {
+    setup(){
+        // const msg = "你好"
+        const msg = Vue.ref("<h1>你好</h1>")
+        return {
+            msg
+        }
+    }
+}
+
+// Vue.createApp(Comp).mount("#app")
+Vue.createApp(CompComposite).mount("#app")
+</script>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>watch</title>
+        <script src="../vue3_lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+
+const Main = {
+    setup(){
+
+        let num = 0 //不会被改变 静态变量
+
+        const num_reactive = Vue.reactive({
+            value:0
+        })
+
+        const num_ref = Vue.ref(10)  // {value:10}
+
+        const fn1 = () => {
+            num++
+            console.log(num)
+        }
+
+        console.log("num_reactive",num_reactive) // Proxy
+        console.log("num_ref",num_ref)           // RefImpl
+
+        const fn2 = () => num_ref.value++
+
+        const fn3 = () => num_reactive.value++
+
+        return {
+            num,
+            num_ref,
+            fn1,
+            fn2,
+            fn3,
+            num_reactive
+        }
+    },
+    template:`
+        <h1>vue3-reactive</h1>
+        <div>num:{{num}}</div>
+        <div>num_ref:{{num_ref}}</div>
+        <div>num_reactive:{{num_reactive.value}}</div>
+        <button @click="fn1">num++</button>
+        <button @click="fn2">num_ref++</button>
+        <button @click="fn3">num_reactive++</button>
+    `
+}
+const app = Vue.createApp(Main)
+app.mount("#app")
+</script>

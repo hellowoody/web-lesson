@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>vue2</title>
+        <script src="./vue2/vue.min.js"></script>
+    </head>
+    <body>
+        <h1>111 {{msg}}</h1>
+        <div id="app" class="my_app">
+            <!-- 差值表达法 双花括号 -->
+            <!-- {{msg}} -->
+        </div>
+        <h2>222</h2>
+    </body>
+</html>
+<script>
+console.log("Vue2",Vue)
+
+const config = {
+    el:"#app", // element link  css selector
+    // el:"div", // element link  css selector
+    // el:".my_app", // element link  css selector
+    data:{
+        msg:"hello vue"
+    },
+    // template:`<a href="#">超链接</a>`
+    template:`
+        <p>
+            你好,{{msg}}
+        </p>
+    `
+}
+
+const instance = new Vue(config)
+console.log(instance)
+
+
+</script>

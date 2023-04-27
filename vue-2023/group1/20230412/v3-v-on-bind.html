@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="../vue3/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- <input v-bind:value="msg" v-on:input="update($event)"> -->
+            <!-- <input :value="msg" @input="update($event)"> -->
+            <input :value="msg" @input="update">
+            <br>
+            {{msg}}
+        </div>
+    </body>
+</html>
+
+<script>
+Vue.createApp({
+    setup(){
+        const msg = Vue.ref("你好")
+
+        const update = e => {
+            // console.log(1000)
+            // console.log(e)
+            msg.value = e.target.value
+        }
+
+        return {
+            msg,
+            update
+        }
+
+    },
+    // data(){
+    //     return {
+    //         msg:"你好"
+    //     }
+    // },
+    // methods:{
+    //     update(e){
+    //         // console.log(1000)
+    //         // console.log(e)
+    //         this.msg = e.target.value
+    //     }
+    // }
+}).mount("#app")
+</script>

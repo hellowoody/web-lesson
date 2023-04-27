@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>v-if</title>
+        <script src="./vue2/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <h1>{{val}}</h1>
+            <div v-if="val < 10">个位数</div>
+            <div v-else-if="val >= 10 && val < 100">双位数</div>
+            <div v-else>三位数</div>
+        </div>
+    </body>
+</html>
+<script>
+new Vue({
+    el:"#app",
+    data:{
+        val:Math.floor(Math.random()*100+5),
+    },
+})
+</script>

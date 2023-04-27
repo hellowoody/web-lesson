@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue3_lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <parent-comp />
+        </div>
+    </body>
+</html>
+<script>
+const ChildComp = {
+    props:["idx"],
+    template:`
+        <h5>子组件{{idx}}</h5>
+        <button @click="getParentComp">获取父组件的内容</button>
+        <button @click="setParentComp">修改父组件的内容</button>
+    `,
+    setup(){
+        const app = Vue.getCurrentInstance()
+        
+        const getParentComp = () => console.log(app.parent.ctx.msg)
+
+        const setParentComp = () => app.parent.ctx.msg = "10000"
+
+        return {
+            getParentComp,
+            setParentComp
+        }
+    }
+}
+
+const ParentComp = {
+    setup(){
+        const msg = Vue.ref("父组件")
+        // console.log(Vue.getCurrentInstance())
+        const app = Vue.getCurrentInstance()
+
+        const getAllComp = () => {
+            // console.log(app.refs)
+            for(const item in app.refs){
+                // console.log(item)
+                console.log(app.refs[item].idx)
+            }
+        }
+
+        return {
+            msg,
+            getAllComp
+        }
+    },
+    template:`
+        <div>
+            <h2>{{msg}}</h2>
+            <child-comp ref="a" idx="1"></child-comp>
+            <child-comp ref="b" idx="2"></child-comp>
+            <child-comp ref="c" idx="3"></child-comp>
+            <br>
+            <button @click="getAllComp">获取所有的子组件</button>
+        </div>
+    `,
+    components:{
+        ChildComp
+    }
+}
+
+Vue.createApp({
+    components:{
+        ParentComp
+    }
+}).mount("#app")
+</script>

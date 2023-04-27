@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue2_lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app1">
+            {{msg}}
+            <my-global></my-global>
+            <my-global2></my-global2>
+        </div>
+
+        <div id="app2">
+            {{msg}}
+            <my-global></my-global>
+            <my-global2></my-global2>
+        </div>
+    </body>
+</html>
+<script>
+
+// function Foo(){
+//     this.fn1 = function(){
+//         console.log("fn1")
+//     }
+// }
+
+// Foo.fn3 = function(){
+//     console.log("fn3")
+// }
+
+// Foo.prototype.fn2 = function(){
+//     console.log("fn2")
+// }
+
+// Foo.fn3()
+// const f = new Foo()
+// f.fn1()
+// f.fn2()
+
+
+
+
+//声明了一个组件 
+const Comp = Vue.extend({
+    data(){
+        return {
+            msg:"hahha"
+        }
+    },
+    template:"<h1>hello , 组件 {{msg}}</h1>"
+})
+//注册了一个全局组件 （全局注册组件）
+Vue.component("my-global",Comp)
+
+Vue.component("my-global2",{
+    template:"<a href='#'>123</a>"
+})
+
+
+new Vue({
+    el:"#app1",
+    data:{
+        msg:"this is app1"
+    }
+})
+
+new Vue({
+    el:"#app2",
+    data:{
+        msg:"this is app2"
+    }
+})
+</script>

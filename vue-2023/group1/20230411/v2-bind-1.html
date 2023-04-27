@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="../vue2/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <input @input="targetHandle" />
+            <input @input="urlHandle" />
+            <a v-bind:href="hrefUrl" target="_blank">想到跳转{{hrefTarget}}</a>
+        </div>
+    </body>
+</html>
+
+<script>
+new Vue({
+    el:"#app",
+    data:{
+        hrefTarget:"百度",
+        hrefUrl:"https://baidu.com"
+    },
+    methods:{
+        targetHandle(e){
+            this.hrefTarget = e.target.value
+        },
+        urlHandle(e){
+            this.hrefUrl = e.target.value
+        },
+    }
+})
+
+</script>

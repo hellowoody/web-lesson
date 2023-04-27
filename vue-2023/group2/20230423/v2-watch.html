@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue2_lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <h1>{{num}}</h1>
+            <h1>{{count}}</h1>
+            <button @click="increase">+</button>
+            <button @click="add">+</button>
+        </div>
+    </body>
+</html>
+<script>
+
+
+new Vue({
+    el:"#app",
+    data:{
+        num:0,
+        count:-100
+    },
+    methods:{
+        increase(){
+            this.num++
+        },
+        add(){
+            this.count++
+        }
+    },
+    watch:{
+        num(curr,prev){
+            console.log(curr,prev)
+        },
+        count(c,p){
+            console.log(c,p)
+        }
+    }
+})
+</script>

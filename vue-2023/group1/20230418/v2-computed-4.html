@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>v-for</title>
+        <script src="../vue2/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div>人民币:{{yuan}}</div>
+            <div>美元:{{dollar}}</div>
+            <div>测试1:{{c1}}</div>
+            <!-- 
+                1.获取计算属性的return值
+                2.调用return后的函数
+             -->
+            <div>测试2:{{c2(3000)}}</div>
+            <!-- <div>测试2:{{c1(2000)}}</div> -->
+        </div>
+    </body>
+</html>
+<script>
+const app = new Vue({
+    el:"#app",
+    data:{
+        price:100.00,
+    },
+    computed:{
+        yuan(){
+            return "¥"+this.price
+        },
+        dollar(){
+            return "$"+(this.price/6).toFixed(2)
+        },
+        c1(){
+            return 1000
+        },
+        c2(){
+            return function(p){
+                return p
+            }
+        },
+        
+    }
+})
+</script>

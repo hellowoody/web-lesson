@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue3/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <parent-comp />
+        </div>
+    </body>
+</html>
+<script>
+const ChildComp = {
+    props:["idx"],
+    template:`
+        <div>上方的内容</div>
+        <slot>这是插槽的默认值</slot>  
+        <div>下方的内容</div>  
+    `,
+}
+
+const ParentComp = {
+    setup(){
+        const flag = Vue.ref(false)
+        const toggle = () => flag.value = !flag.value
+
+        return {
+            flag,
+            toggle
+        }
+    },
+    template:`
+        <child-comp>
+            <div v-if="flag">
+                <h5>标题</h5>
+                <a href="#">超链接</a>
+            </div>
+        </child-comp>    
+        <button @click="toggle">toggle</button>
+    `,
+    components:{
+        ChildComp
+    }
+}
+
+Vue.createApp({
+    components:{
+        // "parent-comp":ParentComp
+        ParentComp
+    }
+}).mount("#app")
+</script>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>v-for</title>
+        <script src="../vue2_lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div>
+                <input v-model="msg" />
+            </div>
+            <div>{{reversed()}}</div>
+            <div>{{reversed()}}</div>
+            <div>{{reversed()}}</div>
+            <hr>
+            <!-- 计算属性使用时，你就把它当作属性 -->
+            <div>{{reverseMsg}}</div>
+            <div>{{reverseMsg}}</div>
+            <div>{{reverseMsg}}</div>
+        </div>
+    </body>
+</html>
+<script>
+/*
+  methods方法和computed计算属性的区别
+
+  只要 msg 还没有发生改变，多次访问 reverseMsg 计算属性会立即返回之前的计算结果，而不必再次执行函数。
+*/
+new Vue({
+    el:"#app",
+    data:{
+        msg:"! u ssim I",
+    },
+    methods:{
+        reversed(){
+            console.log(2000)
+            return this.msg
+                        .split("")
+                        .reverse()
+                        .join('')
+        }
+    },
+    computed:{
+        reverseMsg:function(){
+            console.log(1000)
+            return Array.from(this.msg).reverse().join('')
+        }
+    }
+})
+</script>

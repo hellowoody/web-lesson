@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>原生js实现双向绑定</title>
+    </head>
+    <body>
+        <input placeholder="请输入内容" value="1" oninput="handle(this)"/>
+        <div>1</div>
+    </body>
+</html>
+<script>
+function MockVue(obj){
+    return new Proxy(obj,{
+        get(o,k){
+            return o[k]
+        },
+        set(o,k,v){
+            document.querySelector("div").innerText = v
+            return o[k] = v
+        }
+    })
+}
+
+const orginal = {
+    value:""
+}
+const obj_p = new MockVue(orginal)
+
+function handle(e){
+    obj_p.value = e.value
+}
+
+</script>

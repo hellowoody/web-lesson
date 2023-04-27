@@ -1,0 +1,33 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>vue3</title>
+        <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+        <script src="./vue3_lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+const Comp = {
+    data(){
+        return {
+            msg:"hello vue3"
+        }
+    },
+    methods:{
+        changeMsg(){
+            this.msg = "你好，vue3！"
+        }
+    },
+    template:`
+        <p>{{msg}}</p>
+        <button v-on:click="changeMsg">click me</button>
+        <button @click="changeMsg">click me</button>
+    `
+}
+
+const app = Vue.createApp(Comp) // 传的是组件
+app.mount("#app")               // 挂载入口标签节点
+</script>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue3/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <parent-comp />
+        </div>
+    </body>
+</html>
+<script>
+const ChildComp = {
+    props:["idx"],
+    template:`
+        <h5>子组件{{idx}}</h5>
+        <button @click="getParentComp">获取父组件的内容</button>
+        <button @click="getParentComp">获取父组件的内容</button>
+    `,
+    setup(){
+        const num = 1000
+
+        const app = Vue.getCurrentInstance() // app 就是子组件对象
+        // console.log(app)
+        
+        const getParentComp = () => console.log(app.parent.ctx.msg)
+
+        return {
+            getParentComp,
+            num
+        }
+    }
+}
+
+const ParentComp = {
+    setup(){
+        // this $children $refs $parent
+        const msg = Vue.ref("父组件")
+        // console.log(1000,Vue.getCurrentInstance())
+        const app = Vue.getCurrentInstance() // 注意：只能在setup中使用
+        // app 或者 Vue3 中没有给我children属性 
+        // 建议 app.refs 属性代替
+        // 如果你想使用refs， 那么必须在v-dom标签中使用ref
+        const getAllComp = () => {
+            // console.log(2000,Vue.getCurrentInstance())
+            console.log(app.refs) // 对象
+            for(const item in app.refs){
+                // console.log(item) // key
+                console.log("idx:",app.refs[item].idx)
+                console.log("num:",app.refs[item].num)
+            }
+        }
+
+        return {
+            msg,
+            getAllComp
+        }
+    },
+    template:`
+        <div>
+            <h2>{{msg}}</h2>
+            <child-comp ref="a" idx="1"></child-comp>
+            <child-comp ref="b" idx="2"></child-comp>
+            <child-comp ref="c" idx="3"></child-comp>
+            <br>
+            <button @click="getAllComp">获取所有的子组件</button>
+        </div>
+    `,
+    components:{
+        ChildComp
+    }
+}
+
+Vue.createApp({
+    components:{
+        ParentComp
+    }
+}).mount("#app")
+</script>

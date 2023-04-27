@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>component</title>
+        <script src="../vue2/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <parent-comp />
+        </div>
+    </body>
+</html>
+<script>
+
+
+const ParentComp = {
+    data(){
+        return {
+            count:0
+        }
+    },
+    methods:{
+        add(){
+            this.count++
+        },
+        destroy(){
+            this.$destroy()
+        }
+    },
+    template:`
+        <div>
+            <h1 ref="id01">{{count}}</h1>
+            <button @click="add">+</button>
+            <button @click="destroy">destroy</button>
+        </div>
+    `,
+    beforeCreate(){
+        console.log("1 beforeCreate")
+    },
+    created(){
+        console.log("2 created")
+    },
+    beforeMount(){
+        console.log("3 beforeMount")
+    },
+    mounted(){
+        console.log("4 mounted")
+    },
+    beforeUpdate(){
+        console.log("5 beforeUpdate")
+    },
+    updated(){
+        console.log("6 updated")
+    },
+    beforeDestroy(){
+        console.log("7 beforeDestroy")
+    },
+    destroyed(){
+        console.log("8 destroyed")
+    },
+}
+
+new Vue({
+    el:"#app",
+    components:{
+        ParentComp
+    }
+})
+</script>

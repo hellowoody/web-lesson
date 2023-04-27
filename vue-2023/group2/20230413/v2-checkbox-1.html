@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="../vue2_lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div>请选择你的爱好</div>
+            <input type="checkbox" v-model="hobby" name="abc" value="游泳">游泳
+            <input type="checkbox" v-model="hobby" name="abc" value="健身">健身
+            <input type="checkbox" v-model="hobby" name="abc" value="旅游">旅游
+            <div>{{hobby}}</div>
+        </div>
+    </body>
+</html>
+
+<script>
+const app = new Vue({
+    el:"#app",
+    data:{
+        hobby:[]
+    },
+})
+
+</script>

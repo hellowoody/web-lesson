@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="../vue3_lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <button v-on:click="clickHandle">click</button>
+            <button @click="clickHandle">click</button>
+            <input 
+                v-on:input="inputHandle" 
+                v-on:change="changeHandle" 
+                v-on:blur="blurHandle" 
+                v-on:focus="focusHandle" />
+        </div>
+    </body>
+</html>
+
+<script>
+Vue.createApp({
+    setup(){
+        const clickHandle = () => console.log("this is click event")
+        const inputHandle = () => console.log("this is input event")
+        const changeHandle = () => console.log("this is change event")
+        const blurHandle = () => console.log("this is blur event")
+        const focusHandle = () => console.log("this is focus event")
+
+        return {
+            clickHandle,
+            inputHandle,
+            changeHandle,
+            blurHandle,
+            focusHandle,
+        }
+    }
+    // methods:{
+    //     clickHandle(){
+    //         console.log("this is click event")
+    //     },
+    //     inputHandle(){
+    //         console.log("this is input event")
+    //     },
+    //     changeHandle(){
+    //         console.log("this is change event")
+    //     },
+    //     blurHandle(){
+    //         console.log("this is blur event")
+    //     },
+    //     focusHandle(){
+    //         console.log("this is focus event")
+    //     },
+    // }
+}).mount("#app")
+</script>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="../vue2/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div 
+                style="color:red;font-size: 26px;" 
+                v-bind:style="boxstyle" >
+                bind style
+            </div>
+            <div :style="boxstyle2" >bind style</div>
+            <button @click="changeColor">改变颜色</button>
+        </div>
+    </body>
+</html>
+
+<script>
+new Vue({
+    el:"#app",
+    data:{
+        boxstyle:{
+            color:"#000"
+        },
+        boxstyle2:{
+            width:"100px",
+            height:"100px",
+            backgroundColor:"red",
+        },
+    },
+    methods:{
+        changeColor(e){
+            this.boxstyle.color = `hsl(${Math.floor(Math.random()*360)},100%,50%)`
+            this.boxstyle2.backgroundColor = `hsl(${Math.floor(Math.random()*360)},100%,50%)`
+        },
+       
+    }
+})
+
+</script>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>step计步器</title>
+        <script src="../vue2/vue.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+const Comp = {
+    data(){
+        return {
+            step:0
+        }
+    },
+    methods:{
+        increase(){
+            this.step++
+            // this.step += 1
+            // this.step = this.step + 1
+        },
+        decrease(){
+            this.step--
+        }
+    },
+    template:`
+        <div>
+            <h1>{{step}}</h1>
+            <button @click="decrease">-</button>
+            <button @click="increase">+</button>
+        </div>
+    `
+}
+
+new Vue({
+    el:"#app",
+    // data:{
+    //     step:0
+    // },
+    // methods:{
+    //     increase(){
+    //         this.step++
+    //         // this.step += 1
+    //         // this.step = this.step + 1
+    //     },
+    //     decrease(){
+    //         this.step--
+    //     }
+    // },
+    // template:`
+    //     <div>
+    //         <h1>{{step}}</h1>
+    //         <button @click="decrease">-</button>
+    //         <button @click="increase">+</button>
+    //     </div>
+        
+    // `,
+    template:"<comp></comp>",
+    // 注册组件
+    components:{
+        // 自定义的标签名字
+        "comp":Comp
+    }
+})
+</script>

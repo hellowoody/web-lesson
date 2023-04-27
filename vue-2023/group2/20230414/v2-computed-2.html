@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>v-for</title>
+        <script src="../vue2_lib/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <ul>
+                <li v-for="(val,i) in list" :key="i">{{i + '-' + val}}</li>
+            </ul>
+            <button @click="add">增加</button>
+            <ul>
+                <li v-for="(val,i) in listFilter" :key="i">{{i + '-' + val}}</li>
+            </ul>
+        </div>
+    </body>
+</html>
+<script>
+const app = new Vue({
+    el:"#app",
+    data:{
+        list:['a','b','c','d','e'],
+    },
+    methods:{
+        add(){
+            this.list.push("f")
+        }
+    },
+    computed:{
+        listFilter(){
+            return this.list.filter(item => item > 'b')
+        }
+    }
+})
+</script>

@@ -1,0 +1,42 @@
+<script>
+
+const obj = {
+    name:"zhang"
+}
+
+// const obj_p = new Proxy(target,handler)
+const obj_p = new Proxy(obj,{})
+
+obj.name = "张"
+
+console.log("obj:",obj)
+console.log("obj_p:",obj_p)
+
+obj_p.score = 90
+
+console.log("obj:",obj)
+console.log("obj_p:",obj_p)
+
+
+const obj_p2 = new Proxy(obj,{
+    get(o,prop){
+        console.log("我可以拦截代理对象的get方法")
+        return o[prop]
+    },
+    set(o,prop,new_value){
+        console.log("我可以拦截代理对象的赋值set方法")
+        // DOM  .innerText .innerHTML
+        return o[prop] = new_value
+    }
+})
+
+obj.name = "1"
+obj_p.score = "2"
+console.log("obj:",obj)
+console.log("obj_p:",obj_p)
+
+obj_p2.name = "LI"
+obj_p2.score = -100
+console.log("obj:",obj)
+console.log("obj_p2.name:",obj_p2.name)
+</script>

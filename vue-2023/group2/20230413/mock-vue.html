@@ -1,0 +1,35 @@
+<html>
+    <body>
+        <!-- <input v-on:click="xxx" placeholder="请输入一些内容" /> -->
+        <!-- <input v-on:input="handle($event)" placeholder="请输入一些内容" /> -->
+        <input placeholder="请输入一些内容" oninput="handle(this);" />
+        <h2></h2>
+    </body>
+</html>
+<script>
+const VueMock = {
+    createApp(obj){
+        return new Proxy(obj,{
+            set(o,k,v){
+                document.querySelector("h2").innerText = v
+                return o[k] = v
+            }
+        })
+    }
+}
+
+const obj = {
+    value:"10"
+}
+
+const app = VueMock.createApp(obj)
+
+
+function handle(e){
+    // console.log(e.value)
+    app.value = e.value
+}
+
+document.querySelector("input").value = obj.value
+document.querySelector("h2").innerText = obj.value
+</script>
