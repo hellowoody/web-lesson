@@ -43,6 +43,13 @@ module.exports = {
         open:false,
         hot:true,          // 热替换 hmr  hot module replacement
         // liveReload:true  // 热部署
+        // devMiddleware: {
+        //     index: true,
+        //     mimeTypes: { phtml: 'text/html' },
+        //     publicPath: '/publicPathForDevServe',
+        //     serverSideRender: true,
+        //     writeToDisk: false,
+        // },
     },
     module:{
         // npm i -D css-loader mini-css-extract-plugin
