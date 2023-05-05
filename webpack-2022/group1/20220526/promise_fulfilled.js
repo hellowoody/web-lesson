@@ -46,8 +46,10 @@ const fulfilled_res_res = fulfilled_res.then((res) => {
     // return undefined
 })
 
+console.log("兑现的结果：",fulfilled_res_res)                            //pending
+
 setTimeout(() => {
-    console.log("兑现的结果：",fulfilled_res_res)                        // new Promise() pending
+    console.log("兑现的结果：",fulfilled_res_res)                        //fulfilled
 },0) 
 
 
