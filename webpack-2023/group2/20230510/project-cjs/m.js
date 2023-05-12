@@ -1,0 +1,1 @@
+exports.msg = "this is a cjs module"
