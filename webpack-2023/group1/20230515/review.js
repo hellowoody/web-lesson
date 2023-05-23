@@ -13,6 +13,7 @@
 
     wepback
     npx webpack
+
 2.用webpack的mode模式 production和development这两个模式有什么区别
 
     webpack.config.js
