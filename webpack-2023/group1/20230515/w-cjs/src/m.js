@@ -1,0 +1,1 @@
+exports.msg = "hello this is cjs syntax"

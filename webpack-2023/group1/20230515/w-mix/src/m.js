@@ -1,0 +1,1 @@
+export const msg = "你好 ESM 语法"
