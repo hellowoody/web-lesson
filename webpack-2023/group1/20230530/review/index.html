@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #app {
+            width:150px;
+            height:150px;
+            border:1px solid #000
+        }
+
+        #app div {
+            width:100px;
+            height:100px;
+            border:1px solid #00f
+        }
+    </style>
+  </head>
+  <body>
+    <div id="app" onclick="sub(3000)">
+        <div onclick="sub(2000)">
+            <button onclick="sub(1000)">btn</button>
+        </div>
+    </div>
+
+    <a href="https://baidu.com" onclick="interception(event)">jump</a>
+  </body>
+</html>
+
+<script>
+// dom 绑定事件时的事件传递
+// 当标签嵌套时，事件如果时由内向外传递：冒泡事件
+//              事件如果时由外向内传递：捕获事件
+// 大部分浏览器，冒泡事件（poproption）和捕获事件（capture）都有，只是看该浏览器以哪种方式作为默认
+
+// 特殊标签如a标签 input标签 img标签，会有一些默认事件
+// 这些默认事件，可以手动禁止 preventDefault()
+function sub(num){
+    console.log(num)
+}
+
+
+function interception(e){
+    e.preventDefault() // 禁止默认事件 禁止跳转
+    console.log("hello")
+}
+
+</script>

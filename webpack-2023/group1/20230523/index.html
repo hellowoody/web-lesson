@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 设置字符集 -->
+        <meta charset="utf-8">
+        <title>webpack vue</title>
+        <!-- vue -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+const Comp = {
+    setup(){
+        const count = Vue.ref(0)
+
+        const add = () => count.value++
+        const sub = () => count.value--
+
+        return {
+            count,
+            add,
+            sub,
+        }
+    },
+    template:`
+        <h1>{{count}}</h1>
+        <button @click="sub">-</button>
+        <button @click="add">+</button>
+    
+    `
+}
+
+Vue.createApp(Comp).mount("#app")
+</script>
