@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "if-comp":"/components/IfComp/IfComp",
+    "for-comp":"/components/ForComp/ForComp",
+    "block-comp":"/components/BlockComp/BlockComp",
+    "slot-anony":"/components/SlotAnony/SlotAnony",
+    "slot-name":"/components/SlotName/SlotName"
+  },
+  "navigationBarTitleText": "语法特性",
+  "navigationBarBackgroundColor": "#FFF",
+  "navigationBarTextStyle": "black"
+}

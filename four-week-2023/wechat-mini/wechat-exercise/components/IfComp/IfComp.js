@@ -1,0 +1,25 @@
+Component({
+  data:{
+    flag:true,
+    num:0,
+    count:0
+  },
+  methods:{
+    toggle(){
+      console.log(this.data)
+      this.setData({
+        flag:!this.data.flag
+      })
+    },
+    rand(){
+      this.setData({
+        num:Math.random()-0.5
+      })
+    },
+    rand2(){
+      this.setData({
+        count:Math.floor(Math.random()*15)
+      })
+    }
+  }
+})

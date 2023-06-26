@@ -1,0 +1,17 @@
+<view>========= 条件渲染 ========</view>
+<if-comp />
+<view>========= 循环遍历 ========</view>
+<for-comp />
+<view>========= 空标签 ========</view>
+<block-comp></block-comp>
+<view>========= 匿名插槽 ========</view>
+<slot-anony>
+  <view>111</view>
+  <view>222</view>
+</slot-anony>
+<view>========= 具名插槽 ========</view>
+<slot-name>
+  <view slot="right">右侧</view>
+  <view slot="left">左侧</view>
+  <view slot="middle">中间</view>
+</slot-name>

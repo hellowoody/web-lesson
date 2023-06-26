@@ -1,0 +1,6 @@
+.loadmore {
+  text-align: center;
+  background: linear-gradient(var(--themeGrey) 60%,transparent);
+  -webkit-background-clip: text;
+  color:transparent;
+}

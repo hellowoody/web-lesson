@@ -1,0 +1,21 @@
+.tabs-title {
+  display: flex;
+}
+
+.tabs-title-item {
+  flex:1;
+  border-bottom: 1px solid #363636;
+  padding:6px 8px;
+  text-align: center;
+}
+
+.active {
+  color:red;
+  font-size:16px;
+  border-bottom: 2px solid red;
+}
+
+.tabs-content {
+  padding:6px 8px;
+}
+

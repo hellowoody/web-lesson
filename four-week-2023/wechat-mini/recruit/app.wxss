@@ -1,0 +1,28 @@
+@import "/assets/iconfont/iconfont.wxss";
+
+page {
+  --themeGreen:#77a34a;
+  --themeOrange:#ff6d28;
+  --themeBlack:#333;
+  --themeDarkGrey:#666;
+  --themeGrey:#999;
+}
+
+.search-input {
+  background:#fff;
+  border-radius: 60rpx;
+  padding-left: 32rpx;
+  box-sizing: border-box;
+  color:var(--themeBlack);
+  font-size: 26rpx;
+}
+
+.search-btn {
+  font-size: 50rpx;
+  color:#fff;
+}
+
+::-webkit-scrollbar{
+  display: none !important;
+}
+

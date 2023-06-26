@@ -1,0 +1,11 @@
+<view wx:if="{{flag}}">条件渲染例子</view>
+<text class="btn" bindtap="toggle">改变flag</text>
+
+<view wx:if="{{num > 0}}">正数:{{num}}</view>
+<view wx:else>小于等于零:{{num}}</view>
+<text class="btn" bindtap="rand">随机数</text>
+
+<view wx:if="{{count >= 10}}">两位数：{{count}}</view>
+<view wx:elif="{{count >= 5 && count < 10}}">个位数(5-9)：{{count}}</view>
+<view wx:else>个位数(0-5):{{count}}</view>
+<text class="btn" bindtap="rand2">随机数2</text>

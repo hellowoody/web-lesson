@@ -1,0 +1,59 @@
+.top-bar {
+  display:flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 130rpx;
+}
+.top-bar-bg {
+  height: 200rpx;
+  width:100%;
+  background: var(--themeGreen);
+}
+
+.top-bar-bg::before {
+  content: "";
+  background-color: var(--themeGreen);
+  width:200%;
+  height:300%;
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1;
+  left:-50%;
+  top:-180%;
+}
+
+.top-bar-card{
+  width:90%;
+  background: #fff;
+  box-shadow: 2rpx 4rpx 16rpx rgb(0 0 0 / 0.1);
+  height:300rpx;
+  align-self: center;
+  position: absolute;
+  top:0;
+  padding:32rpx 60rpx;
+  box-sizing: border-box;
+  border-radius: 12rpx;
+}
+
+.avatar {
+  width: 120rpx;
+  height:120rpx;
+  border-radius: 50%;
+}
+
+.card-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nickname {
+  font-size: 36rpx;
+  font-weight: bold;
+  color:var(--themeDarkGrey)
+}
+
+.menus {
+  border-top: 1px solid #eee;
+  box-shadow: 0 -2rpx 10rpx rgb(0 0 0 / 0.05);
+}

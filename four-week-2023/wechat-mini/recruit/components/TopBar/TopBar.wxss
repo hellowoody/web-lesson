@@ -1,0 +1,19 @@
+.top-bar {
+  background: var(--themeGreen);
+}
+
+.search {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 24rpx;
+  box-sizing: border-box;
+}
+
+.content {
+  height:400rpx;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

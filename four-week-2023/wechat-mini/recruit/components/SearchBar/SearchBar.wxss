@@ -1,0 +1,18 @@
+.search-bar {
+  height:100rpx;
+  background: var(--themeGreen);
+  padding:0 24rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left {
+  flex:5;
+}
+
+.right {
+  flex:1;
+  text-align: center;
+}

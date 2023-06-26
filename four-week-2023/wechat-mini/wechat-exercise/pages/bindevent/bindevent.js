@@ -1,0 +1,24 @@
+Page({
+  data:{
+    name:"zhangsan",
+    styl:"display:inline-block;",
+    sumRes:0
+  },
+  modify:function(){
+    this.setData({
+      name:"张三"
+    })
+  },
+  changeContent(e){
+    console.log(e.detail.value)
+    this.setData({
+      name:e.detail.value
+    })
+  },
+  sum(e){
+    console.log(e.target.dataset.num1,e.target.dataset.num2)
+    this.setData({
+      sumRes:parseInt(e.target.dataset.num1,10) + parseInt(e.target.dataset.num2,10)
+    })
+  }
+})

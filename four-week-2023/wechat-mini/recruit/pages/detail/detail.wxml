@@ -1,0 +1,39 @@
+<view class="top-bar">
+  <view class="top-bar-bg"></view>
+  <view class="top-bar-card">
+    <view class="first-row">
+      <view class="first-row-left">
+        <view style="color:var(--themeDarkGrey);font-size:30rpx;margin-bottom: 8rpx;">{{station.station}}</view>
+        <view style="color:var(--themeBlack);font-size:36rpx;font-weight: bold;">{{station.salary}}</view>
+        <view></view>
+      </view>
+      <image style="width:100rpx;height:100rpx;" mode="aspectFit" src="../../assets/imgs/sina.png" />
+    </view>
+    <view class="second-row">
+      <text >{{station.position}}</text>
+      <text >{{station.experience}}</text>
+      <text >{{station.degree}}</text>
+    </view>
+  </view>
+</view>
+<view class="content">
+  <view class="top-bar-stationcard">
+    <view class="title">职位描述</view>
+    <view>
+      <text>{{station.detail}}</text>
+    </view>
+  </view>
+  <view class="company-card">
+    <view class="title">关于我们</view>
+    <view>
+      <text>{{station.detail}}</text>
+    </view>
+  </view>
+</view>
+<view class="footer-bar">
+  <text>{{station.hr}}</text>
+  <button bindtap="goChat" size="mini" style="margin:unset;background:var(--themeGreen);color:#fff;">一键咨询</button>
+</view>
+
+
+

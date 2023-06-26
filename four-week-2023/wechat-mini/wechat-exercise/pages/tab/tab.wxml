@@ -1,0 +1,4 @@
+<tabs list="{{tabs}}" bindhandlechange="changeItem">
+  <view>内容如下</view>
+  <view>{{tabs[activeIdx].content}}</view>
+</tabs>

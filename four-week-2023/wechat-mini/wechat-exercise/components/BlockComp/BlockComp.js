@@ -1,0 +1,13 @@
+Component({
+  data:{
+    list:["a","b","c"],
+    count:0
+  },
+  methods:{
+    rand(){
+      this.setData({
+        count:Math.floor(Math.random()*15)
+      })
+    }
+  }
+})

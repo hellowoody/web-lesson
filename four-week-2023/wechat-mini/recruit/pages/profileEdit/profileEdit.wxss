@@ -1,0 +1,14 @@
+.input-line {
+  margin-top: 24rpx;
+}
+
+.my-label {
+  margin-left:24rpx;
+}
+
+.my-input {
+  margin-top: 12rpx;
+  background-color: #eee;
+  height:60rpx;
+  padding:0 24rpx;
+}

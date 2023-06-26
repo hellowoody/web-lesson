@@ -1,0 +1,4 @@
+<view class="tab-bar">
+  <slot name="title"></slot>
+  <slot name="content"></slot>
+</view>

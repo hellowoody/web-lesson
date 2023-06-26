@@ -1,0 +1,5 @@
+<view class="layout">
+  <view>top</view>
+  <slot></slot>
+  <view>footer</view>
+</view>

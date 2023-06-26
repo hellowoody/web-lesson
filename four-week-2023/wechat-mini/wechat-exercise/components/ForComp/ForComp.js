@@ -1,0 +1,10 @@
+Component({
+  data:{
+    list:["a","b","c"],
+    stuList:[
+      {id:1,name:"zhang",score:90},
+      {id:2,name:"li",score:80},
+      {id:3,name:"wang",score:70},
+    ]
+  }
+})

@@ -1,0 +1,5 @@
+.btn {
+  border:1px solid #000;
+  background: #fafafa;
+  padding:2px 6px;
+}

@@ -1,0 +1,8 @@
+<view>事件绑定</view>
+<view>{{name}}</view>
+<input class="myinput sugar" model:value="{{name}}" />
+<input style="{{styl}}" class="myinput" bindinput="changeContent"  value="{{name}}"/>
+<button style="{{styl}}" plain="true" bindtap="modify">修改</button>
+{{sumRes}}
+<button bindtap="sum" data-num1="1" data-num2="2">1+2</button>
+

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <title>Express session demo</title>
+  </head>
+  <body>
+    <h1>boss.</h1>
+    你的id:<input id="fromId"  />
+    <button id="wsButton" type="button" title="Open WebSocket connection">
+      Open WebSocket connection
+    </button>
+    <hr>
+    对方id: <input id="toId"  />
+    <textarea id="content" ></textarea>
+    <button id="wsSendButton" type="button" title="Send WebSocket message">
+      Send WebSocket message
+    </button>
+    <hr>
+    <pre id="messages" style="height: 400px; overflow: scroll"></pre>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+.layout {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chat-content {
+  flex:1;
+}
+
+.chat-input {
+  background: #eee;
+  width: 80%;
+}
+
+.char-bar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:12rpx 32rpx;
+  box-sizing: border-box;
+}

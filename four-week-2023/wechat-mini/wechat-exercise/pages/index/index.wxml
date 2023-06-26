@@ -1,0 +1,22 @@
+<!--
+  view -> div
+  text -> span 
+
+  button -> button
+  input -> input
+  image  -> img
+-->
+<view class="box">块标签1</view>
+<view class="box">块标签2</view>
+<text class="txt">行标签1</text>
+<text class="txt">行标签2</text>
+
+<button type="primary" >btn</button>
+<button type="default">btn</button>
+<button type="warn">btn</button>
+
+<button type="warn" plain="true">btn</button>
+
+<button style="background: purple;">diy btn</button>
+
+<input value="111" style="border:1px solid black" /> 

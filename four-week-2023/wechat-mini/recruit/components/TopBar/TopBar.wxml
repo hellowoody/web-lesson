@@ -1,0 +1,9 @@
+<view class="top-bar">
+  <view class="search" style="height:{{menuHeight+8}}px;padding-top:{{statusBarHeight}}px">
+    <slot name="search"></slot>
+  </view>
+  <view class="content">
+    <slot name="content"></slot>
+  </view>
+</view>
+

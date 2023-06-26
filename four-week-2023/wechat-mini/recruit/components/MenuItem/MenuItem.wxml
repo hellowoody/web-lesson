@@ -1,0 +1,7 @@
+<view class="menu-item" bindtap="goto" >
+  <view>
+    <text class="{{icon_class}}" style="margin-right:16rpx;"></text>
+    <text>{{name}}</text>
+  </view>
+  <text class="iconfont icon-xiangyoujiantou"></text>
+</view>

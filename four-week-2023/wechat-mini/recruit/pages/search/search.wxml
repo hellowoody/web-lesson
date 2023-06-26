@@ -1,0 +1,20 @@
+<search-bar>
+  <input slot="left" class="search-input" model:value="{{searchContent}}" />
+  <text slot="right" class="iconfont icon-sousuo search-btn" bindtap="search"></text>
+</search-bar>
+<view class="content">
+  <view class="content-title">
+    <text>历史记录</text>
+    <text class="content-del" bindtap="clearHistory">全部清除</text>
+  </view>
+  <view class="content-history"> 
+    <text 
+      class="content-history-item" 
+      wx:for="{{searchHistory}}" 
+      wx:key="*this"
+      bindtap="quickSearch"
+      data-content="{{item}}"
+    >{{item}}</text>
+  </view>
+</view>
+

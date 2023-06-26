@@ -1,0 +1,21 @@
+{
+    "pages": [ 
+        "pages/index/index",
+        "pages/home/home",
+        "pages/bindevent/bindevent",
+        "pages/nav/nav",
+        "pages/features/features",
+        "pages/tab/tab"
+    ],
+    "window": {
+        "navigationBarBackgroundColor": "#f00",
+        "navigationBarTitleText": "练习项目",
+        "navigationBarTextStyle": "white",
+
+        "enablePullDownRefresh": true,
+        "backgroundTextStyle": "dark",
+        "backgroundColor": "#00f"
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
+}

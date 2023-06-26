@@ -1,0 +1,10 @@
+<block wx:for="{{list}}" wx:key="*this">
+  {{index}} - {{item}}
+</block>
+
+<view>
+  <block wx:if="{{count >= 10}}">两位数：{{count}}</block>
+  <block wx:elif="{{count >= 5 && count < 10}}">个位数(5-9)：{{count}}</block>
+  <block wx:else>个位数(0-5):{{count}}</block>
+</view>
+<text class="btn" bindtap="rand">随机数</text>

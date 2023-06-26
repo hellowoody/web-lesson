@@ -1,0 +1,20 @@
+<view class="input-line">
+  <text class="my-label">用户名:</text>
+  <input class="my-input" bindinput="changeItem" data-label="name" value="{{user.name}}"/>
+</view>
+<view class="input-line">
+  <text class="my-label">工作经历:</text>
+  <input class="my-input" bindinput="changeItem" data-label="experience" value="{{user.experience}}"/>
+</view>
+<view class="input-line">
+  <text class="my-label">年龄:</text>
+  <input class="my-input" bindinput="changeItem" data-label="age" value="{{user.age}}"/>
+</view>
+
+<view class="input-line">
+  <text class="my-label">学历:</text>
+  <input class="my-input" bindinput="changeItem" data-label="degree"  value="{{user.degree}}"/>
+</view>
+<view class="input-line">
+  <button style="background: var(--themeGreen);color:#fff;" bindtap="sub">保存</button>
+</view>

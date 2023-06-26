@@ -1,0 +1,11 @@
+<view class="layout">
+  <view class="chat-content">
+    <block wx:for="{{list}}" wx:key="*this">
+      <view>{{item}}</view>
+    </block>
+  </view>
+  <view class="char-bar">
+    <input class="chat-input"  model:value="{{msg}}" />
+    <button size="mini" style="margin:unset;background: var(--themeGreen);color:#fff;" bindtap="send">发送</button>
+  </view>
+</view>

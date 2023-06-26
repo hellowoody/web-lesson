@@ -1,0 +1,27 @@
+<view class="card" bindtap="goto" data-id="{{station.id}}">
+  <view class="card-line">
+    <text style="font-size:32rpx;color:var(--themeBlack);font-weight: bold;">{{station.station}}</text>
+    <text style="color:var(--themeOrange);">{{station.salary}}</text>
+  </view>
+  <view class="card-line">
+    <view>
+      <text class="card-line-item">{{station.position}}</text>
+      <text class="card-line-item">{{station.experience}}</text>
+      <text class="card-line-item">{{station.degree}}</text>
+    </view>
+  </view>
+  <view class="card-line">
+    <view>
+      <text class="card-line-item welfare" wx:for="{{station.welfare}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+  <view class="card-line">
+    <view class="card-line-item">{{station.company}}</view>
+    <text 
+      wx:if="{{!ifLike}}" 
+      bindtap="likeit" 
+      class="iconfont icon-aixin" 
+      style="color:var(--themeOrange)"></text>
+    <text wx:else bindtap="unlikeit" class="iconfont icon-aixin_shixin" style="color:var(--themeOrange)"></text>
+  </view>
+</view>

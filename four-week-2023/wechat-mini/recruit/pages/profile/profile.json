@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "menu-item":"/components/MenuItem/MenuItem"
+  },
+  "navigationBarBackgroundColor": "#77a34a",
+  "navigationBarTitleText": "我的",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#77a34a"
+}

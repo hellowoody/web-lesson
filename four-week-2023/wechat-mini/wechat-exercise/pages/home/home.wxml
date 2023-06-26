@@ -1,0 +1,13 @@
+<text>{{ msg }}</text>
+<button bindtap="update">修改</button>
+<my-btn 
+  btnName="首页"
+  targetUrl="/pages/home/home"
+  bindjump="goto"
+></my-btn>
+<my-btn 
+  btnName="index"
+  targetUrl="/pages/index/index"
+  bindjump="goto"
+></my-btn>
+<my-btn btnName='{{"按钮2"}}' num="{{3.14}}" arr="{{[1,2,3]}}"></my-btn>

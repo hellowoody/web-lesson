@@ -1,0 +1,33 @@
+<top-bar>
+  <navigator slot="search" url="/pages/search/search">
+    <view class="search-input">
+      <text >请输入心仪的公司</text>
+    </view>
+  </navigator>
+  <image style="height: 400rpx;"  slot="content" mode="heightFix" src="/assets/imgs/home-banner.png"></image>
+</top-bar>
+<view style="padding:8rpx 24rpx;">
+  <tab-bar>
+    <view class="tab-bar-title" slot="title">
+      <view 
+        class="tab-bar-title-item {{item.active ? 'active' : ''}}" 
+        wx:for="{{tabs}}" 
+        wx:key="id"
+        bindtap="changeTab"
+        data-idx="{{item.id}}"
+      >{{item.name}}</view>
+    </view>
+    <view slot="content">
+      <station-card 
+        wx:for="{{tabs[activeIdx].list}}" 
+        wx:key="id"
+        station="{{item}}"
+        userLikeStation="{{userLikeStation}}" 
+      />
+    </view>
+  </tab-bar>
+</view>
+
+
+
+

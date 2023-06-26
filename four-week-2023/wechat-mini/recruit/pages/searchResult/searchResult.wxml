@@ -1,0 +1,13 @@
+<search-bar>
+  <input slot="left" class="search-input" model:value="{{searchWord}}" />
+  <text slot="right" class="iconfont icon-sousuo search-btn" bindtap="search"></text>
+</search-bar>
+<view style="padding:24rpx;box-sizing: border-box;">
+  <station-card 
+    wx:for="{{list}}" 
+    wx:key="id"
+    station="{{item}}"
+    userLikeStation="{{userLikeStation}}" 
+  />
+  <view class="loadmore" bindtap="loadmore">加载更多</view>
+</view>

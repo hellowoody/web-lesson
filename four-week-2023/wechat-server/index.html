@@ -1,0 +1,13 @@
+<input type="file" id="fileid" onchange="changehandle(event)" />
+
+<script>
+
+function changehandle(e){
+    // e file
+
+    fetch("/upload",{
+        name:"file"
+    })
+}
+
+</script>

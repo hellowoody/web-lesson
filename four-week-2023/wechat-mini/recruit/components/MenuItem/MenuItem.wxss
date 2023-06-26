@@ -1,0 +1,11 @@
+@import "/assets/iconfont/iconfont.wxss";
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:0 56rpx;
+  box-sizing: border-box;
+  height:120rpx;
+  border-bottom:1px solid #f1f1f1;
+}

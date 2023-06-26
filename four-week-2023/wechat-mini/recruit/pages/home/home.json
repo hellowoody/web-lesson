@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "top-bar":"/components/TopBar/TopBar",
+    "tab-bar":"/components/TabBar/TabBar",
+    "station-card":"/components/StationCard/StationCard"
+  },
+  "navigationBarBackgroundColor": "#77a34a",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "首页",
+  "navigationStyle": "custom"
+}

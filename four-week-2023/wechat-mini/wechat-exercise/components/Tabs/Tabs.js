@@ -1,0 +1,16 @@
+Component({
+  properties:{
+    list:{
+      type:Array,
+      value:[]
+    }
+  },
+  methods:{
+    handleActive(e){
+      console.log(e)
+      this.triggerEvent("handlechange",{
+        id:e.target.dataset.idkey
+      })
+    }
+  }
+})

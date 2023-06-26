@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "search-bar":"/components/SearchBar/SearchBar",
+    "station-card":"/components/StationCard/StationCard"
+  },
+  "navigationBarTitleText": "搜索结果",
+  "navigationBarBackgroundColor": "#77a34a",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#77a34a"
+}

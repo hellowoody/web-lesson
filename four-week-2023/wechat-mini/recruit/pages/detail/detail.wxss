@@ -1,0 +1,112 @@
+.top-bar {
+  display:flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 120rpx;
+}
+.top-bar-bg {
+  height: 240rpx;
+  width:100%;
+  background: var(--themeGreen);
+}
+
+.top-bar-bg::before {
+  content: "";
+  background-color: var(--themeGreen);
+  width:200%;
+  height:300%;
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1;
+  left:-50%;
+  top:-180%;
+}
+
+.top-bar-card{
+  width:90%;
+  background: #fff;
+  box-shadow: 2rpx 4rpx 16rpx rgb(0 0 0 / 0.1);
+  height:180rpx;
+  align-self: center;
+  position: absolute;
+  top:0;
+  padding:32rpx 60rpx;
+  box-sizing: border-box;
+  border-radius: 12rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.first-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.second-row {
+  margin-top: 8rpx;
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+  font-size: 24rpx;
+  color: var(--themeGrey)
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-top: -150rpx;
+  padding-bottom: 136rpx;
+  box-sizing: border-box;
+}
+
+.top-bar-stationcard{
+  width:90%;
+  z-index: 10px;
+  background: #fff;
+  box-shadow: 2rpx 4rpx 16rpx rgb(0 0 0 / 0.1);
+  align-self: center;
+  padding:32rpx 60rpx;
+  box-sizing: border-box;
+  border-radius: 12rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.company-card{
+  margin-top:32rpx;
+  width:90%;
+  background: #fff;
+  box-shadow: 2rpx 4rpx 16rpx rgb(0 0 0 / 0.1);
+  align-self: center;
+  padding:32rpx 60rpx;
+  box-sizing: border-box;
+  border-radius: 12rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  color:var(--themeBlack);
+  font-weight: bold;
+  font-size:30rpx;
+  margin-bottom: 12rpx;
+}
+
+.footer-bar {
+  position: fixed;
+  bottom:0;
+  height:120rpx;
+  width: 100%;
+  box-shadow: 2rpx 4rpx 16rpx rgb(0 0 0 / 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding:0 36rpx;
+  box-sizing: border-box;
+  background: #fff;
+}

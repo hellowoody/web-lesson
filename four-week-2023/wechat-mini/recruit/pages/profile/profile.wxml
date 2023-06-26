@@ -1,0 +1,25 @@
+<view class="top-bar">
+  <view class="top-bar-bg"></view>
+  <view class="top-bar-card">
+      <view class="card-line">
+        <view class="nickname">{{name}}</view>
+        <image bindtap="uploadAvatar" class="avatar"  src="{{avatar}}" />
+      </view>
+      <view class="card-line">
+      {{experience}} {{age}} {{degree}}
+      </view>
+      <view class="card-line" style="gap:30rpx;">
+        <button style="color:var(--themeGreen);border:1px solid var(--themeGreen)"	plain>上传简历</button>
+        <button bindtap="goto" data-url="/pages/profileEdit/profileEdit" style="color:#FFF;background:var(--themeGreen) ;">个人信息</button>
+      </view>
+  </view>
+</view>
+<view class="menus">
+  <menu-item 
+    wx:for="{{menus}}" 
+    wx:key="id"
+    name="{{item.name}}"
+    icon_class="{{item.icon_class}}"
+    url="{{item.url}}"
+  />
+</view>

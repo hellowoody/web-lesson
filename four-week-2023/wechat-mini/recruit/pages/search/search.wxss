@@ -1,0 +1,32 @@
+.content {
+  padding:24rpx;
+  box-sizing: border-box;
+}
+
+.content-title {
+  display: flex;
+  justify-content: space-between;
+  color:var(--themeDarkGrey);
+  font-size:26rpx;
+}
+
+.content-del {
+  color:var(--themeOrange);
+}
+
+.content-history {
+  margin-top:24rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.content-history-item {
+  font-size:24rpx;
+  padding:6rpx 24rpx;
+  background: #fafafa;
+  box-shadow: 2rpx 4rpx 16rpx rgb(0 0 0 / 0.1);
+  border-radius: 16rpx;
+  margin-right: 20rpx;
+  margin-bottom:20rpx;
+  color:var(--themeDarkGrey);
+}

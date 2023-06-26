@@ -1,0 +1,11 @@
+<view class="layout">
+  <view class="left">
+    <slot name="left"></slot>
+  </view>
+  <view class="middle">
+    <slot name="middle"></slot>
+  </view>
+  <view class="right">
+    <slot name="right"></slot>
+  </view>
+</view>

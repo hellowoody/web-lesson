@@ -1,0 +1,15 @@
+.layout {
+  background: cyan;
+  height:80px;
+  display: flex;
+  justify-content: space-between;
+  color:#fff;
+}
+
+.right {
+  background: grey;
+}
+
+.left {
+  background: red;
+}

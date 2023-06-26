@@ -1,0 +1,7 @@
+/**app.wxss**/
+/* 
+  只用类选择器
+*/
+.container {
+  color:red;
+} 

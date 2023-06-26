@@ -1,0 +1,15 @@
+<view wx:for="{{list}}" wx:key="*this">
+  索引：{{index}} 元素:{{item}}
+</view>
+
+<view 
+  wx:for="{{list}}" 
+  wx:key="*this" 
+  wx:for-index="idx" 
+  wx:for-item="v">
+  索引：{{idx}} 元素:{{v}}
+</view>
+
+<view wx:for="{{stuList}}" wx:key="id"> 
+  索引：{{index}} 元素:{{item.id}} {{item.name}} {{item.score}}
+</view>

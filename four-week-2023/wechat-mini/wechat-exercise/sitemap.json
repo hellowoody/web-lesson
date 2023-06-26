@@ -1,0 +1,13 @@
+{
+    "desc": "XXX在线点餐,美食",
+    "rules": [
+      {
+        "action": "allow",
+        "page":"pages/index/index"
+      },
+      {
+        "action": "disallow",
+        "page": "*"
+      }
+    ]
+}

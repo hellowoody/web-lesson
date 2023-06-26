@@ -1,0 +1,30 @@
+.search-input {
+  height:58rpx;
+  background: #fff;
+  width: 520rpx;
+  border-radius: 60rpx;
+  box-shadow: 2rpx 4rpx 16rpx rgb(0 0 0 / 0.1) inset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:var(--themeGrey);
+  font-size: 28rpx;
+}
+
+.tab-bar-title {
+  display: flex;
+}
+.tab-bar-title-item {
+  flex:1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:60rpx;
+  font-size:24rpx;
+  color:var(--themeDarkGrey);
+}
+
+.active {
+  box-shadow: 2rpx 4rpx 6rpx rgb(0 0 0 / 0.05);
+  color: var(--themeGreen);
+}

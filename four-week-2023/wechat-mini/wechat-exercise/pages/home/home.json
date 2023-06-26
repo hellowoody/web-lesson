@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "my-btn":"/components/MyBtn/MyBtn"
+  }
+}

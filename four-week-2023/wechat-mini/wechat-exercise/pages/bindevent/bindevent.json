@@ -1,0 +1,6 @@
+{
+  "usingComponents": {},
+  "navigationBarBackgroundColor": "#000000",
+  "navigationBarTitleText": "事件变量绑定",
+  "enablePullDownRefresh": false
+}

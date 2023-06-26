@@ -1,0 +1,8 @@
+<view class="search-bar">
+  <view class="left">
+    <slot name="left"></slot>
+  </view>
+  <view class="right">
+    <slot name="right"></slot>
+  </view>
+</view>

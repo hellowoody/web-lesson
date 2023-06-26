@@ -1,0 +1,3 @@
+<button bindtap="navto" style="background: red;color:#fff;">
+  {{btnName}} {{num}} {{arr}}
+</button>

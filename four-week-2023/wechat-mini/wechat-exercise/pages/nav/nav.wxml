@@ -1,0 +1,13 @@
+<navigator url="/pages/index/index">index page</navigator>
+<navigator url="/pages/home/home" class="nav-item">home page</navigator>
+<navigator url="/pages/bindevent/bindevent">
+  <text style="color:red;">
+    跳转事件绑定
+  </text>
+</navigator>
+
+<ul>
+  <li><button bindtap="goto" data-url="/pages/home/home">go home</button></li>
+  <li><button bindtap="goto" data-url="/pages/index/index">go index</button></li>
+  <li><button bindtap="goto" data-url="/pages/bindevent/bindevent">go bindevent</button></li>
+</ul>
