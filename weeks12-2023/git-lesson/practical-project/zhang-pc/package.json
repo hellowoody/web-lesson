@@ -1,0 +1,15 @@
+{
+  "name": "zhang-pc",
+  "version": "1.0.0",
+  "description": "- npm init -y \r - 安装express\r - 创建index.js\r - add user li",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.29.4"
+  }
+}

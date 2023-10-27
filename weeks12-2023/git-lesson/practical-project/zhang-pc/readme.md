@@ -1,0 +1,4 @@
+- npm init -y 
+- 安装express
+- 创建index.js
+- add user li

@@ -1,0 +1,24 @@
+{
+  "name": "app-shopmall",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ant-design/icons-vue": "^7.0.0",
+    "ant-design-vue": "^4.0.3",
+    "axios": "^1.5.0",
+    "pinia": "^2.1.6",
+    "three": "^0.157.0",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.3.4",
+    "unplugin-vue-components": "^0.25.2",
+    "vite": "^4.4.9"
+  }
+}

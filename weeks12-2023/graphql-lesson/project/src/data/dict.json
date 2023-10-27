@@ -1,0 +1,51 @@
+{
+  "BigCategory": [
+    {
+      "id": "B01",
+      "name": "东北省",
+      "area": 300
+    },
+    {
+      "id": "B02",
+      "name": "河北省",
+      "area": 80.5
+    },
+    {
+      "id": "B03",
+      "name": "河南省",
+      "area": 610
+    }
+  ],
+  "SmallCategory": [
+    {
+      "id": "S01",
+      "name": "哈尔滨",
+      "bigId": "B01"
+    },
+    {
+      "id": "S02",
+      "name": "吉林",
+      "bigId": "B01"
+    },
+    {
+      "id": "S03",
+      "name": "石家庄",
+      "bigId": "B02"
+    },
+    {
+      "id": "S04",
+      "name": "邯郸",
+      "bigId": "B02"
+    },
+    {
+      "id": "S05",
+      "name": "濮阳",
+      "bigId": "B03"
+    },
+    {
+      "id": "S06",
+      "name": "平顶山",
+      "bigId": "B03"
+    }
+  ]
+}

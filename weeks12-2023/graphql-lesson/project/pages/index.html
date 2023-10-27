@@ -1,0 +1,266 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>Restful vs Gql</title>
+        <script src="./axios.js"></script>
+    </head>
+    <body>
+        <h1>Restful vs Gql</h1>
+        <h3>Restful get请求</h3>
+        <button onclick="get01()">get01</button>
+        <button onclick="get02()">get02</button>
+        <button onclick="get_axios()">get_axios</button>
+        <h3>Restful post请求</h3>
+        <button onclick="post01()">post01</button>
+        <button onclick="post02()">post02</button>
+        <button onclick="post_axios01()">post_axios01</button>
+        <button onclick="post_axios02()">post_axios02</button>
+        <hr>
+        <h3>Restful 模拟首页加载数据</h3>
+        <button onclick="case01()">模拟首页加载(批量)</button>
+        <button onclick="case02()">模拟首页加载</button>
+        <h3>Gql 模拟首页加载数据</h3>
+        <button onclick="case03()">模拟首页加载</button>
+        <h3>Gql mutation 修改数据</h3>
+        <button onclick="mu01()">修改占地面积</button>
+    </body>
+</html>
+<script>
+const BASE_URL = "http://localhost:3000"
+/*
+1.用js 原生方法请求 （fetch） 
+    fetch 被promise封装、修饰
+
+    fetch缺点：兼容性不好，需要配置的项比较多（例如:超时时间，报文头等等）
+
+2.用第三方的库axios (推荐)
+
+3.用第三方的库ajax
+    缺点：比较臃肿（比较大），因为ajax包含在jquery中，如果只为了用ajax才引用jquery，得不偿失
+*/
+function get01(){
+    fetch(BASE_URL+"/ping").then((res) => {
+        return res.text()
+    }).then(resData => {
+        console.log(resData)
+    }).catch(e => {
+        console.log(e)
+    })
+}
+// get 传参数可以直接拼在url
+function get02(){
+    fetch(BASE_URL+"/list?staged=A").then((res) => {
+        return res.json()
+    }).then(resData => {
+        console.log(resData)
+    }).catch(e => {
+        console.log(e)
+    })
+}
+// post 请求的参数不是拼在url上
+// 而是作为options对象进行设置
+function post01(){
+    const params = {
+        staged:"A"
+    }
+    fetch(BASE_URL+"/list",{
+        method:"post",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(params)
+    })
+    .then(res => res.json())
+    .then(resData => {
+        console.log(resData)
+    }).catch(e => {
+        console.log(e)
+    })
+}
+
+function post02(){
+    const params = {
+        staged:"A"
+    }
+    const p = new URLSearchParams(params)
+    console.log("====>",p.toString())
+
+    fetch(BASE_URL+"/list",{
+        method:"post",
+        headers:{
+            "Content-Type":"application/x-www-form-urlencoded"
+        },
+        body:p.toString()  // A=1&B=2
+    })
+    .then(res => res.json())
+    .then(resData => {
+        console.log(resData)
+    }).catch(e => {
+        console.log(e)
+    })
+}
+
+function get_axios(){
+    axios.get(BASE_URL+"/list?staged=A")
+    .then(res => console.log(res.data))
+    .catch(e => console.log(e))
+}
+
+function post_axios01(){
+    const p = {
+        staged:"C"
+    }
+    axios.post(BASE_URL+"/list",p,{
+        headers:{
+            "Content-Type":"application/json"
+        }
+    }).then(res => console.log(res.data))
+    .catch(e => console.log(e))
+}
+
+function post_axios02(){
+    const p = {
+        staged:"B"
+    }
+    axios.post(BASE_URL+"/list",p,{
+        headers:{
+            "Content-Type":"application/x-www-form-urlencoded"
+        }
+    }).then(res => console.log(res.data))
+    .catch(e => console.log(e))
+}
+
+function case01(){
+    // 请求轮播图
+    // 请求首页的列表
+    // 请求用户的信息
+    axios.post(BASE_URL+"/mockhome",{
+        headers:{
+            "Content-Type":"application/json"
+        }
+    }).then(res => console.log(res.data))
+    .catch(e => console.log(e))
+}
+function case02_bak(){
+    // 请求轮播图
+    // 请求首页的列表
+    // 请求用户的信息
+    axios.post(BASE_URL+"/mockhomecasual",{
+        headers:{
+            "Content-Type":"application/json"
+        }
+    }).then(res => console.log(res.data))
+    .catch(e => console.log(e))
+
+    axios.post(BASE_URL+"/mockhomelist",{
+        headers:{
+            "Content-Type":"application/json"
+        }
+    }).then(res => console.log(res.data))
+    .catch(e => console.log(e))
+
+    axios.post(BASE_URL+"/mockuser",{
+        headers:{
+            "Content-Type":"application/json"
+        }
+    }).then(res => console.log(res.data))
+    .catch(e => console.log(e))
+}
+async function case02(){
+    // 请求轮播图
+    // 请求首页的列表
+    // 请求用户的信息
+    const headers = {
+        "Content-Type":"application/json"
+    }
+
+    try {
+        const res1 = await axios.post(BASE_URL+"/mockhomecasual",{
+            headers
+        })
+
+        const res2 = await axios.post(BASE_URL+"/mockhomelist",{
+            headers
+        })
+
+        const res3 = await axios.post(BASE_URL+"/mockuser",{
+            headers
+        })
+
+        console.log("res1",res1.data)
+        console.log("res2",res2.data)
+        console.log("res3",res3.data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+async function case03(){
+    // 请求轮播图
+    // 请求首页的列表
+    // 请求用户的信息
+    const headers = {
+        "Content-Type":"application/json"
+    }
+
+    const params = {
+        query:`
+            {
+                homecasual
+                list {
+                    name
+                    score
+                }
+                user {
+                    avatar
+                    name
+                    role
+                }
+            }
+        `
+    }
+
+    try {
+        const res = await axios.post(BASE_URL+"/gql",params,{
+            headers
+        })
+
+        console.log("res",res.data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+async function mu01(){
+    const headers = {
+        "Content-Type":"application/json"
+    }
+
+    const params = {
+        query:`
+            mutation {
+                updateArea(id: "B01", area: 300) {
+                    code
+                    msg
+                    data {
+                    name
+                    areaShow 
+                    }
+                }
+            }
+        `
+    }
+
+    try {
+        const res = await axios.post(BASE_URL+"/gql",params,{
+            headers
+        })
+
+        console.log("res",res.data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+</script>
+  

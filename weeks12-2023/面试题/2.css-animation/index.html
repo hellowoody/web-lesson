@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .page {
+                width:200px;
+                height:350px;
+                background: red;
+                position: relative;
+            }
+
+            .page-next {
+                width:200px;
+                height:350px;
+                background: #82B4CF;
+                /* animation: folder 3s linear 1s 1; */
+                display: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+
+            @keyframes folder {
+                0% {
+                    transform: translateX(100%);;
+                }
+
+                100%{
+                    transform: translateX(0%);
+                }
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="page" onclick="forword()">
+            <div class="page-next" ></div>
+        </div>
+    </body>
+</html>
+<script>
+function forword(){
+    var page = document.querySelector('.page-next');
+    page.style.display = 'block';
+    page.style.animation = 'folder 0.3s linear 0s 1 forwards';
+}
+</script>

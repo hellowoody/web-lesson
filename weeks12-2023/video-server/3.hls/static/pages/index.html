@@ -1,0 +1,23 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>case 3</title>
+        <script src="./hls.js"></script>
+    </head>
+    <body>
+        <h1>case 3</h1>
+        <video id="abc" controls></video>
+    </body>
+</html>
+<script>
+    var video = document.getElementById('abc');
+    var videoSrc = 'http://localhost:3000/chunk/index.m3u8';
+    if (Hls.isSupported()) {
+      var hls = new Hls();
+      hls.loadSource(videoSrc);
+      hls.attachMedia(video);
+    }else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = videoSrc;
+    }
+</script>
+  

@@ -1,0 +1,72 @@
+{
+  "id": "4253237",
+  "name": "weeks12",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "12770896",
+      "name": "垃圾桶",
+      "font_class": "lajitong",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "2076358",
+      "name": "返回箭头",
+      "font_class": "fanhuijiantou",
+      "unicode": "e8b5",
+      "unicode_decimal": 59573
+    },
+    {
+      "icon_id": "577341",
+      "name": "购物车",
+      "font_class": "gouwuche",
+      "unicode": "e73d",
+      "unicode_decimal": 59197
+    },
+    {
+      "icon_id": "2675006",
+      "name": "扫一扫",
+      "font_class": "saoyisao",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
+      "icon_id": "2892820",
+      "name": "订单",
+      "font_class": "dingdan",
+      "unicode": "e645",
+      "unicode_decimal": 58949
+    },
+    {
+      "icon_id": "2675007",
+      "name": "我的",
+      "font_class": "wode",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "2675009",
+      "name": "首页",
+      "font_class": "shouye",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "2675010",
+      "name": "分类",
+      "font_class": "fenlei",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "2811142",
+      "name": "观演人",
+      "font_class": "guanyanren",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    }
+  ]
+}
