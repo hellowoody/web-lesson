@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>背景图片</title>
+        <style>
+            .box {
+                height: 200px;
+                width:200px;
+                /* background: red; */
+                background-color: yellow;
+            }
+
+            .box01 {
+                background-image: url(./p1.jpeg);
+                background-size:contain;
+                background-repeat: no-repeat;
+                /* background-image: url("./p1.jpeg");
+                background-image: url('./p1.jpeg'); */
+            }
+
+            .box02 {
+                background-image: url(./p1.jpeg);
+                background-size:cover;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box box01"></div>
+        <div class="box box02"></div>
+    </body>
+</html>

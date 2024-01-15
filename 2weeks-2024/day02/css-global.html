@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>css 的两个使用技巧</title>
+        <style>
+            /* 通配符 *  */
+            * {
+                color:red;
+                font-size: 20px;
+                --abc:350px;
+            }
+
+            .box {
+                --size:120px;
+                width:var(--size);
+                height:var(--abc);
+                background-color:blue;
+            }
+        </style>
+    </head>
+    <body>
+        hello
+        <div >div1</div>
+        <span>div2</span>
+        <a href="#">div3</a>
+        <div class="box"></div>
+    </body>
+</html>

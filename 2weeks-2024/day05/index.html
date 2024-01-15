@@ -1,0 +1,35 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>修改元素内容</title>
+        <script src="./jquery.min.js"></script>
+    </head>
+    <body>
+        <div id="msg"><h2>hello</h2></div>
+        <div id="txt">你好</div>
+        <div id="d01">hello</div>
+    </body>
+</html>
+<script>
+// console.log($)
+// console.log(jQuery)
+let msg = document.getElementById("msg");
+// console.log(msg)
+console.dir(msg)
+console.log(msg.innerHTML)  //<h2>hello</h2>
+console.log(msg.innerText)  // hello
+
+let txt = document.querySelector("#txt")
+// txt.innerHTML = "<h2>" + txt.innerHTML + ",世界" + "</h2>"
+txt.innerHTML = `<h3>${txt.innerHTML},世界</h3>`
+
+// ******************************************************
+
+let d01 = $("#d01")
+console.log(d01) // 数组 []
+console.log(d01[0]) // div
+
+console.log(d01.html())
+d01.html(d01.html() + ",world")
+</script>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>轮播图</title>
+        <link rel="stylesheet" href="./iconfont/iconfont.css">
+        <style>
+            .carousel {
+                position: relative;
+                width:500px;
+                height:300px;
+                overflow: hidden;
+                background-color: red;
+                display: flex;
+            }
+
+            .carousel ul { 
+                position: absolute;
+                list-style: none;
+                display: flex;
+                margin:0;
+                padding: 0;
+                transition: all 0.5s ease;
+            }
+
+            .carousel #left {
+                position: absolute;
+                z-index: 10;
+                color:#fff;
+                font-size: 24px;
+                align-self: center;
+                left:8px;
+            }
+            .carousel #right {
+                position: absolute;
+                z-index: 10;
+                color:#fff;
+                font-size: 24px;
+                align-self: center;
+                right: 8px;
+            }
+
+        </style>
+        <script src="./js/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="carousel">
+            <ul>
+                <li><img src="https://source.unsplash.com/random/500x300"></li>
+                <li><img src="https://source.unsplash.com/random/500x300?1=2"></li>
+                <li><img src="https://source.unsplash.com/random/500x300?a=1"></li>
+            </ul>
+            <div id="left" class="iconfont icon-xiangzuojiantou"></div>
+            <div id="right" class="iconfont icon-xiangyoujiantou"></div>
+
+        </div>
+    </body>
+</html>
+<script>
+let left = $("#left")
+let right = $("#right")
+let ul = $(".carousel ul")
+
+let step = 500 , 
+    count = 1, 
+    count_max = 3, 
+    distance = 0
+
+right.click(function(){
+    if(count == count_max){
+        console.log("last one!!")
+    }else{
+        distance = distance - step
+        ul.css("transform",`translate(${distance}px)`)
+        count++
+    }
+})
+
+left.click(function(){
+    if(count == 1){
+        console.log("first!!")
+    }else{
+        distance = distance + step
+        ul.css("transform",`translate(${distance}px)`)
+        count--
+    }
+})
+</script>

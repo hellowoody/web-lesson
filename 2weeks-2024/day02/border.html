@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>边框</title>
+        <style>
+            .box {
+                width: 200px;
+                height: 200px;
+                /* 内置的颜色 */
+                /* background-color: red;  */
+                /* 十进制的颜色表达方式*/
+                /* rgb(红色通道的参数,绿色,蓝色)  0-255 */
+                /* background-color: rgb(0,255,0);  */
+                /* 十六进制的颜色表达方式*/ 
+                /* #后面的数字是十六进制 */
+                /* #红色绿色蓝色 */
+                /* _ _ _ _ _ _ */
+                /* f f 0 0 0 0 */
+                /* #00-#ff */
+                /* background-color: #efefef;  */
+                /* 十六进制形式的简写 */
+                /* #fa0 */
+                /* #ffaa00 */
+                /* #000 */
+                /* #fff */
+                background-color: #fa0; 
+                border: 2px solid #000;
+            }
+            .title {
+                width: 200px;
+                height: 20px;
+                border-right: 2px solid #0f0;
+                display: inline-block;
+                padding-left:80px;
+                box-sizing: border-box;
+            }
+
+            .title-last {
+                border-right: unset;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box"></div>
+        <hr>
+        <div class="title">商品1</div>
+        <div class="title">商品2</div>
+        <div class="title title-last">商品3</div>
+    </body>
+</html>

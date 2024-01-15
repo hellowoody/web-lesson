@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>三种标签的互相变换</title>
+        <style>
+            .box {
+                display:inline; /* 强制设置成inline 行标签*/
+                width: 200px;
+                height: 200px;
+            }
+
+            .box2 {
+                display:inline-block; /* 强制设置成inline-block 行内块标签*/
+                width: 200px;
+                height: 100px;
+            }
+
+            .inline1 {
+                display: inline-block;
+                background: purple;
+                width:50px;
+                border: 1px solid green;
+            }
+
+            .inline2 {
+                display: block;
+                height: 60px;
+                border: 2px dashed black;
+            }
+
+        </style>
+    </head>
+    <body>
+        <!-- div 是首选标签，有了它走遍天下都不怕 -->
+        <div class="box" style="background: red;">块1</div>
+        <div class="box" style="background: blue;">块2</div>
+        <hr>
+        <div class="box2" style="background: orange;">块3</div>
+        <div class="box2" style="background: pink;">块4</div>
+        <hr>
+        <span class="inline1">行1</span>
+        <span class="inline1">行2</span>
+        <hr>
+        <span class="inline2">行3</span>
+        <span class="inline2">行4</span>
+    </body>
+</html>

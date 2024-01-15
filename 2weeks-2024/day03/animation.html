@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>动画</title>
+        <style>
+            /* 
+             css的属性
+                animation   动画
+                transition  过渡
+                transform   变形 
+
+            
+            */
+
+            .box-1 {
+                position: absolute;
+                width: 200px;
+                height: 200px;
+                background-color: pink;
+                /* transform: translate(100px,50px); */
+                /* transform: translateX(100px); */
+                /* transform: translateY(100px); */
+                /* transform: perspective(500px) translate3d(0px, 0px, 200px) ; */
+                /* transform: rotate(0deg);   */
+                /* transform: scale(1.2); */
+                /* transform: skew(30deg); */
+                transform: translateX(100px) rotate(-45deg) scale(0.5) skew(30deg);
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <div class="box-1"></div>
+
+    </body>
+</html>

@@ -1,0 +1,84 @@
+#hot{
+    width:1226px;
+    height:170px;
+    margin:15px auto;
+}
+
+#hot .h_list{
+    width:230px;
+    height:165px;
+    background:#5f5750;
+    float:left;
+    padding:3px;
+}
+
+#hot .h_list ul li{
+    width:70px;
+    height:82px;
+    padding:0 3px;
+    float:left;
+    position:relative;
+}
+
+#hot .h_list li.l1:before,
+#hot .h_list li.l2:before,
+#hot .h_list li.l4:before,
+#hot .h_list li.l5:before{
+    content:"";
+    width:0;
+    height:70px;
+    border-right:1px solid #665e57;
+    display:block;
+    position:absolute;
+    top:6px;
+    right:0;
+}
+#hot .h_list li.l4:after,
+#hot .h_list li.l5:after,
+#hot .h_list li.l6:after{
+    content:"";
+    width:64px;
+    height:0;
+    border-bottom:1px solid #665e57;
+    display:block;
+    position:absolute;
+    top:-1px;
+    left:6px;
+}
+
+#hot .h_list ul li a{
+    height:65px;
+    width:60px;
+    display:block;
+    text-align:center;
+    color:#bbb;
+    padding-left:4px;
+}
+
+#hot .h_list ul li a:hover{
+    color:#fff;
+}
+
+#hot .h_list ul li a .iconfont{
+    display:block;
+    font-size:22px;
+    padding-top:14px;
+}
+
+#hot .h_list ul li a .h_l_title{
+    display:block;
+    padding-top:6px;
+}
+
+#hot .h_img{
+    width:316px;
+    height:170px;
+    float:left;
+    margin-left:14px;
+    transition:box-shadow .2s linear;
+}
+
+#hot .h_img:hover{
+    box-shadow:2px 8px 20px 0 #ddd;
+}
+

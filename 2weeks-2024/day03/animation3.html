@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>动画</title>
+        <style>
+            /* 
+             css的属性
+                animation   动画（主动）
+                transition  过渡 (被动)
+                transform   变形 
+            */
+
+            .box-1 {
+                width: 200px;
+                height: 200px;
+                background-color: pink;
+                /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+                /*         动画名称 动画时常   运动曲线        延时    执行次数      动画执行顺序   */
+                /* animation:move 1.5s linear 0s 3 normal; */
+                /* animation:move 1.5s linear 0s 3 reverse; */
+                animation:move 1.5s linear 0s 3 alternate;
+                /* animation:move 1.5s linear; */
+            }
+
+            @keyframes move {
+                0% {
+                    width:200px;
+                    height:200px;
+                    background-color: pink;
+                }
+                
+                100% {
+                    width:500px;
+                    height: 800px;
+                    background-color: aqua;
+                    transform: rotate(90deg);
+                }
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="box-1"></div>
+
+    </body>
+</html>

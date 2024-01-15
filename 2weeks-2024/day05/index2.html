@@ -1,0 +1,36 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>dom vs jquery</title>
+        <script src="./jquery.min.js"></script>
+    </head>
+    <body>
+        <h1>dom vs jquery</h1>
+        <ul>
+            <li>a</li>
+            <li>b</li>
+            <li>c</li>
+        </ul>
+    </body>
+</html>
+<script>
+let li1 = document.querySelector('li:nth-child(1)');
+let li2 = document.querySelector('li:nth-child(2)');
+let li3 = document.querySelector('li:nth-child(3)');
+console.log(li1.innerHTML)
+console.log(li2.innerHTML)
+console.log(li3.innerHTML)
+
+console.log($("li:nth-child(1)").html())
+console.log($("li:nth-child(2)").html())
+console.log($("li:nth-child(3)").html())
+
+let li_array = $("li")
+console.log(li_array)
+console.log(li_array[0].innerHTML)
+console.log(li_array[1].innerHTML)
+console.log(li_array[2].innerHTML)
+
+console.log(li1 == li_array[0]) // true
+</script>

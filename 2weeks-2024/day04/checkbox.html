@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>复选框</title>
+    </head>
+    <body>
+        <div>
+            <input type="checkbox" name="interest" value="coding" />
+            <label for="coding">编码</label>
+        </div>
+        <div>
+            <input type="checkbox" name="interest" value="music"  />
+            <label for="music">音乐</label>
+        </div>
+        <hr>
+        <div>
+            <input type="checkbox" name="moive" value="comdy" />
+            <label for="coding">喜剧</label>
+        </div>
+        <div>
+            <input type="checkbox" name="moive" value="kongbu"  />
+            <label for="music">恐怖</label>
+        </div>
+    </body>
+</html>
+<script>
+function msg(){
+    let checkboxs = document.getElementsByName('interest');
+    console.log(checkboxs[0].value,checkboxs[0].checked)
+    console.log(checkboxs[1].value,checkboxs[1].checked)
+
+    let moive_checkboxs = document.getElementsByName('moive');
+    console.log(moive_checkboxs[0].value,moive_checkboxs[0].checked)
+    console.log(moive_checkboxs[1].value,moive_checkboxs[1].checked)
+}
+</script>

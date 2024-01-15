@@ -1,0 +1,70 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>slidedown</title>
+        <script src="./jquery.min.js"></script>
+        <style>
+            .box {
+                width:100px;
+                height:100px;
+                border: 1px solid #000;
+                transition: height 0.6s linear;
+            }
+
+            .box:hover {
+                height:150px;
+            }
+
+            .cart {
+                height:50px;
+                width:120px;
+                box-shadow: 1px 2px 8px rgb(0 0 0 / 0.2);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .hidden_panel {
+                height:100px;
+                width: 200px;
+                box-shadow: 1px 2px 8px rgb(0 0 0 / 0.2);
+                /* display: flex;
+                justify-content: center;
+                align-items: center; */
+                line-height: 100px;
+                text-align: center;
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>slidedown 滑动效果</h1>
+        <div class="box"></div>
+        <hr>
+        <div class="cart">购物车</div>
+        <div class="hidden_panel">
+            <p>购物车内容</p>
+        </div>
+    </body>
+</html>
+<script>
+// function fn1(){
+
+// }
+
+// function fn2(){
+
+// }
+// $(".cart").hover(fn1,fn2)
+
+
+$(".cart").hover(function(){
+    console.log("mouse in")
+    $(".hidden_panel").stop(true).slideDown() 
+    // $(".hidden_panel").attr("style","display:flex;")
+},function(){
+    console.log("mouse out")
+    $(".hidden_panel").stop(true).slideUp()
+})
+</script>

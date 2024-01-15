@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>自定义-复选框</title>
+        <style>
+            /*
+                自定义复选框
+                1.把原本的复选框隐藏掉
+                2.自己用css绘制一个复选框
+                3.配合label标签 让第2步的“假”复选框拥有真正复选框的功能 
+            */
+            /*
+                selector选择器后面的单冒号“:”表示伪类（pseudo-class）。
+                selector选择器后面的双冒号“::”表示伪元素（pseudo-elements）。
+
+                因为多种浏览器的兼容性问题，单冒号“:”既可以表示伪类，也可以表示伪元素。
+            */
+            .bookname::before {
+                content:"<<";
+                color:red;
+            }
+            .bookname::after {
+                content:">>";
+                color:green;
+            }   
+        </style>
+    </head>
+    <body>
+        <input type="checkbox" id="cb">同意
+        <br>
+        <label for="cb">mock模拟</label>
+        <hr>
+        <div>《西游记》</div>
+        <div><<king of ring>></div>
+        <div>&lt;&lt;king of ring&gt;&gt;</div>
+        <div class="bookname" style="color:blue">king of ring</div>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>动画</title>
+        <style>
+            /* 
+             css的属性
+                animation   动画（主动）
+                transition  过渡 (被动)
+                transform   变形 
+            */
+
+            .box-1 {
+                width: 200px;
+                height: 200px;
+                background-color: pink;
+                /* transition: 要监控属性 时长 运动曲线 延时; */
+                /* transition: width 1.5s linear 0.5s,
+                            height 1.5s linear 0.5s,
+                            background-color 0.8s ease-out 0s; */
+                transition: all 1.5s cubic-bezier(.68,1.72,.69,-0.75) 0.5s;   
+            }
+
+            .box-1:hover {
+                width: 500px;
+                height: 500px;
+                background-color: blue;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <div class="box-1"></div>
+
+    </body>
+</html>

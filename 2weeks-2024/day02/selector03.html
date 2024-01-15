@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>选择器</title>
+        <style>
+    
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li id="_item01">元素 01</li>
+            <li class="item02">元素 02</li>
+            <li>元素 03</li>
+        </ul>
+    </body>
+</html>
+<script>
+// let var const  
+// let 变量名称 = 100
+// let 变量名称 = 'hello'
+/*
+    变量名称  
+            首字母    a-zA-Z _ $
+            其余部分  a-zA-Z _ $ 0-9
+*/ 
+let a01 = 100
+let _b = 200
+let $ = 300
+// 打印语句
+console.log(100)
+console.log(a01)
+console.log(a01,_b,$)
+
+let item01 = document.querySelector("#_item01")
+console.log(item01)
+let item02 = document.querySelector('.item02')
+console.log(item02)
+let item03 = document.querySelector('li:last-child')
+console.log(item03)
+
+let item01_old = document.getElementById("_item01")
+console.log("老派的方式",item01_old)
+let item02_old = document.getElementsByClassName("item02")
+console.log("老派的方式",item02_old)
+console.log("老派的方式",item02_old[0])
+let item03_old = document.getElementsByTagName("li")
+console.log("老派的方式",item03_old)
+console.log("老派的方式",item03_old[2])
+
+</script>

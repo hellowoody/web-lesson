@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1" >
+        <title>小米账号 - 登陆</title>
+        <link rel="stylesheet" href="./assets/css/login.css" >
+        <script src="./assets/font/iconfont.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="left-wrapper"></div>
+            <div class="right-wrapper">
+                <div class="header">
+                    <div class="logo">
+                        <img width="40" height="40" src="./assets/imgs/logo.png" />
+                        <span class="logo-text">小米账号</span>
+                    </div>
+                    <ul>
+                        <li>用户协议</li>
+                        <li>隐私政策</li> 
+                        <li>帮助中心</li> 
+                        <li><span class="v-line"></span></li> 
+                        <li>
+                            中文(简体)
+                            <div class="trangle"></div>
+                            <div class="lang-panel">
+                                <div>中文(繁体)</div>
+                                <div>English</div>
+                            </div>
+                        </li> 
+                    </ul>
+                </div>
+                <div class="card">
+                    <input class="form_input" placeholder="邮箱/手机号/小米ID" >
+                    <input class="form_input" placeholder="密码" type="password">
+                    <!-- <input value="张三"><br>
+                    <input placeholder="请输入用户名"><br>
+                    <input placeholder="请输入用户名" value="里斯"><br>
+                    <input type="password" placeholder="请输入用户名" value="里斯"><br>
+                    <input type="checkbox"  ><br>
+                    <button>按钮1</button><br>
+                    <input type="button" value="按钮2"><br>
+
+                    你的爱好：
+                    <input type="checkbox" name="habbit" id="ha1" >
+                    <label for="ha1">爱好1</label>
+                    <input type="checkbox" name="habbit" >爱好2
+                    <input type="checkbox" name="habbit" >爱好3
+                    <br>
+                    性别：
+                    <input type="radio" name="gender">男
+                    <input type="radio" name="gender">女 -->
+                    
+
+                    <svg class="icon third-login"  aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                    <svg class="icon third-login"  aria-hidden="true">
+                        <use xlink:href="#icon-weixin"></use>
+                    </svg>
+                    <svg class="icon third-login"  aria-hidden="true">
+                        <use xlink:href="#icon-zhifubao"></use>
+                    </svg>
+                    <svg class="icon third-login"  aria-hidden="true">
+                        <use xlink:href="#icon-weibo"></use>
+                    </svg>
+                </div>
+                <div class="footer">
+                    小米公司版权所有-京ICP备10046444-京公网安备11010802020134号-京ICP证110507号
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+<script>
+const lang = document.querySelector("ul li:last-child")
+lang.addEventListener("mouseover",function(){
+    const trangle = document.querySelector("ul li .trangle")
+    const panel = document.querySelector("ul li .lang-panel")
+    setTimeout(() => {
+        trangle.style.transform = "rotate(180deg)"
+        panel.style.height = "80px";
+        // panel.style.opacity = "1";
+    },0)
+})
+lang.addEventListener("mouseout",function(){
+    const trangle = document.querySelector("ul li .trangle")
+    const panel = document.querySelector("ul li .lang-panel")
+    setTimeout(() => {
+        trangle.style.transform = "rotate(360deg)"
+        panel.style.height = "0";
+    },0)
+})
+</script>

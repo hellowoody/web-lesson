@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>选择器</title>
+        <style>
+
+            li {
+                color:#f00;
+            }
+
+            li:last-child {
+                color:#00f;
+            }
+
+            /* li:nth-child(2) {
+                color:#0f0;
+            } */
+
+            li:nth-of-type(2) {
+                color:#ff0;
+            }
+
+            div {
+                width:200px;
+                height:200px;
+                background-color: #919191;
+            }
+
+            .parent > .child {
+                width:50px;
+                height:50px;
+                background-color: #f00;
+            }
+
+            .root .child {
+                background-color: #00f;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li >item 01</li>
+            <li >item 02</li>
+            <li >item 03</li>
+        </ul>
+
+        <div class="root">
+            <div class="xx">
+                <div class="parent">
+                    <div class="child"></div>
+                </div>
+            </div>
+        </div>
+
+        <span class="child"></span>
+    </body>
+</html>

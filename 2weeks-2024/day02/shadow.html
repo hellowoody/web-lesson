@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>阴影</title>
+        <style>
+            .box {
+                width: 200px;
+                height: 200px;
+                background-color: pink;
+                /* box-shadow: offset-x offset-y blur spread color */
+                /* box-shadow: 30px 50px 10px rgba(10,10,10,0.5); */
+                /* box-shadow: 30px 50px 10px 30px rgba(10,10,10,0.5); */
+                box-shadow: 30px 50px 10px rgb(10 10 10 / 0.5);
+            }
+
+            .my_input {
+                margin-top: 50px;
+                width: 200px;
+                height: 50px;
+                border: 10px solid #000;
+                box-shadow: 0 2px 5px rgb(0 0 0 / 0.8) inset;
+            }
+        </style>
+    </head>
+    <body>
+       <div class="box"></div>
+       <div class="my_input"></div>
+
+    </body>
+</html>

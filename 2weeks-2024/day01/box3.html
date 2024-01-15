@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>盒子模型</title>
+        <style>
+            .outter {
+                height:500px;
+                width:500px;
+                background: red;
+                position: absolute;
+            }
+            .inner {
+                height:100px;
+                width:100px;
+                background: blue;
+                margin-left:10px;
+                margin-top:10px; /* 不生效，确认父标签的postion是不是absolute fixed */
+            }
+        </style>
+    </head>
+    <body>
+        <div class="outter">
+            <div class="inner"></div>
+        </div>
+    </body>
+</html>
