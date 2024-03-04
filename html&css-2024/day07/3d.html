@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>3d</title>
+        <style>
+            body {
+                position: relative;
+                padding-top:100px;
+                padding-left: 100px;
+                transform-style:preserve-3d;
+                transform: perspective(800px);
+            }
+
+            .box {
+                position: absolute;
+                width: 300px;
+                height: 300px;
+                background-color: #f00;
+                transform: rotateY(-30deg);
+            }
+
+            .box2 {
+                background-color: #00f;
+                transform:  rotateY(-30deg) translateZ(50px);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box"></div>
+        <div class="box box2"></div>
+    </body>
+</html>

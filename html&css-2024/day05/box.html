@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>盒子模型</title>
+        <style>
+            .box {
+                height:100px;
+                width:100px;
+                background: red;
+                padding:10px;
+                border: 1px solid #000;
+                margin: 5px;
+            }
+
+            .container {
+                background: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <!--                        content 默认时 w，h的对象 -->
+        <!--                padding                        padding -->
+        <!--        border                                           border -->
+        <!-- margin                                                         margin -->
+        <div class="box">box</div>
+        <div class="box">box</div>
+
+        <div class="container">hello</div>
+        <div class="container" style="width:10px;height:20px;"></div>
+        <div class="container" style="padding:10px;display: inline-block;"></div>
+        <div class="container" style="border:1px solid green ;display: inline-block;"></div>
+    </body>
+</html>

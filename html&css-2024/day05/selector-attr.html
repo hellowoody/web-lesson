@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>属性选择器</title>
+        <style>
+           /*
+                selector[attr] {
+                }
+                通配符 * 
+           */
+
+           *[class] {
+            color:pink;
+           }
+
+           *[class="p2"] {
+            color:purple;
+           }
+
+           *[class="p1"][id="i01"] {
+            color:blue;
+           }
+            
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li>
+                <div class="p1" id="i01">
+                    hello
+                </div>
+            </li>
+            <li class="p2">
+                世界
+            </li>
+            <li>
+                <ol>
+                    <li class="p3">张三</li>
+                </ol>
+            </li>
+        </ul>
+    </body>
+</html>

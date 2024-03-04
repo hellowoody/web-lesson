@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>background-position</title>
+        <style>
+
+            .app {
+                width: 500px;
+                height: 500px;
+                margin:8px;
+                padding: 12px;
+                box-sizing: border-box;
+                background: url(logo.svg) no-repeat #58a calc(100% - 20px) calc(100% - 10px) / 30%  ;
+                /* background: url(logo.svg) no-repeat #58a right bottom / 30%  ; */
+
+          /*      background-color: #58a;
+                background-image: url(logo.svg);
+                background-repeat: no-repeat;
+                background-size: 30%;
+                background-position: bottom right;
+                background-position: bottom 30px right 20px;*/
+
+             /*   
+                background: url(logo.svg) no-repeat #58a bottom right / 30%;
+                background-position: bottom 30px right 20px;
+            */
+
+            /*         
+                background: url(logo.svg) no-repeat #58a top left / 30% ;
+                background-position: calc(100% - 20px) calc(100% - 10px);
+            */
+                
+            }
+            .app h2 {
+            	color:#fff;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="app">
+        	<h2>background position</h2>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>弹性布局</title>
+        <style>
+            /* 
+                如何构建弹性布局
+
+                1.要嵌套 parent -> child
+                2.要设置父元素display:flex;
+
+                带来的效果
+                1.子标签自动变成行块标签
+                2.在此父标签内，你可以操控两个轴axis 主轴（main-axis） 交叉轴(cross-axis)
+                3.默认情况下，主轴指向水平，交叉轴指向垂直
+                4.变成行块的标签，永远沿着主轴方向排列   
+                5.在父标签中，可以通过flex-direction改变主轴的方向 row column
+                6.在父标签中，可以通过justify-content改变主轴上的排列 flex-start flex-end center space-between space-around
+                7.在父标签中，可以通过align-items改变交叉轴上的排列   flex-start flex-end center
+                8.在子标签中，只能控制某一个标签的交叉轴的排序，通过align-self控制    flex-start flex-end center
+            */
+            .container {
+                display: flex;
+                width: 500px;
+                height: 500px;
+                border: 1px solid black;
+                /* justify-content: space-between;
+                align-items: center; */
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .item {
+                width: 100px;
+                height: 100px;
+                background-color: red;
+            }
+
+            span {
+                background-color: blue !important;
+            }
+        
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="item"></div>
+            <span class="item"></span>
+            <input class="item"></input>
+        </div>
+    </body>
+</html>

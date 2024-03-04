@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>表单提交</title>
+    </head>
+    <body>
+        <div>
+            <label for="name">姓名：</label>
+            <input type="text"  name="name">
+        </div>
+        <div>
+            <label for="pwd">密码：</label>
+            <input type="password"  name="pwd">
+        </div>
+        
+        <button  onclick="sub()">提交</button>
+    </body>
+</html>
+<script>
+function sub(){
+
+    let form = new FormData()
+    form.append('name', document.querySelector('input[name="name"]').value)
+    form.append('pwd123', document.querySelector('input[name="pwd"]').value)
+
+    fetch("/login",{
+        method: "POST",
+        body: form,
+        headers:{
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+    }).then(res=>res.text()).then(res =>console.log(res))
+}
+</script>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>动画</title>
+        <style>
+            /* https://cubic-bezier.com/ */
+            .box {
+                width: 300px;
+                height: 300px;
+                background-color: #f00;
+                /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+                /* 只执行一次 */
+                /* animation: box_change 1.5s linear forwards;                  */
+                /* 执行运动是往复的还行单向的 */
+                /* animation: box_change 1.5s linear infinite alternate ;       */
+                animation: box_change 1.5s linear 3 alternate forwards;  
+            }
+
+            @keyframes box_change {
+                0% {
+                    background-color: #f00;
+                    transform-origin: 50% 0;
+                }
+
+                50% {
+                    background-color: yellow;
+                }
+
+                100% {
+                    background-color: #00f;
+                    transform: translateX(200px) ;
+                }
+            }
+
+ 
+        </style>
+    </head>
+    <body>
+        <div class="box"></div>
+    </body>
+</html>

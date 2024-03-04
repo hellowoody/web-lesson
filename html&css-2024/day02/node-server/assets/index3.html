@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>表单提交</title>
+    </head>
+    <body>
+        <form action="/login" method="post" >
+            <div>
+                <label for="name">姓名：</label>
+                <input name="name" value="张三">
+            </div>
+            <div>
+                <label>密码：</label>
+                <input type="password" name="pwd">
+            </div>
+            <div>
+                <label for="name">属性1：</label>
+                <input type="checkbox"  name="prop1" value="1">
+                <input type="checkbox"  name="prop1" value="2">
+                <input type="checkbox"  name="prop1" value="3">
+            </div>
+            <div>
+                <label for="name">属性2：</label>
+                <input type="checkbox"  name="prop2" value="1">
+                <input type="checkbox"  name="prop2" value="2">
+                <input type="checkbox"  name="prop2" value="3">
+            </div>
+            <div>
+                <label for="name">属性3：</label>
+                <input type="radio"  name="prop3" value="1">
+                <input type="radio"  name="prop3" value="2">
+                <input type="radio"  name="prop3" value="3">
+            </div>
+            <div>
+                <label for="name">属性4：</label>
+                <input type="radio"  name="prop4" value="1">
+                <input type="radio"  name="prop4" value="2">
+                <input type="radio"  name="prop4" value="3">
+            </div>
+            <button type="submit">提交</button>
+            <button type="reset">重置</button>
+        </form> 
+    </body>
+</html>

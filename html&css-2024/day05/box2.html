@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>盒子模型</title>
+        <style>
+            .box1 {
+                height:100px;
+                width:100px;
+                box-sizing: border-box;
+                background: red;
+                padding:10px;
+            }
+            .box2 {
+                height:100px;
+                width:100px;
+                box-sizing: border-box;
+                border: 2px solid blue;
+                background: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 120 * 120 -->
+        <div class="box1">box</div>
+        <hr>
+        <!-- 104 * 104 -->
+        <div class="box2">box</div>
+    </body>
+</html>

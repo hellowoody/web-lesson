@@ -1,0 +1,43 @@
+<!-- h5的标准 -->
+<!DOCTYPE html> 
+<!-- 不写文档说明称为 混杂模式 (木桶原则，按最低兼容度进行渲染) -->
+<html> <!-- 根标签 root tag -->
+    <head>
+        <meta name="keyword" content="zr,中软,中软国际,教育培训,软件开发" >
+        <meta name="description" content="" >
+        <link rel="stylesheet" href="./css/styl.css">
+        <link rel="icon" href="./assets/favicon.ico">
+        <!-- http协议下 favicon.ico和html文件放在同一目录下，下面这句可以省略 -->
+        <!-- file:// /E:/github/web-lesson/html&css-2024/day01/index.html -->
+        <!-- http:// 127.0.0.1:5000/index.html -->
+        <!-- <link rel="icon" href="./favicon.ico"> -->
+        <script src="./index.js"></script>
+        <script src="./index2"></script>
+        <script>
+            console.log('hello world 内嵌')
+        </script>
+        <!-- 下面不推荐 -->
+        <!-- 如果非得写，它会忽略内嵌里的内容 -->
+        <script src="./index1.js">
+             console.log('hello world 内嵌11')
+        </script>
+
+    </head> 
+    <body>
+        <h1 id=a123 class="title">hello html</h1>
+        <h2>大于号 &gt; （greater than）</h2>
+        <h2>小于号 &lt; (less than)</h2>
+        <h2>空&nbsp;格</h2>
+        <!-- 私有属性 比如 input中的value -->
+        <input value=100 />
+        <!-- 公有属性 id class style title-->
+        <!-- 自定义 标签行内 data-xxx -->
+        <!-- js中 dataset.xxx -->
+        <div id="d01" data-w1="100" data-stuname="张三">div tag</div>
+    </body>
+</html>
+<script>
+let d01 = document.querySelector("#d01")
+console.log("w1:",d01.dataset.w1)
+console.log("stuname",d01.dataset.stuname)
+</script>

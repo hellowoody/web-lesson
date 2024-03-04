@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS-样式权重题</title>
+</head>
+<style type="text/css">
+     /*1   100+100=200*/
+    /* #father #son{  
+        color: blue;
+    } */
+    /*2   100+1*10=110 */
+    /* #father p.c2{   
+        color: black;
+    } */
+    div.c1 p.c2{    /*3   1*10+1*10=20 */
+        color: red;
+    }
+    /* 100 */
+    /* #son {
+        color: pink;
+    } */
+    /*4   正无穷 但因为选择器匹配时父标签，那只能按继承权重算 0.1 */
+    /* p {        
+        color: green !important;
+    } */
+</style>
+<body>
+    <div id="father" class="c1">
+        <p id="son" class="c2" >
+            试问这行字体是什么颜色的？
+        </p>
+    </div>
+</body>
+</html>

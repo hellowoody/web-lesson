@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>linear-gradient</title>
+        <style>
+            .box {
+                width:200px;
+                height:200px;
+                background-color: #f0f0f0;
+                margin: 8px;
+                float: left;
+            }
+            
+            .e1 {
+                /* background: linear-gradient(#fb3,#58a); */
+                background: linear-gradient(#fb3 0%,#58a 100%);
+
+            }
+
+            /*   现在容器顶部的 20% 区域被填充为 #fb3 实色，而底部 20% 区域被
+                填充为 #58a 实色。         */
+            .e2 {
+                background: linear-gradient(#fb3 20%,#58a 80%);
+            }
+
+            /*
+                “如果多个色标具有相同的位置，它们会产生一个无限小的过渡区域，
+                过渡的起止色分别是第一个和最后一个指定值。从效果上看，颜色会在那
+                个位置突然变化，而不是一个平滑的渐变过程。”
+            */
+            .e3 {
+                background: linear-gradient(#fb3 50%,#58a 0);
+                /* background: linear-gradient(red 30%,blue 30%); */
+            }
+
+            /*
+                已经没有任何渐变效果了，只有两块实色，各占据了 background-image 一半的面积。本质上，我们已经创建了两条巨大的水平条纹。
+
+                因为渐变是一种由代码生成的图像，我们能像对待其他任何背景图像那样对待它，而且还可以通过 background-size 来调整其尺寸
+
+                我们把这两条条纹的高度都缩小到了 15px。由于背景在默认情况下是重复平铺的，整个容器其实已经被填满了水平条纹
+
+            */
+            .e4 {
+                background-image: linear-gradient(#fb3 50%, #58a 50%);
+                background-size: 100% 30px;
+                /* background-repeat: no-repeat; */
+            }
+
+            /* 我们还可以用相同的方法来创建不等宽的条纹，只需调整色标的位置值即可 */
+            .e5 {
+                background: linear-gradient(#fb3 30%, #58a 30%);
+                background-size: 100% 30px;
+            }
+
+            /*
+                如果某个色标的位置值比整个列表中在它之前的色标的位置值都要小，则该色标的位置值会被设置为它前面所有色标位置值的最大值。
+
+                这意味着，如果我们把第二个色标的位置值设置为 0，那它的位置就总是会被浏览器调整为前一个色标的位置值，这个结果正是我们想要的。因此，下面的代码会产生跟上一个例子完全一样的条纹背景，但代码会更加DRY
+            */
+            .e6 {
+                background: linear-gradient(#fb3 30%, #58a 0);
+                background-size: 100% 30px;
+            }
+
+            /* 
+                如果要创建超过两种颜色的条纹，也是很容易的。举例来说，下面的代码可以生成三种颜色的水平条纹 
+            */
+            .e7 {
+                background: linear-gradient(#fb3 33.3%,#58a 0, #58a 66.6%, yellowgreen 0);
+                background-size: 100% 45px;
+            }
+
+            .e8 {
+                background: linear-gradient(red 33.3%,green 33.3%,green 66.6%, blue 66.6%);
+            }
+        </style>
+    </head>
+    <body >
+        <div class="box e1"></div>
+        <div class="box e2"></div>
+        <div class="box e3"></div>
+        <div class="box e4"></div>
+        <div class="box e5"></div>
+        <div class="box e6"></div>
+        <div class="box e7"></div>
+        <div class="box e8"></div>
+    </body>
+</html>

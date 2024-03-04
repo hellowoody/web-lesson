@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>hls</title>
+        <style>
+            div {
+                margin: 8px;
+            }
+            /* 
+
+            HSL(hue, saturation, lightness)代表色相，饱和度和亮度。这类似于RGB通过红色、绿色、蓝色的值组合在一起来表示颜色，但使用HSL，这些值更加直观。
+            
+            HUE:360°/0°红、60°黄、120°绿、180°青、240°蓝、300°洋红，它们在色相环上按照60°圆心角的间隔排列
+
+            saturation:饱和度由 0 到 100 之间的百分比表示，并确定颜色的灰色程度。0％ 表示灰色阴影，而 100％ 是全色。
+
+            lightness:亮度也是用百分比表示。如果颜色是50%的亮度，那么意味着没有额外的白色或黑色添加到颜色中。当百分比增加到50%以上时，它将会为颜色添加更多的白色，直到100%亮度时会完全白色。当百分比降低到50%以下时，它将会为颜色添加更多黑色，直到0%亮度时将会完全黑色。
+
+            */
+
+            .box:nth-child(1) {
+                width: 100px;
+                height: 100px;
+                background: hsl(0,100%,50%);
+            }
+            .box:nth-child(2) {
+                width: 100px;
+                height: 100px;
+                background: rgb(255, 0, 0);
+            }
+
+             .box:nth-child(3) {
+                width: 100px;
+                height: 100px;
+                background: hsl(60,100%,50%);
+            }
+             .box:nth-child(4) {
+                width: 100px;
+                height: 100px;
+                background: hsl(120,100%,50%);
+            }
+             .box:nth-child(5) {
+                width: 100px;
+                height: 100px;
+                background: hsl(240,100%,50%);
+            }
+             .box:nth-child(6) {
+                width: 100px;
+                height: 100px;
+                background: hsl(300,100%,50%);
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </body>
+</html>

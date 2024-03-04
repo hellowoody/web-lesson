@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>父子选择器</title>
+        <style>
+            /* ul li .p1 {
+                color:red;
+            } */
+
+            li > .p1 {
+                color:blue;
+            }
+
+            ul > li > .p1 {
+                color:green;
+            }
+
+            
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li>
+                <div class="p1">
+                    hello
+                </div>
+            </li>
+            <li class="p1">
+                世界
+            </li>
+            <li>
+                <ol>
+                    <li class="p1">张三</li>
+                </ol>
+            </li>
+        </ul>
+    </body>
+</html>

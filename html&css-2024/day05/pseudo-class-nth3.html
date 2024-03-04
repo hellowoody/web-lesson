@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>伪类选择器</title>
+        <style>
+            .box h1:nth-child(1){
+                background: red; /* h1 red */
+            }
+            .box span:nth-child(1){
+                background: blue; /* span default */
+            }
+            .box span:nth-child(2){
+                background: purple; /* span purple */
+            }
+            .box div:nth-child(3){
+                background: yellowgreen; /* div yellowgreen */
+            }
+            .box :nth-child(8) {
+                background: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box">
+            <h1>h1-1</h1>
+            <span>span-1</span>
+            <div>div-1</div>
+            <h1>h1-2</h1>
+            <span>span-2</span>
+            <div>div-2</div>
+            <h1>h1-3</h1>
+            <span >span-3</span>
+            <div>div-3</div>
+        </div>
+    </body>
+</html>

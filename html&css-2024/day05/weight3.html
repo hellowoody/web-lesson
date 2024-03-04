@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS-样式权重题</title>
+</head>
+<style>
+/* "100" */
+#id{
+    background: red;
+}
+
+/* 110 */
+.c1.c2.c3.c4.c5.c6.c7.c8.c9.c10.c11{
+    background: blue;
+}
+
+#id.c1{
+    background: purple;
+}
+
+/*
+           *      *      *       *      * 
+inherit
+  tag
+ class            0      11       0      .0    =  110
+   id             1       1       0      .0    =  100
+ inline
+
+*/
+     
+</style>
+<body>
+    <div id="id" class="c1 c2 c3 c4 c5 c6 c7 c8 c9 c10 c11">
+        hello
+    </div>
+</body>
+</html>

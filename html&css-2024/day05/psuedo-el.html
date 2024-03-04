@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            /*
+                selector::伪元素{
+                    
+                }
+                
+                因为有些浏览器（例如以前的IE）不支持双冒号
+                所以，使用单冒号（:）来代替双冒号（::）
+                
+                也就是单冒号既可以代表伪类（:nth-child），也可以代表伪元素（:before）
+                
+                真元素和伪元素是父子关系
+                <div>
+                    <psuedo-el> << </psuedo-el>
+                    king of ring
+                    <psuedo-el> >> </psuedo-el>
+                </div>
+            */
+            .title {
+                width: 150px;
+                height: 30px;
+                border: 1px solid black;
+            }
+
+            .title::before {
+                content: "<<";
+                background: red;
+            }
+
+            .title::after {
+                content:">>";
+                background: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="title">king of ring</div>
+    </body>
+</html>

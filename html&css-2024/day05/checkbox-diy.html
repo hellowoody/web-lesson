@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>自定义-复选框</title>
+        <style>
+            /*
+                自定义复选框
+                1.把原本的复选框隐藏掉       checked
+                2.自己用css绘制一个复选框    checked
+                3.配合label标签 让第2步的“假”复选框拥有真正复选框的功能 
+            */
+
+            /* 
+                flex处理居中是最优方案
+
+                如果是处理文字居中问题的话，我还可以用下面的方式
+
+                line-height 负责垂直居中
+                text-align 负责水平居中
+            
+            */
+            
+            .cb input {
+                /* opacity: 0; */
+                display: none;
+                
+            }
+
+            .cb label {
+                position: relative;
+            }
+
+            .cb label::before {
+                content:"";
+                position: absolute;
+                width: 16px;
+                height: 16px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                top:0;
+                left:0;
+            }
+
+            .cb input:checked + label::before {
+                content:"\2713";
+                /* display: flex;
+                justify-content: center;
+                align-items: center; */
+                text-align: center;
+                line-height: 16px;
+                background-color: #ff5c00;
+                color: #fff;
+                font-size: 12px;
+                border:1px solid #ff5c00;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="cb">
+            <input type="checkbox" id="hidden_cb">
+            <label for="hidden_cb"></label>
+        </div>
+    </body>
+</html>

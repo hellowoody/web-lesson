@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS-样式权重精华6题</title>
+    <style type="text/css">
+        .c1 .c2 div{    /*1*/
+            color: blue;
+        }
+        #box1 div{      /*3*/
+            color: yellow;
+        }
+        div #box3{      /*2*/
+            color: green;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="box1" class="c1">
+        <div id="box2" class="c2">
+            <div id="box3" class="c3">
+                试问这行字体是什么颜色的？
+            </div>
+        </div>
+    </div>
+</body>
+</html>

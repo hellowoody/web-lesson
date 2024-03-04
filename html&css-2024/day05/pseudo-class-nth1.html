@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>伪类选择器</title>
+        <style>
+            p:nth-child(1) {
+                color:red;
+            }
+
+            p:nth-child(2) {
+                color:blue;
+            }
+
+            p:nth-child(3) {
+                color:green;
+            }
+
+            p:nth-child(4) {
+                color:purple;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div>
+            <p>p1</p>
+            <p>p2</p>
+            <div>
+                d1
+                <p>level2 p1</p>
+                <p>level2 p2</p>
+                <div>level2 d1</div>
+                <p>level2 p3</p>
+            </div>
+            <p>p3</p>
+        </div>
+    </body>
+</html>

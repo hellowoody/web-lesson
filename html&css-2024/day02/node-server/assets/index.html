@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>表单提交</title>
+    </head>
+    <body>
+        <!-- http://localhost:3000/abc/index.html -->
+        <!-- http://localhost:3000/ -->
+        <!-- http://localhost:3000/login -->
+        <form action="/login" method="post" enctype="application/x-www-form-urlencoded">
+            <label for="name">姓名：</label>
+            <input type="text"  name="name1">
+            <button type="submit">提交</button>
+        </form> 
+
+
+        <form action="/order" method="get" >
+            <label for="name">商品id：</label>
+            <input type="text" name="productid">
+            <button type="submit">提交</button>
+        </form> 
+    </body>
+</html>

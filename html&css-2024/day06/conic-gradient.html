@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>conic-gradient</title>
+        <style>
+            .box {
+                width:200px;
+                height:200px;
+                background-color: #f0f0f0;
+                margin: 8px;
+                float: left;
+            }
+            
+            /*
+                一个旋转 45 度的锥形渐变，从蓝色渐变到红色 
+                conic-gradient(from 45deg, blue, red);
+
+                一个蓝紫色框：从蓝色渐变到红色，但只有右下象限可见，因为锥形渐变的中心位于左上角 
+                conic-gradient(from 90deg at 0 0, blue, red);
+
+                单位包括度的 deg、梯度的 grad、弧度的 rad和圈的 turn。在一个圆中有 360 度，400 个梯度，2π 弧度，1 圈。
+
+                渐变的弧度是渐变的周长。渐变或弧度的 start point 方向是北，或 12:00pm 方向。然后通过 from 角度来旋转。
+                渐变的颜色由倾斜的颜色断点、它们的起点、终点，以及介于两者之间的可选的倾斜的颜色断点决定。颜色之间的过渡可以通过相邻颜色的颜色断点之间的颜色提示来改变。
+            */
+
+            .e1 {
+                background: conic-gradient(red, orange, yellow, green, blue);
+                /* background: radial-gradient(red, orange, yellow, green, blue); */
+                /* background: linear-gradient(90deg, yellow, red); */
+            }
+
+            .e2 {
+                background: conic-gradient(from 0.25turn at 50% 30%, #f69d3c, 10deg, #3f87a6, 350deg, #ebf8e1);
+            }
+
+            .e3 {
+                background: conic-gradient(from 3.1416rad at 10% 50%, #e66465, #9198e5);
+            }
+
+            .e4 {
+                background: conic-gradient( 
+                            red 6deg, orange 6deg 18deg, yellow 18deg 45deg, 
+                            green 45deg 110deg, blue 110deg 200deg, purple 200deg);
+            }
+
+            .e5 {
+                background: conic-gradient( limegreen, green,limegreen);
+            }
+        </style>
+    </head>
+    <body >
+        <div class="box e1"></div>
+        <div class="box e2"></div>
+        <div class="box e3"></div>
+        <div class="box e4"></div>
+        <div class="box e5"></div>
+    </body>
+</html>

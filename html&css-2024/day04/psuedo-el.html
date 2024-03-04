@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .title {
+                width: 150px;
+                height: 30px;
+                border: 1px solid black;
+            }
+
+            .title::before {
+                content: "<<";
+                background: red;
+            }
+
+            .title::after {
+                content:">>";
+                background: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="title">king of ring</div>
+    </body>
+</html>

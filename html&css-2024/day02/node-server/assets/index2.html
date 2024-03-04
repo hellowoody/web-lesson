@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>表单提交</title>
+    </head>
+    <body>
+        <form action="/login" method="post" >
+            <div>
+                <label for="name">姓名：</label>
+                <input type="text"  name="name" value="张三">
+            </div>
+            <!-- 
+                readonly 改不了但会被提交
+                disabled 改不了也不会被提交，相当于没有这个字段
+             -->
+            <div>
+                <label for="name">属性1：</label>
+                <input type="text"  name="prop1" value="属性一" readonly>
+            </div>
+            <div>
+                <label for="name">属性2：</label>
+                <input type="text"  name="prop2" value="属性二" disabled>
+            </div>
+            <button type="submit">提交</button>
+        </form> 
+    </body>
+</html>

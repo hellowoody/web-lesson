@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>linear-gradient</title>
+        <style>
+            .box {
+                width:200px;
+                height:200px;
+                background-color: #f0f0f0;
+                margin: 8px;
+                float: left;
+            }
+
+            /* 
+
+                垂直条纹的代码跟水平条纹几乎是一样的，差别主要在于：我们需要在
+                开头加上一个额外的参数来指定渐变的方向。在水平条纹的代码中，我们其实也可以加上这个参数，只不过它的默认值 to bottom 本来就跟我们的意图一致，于是就省略了。
+            */
+            
+            .e1 {
+                /* background: linear-gradient(180deg,#fb3,#58a); */
+                background: linear-gradient(to top,#fb3,#58a);
+            }
+
+            .e2 {
+                background: linear-gradient(90deg,#fb3,#58a);
+                /* background: linear-gradient(to right,#fb3,#58a); */
+            }
+
+            .e3 {
+                background: linear-gradient(90deg,#fb3 50%,#58a 0)
+            }
+
+            .e4 {
+                background: linear-gradient(90deg,#fb3 50%,#58a 0);
+                background-size: 30px 100%;
+            }
+
+            .e5 {
+                background: linear-gradient(90deg,#fb3 30%,#58a 0);
+                background-size: 30px 100%;
+            }
+
+            .e6 {
+                background: linear-gradient(45deg,#fb3 30%,#58a);
+            }
+
+            .e7 {
+                background: linear-gradient(45deg,#fb3 25%,#58a 0,#58a 50%,#fb3 0,#fb3 75%,#58a 0);
+                background-size: 30px 30px;
+            }
+
+            /*
+                
+                如你所见，我们成功地创建了斜向条纹，但这些条纹看起来要比我们在前面制作的水平和垂直条纹细一些。为了理解这其中的道理，我们需要再次回忆起在学校里学过的勾股定理，用它来计算直角三角形的斜边长度。这个定理表示，当 a 和 b 是直角三角形的直角边时，则斜边的长度等于 2 2 a b + 。对于一个 45°的直角三角形来说，它的两条直角边是等长的，因此这个算式会变成 2 2 a a = 。在我们的斜向条纹中，背景尺寸指定的长度值决定了直角三角形的斜边长度，但条纹的宽度实际上是直角三角形的高。在图 2-32 中可以看到图形化的解释。
+
+                这意味着，如果想让条纹的宽度变化为我们原本想要的 15px，就需要把 background-size 指定为 2 1× ≈ 5 2 42.426 406 871 像素
+
+                但是，除非有人拿枪顶着你的脑袋威胁你必须把斜向条纹的宽度设置为完全精确的 15 像素，我会强烈推荐你把这一长串数字取整，写成 42.4px，或者甚至是 42px。（当然，在上述情形之下，你还是会被干掉。因为 2 不是整数，我们最终得到的条纹宽度永远都只能是一个近似值——尽管它已经相当精确了。）
+
+            */
+
+            .e8 {
+                background: linear-gradient(45deg,#fb3 25%,#58a 0,#58a 50%,#fb3 0,#fb3 75%,#58a 0);
+                background-size: 42px 42px;
+            }
+
+            /*
+
+                假设我们想让条纹不是 45°而是 60°怎么办？或者是 30°？又或者是 3.141 592 653 5°？如果我们只是把渐变的角度改一下，那么结果看起来会相当糟糕。
+
+                幸运的是，我们还有更好的方法来创建斜向条纹。一个鲜为人知的真相是 linear-gradient() 和 radial-gradient() 还各有一个循环式的加强版：repeating-linear-gradient() 和 repeating-radial-gradient()。它们的工作方式跟前两者类似，只有一点不同：色标是无限循环重复的，直到填满整个背景。
+
+                重复线性渐变完美适用于——你已经猜到了吧——条纹效果！这得益于它们可以无限循环的天赋，一个渐变图案就可自动重复并铺满整个背景。因此，我们再也不需要去操心如何创建出可以无缝拼接的贴片了。
+            */
+
+            .e9 {
+                background: repeating-linear-gradient(45deg,#fb3,#fb3 15px,#58a 0,#58a 30px);
+            }
+
+            .e10 {
+                background: repeating-linear-gradient(60deg,#fb3,#fb3 15px,#58a 0,#58a 30px);
+            }
+             
+            .e11 {
+                background:  repeating-linear-gradient(30deg,#79b, #79b 15px, #58a 0, #58a 30px);
+            }
+
+            .e12 {
+                background: repeating-linear-gradient(60deg, #fb3 0 15px, #58a 0 30px);
+            }
+
+            .e13 {
+                background: #58a;
+                background-image: repeating-linear-gradient(30deg,
+                 hsla(0,0%,100%,.1),
+                 hsla(0,0%,100%,.1) 15px,
+                 transparent 0, transparent 30px);
+            }
+           
+        </style>
+    </head>
+    <body >
+        <div class="box e1"></div>
+        <div class="box e2"></div>
+        <div class="box e3"></div>
+        <div class="box e4"></div>
+        <div class="box e5"></div>
+        <div class="box e6"></div>
+        <div class="box e7"></div>
+        <div class="box e8"></div>
+        <div class="box e9"></div>
+        <div class="box e10"></div>
+        <div class="box e11"></div>
+        <div class="box e12"></div>
+        <div class="box e13"></div>
+    </body>
+</html>

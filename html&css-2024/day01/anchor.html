@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>命名锚点</title>
+        <style>
+            .screen1 {
+                height:800px;
+                background-color: #f00;
+            }
+            .screen2 {
+                height:800px;
+                background-color: #0f0;
+            }
+            .screen3 {
+                height:800px;
+                background-color: #00f;
+            }
+
+            .nav {
+                position: fixed;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="nav">
+            <a href="#s1">screen1</a>
+            <a href="#s2">screen2</a>
+            <a href="#s3">screen3</a>
+        </div>
+        <div id="s1" class="screen1"></div>
+        <div id="s2" class="screen2"></div>
+        <div id="s3" class="screen3"></div>
+        <div id="s4" class="screen2"></div>
+    </body>
+</html>
