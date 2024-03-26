@@ -1,0 +1,53 @@
+<script>
+/*
+    break; 语句退出离它“最近”的循环
+*/
+
+function loop2(len){
+    for(let i = 0 ; i< len ; i++){
+        for(let j = 0 ; j < 2 ; j++){
+            if(i >1){
+                break;
+            }
+            console.log("j",j)
+        }
+        console.log(i) 
+    }
+}
+
+loop2(3)
+
+
+function foo(){
+    console.log(1000)
+    for(let i = 0 ; i< 3 ; i++){
+        if(i>0){
+            break
+        }else if(i > 1){
+            return
+        }
+        console.log(2000)
+    }
+    console.log(3000)
+}
+
+foo()
+
+
+console.log("**********")
+function foo2(){
+    for(let i = 0 ; i< 3 ; i++){
+        console.log(1000)
+        for(let j = 0 ; j < 2 ; j++){
+            if(j ==1){
+                break;
+            }
+            if(i == 1){
+                return
+            }
+            console.log(2000)
+        }
+    }
+}
+foo2()
+</script>

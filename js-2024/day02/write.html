@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>js引入</title>
+    </head>
+    <body>
+        <h1>js引入</h1>
+        <!-- <script>
+            document.write("<h1>js embedding 嵌入</h1>")
+        </script> -->
+        <h2>2000</h2>
+    </body>
+</html>
+<script>
+    /*
+        document.write()
+        当html文件初次加载"绘制"时，浏览器会执行该函数，并输出指定的内容(在绘制某一时刻追加)。
+
+        如果html已经绘制完毕再调用document.write()，那么该函数会先清空页面，再重新绘制。
+    */
+    // document.write("<h1>js embedding 嵌入</h1>") 
+
+    window.onload = function(){
+        document.write("<h1>js embedding 嵌入</h1>") 
+    }
+</script>
+

@@ -1,0 +1,26 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>dom event</title>
+    </head>
+    <body>
+        <button onclick="fn1();">click me</button>
+        <br>
+        <input oninput="input(this);" onchange="change(this);">
+
+    </body>
+</html>
+<script>
+function fn1(){
+    console.log("fn1",this)
+}
+
+function input(e){
+    // console.log("e:",e)
+    console.log("input:事件句柄的value:",e.value)
+}
+
+function change(e){
+    console.log("change:e:",e.value)
+}
+</script>

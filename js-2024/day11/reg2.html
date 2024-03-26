@@ -1,0 +1,19 @@
+<script>
+const target_str = "day"
+
+const reg = /\d/
+
+console.log(reg.exec(target_str))  // null
+
+const reg3 = /\d/ // [0-9]
+console.log("reg3",reg3.test("hel1o"))
+console.log("reg3",reg3.exec("hel1o"))
+
+const reg4 = /\w/g // new RegExp("\\w")
+console.log("reg4",reg4.test("你好 world")) // 
+const reg4_g = /\w/g 
+let res4
+while(res4 = reg4_g.exec("你好 world")){
+    console.log(res4)
+}
+</script>

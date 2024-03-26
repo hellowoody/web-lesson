@@ -1,0 +1,152 @@
+<script>
+/*
+== vs ===
+
+==   值相等
+===  类型和值相等
+
+=== 也称作 全等
+
+123 == "123"   true
+123 === "123"  false
+*/
+
+console.log(`123 == "123"`,123 == "123")
+console.log(`123 === "123"`,123 === "123")
+
+console.log(1 == true) // true
+console.log(1 === true) // false
+console.log(0 == false) // true
+console.log(0 === false) // false
+
+/*
+
+一元操作符
+++ --
+let i = 1;
+i = i + 1;
+等价
+i++ （推荐）
+++i
+
+i = i - 1;
+等价于
+i--  （推荐）
+--i
+
+++和--放在变量的左侧和右侧都行
+
+方法左侧：先操作
+方法右侧：后操作
+
+*/
+
+let i = 10;
+i++;
+console.log("i:",i) // 11
+--i;
+console.log("i:",i) // 10
+
+console.log("i++",i++) // 先打印 后+1    10
+console.log("i:",i)
+
+console.log("--i",--i)  // 先-1 ，后打印 10
+console.log("i:",i)     // 10
+
+
+let count = 5;
+count++;                           // 
+console.log("count++",count++);    //  6
+console.log("count--",count--);    //  7
+--count                            //   
+console.log("++count:",++count);   //  6
+
+
+
+
+let step = 0
+if(--step >= 0){
+    console.log("step1000",step)
+}
+let step2 = 0
+if(step2-- >= 0){
+    console.log("step2000",step2) // -1
+}
+
+/*
+赋值操作符
+
++=
+-=
+/=
+*=
+let i = 0
+
+i = i + 5
+i += 5
+
+*/
+let n = 0
+n += 5
+console.log("n+=5",n) // 5
+n -= 3
+console.log("n-=3",n) // 2
+n *= 6
+console.log("n*=6",n) // 12
+n /= 3
+console.log("n/=3",n) // 4
+
+
+let num = 10
+console.log(num % 2)     // 0 
+console.log((num+1) % 2) // 1
+
+num %= 2
+console.log(num)  // 0
+
+
+/*
+
+变量的复制
+    字面量的复制     string number boolean
+    引用对象的复制   object array
+
+*/
+
+let a = "hello"
+let b = a;
+console.log("a === b",a===b) // true
+a = "你好"
+console.log("a:",a)  // 你好
+console.log("b:",b)  //  hello
+
+console.log("a === b",a===b)  // false
+
+const obj = {
+    p1:1
+}
+
+const obj2 = obj
+
+obj.p1 = 2
+obj.p2 = 3.14
+
+console.log("obj:",obj)     // {p1:2,p2:3.14}
+console.log("obj2:",obj2)   // {p1:2,p2:3.14}
+
+console.log("obj === obj2",obj === obj2) // true
+
+const obj3 = {}
+obj3.p1 = obj.p1
+
+obj3.p2 = -2000
+obj.p3 = 10000
+
+console.log("obj:",obj)     
+console.log("obj2:",obj)     
+console.log("obj3:",obj3)  
+
+console.log("obj === obj3",obj === obj3) // false
+
+
+</script>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>js引入</title>
+        <!-- script 是阻塞-->
+        <!-- 1.如果是src外部连接先要下载xx.js，直到下载完成执行下一步；
+               如果是内嵌式，直接执行下一步 
+        -->
+        <!-- 2.执行js代码 -->
+        <!-- 3.js如果没执行完，html后面的代码不会被执行 -->
+        <script>
+            let arr = new Array(20_000_000)
+            arr.fill(0)
+            for(let i of arr){  }
+            console.log("循环完毕")
+        </script>
+    </head>
+    <body>
+        <h1>hello js</h1>
+    </body>
+</html>
+
+

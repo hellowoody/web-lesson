@@ -1,0 +1,34 @@
+<script>
+/*
+let a = [1,2,3]
+let b = a
+
+b[1] = -2
+
+console.log("b:",b)
+console.log("a:",a)
+
+*/
+
+// Array 数组本质就是一个对象
+// Array 数组是个特殊的对象
+
+const arr = [1,2,3] // new Array(1,2,3)
+console.log(arr.__proto__) // 因为返回的对象有一个属性是constructor，那它就是原型
+console.log(arr.__proto__ === Array.prototype)
+
+console.log(arr.__proto__.__proto__) // 返回的也是原型
+console.log(arr.__proto__.__proto__ === Object.prototype)
+
+console.log("***********************")
+function Vehicle(){
+    this.driving = function(){}
+}
+
+const car = new Vehicle()
+console.log(car.__proto__ ) //Vehicle 原型
+console.log(car.__proto__ === Vehicle.prototype) // true
+
+console.log(car.__proto__.__proto__ ) // Object 原型
+console.log(car.__proto__.__proto__ === Object.prototype)
+</script>

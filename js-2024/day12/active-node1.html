@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+    <script>
+        console.log(document)
+        console.log("1000",document.cloneNode(true))
+    </script>
+    <head>
+        <meta charset="utf-8">
+        <title>dom</title>
+        <script>
+            console.log("==============================")
+            // document 活动节点 active-node
+            console.log(document)
+            const pic = document.cloneNode(true)          // 拍了一张"快照"
+            console.log("pic",pic)
+            console.log(document.querySelector("#app"))   // null
+            console.log(document.getElementById("#app2")) // null
+        </script>
+    </head>
+    <body>
+        <div id="app">
+           <p id="p_id" name="p_name" style="color:blue;">hello dom</p>
+        </div>
+        <div id="app2"> </div>
+    </body>
+</html>
+<script>
+    console.log("==============================")
+    console.log(document)
+</script>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>js引入</title>
+    </head>
+    <body>
+        <h1>js引入</h1>
+    </body>
+</html>
+<script>
+    // 嵌入
+    // 在现有body标签后追加新的内容
+    document.write("<h1>js embedding 嵌入</h1>") 
+</script>
+<script src="./main.js"></script>
+<script src="./main"></script>
+<script src="./main.js">
+    // 嵌入会被忽略
+    console.log(1000)
+    document.write("<h1>js embedding 嵌入</h1>") 
+</script>

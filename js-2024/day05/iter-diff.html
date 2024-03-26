@@ -1,0 +1,30 @@
+<script>
+const bigArr = new Array(100_000)
+bigArr.fill(0)
+
+const s1 = Date.now()
+for(let i = 0 ; i< bigArr.length ; i++){
+}
+const e1 = Date.now()
+console.log(`for-loop duration ${(e1-s1)/1000} s`)
+
+const s2 = Date.now()
+let w = 0
+while(w < bigArr.length){
+    w++
+}
+const e2 = Date.now()
+console.log(`while duration ${(e2-s2)/1000} s`)
+
+
+const s3 = Date.now()
+for(const item of bigArr){}
+const e3 = Date.now()
+console.log(`for-of duration ${(e3-s3)/1000} s`)
+
+
+const s4 = Date.now()
+for(const key in bigArr){}
+const e4 = Date.now()
+console.log(`for-in duration ${(e4-s4)/1000} s`)
+</script>

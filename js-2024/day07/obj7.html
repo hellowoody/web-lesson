@@ -1,0 +1,35 @@
+<script>
+function Model(a,b){
+    this.a = a
+    this.b = b
+    this.desc = function(){
+        console.log(`a:${a},b:${b}`)
+    }
+}
+
+const m1 = new Model(1,2)
+const m2 = new Model("哈哈","呵呵")
+
+m1.desc()
+m2.desc()
+
+m1.sum = function (n1,n2){
+    console.log(n1+n2)
+}
+
+m1.sum(1,2)
+
+// m2.sum(3,4)
+
+Model.prototype.sub = function(n1,n2){
+    console.log(n1-n2)
+}
+
+m2.sub(3,10)
+m1.sub(10,20)
+
+const m3 = new Model(100,200)
+
+m3.desc()
+m3.sub(0,50)
+</script>

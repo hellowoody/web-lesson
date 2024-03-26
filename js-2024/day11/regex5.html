@@ -1,0 +1,61 @@
+<script>
+// 环视 多选 可以是两个数字，但不能是一个字母和一个数字
+
+const reg1 = /\w{2}/
+const reg2 = /((?=\d{2})|(?![A-Za-z]\d))\w{2}/
+
+console.log(reg2.test("12")) // true
+console.log(reg2.test("a2")) // false
+console.log(reg2.test("2a")) // true
+
+// 匹配长度为2的字符串
+// 这长度为2的字符串必须是数字或者字母
+// 但可以是一个下划线和一个数字
+// 不能是一个数字和一个字母
+
+const reg3 = /((?=_\d)|(?!\d[A-Za-z]))[A-Za-z\d]{2}/
+console.log(reg3.exec("aa")) // (环1：f | 环2：t)  正：t   true
+console.log(reg3.exec("_a")) // (环1：f | 环2：t)  正：f   false
+console.log(reg3.exec("_9")) // (环1：t | 环2：t)  正：f   false
+
+const reg4 = /(?=_\d)[A-Za-z\d]{2}/
+console.log(reg4.test("aa")) // 环1：f    正：t    false
+console.log(reg4.test("_a")) // 环1：f    正：f    false
+console.log(reg4.test("_9")) // 环1：t    正：f    false
+
+/*
+
+  1.用正则校验密码规则为长度最少8位，只能包含大小写字母和数字
+
+        const reg = /[A-Za-z0-9]{8,}/g
+
+        const reg = /^[A-Za-z0-9]{8,}$/
+
+*/
+
+const pwd = /^((?!\d{8,})(?![A-Z]{8,})(?![a-z]{8,}))[A-Za-z0-9]{8,}$/
+
+console.log("pwd",pwd.test("12345678"))      // false
+console.log("pwd",pwd.test("123456789"))     // false
+console.log("pwd",pwd.test("12345678910"))   // false
+console.log("pwd",pwd.test("asdfghjkl"))     // false
+console.log("pwd",pwd.test("ASDFGHJKL"))     // false
+console.log("pwd",pwd.test("ASDFGzxcvb"))    // true
+
+const pwd2 = /^((?![A-Z\d]{8,})(?![a-z\d]{8,})(?![A-Za-z]{8,}))[A-Za-z0-9]{8,}$/
+/*
+
+    if([A-Za-z0-9]{8,}){
+        return (?![A-Z\d]{8,}) && (?![a-z\d]{8,}) && (?![A-Za-z]{8,})
+    }
+
+*/ 
+
+console.log("pwd2",pwd2.test("12345678"))      // false
+console.log("pwd2",pwd2.test("123456789"))     // false
+console.log("pwd2",pwd2.test("12345678910"))   // false
+console.log("pwd2",pwd2.test("asdfghjkl"))     // false
+console.log("pwd2",pwd2.test("ASDFGHJKL"))     // false
+console.log("pwd2",pwd2.test("ASDFGzxcvb"))    // false
+console.log("pwd2",pwd2.test("ASDFGzx1vb"))    // true
+</script>

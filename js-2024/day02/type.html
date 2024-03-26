@@ -1,0 +1,42 @@
+<script>
+/*
+js的数据类型
+ 7种类型
+    1.String
+    2.Number 
+    3.Boolean (true | false)
+    4.Undefined
+    5.Null
+    6.Object
+    7.Symbol
+
+修饰符 typeof
+let text = "hello";
+typeof text;  官方推荐的
+typeof(text);
+*/
+let a = "hello";
+let b = 100;
+let c = false;
+let d;
+// let d = undefined; // 不要这么写
+let e = null;
+let f = {name:"zhang"}
+let g = Symbol()
+
+console.log(typeof a); // "string"
+console.log(typeof b); // "number"
+console.log(typeof c); // "boolean"
+console.log(typeof d); // "undefined"
+
+console.log(typeof e); // "object"
+
+console.log(typeof f); // "object"
+console.log(typeof g); // "symbol"
+
+console.log(String(e)) // "null" 强制转型
+
+
+
+
+</script>

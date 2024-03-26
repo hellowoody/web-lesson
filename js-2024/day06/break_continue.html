@@ -1,0 +1,30 @@
+<script>
+/*
+    break;    语句退出循环
+    continue; 退出当次循环
+*/
+
+function loop1(len){
+    for(let i = 0 ; i< len ; i++){
+        if(i >1){
+            break;
+        }
+        console.log(i)
+    }
+}
+
+loop1(3)
+
+
+
+function loop2(len){
+    for(let i = 0 ; i< len ; i++){
+        if(i == 2){
+            continue;
+        }
+        console.log(i)
+    }
+}
+
+loop2(5)
+</script>

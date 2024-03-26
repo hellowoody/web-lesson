@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>处理视频</title>
+    </head>
+    <body>
+        <video controls src="./m.mp4" loop ></video>
+        <br>
+        <canvas id="canvas"></canvas>
+        <canvas id="canvas_left"></canvas>
+        <canvas id="canvas_right"></canvas>
+    </body>
+</html>
+<script>
+// canvas 画板 处理视频
+let video = document.querySelector('video'); // 获取video元素
+video.addEventListener('loadeddata', function(){
+    console.log("video loaded !")
+    video.width = video.videoWidth/2
+    video.height = video.videoHeight/2
+
+   
+    let frame = document.getElementById('canvas')
+    frame.width = video.width
+    frame.height = video.height
+    frame.style.width = video.width + 'px'
+    frame.style.height = video.height + 'px'
+    frame.style.margin = '8px'
+    frame.style.border = '1px solid black'
+    let ctx = frame.getContext('2d')
+    
+    const left = document.getElementById('canvas_left')
+    left.width = video.width/2
+    left.height = video.height
+    left.style.width = video.width/2 + 'px'
+    left.style.height = video.height + 'px'
+    left.style.margin = '8px'
+    const left_ctx = left.getContext('2d')
+   
+    const right = document.getElementById('canvas_right')
+    right.width = video.width/2
+    right.height = video.height
+    right.style.width = video.width/2 + 'px'
+    right.style.height = video.height + 'px'
+    right.style.margin = '8px'
+    const right_ctx = right.getContext('2d')
+
+    // 定时器
+    setInterval(function(){
+        ctx.drawImage(video,0,0,canvas.width,canvas.height) // 捕捉的一帧画面
+        let w = frame.width  // 一整张完整图片的
+        let h = frame.height // 一整张完整图片的
+        left_ctx.drawImage(frame,0,0,w/2,h,0,0,left.width,left.height) // 只绘制视频截图中的一部分
+        right_ctx.drawImage(frame,w/2,0,w/2,h,0,0,right.width,right.height) // 只绘制视频截图中的一部分
+    },1000/30)
+
+})
+</script>

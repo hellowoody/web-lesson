@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>js引入</title>
+        <!-- defer 推迟 -->
+        <!-- 1.还是要下载a.js，在下载的同时浏览器继续往下执行 -->
+        <!-- 2.a.js下载完，先不执行 -->
+        <!-- 3.等浏览器后的所有动作都执行完，在执行a.js -->
+        <script defer src="a.js"></script>
+        <script src="b.js"></script>
+    </head>
+    <body>
+        <h1>js引入</h1>
+    </body>
+</html>
+<script>
+for(let i = 0 ;i< 100000000 ; i++){
+
+}
+//如果内嵌js代码 那么就写在最下面 
+console.log("内嵌的输出")
+</script>
+

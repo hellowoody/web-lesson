@@ -1,0 +1,80 @@
+<script>
+const html = `
+        <div></div>
+        <div>
+            <a>123</a>
+        </div>
+        <div>abc</div>
+        <div>一二三</div>
+`
+/*
+. 不是任意字符 ，是除了\n和\r的任意字符
+[\s\S] 代表所有字符
+*/
+// const reg = /<div>.*?<\/div>/g
+// const reg = /<div>(.|\n|\r)*?<\/div>/g
+const reg = /<div>[\s\S]*?<\/div>/g
+// const reg = /<div>[\d\D]*?<\/div>/g
+// const reg = /<div>[\w\W]*?<\/div>/g
+
+let res1
+while (res = reg.exec(html)) {
+  console.log("res1",res)
+}
+
+
+const html3 = `
+        <div>
+            <a>123</a>
+        </div>
+        <div>abc</div>
+        <div>一二三</div>
+`
+
+
+const sina = `
+<ul>
+    <li>
+      <a href="https://news.sina.com.cn/" target="_blank"><b>新闻</b></a>
+    </li>
+    <li>
+      <a href="https://mil.news.sina.com.cn/" target="_blank">军事</a>
+    </li>
+    <li>
+      <a href="https://news.sina.com.cn/china/" target="_blank">国内</a>
+    </li>
+    <li>
+      <a href="https://news.sina.com.cn/world/" target="_blank">国际</a>
+    </li>
+  </ul>
+  <ul>
+    <li>
+      <a href="https://finance.sina.com.cn/" target="_blank"><b>财经</b></a>
+    </li>
+    <li>
+      <a href="https://finance.sina.com.cn/stock/" target="_blank">股票</a>
+    </li>
+    <li>
+      <a href="https://finance.sina.com.cn/fund/" target="_blank">基金</a>
+    </li>
+    <li>
+      <a href="https://finance.sina.com.cn/forex/" target="_blank">外汇</a>
+    </li>
+  </ul>
+  <ul>
+<a11111</a>
+<a></a>
+<a href
+`
+
+console.log("=========================================")
+// const reg = /<div[\s\S]*?<\/div>/g
+// const reg_sina = /<a[\s\S]*?<\/a>/g    // 简单写法
+const reg_sina = /<a[>\s][\s\S]*?<\/a>/g  // 严谨写法
+
+let res_sina
+while (res_sina = reg_sina.exec(sina)) {
+  console.log("res_sina",res_sina)
+}
+
+</script>

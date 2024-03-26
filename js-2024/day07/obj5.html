@@ -1,0 +1,62 @@
+<script>
+function Person(){
+    this.a = 1
+    this.b = 2
+    this.c = function(){
+        console.log("我是一个方法")
+    }
+    // 构造器不能用return
+}
+
+// const obj = {
+//     a:1,
+//     b:2,
+//     c:function(){
+//         console.log("我是一个方法")
+//     }
+// }
+const obj = new Object()
+obj.a = 1;
+obj.b = 2;
+obj.c = function(){
+    console.log("我是一个方法")
+}
+
+const p = new Person() // 自定义的对象
+console.log("p:",p)
+console.log("obj:",obj)
+
+
+function Foo(){
+    this.a = 1;
+    this.b = 2;
+}
+
+function Bar(){
+    this.a = 1;
+    this.b = 2;
+
+    return {
+        name:"zhangsan"
+    }
+}
+
+const foo = new Foo()
+const bar = new Bar()
+
+console.log("foo:",foo)     // {a:1,b:2}
+console.log("foo.a:",foo.a)
+console.log("bar:",bar)     // {name:"zhangsan "}
+console.log("bar.name:",bar.name)
+console.log("bar.a:",bar.a)  // undefined
+
+function Fn(){
+    this.a = 1;
+    this.b = 2;
+
+    return 
+}
+
+const fn = new Fn()
+console.log("fn",fn)
+</script>

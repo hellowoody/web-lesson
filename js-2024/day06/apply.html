@@ -1,0 +1,20 @@
+<script>
+/*
+函数名.apply(执行上下文,[参数...])
+*/
+
+var c = 1000
+
+function foo(a,b){
+    console.log("a:",a,"b:",b,"c:",this.c)
+    console.log("arguments[2]",arguments[2])
+    console.log("arguments[3]",arguments[3])
+}
+
+foo(1,2) // 1 2 1000
+
+
+foo.apply({c:0.1},[1,2]) // 1 2 0.1
+// foo.call({c:0.1},1,2) // 1 2 0.1
+foo.apply({c:0.1},[1,2,3,4]) // 1 2 0.1
+</script>

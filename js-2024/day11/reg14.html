@@ -1,0 +1,20 @@
+<script>
+/*
+12
+a1  false
+2a
+Az
+
+\w AZaz0-9
+*/
+
+const reg1 = /(?![A-Za-z]\d)\w{2}/
+
+console.log(reg1.test('12'))
+console.log(reg1.test('a1')) // false
+console.log(reg1.test('2a'))
+console.log(reg1.test('Az'))
+
+
+
+</script>

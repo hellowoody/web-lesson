@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>dom</title>
+    </head>
+    <body>
+        <div id="app">12
+           <p id="p_id" name="p_name" style="color:blue;">hello dom</p>34
+        </div>
+
+        <div id="app2"></div>
+        
+        <button onclick="checkHasChild('app')">校验app下面有没有子节点</button>
+        <button onclick='checkHasChild("app2")'>校验app2下面有没有子节点</button>
+    </body>
+</html>
+<script>
+function checkHasChild(id){
+    const el = document.getElementById(id)
+    console.log(el.hasChildNodes())
+}
+
+
+for(const item of app.childNodes){
+    console.log(`
+        nodeType:${item.nodeType} 
+        nodeName:${item.nodeName}
+        nodeValue:${item.nodeValue}
+    
+    `)
+    // if(item.nodeType === 1){
+    if(item.nodeType === Node.ELEMENT_NODE){
+        console.dir(item) // p
+        console.dir(item.attributes) // p 属性
+
+        for(const attr of item.attributes){
+            console.log(`
+                nodeType:${attr.nodeType} //2 
+                nodeName:${attr.nodeName}
+                nodeValue:${attr.nodeValue}
+            
+            `)
+        }
+
+        console.log("p标签的子元素内的文本节点类型",item.childNodes[0])      //  #text 防数组获取元素的方式
+        console.log("p标签的子元素内的文本节点类型",item.childNodes.item(0)) //  #text 类数组对象自己的获取元素的方式
+
+        console.log("p标签的属性节点id",item.attributes[0]) // id=xxx
+        console.log("p标签的属性节点id",item.attributes.id) // id=xxx
+    }
+}
+
+
+
+// const app = document.getElementById("app") // div 
+// console.log(app.childNodes)
+// app.childNodes.map(() => {
+//     console.log("map")
+// })
+</script>

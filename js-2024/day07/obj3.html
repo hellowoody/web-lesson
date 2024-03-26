@@ -1,0 +1,47 @@
+<meta charset="utf-8">
+<script>
+
+const obj = new Object()
+Object.defineProperty(obj,"a",{
+    value:-3.14,
+    writable:true,
+    enumerable:true,
+    // configurable:false  // 不可配置，不能删除，不能修改 (enumerable也不能修改)
+})
+Object.defineProperty(obj,"b",{
+    value:"hello",
+    writable:false,
+    enumerable:true,
+    configurable:true
+})
+console.log("obj:",obj)
+obj.a = 314
+obj.b = "你好"
+console.log("obj:",obj)
+
+Object.defineProperty(obj,"a",{
+    value:-3.14,
+    writable:false,
+    // enumerable:false,
+    // configurable:true
+})
+
+console.log(Object.getOwnPropertyDescriptor(obj,"a"))
+
+
+Object.defineProperty(obj,"b",{
+    value:"hello",
+    writable:true,
+    enumerable:false,
+    configurable:true
+})
+obj.b = "你好"
+obj.a = -314
+
+
+console.log("obj",obj)
+for(const key in obj){
+    console.log("obj key:",key)
+}
+
+</script>

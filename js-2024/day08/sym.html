@@ -1,0 +1,71 @@
+<script>
+// 基本使用
+
+const s1 = Symbol()
+console.log(typeof s1) // "symbol"
+console.log("s1:",s1)  // Symbol() 
+// new Symbol()
+try {
+    new Symbol()  //error:Symbol is not a constructor
+} catch (e) {
+    console.log("我捕获的异常/错误:",e)
+}
+console.log("---------end-------------")
+
+const s1_cp = Symbol()
+console.log("s1 == s1_cp ",s1 == s1_cp)   // false
+console.log("s1 === s1_cp ",s1 === s1_cp)  // false
+
+console.log("s1",s1)
+console.log("s1_cp",s1_cp)
+
+
+const s2 = Symbol("s2")
+const s2_cp = Symbol("s2")
+console.log("s2 === s2_cp ",s2 === s2_cp)  // false
+
+const s_id = Symbol("id")
+const s_name = Symbol("name")
+
+console.log("s_id",s_id)
+console.log("s_name",s_name)
+
+console.log("****************************")
+
+const s3 = Symbol.for("s3")
+console.log(typeof s3)  // symbol
+console.log("s3:",s3)
+
+const s3_cp = Symbol.for("s3")
+
+console.log("s3 === s3_cp ",s3 === s3_cp) // true 幂等
+
+const s4 = Symbol.for()
+
+console.log("s4:",s4) // Symbol(undefined)
+
+console.log("****************************")
+
+let s5_basic = Symbol('foo'); 
+let s5_global = Symbol.for('foo'); 
+console.log("s5_basic",s5_basic)
+console.log("s5_global",s5_global)
+console.log(s5_basic === s5_global); // false
+
+console.log("****************************")
+
+// 创建全局符号
+let s6 = Symbol.for('foo'); 
+console.log(Symbol.keyFor(s6)); // foo 
+
+// 创建普通符号
+let s7 = Symbol('bar'); 
+console.log(Symbol.keyFor(s7)); // undefined 
+
+// 如果传给 Symbol.keyFor()的不是符号，则该方法抛出 TypeError：
+try {
+    Symbol.keyFor(123); // TypeError: 123 is not a symbol
+} catch (e) {
+    console.log(e)
+}
+</script>

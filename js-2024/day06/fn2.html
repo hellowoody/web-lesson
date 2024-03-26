@@ -1,0 +1,58 @@
+<script>
+
+function foo(){
+    console.log(arguments)
+    return arguments[0]-arguments[1]
+}
+
+const res = foo(1,2)
+console.log(res)
+
+function sum(a,b){
+    let res
+    console.log("arguments[0]",arguments[0])
+    console.log("arguments[1]",arguments[1])
+    console.log("arguments[2]",arguments[2])
+    if(arguments.length < 2){
+        res = a ? a : "对不起，没传参"
+        // res = arguments[0]
+    }
+    else if(arguments.length > 2){
+        res = a+b
+        for(let i = 2;i<arguments.length;i++){
+            res += arguments[i]
+        }
+    }else{
+        res = a+b 
+    }
+    return res
+}
+
+const sum_res1 = sum(1,2)
+const sum_res2 = sum(1,2,3,4,5)
+const sum_res3 = sum(1,)
+const sum_res4 = sum()
+console.log(sum_res1,sum_res2,sum_res3,sum_res4)
+
+
+bar("a","b",1000)
+
+function bar(p1,p2){
+    p2 = 2000
+    arguments[1] = 3000
+    console.log("p1",p1)
+    console.log("p2",p2)                      // ?
+    console.log("arguments[0]",arguments[0])
+    console.log("arguments[1]",arguments[1])  // ?
+    console.log("arguments[2]",arguments[2])
+}
+
+
+function fn(){
+    for(const p of arguments){
+        console.log("===",p)
+    }
+}
+
+fn(1,2,3,4,5)
+</script>

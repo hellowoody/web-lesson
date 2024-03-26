@@ -1,0 +1,20 @@
+<script>
+// 正则默认大小写敏感
+const regex5 = /L/;
+console.log(regex5.exec("hello"))  // null
+
+
+// 增加宽容度 i ，正则默认大小写不敏感
+// const regex6 = /L/i;
+const regex6 = new RegExp("L","i");
+console.log(regex6.exec("hello"))  // [l]
+
+console.log("***********************")
+
+const regex7 = /L/ig;
+const regex8 = new RegExp("L","gi");
+let res7 
+while(res7 = regex7.exec("hello")){
+    console.log("res7",res7)
+}
+</script>

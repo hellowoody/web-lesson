@@ -1,0 +1,24 @@
+<script>
+const reg1 = /l{2}/  // /ll/
+console.log("reg1",reg1.exec("hello"))
+console.log("reg1",reg1.exec("hel0lo"))      // null
+const reg2 = /l{3}/
+console.log("reg2",reg2.exec("hello world")) // null
+console.log("**********************************")
+const reg3 = /l{1,2}/  // 贪婪模式
+console.log("reg3",reg3.exec("hello")) // ll 
+
+const reg4 = /l{1,2}/  // 贪婪模式
+console.log("reg4",reg4.exec("hello world")) // ll
+console.log("**********************************")
+const reg5 = /l{1,2}/g  // 贪婪模式
+console.log("reg5",reg5.exec("hello world")) // ll
+console.log("reg5",reg5.exec("hello world")) // l
+console.log("reg5",reg5.exec("hello world")) // null
+console.log("**********************************")
+let res5
+while(res5 = reg5.exec("world hello")){
+    console.log("==> res5",res5)
+}
+
+</script>

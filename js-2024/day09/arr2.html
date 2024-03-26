@@ -1,0 +1,53 @@
+<script>
+const arr1 = ["a","b","c","d","e"]
+//             0   1   2   3   4
+
+// 增加
+console.log('arr1.splice(2,0,"HELLO")',arr1.splice(2,0,"HELLO"))
+console.log("arr1",arr1)
+
+const arr2 = ["a","b","c","d","e"]
+//            0   1   2   3   4
+// arr2.splice(2,0,"H","E","L","L","O")
+console.log('arr2.splice(2,0,..."HELLO")',arr2.splice(2,0,..."HELLO"))
+console.log("arr2",arr2)
+
+
+// 删除
+const arr3 = ["a","b","c","d","e"]
+//             0   1   2   3   4
+
+
+console.log("arr3.splice(1,3)",arr3.splice(1,3))  // [b,c,d]
+console.log("arr3",arr3)
+
+
+// 修改/更新/替换
+const arr4 = ["a","b","c","d","e"]
+//             0   1   2   3   4
+
+console.log('arr4.splice(2,2,"C","D")',arr4.splice(2,2,"C","D"))
+console.log("arr4",arr4)
+
+
+const arr5 = ["a","b","c","d","e"]
+//             0   1   2   3   4
+
+console.log('arr5.splice(3,1,"C","D","E")',arr5.splice(3,1,"C","D","E"))
+console.log("arr5",arr5)
+
+
+const str = "hell word"  // hello world
+//           01234
+const arr6 = Array.from(str)
+
+arr6.splice(4,4,"o worl")
+console.log("arr5",arr6.join(""))
+
+const arr7 = Array.from(str)
+arr7.splice(4,0,"o")
+console.log(arr7)  // [h e l l o  w o r d]
+arr7.splice(arr7.length-1,0,"l")
+console.log(arr7)
+console.log(arr7.join(""))
+</script>

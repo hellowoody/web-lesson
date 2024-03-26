@@ -1,0 +1,99 @@
+<script>
+/*
+Date静态方法now() 获取时间戳
+Date.now() 获取的是距1970-1-1 00:00:00.000经过的毫秒差
+*/ 
+
+// 计算此时距离1970-1-1 差多少天
+/*
+1s = 1000ms
+1min = 60s = 60*1000
+1h = 60min = 60*60*1000
+1d = 24h = 24*60*60*1000
+1y = 365 = 365*24*60*60*1000
+
+9/3 = 3
+9%3 = 0
+
+
+*/
+
+console.log(`计算此时距离1970-1-1差${Math.floor(Date.now()/(24*60*60*1000))}天`)
+console.log(`计算此时距离1970-1-1“富裕”${Math.floor((Date.now()%(24*60*60*1000))/(60*60*1000))}小时`)
+console.log(`计算此时距离1970-1-1差${Math.floor(Date.now()/(365*24*60*60*1000))}年`)
+
+const mon = new Date(2024,1,1)
+const duraion = Date.now() - mon.getTime();
+console.log(duraion)
+const day = Math.floor(duraion/(24*60*60*1000))
+
+const hour =Math.floor((duraion%(24*60*60*1000))/(60*60*1000))
+
+const min =Math.floor(((duraion%(24*60*60*1000))%(60*60*1000))/(60*1000))
+
+const sec =Math.floor((((duraion%(24*60*60*1000))%(60*60*1000))%(60*1000))/1000)
+
+console.log(`计算此时距离本周一差${day}天`)
+
+console.log(`零${hour}小时`)
+
+console.log(`零${min}分钟`)
+
+console.log(`零${sec}秒`)
+
+
+/*
+Date.now()另一个比较常用的用途是计算某一段程序执行了多长时间
+*/
+function loop(){
+    for(let i =0 ; i < 50000000 ; i++) {
+        // 循环里什么都不写，让他空转
+        // 这样做目的只是为了计算循环5千万次的时间
+    }
+}
+
+let start = Date.now()
+loop();
+let end = Date.now()
+console.log(`loop()执行了${end-start}毫秒`)
+console.log(`loop()执行了${(end-start)/1000}秒`)
+
+/*
+单独获取年月日时分秒
+
+const date = new Date()
+
+date.getFullYear()
+date.getMonth()   从0开始   [0,11]
+date.getDate()   一个月中的几号  [1,31]
+date.getDay()   一个周中的星期几  周一是1 周日是0
+
+date.getHours()
+date.getMinutes()
+date.getSeconds()
+*/
+
+const date = new Date()
+console.log("年：",date.getFullYear())
+console.log("月：",date.getMonth()+1)
+console.log("日历：",date.getDate())
+console.log("星期几：",date.getDay())
+console.log("时：",date.getHours())
+console.log("分：",date.getMinutes())
+console.log("秒：",date.getSeconds())
+console.log("毫秒：",date.getMilliseconds())
+
+date.setDate(5)
+console.log("date:",date) 
+console.log("星期几：",date.getDay())
+
+const sd = new Date(2023,2,3,12,30,10,200)
+console.log("sd:",sd) 
+console.log("sd.getMilliseconds:",sd.getMilliseconds()) 
+
+date.setMonth(1) // 设置2月
+date.setDate(31) // 
+// date.setDate(28) // 
+console.log("date:",date)
+
+</script>

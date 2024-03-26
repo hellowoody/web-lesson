@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>事件绑定/监听</h1>
+        <!-- <button onclick="console.log(arguments);fn(this);">click me</button> -->
+        <button onclick="fn(arguments[0]);">click me</button>
+        <!-- <button>click me</button> -->
+    </body>
+</html>
+<script>
+let count = 0;
+function fn(e){
+    console.log(count++)
+    console.dir(e)
+}
+
+const btn = document.querySelector("button")
+
+// console.log(btn)
+console.dir(btn)
+// btn.onclick = fn; 
+btn.addEventListener("click",function(e){
+    console.log(1000,this)
+    fn(e); 
+})
+</script>

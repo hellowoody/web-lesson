@@ -1,0 +1,27 @@
+<script>
+const append_part = [4,5,6]
+append_part.push([7,8,9])
+const arr = [1,2,3]
+arr.push(append_part)    
+console.log(arr)
+console.log(arr.flat())
+
+
+const arr2 = [1,2,3]
+console.log(arr2[0],arr2[1],arr2[2]) // 1 2 3
+
+console.log(...arr2)
+
+const arr3 = [1,2,3,[4,5,6]]
+console.log(...arr3)  
+console.log(...arr3.flat())  
+
+
+const arr4 = [1,2,3]
+console.log("arr4:",arr4.concat([4,5,6]))
+
+const arr5 = [1,2,3]
+// arr5.push(4,5,6)
+arr5.push(...[4,5,6])  // arr5.push(4,5,6)
+console.log("arr5:",arr5)
+</script>

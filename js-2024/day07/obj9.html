@@ -1,0 +1,11 @@
+<script>
+const arr = new Array("a","b")
+console.log(arr)
+console.log(arr.__proto__) // Array 原型对象
+console.log(arr.__proto__.__proto__) // Object 原型对象
+
+console.log(arr.join(";;"))           // Array方法
+console.log(arr.valueOf())           // Object的方法
+console.log(arr.toString(),typeof arr.toString())           // "就近原则" Array的toString()
+                                     // 如果使用的是Object toString() [object Object]
+</script>

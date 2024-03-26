@@ -1,0 +1,72 @@
+<!--
+作业
+1. html，input，yyyy-mm-dd
+2. 根据yyyy-mm-dd转成指定date，获取星期几
+3. 再input 下方输出一句话，这个星期几是所在月份中的第几个星期几？
+-->
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>2023-03-14 课堂练习</title>
+    </head>
+    <body>
+        <input id="input_el" placeholder="yyyy-MM-dd" >
+        <button onclick="sub()">提交</button>
+        <h2>结果</h2>
+        <p>
+        </p>
+    </body>
+</html>
+<script>
+
+// date
+// document.querySelector("#input_el").value
+// yyyy-mm-dd
+//  
+function sub(){
+    // console.log(document.querySelector("#input_el").value)
+    const str = document.querySelector("#input_el").value
+    if(str.length < 8 || str.length > 10){
+        alert("invalid date")
+        return 
+    }
+    let idx = 0;
+    const idx_arr = [];
+    while(idx >= 0){
+        idx = str.indexOf("-",idx)
+        if(idx >= 0){
+            idx_arr.push(idx)
+            idx++
+        }else{
+            break
+        }
+    }
+    // yyyy-mm-dd
+    console.log("idx_arr",idx_arr) // [4,7]
+    const Y = str.substring(0,idx_arr[0]) 
+    const M = str.substring(idx_arr[0]+1,idx_arr[1]) 
+    const D = str.substring(idx_arr[1]+1)
+
+    const Y_INT = parseInt(Y,10)
+    const M_INT = parseInt(M,10)
+    const D_INT = parseInt(D,10)
+    const date = new Date(Y_INT,M_INT-1,D_INT)
+    console.log("date:",date)
+
+    // 方案一
+
+    let count = 0;
+    // for(let i = D_INT ; i > 0 ; i -= 7){
+    //     count++
+    // }
+
+    // 方案二
+    const res = Math.floor(D_INT/7)
+    count = res + (res%7 === 0 ? 0 : 1)
+
+
+    // dom
+    document.querySelector("p").innerHTML = `${Y}年${D}号是${M}月份的第${count}个星期${date.getDay() === 0 ? "日" : date.getDay()} `
+}
+</script>

@@ -1,0 +1,61 @@
+<script>
+const date = new Date();
+console.log("date:",date)
+
+
+const someDate01 = new Date(Date.parse("Mar 1, 2023"))
+const someDate02 = new Date(Date.parse("3/1/2023"))
+const someDate03 = new Date(Date.parse("2023-03-01T17:20:00"))
+
+console.log("someDate01:",someDate01)
+console.log("someDate02:",someDate02)
+console.log("someDate03:",someDate03)
+
+const someDate04 = new Date("Mar 1, 2023")
+const someDate05 = new Date("3/1/2023")
+const someDate06 = new Date("2023-03-01T17:20:00")
+
+console.log("someDate04:",someDate04)
+console.log("someDate05:",someDate05)
+console.log("someDate06:",someDate06)
+
+console.log("***************************************")
+
+const someDate07 = new Date(2024,0)
+console.log("someDate07:",someDate07)
+const someDate08 = new Date(2023,2,8,12)
+console.log("someDate08:",someDate08)
+const someDate09 = new Date(2023,2,3,12,30,10,200)
+console.log("someDate09:",someDate09)
+console.log("someDate09.getMilliseconds:",someDate09.getMilliseconds())
+
+const date2 = new Date();
+console.log("date:",date2.getTime())
+console.log("Date.now():",Date.now())
+
+/*
+1s = 1000ms
+1min = 60s = 60*1000
+1h = 60min = 60*60*1000
+1d = 24h = 24*60*60*1000
+1y = 365 = 365*24*60*60*1000
+*/
+const mon = new Date(2024,2,11)  // 2024年3月11日 00:00:00
+const duraion = Date.now() - mon.getTime();
+console.log(duraion)
+const day = Math.floor(duraion/(24*60*60*1000))
+
+const hour =Math.floor((duraion%(24*60*60*1000))/(60*60*1000))
+
+const min =Math.floor(((duraion%(24*60*60*1000))%(60*60*1000))/(60*1000))
+
+const sec =Math.floor((((duraion%(24*60*60*1000))%(60*60*1000))%(60*1000))/1000)
+
+console.log(`计算此时距离本周一差${day}天`)
+
+console.log(`零${hour}小时`)
+
+console.log(`零${min}分钟`)
+
+console.log(`零${sec}秒`)
+</script>

@@ -1,0 +1,64 @@
+<script>
+/*
+字符组 []
+[0123456789]  [0-9]
+[a........z]  [a-z]
+[A........Z]  [A-Z]
+[A........z]  [A-Za-z]
+
+*/ 
+// const reg1 = /1[6789]/ // [6-9]
+const reg1 = /1[6-9]/ // [6-9]
+console.log(reg1.exec("我一已满合法年龄，因为我的年龄是17岁"))
+
+const reg2 = /[A-Za-z]/g
+let res2 
+
+while(res2 = reg2.exec("heLLO,世界")){
+    console.log("res2",res2[0])
+}
+
+/*
+[0-9]             \d
+[A-Za-z0-9_]      \w
+[\t\r\n\v\f]      \s 
+
+new RegExp().test()
+*/
+
+const reg3 = /\d/ // [0-9]
+console.log("reg3",reg3.test("hel1o"))
+const reg4 = /\w/ // new RegExp("\\w")
+console.log("reg4",reg4.test("你好 world")) // 
+
+/*
+字符组取反 [^]
+[^0-9]  不是0-9的所有其他字符
+[1^2] 
+
+[0-9]  \d
+[^0-9] \D
+
+[A-Za-z0-9_]  \w
+[^A-Za-z0-9_] \W
+
+[ \t\r\n\v\f]    \s  空白字符（含空格）
+[^ \t\r\n\v\f]   \S
+
+*/
+const reg5 = /[1^2]/
+console.log("reg5",reg5.test("hello^world")) // true
+const reg6 = /[^12]/
+console.log("reg6",reg6.test("1")) // false
+console.log("reg6",reg6.test("2")) // false
+console.log("reg6",reg6.test("_")) // true
+
+// 全部字符 
+const reg7 = /[\s\S]/  // 全部字符
+console.log("reg7",reg7.test("1"))
+console.log("reg7",reg7.test("2"))
+console.log("reg7",reg7.test("a"))
+console.log("reg7",reg7.test(" "))
+console.log("reg7",reg7.test("\n"))
+console.log("reg7",reg7.test("\\n"))
+</script>

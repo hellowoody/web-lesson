@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>处理视频</title>
+    </head>
+    <body>
+        <video controls src="./m.mp4" loop ></video>
+        <br>
+    </body>
+</html>
+<script>
+// canvas 画板 处理视频
+let canvas = document.createElement('canvas'); // 创建canvas元素 这个canvas不追加到body中
+let video = document.querySelector('video'); // 获取video元素
+let n = 2 // 3*3
+let ctx 
+
+video.addEventListener('loadeddata', function(){
+    ctx = canvas.getContext('2d');
+    video.width = video.videoWidth/2
+    video.height = video.videoHeight/2
+    canvas.width = video.videoWidth/2;
+    canvas.height = video.videoHeight/2;
+    // console.log(video.videoWidth,video.videoHeight,video.width,video.height)
+
+    let frames = initFrames(n,n) // [canvas1,canvas2,canvas3,canvas4]
+
+    for(let i = 0 ; i < frames.length ; i++){
+        document.body.appendChild(frames[i])
+        frames[i].style.width = video.width/n + 'px'
+        frames[i].style.height = video.height/n + 'px'
+        frames[i].style.margin = '8px'
+        frames[i].style.border = '1px solid black'
+    }
+    // 定时器
+    let i = 0
+    setInterval(function(){
+        ctx.drawImage(video,0,0,canvas.width,canvas.height) // 捕捉的一帧画面
+        updateFrames(canvas,frames,n,n)
+    },1000/50)
+
+})
+// initFrames 通过n*n 切割视频的某一帧
+// 将切割后的某一帧 当成canvas(小canvas),并设置宽高 宽高为 原始canvas宽高/n
+function initFrames(rows,cols){
+    let frames = []
+    let frameWidth = canvas.width/cols
+    let frameHeight = canvas.height/rows
+
+    for(let i = 0 ; i < rows*cols ; i++){
+        let frame = document.createElement('canvas')
+        frame.width = frameWidth
+        frame.height = frameHeight
+        frames.push(frame)
+    }
+    return frames
+}
+/*
+    canvas 可以当场视频中某一帧 图片
+    frames 就是 切割后的方块
+*/
+function updateFrames(canvas,frames,rows,cols){
+    let idx = 0
+    for(let row = 0 ; row < rows ; row++){
+        for(let col = 0 ; col < cols ; col++){
+            let frame = frames[idx] // 一个方格 canvas
+            let ctx = frame.getContext('2d')
+            let w = frame.width
+            let h = frame.height
+            ctx.drawImage(canvas,col*w,row*h,w,h,0,0,w,h) // 只绘制视频截图中的一部分
+            idx++
+        }
+    }
+}
+
+</script>

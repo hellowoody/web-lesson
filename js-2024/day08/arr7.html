@@ -1,0 +1,32 @@
+<script>
+const arr = [1,2,3]
+const append_part = [4,5,6]
+
+arr.push(append_part)
+console.log("arr",arr) //[1,2,3,[4,5,6]] 
+
+const arr2 = [1,2,3]
+const arr2_res = arr2.concat(append_part)  // [1,2,3,4,5,6]
+console.log("arr2:",arr2)                  // [1,2,3] 
+console.log("arr2_res:",arr2_res)
+
+
+const arr2_res2 = arr2.concat([4,5],6,[7,8],9)
+console.log("arr2_res2:",arr2_res2)
+
+/*
+    字符串也可以使用concat
+*/
+
+const str = "hello"
+const str_res = str.concat(" world")
+console.log("str:",str)
+console.log("str_res:",str_res)
+
+
+const str_res2 = str.concat(" world","!")
+console.log("str_res2:",str_res2)
+
+const str_res3 = str.concat(" world","!",["a","b","c"]) // ["a","b","c"].toString()
+console.log("str_res3:",str_res3)
+</script>

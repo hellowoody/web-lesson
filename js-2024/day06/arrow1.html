@@ -1,0 +1,39 @@
+<script>
+
+const sum_arrow = (a,b) => {
+    // console.log(arguments)  //error
+    return a+b
+}
+
+console.log("sum_arrow(1,2)",sum_arrow(1,2)) 
+
+const sum_arrow_sugar = (a,b) => a+b
+
+console.log("sum_arrow_sugar(10,2)",sum_arrow_sugar(10,2)) 
+
+/*
+const print = (msg) => {
+    console.log(msg)
+}
+*/
+
+const print = (msg) => console.log(msg)
+
+const print2 = msg => console.log(msg)
+
+print2(1000)
+
+const fn = a => b => c => a+b+c
+
+
+const fn2 = (a) => {
+    return (b) => {
+        return (c) => {
+            return a+b+c
+        }
+    }
+}
+
+console.log(fn(1)(2)(3)) // 6
+console.log(fn2(1)(2)(3)) // 6
+</script>

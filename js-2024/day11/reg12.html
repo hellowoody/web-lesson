@@ -1,0 +1,30 @@
+<script>
+const reg5 = /^(\d{3,4}[- ])?\d{7,8}$/
+
+console.log(reg5.exec("022-23190010"))
+console.log(reg5.exec("0933-2321033"))
+console.log(reg5.exec("0933 2321033"))
+console.log(reg5.exec("23211234"))
+console.log(reg5.exec("2123123"))
+console.log(reg5.exec("022 2123123"))
+console.log("===================================")
+console.log(reg5.exec(" 2123123"))
+console.log(reg5.exec("-2123123"))
+
+// 手机号
+/*
+13 
+
+15
+16
+17
+18
+19
+*/
+console.log("=====================================")
+const reg_tel = /^1[35-9]\d{9}$/
+console.log(reg_tel.test("13112345678"))
+console.log(reg_tel.test("19112345678"))
+console.log(reg_tel.test("15112345678"))
+console.log(reg_tel.test("16112345678"))
+</script>

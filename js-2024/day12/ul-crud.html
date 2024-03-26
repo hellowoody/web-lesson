@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>课堂练习</title>
+        <!-- 
+            实现追加新行，追加的新行要求要延续之前的排序序号
+            实现删除指定的行
+         -->
+    </head>
+    <body>
+        <button onclick="add()">增加</button>
+        <br>
+        <input id="del_input" placeholder="要删除第几行"><button onclick="del()">删除</button>
+        <br>
+        大类
+        <ul>
+            <li data-id="1">小类1</li>
+        </ul>
+    </body>
+</html>
+<script>
+function add(){
+    // 父.appendChild(新)
+    const ul = document.querySelector("ul")
+    const li = document.createElement("li") // <li></li>
+    const li_arr = ul.children
+    if(li_arr.length > 0){
+        console.log(li_arr[li_arr.length-1])
+        console.log(li_arr[li_arr.length-1])
+        console.log(li_arr[li_arr.length-1].dataset.id)
+        const num_last = parseInt(li_arr[li_arr.length-1].dataset.id,10)
+        li.innerText = `小类${num_last+1}`
+        li.setAttribute("data-id",num_last+1)  // <li data-id="n">小类n</li>
+    }else{
+        li.innerText = `小类1`
+        li.setAttribute("data-id",1) 
+    }
+    
+    ul.appendChild(li)
+}
+
+function del(){
+    // 父.removeChild(要删除的)
+    const ul = document.querySelector("ul")            // 父
+    const input = document.querySelector("#del_input") 
+    // console.log("input",input.value)
+    const rowNo = parseInt(input.value,10)             // rowNo
+    console.log("rowNo",rowNo)
+    if(rowNo.toString() === "NaN"){
+    // if(isNaN(rowNo)){
+        alert("输入的行数不对")
+        return 
+    }
+    console.log(ul.children)
+    // ul.childNodes // [各种类型的节点]
+    // ul.children   // [标签节点]
+    console.log(ul.children[rowNo-1])
+    ul.removeChild(ul.children[rowNo-1])
+}
+</script>

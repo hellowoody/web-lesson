@@ -1,0 +1,14 @@
+<script>
+const arr4 = ['red','green','blue','red','green','red','blue','black']
+
+const res4 = arr4.reduce(function(acc,item){
+    if(acc[item]){
+        acc[item] += 1
+    }else{
+        acc[item] = 1
+    }
+    return acc
+},{})
+
+console.log("res4",res4)
+</script>

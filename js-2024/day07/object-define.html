@@ -1,0 +1,122 @@
+<script>
+/*
+Object
+
+1.声明对象
+ 
+    a.对象字面量 (推荐)
+
+        const obj = {}
+        obj.a = 100
+
+        const obj = {
+            a:100
+        }
+    
+    b.构造函数创建实例对象
+
+        const obj = new Object();
+        const obj = new Object;   // 不推荐
+
+        obj.a = 100
+
+        Object.defineProperty(目标对象,属性名字,配置对象)
+        Object.defineProperty(obj,"a",{
+            value:3.14,        // 初始值
+            writable:true,     // 可写
+            enumerable:true,   // 可枚举，for-in可遍历
+            configurable:true  // 可配置，能不能删，是否再次defineProperty
+        })
+
+        注意：writable，enumerable，configurable不写代表false
+
+
+*/
+const obj1 = {}
+obj1.a = 1
+console.log("obj1:",obj1)
+const obj2 = {
+    a:10
+}
+console.log("obj2:",obj2)
+const obj3 = new Object()
+obj3.a = 100
+console.log("obj3:",obj3)
+
+
+const obj4 = new Object()
+Object.defineProperty(obj4,"a",{
+    value:3.14
+})
+console.log("obj4:",obj4)
+// 有两个问题，只读和不可遍历
+obj4.a = 100  // 没有报错，但不生效
+for(const key in obj4){
+    console.log("key:",key)
+}
+for(const key in obj3){
+    console.log("key:",key)
+}
+// 原因
+console.log("obj4.a 的配置信息",Object.getOwnPropertyDescriptor(obj4,"a"))
+console.log("obj3.a 的配置信息",Object.getOwnPropertyDescriptor(obj3,"a"))
+const obj5 = new Object()
+Object.defineProperty(obj5,"b",{
+    value:"hell",
+    writable:false,
+    enumerable:true,
+    configurable:true
+})
+console.log("obj5:",obj5)
+obj5.b = "你好"
+console.log("1000你好obj5:",obj5)
+Object.defineProperty(obj5,"a",{
+    value:-3.14,
+    writable:true,
+    enumerable:true,
+    // configurable:false
+})
+// Object.defineProperty(obj5,"a",{
+//     value:-3.14,
+//     writable:true,
+//     enumerable:true,
+//     configurable:true
+// })
+Object.defineProperty(obj5,"b",{
+    value:"hello",
+    writable:true,
+    enumerable:true,
+    configurable:true
+})
+obj5.b = "你好"
+console.log("2000你好obj5:",obj5)
+console.log("obj5",obj5)
+obj5.a = -314
+console.log("obj5",obj5)
+for(const key in obj5){
+    console.log("obj5 key:",key)
+}
+
+/*
+2.对象的crud操作 (create/read/update/delete)
+const obj6 = {}
+obj6.name = "张三"      // create 创建属性
+consoe.log(obj6.name)  // read 读取/获得name属性的值
+let key = "name"
+console.log(obj6[key]) 
+obj6.name = "李四"      // update 修改属性的值
+console.log("update后的",obj6)
+delete obj6.name            // 删除name属性
+console.log("delete后的",obj6)
+*/
+const obj6 = {}
+obj6.name = "张三"      // create 创建属性
+console.log(obj6)
+console.log(obj6.name)  // read 读取/获得name属性的值
+let key = "name"
+console.log(obj6[key]) 
+obj6.name = "李四"      // update 修改属性的值
+console.log("update后的",obj6)
+delete obj6.name            // 删除name属性
+console.log("delete后的",obj6) 
+</script>

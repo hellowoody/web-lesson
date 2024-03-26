@@ -1,0 +1,24 @@
+<script>
+
+let res = sum(-1,-2)
+console.log(res)
+
+function sum(a,b){
+    return a+b
+}
+
+const sub = function(a,b){
+    return a-b
+}
+
+let res2 = sub(0,5)
+console.log("res2",res2)
+
+// const sub = function(a,b){
+//     return a-b
+// }
+
+
+const mul = new Function('a','b','return a*b')
+console.log("2*3",mul(2,3))
+</script>

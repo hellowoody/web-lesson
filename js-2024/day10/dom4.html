@@ -1,0 +1,66 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>2024-03-15 课堂练习</title>
+    </head>
+    <body>
+        <input id="input_el" placeholder="yyyy-MM-dd" >
+        <button onclick="sub()">提交</button>
+        <h2>结果</h2>
+        <p>
+        </p>
+    </body>
+</html>
+<script>
+function sub(){
+    const input_el = document.getElementById('input_el');
+    console.dir(input_el.value)
+    const date_str = input_el.value
+    // 2024-10-15
+    // 2024-3-15
+    const idx_arr = []
+    let step = 0,idx = 0
+    while(step < date_str.length){
+        idx = date_str.indexOf('-', idx)
+        if(idx >= 0) {
+            idx_arr.push(idx)
+            idx++
+        }else{
+            break
+        }  
+        step++
+    }
+
+    let year = date_str.substring(0, idx_arr[0])
+    let month = date_str.substring(idx_arr[0]+1, idx_arr[1])
+    let date = date_str.substring(idx_arr[1]+1)
+
+    year = parseInt(year,10)
+    month = parseInt(month,10) - 1
+    date = parseInt(date,10)
+    // console.log(year,month,date) 
+
+    const date_obj = new Date(year, month, date)
+
+    // console.log(date_obj)
+    
+    // console.log(date_obj.getFullYear()) 
+    // console.log(date_obj.getMonth()) 
+    // console.log(date_obj.getDate()) 
+    // console.log(date_obj.getDay()) // 1-6 0
+    const day = date_obj.getDay() === 0 ? "日" : date_obj.getDay()
+
+    let count = Math.floor(date/7)
+    // date%7 !== 0 ? count++ : count
+    if(date%7 !== 0){
+        count += 1
+    }
+
+    const res = `${year}年${month+1}月${date}日，是${month+1}月份的第${count}次的星期${day}.`
+
+    console.log(res)
+    document.querySelector("p").innerHTML = res
+    
+}
+</script>

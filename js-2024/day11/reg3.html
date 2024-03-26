@@ -1,0 +1,20 @@
+<script>
+// const target_str = '你好，"世界"！'
+// const target_str = "你好，\"世界\"！"
+// const target_str = "你好，\n世界！"
+// const target_str = "你好，\w世界！"
+/*
+Javascript的ES语法中 string 里有 \ 反斜杠 转移符
+Regex表达式中也有 \ 反斜杠 转移符
+
+上述的两个 \ 反斜杠 不是一个，js中并没有特别的规则来处理
+
+*/ 
+
+const reg4 = /\w/ // [A-Za-z0-9_]
+// const reg5 = new RegExp("\w")  // w
+const reg5 = new RegExp("\\w")    // \w
+
+console.log(reg4.test('abc'))  // true
+console.log(reg5.test('abc'))  // "\w"false   "\\w" true
+</script>

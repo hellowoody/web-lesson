@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>事件绑定/监听</h1>
+        <input placeholder="please input sth" />
+    </body>
+</html>
+<script>
+const input = document.querySelector('input');
+
+input.addEventListener("input",function(e){
+    console.log(e.target.value)
+})  
+</script>

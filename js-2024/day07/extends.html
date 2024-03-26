@@ -1,0 +1,153 @@
+<script>
+/*
+1."继承"
+
+    原型链的另一个作用
+    使用原型链实现面向对象中的“继承”
+
+    注意：严格讲，在js中并不是真正的“继承”，
+                但我们一般用这样比较好理解的叫法形容它
+
+
+    Array -》 Object
+
+    旺财 -> Dog -> Animal -> Object
+*/ 
+
+function Animal(){
+    this.heart = 90
+}
+
+function Dog(){
+    this.swimming = function(){
+        console.log("swimming")
+    }
+}
+
+// console.log([])
+// console.log(Array.prototype)
+
+// console.log(new Animal())
+// Dog.prototype = new Animal()
+// Dog.prototype.constructor = Dog
+
+Dog.prototype.__proto__ = Animal.prototype
+
+const dog = new Dog()
+console.log(dog)
+console.log(dog.heart) // 90
+console.log(dog.swimming()) // swimming
+
+console.log(Dog.prototype.constructor === Dog) // true
+
+console.log(Array.prototype.constructor === Array) // true
+
+
+/*
+    JS 
+    ES DOM BOM    
+    ES5
+
+    ES6 的 class 语法
+*/ 
+
+function Foo(p1,p2){
+    this.a = p1
+    this.b = p2
+    this.fn = function(){
+        console.log(1000)
+    }
+}
+Foo.prototype.fn2 = function(){
+    console.log("ES5 的原型上的方法")
+}
+
+console.log("ES5 foo",new Foo(1,2))
+
+class Bar {
+    constructor(p1,p2){
+        this.a = p1
+        this.b = p2
+        this.fn = function(){
+            console.log(1000)
+        }
+    }
+
+    fn2(){
+        console.log("ES6 的原型上的方法")
+    }
+}
+
+console.log("ES6 bar",new Bar(1,2))
+
+
+/*
+
+ES6 继承
+
+    super()的注意事项
+
+    a.不写constructor可以，因为浏览器会帮你加上constructor以及里面的super()
+
+    b.如果实现constructor，那么必须写super() 不写则报错
+
+    c.如果constructor中有this语句，那么必须要方法super()的下方，不然报错
+
+*/ 
+
+class Vehicle {
+    constructor(){
+        this.run = function(){
+            return "running"
+        }
+    }
+}
+
+class CarGas extends Vehicle {
+    constructor(){
+        console.log("=======")
+        console.log("=======")
+        console.log("=======")
+        super() 
+        this.power = "gas"
+    }
+}
+
+const car = new CarGas()
+console.log("car:",car)
+console.log("car:",car.power)
+console.log("car:",car.run())
+
+/*
+instanceof 用法
+
+    A instanceof B
+    实例对象 instanceof 构造器
+
+    实例 -》 Array -》 Object
+
+    旺财 -> Dog -> Animal -> Object
+*/
+
+console.log("数组 instanceof Array",[] instanceof Array)    // true
+console.log("数组 instanceof Date",[] instanceof Date)    // false
+console.log("数组 instanceof Animal",[] instanceof Animal)    // false
+console.log("数组 instanceof Object",[] instanceof Object)  // true
+
+console.log("dog instanceof Dog",dog instanceof Dog)        // true
+console.log("dog instanceof Animal",dog instanceof Animal)  // true
+console.log("dog instanceof Array",dog instanceof Array)  // false
+console.log("dog instanceof Object",dog instanceof Object)  // true
+
+console.log("car instanceof CarGas",car instanceof CarGas)    // true
+console.log("car instanceof Vehicle",car instanceof Vehicle)  // true
+console.log("car instanceof Object",car instanceof Object)    // true
+
+/*
+
+typeof      // 变量的类型 (string number boolean null undefined object symbol)
+instanceof  // true/false 判断实例对象的原型链上有没有目标的构函器
+
+*/
+
+</script>

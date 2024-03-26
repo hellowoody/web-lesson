@@ -1,0 +1,64 @@
+<script>
+function Foo(p1,p2){
+    this.a = p1
+    this.b = p2
+    this.fn = function(){
+        console.log(1000)
+    }
+}
+Foo.prototype.fn2 = function(){
+    console.log("ES5 的原型上的方法")
+}
+Foo.prototype.num = 3.14
+console.log("ES5 foo",new Foo(1,2))
+
+class Bar {
+    constructor(p1,p2){
+        this.a = p1
+        this.b = p2
+        this.fn = function(){
+            console.log(1000)
+        }
+    }
+
+    fn2(){
+        console.log("ES6 的原型上的方法")
+    }
+}
+
+Bar.prototype.num = 3.14
+console.log("ES6 bar",new Bar(1,2))
+
+class Vehicle {
+    constructor(){
+        this.run = function(){
+            return "running"
+        }
+    }
+}
+
+class CarGas extends Vehicle {
+    constructor(){
+        console.log("=======")
+        console.log("=======")
+        console.log("=======")
+        super() 
+        this.power = "gas"
+    }
+}
+
+const car = new CarGas()
+console.log("car:",car)
+console.log("car:",car.power)
+console.log("car:",car.run())
+
+
+
+console.log("数组 instanceof Array",[] instanceof Array)    // true
+console.log("数组 instanceof Date",[] instanceof Date)    // false
+console.log("数组 instanceof Object",[] instanceof Object)  // true
+
+console.log("car instanceof CarGas",car instanceof CarGas)    // true
+console.log("car instanceof Vehicle",car instanceof Vehicle)  // true
+console.log("car instanceof Object",car instanceof Object)    // true
+</script>

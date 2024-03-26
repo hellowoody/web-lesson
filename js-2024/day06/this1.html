@@ -1,0 +1,48 @@
+<script>
+var a = 1;  // window.a = 1 
+console.log(a,window.a)
+
+let b = 2;  // window.b  undefined
+console.log(b,window.b)
+
+const c = 3;
+console.log(c,window.c)
+
+function foo(){
+    console.log("foo this",this) // window
+    // console.log("foo a",this.a)  // window
+    // console.log("foo b",this.b)
+    // console.log("foo c",this.c)
+}
+
+function foo(){
+    // console.log("foo this",this) // window
+    console.log("foo a",this.a)  // 1
+    console.log("foo b",this.b)  // undefined
+    console.log("foo c",this.c)
+}
+
+foo()
+
+
+const obj = {
+    a:10,
+    b:20,
+    c:30,
+    bar:function(){
+        console.log("bar a",this.a) 
+        console.log("bar b",this.b)
+        console.log("bar c",this.c)
+    },
+}
+
+obj.bar() // this obj
+
+obj.foo_new = foo
+
+obj.foo_new() // this obj
+
+
+const bar_new = obj.bar
+bar_new() // this window
+</script>

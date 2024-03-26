@@ -1,0 +1,54 @@
+<script>
+const object = {
+    message: 'Hello, World!',
+    
+    logMessage() {
+        console.log(this.message); // => ?
+    }
+};
+
+// console.log(1000)
+// setTimeout(function(){
+//     object.logMessage()
+// },0)
+
+setTimeout(object.logMessage,0)
+
+// let fn = object.logMessage
+// fn()
+// console.log(2000)
+
+const obj = {
+    fn1:function(){
+
+    },
+    fn2(){
+
+    }
+}
+
+
+var length = 4;
+function callback() {
+
+    console.log(this.length); // 输出什么
+}
+ 
+const o = {
+    length: 5,
+    method() {
+        console.log(arguments)
+        arguments[0]();
+    }
+};
+ 
+o.method(callback, 1, 2);
+
+
+const oo = {
+    a:1,
+    "b 2":2
+}
+
+console.log(oo["b 2"])
+</script>

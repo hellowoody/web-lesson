@@ -1,0 +1,40 @@
+<script>
+var a = 1
+let b = 2
+const c = 3
+const foo = () => {
+    console.log("a:",this.a,"b:",this.b,"c:",this.c)
+}
+
+foo();  // 1 u u 
+console.log("----------------------")
+const obj = {
+    a:10,
+    b:20,
+    c:30,
+    foo:() => {
+        console.log("a",this.a)
+        console.log("b",this.b)
+        console.log("c",this.c)
+    }
+}
+
+obj.foo()  // 1 u u
+
+const fn = obj.foo
+fn()      // 1 u u
+
+
+var name2 = "外面的名字";
+function fn2(){
+    var name2 = "里面的名字"
+    const innerFn = () => {
+        console.log("场景二this",this)   // {name2:6000}
+        console.log("场景二",this.name2)   // 6000
+        
+    }
+    innerFn.call({name2:5000});  // innerFn()
+}
+
+fn2.call({name2:6000})
+</script>    

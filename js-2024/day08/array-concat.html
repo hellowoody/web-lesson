@@ -1,0 +1,42 @@
+<script>
+/*
+    拼接concat
+    数组中push和concat区别
+    push 
+        a 将整个参数作为一个元素放到原数组中
+        b 修改原始数组
+
+    concat 
+        a 将参数先平铺flat，然后再一个一个追加
+        b 不会修改原始数组，但会将新的数组作为concat方法的返回值返回
+*/
+
+const arr = [1,2,3]
+const append_part = [4,5,6]
+
+arr.push(append_part)
+console.log("arr",arr) //[1,2,3,[4,5,6]] 
+
+const arr2 = [1,2,3]
+const arr2_res = arr2.concat(append_part)  // [1,2,3,4,5,6]
+console.log("arr2:",arr2)
+console.log("arr2_res:",arr2_res)
+
+const arr2_res2 = arr2.concat([4,5],6,[7,8],9)
+console.log("arr2_res2:",arr2_res2)
+
+/*
+    字符串也可以使用concat
+*/
+
+const str = "hello"
+const str_res = str.concat(" world")
+console.log("str:",str)
+console.log("str_res:",str_res)
+
+const str_res2 = str.concat(" world","!")
+console.log("str_res2:",str_res2)
+
+const str_res3 = str.concat(" world","!",["a","b","c"]) // ["a","b","c"].toString()
+console.log("str_res3:",str_res3)
+</script>

@@ -1,0 +1,39 @@
+<script>
+const reg = /\d{4}/
+
+console.log(reg.test("1234")) 
+console.log(reg.test("1299")) 
+console.log(reg.test("9299")) 
+console.log(reg.test("999a"))  // false
+console.log(reg.test("9991")) 
+console.log(reg.test("1999"))  
+console.log("------------------------")
+const reg1 = /(?!999)\d{4}/
+console.log(reg1.test("1234")) 
+console.log(reg1.test("1299")) 
+console.log(reg1.test("9299")) 
+console.log(reg1.test("999a"))  // false
+console.log(reg1.test("9991"))  // false
+console.log(reg1.test("1999")) 
+console.log("------------------------")
+const reg2 = /(?=999)\d{4}/
+console.log(reg2.test("1234"))  // false
+console.log(reg2.test("1299"))  // false
+console.log(reg2.test("9299"))  // false
+console.log(reg2.test("999a"))  // false
+console.log(reg2.test("9991"))  // true
+console.log(reg2.test("1999"))  // false
+
+console.log("------------------------")
+const reg4 = /(?!9{3})\d{4}(?<!999)/
+console.log("reg4",reg4.test(1999))  
+console.log("reg4",reg4.test(9991)) 
+console.log("------------------------")
+const num = /(?!999)(\d)(\d)(\d)(\d)/ 
+
+console.log(num.exec("1998"))
+console.log(num.exec("1998")[1]) // 1
+console.log(num.exec("1998")[2]) // 9
+console.log(num.exec("1998")[3]) // 9
+console.log(num.exec("1998")[4]) // 8
+</script>

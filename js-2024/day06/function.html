@@ -1,0 +1,36 @@
+<script>
+/*
+    3种声明函数的方法
+        1.函数声明 （提升）
+            function sum(a,b){
+                return a+b
+            }
+
+        2.函数表达式
+            const sum = function(a,b){
+                return a+b
+            };
+
+        3. const sum = new Function("a","b","return a+b")   // 不推荐
+
+    函数也是一种对象，可以用console.dir(函数名字) 将对象打印出来
+*/
+
+// 定义函数时的参数，形参
+
+console.log(sum(1,2))
+
+function sum(a,b){
+    return a+b
+}
+
+const sub = function(a,b){
+    return a-b
+}
+
+console.log(sub(2,1))
+
+const mul = new Function("a","b","return a*b")
+console.log(mul(10,2))
+
+</script>

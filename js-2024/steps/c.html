@@ -1,0 +1,165 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <!-- 支持中文 -->
+        <meta charset="UTF-8">
+        <!-- 支持不同屏幕尺寸响应式配置 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>九宫格</title>
+        <style>
+            body {
+                margin:0;
+                background-color: #363636;
+                color:#afafaf;
+                height:100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+    </head>
+    <body></body>
+</html>
+<script>
+// 定义游戏面板的尺寸和布局
+let boardSize = 3; // 3x3 游戏面板
+let blockSize = 100; // 每个方块的尺寸
+let boardWidth = blockSize * boardSize;
+let boardHeight = blockSize * boardSize;
+
+//  定义方块的布局 layout
+let initialLayout = [
+    [1,2,3],
+    [4,5,6],
+    [7,8,0]
+]
+
+// console.table(initialLayout)
+// 定义一个函数 创建游戏面板
+let createBoardElement = function() {
+    let boardElement = document.createElement('div'); // <div></div>
+    // <div style="width:300px;height:300px;"></div>
+    boardElement.style.width = boardWidth + 'px';
+    boardElement.style.height = boardHeight + 'px';
+    boardElement.style.position = "relative";
+    boardElement.style.border = "1px solid black"
+    
+    return boardElement
+}
+// 定义一个函数 创建方块元素
+let createBlockElement = function(number) {
+    let blockElement = document.createElement('div'); // <div></div>
+    blockElement.style.width = (blockSize-2) + 'px'; // 100 - 2 = 98
+    blockElement.style.height = (blockSize-2) + 'px';
+    blockElement.style.border = "1px solid black";
+    blockElement.style.position = "absolute";
+    blockElement.style.backgroundColor = "#fafafa";
+    blockElement.style.display = "flex"
+    blockElement.style.justifyContent = "center"
+    blockElement.style.alignItems = "center"
+    if(number == 0){
+        blockElement.innerText = ""
+    }else{
+        blockElement.innerText = number
+        blockElement.style.cursor = "pointer"
+    }
+    
+    return blockElement
+}
+
+// 定义一函数 初始化游戏面板 并添加方块元素到面板中
+let initGameLayout = function(boardElement) {
+    let blockElement
+    for(let row = 0 ; row < boardSize ; row++){
+        for(let col = 0 ; col < boardSize ; col++){
+            let number = initialLayout[row][col] //  1 2 3 4 5 6 7 8 0
+            blockElement = createBlockElement(number)
+            blockElement.style.left = (col * blockSize) + 'px';
+            blockElement.style.top = (row * blockSize) + 'px';
+            blockElement.dataset.row = row
+            blockElement.dataset.col = col
+            blockElement.addEventListener('click', moveBlock)
+            boardElement.appendChild(blockElement)
+        }
+    }
+}
+
+let moveBlock = function(){
+    let blockElement = this // 通过上下文this 拿到9宫格某一个格
+    // console.log(blockElement)
+    let row = parseInt(blockElement.dataset.row,10) // string to int
+    let col = parseInt(blockElement.dataset.col,10)
+    // console.log(row,col)
+
+    if(row > 0 && initialLayout[row-1][col] == 0){
+         // 上方是空格 ， 向上移动
+        swapBlocks(row,col,row-1,col)
+    }else if(row < boardSize - 1 && initialLayout[row+1][col] == 0){
+         // 下方是空格 ， 向下移动
+         swapBlocks(row,col,row+1,col)
+    }else if(col > 0 && initialLayout[row][col-1] == 0){
+         // 左侧是空格 ， 向左移动
+         swapBlocks(row,col,row,col-1)
+    }else if(col < boardSize - 1 && initialLayout[row][col+1] == 0){
+         // 右侧是空格 ， 向右移动
+         swapBlocks(row,col,row,col+1)
+    }
+}
+
+let swapBlocks = function(row1,col1,row2,col2){
+    let original = initialLayout[row1][col1]                   // 6 存在临时变量中
+    // console.log("original",original)
+    // console.log("target",initialLayout[row2][col2])
+    initialLayout[row1][col1] = initialLayout[row2][col2]
+    initialLayout[row2][col2] = original
+    console.table(initialLayout)
+
+    updateLayout(row1,col1,row2,col2)
+}
+
+let boardElement = createBoardElement() // <div style="width:300px;height:300px;"></div>
+
+let updateLayout = function(row1,col1,row2,col2){
+    let blockElements = boardElement.querySelectorAll("div") // [div1,div2 ... div9]
+    // console.log(blockElements)
+    // 行号*一行有多少个 + 列号 = 一维数组的索引号
+    let original = blockElements[row1*boardSize + col1]
+    let target = blockElements[row2*boardSize + col2]
+    // console.log("original",original)
+    // console.log("target",target)
+
+    let original_left = original.style.left
+    let original_top = original.style.top
+    let original_row = original.dataset.row
+    let original_col = original.dataset.col
+
+    original.style.left = target.style.left
+    original.style.top = target.style.top
+    original.dataset.row = target.dataset.row
+    original.dataset.col = target.dataset.col
+
+    target.style.left = original_left
+    target.style.top = original_top
+    target.dataset.row = original_row
+    target.dataset.col = original_col
+    
+    swap(original,target)
+}
+
+let swap = function(nodeA,nodeB){
+    let parentA = nodeA.parentNode
+    let siblingA
+    if(nodeA.nextSibling == nodeB){
+        siblingA = nodeA
+    }else{
+        siblingA = nodeA.nextSibling
+    }
+
+    nodeB.parentNode.insertBefore(nodeA,nodeB)
+    parentA.insertBefore(nodeB,siblingA)
+}
+
+initGameLayout(boardElement) 
+
+document.body.appendChild(boardElement)
+</script>

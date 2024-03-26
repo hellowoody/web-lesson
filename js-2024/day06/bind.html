@@ -1,0 +1,31 @@
+<script>
+/*
+
+call apply -> bind
+
+const 新函数 = 函数名.bind(执行上下文,...)
+
+新函数(参数...)
+*/
+
+var c = 1000
+
+function foo(a,b){
+    console.log(arguments)
+    console.log("a:",a,"b:",b,"c:",this.c)
+}
+
+foo(1,2) // 1 2 1000
+
+
+const fn = foo.bind({c:0.1}) 
+fn(1,2)  // 1 2 0.1
+
+const fn2 = foo.bind({c:30},10) 
+
+fn2(20)  // 10 20 30
+const fn3 = foo.bind({c:300},100,200) 
+fn3()  // 100 200 300
+
+fn3(400)  // 100 200 300
+</script>

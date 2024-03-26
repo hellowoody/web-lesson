@@ -1,0 +1,164 @@
+<script>
+/*
+归并方法 reduce
+
+    数组的reduce方法的参数有两个:匿名函数，初始值/累加值
+    reduce(callback,?initailize/accumulate)
+
+    [1,2,3].reduce(function(p1,p2,p3,p4){
+        return 本次运行结果
+    },初始值?)
+
+    p1:上一次的计算结果        上一次callback的返回值
+    p2:每次迭代的元素值        1    2    3
+    p3:每次迭代的元素值的索引   0    1    2
+    p4:原始数组         [a,b,c] [a,b,c] [a,b,c]
+
+    [1,2,3]将数组中的元素进行累加
+
+    const arr = [1,2,3,4,5,6]
+    let sum = 0;
+    for(let item of arr){
+        sum = sum + item
+    }
+    console.log("arr累加的结果",sum)
+*/
+
+const arr = [1,2,3,4,5,6]
+
+const res = arr.reduce(function(acc,v){
+    console.log("acc",acc,"v",v)
+    return acc+v
+},0)
+
+console.log("res",res)
+
+/*
+    当reduce不传第二个参数也就是初始值时，
+    我们把数组中索引为0的那个元素作为初始值
+    然后reduce的累加从索引为1的元素开始
+    明显的不同就是，不传第二个参数时，少遍历了一次
+*/ 
+
+const res2 = arr.reduce(function(acc,item){
+    console.log(`上一次的结果:${acc},本次遍历的元素:${item}`)
+    return acc+item
+})
+
+console.log("res2",res2)
+
+/*
+    练习题
+    在0 ～ 1000 正整数中 [0,1000]，计算出反时能被5整除的元素的累加值
+*/ 
+
+const array = []
+for(let i = 0; i < 1001 ; i++){
+    array.push(i)
+}
+
+const sum = array.reduce(function(acc,item){
+    // if(item%5 === 0){
+    //     return acc+item
+    // }else{
+    //     return acc
+    // }
+
+    return item%5 === 0 ? acc+item : acc
+},0)
+
+console.log("sum:",sum)
+
+// reduce 取代 filter map
+/*
+    [3,132,30,100,12,11,42,5]
+
+    >30 **2
+
+    reduce
+*/ 
+const arr2 = [3,132,30,100,12,11,42,5]
+
+const res3 = arr2.reduce(function(acc,item){
+    if(item > 30){
+        acc.push(item**2)
+    }
+    return acc
+},[])
+
+console.log("res3",res3)
+
+/*
+    [red,green,blue,red,green,red,blue,black]
+
+*/
+
+const obj = {
+    a:1,
+    b:2,
+    c:3,
+    "hello world!":4
+}
+
+console.log(obj.a)
+console.log(obj["a"])
+console.log(obj["hello world!"])
+const key = "a"
+const key1 = "hello world!"
+console.log(obj[key])
+console.log(obj[key1])
+
+const arr4 = ['red','green','blue','red','green','red','blue','black']
+
+const res4 = arr4.reduce(function(acc,item){
+    if(acc[item]){
+        acc[item] += 1
+    }else{
+        acc[item] = 1
+    }
+    return acc
+},{})
+
+console.log("res4",res4)
+
+
+/*
+    [
+        {name:"china",state:"Asia"},
+        {name:"jan",state:"Asia"},
+        {name:"usa",state:"North America"}
+        {name:"uk",state:"Europe"}
+        {name:"italy",state:"Europe"}
+    ]
+    to 
+    {
+        Asia:[china,jan],
+        Europe:[uk,italy],
+        North America:[usa]
+    }
+
+*/
+
+const arr5 = [
+        {name:"china",state:"Asia"},
+        {name:"jan",state:"Asia"},
+        {name:"usa",state:"North America"},
+        {name:"uk",state:"Europe"},
+        {name:"italy",state:"Europe"}
+]
+
+const res5 = arr5.reduce(function(acc,item){
+    if(acc[item.state]){
+        acc[item.state].push(item.name)
+    }else{
+        // acc[item.state] = []
+        // acc[item.state].push(item.name)
+
+        acc[item.state] = [item.name]
+    }
+    return acc
+},{})
+
+console.log("res5",res5)
+
+</script>

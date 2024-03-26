@@ -1,0 +1,49 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <!-- 支持中文 -->
+        <meta charset="UTF-8">
+        <!-- 支持不同屏幕尺寸响应式配置 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>九宫格</title>
+        <style>
+            .board-element {
+                width:300px;
+                height:300px;
+                border:1px solid black;
+                position: relative; /* 相对定位 */
+            }
+
+            .block-element {
+                width:98px;
+                height:98px;
+                border:1px solid black;
+                background-color: #ccc;
+                display: flex; /* 在灰色正方形中开启弹性布局 */
+                justify-content: center; /* 水平居中 */
+                align-items: center; /* 垂直居中 */
+                position: absolute;
+                /* row 0  col 0 */
+                /* top:calc(0 * 100px);    left:calc(0 * 100px); */
+                /* row 0  col 1 */
+                /* top:calc(0 * 100px);    left:calc(1 * 100px); */
+                /* row 0  col 1 */
+                /* top:calc(0 * 100px);    left:calc(2 * 100px); */
+                /* row 1  col 1 */
+                /* top:calc(1 * 100px);    left:calc(1 * 100px); */
+                /* row 2  col 2 */
+                /* top:calc(2 * 100px);    left:calc(2 * 100px); */
+                --row:0;
+                --col:2;
+                top:calc(var(--row) * 100px); left:calc(var(--col) * 100px);
+                
+            }
+        </style>
+    </head>
+    <body>
+        <!-- div 块标签 block -->
+        <div class="board-element">
+            <div class="block-element">1</div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,66 @@
+<script>
+
+// 对象的序列化和反序列化
+
+const stu = {
+    name: '张三',
+    class: "1班",
+    gender: '男',
+}
+
+// 序列化 将有结构的对象转成无结构的对象，如字符串
+// JSON.stringify 按照严格的json格式 序列化
+
+const stu_str = JSON.stringify(stu);
+console.log(stu_str);
+
+// 反序列化 将无结构的对象转成有结构的对象
+
+const stu_obj = JSON.parse(stu_str);
+console.log(stu_obj);
+
+
+// 对象的赋值和复制
+// https://pythontutor.com/
+// 对象
+// 对象（{} []）其实是引用类型
+const salerA = {
+    name: '小飞',
+    count:100,
+}
+
+const salerB = salerA;
+
+salerB.name = '小强';
+salerB.count = 1;
+
+
+console.log("salerB",salerB)
+console.log("salerA",salerA)
+
+const salerC = {}
+// const salerC = new Object()
+salerC.name = '张三';
+salerC.count = salerA.count;
+
+const salerD = JSON.parse(JSON.stringify(salerC));
+salerD.name = '李四';
+
+const salerE = Object.assign({},salerC);
+
+
+
+// String，Number，Boolean 都是基础类型
+
+let num1 = 100
+let num2 = num1
+num2 = 3.14
+
+console.log("num1",num1) // 100
+console.log("num2",num2) // 3.14
+
+
+
+
+
+</script>

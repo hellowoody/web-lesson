@@ -1,0 +1,74 @@
+<script>
+/*
+
+    this 函数作用域的上下文context (难点)
+
+    A. this 指向全局对象window
+    B. this 指向所属对象
+    C. call,apply,bind 强制指定执行上下文
+
+    总结：优先级  C > B > A
+
+    注意：function this 执行不要在声明/定义的代码中去判断
+            从调用的那个一句分析
+*/
+
+var a = 1;  // window.a = 1 
+let b = 2;  // window.b  undefined
+const c = 3;
+
+function foo(){
+    console.log("foo a",this.a) // window
+    console.log("foo b",this.b)
+    console.log("foo c",this.c)
+}
+
+foo()
+
+const obj = {
+    a:10,
+    b:20,
+    c:30,
+    bar:function(){
+        console.log("bar a",this.a) 
+        console.log("bar b",this.b)
+        console.log("bar c",this.c)
+    }
+}
+
+obj.bar()
+
+obj.foo_new = foo
+
+obj.foo_new() 
+
+const bar_new = obj.bar
+bar_new()
+
+
+const obj2 = {
+    a:10,
+    b:20,
+    c:30,
+    bar:function(){
+        console.log("bar a",this.a) 
+        console.log("bar b",this.b)
+        console.log("bar c",this.c)
+        function fn(){
+            console.log("fn a",this.a) 
+            console.log("fn b",this.b)
+            console.log("fn c",this.c)
+        }
+        fn() 
+    }
+}
+obj2.bar()
+ /*
+bar 
+ 10
+ 20
+ 30
+fn 
+ 1
+ */
+</script>

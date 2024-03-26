@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>dom</title>
+    </head>
+    <body>
+        <div id="app">
+            <p id="p_id" name="p_name" style="color:blue;">hello dom</p>
+        </div>
+    </body>
+</html>
+<script>
+// const app = document.querySelector("#app")
+const app = document.getElementById("app")
+console.log(app) // <div>...</div> 
+console.dir(app) // {}
+console.log(app.childNodes) // 返回类数组的对象
+console.log(app.children)   // 返回类数组的对象
+console.log(app.parentNode) // 返回父节点
+
+
+console.log("Node.ELEMENT_NODE",Node.ELEMENT_NODE)       // 1
+console.log("Node.ATTRIBUTE_NODE",Node.ATTRIBUTE_NODE)  // 2
+console.log("Node.TEXT_NODE",Node.TEXT_NODE)            // 3
+
+for(const item of app.childNodes){
+    console.log(`item.textContent:${item.textContent}
+                    item.nodeType:${item.nodeType}
+                    item.nodeName:${item.nodeName}
+                    item.nodeValue:${item.nodeValue}
+                `)
+}
+</script>

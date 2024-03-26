@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>canvas 图形</title>
+    </head>
+    <body>
+        <canvas></canvas>
+    </body>
+</html>
+<script>
+const canvas = document.getElementsByTagName("canvas")[0]
+if(!canvas.getContext){
+    const p = document.createElement("p")
+    p.innerText = "该浏览器不支持canvas"
+    document.body.appendChild(p)
+}else{
+    const w =500 ,h = 500;
+    // 画纸尺寸
+    canvas.width = w
+    canvas.height = h
+    // 画布尺寸
+    canvas.style.width = w+"px"
+    canvas.style.height = h+"px"
+    canvas.style.background = "yellow"
+
+    const ctx = canvas.getContext("2d") 
+    
+    ctx.translate(w/2,h/2)
+
+    ctx.beginPath()
+    ctx.moveTo(0,0)
+    // ctx.arc(圆心x,圆心y,r,开始的弧度,结束的弧度)
+    // ctx.arc(0,0,100,0,Math.PI*2)
+    // ctx.arc(0,0,100,0,Math.PI)
+    ctx.arc(0,0,100,0,Math.PI/2)
+    // ctx.arc(0,0,100,0,Math.PI/7)
+    ctx.lineWidth = 10;
+    ctx.closePath()
+    ctx.stroke()
+
+
+    ctx.beginPath()
+    // ctx.arc(圆心x,圆心y,r,开始的弧度,结束的弧度)
+    ctx.arc(0,0,100,0,Math.PI)
+    ctx.lineWidth = 10;
+    ctx.closePath()
+    ctx.stroke()
+    // ctx.fillStyle = "red"
+    // ctx.fill()
+
+
+    ctx.beginPath()
+    ctx.moveTo(0,0)
+    // ctx.arc(圆心x,圆心y,r,开始的弧度,结束的弧度)
+    ctx.arc(0,0,100,0,Math.PI/2)
+    ctx.lineWidth = 10;
+    // ctx.closePath()
+    ctx.stroke()
+    // ctx.fillStyle = "red"
+    // ctx.fill()
+
+}
+
+</script>

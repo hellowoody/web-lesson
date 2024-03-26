@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>canvas 画板</title>
+    </head>
+    <body>
+        <!-- 300*150 -->
+        <!-- <canvas width="500" height="500"></canvas> -->
+        <!-- <canvas style="width:800px;height:600px;border:1px solid #000;"></canvas> -->
+        <!-- <canvas width="500" height="500" style="width:800px;height:600px;border:1px solid #000;"></canvas> -->
+        <canvas></canvas>
+    </body>
+</html>
+<script>
+/*
+    <canvas width="500" height="500"             相纸尺寸
+    <canvas style="width:300px;height:300px;"    相框尺寸
+*/ 
+const w =500 ,h = 500;
+const canvas = document.getElementsByTagName("canvas")[0]
+
+canvas.width = w
+canvas.height = h
+canvas.style.width = w+"px"
+canvas.style.height = h+"px"
+canvas.style.background = "pink"
+
+const ctx = canvas.getContext("2d")
+
+ctx.moveTo(0,0)
+ctx.lineTo(500,500)
+ctx.stroke()
+
+</script>

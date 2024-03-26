@@ -1,0 +1,27 @@
+<script>
+function Animal(){
+    this.heart = 90
+}
+
+function Dog(){
+    this.swimming = function(){
+        console.log("swimming")
+    }
+}
+
+Dog.prototype.__proto__ = Animal.prototype
+
+const dog = new Dog()
+console.log(dog)
+console.log(dog.heart) // 90
+console.log(dog.swimming()) // swimming
+
+console.log(Dog.prototype.constructor === Dog) // true
+
+console.log(Array.prototype.constructor === Array) // true
+
+console.log("dog instanceof Dog",dog instanceof Dog)        // true
+console.log("dog instanceof Animal",dog instanceof Animal)  // true
+console.log("dog instanceof Array",dog instanceof Array)  // false
+console.log("dog instanceof Object",dog instanceof Object)  // true
+</script>

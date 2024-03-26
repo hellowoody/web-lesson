@@ -1,0 +1,54 @@
+<script>
+function sum(a,b){
+    return 1000
+    console.log(a,b)
+}
+
+console.log(sum(1,2))
+
+
+
+function sum2(a,b){
+    return 1000
+    console.log(a,b)
+    return a+b
+}
+
+console.log(sum2(1,2))
+
+function diff1(num1,num2){
+    let res = ""
+    if(num1 < num2){
+        res = "第二个参数大"
+    }else if(num1 > num2){
+        res = "第一个参数大"
+    }else{
+        res = "相等"
+    }
+    return res
+}
+
+function diff2(num1,num2){
+    if(num1 < num2){
+        return "第二个参数大"
+    }else if(num1 > num2){
+        return "第一个参数大"
+    }else{
+        return "相等"
+    }
+}
+
+console.log(diff1(1,2))
+console.log(diff2(1,-2))
+
+
+function print(msg){
+    console.log(msg)
+    // return ;
+    // return undefined;  // 不推荐
+}
+
+const resPrint = print("hello")
+console.log("resPrint",resPrint)
+
+</script>

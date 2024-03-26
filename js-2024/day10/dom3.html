@@ -1,0 +1,57 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>2024-03-15 课堂练习</title>
+    </head>
+    <body>
+        <input id="input_el" placeholder="yyyy-MM-dd" >
+        <button onclick="sub()">提交</button>
+        <h2>结果</h2>
+        <p>
+        </p>
+    </body>
+</html>
+<script>
+function sub(){
+    const input_el = document.getElementById('input_el');
+    console.dir(input_el.value)
+    const date_str = input_el.value
+    // 2024-10-15
+    // 2024-3-15
+    let startId = 0 , step = 0 , stage = 0
+    let year,month,date
+    while(step < date_str.length){
+        let i = date_str.indexOf("-",startId);
+        if(i >= 0){
+            switch (stage) {
+                case 0:
+                    year = parseInt(date_str.substring(startId,i),10)
+                    break;
+                case 1:
+                    month = date_str.substring(startId,i) - 1
+                    break;
+                default:
+                    break;
+            }
+            stage += 1
+            startId = i + 1
+        }else{
+            date = parseInt(date_str.substring(startId),10)
+            break;
+        }
+        step++
+    }
+    console.log(year,month,date)
+
+    let y,m,d 
+    const res = date_str.split("-")
+    y = parseInt(res[0],10)
+    m = parseInt(res[1],10)-1
+    d = parseInt(res[2],10)
+    console.log(res)
+    console.log(y,m,d)
+
+    // const date = new Date(year, month, day) month 0-11
+}
+</script>

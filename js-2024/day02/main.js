@@ -1,0 +1,1 @@
+document.write("<h2>js link 外部引入</h2>")

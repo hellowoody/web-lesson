@@ -1,0 +1,31 @@
+<script>
+/*
+密码要求
+1.长度不小于8位
+2.不能都是字母
+3.不能都是数字
+4.只能是数字和字母
+5.必须包含大小写字母
+
+*/
+
+const reg = /^(?![\d]{8,})(?![A-Z]{8,})(?![a-z]{8,})(?![A-Za-z]{8,})(?![\da-z]{8,})(?![A-Z\d]{8,})[A-Za-z\d]{8,}$/
+
+/*
+   if([A-Za-z\d]{8,}){
+        return 环1 && 环2 && 环3 && 环4 && 环5 && 环6;
+   }
+
+*/
+
+console.log(reg.test('1234567'))
+console.log(reg.test('FFDJSAK'))
+console.log(reg.test('dafadsa'))
+console.log(reg.test('12345678'))
+console.log(reg.test('fdsafdsaf'))
+console.log(reg.test('GFDAFGDSAF'))
+console.log(reg.test('GFDAFasdf'))
+console.log(reg.test('GFDAF1321'))
+console.log(reg.test('1321ffdsa'))
+console.log(reg.test('Wo5ni1ta2'))
+</script>

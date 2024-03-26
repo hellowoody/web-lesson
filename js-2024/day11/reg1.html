@@ -1,0 +1,14 @@
+<script>
+const reg1 = /1[6789]/ // [6-9]
+// const reg1 = /1[6-9]/ // [6-9]
+console.log(reg1.exec("我一已满合法年龄，因为我的年龄是17岁"))
+
+
+const reg2 = /[A-Za-z]/g
+let res2 
+
+while(res2 = reg2.exec("heLLO,世界")){
+    console.log("res2",res2[0])
+}
+
+</script>

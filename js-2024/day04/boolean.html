@@ -1,0 +1,52 @@
+<script>
+/*
+布尔类型
+
+Number to Boolean
+
+0 to Boolean 是 false
+!0 to Boolean 是 true 
+
+*/ 
+console.log("0:",Boolean(0))      // false
+console.log("1:",Boolean(1))
+console.log("-1:",Boolean(-1))
+console.log("3.14:",Boolean(3.14))
+console.log("-100:",Boolean(-100))
+
+/*
+    string to boolean
+*/
+
+console.log("'':",Boolean(""))
+console.log("123:",Boolean("123"))
+console.log("hello:",Boolean("hello"))
+console.log("'0':",Boolean("0"))
+
+/*
+    null 
+    undefined 
+    转 boolean 都是false
+*/
+console.log("null:",Boolean(null))
+console.log("undefined:",Boolean(undefined))
+
+/*
+    {}
+    {
+        a:1
+    }
+    new Object()
+    []
+    [1]
+*/
+
+console.log("{}:",Boolean({})) 
+console.log("{a:1}:",Boolean({a:1}))
+console.log("new Object():",Boolean(new Object()))
+console.log("[]:",Boolean([]))
+console.log("[1,2]:",Boolean([1,2]))
+
+
+
+</script>

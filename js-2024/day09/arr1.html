@@ -1,0 +1,83 @@
+<script>
+const dateStr = "2024-03-14"
+const dateArr = Array.from(dateStr) // [2,0,2,4,-,0,3,-,1,4]
+
+let idx = dateArr.indexOf("-") 
+// dateArr.indexOf("-",0) 
+
+console.log("-在数组中第一次出现的位置",idx)
+
+idx = dateArr.indexOf("-",idx+1) 
+// idx = dateArr.indexOf("-",5) 
+
+console.log("-在数组中第二次出现的位置",idx)
+
+idx = dateArr.indexOf("-",idx+1) 
+// idx = dateArr.indexOf("-",8) 
+
+console.log("-在数组中第三次出现的位置",idx) // 找不到返回-1
+
+console.log(dateArr.indexOf("a")) // -1
+
+console.log(dateStr.indexOf("4",4))
+
+
+let i = 0
+while(1){
+    i = dateArr.indexOf("0",i)
+    console.log("target 0 index:",i) // 1 
+    if(i >= 0){
+        i += 1
+    }else{
+        break
+    }
+}
+
+/*
+i = 0
+while(1){
+    i = dateStr.indexOf("-0",i)
+    console.log("string target -0 index:",i)
+    if(i >= 0){
+        i += 1
+    }else{
+        break
+    }
+}
+*/
+
+
+i = 0
+let step = 0
+while(step < dateArr.length){
+    i = dateArr.indexOf("0",i)
+    console.log(">> target 0 index:",i) // 1 
+    if(i >= 0){
+        i += 1
+    }else{
+        break
+    }
+    step++
+}
+/*
+    const date = "2023-03-09"
+    //            012345678
+*/
+console.log("dateArr.lastIndexOf('-')",dateArr.lastIndexOf('-'))        // 7
+console.log("dateArr.lastIndexOf('-',9)",dateArr.lastIndexOf('-',6))    //
+console.log("dateArr.lastIndexOf('-',dateArr.length-1)",dateArr.lastIndexOf('-',dateArr.length-1)) // 7
+
+
+// const date = "2023-03-09"
+//               012345678
+i = dateArr.length - 1
+while(1){
+    i = dateArr.lastIndexOf("0",i)
+    console.log("lastIndexOf target 0 index:",i)
+    if(i >= 0){
+        i -= 1
+    }else{
+        break
+    }
+}
+</script>

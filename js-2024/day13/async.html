@@ -1,0 +1,25 @@
+<script>
+/*
+异步的方法
+定时器 
+setTimeout(p1,p2,p3)    推迟
+setInterval(p1,p2,p3)   每隔多长时间进行操作
+
+
+setTimeout(callback,delay)       推迟delay(ms)去执行callback
+setInterval(callback,sleeping)   每隔sleeping(ms)去执行callback
+*/ 
+
+setTimeout(function(){
+    console.log("setTimeout 推迟了")
+},2000)
+
+let step = 0
+const ticket = setInterval(function(){
+    console.log("setInterval",step++)
+
+    if(step>5){
+        clearInterval(ticket)
+    }
+},1000)
+</script>

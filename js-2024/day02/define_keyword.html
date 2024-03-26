@@ -1,0 +1,69 @@
+<script>
+/*
+ 声明 关键字
+
+    var   
+     - 作用域提升  
+     - "无视"代码块  
+    let 
+     - 暂时性死区( 没有作用域提升 )
+     - 代码块会对let的变量起到“保护”作用
+    const  
+     - 使用const 必须同时初始化
+     - 一旦变量被const初始化后就不能改变
+
+        const PI = Math.PI
+        const Male = "男"
+        const Female = "女"
+
+        1.const因为不能修改，所以会让代码执行效率更快，起到了一定的保护作用
+        
+
+        literal 字面量   1000 “hello” 3.14 true false
+        object  引用对象 {} 对象  [] 数组
+
+        2.const 是没办法修改字面量
+                可以修改引用对象中的属性/元素
+    
+
+*/ 
+
+for(var i=0;i<3;i++){
+    
+}
+console.log("for 中用var声明的i ",i) // 3
+
+for(let j=0;j<3;j++){
+    
+}
+// console.log("for 中用let声明的j ",j) // error j not defined
+
+function fn(){
+    console.log("a",a) // error don't access a before initialization
+    let a = 100
+    console.log("a",a)
+}
+
+// fn()
+
+const msg = "hello"
+
+msg = "你好" // error Assignment to constant variable.
+
+
+const literal1 = "100";
+// literal1 = "1000"
+const const_obj = {
+    name:"zhang"
+}
+const_obj.name = "LI"
+const_obj.gender = "男"
+// const_obj = 1000
+console.log("const_obj:",const_obj)
+const const_arr = ["a","b"]
+// const_arr = []
+const_arr[0] = "A"
+const_arr.push("C")
+console.log("const_arr",const_arr);
+
+</script>

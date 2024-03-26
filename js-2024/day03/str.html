@@ -1,0 +1,97 @@
+<script>
+const a4 = `第一章
+    xxxxx
+第二章
+    asfdsafdsa
+`
+
+const a5 = "第1章\n    xxxxx\n第二章\n    asfdsafdsa"
+
+console.log("a4:",a4)
+console.log("a5:",a5)
+
+
+const year = "2023"
+const m = "02"
+const d = "24"
+const H = "9"
+const M = "08"
+const S = "10"
+const timestamp = year + "-" + m + "-" + d + " " + 
+                    H + ":" + M + ":" + S
+console.log("timestamp:",timestamp)
+
+const timestamp2 = `${year}-${m}-${d} ${H}:${M}:${S}`
+console.log("timestamp2:",timestamp2)
+
+function quotTemplate(msg,param1,param2){
+    console.log(msg,param1,param2)
+}
+
+quotTemplate("123")
+
+const p1 = ";"
+const p2 = ":"
+quotTemplate("123",p1,p2)
+
+
+quotTemplate `a${p1}b${p2}c`
+
+
+function calc(nums,op){
+    if(op == "+"){
+        return nums[0]+nums[1]
+    }else if(op == "-"){
+        return  nums[0]-nums[1]
+    }else{
+        return "输入不合法"
+    }
+}
+
+let res = calc([10,2],"+")
+console.log(res)
+
+let operator = "-"
+let res2 = calc `2${operator}5`
+console.log(res2)
+
+console.log("null的类型：",String(null))
+
+const obj = null;
+console.log("obj is null ?",String(null) == "null")
+console.log("obj is null ?",String(null) === "null")
+
+
+let obj2 ;
+console.log("typeof obj2:",typeof obj2) // undefind
+console.log("typeof obj3:",typeof obj3) // undefind
+
+console.log("String obj2:",String(obj2)) // undefind
+// console.log("String obj3:",String(obj3)) // error
+console.log("obj2 is undefined?",String(obj2) == "undefined") 
+console.log("obj2 is undefined?",String(obj2) === "undefined") 
+
+
+
+const str = "abc";
+console.log(str.length)
+console.log(str) // abc
+
+const strObj = new String("abc") 
+console.log(strObj.length) // 3
+console.log(strObj) 
+console.log(strObj.valueOf()) // "abc"
+
+
+const num = 3;
+console.log(num.toString(2)) 
+const num2 = 12;
+console.log(num2.toString(8)) // 14
+console.log(num2.toString(16)) // c 
+
+
+const num3 = 0o14
+console.log(num3.toString(10)) // 8进制转10进制   12
+const num4 = 0X14
+console.log(num4.toString(10)) // 16进制转10进制  20
+</script>

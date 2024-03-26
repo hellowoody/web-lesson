@@ -1,0 +1,20 @@
+<script>
+// reduce 取代 filter map
+/*
+    [3,132,30,100,12,11,42,5]
+
+    >30 **2
+
+    reduce
+*/ 
+const arr2 = [3,132,30,100,12,11,42,5]
+
+const res3 = arr2.reduce(function(acc,item){
+    if(item > 30){
+        acc.push(item**2)
+    }
+    return acc
+},[])
+
+console.log("res3",res3)
+</script>

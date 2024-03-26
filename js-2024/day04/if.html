@@ -1,0 +1,137 @@
+<script>
+let num = Math.random()*10; // [0,10)
+
+/*
+
+if(num > 5) {
+    console.log("大于5",num);
+}
+*/
+
+if(num > 5) console.log("大于5",num);
+
+console.log("end;")
+
+
+/*
+
+if(condition){
+
+}else{
+
+}
+
+if(condition1){
+
+}else if(condition2){
+
+}else if(condition3){
+
+}else{
+
+}
+
+*/
+// [1,100] 
+// n-m+1
+// 1
+let rand = Math.floor(Math.random()*100+1); 
+// 随机数是不是3的倍数
+if(rand % 3 ===0){
+    console.log("3的倍数",rand);
+}else{
+    console.log("不是3的倍数",rand);
+}
+
+// [10,90]
+// 90-10+1
+// 10
+
+// [10,30]  30-10+1
+// let age = Math.floor(Math.random()*81+10) 
+let age = Math.floor(Math.random()*21+10) 
+if(age >=10 && age < 18){
+    console.log("未成年",age)
+}else if(age >=16 && age < 30){
+    console.log("青年",age)
+}else if(age >=30 && age < 60){
+    console.log("中年",age)
+}else{
+    console.log("老年",age)
+}
+
+
+if(age >=10 && age < 18){
+    console.log("未成年",age)
+}
+
+if(age >=16 && age < 30){
+    console.log("青年",age)
+}
+
+/*
+    三元表达式
+
+    expr ? console.log(1000) : console.log(2000)
+
+    if(expr){
+        console.log(1000)
+    }else{
+        console.log(2000)
+    }
+*/
+
+
+function asc(target){
+    let res ;
+    switch (target) {
+        case 65 :
+            res = "A"
+            break;
+        case 66:
+            res = "B"
+            break;
+        case 67:
+            res = "C"
+            break;
+        case 68:
+            res = "D"
+            break;
+        case 69:
+            res = "E"
+            break;
+        default:
+            res = "其他值"
+            break;
+    }
+
+    return res
+}
+let n1 = Math.floor(Math.random()*5+65) // [65,69] 69-65+1  65 
+console.log(asc(n1),n1)
+
+function upperOrLower(char){
+    let res ;
+    switch (true) {
+        case char>="A" && char <= "Z":
+            res = "大写字母"
+            break;
+        case char>="a" && char <= "z":
+            res = "小写字母"
+            break;
+        default:
+            res = "其他值"
+            break;
+    }
+
+    return res
+}
+
+// [65,122]
+// 122-65+1 = 58
+// 65
+let code = Math.floor(Math.random()*58+65) 
+let char = String.fromCharCode(code) // A-Z[\]a-z
+console.log(upperOrLower(char),char)
+
+</script>

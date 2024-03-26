@@ -1,0 +1,22 @@
+<script>
+const obj = new Object()
+obj.a = 100.00
+
+Object.defineProperty(obj,"b",{
+    value:3.14
+})
+
+console.log(obj)
+
+obj.a = 200
+obj.b = 314 // 不报错 不生效
+
+for(const key in obj){
+    console.log("key:",key,"value:",obj[key])
+}
+
+
+console.log("obj.a 的配置信息",Object.getOwnPropertyDescriptor(obj,"a"))
+console.log("obj.b 的配置信息",Object.getOwnPropertyDescriptor(obj,"b"))
+
+</script>

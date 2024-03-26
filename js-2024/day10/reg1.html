@@ -1,0 +1,23 @@
+<script>
+const regex1 = /l/;
+const regex2 = new RegExp("l")
+
+console.log(regex1.exec("hello"))
+console.log(regex2.exec("hello"))
+console.log("***********************************")
+const regex3 = /l/g;
+console.log(regex3.exec("hello"))
+console.log(regex3.exec("hello"))
+console.log(regex3.exec("hello")) // null
+console.log("***********************************")
+let res = regex3.exec("hello")
+while(res){
+    console.log(res)
+    res = regex3.exec("hello")
+}
+console.log("***********************************")
+let res2
+while(res2 = regex3.exec("hello")){
+    console.log("22==>",res2)
+}
+</script>

@@ -1,0 +1,47 @@
+<script>
+const arr = [3,1,0,9,2,5,7]
+//          "3" "1" "0" "9"
+console.log("arr sort",arr.sort()) // 升序
+
+const arr2 = [3,1,0,9,2,5,7,10]
+//          "3" "1" "0" "9"   "10"
+//           3   1   0   9     1
+
+console.log("arr2 sort",arr2.sort())
+
+const cb = function(after,before){
+    if(after > before){
+        return 1
+    }else if(after < before){
+        return -1
+    }else{
+        return 0
+    }
+}
+
+const cb2 = function(after,before){
+    if(after < before){
+        return 1
+    }else if(after > before){
+        return -1
+    }else{
+        return 0
+    }
+}
+
+console.log("arr2 sort",arr2.sort(cb))
+console.log("arr2 sort",arr2.sort(cb2))
+
+const arr3 = [0,1,10,2,3,9,5,7]
+console.log("arr3",arr3)
+arr3.sort(function(p1,p2){
+    console.log(p1,p2)
+    if(p1 > p2){
+        return 1
+    }else if(p1 < p2){
+        return -1
+    }else{
+        return 0
+    }
+})
+</script>

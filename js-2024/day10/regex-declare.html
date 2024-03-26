@@ -1,0 +1,76 @@
+<script>
+/*
+ 正则表达式 Regex Expression
+ 根据正则的语法可以达到很方便的模糊查询
+
+ 正则表达式的声明
+
+    let express = /正则的语法/宽容度 ;
+
+    let express = /pattern/flags ;                  // 推荐
+    let express = new RegExp(pattern_str,"flags")
+
+    flags 是可传可不传
+
+    flags
+        g - global;     (掌握)
+        i - 大小写不敏感  (掌握)
+        m - 支持换行     (了解)
+        y- 粘附模式 lastIndex
+        u - unicode
+        s 
+*/ 
+
+const regex1 = /l/;
+const regex2 = new RegExp("l")
+
+console.log(regex1.exec("hello"))
+console.log(regex2.exec("hello"))
+
+const regex3 = /l/g;
+
+// console.log("/l/g ",regex3.exec("hello"))
+// console.log("/l/g ",regex3.exec("hello"))
+// console.log("/l/g ",regex3.exec("hello")) // null
+let res3
+while(res3 = regex3.exec("hello")){
+    console.log("res3",res3)
+}
+const regex4 = new RegExp("l","g")
+let res4
+while(res4 = regex4.exec("hello")){
+    console.log("res4",res4)
+}
+
+// 大小写敏感
+const regex5 = /L/;
+console.log(regex5.exec("hello"))  // null
+const regex6 = /L/i;
+console.log(regex6.exec("hello"))  // [l]
+
+const regex7 = /L/ig;
+const regex8 = new RegExp("L","gi");
+let res7 
+while(res7 = regex7.exec("hello")){
+    console.log("res7",res7)
+}
+
+/*
+\d 是正则语法代表  0-9 的数字
+
+/\d/
+
+因为反斜杠 \ 在字符串中也有转移的意思例如 \n 换行
+正则语法中的 \ 和字符串中的反斜杠是有差别的 
+所以需要将字符串中的反斜杠转义成反斜杠本身
+new RegExp("\\d")
+
+*/
+const regex9 = /\d/
+console.log(regex9.exec("我的芳龄20")) 
+const regex10 = new RegExp("\\d") // \d
+console.log(regex10.exec("我的芳龄20"))  // null
+
+const regex11 = new RegExp(/\d/)  
+console.log(regex11.exec("我的芳龄20"))  
+</script>

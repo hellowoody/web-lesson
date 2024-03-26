@@ -1,0 +1,26 @@
+<script>
+const str = "hello"
+const reg1 = /o/
+const reg2 = /o{0,1}/  // ?
+const reg3 = /o{1,}/   // +
+const reg4 = /o{1,}?/  // 
+
+const str2 = "hellooo"
+const reg5 = /o{1,}/g   // 贪婪模式
+const reg6 = /o{2,}?/g  // 懒惰模式
+
+console.log("res1",reg1.exec(str)) // index: 4
+console.log("res2",reg2.exec(str)) // index: 0 
+console.log("res3",reg3.exec(str)) // index: 4
+console.log("res4",reg4.exec(str)) // index: 4
+
+let res5
+while(res5 = reg5.exec(str2)){
+    console.log("res5",res5)
+}
+
+let res6
+while(res6 = reg6.exec(str2)){
+    console.log("res6",res6)
+}
+</script>

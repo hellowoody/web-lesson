@@ -1,0 +1,48 @@
+<script>
+const s1 = Symbol("p1"),
+    s2 = Symbol("p2");
+let ss = "aadfdsa fdsafdsa fdsa"
+const obj = {
+    [s1]:"hello s1",
+}
+
+
+console.log("obj:",obj)
+console.log("obj[s1]:",obj[s1]) // "hello s1"
+
+console.log("s1 config:",Object.getOwnPropertyDescriptor(obj,s1))
+
+Object.defineProperty(obj,s2,{
+    value:"你好 s2",
+    configurable:true,
+    enumerable:true,
+    writable:true,
+})
+
+console.log("obj:",obj)
+console.log("obj[s2]:",obj[s2]) //你好 s2
+
+
+// 不要这样用symbol， 因为不太好取到属性值
+const obj2 = {
+    [Symbol("p3")]:123
+}
+
+console.log("obj2:",obj2)
+
+console.log("****************************")
+
+let s10 = Symbol('foo'), 
+    s11 = Symbol('bar'); 
+let o = { 
+    [s10]: 'foo val', 
+    [s11]: 'bar val', 
+    baz: 'baz val', 
+    qux: 'qux val' 
+};
+
+console.log("all symbol keys :",Object.getOwnPropertySymbols(o)) // [Symbol(foo), Symbol(bar)] 
+console.log("all normal keys :",Object.getOwnPropertyNames(o))   // ["baz","qux"] 
+console.log("all normal keys :",Object.keys(o))                  // ["baz","qux"] 
+console.log("all keys :",Reflect.ownKeys(o))  
+</script>

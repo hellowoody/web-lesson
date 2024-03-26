@@ -1,0 +1,20 @@
+<script>
+
+function Foo(){
+    this.a = 100
+}
+
+console.log(Foo.prototype) 
+
+console.log("Foo的原型",Foo.prototype) // {constructor:Foo}
+console.log("Foo的构造器",Foo.prototype.constructor) // Foo
+
+console.log(Foo.prototype.constructor === Foo) // true
+
+console.log("******************************")
+
+const foo = new Foo()
+console.log(foo)
+console.log(foo.__proto__)  // 用__proto__使用原型链
+console.log(foo.__proto__ === Foo.prototype) // true
+</script>

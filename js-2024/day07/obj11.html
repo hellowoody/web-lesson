@@ -1,0 +1,23 @@
+<script>
+function Animal(){
+    this.heart = 90
+}
+
+function Dog(){
+    this.swimming = function(){
+        console.log("swimming")
+    }
+}
+
+Dog.prototype = new Animal()
+Dog.prototype.constructor = Dog
+
+const dog = new Dog()
+console.log(dog)
+console.log(dog.heart) // 90
+console.log(dog.swimming()) // swimming
+
+console.log(Dog.prototype.constructor === Dog) // true
+
+console.log(Array.prototype.constructor === Array) // true
+</script>

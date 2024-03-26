@@ -1,0 +1,12 @@
+<script>
+const arr1 = new Array(5) // 一个参数并且number类型
+console.log("arr1",arr1) // 此刻arr1是个“中间”状态
+arr1.fill("")
+console.log("arr1 fill",arr1) // fill 之后我们可以“放心”使用arr1
+
+const arr2 = new Array("a") // 一个参数不是number类型 ["a"]
+const arr3 = new Array(true) // 一个参数不是number类型 [true]
+const arr4 = new Array(Symbol("a")) // 一个参数不是number类型 [Symbal(a)]
+
+console.log(arr2,arr3,arr4)
+</script>

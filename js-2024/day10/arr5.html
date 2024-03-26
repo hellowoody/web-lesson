@@ -1,0 +1,25 @@
+<script>
+const arr = [1,2,3,4,5,6]
+
+const res = arr.reduce(function(acc,v){
+    console.log("acc",acc,"v",v)
+    return acc+v
+},0)
+
+console.log("res",res)
+
+const res2 = arr.reduce(function(acc,item){
+    console.log(`上一次的结果:${acc},本次遍历的元素:${item}`)
+    return acc+item
+})
+
+console.log("res2",res2)
+
+
+const res3 = arr.reduce(function(acc,v){
+    console.log("acc",acc,"v",v)
+    return acc+v
+},100)
+
+console.log("res3",res3)
+</script>

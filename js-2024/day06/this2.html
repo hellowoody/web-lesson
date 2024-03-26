@@ -1,0 +1,24 @@
+<script>
+var a = 3.14
+let b = -3.14
+const obj2 = {
+    a:10,
+    b:20,
+    c:30,
+    bar:function(){
+        console.log("bar a",this.a) 
+        console.log("bar b",this.b)
+        console.log("bar c",this.c)
+        function fn(){
+            console.log("fn a",this.a) 
+            console.log("fn b",this.b)
+            console.log("fn c",this.c)
+        }
+        fn() 
+    }
+}
+
+obj2.bar()
+
+
+</script>

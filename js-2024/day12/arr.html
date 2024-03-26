@@ -1,0 +1,37 @@
+<script>
+let arr = [1,2,3,4,5,6,7,8,5,9,10]
+
+// indexOf  [5,7]
+
+const res1 = arr.filter(function(v){
+    return v === 5 ? false : true 
+})
+
+console.log("res1",res1)
+
+const res2 = []
+
+for(let v of arr){
+    if(v !== 5){
+        res2.push(v)
+    }
+}
+console.log("res2",res2)
+
+/*
+    indexOf 
+*/
+for(let i = 0 ; i < arr.length ;  ){
+    if(arr[i] === 5){
+        // del i 
+        arr.splice(i,1)
+        continue
+    }
+    i++
+}
+
+console.log("arr",arr)
+
+
+
+</script>

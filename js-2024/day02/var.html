@@ -1,0 +1,23 @@
+<script>
+function t1(){
+    console.log(a) // undifined
+    a = 10
+    console.log(a) // 10
+    var a;
+    console.log(a) // 10
+}
+
+// t1()
+// console.log(b)  // err b not defined
+b = 100;           // 给全局对象window增加一个属性b  不推荐这么写
+// window.b = 100;  
+console.log(b)     // 100
+console.log(window.b)  // 100
+
+let obj = {
+    a:1
+}
+
+obj.b = 2 // 给一个对象增加新属性 
+console.log(obj) // {a:1,b:2}
+</script>

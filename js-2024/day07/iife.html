@@ -1,0 +1,18 @@
+<script>
+
+// 立即执行函数 是 闭包clorser的一种
+
+
+(function(){
+    // eval("console.log(this)"); // Window
+    console.log(this)             // Window
+})();
+function Foo(){
+    this.bar = function(){
+        eval("console.log(this)"); // Foo
+    }
+}
+var foo = new Foo();
+foo.bar();
+
+</script>

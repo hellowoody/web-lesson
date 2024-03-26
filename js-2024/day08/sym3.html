@@ -1,0 +1,47 @@
+<script>
+const arr = [1,2,3]
+console.log(arr[Symbol.iterator])
+const it = arr[Symbol.iterator]() // 返回的迭代器 {}
+console.log(it)
+console.log(it.next())
+console.log(it.next())
+console.log(it.next())
+console.log(it.next())
+console.log(it.next())
+
+const arr1 = [1,2,3]
+const obj1 = {
+    a:1,
+    b:2
+}
+for(let i of arr1){
+    console.log("for-of",i)
+}
+
+for(let i in arr1){
+    console.log("for-in",i)
+}
+
+for(let i in obj1){
+    console.log("for-in",i)
+}
+
+console.log(Object.getOwnPropertyDescriptors(arr1))
+
+obj1[Symbol.iterator] = function(){
+    let count = 5
+    return {
+        next:function(){
+            if(count > 0){
+                return {value:count--,done:false}
+            }else{
+                return {done:true}
+            }
+        }
+    }
+}
+
+for(let i of obj1){
+    console.log("for-of",i)
+}
+</script>

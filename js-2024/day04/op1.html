@@ -1,0 +1,68 @@
+<script>
+let i = 10;
+i++;
+console.log("i:",i) // 11
+--i;
+console.log("i:",i) // 10
+
+console.log("i++",i++) // 先打印 后+1    10
+console.log("i:",i)    // 11
+
+console.log("--i",--i)  // 先-1 ，后打印 10
+console.log("i:",i)     // 10
+
+
+let count = 5;
+count++;                           // 
+console.log("count++",count++);    //  6
+console.log("count--",count--);    //  7
+--count                            //   
+console.log("++count:",++count);   //  6
+
+
+let step = 0
+if(--step >= 0){
+    console.log("step1000",step)
+}
+
+
+let step2 = 0
+if(step2-- >= 0){
+    console.log("step2000",step2) // -1
+}
+
+
+let n = 0
+n += 5
+console.log("n+=5",n) // 5
+n -= 3
+console.log("n-=3",n) // 2
+n *= 6
+console.log("n*=6",n) // 12
+n /= 3
+console.log("n/=3",n) // 4
+
+
+let num = 10
+console.log(num % 2)     // 0 
+console.log((num+1) % 2) // 1
+
+num %= 2
+console.log(num)  // 0
+
+// && 也可以当成"短路操作符"
+Math.random() > 0.5 && console.log("左侧的条件为真")
+
+/*
+条件运算符
+三元表达式
+lamda表达式
+
+condition ?  statment1 : statment2
+*/ 
+let rand = Math.random()
+rand > 0.5 ? console.log("左侧的条件为真",rand) : console.log("左侧的条件为假",rand)
+
+console.log(rand > 0.5 ? "左侧的条件为真" : "左侧的条件为假")
+
+</script>

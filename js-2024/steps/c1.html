@@ -1,0 +1,91 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <!-- 支持中文 -->
+        <meta charset="UTF-8">
+        <!-- 支持不同屏幕尺寸响应式配置 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>九宫格</title>
+        <style>
+            body {
+                margin:0;
+                background-color: #363636;
+                color:#afafaf;
+                height:100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+    </head>
+    <body></body>
+</html>
+<script>
+// 定义游戏面板的尺寸和布局
+let boardSize = 3; // 3x3 游戏面板
+let blockSize = 100; // 每个方块的尺寸
+let boardWidth = blockSize * boardSize;  // 300
+let boardHeight = blockSize * boardSize; // 300
+
+//  定义方块的布局 layout
+let initialLayout = [
+    [1,2,3],
+    [4,5,6],
+    [7,8,0]
+]
+
+// console.table(initialLayout)
+// 定义一个函数 创建游戏面板
+let createBoardElement = function() {
+    let boardElement = document.createElement('div'); // <div></div>
+    // <div style="width:300px;height:300px;"></div>
+    boardElement.style.width = boardWidth + 'px';
+    boardElement.style.height = boardHeight + 'px';
+    boardElement.style.position = "relative";
+    boardElement.style.border = "1px solid black"
+    return boardElement
+}
+
+// 定义一个函数 创建方块元素
+let createBlockElement = function(number) {
+    let blockElement = document.createElement('div'); // <div></div>
+    blockElement.style.width = (blockSize-2) + 'px'; // 100 - 2 = 98
+    blockElement.style.height = (blockSize-2) + 'px';
+    blockElement.style.border = "1px solid black";
+    blockElement.style.position = "absolute";
+    blockElement.style.backgroundColor = "#fafafa";
+    blockElement.style.display = "flex"
+    blockElement.style.justifyContent = "center"
+    blockElement.style.alignItems = "center"
+    if(number == 0){
+        blockElement.innerText = ""
+    }else{
+        blockElement.innerText = number
+        blockElement.style.cursor = "pointer"
+    }
+    
+    return blockElement
+}
+
+// 定义一函数 初始化游戏面板 并添加方块元素到面板中
+let initGameLayout = function(boardElement) {
+    let blockElement
+    for(let row = 0 ; row < boardSize ; row++){
+        for(let col = 0 ; col < boardSize ; col++){
+            let number = initialLayout[row][col] //  1 2 3 4 5 6 7 8 0
+            blockElement = createBlockElement(number)
+            blockElement.style.left = (col * blockSize) + 'px';
+            blockElement.style.top = (row * blockSize) + 'px';
+            blockElement.dataset.row = row
+            blockElement.dataset.col = col
+            boardElement.appendChild(blockElement)
+        }
+    }
+}
+
+let boardElement = createBoardElement() // <div style="width:300px;height:300px;"></div>
+
+initGameLayout(boardElement) 
+
+document.body.appendChild(boardElement)
+</script>

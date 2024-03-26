@@ -1,0 +1,24 @@
+<script>
+/*
+    练习题
+    在1 ～ 1000 正整数中 [1,1000]，计算出反时能被5整除的元素的累加值
+*/ 
+
+const arr = []
+for(let i = 1 ; i < 1001 ; i++){
+    arr.push(i)
+}
+console.log("len",arr.length)
+
+
+const res = arr.reduce(function(acc,v){
+    // console.log("acc",acc,"v",v)
+    if(v%5 === 0){
+        return acc+v
+    }else{
+        return acc
+    }
+},0)
+
+console.log("res",res) // NaN
+</script>

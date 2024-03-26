@@ -1,0 +1,22 @@
+<script>
+const reg5 = /[1^2]/
+console.log("reg5",reg5.test("hello^world")) // true
+console.log("reg5",reg5.exec("hello^world")) // index:5
+
+const reg6 = /[^12]/ // 除了数字1和2的其他字符
+console.log("reg6",reg6.test("1")) // false
+console.log("reg6",reg6.test("2")) // false
+console.log("reg6",reg6.test("_")) // true
+console.log("reg6",reg6.test(" ")) // true
+console.log("reg6",reg6.test("A")) // true
+
+console.log("*****************************")
+// 全部字符 
+const reg7 = /[\s\S]/  // 全部字符
+console.log("reg7",reg7.test("1"))
+console.log("reg7",reg7.test("2"))
+console.log("reg7",reg7.test("a"))
+console.log("reg7",reg7.test(" "))
+console.log("reg7",reg7.test("\n"))
+console.log("reg7",reg7.test("\\n"))
+</script>

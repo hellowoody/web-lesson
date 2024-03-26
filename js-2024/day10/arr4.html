@@ -1,0 +1,18 @@
+<script>
+const arr = [1,2,3,4,5,6]
+
+const res1 = arr.some(function(v){
+    console.log(v,"%1")
+    return v%1 === 0
+})
+
+console.log("res1",res1)
+
+
+const res3 = arr.some(function(v){
+    console.log(v,"%5")
+    return v%5 === 0
+})
+
+console.log("res3",res3)
+</script>

@@ -1,0 +1,40 @@
+<script>
+const reg9 = /<[^>]+>/
+console.log(reg9.exec(`<div>`))
+console.log(reg9.exec(`<div id="a1">`))
+console.log(reg9.exec(`<input value=1>`))
+console.log(reg9.exec(`<a class="" style="color:red">`))
+
+console.log("******************************************")
+const html = `
+        <div>1</div><div>abc</div><div>一二三</div>
+`
+// /<div>.*<\/div>/g 
+// /<div>.*?<\/div>/g 
+const html2 = `
+        <div>123</div>
+        <div>abc</div>
+        <div>一二三</div>
+`
+
+const reg = /<div>.*<\/div>/g
+console.log(reg.exec(html))
+console.log("******************************************")
+const reg_limit = /<div>.*?<\/div>/g
+console.log(reg_limit.exec(html))
+console.log(reg_limit.exec(html))
+console.log(reg_limit.exec(html))
+console.log(reg_limit.exec(html))
+console.log("******************************************")
+
+const str = "foooood"
+const reg1 = /o{0,1}/
+console.log(reg1.exec(str))
+console.log(reg1.exec(str))
+console.log(reg1.exec(str))
+console.log(reg1.exec(str))
+console.log(reg1.exec(str))
+console.log(reg1.exec(str))
+
+
+</script>

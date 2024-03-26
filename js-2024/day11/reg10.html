@@ -1,0 +1,36 @@
+<script>
+const exp = /world/
+const exp_start = /^world/  // 以world开头
+const exp_end = /world$/    // 以world结尾
+
+console.log(exp.exec("hello world"))  // index:6
+console.log("exp_start",exp_start.exec("hello world")) // null
+console.log("exp_start",exp_start.exec("world hello")) // index:0
+
+console.log(exp.exec("hello world!"))
+console.log("exp_end",exp_end.exec("hello world.")) // null
+console.log("exp_end",exp_end.exec("hello world"))  // index:6
+
+console.log("**************************")
+// 多行下的匹配开头结尾
+const statement = `
+第一行,xxx.
+注意。。。。
+第二行,xxx.
+第三行,xxx.
+`
+const reg = /^第.*/gm
+let res
+while(res = reg.exec(statement)){
+    console.log("^",res)
+}
+
+
+const reg_end = /.*\.$/gm
+let res_end
+while(res_end = reg_end.exec(statement)){
+    console.log("$",res_end)
+}
+
+
+</script>

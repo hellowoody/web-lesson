@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body></body>
+</html>
+<script>
+/*
+    console.table(对象)
+    console.table(数组)
+*/
+
+console.table({a:1,b:2,c:3})
+console.table(["a","b","c"])
+console.table([["a","b"],["张三","里斯"],[100,200]])
+console.table([[["a","b"],["A","B"]],[["c","d"],["C","D"]]])
+
+// 打印分组/缩进
+console.group("一级标题")
+console.log(1000)
+console.log(2000)
+console.group("二级标题")
+console.log(3000)
+console.log(4000)
+console.groupEnd() // 关闭二级标题分组
+console.groupEnd() // 关闭一级标题分组
+console.log(1000000)
+console.log(3000000)
+</script>
