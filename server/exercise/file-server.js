@@ -9,6 +9,11 @@ let root = path.resolve(process.argv[2] || ".")
 // console.log(root)
 
 let server = http.createServer((req,resp)=>{
+    if (path.normalize(decodeURI(req.url)) !== decodeURI(req.url)) {
+        resp.statusCode = 403;
+        resp.end();
+        return;
+    }
     let pathname = req.url
     // let pathname = url.parse(req.url).pathname
     let filepath = path.join(root,pathname)
