@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>app</title>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+<script>
+Vue.createApp({
+    setup() {
+      const message = "Hello Vue!"
+      return {
+        message
+      }
+    },
+    template:`<h1>{{message}}</h1>`
+  }).mount('#app')
+</script>
