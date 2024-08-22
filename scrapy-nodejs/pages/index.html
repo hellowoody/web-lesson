@@ -1,0 +1,315 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=pie-simple&code=PYBwLglsB2AEC8sDeAoWtJgDYFMBcya6GOAHmAQOQBKOAZjgE5OzB2wCGsA6jgEYBnCGByUANEXQCArnxHkqAMQ4BrHLAAiHMB3GTYuOhViUAxjmgjGlIgF8J6MMGBZIIAqmIZGEAOa-mKmEcAFsbdHsiXADoABMPfWAfC2NKADcmSFMOLD0vQ1SC8NhIqSYIHAECAG19Ty9YaA4Q_BMAQVNzAQFYRUZgMIcGsABPEFbKEAq8hsYOWIhpKpMAVgAGAFIZr1jtDhr9LyRYNJzpVoBGNYAWAA4xRuaJgGUcDkZTAAtYAFFoXwg0FEJSGDWQJzOrQA7ABmFYPJotKgaCDMUxgSggw7EY6nLDnAgrW5rBFPKg_EIcCC5LFg9C4yEEO7XUlIkwAVWgUDgbViAkxpTpDPxrRhaxJjzZlAAahBYjhgLBefyStiALqg4ihECfDhCZb1MHBELPUa4BJ04gCXWxYAAdwAQvjGAQrpqwdb5vaAPJ0OgCHBgAAaBBJ2K8nttdoAwi4klRGL4-BwABQS9MPNYAOhWAEpimDbNii14S7A1ShbABuIA
+	⚠ 请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="display: flex;justify-content: space-around;height: 100vh;margin: 0;">
+  <div id="container1" style="flex:1;"></div>
+  <div id="container2" style="flex:1;"></div>
+  
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/5.5.1/files/dist/echarts.min.js"></script>
+  
+
+  <script type="text/javascript">
+
+
+const data = [
+  { name: '1万+', value: 22 },
+  { name: '1千+', value: 10 },
+  { name: '10+', value: 20 },
+  { name: '9', value: 1 },
+  { name: '4', value: 1 }
+]
+
+
+    var dom = document.getElementById('container1');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    option = {
+  title: {
+    text: '小红书数据分析',
+    subtext: 'Fake Data',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'item'
+  },
+  legend: {
+    orient: 'vertical',
+    left: 'left'
+  },
+  series: [
+    {
+      name: 'Access From',
+      type: 'pie',
+      radius: '50%',
+      data: data,
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      }
+    }
+  ]
+};
+
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
+<script type="text/javascript">
+    var dom2 = document.getElementById('container2');
+    var myChart2 = echarts.init(dom2, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var option2;
+
+    myChart2.showLoading();
+
+    const data2 = {
+        "name": "小红书",
+        "children": [{
+            "name": "喜爱数：4 (1})",
+            "children": [{
+                "name": "世喜好价 "
+            }]
+        },
+        {
+            "name": "喜爱数：9 (1})",
+            "children": [{
+                "name": "小象超市工资怎么算的呀"
+            }]
+        },
+        {
+            "name": "喜爱数：1万+ (22})",
+            "children": [{
+                "name": "婚后二人食 "
+            },
+            {
+                "name": "纪录片😰️我儿子是“儿子”的儿子"
+            },
+            {
+                "name": "穿公主裙赶飞机是什么样的体验？✈️"
+            },
+            {
+                "name": "在认识你之前，我已经开始爱你。"
+            },
+            {
+                "name": "服了！8岁的女儿非要买理光！"
+            },
+            {
+                "name": "压脚背才是直腿天花板！（进阶版）"
+            },
+            {
+                "name": "这张照片是唯一能证明它曾存在于这个世界上"
+            },
+            {
+                "name": "只做美女 不做笨蛋 "
+            },
+            {
+                "name": "肩膀不内扣了！姐妹们练起来 ✔️两周见效"
+            },
+            {
+                "name": "现在的孩子都这么厉害嘛，学霸加一起都不行"
+            },
+            {
+                "name": "Rosebowl🎞️记录🥀"
+            },
+            {
+                "name": "油画牡丹甲🎐 "
+            },
+            {
+                "name": "撞上了领导胸肌，好害羞，好尴尬啊"
+            },
+            {
+                "name": "绝了！大西北这个盐湖太美了"
+            },
+            {
+                "name": "巨震撼😱这部玛雅文明电影至今难超越‼️"
+            },
+            {
+                "name": "瘦小腿太管用了‼️顽固性小腿粗壮✅真的细了"
+            },
+            {
+                "name": "真的好像get√到莞莞类卿了"
+            },
+            {
+                "name": "99%的人不知道，车上有个隐藏的小冰箱！"
+            },
+            {
+                "name": "没有伴郎伴娘，两个人的接亲简直不要太舒服"
+            },
+            {
+                "name": "家里的阳台茶桌被围观了"
+            },
+            {
+                "name": "瘦子为什么这么瘦！！！这下原因找到了！！！"
+            },
+            {
+                "name": "真人电影《芭比》发布新预告！"
+            }]
+        },
+        {
+            "name": "喜爱数：1千+ (10})",
+            "children": [{
+                "name": "千万不要一头金发穿汉服！！！"
+            },
+            {
+                "name": "刚烫的👩‍🦱 "
+            },
+            {
+                "name": "青春期女孩尴尬瞬间｜这位妈妈内核很稳定"
+            },
+            {
+                "name": "女儿长了一张有争议性的脸！"
+            },
+            {
+                "name": "我六岁的闺蜜给你们看一下"
+            },
+            {
+                "name": "左滑帮我当会计 "
+            },
+            {
+                "name": "好家伙，又让你发现一个bug？"
+            },
+            {
+                "name": "法拍届最大乌龙事件 "
+            },
+            {
+                "name": "研究半小时，终于发现了这个凹槽形成的原因"
+            },
+            {
+                "name": "六年归来仍是未成年 "
+            }]
+        },
+        {
+            "name": "喜爱数：10+ (20})",
+            "children": [{
+                "name": "模仿穿搭|158/跟着董洁学知性风穿搭🍂"
+            },
+            {
+                "name": "这个品牌的原浆啤酒如何？"
+            },
+            {
+                "name": "龙飞平面筑基班图推笔记"
+            },
+            {
+                "name": "这种人到底是什么心理？"
+            },
+            {
+                "name": "下班后来图书馆学cfa"
+            },
+            {
+                "name": "好美呀！ "
+            },
+            {
+                "name": "日本的食物为什么这么咸？"
+            },
+            {
+                "name": "时间越久的资金曲线才是最好的证明"
+            },
+            {
+                "name": "下一个英伟达？礼来财报"
+            },
+            {
+                "name": "天呐‼️日本咋这样了？"
+            },
+            {
+                "name": "CFA证书开箱 "
+            },
+            {
+                "name": "真的绝了！我的言语理解直接质变了"
+            },
+            {
+                "name": "拥有一棵染过色的仙人掌❓"
+            },
+            {
+                "name": "每个星期要买100股smci啊"
+            },
+            {
+                "name": "有没有可能只会写汉字而不会汉语?"
+            },
+            {
+                "name": "方程豹豹8，全网首爆，方向拉杆又断了"
+            },
+            {
+                "name": "人生第一张职业形象照，竟然被说像日本人🥲？"
+            },
+            {
+                "name": "这张发票的金额到底是多少？不懂啊"
+            },
+            {
+                "name": "这个夏天需要一支樱花粉🌸"
+            },
+            {
+                "name": "听了高照老师3+2，听课过程中有些疑惑，觉得有些步骤没见过用起来也不熟，但是听完"
+            }]
+        }]
+    }
+
+
+  
+myChart2.hideLoading();
+  myChart2.setOption(
+    (option2 = {
+      tooltip: {
+        trigger: 'item',
+        triggerOn: 'mousemove'
+      },
+      series: [
+        {
+          type: 'tree',
+          data: [data2],
+          left: '15%',
+          right: '15%',
+          top: '10%',
+          bottom: '15%',
+          symbol: 'emptyCircle',
+          orient: 'horizontal',
+          layout: 'orthogonal',
+          expandAndCollapse: true,
+          initialTreeDepth:1,
+          symbolSize: 15,
+          label: {
+            position: 'left',
+            verticalAlign: 'middle',
+            align: 'right',
+            fontSize: 15
+          },
+          leaves: {
+            label: {
+              position: 'right',
+              verticalAlign: 'middle',
+              align: 'left'
+            }
+          },
+          animationDurationUpdate: 750
+        }
+      ]
+    })
+  );
+
+    if (option && typeof option2 === 'object') {
+      myChart2.setOption(option2);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
