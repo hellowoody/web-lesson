@@ -1,0 +1,40 @@
+<!-- 文档声明 告诉浏览器页面按Html5标准执行 -->
+<!DOCTYPE html>
+<!-- 根标签 root tag -->
+<html>
+    <!-- 头标签 配置页面的 -->
+    <head>
+        <meta charset="utf-8" >
+        <title>css选择器</title>
+        <style>
+            /* id选择器 */
+            #box {
+                width: 100px;
+                height: 100px;
+                border: 2px dashed #000;
+            }
+
+            #circle {
+                display: inline-block;
+                width: 150px;
+                height: 150px;
+                background: #f00;
+                border-radius: 50%;
+            }
+
+            #rect {
+               width: 200px;
+               height: 200px;
+               background: rgb(0 200 200 / 0.3);
+               box-shadow: 0px 1px 8px rgb(0 0 0 / 0.8); 
+            }
+
+        </style>
+    </head>
+    <!-- body 标签 渲染页面的 让用户能看到的内容都放在body中 -->
+    <body>
+        <div id="box">id:box</div>
+        <span id="circle">id:circle</span>
+        <p id="rect">id:rect</p>
+    </body>
+</html>

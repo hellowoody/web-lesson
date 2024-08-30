@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>复合选择器-父子选择器</title>
+        <style>
+            /* p1 必须li标签的子标签 */
+            li > .p1 {
+                color:red;
+            }
+
+            ul > li > .p1 {
+                color:green;
+            }
+
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li>
+                <div class="p1">hello</div>
+            </li>
+            <li class="p1">世界</li>
+            <li>
+                <div>
+                    <ol>
+                        <li>
+                            <div class="p1">张三</div>
+                        </li>
+                        <li>王武</li>
+                    </ol>
+                </div>
+            </li>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,55 @@
+<!-- 文档声明 告诉浏览器页面按Html5标准执行 -->
+<!DOCTYPE html>
+<!-- 根标签 root tag -->
+<html>
+    <!-- 头标签 配置页面的 -->
+    <head>
+        <meta charset="utf-8" >
+        <title>css选择器</title>
+        <style>
+            /* 
+                id，类，标签选择器
+
+                1.类选择器用的最多
+                2.id跟主键一样是唯一的
+                3.类和标签 是可以复用的
+            
+            */
+            /* 类选择器 */
+            .box {
+                width: 100px;
+                height: 100px;
+                border: 2px dashed #000;
+            }
+
+            .circle {
+                display: inline-block;
+                width: 150px;
+                height: 150px;
+                background: #f00;
+                border-radius: 50%;
+            }
+
+            .rect {
+               width: 200px;
+               height: 200px;
+               background: rgb(0 200 200 / 0.3);
+               box-shadow: 0px 1px 8px rgb(0 0 0 / 0.8); 
+            }
+
+            .box-extends {
+                width: 100px;
+                height: 100px;
+                border: 10px double #00f;
+            }
+        </style>
+    </head>
+    <!-- body 标签 渲染页面的 让用户能看到的内容都放在body中 -->
+    <body>
+        <div class="box">类box</div>
+        <span class="circle">类circle</span>
+        <p class="rect">类rect</p>
+        <p class="box">类box 2</p>
+        <div class="box-extends">类box-extends</div>
+    </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>复合选择器-属性选择器</title>
+        <style>
+            li[class] {
+                color:pink;
+            }
+
+            li[class=p2] {
+                color:blue;
+            }
+
+            li[class=p1][id=id01] {
+                color:green;
+            }
+
+            /* li.p2 {
+                color:orangered;
+            } */
+
+            /* li.p1#id01 {
+                color:purple;
+            } */
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li class="p1" id="id01">hello</li>
+            <li class="p2">世界</li>
+            <li >张三</li>   
+        </ul>
+    </body>
+</html>
